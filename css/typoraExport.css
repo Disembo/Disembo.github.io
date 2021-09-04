@@ -1,0 +1,21 @@
+body.typora-export {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.typora-export .footnote-line, .typora-export li, .typora-export p {
+    white-space: normal !important;
+}
+
+html, .form-control, .modal {
+    font-size: 16px !important;
+}
+
+.markdown-body blockquote {
+    padding: 1em !important;
+}
+
+.post-content, post-custom {
+    padding-left: 8%;
+    padding-right: 8%;
+}
