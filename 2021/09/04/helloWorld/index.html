@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -15,7 +15,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="zjg">
+  <meta name="author" content="ktegar_">
   <meta name="keywords" content="">
   
   <title>hello world - VisMaths</title>
@@ -60,7 +60,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -178,7 +178,7 @@
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
       <time datetime="2021-09-04 17:44" pubdate>
-        September 4, 2021 pm
+        2021年9月4日 下午
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      18 字
+      99 字
     </span>
   
 
@@ -223,7 +223,7 @@
             <h1 style="display: none">hello world</h1>
             
             <div class="markdown-body">
-              <p>1234 test</p>
+              <h2 id="H2"><a href="#H2" class="headerlink" title="H2"></a>H2</h2><p>1234 test</p>
 <blockquote>
 <p>Blockquote test.</p>
 </blockquote>
@@ -236,30 +236,40 @@
 </ul>
 </li>
 </ol>
+<h3 id="H3"><a href="#H3" class="headerlink" title="H3"></a>H3</h3><p>带有Macro的公式：</p>
+<script type="math/tex; mode=display">
+\newcommand{\d}{\mathrm{d}}
+\newcommand{\i}{\mathrm{i}}
+\DeclareMathOperator{\Arg}{Arg}
+123</script><p>公式：$\exp(x)=\sum_{n=0}^\infty\dfrac{x^n}{n!}$，$\Arg(1+\i)=\dfrac{\pi}4+2k\pi$，公式：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\int\frac{\d{x}}{(x-p)(x-q)}
+&= \frac{1}{p-q}\int\left(\frac1{x-p}-\frac1{x-q}\right)\d{x} \newline
+&= \frac{1}{p-q}\ln\abs{\frac{x-p}{x-q}}+C
+\end{align}</script><h2 id="H2-1"><a href="#H2-1" class="headerlink" title="H2"></a>H2</h2><h3 id="H3-1"><a href="#H3-1" class="headerlink" title="H3"></a>H3</h3><div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">1</th>
-<th align="center">2</th>
-<th align="center">3</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">1a</td>
-<td align="center">2a</td>
-<td align="center">3a</td>
+<tbody>
+<tr>
+<td style="text-align:center">1a</td>
+<td style="text-align:center">2a</td>
+<td style="text-align:center">3a</td>
 </tr>
 <tr>
-<td align="center">1b</td>
-<td align="center">2b</td>
-<td align="center">3b</td>
+<td style="text-align:center">1b</td>
+<td style="text-align:center">2b</td>
+<td style="text-align:center">3b</td>
 </tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
             </div>
             <hr>
@@ -271,7 +281,7 @@
               
                 <p class="note note-warning">
                   
-                    欢迎提出意见或建议; 转载请注明出处.
+                    文章原创, 转载请注明出处; 欢迎提出意见或建议.
                   
                 </p>
               
@@ -286,7 +296,7 @@
                     
                       <a href="/2021/09/04/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%8F%98%E6%8D%A2/">
                         <span class="hidden-mobile">复数与变换</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -303,7 +313,7 @@
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -329,7 +339,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -338,7 +348,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">Stichwort</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -432,6 +442,44 @@
 
 
 
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js" ></script>
+
+  
 
 
 
@@ -439,6 +487,11 @@
 
 
 
+
+
+
+  
+<script src="/js/art_copyright.js"></script>
 
 
 

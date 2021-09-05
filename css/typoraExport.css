@@ -11,9 +11,43 @@ html, .form-control, .modal {
     font-size: 16px !important;
 }
 
+/*TOC*/
+
+[data-user-color-scheme='dark'] .typora-export #toc {
+    color: #c4c6c9;
+}
+
+[data-user-color-scheme='dark'] .typora-export #toc .tocbot-link {
+    color: #c4c6c9;
+}
+
+[data-user-color-scheme='dark'] .typora-export #toc .tocbot-active-link {
+    color: #30a9de;
+}
+
+/*Blockquote*/
+
 .markdown-body blockquote {
     padding: 1em !important;
 }
+
+[data-user-color-scheme='dark'] .typora-export .markdown-body blockquote {
+    color: #bbb;
+    background-color: #1a2029;
+}
+
+/*Dark Background*/
+
+html[data-user-color-scheme='dark'] {
+    background-color: #181c27;
+}
+
+html[data-user-color-scheme='dark'] body {
+    background-color: #181c27;
+}
+
+
+/*Content Width*/
 
 .post-content, post-custom {
     padding-left: 8%;
