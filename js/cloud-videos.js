@@ -12,9 +12,11 @@
             let name = /^.*\/media\/(.*)$/.exec(source.src)[1];  // src="*/media/*.mp4"
 
             source.src = "https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/" + video_root + "/" + name;
-            
-            video.load();
-            video.pause();
+
+            Fluid.utils.waitElementVisible(video, function() {
+                video.load();
+                video.pause();
+            })            
         });
     }
 
@@ -25,11 +27,14 @@
         imgs = Array.prototype.slice.call( imgs );
         console.log(imgs);
         imgs.forEach(img => {
+            // img.setAttribute("lazyload", true);
             let name = /^.*\/images\/(.*)$/.exec(img.src)[1];  // src="*/images/*.*"
             img.src = "https://gitee.com/Disembo/media/raw/master/" + img_root + "/" + name;
         });
     }
 
+    // document.addEventListener("DOMContentLoaded", loadVideos);
+    // document.addEventListener("DOMContentLoaded", loadImages);
     loadVideos();
     loadImages();
 
