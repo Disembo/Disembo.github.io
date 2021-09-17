@@ -2,12 +2,12 @@
 
     function loadVideos() {
         let video_root = document.getElementById("cloud-video-root").getAttribute("value");
+        if ('undefined' == video_root) return;
 
         var videos = document.querySelectorAll("video[cloud-video]");
         videos = Array.prototype.slice.call( videos );
         console.log(videos);
         videos.forEach(video => {
-
             let source = video.firstElementChild;
             let name = /^.*\/media\/(.*)$/.exec(source.src)[1];  // src="*/media/*.mp4"
 
@@ -22,6 +22,7 @@
 
     function loadImages() {
         let img_root = document.getElementById("git-img-root").getAttribute("value");
+        if ('undefined' == img_root) return;
 
         var imgs = document.querySelectorAll("img[git-img]");
         imgs = Array.prototype.slice.call( imgs );
