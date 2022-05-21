@@ -1,6 +1,7 @@
 (function() {
     let VIDEOS_CLOUD = "https://blog-media-1307399821.cos.ap-beijing.myqcloud.com";
-    let IMAGES_CLOUD = "https://blog-images-1307399821.cos.ap-beijing.myqcloud.com";
+    // let IMAGES_CLOUD = "https://blog-images-1307399821.cos.ap-beijing.myqcloud.com";
+    let IMAGES_CLOUD = "https://gitee.com/disembo/media/raw/master";
 
     function loadVideos() {
         let video_root = document.getElementById("cloud-vid-root").getAttribute("value");
@@ -10,15 +11,16 @@
         videos = Array.prototype.slice.call( videos );
         console.log(videos);
         videos.forEach(video => {
+
             let source = video.firstElementChild;
             let name = /^.*\/media\/(.*)$/.exec(source.src)[1];  // src="*/media/*.mp4"
 
             source.src = VIDEOS_CLOUD + "/" + video_root + "/" + name;
+            video.preload = 'metadata';
 
             Fluid.utils.waitElementVisible(video, function() {
                 video.load();
-                video.pause();
-            })            
+            })
         });
     }
 
@@ -36,8 +38,6 @@
         });
     }
 
-    // document.addEventListener("DOMContentLoaded", loadVideos);
-    // document.addEventListener("DOMContentLoaded", loadImages);
     loadVideos();
     loadImages();
 
