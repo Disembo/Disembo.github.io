@@ -1,7 +1,7 @@
 (function(){
     if (window.location.pathname != "/") return;
 
-    let footer = document.getElementsByTagName("footer")[0];
+    let footer = document.getElementsByClassName("footer-inner")[0];
 
     let artInfo = document.createElement("div");
     artInfo.className = "footer-content";

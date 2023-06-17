@@ -1,5 +1,5 @@
 /* First heading */
-div.markdown-body > meta[name="cloud-media-root"] + h2 {
+div.markdown-body > meta.per-art-settings + h2 {
     margin-top: 0em;
 }
 
@@ -13,46 +13,25 @@ div.markdown-body > meta[name="cloud-media-root"] + h2 {
 }
 
 /* Table */
-table {
-    margin: 0 auto;
-    table-layout: auto;
-    width: 80%;
+.markdown-body table {
+    display: table;
+    width: 100%;
+    overflow: auto;
 }
 
-table:not(.no-border) tr {
-    border-top: 1px solid var(--text-color);
-    border-bottom: 1px solid var(--text-color);
+.markdown-body table th {
+    font-weight: 600;
 }
 
-table tr.md-end-block {
-    border-top: none;
+.markdown-body table td,
+.markdown-body table th {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
 }
 
-table tr th {
-    font-weight: bold;
-    border: none;
-    padding-top: 9px;
-    padding-bottom: 9px;
-}
-table:not(.no-border) tr th {
-    border-bottom: solid 2px var(--text-color);
-}
-
-table tr td {
-    border: none;
-    margin: 0;
-    padding-top: 9px;
-    padding-bottom: 9px;
-}
-
-table tr th:first-child,
-table tr td:first-child {
-    margin-top: 0;
-}
-
-table tr th:last-child,
-table tr td:last-child {
-    margin-bottom: 0;
+.markdown-body table tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
 }
 
 /* Math */

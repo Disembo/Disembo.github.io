@@ -35,7 +35,7 @@
 
     let mediaRoot = document.getElementsByTagName('meta')['cloud-media-root'].content;
 
-    loadVideos(mediaRoot);
+    // loadVideos(mediaRoot);
     loadImages(mediaRoot);
 
 })();
