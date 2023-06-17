@@ -27,7 +27,7 @@
         var imgs = document.querySelectorAll("img[cloud-img]");
         imgs = Array.prototype.slice.call( imgs );
         imgs.forEach(img => {
-            // img.setAttribute("lazyload", true);
+            img.setAttribute("lazyload", true);
             let name = /^.*\/images\/(.*)$/.exec(img.src)[1];  // src="*/images/*.*"
             img.src = IMAGES_CLOUD + "/" + image_root + "/" + name;
         });
@@ -35,7 +35,7 @@
 
     let mediaRoot = document.getElementsByTagName('meta')['cloud-media-root'].content;
 
-    // loadVideos(mediaRoot);
+    loadVideos(mediaRoot);
     loadImages(mediaRoot);
 
 })();
