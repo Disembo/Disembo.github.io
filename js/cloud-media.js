@@ -1,6 +1,6 @@
 (function() {
     let VIDEOS_CLOUD = "https://blog-media-1307399821.cos.ap-beijing.myqcloud.com";
-    let IMAGES_CLOUD = "https://gitee.com/disembo/media/raw/master";
+    let IMAGES_CLOUD = "https://gitee.com/disembo/media/raw/master";  // backup: tencent
 
     function loadVideos(video_root) {
         if ('undefined' == video_root) return;
