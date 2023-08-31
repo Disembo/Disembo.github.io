@@ -7,7 +7,7 @@
             paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build'}
         },
         tex: {
-            packages: {'[+]': ['physics', 'xypic', 'color', 'amsmath', 'configmacros']},
+            packages: {'[+]': ['physics', 'xypic', 'xcolor', 'amsmath', 'configmacros']},
             inlineMath: [['$', '$'], ['\\(', '\\)']],
             macros: {
                 // environments
