@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://gitee.com/disembo/media/raw/master/diffgeom-lgr/2-1-smoothness.png">
 <meta property="og:image" content="https://gitee.com/disembo/media/raw/master/diffgeom-lgr/2-2-tangent-vectors.png">
 <meta property="article:published_time" content="2023-07-08T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-23T13:51:57.128Z">
+<meta property="article:modified_time" content="2023-09-05T08:29:07.292Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -270,8 +270,8 @@
                 <html><head></head><body><blockquote>
 <p>梁灿彬, 周彬《微分几何入门与广义相对论》第一章, 第二章的笔记.</p>
 </blockquote>
-<h2 id="topology-baiscs">1 Topology Baiscs</h2>
-<h3 id="topological-spaces">1.1 Topological spaces</h3>
+<h2 id="topology-baiscs">1  Topology Baiscs</h2>
+<h3 id="topological-spaces">1.1  Topological spaces</h3>
 <p>给集合赋予一种结构(开集):</p>
 <p><strong>拓扑(topology)</strong>(选择集合的开子集): 有集合<span class="math inline">\(X\)</span>, <span class="math inline">\(\mathcal{T}\)</span>中装有选定的<strong>开集(open set)</strong>, 满足:</p>
 <ol type="1">
@@ -303,7 +303,7 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 \]</span></p></li>
 <li><p><span class="math inline">\(A\)</span>的<strong>边界(boundary)</strong><span class="math inline">\(\partial A:=\bar{A}-\i(A)\)</span>. 边界中的点称为边界点.</p></li>
 </ul>
-<h3 id="properties-of-topological-spaces">1.2 *Properties of topological spaces</h3>
+<h3 id="properties-of-topological-spaces">1.2  *Properties of topological spaces</h3>
 <p><span class="math inline">\(X\)</span>的开子集的集合<span class="math inline">\(\qty{O_\alpha}\)</span>称为<span class="math inline">\(A\subset X\)</span>的一个<strong>开覆盖(open cover)</strong>, 如果<span class="math inline">\(A\subset\bigcup_\alpha O_\alpha\)</span>.</p>
 <ul>
 <li>开覆盖<span class="math inline">\(\qty{V_\alpha}\)</span>称为<span class="math inline">\(\qty{O_\alpha}\)</span>的<strong>加细(refinement)</strong>, 如果对任意<span class="math inline">\(V_\alpha\)</span>, 存在<span class="math inline">\(O_\alpha\)</span>, 使得<span class="math inline">\(V_\alpha\subset O_\alpha\)</span>.</li>
@@ -321,8 +321,8 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 <li><strong>第一可数的(first countable),</strong> 如果对任意一点<span class="math inline">\(p\)</span>, 都存在可数邻域族<span class="math inline">\(\qty{O_\alpha}\)</span>, 满足对任意邻域<span class="math inline">\(N\)</span>, 都存在<span class="math inline">\(O_\alpha\)</span>, 使得<span class="math inline">\(N\supset O_\alpha\)</span>.</li>
 <li><strong>第二可数的(second countable)</strong>, 如果存在可数集合族<span class="math inline">\(\qty{O_\alpha}\subset{\cal T}\)</span>, 使得<span class="math inline">\(\cal T\)</span>中任意元素都为<span class="math inline">\(\qty{O_\alpha}\)</span>的元素之并.</li>
 </ul>
-<h2 id="differentiable-manifolds">2 Differentiable Manifolds</h2>
-<h3 id="differentiable-manifolds-1">2.1 Differentiable manifolds</h3>
+<h2 id="differentiable-manifolds">2  Differentiable Manifolds</h2>
+<h3 id="differentiable-manifolds-1">2.1  Differentiable manifolds</h3>
 <p>在拓扑空间上增加另外的条件, 来得到一个和<span class="math inline">\(\R^n\)</span>局部相似, 但不必整体上完全相同的空间.</p>
 <p><strong>拓扑流形(topological manifold)</strong>: 若拓扑空间<span class="math inline">\(M\)</span>满足如下性质,</p>
 <ol type="1">
@@ -352,7 +352,7 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 <li>选定坐标系<span class="math inline">\((O_0,\psi_0)\)</span>后, 就有<span class="math inline">\(f(p)\equiv F_0(x^1,x^2,\dots,x^n)\equiv F_0(x)\)</span>.</li>
 </ul>
 <p>记<span class="math inline">\(\mathcal{F}_M\)</span>为<span class="math inline">\(M\)</span>上全体<span class="math inline">\(C^\infty\)</span>标量场的集合.</p>
-<h3 id="tangent-spaces">2.2 Tangent spaces</h3>
+<h3 id="tangent-spaces">2.2  Tangent spaces</h3>
 <p><strong>向量(vector)</strong>: 设<span class="math inline">\(p\in M\)</span>, 映射<span class="math inline">\(v:\mathcal{F}_M\to\R\)</span>满足: <span class="math inline">\(\forall f,g\in\mathcal{F}_M\)</span>, <span class="math inline">\(\forall\alpha,\beta\in\R\)</span>:</p>
 <ol type="1">
 <li>(线性性) <span class="math inline">\(v(\alpha f+\beta g)=v(\alpha f)+v(\beta g)\)</span>.</li>
@@ -408,7 +408,7 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 <p><u>Pf</u> 给定单微群. <span class="math inline">\(\forall p\in M\)</span>, 都有<span class="math inline">\(\phi_p(0)\equiv\phi(0,p)\equiv\phi_0(p)=p\)</span>, 所以曲线<span class="math inline">\(\phi_p:\R\to M\)</span>恒过<span class="math inline">\(p\)</span>, 便可以取它在<span class="math inline">\(p\)</span>处的切向量<span class="math inline">\(T\)</span>. 由于<span class="math inline">\(p\)</span>是任意的, 所以就有了一个向量场.</p>
 <p>给定光滑向量场. <span class="math inline">\(\forall p\in M\)</span>, 都有唯一一条过<span class="math inline">\(p\)</span>的积分曲线<span class="math inline">\(c_p:I\to M\)</span>, 定义<span class="math inline">\(\phi_t(p)\equiv c_p(t)\)</span>(<span class="math inline">\(t\in I\)</span>), 注意到这只对局部的参数<span class="math inline">\(t\in I\)</span>成立.</p>
 </blockquote>
-<h3 id="dual-vector-fields">2.3 Dual vector fields</h3>
+<h3 id="dual-vector-fields">2.3  Dual vector fields</h3>
 <p><strong>对偶空间(dual space)</strong>: 给定线性空间<span class="math inline">\(V\)</span>, 一个线性映射<span class="math inline">\(\omega:V\to\R\)</span>, 称为<span class="math inline">\(V\)</span>的一个对偶向量(dual vector), 对偶向量构成的集合称为对偶空间, 记作<span class="math inline">\(V^*\)</span>.</p>
 <p><u>Claim 1</u> <span class="math inline">\(V^*\)</span>是一个线性空间, 且<span class="math inline">\(\dim{V^*}=\dim{V}\)</span>.</p>
 <blockquote>
@@ -440,7 +440,7 @@ v=v^\mu\pdv{}{x^\mu}=v'^\nu\pdv{}{x'^\nu}
 &amp;\Rightarrow \omega'_\nu=\eval{\pdv{x^\mu}{x'^\nu}}_p\omega_\mu.
 }
 \]</span></p>
-<h3 id="tensor-fields">2.4 Tensor fields</h3>
+<h3 id="tensor-fields">2.4  Tensor fields</h3>
 <p><strong>张量(tensor)</strong>: 多重线性的映射<span class="math inline">\(T:(\underbrace{V^*\times\dots\times V^*}_{k个})\times(\underbrace{V\times\dots\times V}_{l个})\to\R\)</span>称为<span class="math inline">\(V\)</span>上的一个<span class="math inline">\((k,l)\)</span>型张量.</p>
 <blockquote>
 <p><span class="math inline">\(\omega\in V^*\)</span>, <span class="math inline">\(\omega:V\to\R\)</span>是一个<span class="math inline">\((0,1)\)</span>型张量.</p>
@@ -481,7 +481,7 @@ T'^{\mu_1\dots\mu_k}{}_{\nu_1\dots\nu_l}
   \pdv{x^{\sigma_1}}{x'^{\nu_1}}\cdots\pdv{x^{\sigma_l}}{x'^{\nu_l}}
 }_p T^{\rho_1\dots\rho_k}{}_{\sigma_1\dots\sigma_l}.
 \]</span></p>
-<h3 id="metric-tensor-fields">2.5 Metric tensor fields</h3>
+<h3 id="metric-tensor-fields">2.5  Metric tensor fields</h3>
 <p><strong>度规张量(metric tensor)</strong>: <span class="math inline">\(V\)</span>上的一个<span class="math inline">\((0,2)\)</span>型张量<span class="math inline">\(g\)</span>满足:</p>
 <ol type="1">
 <li><p>(对称性) <span class="math inline">\(\forall u,v\in V:g(u,v)=g(v,u)\)</span>.</p></li>
@@ -536,7 +536,7 @@ l:=\displaystyle\int\abs{T}\dd{t}
 \dd{\hat s}^2=R^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2),
 \]</span> 这是诱导出的度规(induced metric)在球面坐标系<span class="math inline">\(\qty{\theta,\phi}\)</span>下的线元表达式(称为诱导线元).</p>
 </blockquote>
-<h3 id="abstract-index-notation">2.6 Abstract index notation</h3>
+<h3 id="abstract-index-notation">2.6  Abstract index notation</h3>
 <div style="text-align: right;">
 2023.7.7
 </div>
