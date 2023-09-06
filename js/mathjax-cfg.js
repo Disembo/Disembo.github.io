@@ -3,11 +3,11 @@
 
     window.MathJax = {
         loader: {
-            load: ['[custom]/xypic.js', '[tex]/physics'],
+            load: ['[custom]/xypic.js', '[tex]/physics', '[tex]/textcomp'],
             paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build'}
         },
         tex: {
-            packages: {'[+]': ['physics', 'xypic', 'xcolor', 'amsmath', 'configmacros']},
+            packages: {'[+]': ['physics', 'xypic', 'xcolor', 'amsmath', 'configmacros', 'textcomp']},
             inlineMath: [['$', '$'], ['\\(', '\\)']],
             macros: {
                 // environments
