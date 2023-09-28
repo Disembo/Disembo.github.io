@@ -32,6 +32,10 @@
         if (first_words?.tagName == 'U') {
             quote_type = first_words.innerHTML.toLowerCase().split(" ")[0];  // in case of `Example 1`
 
+            if (quote_type == 'draft') {  // draft block: remove and return
+                bq.remove();
+                return;
+            }
             if (!Object.hasOwn(STYLES, quote_type)) quote_type = 'default';
         }
 
