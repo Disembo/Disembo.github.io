@@ -24,7 +24,7 @@
 <meta property="og:description" content="从展开式定义, 公理化定义和泛性质定义, 逐步发掘行列式的真相.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-28T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-28T06:15:31.153Z">
+<meta property="article:modified_time" content="2023-09-29T10:59:45.936Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="线性代数">
@@ -545,7 +545,7 @@ A=\pmqty{1&amp;0\\0&amp;\mu},\quad B=\pmqty{1&amp;0\\\frac\lambda{\mu-1}&amp;1}.
 </blockquote>
 <p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(K)\)</span>.</p>
 <blockquote>
-<p><u>Pf</u> 任取<span class="math inline">\(A\in{\rm SL}_n(K)\)</span>, 根据Gauss-Jordan消元法的思想, 可以将<span class="math inline">\(A\)</span>经过若干次第一类初等行变换和第一类初等列变换(即左, 右乘若干<span class="math inline">\(E_{ij}(\lambda)\)</span>)变为单位矩阵<span class="math inline">\(I\)</span>(证明见后), 即 <span class="math display">\[
+<p><u>Pf</u> 任取<span class="math inline">\(A\in{\rm SL}_n(K)\)</span>, 根据Gauss-Jordan消元法的思想, 可以将<span class="math inline">\(A\)</span>经过若干次第一类初等行变换<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">将一行的常数倍加到另一行上.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>和第一类初等列变换(即左, 右乘若干<span class="math inline">\(E_{ij}(\lambda)\)</span>)变为单位矩阵<span class="math inline">\(I\)</span>(证明见后), 即 <span class="math display">\[
 E_{i_pj_p}(\lambda_p)\cdots E_{i_1j_1}(\lambda_1) \, A \,
 E_{k_1l_1}(\mu_1)\cdots E_{k_ql_q}(\mu_q)
 = I,
@@ -588,6 +588,7 @@ A_{n+1} = \pmqty{
 <ol>
 <li id="fn1" role="doc-endnote"><p>&nbsp;<span class="math inline">\(K^\times\)</span>表示域<span class="math inline">\(K\)</span>的乘法群, 即<span class="math inline">\(K\setminus\qty{0}\)</span>在域乘法下构成的群.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p>粗略地说, 一个群<span class="math inline">\(G\)</span>的交换化是与<span class="math inline">\(G\)</span>"最接近"的那个<span class="math inline">\(G\)</span>的可交换子群.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>将一行的常数倍加到另一行上.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body></html>
