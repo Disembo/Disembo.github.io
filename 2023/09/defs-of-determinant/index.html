@@ -24,7 +24,7 @@
 <meta property="og:description" content="从展开式定义, 公理化定义和泛性质定义, 逐步发掘行列式的真相.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-28T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-29T10:59:45.936Z">
+<meta property="article:modified_time" content="2023-10-15T09:14:01.603Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="线性代数">
@@ -280,20 +280,21 @@
 <li><p>泛性质(交替线性形式)</p>
 <ul>
 <li><p>定义<span class="math inline">\((\bar{T}f)(v_1,\dots,v_n) := f(Tv_1,\dots,Tv_n)\)</span>.</p></li>
-<li><p>定理. 给定线性<span class="math inline">\(T:V\to V\)</span>, 唯一存在<span class="math inline">\(\lambda\in K\)</span>, 使得对任意交替<span class="math inline">\(n\)</span>-线性<span class="math inline">\(f:V^n\to K\)</span>, 有 <span class="math display">\[
+<li><p>定理. 给定线性<span class="math inline">\(T:V\to V\)</span>, 唯一存在<span class="math inline">\(\lambda\in F\)</span>, 使得对任意交替<span class="math inline">\(n\)</span>-线性<span class="math inline">\(f:V^n\to F\)</span>, 有 <span class="math display">\[
 \bar{T}f = \lambda f.
 \]</span> 定义<span class="math inline">\(\det{T}:=\lambda\)</span>.</p></li>
 <li><p>推导出multiplicativity</p></li>
 </ul></li>
 <li><p>泛性质(general linear group的abelianization)</p>
 <ul>
-<li><p><span class="math inline">\({\rm GL}_n(K)\)</span>的交换化, <span class="math inline">\(\pi:{\rm GL}_n(K)\to{\rm GL}_n(K)^{\rm ab}\)</span>.</p></li>
-<li><p>对于任意同态<span class="math inline">\(f:{\rm GL}_n(K)\to H\)</span>(其中<span class="math inline">\(H\)</span>是交换群), 都唯一存在同态<span class="math inline">\(\tilde{f}:K^\times\to H\)</span>, 使得 <span class="math display">\[
+<li><p><span class="math inline">\({\rm GL}_n(F)\)</span>的交换化, <span class="math inline">\(\pi:{\rm GL}_n(F)\to{\rm GL}_n(F)^{\rm ab}\)</span>.</p></li>
+<li><p>对于任意同态<span class="math inline">\(f:{\rm GL}_n(F)\to H\)</span>(其中<span class="math inline">\(H\)</span>是交换群), 都唯一存在同态<span class="math inline">\(\tilde{f}:F^\times\to H\)</span>, 使得 <span class="math display">\[
 f = \tilde{f}\circ\det.
 \]</span></p></li>
 </ul></li>
 </ul>
 </blockquote>
+<h1 id="about-the-determinant-...">About the Determinant ...</h1>
 <h2 id="部分教材上的定义">1  部分教材上的定义</h2>
 <p>一部分线性代数的教材从解线性方程组讲起, 从方程组的解来得到行列式的定义. 具体来说, 一个方阵<span class="math inline">\(A=(a_{ij})\)</span>的行列式(determinant)是用排列来定义的, <span class="math display">\[
 |A| := \sum_{\sigma\in S_n}(\sgn\sigma)
@@ -308,9 +309,9 @@ a_{1\sigma(1)} \cdots a_{n\sigma(n)}.
 </ol>
 <p>行列式的展开式定义虽然直接, 却略显琐碎, 也很难让人一下子理解行列式的本质特征. 因此, 我们不妨抛弃这个定义, 重新定义一个"行列式".</p>
 <h2 id="characterizing-properties">2  Characterizing properties</h2>
-<p>设域<span class="math inline">\(K\)</span>上的线性空间<span class="math inline">\(V=K^n\)</span>.</p>
+<p>设域<span class="math inline">\(F\)</span>上的线性空间<span class="math inline">\(V=F^n\)</span>.</p>
 <p><u>Def 1</u> 行列式<span class="math inline">\(\det\)</span>可以看作一个<span class="math inline">\(n\)</span>元函数, 输入<span class="math inline">\(n\)</span>个向量<span class="math inline">\(v_1,\dots,v_n\in V\)</span>, 并输出一个数. 所以, <span class="math display">\[
-\det:V^n \to K.
+\det:V^n \to F.
 \]</span> 我们要求<span class="math inline">\(\det\)</span>满足如下三条公理:</p>
 <ol type="1">
 <li><p>(<span class="math inline">\(n\)</span>-线性性) 对每个<span class="math inline">\(v_i\)</span>都是线性的: <span class="math display">\[
@@ -321,7 +322,7 @@ a_{1\sigma(1)} \cdots a_{n\sigma(n)}.
 }
 \]</span> (这实际上参照了上一节的性质3, 4.)</p></li>
 <li><p>(交错性) 若<span class="math inline">\(v_i=v_j\)</span>(<span class="math inline">\(i\neq j\)</span>), 则<span class="math inline">\(\det(\dots,v_i,\dots,v_j,\dots)=0\)</span>. (这参照了性质1.)</p></li>
-<li><p>(归一化) 对于<span class="math inline">\(V=K^n\)</span>的标准基底<span class="math inline">\(\{e_i\}\)</span>(其中<span class="math inline">\(e_i\)</span>是第<span class="math inline">\(i\)</span>分量为<span class="math inline">\(1\)</span>, 其余分量为<span class="math inline">\(0\)</span>的向量), <span class="math inline">\(\det(e_1,\dots,e_n)=1\)</span>.</p></li>
+<li><p>(归一化) 对于<span class="math inline">\(V=F^n\)</span>的标准基底<span class="math inline">\(\{e_i\}\)</span>(其中<span class="math inline">\(e_i\)</span>是第<span class="math inline">\(i\)</span>分量为<span class="math inline">\(1\)</span>, 其余分量为<span class="math inline">\(0\)</span>的向量), <span class="math inline">\(\det(e_1,\dots,e_n)=1\)</span>.</p></li>
 </ol>
 <p>简单来说, 行列式<span class="math inline">\(\det\)</span>是一个归一化的(normalized)交错(alternating)<span class="math inline">\(n\)</span>-线性形式(<span class="math inline">\(n\)</span>-linear form).</p>
 <p>从这个定义可以推出行列式的一切性质. 在此之前, 先给出几个引理.</p>
@@ -365,7 +366,7 @@ v_1,\dots,v_n\,\textsf{线性无关}\iff f(v_1,\dots,v_n)\neq0.
 }
 \]</span> 其中, <span class="math inline">\((2)\)</span>根据<span class="math inline">\(\det\)</span>的<span class="math inline">\(n\)</span>-线性性; <span class="math inline">\((3)\)</span>是因为<span class="math inline">\(\det\)</span>是交错的, 所以<span class="math inline">\(j_1,\dots,j_n\)</span>必定两两不相等, 即对所有排列(置换)求和; <span class="math inline">\((4)\)</span>根据Lemma 2; <span class="math inline">\((5)\)</span>根据<span class="math inline">\(\det\)</span>的归一性.</p>
 <p>行列式的一些简单性质也可以由<span class="math inline">\(\det\)</span>的三条公理很快得到. 另外, 我们可以得到如下定理.</p>
-<p><u>Proposition 1</u> (Cramer's rule) 设向量<span class="math inline">\(A_1,\dots,A_n,B\in K^n\)</span>, 如果<span class="math inline">\(x_1,\dots,x_n\in K\)</span>满足方程 <span class="math display">\[
+<p><u>Proposition 1</u> (Cramer's rule) 设向量<span class="math inline">\(A_1,\dots,A_n,B\in F^n\)</span>, 如果<span class="math inline">\(x_1,\dots,x_n\in F\)</span>满足方程 <span class="math display">\[
 x_1A_1 + \dots + x_nA_n = B, \tag{a}
 \]</span> 则对于<span class="math inline">\(i=1,\dots,n\)</span>, 有 <span class="math display">\[
 \det(A_1,\dots,A_n)\, x_i = \det(A_1,\dots,A_{i-1},B,A_{i+1},\dots,A_n).
@@ -380,27 +381,27 @@ x_1A_1 + \dots + x_nA_n = B, \tag{a}
 <li>线性变换的表示矩阵的行列式不依赖于基底的选取.</li>
 <li>...</li>
 </ul>
-<p>利用Def 1去证明还是有些曲折的: 一般我们还得诉诸于行列式的展开式. 一个原因就是Def 1是依赖于基底的(归一化条件), 或者说, <span class="math inline">\(\det\)</span>是<span class="math inline">\(n\times n\)</span>矩阵的函数, 而不是线性映射<span class="math inline">\(T\in{\rm End}_K(V)\)</span>的函数(其中<span class="math inline">\(V\)</span>是一个一般的线性空间). 下面我们将给出一个更一般化的, 不依赖于基底的定义.</p>
+<p>利用Def 1去证明还是有些曲折的: 一般我们还得诉诸于行列式的展开式. 一个原因就是Def 1是依赖于基底的(归一化条件), 或者说, <span class="math inline">\(\det\)</span>是<span class="math inline">\(n\times n\)</span>矩阵的函数, 而不是线性映射<span class="math inline">\(T\in{\rm End}_F(V)\)</span>的函数(其中<span class="math inline">\(V\)</span>是一个一般的线性空间). 下面我们将给出一个更一般化的, 不依赖于基底的定义.</p>
 <h2 id="泛性质-交错线性形式">3  泛性质: 交错线性形式</h2>
-<p>设<span class="math inline">\(V\)</span>是域<span class="math inline">\(K\)</span>上的<span class="math inline">\(n\)</span>维线性空间.</p>
+<p>设<span class="math inline">\(V\)</span>是域<span class="math inline">\(F\)</span>上的<span class="math inline">\(n\)</span>维线性空间.</p>
 <p>先回顾线性空间<span class="math inline">\(V\)</span>上的<span class="math inline">\(k\)</span>形式空间<span class="math inline">\(\Lambda_k(V)\)</span>. <span class="math inline">\(\Lambda_k(V)\)</span>的元素是所有交错的<span class="math inline">\(k\)</span>-线性函数 <span class="math display">\[
-f : V^k \to K,
+f : V^k \to F,
 \]</span> 而且作为线性空间, <span class="math inline">\(\dim\Lambda_k(V)={n\choose k}\)</span>. 特别地, 有<span class="math inline">\(\dim\Lambda_n(V)={n\choose n}=1\)</span>.</p>
 <p>现在可以开始定义行列式了. 对于一个线性映射<span class="math inline">\(T:V\to V\)</span>和一个<span class="math inline">\(n\)</span>形式<span class="math inline">\(f\in\Lambda_n(V)\)</span>, 记 <span class="math display">\[
 (T^{(n)}f)(v_1,\dots,v_n) := f(Tv_1,\dots,Tv_n),\quad
 \forall v_1,\dots,v_n\in V.
-\]</span> 容易验证, <span class="math inline">\(T^{(n)}f\in\Lambda_n(V)\)</span>. 上式定义了一个线性映射<span class="math inline">\(f\mapsto T^{(n)}f\)</span>, <span class="math inline">\(\Lambda_n(V)\to\Lambda_n(V)\)</span>. 注意到<span class="math inline">\(\Lambda_n(V)\)</span>是<span class="math inline">\(1\)</span>维线性空间, 所以<span class="math inline">\(f\mapsto T^{(n)}f\)</span>就是一个数乘运算, 即存在<span class="math inline">\(\lambda\in K\)</span>, 使得<span class="math inline">\(T^{(n)}f=\lambda f\)</span>.</p>
-<p><u>Def 2</u> 对于线性映射<span class="math inline">\(T:V\to V\)</span>, 存在唯一的<span class="math inline">\(\lambda\in K\)</span>, 使得<span class="math inline">\(T^{(n)}=\lambda\,{\rm id}_{\Lambda_n(V)}\)</span>. 我们把<span class="math inline">\(\lambda\)</span>称为<span class="math inline">\(T\)</span>的<strong>行列式(determinant)</strong>, 记作<span class="math inline">\(\det{T}\)</span>.</p>
+\]</span> 容易验证, <span class="math inline">\(T^{(n)}f\in\Lambda_n(V)\)</span>. 上式定义了一个线性映射<span class="math inline">\(f\mapsto T^{(n)}f\)</span>, <span class="math inline">\(\Lambda_n(V)\to\Lambda_n(V)\)</span>. 注意到<span class="math inline">\(\Lambda_n(V)\)</span>是<span class="math inline">\(1\)</span>维线性空间, 所以<span class="math inline">\(f\mapsto T^{(n)}f\)</span>就是一个数乘运算, 即存在<span class="math inline">\(\lambda\in F\)</span>, 使得<span class="math inline">\(T^{(n)}f=\lambda f\)</span>.</p>
+<p><u>Def 2</u> 对于线性映射<span class="math inline">\(T:V\to V\)</span>, 存在唯一的<span class="math inline">\(\lambda\in F\)</span>, 使得<span class="math inline">\(T^{(n)}=\lambda\,{\rm id}_{\Lambda_n(V)}\)</span>. 我们把<span class="math inline">\(\lambda\)</span>称为<span class="math inline">\(T\)</span>的<strong>行列式(determinant)</strong>, 记作<span class="math inline">\(\det{T}\)</span>.</p>
 <ul>
 <li><p>也被称为行列式的泛性质定义. 可以画成交换图: <span class="math display">\[
 \xymatrix{
 V^n \ar[r]^{T^n} \ar[d]_{f} &amp; V^n \ar[d]^{f} \\
-K \ar@{.&gt;}[r]^{\lambda} &amp; K
+F \ar@{.&gt;}[r]^{\lambda} &amp; F
 }
 \]</span></p></li>
 <li><p>立刻可以看出, 恒等映射<span class="math inline">\({\rm id}_V\)</span>的行列式为<span class="math inline">\(1\)</span>.</p></li>
 </ul>
-<p>Def 2定义的行列式是一个映射<span class="math inline">\(\det:{\rm End}_K(V)\to K\)</span>. 这个定义比较抽象, 不涉及具体的基底和坐标, 然而却将行列式的性质挖掘得更加深入(之后证明定理的过程中就可看出). 下面我们给出Def 2定义的行列式的一种构造方法, 进而说明Def 2和展开式定义以及Def 1是等价的.</p>
+<p>Def 2定义的行列式是一个映射<span class="math inline">\(\det:{\rm End}_F(V)\to F\)</span>. 这个定义比较抽象, 不涉及具体的基底和坐标, 然而却将行列式的性质挖掘得更加深入(之后证明定理的过程中就可看出). 下面我们给出Def 2定义的行列式的一种构造方法, 进而说明Def 2和展开式定义以及Def 1是等价的.</p>
 <blockquote>
 <p>取<span class="math inline">\(V\)</span>的一个基底<span class="math inline">\(\qty{e_i}\)</span>, 设<span class="math inline">\(Te_i=\sum_{j=1}^n e_jT_{ji}\)</span>, 于是(仿照上一节的推导) <span class="math display">\[
 \Align{
@@ -422,7 +423,7 @@ K \ar@{.&gt;}[r]^{\lambda} &amp; K
 \]</span> 由Lemma 3, <span class="math inline">\(f(e_1,\dots,e_n)\neq0\)</span>, 两边约去后得到<span class="math inline">\(\det{T}\)</span>在基底<span class="math inline">\(\qty{e_i}\)</span>下的表达式, 也称为矩阵<span class="math inline">\((T_{ji})\)</span>的<strong>行列式</strong>. 由于<span class="math inline">\(\det{T}\)</span>是唯一由<span class="math inline">\(T\)</span>决定的, 所以<span class="math inline">\(\det{T}\)</span>在不同基底下的矩阵具有相同的行列式.</p>
 </blockquote>
 <p>接下来给出几个定理. 利用行列式的展开式证明这些定理是不太容易的, 但是泛性质定义大大简化了证明过程.</p>
-<p><u>Proposition 2</u> 对于<span class="math inline">\(S,T\in{\rm End}_K(V)\)</span>, 有<span class="math inline">\(\det(ST)=(\det{S})(\det{T})\)</span>.</p>
+<p><u>Proposition 2</u> 对于<span class="math inline">\(S,T\in{\rm End}_F(V)\)</span>, 有<span class="math inline">\(\det(ST)=(\det{S})(\det{T})\)</span>.</p>
 <blockquote>
 <p><u>Pf</u> 取线性无关的<span class="math inline">\(v_1,\dots,v_n\)</span>, 则<span class="math inline">\(f(v_1,\dots,v_n)\neq0\)</span>. 有 <span class="math display">\[
 \Align{
@@ -434,7 +435,7 @@ K \ar@{.&gt;}[r]^{\lambda} &amp; K
 }
 \]</span> (第三步, 因为<span class="math inline">\(S^{(n)}f\)</span>也是一个<span class="math inline">\(n\)</span>-形式, 对<span class="math inline">\(T\)</span>应用行列式的定义可得.) 所以<span class="math inline">\(\det{ST}=\det{S}\det{T}\)</span>.</p>
 </blockquote>
-<p><u>Proposition 3</u> <span class="math inline">\(T\in{\rm End}_K(V)\)</span>可逆的充要条件是<span class="math inline">\(\det{T}\neq0\)</span>. 此时<span class="math inline">\(\det(T^{-1})=(\det{T})^{-1}\)</span>.</p>
+<p><u>Proposition 3</u> <span class="math inline">\(T\in{\rm End}_F(V)\)</span>可逆的充要条件是<span class="math inline">\(\det{T}\neq0\)</span>. 此时<span class="math inline">\(\det(T^{-1})=(\det{T})^{-1}\)</span>.</p>
 <blockquote>
 <p><u>Pf</u> 若<span class="math inline">\(T\)</span>可逆, 则<span class="math inline">\(TT^{-1}={\rm id}_V\)</span>, 由Proposition 2有<span class="math inline">\(\det{T}\det(T^{-1})=\det({\rm id}_V)=1\)</span>, 所以<span class="math inline">\(\det{T}\neq0\)</span>且<span class="math inline">\(\det(T^{-1})=(\det{T})^{-1}\)</span>.</p>
 <p>若<span class="math inline">\(\det{T}\neq0\)</span>, 取<span class="math inline">\(V\)</span>的基底<span class="math inline">\(\qty{e_i}\)</span>, 由Lemma 3得<span class="math inline">\(f(e_1,\dots,e_n)\neq0\)</span>, 于是 <span class="math display">\[
@@ -448,20 +449,20 @@ K \ar@{.&gt;}[r]^{\lambda} &amp; K
 <h2 id="泛性质-一般线性群的交换化">4  泛性质: 一般线性群的交换化</h2>
 <p>线性空间<span class="math inline">\(V\)</span>的<strong>一般线性群(general linear group)</strong>是所有可逆线性映射<span class="math inline">\(T:V\to V\)</span>, 以映射的复合为乘法, 所构成的群, 记作<span class="math inline">\({\rm GL}(V)\)</span>. 由Proposition3, <span class="math inline">\({\rm GL}(V)\)</span>中元素的行列式非零. 而Proposition 2, <span class="math display">\[
 \det(ST) = \det{S}\cdot\det{T},
-\]</span> 这其实说的是, 行列式<span class="math inline">\(\det\)</span>是一个<span class="math inline">\({\rm GL}(V)\to K^\times\)</span>的群同态<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">&nbsp;<span class="math inline">\(K^\times\)</span>表示域<span class="math inline">\(K\)</span>的乘法群, 即<span class="math inline">\(K\setminus\qty{0}\)</span>在域乘法下构成的群.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>. <span class="math inline">\({\rm GL}(V)\)</span>中, 所有行列式为<span class="math inline">\(1\)</span>的线性映射组成了<span class="math inline">\(\det\)</span>的核<span class="math inline">\(\ker\det\)</span>, 称为<span class="math inline">\(V\)</span>的<strong>特殊线性群(special linear group)</strong>, 记作 <span class="math display">\[
+\]</span> 这其实说的是, 行列式<span class="math inline">\(\det\)</span>是一个<span class="math inline">\({\rm GL}(V)\to F^\times\)</span>的群同态<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">&nbsp;<span class="math inline">\(F^\times\)</span>表示域<span class="math inline">\(F\)</span>的乘法群, 即<span class="math inline">\(F\setminus\qty{0}\)</span>在域乘法下构成的群.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>. <span class="math inline">\({\rm GL}(V)\)</span>中, 所有行列式为<span class="math inline">\(1\)</span>的线性映射组成了<span class="math inline">\(\det\)</span>的核<span class="math inline">\(\ker\det\)</span>, 称为<span class="math inline">\(V\)</span>的<strong>特殊线性群(special linear group)</strong>, 记作 <span class="math display">\[
 {\rm SL}(V):=\qty{T\in{\rm GL}(V):\det{T}=1}.
 \]</span> 根据同态基本定理, 有 <span class="math display">\[
-{\rm GL}(V)/{\rm SL}(V)={\rm GL}(V)/\ker{\det}\cong\im\det=K^\times.
-\]</span> 注意到, <span class="math inline">\(K^\times\)</span>是一个交换群. 实际上, <span class="math inline">\(\det\)</span>作为<span class="math inline">\({\rm GL}(V)\)</span>到交换群<span class="math inline">\(K^\times\)</span>的同态, 具有如下泛性质.</p>
-<p><u>Proposition 4</u> <span class="math inline">\({\rm GL}(V)\)</span>到任意交换群<span class="math inline">\(H\)</span>的群同态<span class="math inline">\(\varphi\)</span>都可以唯一地由<span class="math inline">\(\det\)</span>复合得到, 即唯一存在<span class="math inline">\(\tilde\varphi:K^\times\to H\)</span>, 使得下图交换: <span class="math display">\[
+{\rm GL}(V)/{\rm SL}(V)={\rm GL}(V)/\ker{\det}\cong\im\det=F^\times.
+\]</span> 注意到, <span class="math inline">\(F^\times\)</span>是一个交换群. 实际上, <span class="math inline">\(\det\)</span>作为<span class="math inline">\({\rm GL}(V)\)</span>到交换群<span class="math inline">\(F^\times\)</span>的同态, 具有如下泛性质.</p>
+<p><u>Proposition 4</u> <span class="math inline">\({\rm GL}(V)\)</span>到任意交换群<span class="math inline">\(H\)</span>的群同态<span class="math inline">\(\varphi\)</span>都可以唯一地由<span class="math inline">\(\det\)</span>复合得到, 即唯一存在<span class="math inline">\(\tilde\varphi:F^\times\to H\)</span>, 使得下图交换: <span class="math display">\[
 \xymatrix{
 \mathrm{GL}(V) \ar[r]^(.55){\det} \ar[dr]_{\varphi}
-&amp; K^\times \ar@{.&gt;}[d]^{\tilde\varphi} \\
+&amp; F^\times \ar@{.&gt;}[d]^{\tilde\varphi} \\
 &amp; H
 }
 \]</span></p>
 <ul>
-<li>这里有个小瑕疵. 当<span class="math inline">\({\rm char}\,K=\dim{V}=2\)</span>时, 如果想成立此性质, 需要将<span class="math inline">\(K^\times\)</span>换成<span class="math inline">\(\Z/2\Z\)</span>(二阶循环群). 下文中, 我们默认<span class="math inline">\({\rm char}\,K\neq2\)</span>或<span class="math inline">\(\dim{V}\neq2\)</span>.</li>
+<li>这里有个小瑕疵. 当<span class="math inline">\({\rm char}\,F=\dim{V}=2\)</span>时, 如果想成立此性质, 需要将<span class="math inline">\(F^\times\)</span>换成<span class="math inline">\(\Z/2\Z\)</span>(二阶循环群). 下文中, 我们默认<span class="math inline">\({\rm char}\,F\neq2\)</span>或<span class="math inline">\(\dim{V}\neq2\)</span>.</li>
 </ul>
 <blockquote>
 <p>行列式<span class="math inline">\(\det\)</span>的这个泛性质其实是"交换化"的泛性质.</p>
@@ -476,26 +477,26 @@ G \ar[r]^(0.45){\pi} \ar[rd]_{\varphi}
 }
 \]</span></p>
 </blockquote>
-<p>回到行列式. 下面我们尝试去证明Proposition 4. 对此, 我们只需要证明<span class="math inline">\({\rm SL}(V)\)</span>是<span class="math inline">\({\rm GL}(V)\)</span>的换位子群, 从而<span class="math inline">\(\det:{\rm GL}(V)\to{\rm GL}(V)/{\rm SL}(V)\cong K^\times\)</span>作为标准投影, 满足交换化的泛性质.</p>
+<p>回到行列式. 下面我们尝试去证明Proposition 4. 对此, 我们只需要证明<span class="math inline">\({\rm SL}(V)\)</span>是<span class="math inline">\({\rm GL}(V)\)</span>的换位子群, 从而<span class="math inline">\(\det:{\rm GL}(V)\to{\rm GL}(V)/{\rm SL}(V)\cong F^\times\)</span>作为标准投影, 满足交换化的泛性质.</p>
 <p>一般线性群<span class="math inline">\({\rm GL}(V)\)</span>的换位子群<span class="math inline">\({\rm GL}(V)'\)</span>的群元是由所有换位子 <span class="math display">\[
 [S,T]=STS^{-1}T^{-1} \quad (S,T\in{\rm GL}(V))
 \]</span> 乘积得到的, (根据Proposition 2, 3)显然行列式等于<span class="math inline">\(1\)</span>, 于是<span class="math inline">\({\rm GL}(V)'\subset{\rm SL}(V)\)</span>. 另一方面, <span class="math inline">\({\rm GL}(V)'\supset{\rm SL}(V)\)</span>的证明则需要费些功夫. 我们首先要把<span class="math inline">\({\rm GL}(V)\)</span>中的线性映射表示为矩阵, 因为矩阵的可操作性更强一些. 设矩阵群 <span class="math display">\[
 \Align{
-{\rm GL}_n(K) &amp;:= \qty{A\in K^{n\times n}:\det{A}\neq0}, \\
-{\rm SL}_n(K) &amp;:= \qty{A\in K^{n\times n}:\det{A}=1}, \\
+{\rm GL}_n(F) &amp;:= \qty{A\in F^{n\times n}:\det{A}\neq0}, \\
+{\rm SL}_n(F) &amp;:= \qty{A\in F^{n\times n}:\det{A}=1}, \\
 }
-\]</span> 它们分别和<span class="math inline">\({\rm GL}(V)\)</span>, <span class="math inline">\({\rm SL}(V)\)</span>同构, 所以我们只需证明<span class="math inline">\({\rm GL}_n(K)'\supset{\rm SL}_n(K)\)</span>. 给出几个引理:</p>
+\]</span> 它们分别和<span class="math inline">\({\rm GL}(V)\)</span>, <span class="math inline">\({\rm SL}(V)\)</span>同构, 所以我们只需证明<span class="math inline">\({\rm GL}_n(F)'\supset{\rm SL}_n(F)\)</span>. 给出几个引理:</p>
 <blockquote>
-<p>回忆一下, 第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>(<span class="math inline">\(i\neq j\)</span>)指的是对角线上全为<span class="math inline">\(1\)</span>, 第<span class="math inline">\(i,j\)</span>元为<span class="math inline">\(\lambda\in K\)</span>, 其余位置为<span class="math inline">\(0\)</span>的矩阵. <span class="math inline">\(E_{ij}(\lambda)\)</span>可逆, 且<span class="math inline">\(\det{E_{ij}(\lambda)}=1\)</span>以及<span class="math inline">\(E_{ij}(\lambda)=E_{ij}(-\lambda)\)</span>.</p>
+<p>回忆一下, 第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>(<span class="math inline">\(i\neq j\)</span>)指的是对角线上全为<span class="math inline">\(1\)</span>, 第<span class="math inline">\(i,j\)</span>元为<span class="math inline">\(\lambda\in F\)</span>, 其余位置为<span class="math inline">\(0\)</span>的矩阵. <span class="math inline">\(E_{ij}(\lambda)\)</span>可逆, 且<span class="math inline">\(\det{E_{ij}(\lambda)}=1\)</span>以及<span class="math inline">\(E_{ij}(\lambda)=E_{ij}(-\lambda)\)</span>.</p>
 <p><u>Lemma 4</u> 任意第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>都是某两个可逆矩阵<span class="math inline">\(A,B\)</span>的换位子<span class="math inline">\([A,B]\)</span>.</p>
-<p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(K)\)</span>.</p>
+<p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(F)\)</span>.</p>
 </blockquote>
-<p>根据Lemma 4, 5, 特殊线性群<span class="math inline">\({\rm SL}_n(K)\)</span>可以由所有的换位子<span class="math inline">\([A,B]\)</span>生成, 也就是说<span class="math inline">\({\rm GL}_n(K)'\supset{\rm SL}_n(K)\)</span>, 即<span class="math inline">\({\rm GL}(V)'\supset{\rm SL}(V)\)</span>. 结合第一部分有<span class="math inline">\({\rm GL}(V)'={\rm SL}(V)\)</span>. 根据定义, <span class="math inline">\({\rm GL}(V)/{\rm SL}(V)\cong K^\times\)</span>是<span class="math inline">\({\rm GL}(V)\)</span>交换化, 标准投影<span class="math inline">\(\det\)</span>也就满足泛性质: 任意一个一般线性群到交换群的同态<span class="math inline">\(\varphi\)</span>都唯一地由行列式<span class="math inline">\(\det\)</span>复合而来.</p>
-<p>Proposition 4启发我们用<span class="math inline">\({\rm GL}(V)\)</span>的交换化<span class="math inline">\((K^\times,\det:{\rm GL}(V)\to K^\times)\)</span>来定义行列式. 注意到任意满足交换化泛性质的东西<span class="math inline">\((A,\pi:{\rm GL}(V)\to A)\)</span>都是同构的(unique up to an isomorphism), 所以光有这一个条件还不能唯一确定行列式<span class="math inline">\(\det\)</span>, 还应该附加另外的条件, 然而这超出了我目前的能力范围.</p>
+<p>根据Lemma 4, 5, 特殊线性群<span class="math inline">\({\rm SL}_n(F)\)</span>可以由所有的换位子<span class="math inline">\([A,B]\)</span>生成, 也就是说<span class="math inline">\({\rm GL}_n(F)'\supset{\rm SL}_n(F)\)</span>, 即<span class="math inline">\({\rm GL}(V)'\supset{\rm SL}(V)\)</span>. 结合第一部分有<span class="math inline">\({\rm GL}(V)'={\rm SL}(V)\)</span>. 根据定义, <span class="math inline">\({\rm GL}(V)/{\rm SL}(V)\cong F^\times\)</span>是<span class="math inline">\({\rm GL}(V)\)</span>交换化, 标准投影<span class="math inline">\(\det\)</span>也就满足泛性质: 任意一个一般线性群到交换群的同态<span class="math inline">\(\varphi\)</span>都唯一地由行列式<span class="math inline">\(\det\)</span>复合而来.</p>
+<p>Proposition 4启发我们用<span class="math inline">\({\rm GL}(V)\)</span>的交换化<span class="math inline">\((F^\times,\det:{\rm GL}(V)\to F^\times)\)</span>来定义行列式. 注意到任意满足交换化泛性质的东西<span class="math inline">\((A,\pi:{\rm GL}(V)\to A)\)</span>都是同构的(unique up to an isomorphism), 所以光有这一个条件还不能唯一确定行列式<span class="math inline">\(\det\)</span>, 还应该附加另外的条件, 然而这超出了我目前的能力范围.</p>
 <h2 id="引理的证明">5  *引理的证明</h2>
 <p><u>Lemma 1</u> 设<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\)</span>. 如果<span class="math inline">\(f\)</span>是交错的, 则<span class="math inline">\(f\)</span>是反对称的.</p>
 <ul>
-<li>当<span class="math inline">\({\rm char}\,K\neq2\)</span>时, 逆命题成立.</li>
+<li>当<span class="math inline">\({\rm char}\,F\neq2\)</span>时, 逆命题成立.</li>
 </ul>
 <blockquote>
 <p><u>Pf</u> 让<span class="math inline">\(f\)</span>的某两个输入相同, 则 <span class="math display">\[
@@ -537,15 +538,15 @@ e_{ij}(x)e_{jk}(y) = e_{ik}(xy),
 &amp;=(I+e_{il}(\lambda)+e_{lj}(1))(I-e_{il}(\lambda)-e_{lj}(1)) \\
 &amp;=I+e_{ij}(\lambda) =E_{ij}(\lambda).
 }
-\]</span> 对于<span class="math inline">\(n=2\)</span>且<span class="math inline">\({\rm char}\,K\neq2\)</span>. 此时第一类初等矩阵只有<span class="math inline">\(E_{12}(\lambda)\)</span>和<span class="math inline">\(E_{21}(\lambda)\)</span>. 取<span class="math inline">\(\mu\neq0,1\)</span>, 可以验证, <span class="math display">\[
+\]</span> 对于<span class="math inline">\(n=2\)</span>且<span class="math inline">\({\rm char}\,F\neq2\)</span>. 此时第一类初等矩阵只有<span class="math inline">\(E_{12}(\lambda)\)</span>和<span class="math inline">\(E_{21}(\lambda)\)</span>. 取<span class="math inline">\(\mu\neq0,1\)</span>, 可以验证, <span class="math display">\[
 A=\pmqty{\mu&amp;0\\0&amp;1},\quad B=\pmqty{1&amp;\frac\lambda{\mu-1}\\0&amp;1}
 \]</span> 的换位子是<span class="math inline">\(E_{12}(\lambda)\)</span>, 而下方<span class="math inline">\(A,B\)</span>的换位子是<span class="math inline">\(E_{21}(\lambda)\)</span>. <span class="math display">\[
 A=\pmqty{1&amp;0\\0&amp;\mu},\quad B=\pmqty{1&amp;0\\\frac\lambda{\mu-1}&amp;1}.
 \]</span></p>
 </blockquote>
-<p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(K)\)</span>.</p>
+<p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(F)\)</span>.</p>
 <blockquote>
-<p><u>Pf</u> 任取<span class="math inline">\(A\in{\rm SL}_n(K)\)</span>, 根据Gauss-Jordan消元法的思想, 可以将<span class="math inline">\(A\)</span>经过若干次第一类初等行变换<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">将一行的常数倍加到另一行上.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>和第一类初等列变换(即左, 右乘若干<span class="math inline">\(E_{ij}(\lambda)\)</span>)变为单位矩阵<span class="math inline">\(I\)</span>(证明见后), 即 <span class="math display">\[
+<p><u>Pf</u> 任取<span class="math inline">\(A\in{\rm SL}_n(F)\)</span>, 根据Gauss-Jordan消元法的思想, 可以将<span class="math inline">\(A\)</span>经过若干次第一类初等行变换<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">将一行的常数倍加到另一行上.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>和第一类初等列变换(即左, 右乘若干<span class="math inline">\(E_{ij}(\lambda)\)</span>)变为单位矩阵<span class="math inline">\(I\)</span>(证明见后), 即 <span class="math display">\[
 E_{i_pj_p}(\lambda_p)\cdots E_{i_1j_1}(\lambda_1) \, A \,
 E_{k_1l_1}(\mu_1)\cdots E_{k_ql_q}(\mu_q)
 = I,
@@ -570,7 +571,7 @@ A_{n+1} = \pmqty{
   \vdots &amp;&amp; A'_{n}  \\
   0
 },
-\]</span> 之后由归纳假设, <span class="math inline">\(A_n'\)</span>可以变成单位阵. 其中, 对<span class="math inline">\(A_{n+1}\)</span>的变换分为两步:</p>
+\]</span> 之后由归纳假设, <span class="math inline">\(A_n'\)</span>可以变成单位阵, 即证. 其中, 对<span class="math inline">\(A_{n+1}\)</span>的变换分为两步:</p>
 <p>第一步, 将<span class="math inline">\(a_{11}\)</span>变成<span class="math inline">\(1\)</span>. 对于<span class="math inline">\(a_{11}\neq1\)</span>, 进行分类讨论:</p>
 <ul>
 <li>若<span class="math inline">\(a_{11}=0\)</span>, 则<span class="math inline">\(a_{21},\dots,a_{n+1,1}\)</span>中一定有非零元<span class="math inline">\(a_{k1}\)</span>(否则矩阵不可逆), 将第<span class="math inline">\(k\)</span>行的<span class="math inline">\(\frac1k\)</span>倍加到第一行即可.</li>
@@ -586,7 +587,7 @@ A_{n+1} = \pmqty{
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1" role="doc-endnote"><p>&nbsp;<span class="math inline">\(K^\times\)</span>表示域<span class="math inline">\(K\)</span>的乘法群, 即<span class="math inline">\(K\setminus\qty{0}\)</span>在域乘法下构成的群.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>&nbsp;<span class="math inline">\(F^\times\)</span>表示域<span class="math inline">\(F\)</span>的乘法群, 即<span class="math inline">\(F\setminus\qty{0}\)</span>在域乘法下构成的群.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p>粗略地说, 一个群<span class="math inline">\(G\)</span>的交换化是与<span class="math inline">\(G\)</span>"最接近"的那个<span class="math inline">\(G\)</span>的可交换子群.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3" role="doc-endnote"><p>将一行的常数倍加到另一行上.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
