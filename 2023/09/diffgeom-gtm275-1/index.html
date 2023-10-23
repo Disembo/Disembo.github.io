@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/disembo/media/raw/master/diffgeom-gtm275/2-4-catenoid-helicoid.png">
 <meta property="article:published_time" content="2023-09-13T14:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-13T14:50:34.821Z">
+<meta property="article:modified_time" content="2023-10-22T13:59:59.617Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -267,7 +267,8 @@
             
               <div class="markdown-body">
                 
-                <html><head></head><body><blockquote>
+                <html><head></head><body><h1 id="dg1-curvature-vector-fields">DG1 | Curvature &amp; Vector Fields</h1>
+<blockquote>
 <p>GTM275(<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>)第1-6节的笔记.</p>
 </blockquote>
 <h2 id="riemannian-manifolds">1  Riemannian Manifolds</h2>
@@ -296,7 +297,7 @@
 </ol>
 <p><u>Claim 1</u> 任何流形存在黎曼度量.</p>
 <blockquote>
-<p><u>Pf</u> 先给出一个引理: 黎曼度量的非负系数(有限)线性组合仍为黎曼度量. 设<span class="math inline">\(\lr{\cdot,\cdot}_\mu\)</span>(<span class="math inline">\(\mu=1,\dots,n\)</span>)是开集<span class="math inline">\(U\)</span>上的黎曼度量, <span class="math inline">\(a^\mu\geq0\)</span>, 则<span class="math inline">\(\sum_\mu a^\mu \lr{\cdot,\cdot}_\mu\)</span>也是<span class="math inline">\(U\)</span>上的黎曼度量. 证明是比较显然的.</p>
+<p><u>Pf</u> 先给出一个引理: 有限个黎曼度量的非负系数线性组合仍为黎曼度量. 设<span class="math inline">\(\lr{\cdot,\cdot}_\mu\)</span>(<span class="math inline">\(\mu=1,\dots,n\)</span>)是开集<span class="math inline">\(U\)</span>上的黎曼度量, <span class="math inline">\(a^\mu\geq0\)</span>, 则<span class="math inline">\(\sum_\mu a^\mu \lr{\cdot,\cdot}_\mu\)</span>也是<span class="math inline">\(U\)</span>上的黎曼度量. 证明是比较显然的.</p>
 <p>回到原命题. 设流形<span class="math inline">\(M\)</span>的图册<span class="math inline">\(\qty{(O_\alpha,\psi_\alpha)}\)</span>以及从属于<span class="math inline">\(\qty{O_\alpha}\)</span>的单位分解<span class="math inline">\(\qty{\rho_\alpha}\)</span>.</p>
 <p>对于每个坐标域<span class="math inline">\(O_\alpha\)</span>, 定义<span class="math inline">\(O_\alpha\)</span>上的黎曼度量为<span class="math inline">\(\lr{X,Y}_\alpha=\delta_{\mu\nu}X^\mu Y^\nu\)</span>. 根据<span class="math inline">\(\qty{{\rm supp}\,\rho_\alpha}\)</span>的局部有限性, 每点<span class="math inline">\(p\in M\)</span>都有一个邻域<span class="math inline">\(U_p\)</span>, 使得只有有限个<span class="math inline">\(\rho_\alpha\)</span>在<span class="math inline">\(U_p\)</span>上非零, 因此 <span class="math display">\[
 \sum_\alpha \rho_\alpha\lr{\cdot,\cdot}_\alpha
@@ -707,7 +708,7 @@ X\lr{Y,Z}+Y\lr{Z,X}-Z\lr{X,Y}
 \]</span> 将无挠性条件<span class="math inline">\(\nabla_YX=\nabla_XY-[X,Y]\)</span>代入上式, 移项后得 <span class="math display">\[
 \Align{
 2\lr{\nabla_XY,Z} = \;
-&amp;X\lr{Y,Z}+Y\lr{Z,X}-Z\lr{X,Y}+ \\
+&amp;X\lr{Y,Z}+Y\lr{Z,X}-Z\lr{X,Y}+{} \\
 &amp;\lr{[X,Y],Z}-\lr{[Y,Z],X}-\lr{[Y,[X,Z]]}.
 }
 \]</span> 由此定义了一个联络<span class="math inline">\(\nabla_XY\)</span>, 由<span class="math inline">\(Z\)</span>的任意性知<span class="math inline">\(\nabla_XY\)</span>是唯一确定的. 可以验证, 如上定义的<span class="math inline">\(\nabla_XY\)</span>确实是一个黎曼联络, 所以黎曼联络存在且唯一.</p>
@@ -761,6 +762,70 @@ X\lr{Y,Z}
 }
 \]</span> 其中第二步利用了正交投影自伴性的推论: 若<span class="math inline">\(Y\in{\frak X}(M)\)</span>, 则<span class="math inline">\(\lr{X,Y}=\lr{{\rm pr}(X),Y}\)</span>.</p></li>
 </ol>
+</blockquote>
+<h3 id="connections-under-a-diffeomorphism">3.3  Connections under a diffeomorphism</h3>
+<p><u>Claim 1</u> 设微分同胚<span class="math inline">\(\phi:M\to\tilde M\)</span>, <span class="math inline">\(\tilde\nabla\)</span>是<span class="math inline">\(\tilde{M}\)</span>上的一个仿射联络, 则下式定义了<span class="math inline">\(M\)</span>上的一个仿射联络<span class="math inline">\(\nabla:{\frak X}(M)\times{\frak X}(M)\to{\frak X}(M)\)</span>: <span class="math display">\[
+\phi_*( \nabla_XY ) = \tilde\nabla_{\phi_*X}(\phi_*Y).
+\]</span></p>
+<blockquote>
+<p><u>Pf</u> 首先应注意到, 因为<span class="math inline">\(\phi\)</span>是微分同胚, 所以<span class="math inline">\(\phi_*\)</span>是线性同构映射, 意味着<span class="math inline">\(\phi_*(A)=\phi_*(B)\)</span>可推出<span class="math inline">\(A=B\)</span>. 这将在这几个命题的证明中频繁使用.</p>
+<p>只需验证<span class="math inline">\(\nabla_XY\)</span>关于<span class="math inline">\(X\)</span>的<span class="math inline">\(\cal F\)</span>-线性性和关于<span class="math inline">\(Y\)</span>的Leibniz律即可. 一方面, <span class="math display">\[
+\Align{
+\phi_*(\nabla_{fX}Y)
+&amp;= \tilde\nabla_{\phi_*(fX)}(\phi_*Y) \\
+&amp;= \tilde\nabla_{\phi_*(f)\phi_*(X)}(\phi_*Y) \\
+&amp;= \phi_*(f)\tilde\nabla_{\phi_*(X)}(\phi_*Y) \\
+&amp;= \phi_*(f)\phi_*(\nabla_XY) \\
+&amp;= \phi_*(f\nabla_XY),
+}
+\]</span> (其中第三步用到了<span class="math inline">\(\tilde\nabla\)</span>关于<span class="math inline">\(X\)</span>的<span class="math inline">\(\cal F\)</span>-线性性.) 即<span class="math inline">\(\nabla_{fX}Y=f\nabla_XY\)</span>. 另一方面, <span class="math display">\[
+\Align{
+\phi_*(\nabla_X(fY))
+&amp;= \tilde\nabla_{\phi_*X}(\phi_*(fY)) \\
+&amp;= \tilde\nabla_{\phi_*X}(\phi_*(f)\phi_*(Y)) \\
+&amp;= (\phi_*X)(\phi_*(f))\phi_*(Y)
+ + \phi_*(f)\tilde\nabla_{\phi_*X}(\phi_*(Y)) \\
+&amp;= \phi_*((Xf)Y) + \phi_*(f)\phi_*(\nabla_XY) \\
+&amp;= \phi_*((Xf)Y + f\nabla_XY), \\
+}
+\]</span> (其中第三步用到了<span class="math inline">\(\tilde\nabla\)</span>关于<span class="math inline">\(Y\)</span>的Leibniz律.) 即<span class="math inline">\(\nabla_X(fY)=(Xf)Y+f\nabla_XY\)</span>.</p>
+</blockquote>
+<p><u>Claim 2</u> 设等距同构<span class="math inline">\(\phi:M\to\tilde M\)</span>, <span class="math inline">\(\tilde\nabla\)</span>是<span class="math inline">\(\tilde{M}\)</span>上的黎曼联络, 则Claim 1中定义的<span class="math inline">\(\nabla\)</span>是<span class="math inline">\(M\)</span>上的黎曼联络.</p>
+<blockquote>
+<p><u>Pf</u> 由等距同构的定义, 有<span class="math inline">\(\lr{X_p,Y_p}=\lr{\phi_*X_p,\phi_*Y_p}'\)</span>对任意<span class="math inline">\(X_p,Y_p\in T_pM\)</span>, <span class="math inline">\(p\in M\)</span>成立, 即 <span class="math display">\[
+\phi_*\lr{X,Y} = \lr{\phi_*X,\phi_*Y},\quad\forall X,Y\in{\frak X}(M).
+\]</span> 下面验证<span class="math inline">\(\nabla\)</span>满足无挠性和适配性. 一方面, <span class="math display">\[
+\Align{
+\phi_*(\nabla_XY-\nabla_YX)
+&amp;= \tilde\nabla_{\phi_*X}(\phi_*Y)-\tilde\nabla_{\phi_*Y}(\phi_*X) \\
+&amp;= [\phi_*X,\phi_*Y] \\
+&amp;= \phi_*[X,Y],
+}
+\]</span> (其中第二步用了<span class="math inline">\(\tilde\nabla\)</span>的无挠性) 即<span class="math inline">\(\nabla_XY-\nabla_YX=[X,Y]\)</span>. 另一方面, <span class="math display">\[
+\Align{
+\phi_*(\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ})
+&amp;= \lr{\phi_*(\nabla_XY),\phi_*Z}+\lr{\phi_*Y,\phi_*(\nabla_XZ)} \\
+&amp;= \lr{\tilde\nabla_{\phi_*X}(\phi_*Y),\phi_*Z}
+ + \lr{\phi_*Y,\tilde\nabla_{\phi_*X}(\phi_*Z)} \\
+&amp;= (\phi_*X)\lr{\phi_*Y,\phi_*Z} \\
+&amp;= (\phi_*X)\;\phi_*\lr{Y,Z} \\
+&amp;= \phi_*(X\lr{Y,Z}),
+}
+\]</span> (其中第三步用了<span class="math inline">\(\tilde\nabla\)</span>的适配性) 即<span class="math inline">\(\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}=X\lr{Y,Z}\)</span>.</p>
+</blockquote>
+<p><u>Claim 3</u> 设<span class="math inline">\(R,\tilde{R}\)</span>分别是Claim 2中<span class="math inline">\(\nabla,\tilde\nabla\)</span>的曲率, 则 <span class="math display">\[
+\phi_*(R(X,Y)Z) = \tilde{R}(\phi_*X,\phi_*Y)\phi_*Z.
+\]</span></p>
+<blockquote>
+<p><u>Pf</u> <span class="math display">\[
+\Align{
+\phi_*(R(X,Y)Z)
+&amp;= \phi_*([\nabla_X,\nabla_Y]Z) - \phi_*(\nabla_{[X,Y]}Z) \\
+&amp;= [\tilde\nabla_{\phi_*X},\tilde\nabla_{\phi_*Y}]\phi_*Z
+ - \tilde\nabla_{[\phi_*X,\phi_*Y]}\phi_*Z \\
+&amp;= \tilde{R}(\phi_*X,\phi_*Y)\phi_*Z.
+}
+\]</span> 其中第二步利用了结论<span class="math inline">\(\phi_*([\nabla_X,\nabla_Y]Z)=[\tilde\nabla_{\phi_*X},\tilde\nabla_{\phi_*Y}]\phi_*Z\)</span>, 将左边展开即可证明.</p>
 </blockquote>
 </body></html>
                 
