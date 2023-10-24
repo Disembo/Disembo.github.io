@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/disembo/media/raw/master/diffgeom-gtm275/5-3-local-operators-F-linearity.png">
 <meta property="article:published_time" content="2023-10-23T14:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-23T14:09:01.934Z">
+<meta property="article:modified_time" content="2023-10-24T07:00:32.953Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -395,14 +395,18 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 <p><u>Claim 1</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 映射<span class="math inline">\(\phi:E\to F\)</span>保纤维(<span class="math inline">\(\phi(E_p)\subset F_p\)</span>), 且在每个纤维上都是线性映射, 则 <span class="math display">\[
 \phi\,\textsf{是光滑的}
 \iff\phi_\#\,\textsf{将光滑截面映到光滑截面.}
-\]</span> &gt; <u>Pf</u> (<span class="math inline">\(\Rightarrow\)</span>) 若<span class="math inline">\(\phi\)</span>是光滑的, <span class="math inline">\(s\in\Gamma(E)\)</span>是光滑的, 那么<span class="math inline">\(\phi_\#(s)=\phi\circ s\)</span>也是光滑的. &gt; &gt; (<span class="math inline">\(\Leftarrow\)</span>) 任给定<span class="math inline">\(p\in M\)</span>, 设<span class="math inline">\(p\)</span>的邻域<span class="math inline">\(U\)</span>上有<span class="math inline">\(E,F\)</span>的标架<span class="math inline">\(\qty{e_1,\dots,e_r},\qty{f_1,\dots,f_m}\)</span>. 设 &gt; <span class="math display">\[
-&gt; \phi_\# (e_\mu) = A^\nu{_\mu}f_\nu,
-&gt; \]</span> &gt; 因为<span class="math inline">\(\phi_\#\)</span>将光滑截面<span class="math inline">\(e_\mu\)</span>映到光滑截面, 所以<span class="math inline">\(A^\nu{_\mu}\)</span>是<span class="math inline">\(U\)</span>上的光滑函数. 于是对任意截面<span class="math inline">\(s=a^\mu e_\mu\in\Gamma(E|_U)\)</span>, &gt; <span class="math display">\[
-&gt; \phi_\# (s) = A^\nu{_\mu} a^\mu f_\nu.
-&gt; \]</span> &gt; 设<span class="math inline">\(E|_U\)</span>的局部坐标<span class="math inline">\((x^1,\dots,x^n,a^1,\dots,a^r)\)</span>, 则 &gt; <span class="math display">\[
-&gt; \phi(x^1,\dots,x^n,a^1,\dots,a^r)
-&gt; = (x^1,\dots,x^n,A^1{_\mu}a^\mu,\dots,A^m{_\mu}a^\mu)
-&gt; \]</span> &gt; 是<span class="math inline">\(E|_U\to F\)</span>的光滑映射.</p>
+\]</span></p>
+<blockquote>
+<p><u>Pf</u> (<span class="math inline">\(\Rightarrow\)</span>) 若<span class="math inline">\(\phi\)</span>是光滑的, <span class="math inline">\(s\in\Gamma(E)\)</span>是光滑的, 那么<span class="math inline">\(\phi_\#(s)=\phi\circ s\)</span>也是光滑的.</p>
+<p>(<span class="math inline">\(\Leftarrow\)</span>) 任给定<span class="math inline">\(p\in M\)</span>, 设<span class="math inline">\(p\)</span>的邻域<span class="math inline">\(U\)</span>上有<span class="math inline">\(E,F\)</span>的标架<span class="math inline">\(\qty{e_1,\dots,e_r},\qty{f_1,\dots,f_m}\)</span>. 设 <span class="math display">\[
+\phi_\# (e_\mu) = A^\nu{_\mu}f_\nu,
+\]</span> 因为<span class="math inline">\(\phi_\#\)</span>将光滑截面<span class="math inline">\(e_\mu\)</span>映到光滑截面, 所以<span class="math inline">\(A^\nu{_\mu}\)</span>是<span class="math inline">\(U\)</span>上的光滑函数. 于是对任意截面<span class="math inline">\(s=a^\mu e_\mu\in\Gamma(E|_U)\)</span>, <span class="math display">\[
+\phi_\# (s) = A^\nu{_\mu} a^\mu f_\nu.
+\]</span> 设<span class="math inline">\(E|_U\)</span>的局部坐标<span class="math inline">\((x^1,\dots,x^n,a^1,\dots,a^r)\)</span>, 则 <span class="math display">\[
+\phi(x^1,\dots,x^n,a^1,\dots,a^r)
+= (x^1,\dots,x^n,A^1{_\mu}a^\mu,\dots,A^m{_\mu}a^\mu)
+\]</span> 是<span class="math inline">\(E|_U\to F\)</span>的光滑映射.</p>
+</blockquote>
 <p>至此, 我们终于可以得到想要的结论.</p>
 <p><u>Claim 2</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 则存在一一对应关系: <span class="math display">\[
 \Align{
