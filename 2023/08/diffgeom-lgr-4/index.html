@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/disembo/media/raw/master/diffgeom-lgr/5-6-hodge-dual-R3.png">
 <meta property="article:published_time" content="2023-08-16T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-15T09:18:42.046Z">
+<meta property="article:modified_time" content="2023-10-25T13:08:45.440Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -323,7 +323,7 @@
 = \det(v_\mu{^\nu}).
 \]</span></p></li>
 </ol>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 第1条, 利用楔积的线性性和反对称性, <span class="math display">\[
 \Align{
 \omega^1\wedge\cdots\wedge\omega^n
@@ -351,7 +351,7 @@
 =\det(v_\mu{^\nu}).
 }
 \]</span></p>
-</blockquote>
+</div>
 <ul>
 <li><p>实际上, 这两条都可以作为行列式<span class="math inline">\(\det(A^\mu{_\nu})\)</span>的定义.</p></li>
 <li><p>1的推论就是 <span class="math display">\[
@@ -376,7 +376,7 @@
 \]</span> 其中<span class="math inline">\((\dd\omega_{\mu_1\dots\mu_l})_b\)</span>是标量场的外微分.</p></li>
 <li><p>可知, 外微分算符是线性的; 而且对于<span class="math inline">\(l,m\)</span>形式场<span class="math inline">\(\omega,\mu\)</span>, 有<span class="math inline">\(\dd(\omega\wedge\mu)=(\dd\omega)\wedge\mu+(-1)^l\omega\wedge(\dd\mu)\)</span>, 称为反Leibniz律(anti-Leibniz rule).</p></li>
 </ul>
-<blockquote>
+<div class="note note-info">
 <p><u>Example</u> <span class="math inline">\(\R^2\)</span>上的<span class="math inline">\(1\)</span>形式场<span class="math inline">\(\omega=\omega_1\dd{x^1}+\omega_2\dd{x^2}\)</span>的外微分 <span class="math display">\[
 \Align{
 \dd{\omega}
@@ -404,12 +404,12 @@
 &amp;=(\omega_{23,1}-\omega_{13,2}+\omega_{12,3})\dd{x^1}\wedge\dd{x^2}\wedge\dd{x^3}
 }
 \]</span></p>
-</blockquote>
+</div>
 <p>设<span class="math inline">\(\omega\)</span>为<span class="math inline">\(l\)</span>形式场, 若<span class="math inline">\(\dd\omega=0\)</span>, 则称其为<strong>闭的(closed)</strong>; 若存在<span class="math inline">\(\mu\)</span>使得<span class="math inline">\(\omega=\dd\mu\)</span>, 则称其为<strong>恰当的(exact)</strong>.</p>
 <p><u>Claim 2</u> 任意恰当形式都为闭形式, 即<span class="math inline">\(\dd{}^2=0\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 取<span class="math inline">\(\partial_a\)</span>, 有<span class="math inline">\((\dd\dd{\omega})_{cba_1\dots a_l}=(l+2)(l+1)\partial_{[c}\partial_{[b}\omega_{a_1\dots a_l]]}=(l+2)(l+1)\partial_{[(c}\partial_{b)}\omega_{a_1\dots a_l]}=0\)</span>.</p>
-</blockquote>
+</div>
 <ul>
 <li>要让该命题的逆命题成立, 需要对流形提出一些要求. 平凡流形<span class="math inline">\(\R^n\)</span>满足这一要求, 而流形一定局部平凡. 因此若<span class="math inline">\(\omega\)</span>为闭形式, 则<span class="math inline">\(M\)</span>的任意一点<span class="math inline">\(p\)</span>必有邻域<span class="math inline">\(N\)</span>, 在<span class="math inline">\(N\)</span>上存在<span class="math inline">\(\mu\)</span>, 使得<span class="math inline">\(\dd\mu=\omega\)</span>.</li>
 </ul>
@@ -443,7 +443,7 @@
 \int_G \omega :=
 \int_{\psi[G]} \omega_{1\dots n}(x^1,\dots,x^n) \dd{x^1}\cdots\dd{x^n}.
 \]</span> 上式右边是<span class="math inline">\(n\)</span>元函数<span class="math inline">\(\omega_{1\dots n}(x^1,\dots,x^n)\)</span>在<span class="math inline">\(\R^n\)</span>的开子集<span class="math inline">\(\psi[G]\)</span>上的普通积分(Riemann或Lebesgue积分).</p>
-<blockquote>
+<div class="note note-secondary">
 <p>需要证明的是, 如上定义的积分是不依赖于坐标系<span class="math inline">\((O,\psi)\)</span>的选取的. 为此, 选取包含<span class="math inline">\(G\)</span>的另一个右手系<span class="math inline">\((O',\psi')\)</span>. 我们先推导<span class="math inline">\(n\)</span>形式的坐标变换律, 设<span class="math inline">\(\omega\)</span>在两个系的坐标分量分别为<span class="math inline">\(\omega_{1\cdots n},\omega'_{1\cdots n}\)</span>, 则由张量变换律, <span class="math display">\[
 \Align{
 \omega'_{1\cdots n}
@@ -462,7 +462,7 @@
 =\int_{\psi'[G]}\omega_{1\dots n} |J| \dd{x'^1}\cdots\dd{x'^n}
 =\int_{\psi'[G]}\omega'_{1\dots n}\dd{x'^1}\cdots\dd{x'^n},
 \]</span> 即不同坐标系下<span class="math inline">\((\int_G \omega)'=\int_G \omega\)</span>.</p>
-</blockquote>
+</div>
 <p>在上述证明中, 若<span class="math inline">\((O',\psi')\)</span>是左手系, 则Jacobi行列式<span class="math inline">\(J&lt;0\)</span>, 取绝对值出来一个负号, 也就是说, 在左手系<span class="math inline">\((O',\psi')\)</span>下, <span class="math inline">\(\omega\)</span>的积分应当定义为</p>
 <p><span class="math display">\[
 \int_G \omega
@@ -501,7 +501,7 @@
 <li><span class="math inline">\(\partial N\)</span>是一个低维度子流形, 右边应当理解为<span class="math inline">\(\int_{\partial N} \omega = \int_{\partial N}\tilde\omega\)</span>.</li>
 <li>对于流形<span class="math inline">\(M\)</span>整体上的积分, 思想是将其分为若干坐标域, 在每个坐标域上积分, 最后拼合起来(借助单位分解).</li>
 </ul>
-<blockquote>
+<div class="note note-info">
 <p><u>Example</u> 考虑<span class="math inline">\((\R^2,\delta_{ab})\)</span>中的特例. 设矢量场<span class="math inline">\(A^a\)</span>, 光滑闭合曲线<span class="math inline">\(L\)</span>, <span class="math inline">\(S\)</span>是<span class="math inline">\(L\)</span>包围的开集, 笛卡尔坐标<span class="math inline">\(\qty{x,y}\)</span>. 则<span class="math inline">\(S\cup L\)</span>可以充当<span class="math inline">\(N\)</span>, 其中<span class="math inline">\(S\)</span>和<span class="math inline">\(L\)</span>分别为内部和边界. <span class="math inline">\(A_a\)</span>可以充当<span class="math inline">\(\omega\)</span>. 一方面, <span class="math display">\[
 \Align{
 \dd{\omega}=(\omega_{2,1}-\omega_{1,2})\dd{x^1}\wedge\dd{x^2}
@@ -515,7 +515,7 @@
 \iint_S\pqty{\pdv{A_2}{x^1}-\pdv{A_1}{x^2}}\dd{x^1}\dd{x^2}
 = \oint_L A_l\dd{l},
 \]</span> 这就是我们熟知的Green公式.</p>
-</blockquote>
+</div>
 <h3 id="volume-elements">5.4  Volume elements</h3>
 <div style="text-align: right;">
 2023.8.7
@@ -535,7 +535,7 @@
 \varepsilon_{a_1\dots a_n}
 = \pm\sqrt{\abs{g}} (e^1)_{a_1}\wedge\cdots\wedge(e^n)_{a_n},
 \]</span> 其中<span class="math inline">\(+,-\)</span>分别适用于右手和左手基底; <span class="math inline">\(g:=\det{g_{\mu\nu}}\)</span>为度规在此基底下的分量组成的行列式(对正交归一基底有<span class="math inline">\(g=(-1)^s\)</span>).</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 即证明<span class="math inline">\((\varepsilon_{\mu_1\dots\mu_n})^2=|g|\)</span>. 因为 <span class="math display">\[
 \Align{
 (-1)^sn!
@@ -555,7 +555,7 @@
 &amp;=n!(\varepsilon_{1\dots n})^2(\det g^{\mu\nu}),
 }
 \]</span> 有<span class="math inline">\((\varepsilon_{1\dots n})^2=(-1)^s(\det g^{\mu\nu})^{-1}=(-1)^s(\det g_{\mu\nu})=|\!\det g_{\mu\nu}|\)</span>.</p>
-</blockquote>
+</div>
 <p><u>Claim 2</u> 设<span class="math inline">\(\nabla_a\)</span>和<span class="math inline">\(\varepsilon\)</span>分别是与度规适配的导数算符和体元, 则<span class="math inline">\(\nabla_b\varepsilon_{a_1\dots a_n}=0\)</span>.</p>
 <p><u>Claim 3</u> 对适配体元有如下恒等式,</p>
 <ol type="1">
@@ -571,11 +571,11 @@
 <ul>
 <li>其中<span class="math inline">\(n^b\)</span>是外向单位法矢(<span class="math inline">\(|n^bn_b|=1\)</span>). 若在包含边界点的坐标系下, 边界为<span class="math inline">\(x^1=0\)</span>的点, <span class="math inline">\(N\)</span>为<span class="math inline">\(x^1\leq0\)</span>的点, 则"外向矢量"指的是<span class="math inline">\(v^1&gt;0\)</span>的矢量.</li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>注意这个定义要求超曲面<span class="math inline">\(\partial N\)</span>非类光, 对于类光超曲面, 诱导体元<span class="math inline">\(\hat\varepsilon_{a_1\dots a_{n-1}}\)</span>如下定义 <span class="math display">\[
 \frac1n\varepsilon_{a_1\dots a_n} = n_{[a_1}\hat\varepsilon_{a_2\dots a_n]}.
 \]</span></p>
-</blockquote>
+</div>
 <h3 id="integration-of-functions-gauss-law">5.5  Integration of functions, Gauss' law</h3>
 <div style="text-align: right;">
 2023.8.8
@@ -583,33 +583,36 @@
 <p>设<span class="math inline">\(\varepsilon\)</span>为流形<span class="math inline">\(M\)</span>上的一个体元, <span class="math inline">\(f\)</span>为<span class="math inline">\(M\)</span>上的<span class="math inline">\(C^0\)</span>标量场, 则<span class="math inline">\(f\)</span>在<span class="math inline">\(M\)</span>上的积分定义为 <span class="math display">\[
 \int_M f := \int_M f\varepsilon.
 \]</span> 如果给定了度规, 则总选择适配体元.</p>
-<blockquote>
+<div class="note note-info">
 <p><u>Example 1</u> 考虑<span class="math inline">\((\R^3,\delta_{ab})\)</span>上连续函数<span class="math inline">\(f\)</span>的积分. 先选取<span class="math inline">\(\qty{x,y,z}\)</span>, 则<span class="math inline">\(\varepsilon=\dd{x}\wedge\dd{y}\wedge\dd{z}\)</span>, 设<span class="math inline">\(f\)</span>的坐标函数<span class="math inline">\(F(x,y,z)\)</span>, 则 <span class="math display">\[
 \int f = \int f\varepsilon = \iiint F(x,y,z)\dd{x}\dd{y}\dd{z}.
 \]</span> 也可以选取(右手)球坐标系<span class="math inline">\(\qty{r,\theta,\phi}\)</span>, 则<span class="math inline">\(\sqrt{|g|}=r^2\sin\theta\)</span>, <span class="math inline">\(\varepsilon=r^2\sin\theta\dd{r}\wedge\dd{\theta}\wedge\dd{\phi}\)</span>, 设<span class="math inline">\(f\)</span>的坐标函数<span class="math inline">\(\hat{F}(r,\theta,\phi)\)</span>, 则积分也等于 <span class="math display">\[
 \int f = \int f\varepsilon = 
 \iiint \hat{F}(r,\theta,\phi) r^2\sin\theta\dd{r}\dd{\theta}\dd{\phi}.
 \]</span></p>
-</blockquote>
+</div>
 <p><u>Claim 1</u> 设<span class="math inline">\(M\)</span>为<span class="math inline">\(n\)</span>维定向流形, <span class="math inline">\(N\)</span>是<span class="math inline">\(M\)</span>中的<span class="math inline">\(n\)</span>维紧致带边嵌入子流形, <span class="math inline">\(g_{ab}\)</span>为<span class="math inline">\(M\)</span>上的度规, <span class="math inline">\(\varepsilon\)</span>和<span class="math inline">\(\nabla_a\)</span>分别为适配体元和适配导数算符, <span class="math inline">\(v^a\)</span>为<span class="math inline">\(M\)</span>上的<span class="math inline">\(C^1\)</span>矢量场, 则 <span class="math display">\[
 \int_{\i(N)} (\nabla_bv^b)\varepsilon
 = \int_{\partial N} v^b\varepsilon_{ba_1\dots a_{n-1}}.
-\]</span> &gt; <u>Pf</u> 应用Stokes定理, 令<span class="math inline">\(\omega_{a_1\dots a_{n-1}}=v^b\varepsilon_{ba_1\dots a_{n-1}}\)</span>, 只需证明<span class="math inline">\(\dd\omega=(\nabla_bv^b)\varepsilon\)</span>. 注意到<span class="math inline">\(\dd\omega\)</span>是<span class="math inline">\(n\)</span>形式, 它与<span class="math inline">\(\varepsilon\)</span>只相差一个乘子<span class="math inline">\(h\)</span>, 即<span class="math inline">\(\dd\omega_{ca_1\dots a_{n-1}}=h\varepsilon_{ca_1\dots a_{n-1}}\)</span>. 两边与<span class="math inline">\(\varepsilon^{ca_1\dots a_{n-1}}\)</span>缩并, 右边变为<span class="math inline">\(h(-1)^sn!\)</span>, 左边变为 &gt; <span class="math display">\[
-&gt; \Align{
-&gt; \varepsilon^{ca_1\dots a_{n-1}} \dd\omega_{ca_1\dots a_{n-1}}
-&gt; &amp;=n\varepsilon^{ca_1\dots a_{n-1}}
-&gt;   \nabla_{c}(v^b\varepsilon_{ba_1\dots a_{n-1}}) \\
-&gt; &amp;=n\varepsilon^{ca_1\dots a_{n-1}}
-&gt;   \varepsilon_{ba_1\dots a_{n-1}} \nabla_cv^b \\
-&gt; &amp;=n\delta^c{_b} (-1)^s(n-1)! \nabla_cv^b \\
-&gt; &amp;=(-1)^sn! \nabla_bv^b,
-&gt; }
-&gt; \]</span> &gt; (其中第二步因为<span class="math inline">\(\nabla\varepsilon=0\)</span>; 第三步利用了上一节Claim 3.) 因此<span class="math inline">\(h=\nabla_bv^b\)</span>, 即证.</p>
+\]</span></p>
+<div class="note note-secondary">
+<p><u>Pf</u> 应用Stokes定理, 令<span class="math inline">\(\omega_{a_1\dots a_{n-1}}=v^b\varepsilon_{ba_1\dots a_{n-1}}\)</span>, 只需证明<span class="math inline">\(\dd\omega=(\nabla_bv^b)\varepsilon\)</span>. 注意到<span class="math inline">\(\dd\omega\)</span>是<span class="math inline">\(n\)</span>形式, 它与<span class="math inline">\(\varepsilon\)</span>只相差一个乘子<span class="math inline">\(h\)</span>, 即<span class="math inline">\(\dd\omega_{ca_1\dots a_{n-1}}=h\varepsilon_{ca_1\dots a_{n-1}}\)</span>. 两边与<span class="math inline">\(\varepsilon^{ca_1\dots a_{n-1}}\)</span>缩并, 右边变为<span class="math inline">\(h(-1)^sn!\)</span>, 左边变为 <span class="math display">\[
+\Align{
+\varepsilon^{ca_1\dots a_{n-1}} \dd\omega_{ca_1\dots a_{n-1}}
+&amp;=n\varepsilon^{ca_1\dots a_{n-1}}
+  \nabla_{c}(v^b\varepsilon_{ba_1\dots a_{n-1}}) \\
+&amp;=n\varepsilon^{ca_1\dots a_{n-1}}
+  \varepsilon_{ba_1\dots a_{n-1}} \nabla_cv^b \\
+&amp;=n\delta^c{_b} (-1)^s(n-1)! \nabla_cv^b \\
+&amp;=(-1)^sn! \nabla_bv^b,
+}
+\]</span> (其中第二步因为<span class="math inline">\(\nabla\varepsilon=0\)</span>; 第三步利用了上一节Claim 3.) 因此<span class="math inline">\(h=\nabla_bv^b\)</span>, 即证.</p>
+</div>
 <p><u>Claim 2</u> (Gauss定理) 设<span class="math inline">\(M\)</span>为<span class="math inline">\(n\)</span>维定向流形, <span class="math inline">\(N\)</span>是<span class="math inline">\(M\)</span>中的<span class="math inline">\(n\)</span>维紧致带边嵌入子流形, <span class="math inline">\(g_{ab}\)</span>为<span class="math inline">\(M\)</span>上的度规, <span class="math inline">\(\varepsilon\)</span>和<span class="math inline">\(\nabla_a\)</span>分别为适配体元和适配导数算符, <span class="math inline">\(v^a\)</span>为<span class="math inline">\(M\)</span>上的<span class="math inline">\(C^1\)</span>矢量场, <span class="math inline">\(\partial N\)</span>的外向法矢<span class="math inline">\(n^a\)</span>满足<span class="math inline">\(|n^an_a|=1\)</span>, 则 <span class="math display">\[
 \int_{\i(N)} (\nabla_bv^b)\varepsilon
 = (n^cn_c) \int_{\partial N} (v^an_a)\hat\varepsilon.
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 根据Claim 2, 只需证明<span class="math inline">\(\int_{\partial N} v^b\varepsilon_{ba_1\dots a_{n-1}}=\int_{\partial N} (v^an_a)\hat\varepsilon\)</span>. 令<span class="math inline">\(\omega=v^b\varepsilon_{ba_1\dots a_{n-1}}\)</span>, 根据5.2节末关于<span class="math inline">\(\int_{\phi[S]}\omega=\int_{\phi[S]}\tilde\omega\)</span>的讨论可知, 只需证明<span class="math inline">\(\tilde\omega_{a_1\dots a_{n-1}}=v^bn_b\hat\varepsilon_{a_1\dots a_{n-1}}\)</span>. 注意到两边均为<span class="math inline">\((n-1)\)</span>维流形<span class="math inline">\(\partial N\)</span>上的<span class="math inline">\((n-1)\)</span>形式, 因此存在标量场<span class="math inline">\(K\)</span>使得 <span class="math display">\[
 \tilde\omega_{a_1\dots a_{n-1}}
 = Kv^bn_b\hat\varepsilon_{a_1\dots a_{n-1}},
@@ -627,12 +630,12 @@ v^bn_b \hat\varepsilon_{12\dots n-1}
 &amp;=v^0,
 }
 \]</span> 于是<span class="math inline">\(K=\frac1{n^cn_c}=n^cn_c\)</span>, 即证.</p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-info">
 <p><u>Example 2</u> 可以发现, 上面的Gauss定理是三维欧氏空间<span class="math inline">\((\R^3,\delta_{ab})\)</span>中Gauss定理(如下)的推广. 设有界闭区域<span class="math inline">\(V\)</span>, 其边界<span class="math inline">\(S\)</span>为分片光滑曲面, <span class="math inline">\(\vu{n}\)</span>为其外向法矢, <span class="math inline">\(\vb{A}\)</span>为<span class="math inline">\(C^1\)</span>矢量场, 则 <span class="math display">\[
 \iiint_V(\nabla\cdot\vb{A})\dd{V} = \iint_S (\vb{A}\cdot\vu{n})\dd{S}.
 \]</span></p>
-</blockquote>
+</div>
 <h3 id="dual-differential-forms">5.6  Dual differential forms</h3>
 <div style="text-align: right;">
 2023.8.9
@@ -646,7 +649,7 @@ v^bn_b \hat\varepsilon_{12\dots n-1}
 <li>对于<span class="math inline">\(0\)</span>形式场<span class="math inline">\(f\)</span>, 其对偶<span class="math inline">\(\star{f}=f\varepsilon\)</span>, 再取对偶<span class="math inline">\(\star(\star{f})=(-1)^sf\)</span>.</li>
 </ul>
 <p><u>Claim 1</u> 对任意<span class="math inline">\(l\)</span>形式场<span class="math inline">\(\omega\)</span>有<span class="math inline">\(\star(\star\omega)=(-1)^{s+l(n-l)}\omega\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 根据Hodge对偶的定义, <span class="math display">\[
 \Align{
 \star(\star\omega)_{c_1\dots c_l}
@@ -661,7 +664,7 @@ v^bn_b \hat\varepsilon_{12\dots n-1}
 &amp;=(-1)^{s+l(n-l)} \omega_{c_1\dots c_l}.
 }
 \]</span></p>
-</blockquote>
+</div>
 <p>对于两个<span class="math inline">\(l\)</span>形式<span class="math inline">\(\omega,\mu\)</span>, 定义其内积(inner product)为 <span class="math display">\[
 \lr{\omega,\mu} := \frac1{l!}\omega^{a_1\dots a_l}\mu_{a_1\dots a_l}.
 \]</span></p>
@@ -674,7 +677,7 @@ v^bn_b \hat\varepsilon_{12\dots n-1}
 <li><span class="math inline">\(\omega\wedge\lambda=(-1)^s\lr{\star\omega,\lambda}\varepsilon\)</span>.</li>
 <li><span class="math inline">\(\omega\wedge(\star\mu)=\lr{\omega,\mu}\varepsilon\)</span>.</li>
 </ol>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 第1条, <span class="math inline">\(\omega\wedge\lambda=\frac{n!}{l!(n-l)!}\omega_{[a_1\dots a_l}\lambda_{b_1\dots b_{n-l}]}\)</span>作为<span class="math inline">\(n\)</span>形式, 其与<span class="math inline">\(\varepsilon\)</span>只相差一个乘子<span class="math inline">\(h\)</span>, 即 <span class="math display">\[
 \frac{n!}{l!(n-l)!}\omega_{[a_1\dots a_l}\lambda_{b_1\dots b_{n-l}]}
 = h\varepsilon_{a_1\dots a_lb_1\dots b_{n-l}},
@@ -693,7 +696,7 @@ v^bn_b \hat\varepsilon_{12\dots n-1}
 &amp;=\lr{\mu,\omega} \varepsilon.
 }
 \]</span></p>
-</blockquote>
+</div>
 <p>下面介绍计算Hodge对偶的实用方法.</p>
 <p><u>Claim 3</u> 设右手正交归一基底<span class="math inline">\(\qty{(e^\mu)_a}\)</span>, <span class="math inline">\(\sigma\)</span>为<span class="math inline">\(n\)</span>阶置换, 则 <span class="math display">\[
 \star(e^{\sigma(1)}\wedge\cdots\wedge e^{\sigma(l)})
@@ -704,7 +707,7 @@ v^bn_b \hat\varepsilon_{12\dots n-1}
 <ul>
 <li>根据Hodge对偶的线性性, 可以方便地计算任意<span class="math inline">\(l\)</span>形式<span class="math inline">\(\omega\)</span>的对偶形式.</li>
 </ul>
-<blockquote>
+<div class="note note-info">
 <p><u>Example</u> 在欧氏空间<span class="math inline">\((\R^3,\delta_{ab})\)</span>中, 应用Claim 3有 <span class="math display">\[
 \Align{
 &amp;&amp;
@@ -744,7 +747,7 @@ v^bn_b \hat\varepsilon_{12\dots n-1}
 \star(\dd{t}\wedge\dd{x}\wedge\dd{y}) &amp;= -\dd{z}. 
 }
 \]</span></p>
-</blockquote>
+</div>
 <p><strong>应用: 欧氏空间<span class="math inline">\((\R^3,\delta_{ab})\)</span>中的向量分析</strong>.</p>
 <p>选定笛卡尔坐标系<span class="math inline">\(\qty{x,y,z}\)</span>, 则适配体元<span class="math inline">\(\varepsilon=\dd{x}\wedge\dd{y}\wedge\dd{z}\)</span>. 因为有度规, 所以矢量和对偶矢量自然认同, 下面不作区分.</p>
 <p>设<span class="math inline">\(0\)</span>形式<span class="math inline">\(f\)</span>, <span class="math inline">\(1\)</span>形式<span class="math inline">\(F_a\)</span>, <span class="math inline">\(2\)</span>形式<span class="math inline">\(G_{ab}\)</span>, 分别计算其外微分, 并和梯度, 旋度和散度公式(橙色)比较,</p>
@@ -803,7 +806,7 @@ R_{abc}{^d} =
 \]</span> 分别是黎曼曲率张量借标架和坐标基底的表达式.</p>
 <p>由标架计算曲率可分为如下三步: ①选定标架, ②计算无挠导数算符的所有联络1形式, ③由Cartan第二结构方程计算曲率2形式. 其中第②步再展开讲解.</p>
 <p>若流形上给定了度规<span class="math inline">\(g_{ab}\)</span>, 且导数算符与度规适配, 我们称度规分量为常数, 即满足<span class="math inline">\(\nabla_ag_{\mu\nu}=0\)</span>的标架为<strong>刚性标架(rigid frame)</strong>. 正交归一标架是最简单的刚性标架, 可以为计算带来许多方便.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>引入记号 <span class="math display">\[
 \Align{
 (e_\mu)_a &amp;:= g_{ab}(e_\mu)^b, &amp;
@@ -815,7 +818,7 @@ R_{abc}{^d} =
 (e_\mu)_a &amp;= g_{\mu\nu}(e^\nu)_a.
 }
 \]</span> 这表明, 基矢的具体指标也可以用度规升降. 类似地, 可以定义<span class="math inline">\((\omega_{\mu\nu})_a:=g_{\nu\sigma}(\omega_\mu{^\sigma})_a\)</span>.</p>
-</blockquote>
+</div>
 <p><u>Claim 4</u> 对刚性标架有<span class="math inline">\((\omega_{\mu\nu})_a=-(\omega_{\nu\mu})_a\)</span>.</p>
 <p>称<span class="math inline">\((\omega_{\mu\nu})_a\)</span>的分量<span class="math inline">\(\omega_{\mu\nu\rho}=(\omega_{\mu\nu})_a(e_\rho)^a\)</span>为<strong>里奇旋转系数(Ricci rotation coefficients)</strong>. 它共有<span class="math inline">\(n^2(n-1)/2\)</span>个独立的数. 借用任意坐标系<span class="math inline">\(\qty{x^\mu}\)</span>, 引入符号 <span class="math display">\[
 \Lambda_{\mu\nu\rho} := [(e_\nu)_{\lambda,\tau}-(e_\nu)_{\tau,\lambda}]
@@ -1223,7 +1226,6 @@ R_{abc}{^d} =
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

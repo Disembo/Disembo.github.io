@@ -18,14 +18,14 @@
   
     <meta name="description" content="GTM275的笔记.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM275 | 1 Curvature &amp; Vector Fields">
+<meta property="og:title" content="GTM275 | 1 曲率与向量场">
 <meta property="og:url" content="https://disembo.gitee.io/2023/09/diffgeom-gtm275-1/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="GTM275的笔记.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/disembo/media/raw/master/diffgeom-gtm275/2-4-catenoid-helicoid.png">
 <meta property="article:published_time" content="2023-09-13T14:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-22T13:59:59.617Z">
+<meta property="article:modified_time" content="2023-10-25T12:50:29.226Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -35,7 +35,7 @@
   
   
   
-  <title>GTM275 | 1 Curvature &amp; Vector Fields | Jin&#39;s Blog</title>
+  <title>GTM275 | 1 曲率与向量场 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM275 | 1 Curvature &amp; Vector Fields"></span>
+            <span id="subtitle" data-typed-text="GTM275 | 1 曲率与向量场"></span>
           
         </div>
 
@@ -262,15 +262,15 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">GTM275 | 1 Curvature &amp; Vector Fields</h1>
+            <h1 style="display: none">GTM275 | 1 曲率与向量场</h1>
             
             
               <div class="markdown-body">
                 
-                <html><head></head><body><h1 id="dg1-curvature-vector-fields">DG1 | Curvature &amp; Vector Fields</h1>
-<blockquote>
+                <html><head></head><body>
+<div class="note note-secondary">
 <p>GTM275(<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>)第1-6节的笔记.</p>
-</blockquote>
+</div>
 <h2 id="riemannian-manifolds">1  Riemannian Manifolds</h2>
 <h3 id="riemannian-metrics">1.1  Riemannian metrics</h3>
 <p>设流形<span class="math inline">\(M\)</span>上一点<span class="math inline">\(p\)</span>, 若<span class="math inline">\(T_pM\)</span>上的双线性形式<span class="math inline">\(\lr{\cdot,\cdot}:T_pM\times T_pM\to\R\)</span>满足</p>
@@ -296,13 +296,13 @@
 <li><span class="math inline">\(\sum_{\alpha\in A}\rho_\alpha=1\)</span>. (第2条保证, 对于任意一点<span class="math inline">\(p\)</span>, 这个求和都为有限求和.)</li>
 </ol>
 <p><u>Claim 1</u> 任何流形存在黎曼度量.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 先给出一个引理: 有限个黎曼度量的非负系数线性组合仍为黎曼度量. 设<span class="math inline">\(\lr{\cdot,\cdot}_\mu\)</span>(<span class="math inline">\(\mu=1,\dots,n\)</span>)是开集<span class="math inline">\(U\)</span>上的黎曼度量, <span class="math inline">\(a^\mu\geq0\)</span>, 则<span class="math inline">\(\sum_\mu a^\mu \lr{\cdot,\cdot}_\mu\)</span>也是<span class="math inline">\(U\)</span>上的黎曼度量. 证明是比较显然的.</p>
 <p>回到原命题. 设流形<span class="math inline">\(M\)</span>的图册<span class="math inline">\(\qty{(O_\alpha,\psi_\alpha)}\)</span>以及从属于<span class="math inline">\(\qty{O_\alpha}\)</span>的单位分解<span class="math inline">\(\qty{\rho_\alpha}\)</span>.</p>
 <p>对于每个坐标域<span class="math inline">\(O_\alpha\)</span>, 定义<span class="math inline">\(O_\alpha\)</span>上的黎曼度量为<span class="math inline">\(\lr{X,Y}_\alpha=\delta_{\mu\nu}X^\mu Y^\nu\)</span>. 根据<span class="math inline">\(\qty{{\rm supp}\,\rho_\alpha}\)</span>的局部有限性, 每点<span class="math inline">\(p\in M\)</span>都有一个邻域<span class="math inline">\(U_p\)</span>, 使得只有有限个<span class="math inline">\(\rho_\alpha\)</span>在<span class="math inline">\(U_p\)</span>上非零, 因此 <span class="math display">\[
 \sum_\alpha \rho_\alpha\lr{\cdot,\cdot}_\alpha
 \]</span> 在每一点<span class="math inline">\(p\)</span>都是一个有限求和, 根据引理, <span class="math inline">\(\sum_\alpha \rho_\alpha\lr{\cdot,\cdot}_\alpha\)</span>是一个黎曼度量.</p>
-</blockquote>
+</div>
 <h3 id="curves">1.3  Curves</h3>
 <p>流形<span class="math inline">\(M\)</span>上的一条<strong>曲线(curve)</strong>是光滑映射<span class="math inline">\(c:[a,b]\to M\)</span>. 如果曲线<span class="math inline">\(c:[a,b]\to M\)</span>是浸入, 则称之为<strong>正则(regular)</strong>的. 曲线<span class="math inline">\(c(t)\)</span>在<span class="math inline">\(t\)</span>处的<strong>切向量(tangent vector)</strong>定义为<span class="math inline">\(c'(t):=c_*(\pdv{t})\)</span>. 可知, 曲线为正则的当且仅当其切向量处处非零.</p>
 <ul>
@@ -319,12 +319,12 @@ c'(t)(f)
 l := \int_a^b \norm{c'(u)} \dd{u}.
 \]</span> 定义弧长函数<span class="math inline">\(s:[a,b]\to[0,l]\)</span>, 其表达式为<span class="math inline">\(s(t):=\int_a^t\norm{c'(u)}\dd{u}\)</span>. 根据Newton-Leibniz公式, 有<span class="math inline">\(s'(t)=\norm{c'(t)}&gt;0\)</span>, 于是<span class="math inline">\(s'(t)\)</span>严格递增, 根据反函数定理, <span class="math inline">\(s(t)\)</span>具有光滑的反函数<span class="math inline">\(t(s)\)</span>. 因此, 我们可以定义曲线<span class="math inline">\(c(t)\)</span>的<strong>弧长参数化(arc length parametrization)</strong>为<span class="math inline">\(\gamma(s):=c(t(s))\)</span>.</p>
 <p><u>Claim 1</u> 曲线<span class="math inline">\(c(t)\)</span>为弧长参数化的, 当且仅当参数起始为<span class="math inline">\(0\)</span>, 且<span class="math inline">\(\norm{c'(t)}=1\)</span>恒成立.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> "<span class="math inline">\(\Rightarrow\)</span>", 设<span class="math inline">\(t=s(t)\)</span>, 则<span class="math inline">\(t\in[0,l]\)</span>, 且<span class="math inline">\(\norm{c'(t)}=s'(t)=1\)</span>.</p>
 <p>"<span class="math inline">\(\Leftarrow\)</span>", 设<span class="math inline">\(\norm{c'(t)}=1\)</span>且<span class="math inline">\(t\)</span>从<span class="math inline">\(0\)</span>开始, 则 <span class="math display">\[
 s(t) = \int_0^t \norm{c'(t)}\dd{t} = \int_0^t\dd{t} = t,
 \]</span> 即<span class="math inline">\(t\)</span>为弧长参数.</p>
-</blockquote>
+</div>
 <h2 id="the-euclidean-space">2  The Euclidean Space</h2>
 <h3 id="curvature-of-curves-and-surfaces">2.1  Curvature of curves and surfaces</h3>
 <p><strong>平面曲线的曲率</strong>.</p>
@@ -366,12 +366,12 @@ T(s) = \gamma'(s),\quad
 <li>法曲率, 主曲率, 平均曲率都与<span class="math inline">\(N_p\)</span>的方向有关, 然而高斯曲率却与<span class="math inline">\(N_p\)</span>的方向无关.</li>
 <li>若<span class="math inline">\(X_p\)</span>是主方向, 则<span class="math inline">\(-X_p\)</span>也是主方向.</li>
 </ul>
-<blockquote>
+<div class="note note-info">
 <p><u>Example 1</u> 考虑<span class="math inline">\(\R^3\)</span>中的半径为<span class="math inline">\(r\)</span>的球面, 其各个方向的法截线都是半径为<span class="math inline">\(r\)</span>的圆, 法曲率都是<span class="math inline">\(1/r\)</span>(取向内的单位法向量), 则平均曲率<span class="math inline">\(H=1/r\)</span>, 高斯曲率<span class="math inline">\(K=1/r^2\)</span>.</p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-info">
 <p><u>Example 2</u> 平面<span class="math inline">\(\R^2\)</span>的所有曲率为零. 对于半径为<span class="math inline">\(r\)</span>的圆柱面, 其主曲率为<span class="math inline">\(0,1/r\)</span>(取向内的单位法向量), 平均曲率为<span class="math inline">\(1/2r\)</span>, 高斯曲率为零. 平面和圆柱面是局部等距同构的, 但是其主曲率和平均曲率并不相等, 这说明主曲率和平均曲率不是<strong>等距不变量(isometric invariant)</strong>, 然而可以证明的是, 高斯曲率<span class="math inline">\(K\)</span>的确是等距不变量, 即高斯曲率在等距同构下保持不变. 这就是高斯绝妙定理(Gauss’s Theorema Egregium). 本章的一个目的就是证明高斯绝妙定理, 并尝试将其推广到高维空间.</p>
-</blockquote>
+</div>
 <h3 id="directional-derivatives">2.2  Directional derivatives</h3>
 <p><strong>方向导数算符</strong>.</p>
 <p><span class="math inline">\(\R^n\)</span>中的向量场沿着某个切向量的导数. 光滑向量场<span class="math inline">\(Y\)</span>在<span class="math inline">\(p\)</span>点沿着<span class="math inline">\(X_p\)</span>方向的<strong>方向导数(directional derivative)</strong>定义为 <span class="math display">\[
@@ -386,14 +386,14 @@ D_XY = X(Y^\mu) \pdv{}{x^\mu}.
 D:{\frak X}(\R^n)\times{\frak X}(\R^n)\to{\frak X}(\R^n),
 \]</span> <span class="math inline">\(D_XY\)</span>也记作<span class="math inline">\(D(X,Y)\)</span>.</p></li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>回顾一下抽象指标: <span class="math display">\[
 (D_XY)^a
 = \pqty{\pdv{}{x^\mu}}^a X(Y^\mu)
 = \pqty{\pdv{}{x^\mu}}^a X^b\partial_b(Y^\mu)
 = X^b\partial_bY^a.
 \]</span> (最后一步因为<span class="math inline">\(\partial_b\pqty{\pdv{}{x^\mu}}^a=0\)</span>) 其中<span class="math inline">\(\partial_a\)</span>是欧氏空间<span class="math inline">\((\R^n,\delta_{ab})\)</span>的适配导数算符.</p>
-</blockquote>
+</div>
 <p><u>Claim 1</u> 方向导数的性质.</p>
 <ol type="1">
 <li><span class="math inline">\(D(X,Y)\)</span>关于<span class="math inline">\(X\)</span>是<span class="math inline">\({\cal F}\)</span>-线性的, 关于<span class="math inline">\(Y\)</span>是<span class="math inline">\(\R\)</span>-线性的.</li>
@@ -414,7 +414,7 @@ T(X,Y) := D_XY-D_YX-[X,Y].
 <li>(零曲率) <span class="math inline">\(R(X,Y)=0\)</span>, 即<span class="math inline">\(D_{[X,Y]}=D_XD_Y-D_YD_X\)</span>.</li>
 <li>(和度量适配) <span class="math inline">\(D_X\lr{Y,Z}=\lr{D_XY,Z}+\lr{Y,D_XZ}\)</span>.</li>
 </ol>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 取坐标基底, 用分量展开证明.</p>
 <p>零挠率: 即证<span class="math inline">\([X,Y](f)=(D_XY)f-(D_YX)f\)</span>对任意光滑函数<span class="math inline">\(f\)</span>成立. <span class="math display">\[
 \Align{
@@ -450,7 +450,7 @@ D_X\lr{Y,Z}
 &amp;= \lr{D_XY,Z} + \lr{Y,D_XZ}.
 }
 \]</span></p>
-</blockquote>
+</div>
 <p><strong>曲线上的方向导数</strong>.</p>
 <p>给定曲线<span class="math inline">\(c:[a,b]\to M\)</span>, 一个<strong>沿着曲线的向量场(vector field along a curve)</strong>指的是给曲线上每个点<span class="math inline">\(c(t)\)</span>都赋予一个向量<span class="math inline">\(V(t)\in T_{c(t)}M\)</span>. 向量场<span class="math inline">\(V(t)\)</span>称为光滑的, 如果对于任意光滑函数<span class="math inline">\(f:M\to\R\)</span>, <span class="math inline">\(V(t)f\)</span>都是光滑的.</p>
 <ul>
@@ -459,9 +459,9 @@ D_X\lr{Y,Z}
 <p>对于沿着<span class="math inline">\(c(t)\)</span>光滑向量场<span class="math inline">\(V(t)=V^\mu(t)\pdv{x^\mu}\)</span>, 定义其沿着曲线的导数为 <span class="math display">\[
 \eval{\dv{V}{t}}_t = \dv{V^\mu}{t} \eval{\pdv{x^\mu}}_{c(t)},
 \]</span> 它也是一个沿着<span class="math inline">\(c(t)\)</span>的光滑向量场.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>实际上, <span class="math inline">\((\dv{V}{t})^a=T^b\nabla_bV^a\)</span>, 其中<span class="math inline">\(\nabla_a\)</span>是适配导数算符.</p>
-</blockquote>
+</div>
 <p><u>Claim 3</u> 对于两个沿着曲线的光滑向量场<span class="math inline">\(V,W\)</span>, 有 <span class="math display">\[
 \dv{}{t}\lr{V(t),W(t)} = \lr{\dv{V}{t},W} + \lr{V,\dv{W}{t}}.
 \]</span> <strong>子流形上的方向导数</strong>.</p>
@@ -478,14 +478,14 @@ D(X,Y) \equiv D_X Y = X(Y^\mu) \pdv{x^\mu} \in \Gamma(T\R^n|_M)
 <p><u>Claim 4</u> 沿曲线的导数(关于<span class="math inline">\(t\)</span>的导数)等于子流形上切向量方向的导数, 即 <span class="math display">\[
 \eval{\dv{V}{t}}_t = D_{c'(t)}\tilde{V}|_{c(t)}.
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 设<span class="math inline">\(V(t)=V^\mu(t)\pdv{x^\mu}\)</span>, <span class="math inline">\(\tilde{V}=\tilde{V}^\mu\pdv{x^\mu}\)</span>, 有 <span class="math display">\[
 D_{c'(t)}\tilde{V}|_{c(t)}
 = c'(t)(\tilde{V}^\mu)|_{c(t)} \pdv{x^\mu}
 = \eval{\dv{(\tilde{V}^\mu\circ c)}{t}}_{t} \pdv{x^\mu}
 = \eval{\dv{V}{t}}_t.
 \]</span> 其中第2步由切向量的性质<span class="math inline">\(T(f)=\dv{(f\circ c)}{t}|_t\)</span>; 第3步由<span class="math inline">\((\tilde{V}\circ c)|_t=\tilde{V}_{c(t)}=V(t)\)</span>.</p>
-</blockquote>
+</div>
 <h3 id="the-shape-operator">2.3  The shape operator</h3>
 <p><strong>形状算子</strong>.</p>
 <p>欧氏空间<span class="math inline">\(\R^n\)</span>中的一张<strong>超曲面(hypersurface)</strong><span class="math inline">\(M\)</span>指的是光滑函数<span class="math inline">\(f:\R^n\to\R\)</span>的零点集. 我们要求偏导数<span class="math inline">\(\pdv{f}{x^\mu}\)</span>在<span class="math inline">\(M\)</span>上不全为零(即<span class="math inline">\(\dd{f}\neq0\)</span>), 此时<span class="math inline">\(M\)</span>是<span class="math inline">\(\R^n\)</span>的一个正则子流形.</p>
@@ -504,7 +504,7 @@ L(X)_p := L_pX_p,
 <li><span class="math inline">\(\lr{L(X),Y}=\lr{D_XY,N}\)</span>.</li>
 <li>(自伴性) <span class="math inline">\(\lr{L(X),Y}=\lr{X,L(Y)}\)</span>.</li>
 </ol>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 第1条, 因为<span class="math inline">\(\lr{N,N}=1\)</span>, 两边同时作用<span class="math inline">\(D_X\)</span>, 有 <span class="math display">\[
 0=D_X\lr{N,N}=\lr{D_XN,N}+\lr{N,D_XN}=-2\lr{L(X),N}.
 \]</span> 第2条, 因为<span class="math inline">\(Y\in{\frak X}(M)\)</span>, 所以<span class="math inline">\(\lr{Y,N}=0\)</span>, 两边时作用<span class="math inline">\(D_X\)</span>, 有 <span class="math display">\[
@@ -516,12 +516,12 @@ L(X)_p := L_pX_p,
 =\lr{D_XY,N}-\lr{D_YX,N}
 =\lr{[X,Y],N}=0.
 \]</span> 其中倒数第二步是根据<span class="math inline">\([X,Y]=D_XY-D_YX\)</span>; 最后一步是因为<span class="math inline">\([X,Y]\in{\frak X}(M)\)</span>.</p>
-</blockquote>
+</div>
 <p><strong>形状算子与曲率</strong>.</p>
 <p><u>Claim 2</u> 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, 则<span class="math inline">\(p\in M\)</span>的单位法向量<span class="math inline">\(N_p\)</span>和单位切向量<span class="math inline">\(X_p\)</span>, <span class="math inline">\(\gamma(s)\)</span>是弧长参数的法截线, 则<span class="math inline">\(\gamma(s)\)</span>在<span class="math inline">\(p\)</span>点的关于<span class="math inline">\(N_p\)</span>的法曲率 <span class="math display">\[
 \kappa(X_p) = \lr{L(X_p),X_p}.
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 可知<span class="math inline">\(\gamma(0)=p\)</span>, <span class="math inline">\(\gamma'(0)=X_p\)</span>, 设<span class="math inline">\(T(t)=\gamma'(t)\)</span>为单位切向量, 则 <span class="math display">\[
 \kappa(\gamma'(s))
 = \lr{\gamma''(s), N_{\gamma(s)}}
@@ -529,12 +529,12 @@ L(X)_p := L_pX_p,
 = \lr{D_TT, N_{\gamma(s)}}
 = \lr{L(T), T}.
 \]</span> (第3步依据上一节Claim 4; 第4步依据本节Claim 2的第2条.) 取<span class="math inline">\(t=0\)</span>有<span class="math inline">\(\kappa(X_p)=\lr{L(X_p),X_p}\)</span>.</p>
-</blockquote>
+</div>
 <p><u>Claim 3</u> 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, 则<span class="math inline">\(p\in M\)</span>的主方向是<span class="math inline">\(L_p\)</span>的单位特征向量, 主曲率为<span class="math inline">\(L_p\)</span>的特征值.</p>
 <ul>
 <li>因此, 高斯曲率<span class="math inline">\(K=\det{L_p}\)</span>, 平均曲率<span class="math inline">\(H=\tr{L_p}/2\)</span>.</li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 主曲率是函数<span class="math inline">\(\kappa(X_p) = \lr{L(X_p),X_p}\)</span>在约束条件<span class="math inline">\(\lr{X_p,X_p}=1\)</span>下的最值, 考虑Lagrange乘数法. 选择<span class="math inline">\(T_pM\)</span>的正交归一基底<span class="math inline">\(\qty{e_1,e_2}\)</span>, 则<span class="math inline">\(X_p=xe_1+ye_2=(x,y)\T\)</span>. 由<span class="math inline">\(L\)</span>的自伴性知其矩阵为对称阵<span class="math inline">\(A=\pmqty{a&amp;b\\b&amp;c}\)</span>. 即求函数 <span class="math display">\[
 \kappa(X_p)=\lr{L(X_p),X_p}=X_p\T AX_p
 =ax^2+2bxy+cy^2
@@ -552,7 +552,7 @@ AX_p = \lambda X_p.
 \kappa(X_p) = \lr{L(X_p),X_p} = \lr{AX_p,X_p}
 = \lambda\lr{X_p,X_p} = \lambda,
 \]</span> 为<span class="math inline">\(L\)</span>的特征向量<span class="math inline">\(X_p\)</span>对应的特征值.</p>
-</blockquote>
+</div>
 <h3 id="the-first-and-second-fundamental-forms">2.4  The first and second fundamental forms</h3>
 <p>设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, <span class="math inline">\(p\in M\)</span>的欧氏度量是<span class="math inline">\(T_pM\)</span>的一个对称的双线性形式 <span class="math display">\[
 {\rm I}(X_p,Y_p) := \lr{X_p,Y_p},
@@ -578,7 +578,7 @@ g &amp;:= {\rm II}(e_2,e_2), \\
 <p><u>Claim 5</u> 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, <span class="math inline">\(p\in M\)</span>, 选定<span class="math inline">\(T_pM\)</span>的基底, 则形状算子<span class="math inline">\(L\)</span>的矩阵为第一基本形式矩阵的逆乘以第二基本形式矩阵, 即 <span class="math display">\[
 \pmqty{E&amp;F\\F&amp;G}^{-1}\pmqty{e&amp;f\\f&amp;g}.
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p>我们使用抽象指标语言来写一写形状算子和基本形式.</p>
 <ul>
 <li><p>形状算子<span class="math inline">\(L^a{_b}X^b=-X^b\nabla_bN^a\)</span>, 即<span class="math inline">\(L^a{_b}=-\nabla_bN^a\)</span>. (其中<span class="math inline">\(\nabla_a\)</span>是适配导数算符.)</p></li>
@@ -595,8 +595,8 @@ g &amp;:= {\rm II}(e_2,e_2), \\
 {\rm II}_{ab} = g_{cb}L^c{_a} = {\rm I}_{cb}L^c{_a},\quad\textsf{即}\,
 L^c{_a} = ({\rm I}^{-1})^{cb} {\rm II}_{ba},
 \]</span> 同时证明了Claim 5.</p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-info">
 <p><u>Example 1</u> 计算半径为<span class="math inline">\(R\)</span>的二维球面<span class="math inline">\(S^2\)</span>的形状算子和第二基本形式. 利用球坐标系 <span class="math display">\[
 \Cases{
 x=r\sin\theta\cos\phi, \\
@@ -625,8 +625,8 @@ L(X_p) &amp;= -D_{X_p}N = -X_p(N^\mu)\pdv{x^\mu} \\
 = \pmqty{r^2&amp;0\\0&amp;r^2\sin^2\theta}\pmqty{-\frac1r &amp; 0 \\ 0 &amp; -\frac1r}
 = \pmqty{-r&amp;0\\0&amp;-r\sin^2\theta}.
 \]</span></p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-info">
 <p><u>Example 2</u> <span class="math inline">\(\R^3\)</span>中的悬链面(catenoid)和正螺面(helicoid)是两种重要的曲面.</p>
 <p>悬链面<span class="math inline">\(U\)</span>是悬链线绕着<span class="math inline">\(x\)</span>轴旋转一周形成的曲面, 它的参数方程为 <span class="math display">\[
 (x,y,z) = (\cosh{u}\cos\theta,\cosh{u}\sin\theta,u),\quad
@@ -670,7 +670,7 @@ F'&amp;= \lr{\varphi_*\pdv{u},\varphi_*\pdv{\theta}} = 0, \\
 G'&amp;= \lr{\varphi_*\pdv\theta,\varphi_*\pdv\theta}=\sinh^2u+1=\cosh^2u.
 }
 \]</span> 可见, <span class="math inline">\(U,V\)</span>的<span class="math inline">\(\rm I\)</span>形式系数系数分别相等. 根据Claim 4, <span class="math inline">\(\varphi\)</span>是一个等距同构.</p>
-</blockquote>
+</div>
 <h2 id="affine-connections">3  Affine Connections</h2>
 <h3 id="affine-connections-1">3.1  Affine connections</h3>
 <p>在一个一般的流形<span class="math inline">\(M\)</span>上, 不一定存在一个全局的坐标系<span class="math inline">\(\qty{\pdv{x^\mu}}\)</span>, 所以不能像定义方向导数那样定义一个<span class="math inline">\(M\)</span>上的导数算符. 但是我们可以采用公理化的定义, 根据一个导数算符应当满足的性质来定义它.</p>
@@ -684,9 +684,9 @@ T(X,Y) := \nabla_XY-\nabla_YX-[X,Y],
 \]</span> 曲率<span class="math inline">\(R:{\frak X}(M)\times{\frak X}(M)\times{\frak X}(M)\to{\frak X}(M)\)</span>, <span class="math display">\[
 R(X,Y)Z := [\nabla_X,\nabla_Y]Z - \nabla_{[X,Y]}Z.
 \]</span> <u>Claim 1</u> 挠率<span class="math inline">\(T\)</span>和曲率<span class="math inline">\(R\)</span>关于其每个变量都是<span class="math inline">\(\cal F\)</span>-线性的.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 挠率<span class="math inline">\(T\)</span>和曲率<span class="math inline">\(R\)</span>关于<span class="math inline">\(X,Y\)</span>均为反对称, 因此只需验证<span class="math inline">\(T\)</span>关于<span class="math inline">\(X\)</span>, <span class="math inline">\(R\)</span>关于<span class="math inline">\(X,Z\)</span>是<span class="math inline">\(\cal F\)</span>-线性的. 具体证明略, 按照联络的性质展开即可, 需要用到引理<span class="math inline">\([fX,gY]=fg[X,Y]+f(Xg)Y-g(Yf)X\)</span>.</p>
-</blockquote>
+</div>
 <h3 id="the-riemannian-connection">3.2  The Riemannian connection</h3>
 <p><strong>黎曼联络</strong>.</p>
 <p>在一个黎曼流形上, 我们还可以给仿射联络加上更多的条件. 一个<strong>黎曼联络(Riemannian connection)</strong>或者Levi-Civita联络, 是一个满足如下条件的仿射联络<span class="math inline">\(\nabla\)</span>,</p>
@@ -695,7 +695,7 @@ R(X,Y)Z := [\nabla_X,\nabla_Y]Z - \nabla_{[X,Y]}Z.
 <li>(与度量适配) <span class="math inline">\(X\lr{Y,Z}=\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}\)</span>.</li>
 </ol>
 <p><u>Claim 1</u> 黎曼流形上的黎曼联络存在且唯一.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 与度量适配条件<span class="math inline">\(X\lr{Y,Z}=\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}\)</span>, 循环<span class="math inline">\(X,Y,Z\)</span>, 可以写出三个恒等式: <span class="math display">\[
 \Cases{
 X\lr{Y,Z}=\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}, \\
@@ -712,7 +712,7 @@ X\lr{Y,Z}+Y\lr{Z,X}-Z\lr{X,Y}
 &amp;\lr{[X,Y],Z}-\lr{[Y,Z],X}-\lr{[Y,[X,Z]]}.
 }
 \]</span> 由此定义了一个联络<span class="math inline">\(\nabla_XY\)</span>, 由<span class="math inline">\(Z\)</span>的任意性知<span class="math inline">\(\nabla_XY\)</span>是唯一确定的. 可以验证, 如上定义的<span class="math inline">\(\nabla_XY\)</span>确实是一个黎曼联络, 所以黎曼联络存在且唯一.</p>
-</blockquote>
+</div>
 <p><strong>子流形的黎曼联络</strong>.</p>
 <p>设<span class="math inline">\(M\)</span>的嵌入子流形<span class="math inline">\(S\)</span>, <span class="math inline">\(p\in S\)</span>, 定义<span class="math inline">\(p\)</span>点的<strong>正交投影(orthogonal projection)</strong>为映射<span class="math inline">\({\rm pr}_p:T_pM\to T_pS\)</span>, <span class="math display">\[
 {\rm pr}_p(X_p) := \sum_\mu \lr{X_p,e_\mu}e_\mu ,
@@ -727,7 +727,7 @@ X\lr{Y,Z}+Y\lr{Z,X}-Z\lr{X,Y}
 <p><u>Claim 2</u> 设黎曼流形<span class="math inline">\(M\)</span>的黎曼联络<span class="math inline">\(\nabla\)</span>, 则嵌入子流形<span class="math inline">\(S\subset M\)</span>的黎曼联络(在诱导度量下)为 <span class="math display">\[
 \nabla'_XY = {\rm pr}(\nabla_XY).
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 根据黎曼联络的唯一性知, 只需验证<span class="math inline">\(\nabla'\)</span>确实是黎曼联络即可.</p>
 <ol type="1">
 <li><p>关于<span class="math inline">\(X\)</span>的<span class="math inline">\(\cal F\)</span>-线性性: <span class="math display">\[
@@ -762,12 +762,12 @@ X\lr{Y,Z}
 }
 \]</span> 其中第二步利用了正交投影自伴性的推论: 若<span class="math inline">\(Y\in{\frak X}(M)\)</span>, 则<span class="math inline">\(\lr{X,Y}=\lr{{\rm pr}(X),Y}\)</span>.</p></li>
 </ol>
-</blockquote>
+</div>
 <h3 id="connections-under-a-diffeomorphism">3.3  Connections under a diffeomorphism</h3>
 <p><u>Claim 1</u> 设微分同胚<span class="math inline">\(\phi:M\to\tilde M\)</span>, <span class="math inline">\(\tilde\nabla\)</span>是<span class="math inline">\(\tilde{M}\)</span>上的一个仿射联络, 则下式定义了<span class="math inline">\(M\)</span>上的一个仿射联络<span class="math inline">\(\nabla:{\frak X}(M)\times{\frak X}(M)\to{\frak X}(M)\)</span>: <span class="math display">\[
 \phi_*( \nabla_XY ) = \tilde\nabla_{\phi_*X}(\phi_*Y).
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 首先应注意到, 因为<span class="math inline">\(\phi\)</span>是微分同胚, 所以<span class="math inline">\(\phi_*\)</span>是线性同构映射, 意味着<span class="math inline">\(\phi_*(A)=\phi_*(B)\)</span>可推出<span class="math inline">\(A=B\)</span>. 这将在这几个命题的证明中频繁使用.</p>
 <p>只需验证<span class="math inline">\(\nabla_XY\)</span>关于<span class="math inline">\(X\)</span>的<span class="math inline">\(\cal F\)</span>-线性性和关于<span class="math inline">\(Y\)</span>的Leibniz律即可. 一方面, <span class="math display">\[
 \Align{
@@ -789,9 +789,9 @@ X\lr{Y,Z}
 &amp;= \phi_*((Xf)Y + f\nabla_XY), \\
 }
 \]</span> (其中第三步用到了<span class="math inline">\(\tilde\nabla\)</span>关于<span class="math inline">\(Y\)</span>的Leibniz律.) 即<span class="math inline">\(\nabla_X(fY)=(Xf)Y+f\nabla_XY\)</span>.</p>
-</blockquote>
+</div>
 <p><u>Claim 2</u> 设等距同构<span class="math inline">\(\phi:M\to\tilde M\)</span>, <span class="math inline">\(\tilde\nabla\)</span>是<span class="math inline">\(\tilde{M}\)</span>上的黎曼联络, 则Claim 1中定义的<span class="math inline">\(\nabla\)</span>是<span class="math inline">\(M\)</span>上的黎曼联络.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 由等距同构的定义, 有<span class="math inline">\(\lr{X_p,Y_p}=\lr{\phi_*X_p,\phi_*Y_p}'\)</span>对任意<span class="math inline">\(X_p,Y_p\in T_pM\)</span>, <span class="math inline">\(p\in M\)</span>成立, 即 <span class="math display">\[
 \phi_*\lr{X,Y} = \lr{\phi_*X,\phi_*Y},\quad\forall X,Y\in{\frak X}(M).
 \]</span> 下面验证<span class="math inline">\(\nabla\)</span>满足无挠性和适配性. 一方面, <span class="math display">\[
@@ -812,11 +812,11 @@ X\lr{Y,Z}
 &amp;= \phi_*(X\lr{Y,Z}),
 }
 \]</span> (其中第三步用了<span class="math inline">\(\tilde\nabla\)</span>的适配性) 即<span class="math inline">\(\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}=X\lr{Y,Z}\)</span>.</p>
-</blockquote>
+</div>
 <p><u>Claim 3</u> 设<span class="math inline">\(R,\tilde{R}\)</span>分别是Claim 2中<span class="math inline">\(\nabla,\tilde\nabla\)</span>的曲率, 则 <span class="math display">\[
 \phi_*(R(X,Y)Z) = \tilde{R}(\phi_*X,\phi_*Y)\phi_*Z.
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> <span class="math display">\[
 \Align{
 \phi_*(R(X,Y)Z)
@@ -826,7 +826,7 @@ X\lr{Y,Z}
 &amp;= \tilde{R}(\phi_*X,\phi_*Y)\phi_*Z.
 }
 \]</span> 其中第二步利用了结论<span class="math inline">\(\phi_*([\nabla_X,\nabla_Y]Z)=[\tilde\nabla_{\phi_*X},\tilde\nabla_{\phi_*Y}]\phi_*Z\)</span>, 将左边展开即可证明.</p>
-</blockquote>
+</div>
 </body></html>
                 
               </div>
@@ -876,7 +876,7 @@ X\lr{Y,Z}
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM275 | 1 Curvature &amp; Vector Fields</div>
+      <div>GTM275 | 1 曲率与向量场</div>
       <div>https://disembo.gitee.io/2023/09/diffgeom-gtm275-1/</div>
     </div>
     <div class="license-meta">
@@ -1226,7 +1226,6 @@ X\lr{Y,Z}
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

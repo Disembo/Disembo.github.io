@@ -267,7 +267,7 @@
             
               <div class="markdown-body">
                 
-                <html><head></head><body><blockquote>
+                <html><head></head><body><div class="note note-secondary">
 <p>这是一个关于微分方程的系列，会有4篇文章：</p>
 <ul>
 <li>ODE1 动力系统：这个领域的研究对象和历史，以及一些概念.</li>
@@ -280,7 +280,7 @@
 <li>高中导数.</li>
 <li>简单的线性代数（可参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E">系列视频: 线性代数的本质</a>）.</li>
 </ul>
-</blockquote>
+</div>
 <h2 id="动力系统">1 动力系统</h2>
 <p>万物都在运动. <strong>动力系统</strong>(dynamical system)指的是随着时间变化的系统：振动的弹簧振子、变化的人口、四处流动的大气气团都是动力系统的例子. 一个动力系统的状态可以由一个关于时间<span class="math inline">\(t\)</span>的函数<span class="math inline">\(y(t)\)</span>描述.</p>
 <p>动力学(dynamics)是研究动力系统的学科：具体地说，就是研究<u>系统的状态怎样演化</u>. 这个领域的研究从17世纪的牛顿开始. 牛顿提出了力学三定律、发明了微积分，而最简单的动力系统莫过于一个运动的质点了. 在无阻尼弹簧振子中，把质点在某处自由释放，利用牛顿第二定律可以列出 <span class="math display">\[
@@ -318,7 +318,7 @@ p_{n+1}=rp_n(1-p_n) \tag{b}
 =\lim_{\Delta t\to0}\frac{y(t+\Delta t)-y(t)}{\Delta t}
 \]</span> "<span class="math inline">\(\dd{}\)</span>"是微分符号，它本身带有"改变量趋近于<span class="math inline">\(0\)</span>"的含义. 微分的本质，就是对<span class="math inline">\(y(t)\)</span>在<span class="math inline">\(t\)</span>附近的<u>线性近似</u>，以直代曲.</p>
 <p>对于每一点<span class="math inline">\(t\)</span>，都有一个对应的导数<span class="math inline">\(\alpha(t)\)</span>，记函数<span class="math inline">\(y'(t)=\alpha(t)\)</span>为<span class="math inline">\(y(t)\)</span>的导函数.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>不过，<span class="math inline">\(\Delta y\approx\alpha\Delta t\)</span>（<span class="math inline">\(\Delta t\to0\)</span>）这种关系不是任何时候都存在的. 如果<span class="math inline">\(y(t)\)</span>在<span class="math inline">\(t\)</span>附近满足 <span class="math display">\[
 \orange{\Delta y}=\alpha\blue{\Delta t}+o(\blue{\Delta t})
 \]</span> 其中，</p>
@@ -327,7 +327,7 @@ p_{n+1}=rp_n(1-p_n) \tag{b}
 <li><span class="math inline">\(\alpha\)</span>是一个只<span class="math inline">\(t\)</span>有关、与<span class="math inline">\(\Delta t\)</span>趋于<span class="math inline">\(0\)</span>的方式无关的实数.</li>
 </ul>
 <p>如果满足上面的条件，那么称<span class="math inline">\(y(t)\)</span>在<span class="math inline">\(t\)</span>可微.</p>
-</blockquote>
+</div>
 <p>顾名思义，<u>微分方程</u>就是关于未知函数<span class="math inline">\(\color{SteelBlue}y(t)\)</span>以及它的导数（微分之商）的方程，例如 <span class="math display">\[
 {\color{SteelBlue}y''}+2{\color{SteelBlue}y'}+{\color{SteelBlue}y}^2=0 \qquad
 x+2{\color{SteelBlue}y}=\sin{\color{SteelBlue}y'}
@@ -760,7 +760,6 @@ x+2{\color{SteelBlue}y}=\sin{\color{SteelBlue}y'}
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

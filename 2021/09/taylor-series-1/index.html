@@ -275,9 +275,9 @@
 <p><img src="https://gitee.com/disembo/media/raw/master/taylor-series/intro-polynomial-fitting.png" cloud-img="" style="zoom:40%;" lazyload="true"></p>
 <h3 id="导数相等">1.1 导数相等</h3>
 <p>我们看其中一种方法：令某点处多项式和原函数各阶导数相等. 从导数的几何意义开始：</p>
-<blockquote>
+<div class="note note-secondary">
 <p>函数在某一点的一阶导数表示切线斜率；二阶导数反映凹凸性；三阶导数表示凹凸性的变化……可见，使用一阶到高阶的导数能够表达函数在某一点周围的信息.</p>
-</blockquote>
+</div>
 <p>对于<span class="math inline">\(n\)</span>次多项式 <span class="math display">\[
 P_n(x)=a_0+a_1x^1+a_2x^2+\dots+a_nx^n
 \]</span> 我们可以令当<span class="math inline">\(x=0\)</span>时，它的函数值和<span class="math inline">\(1\)</span>至<span class="math inline">\(n\)</span>阶导数分别和原来的函数<span class="math inline">\(f(x)\)</span>相等，从而求出系数<span class="math inline">\(a_0,\dots a_n\)</span>. 现在对<span class="math inline">\(P_n(x)\)</span>求导：</p>
@@ -306,13 +306,13 @@ P_n(x)
 }
 \]</span> （其中：认为"零阶导数"<span class="math inline">\(f^{(0)}(x)\)</span>就是<span class="math inline">\(f(x)\)</span>本身；<span class="math inline">\(x^0=1\)</span>；<span class="math inline">\(0!=1\)</span>.）</p>
 <p>这个多项式能够在<span class="math inline">\(x=0\)</span>附近较好地近似<span class="math inline">\(f(x)\)</span>. 当<span class="math inline">\(n\)</span>越来越大时，"误差"也会越来越小，如下面的动画所示，其中<span class="math inline">\(f(x)=\sin(x)\)</span>. <video controls="" style="width:700px;" cloud-vid="" preload="metadata"> <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/taylor-series/TaylorPolyFitting - sin.mp4" type="video/mp4"> </video></p>
-<blockquote>
+<div class="note note-secondary">
 <p>取<span class="math inline">\(n=3\)</span>，<span class="math inline">\(f(0)=0\)</span>，<span class="math inline">\(f'(0)=\cos(0)=1\)</span>，<span class="math inline">\(f''(0)=-\sin(0)=0\)</span>，<span class="math inline">\(f'''(0)=-\cos(0)=-1\)</span>. 所以 <span class="math display">\[
 \sin{x} \approx P_3(x)
 = \frac{0}{0!}+\frac{1}{1!}x+\frac{0}{2!}x^2+\frac{-1}{3!}x^3
 = x-\frac{x^3}6
 \]</span> 代入一个值，如<span class="math inline">\(x=0.5\)</span>，计算机算得<span class="math inline">\(P_3(0.5)\approx0.479167\)</span>，<span class="math inline">\(\sin(0.5)\approx0.479426\)</span>，两者是非常接近的，相对误差约为<span class="math inline">\(0.5\textperthousand\)</span>.</p>
-</blockquote>
+</div>
 <h3 id="另外的方法">1.2 另外的方法</h3>
 <p>上面的方法利用了一个点的各阶导数相等来构造出拟合多项式，我们也可以在区间<span class="math inline">\(I\)</span>内取很多个点，令各个点处的多项式值和函数值相等，来构造拟合多项式. 设互异的点<span class="math inline">\(x_i\in I\)</span>（<span class="math inline">\(i=1,2,\dots,n\)</span>），且<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(x_i\)</span>上的函数值是已知的，分别为<span class="math inline">\(y_i\)</span>（<span class="math inline">\(i=1,2,\dots,n\)</span>），设多项式<span class="math inline">\(P(x)\)</span>满足 <span class="math display">\[
 P(x_i)=y_i \quad (i=1,2,\dots,n)
@@ -333,14 +333,14 @@ P(x)=
   \frac{(x-x_1)(x-x_2)}{(x_3-x_1)(x_3-x_2)}y_3
 \]</span> 就是所求的多项式，容易验证，将<span class="math inline">\(x_i\)</span>代入后，函数值为<span class="math inline">\(y_i\)</span>.</p>
 <p>上面的求解过程可以推广到更多个点的情形；同时可以看出一个<span class="math inline">\(n\)</span>个点的插值多项式最多是<span class="math inline">\((n-1)\)</span>次的.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>下图展示了两个插值多项式的图像.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/taylor-series/interpolating-polynomials.png" cloud-img="" style="zoom:40%;" lazyload="true"></p>
 <ul>
 <li>左图表示经过5个定点的插值多项式.</li>
 <li>右图是插值多项式对<span class="math inline">\(f(x)=\sin{x}\)</span>的拟合，插值点为<span class="math inline">\(-\pi,-\dfrac\pi2,0,\dfrac\pi2,\pi\)</span>.</li>
 </ul>
-</blockquote>
+</div>
 <h2 id="taylor级数">2 Taylor级数</h2>
 <h3 id="taylor多项式与余项">2.1 Taylor多项式与余项</h3>
 <p>把我们之前在<span class="math inline">\(\S1.1\)</span>得到多项式拿过来， <span class="math display">\[
@@ -365,9 +365,9 @@ f(x)
 \int_a^x f'(s)\dd{s}=f(x)-f(a)
 \Rightarrow f(x)=f(a)+\int_a^xf'(s)\dd{s}
 \]</span> 如下图，<span class="math inline">\(f(x)\)</span>就等于<span class="math inline">\(f(a)\)</span>加上<span class="math inline">\(f'(x)\)</span>的图像在以<span class="math inline">\(a\)</span>和<span class="math inline">\(x\)</span>为端点的区间上和<span class="math inline">\(x\)</span>轴围成的（带符号）面积.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>实际上，<span class="math inline">\(f(a)\)</span>也可以理解为<span class="math inline">\(f'(x)\)</span>在<span class="math inline">\(a\)</span>点左侧与<span class="math inline">\(x\)</span>轴围成的面积.</p>
-</blockquote>
+</div>
 <p><img src="https://gitee.com/disembo/media/raw/master/taylor-series/integral-geometric-interpretation.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>我们现在用不同的精确度来近似<span class="math inline">\(f'(x)\)</span>和<span class="math inline">\(x\)</span>轴之间的面积，即 <span class="math display">\[
 f(x)\approx f(x)+S_{\text{approx}}
@@ -385,9 +385,9 @@ f(x) \approx f(a)+
   {f'(a)(x-a)} +
   {\frac{f''(a)}{2!}(x-a)^2}
 \]</span> 可以发现，这三项恰好是<span class="math inline">\(f(x)\)</span>的Taylor多项式的前三项. 如果再精确一些，用绿色曲线和<span class="math inline">\(x\)</span>轴之间的面积来近似，其中绿色曲线为<span class="math inline">\({\color[rgb]{0.18,0.49,0.20}y=f'(a)+f''(a)(x-a)+\dfrac{f'''(a)}{2!}(x-a)^2}\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>蓝色、橙色、绿色曲线方程右端分别是<span class="math inline">\(f'(x)\)</span>在<span class="math inline">\(a\)</span>点处的零次、一次、二次Taylor多项式.</p>
-</blockquote>
+</div>
 <p>对其求定积分，再把近似值代入，得到 <span class="math display">\[
 f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2
 +\frac{f'''(a)}{3!}(x-a)^3
@@ -399,7 +399,7 @@ f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2
 \sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!}(x-a)^k
 \]</span> 为<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(a\)</span>处的<strong>Taylor级数</strong>(Taylor series). Taylor级数是否收敛到原来的函数？因为余项<span class="math inline">\(R_n(x)=f(x)-P_n(x)\)</span>，所以如果在<span class="math inline">\(a\)</span>的某个邻域上，当<span class="math inline">\(n\to\infty\)</span>时，<span class="math inline">\(R_n(x)\)</span>能够趋于<span class="math inline">\(0\)</span>，那么<span class="math inline">\(P_n(x)\)</span>就收敛到<span class="math inline">\(f(x)\)</span>，此时我们称<span class="math inline">\(f(x)\)</span>在能够在<span class="math inline">\(a\)</span>的这个邻域上可以展开成幂级数（反之亦然），这个幂级数称为<span class="math inline">\(f(x)\)</span>在<span class="math inline">\(a\)</span>的<strong>Taylor展开</strong>.</p>
 <p>上面的名词"级数"指的是无穷多项的求和（详见<a href="#footnote-1">[F.1]</a>）.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>举个例子，</p>
 <p><span class="math inline">\(f(x)=\e^x\)</span>在<span class="math inline">\(x=0\)</span>处的Lagrange余项是<span class="math inline">\(R_n(x)=\dfrac{\e^{\xi}}{(n+1)!}x^{n+1}\)</span>（<span class="math inline">\(|\xi|&lt;|x|\)</span>），因为 <span class="math display">\[
 |R_n(x)|\le\frac{\e^{|x|}}{(n+1)!}|x|^{n+1}\to0\quad(n\to\infty)
@@ -408,7 +408,7 @@ f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2
 =\sum_{k=0}^\infty\frac{x^k}{k!}
 =1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\dots+\frac{x^n}{n!}+\dots
 \]</span> <video controls="" style="width:700px;" cloud-vid="" preload="metadata"> <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/taylor-series/TaylorPolyFitting - exp.mp4" type="video/mp4"> </video></p>
-</blockquote>
+</div>
 <p>有时，Taylor展开只有在某一个区域内成立，例如<span class="math inline">\(\dfrac{1}{1+x^2}=1-x^2+x^4-x^6+\dots\)</span>只有在<span class="math inline">\(|x|&lt;1\)</span>时成立，因为当<span class="math inline">\(x&gt;1\)</span>时幂级数显然不收敛.</p>
 <video controls="" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/taylor-series/TaylorPolyFitting - (1+x^2)^(-1).mp4" type="video/mp4">
@@ -418,7 +418,7 @@ f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2
 <ul>
 <li><p><span class="math inline">\(\displaystyle\sin{x}=\sum_{k=0}^\infty\frac{(-1)^k}{(2k+1)!}x^{2k+1}=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\dots\)</span>（<span class="math inline">\(-\infty&lt;x&lt;+\infty\)</span>），只有奇数次幂.</p>
 <p><span class="math inline">\(\displaystyle\cos{x}=\sum_{k=0}^\infty\frac{(-1)^k}{(2k)!}x^{2k}=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\dots\)</span>（<span class="math inline">\(-\infty&lt;x&lt;+\infty\)</span>），只有偶数次幂.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>从这里可以看出三角函数和指数函数的关系. 我们直接利用Taylor展开式，将指数函数推广到复数域.</p>
 <p>将<span class="math inline">\(\i x\)</span>代入<span class="math inline">\(\e^x\)</span>的展开式，得到 <span class="math display">\[
 \Align{
@@ -435,7 +435,7 @@ f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2
 &amp;=\cos{x}+\i\sin{x}
 }
 \]</span> 即<span class="math inline">\(\e^{\i x}=\cos{x}+\i\sin{x}\)</span>（<span class="math inline">\(x\in\R\)</span>），是非常著名的Euler公式.</p>
-</blockquote></li>
+</div></li>
 <li><p><span class="math inline">\(\displaystyle\frac{1}{x+1}=\sum_{k=0}^\infty(-1)^kx^k=1-x+x^2-x^3+x^4-x^5+\dots\)</span>（<span class="math inline">\(-1&lt;x&lt;1\)</span>）.</p>
 <p>逐项求z导数（限制<span class="math inline">\(x&gt;-1\)</span>），得到</p>
 <p><span class="math inline">\(\displaystyle\ln(x+1)=\sum_{k=1}^\infty\frac{(-1)^k}{k}x^k=x-\frac{x^2}2+\frac{x^3}3-\frac{x^4}4+\dots\)</span>（<span class="math inline">\(-1&lt;x\le1\)</span>）.</p>
@@ -468,12 +468,12 @@ F.2 幂级数的收敛特性
 <p>对于<span class="math inline">\(x\in\R\)</span>，有些<span class="math inline">\(x\)</span>的值能够使幂级数收敛到定值，有些会使幂级数发散到无穷大<span class="math inline">\(\infty\)</span>. 设 <span class="math display">\[
 S_n(x)=\sum_{k=0}^n a_kx^k
 \]</span> 是幂级数前<span class="math inline">\(n\)</span>项之和，而级数本身是无穷项的，即<span class="math inline">\(\lim_{n\to\infty} S_n(x)\)</span>. 如果这个极限存在，有<span class="math inline">\(\lim_{n\to\infty} S_n(x)=S(x)\)</span>，称<span class="math inline">\(S(x)\)</span>为<strong>和函数</strong>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>等比级数，也称几何级数，是一类重要的级数，形如 <span class="math display">\[
 a+aq+aq^2+aq^3+\dots=\sum_{k=0}^\infty aq^n
 \]</span> 利用等比数列求和公式，<span class="math inline">\(S_n=\dfrac{1-q^n}{1-q}a\)</span>，可以发现：当<span class="math inline">\(|q|&lt;1\)</span>，级数收敛；当<span class="math inline">\(|q|&gt;1\)</span>，级数发散.</p>
 <p>等比级数很重要，之后许多判断收敛的方法都要拿等比级数作为"基准".</p>
-</blockquote>
+</div>
 <p>假设级数收敛，因为部分和与一般项满足<span class="math inline">\(u_n(x)=S_n(x)-S_{n-1}(x)\)</span>，所以此时 <span class="math display">\[
 \lim_{n\to\infty} u_n(x)=\lim_{n\to\infty}(S_{n}(x)-S_{n-1}(x))
 =\lim_{n\to\infty} S_n(x)-\lim_{n\to\infty} S_{n-1}(x)=S(x)-S(x)=0
@@ -486,16 +486,16 @@ a+aq+aq^2+aq^3+\dots=\sum_{k=0}^\infty aq^n
 <li>如果<span class="math inline">\(R=+\infty\)</span>，幂级数在实数域上收敛.</li>
 </ul>
 <p>当<span class="math inline">\(R&gt;0\)</span>时，<span class="math inline">\((-R,R)\)</span>称为幂级数的<strong>收敛区间</strong>（收敛区间一定是开区间，收敛域可能含有端点）.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>收敛区间<span class="math inline">\((-R,R)\)</span>也即<span class="math inline">\(|x|&lt;R\)</span>. 当<span class="math inline">\(n\)</span>很大的时候，决定<span class="math inline">\(S_n(x)\)</span>的是<span class="math inline">\(x\)</span>的绝对值，和符号等其他因素没关系了，只有绝对值小于某个值的时候，级数才会收敛.</p>
-</blockquote>
+</div>
 <p>怎样判断幂级数的收敛性，或求出收敛半径？</p>
 <p><strong>比值判别法</strong>(d'Alembert判别法)是一种判断级数是否收敛的方法：对于任意级数<span class="math inline">\(\sum_{k=1}^n a_k\)</span>，如果 <span class="math display">\[
 \lim_{n\to\infty}\abs{\frac{a_{n+1}}{a_n}}=\rho
 \]</span> 那么：当<span class="math inline">\(\rho&lt;1\)</span>时级数收敛；<span class="math inline">\(\rho=1\)</span>时可能收敛或发散，请利用其他方法判断；<span class="math inline">\(\rho&gt;1\)</span>时发散. 这里面的级数可以是常数项级数，也可以是函数项级数.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>理解起来，就是如果<span class="math inline">\(\rho&lt;1\)</span>，即当后一项和前一项的比值是小于<span class="math inline">\(1\)</span>的，那么级数是收敛的，大致可以认为当<span class="math inline">\(n\)</span>很大，一般项要大致呈现一个公比<span class="math inline">\(|q|&lt;1\)</span>的等比数列的趋势.</p>
-</blockquote>
+</div>
 <p>可以使用比值判别法求出幂级数的收敛半径：我们把幂数级数<span class="math inline">\(\sum_{n=0}^\infty b_nx^n\)</span>代入比值法的式子， <span class="math display">\[
 \rho=\lim_{n\to\infty}\abs{\frac{b_{n+1}x^{n+1}}{b_nx^n}}=|x|\lim_{n\to\infty}\abs{\frac{b_{n+1}}{b_n}}
 \]</span> 为了方便，记<span class="math inline">\(B=\lim_{n\to\infty}\abs{\dfrac{b_{n+1}}{b_n}}\)</span>，</p>
@@ -506,7 +506,7 @@ a+aq+aq^2+aq^3+\dots=\sum_{k=0}^\infty aq^n
 </ul>
 <p>所以，收敛区间是<span class="math inline">\(\pqty{-\dfrac1{B},\dfrac1{B}}\)</span>，收敛半径就是<span class="math inline">\(\dfrac1B\)</span>.（当<span class="math inline">\(B=0\)</span>，认为收敛半径是<span class="math inline">\(+\infty\)</span>，收敛区间是<span class="math inline">\(\R\)</span>；当<span class="math inline">\(B=+\infty\)</span>，收敛半径为零，级数只在<span class="math inline">\(x=0\)</span>收敛.） 所以说，对于次数连续的（即<span class="math inline">\(a_0+a_1x^1+a_2x^2+\dots\)</span>，<span class="math inline">\(x\)</span>的次数从<span class="math inline">\(1\)</span>到无穷大连续不间断）幂级数，只需要求出系数之比的极限，就得到了收敛半径.</p>
 <p>例子：</p>
-<blockquote>
+<div class="note note-secondary">
 <ol type="1">
 <li><p><span class="math inline">\(\sum_{k=0}^\infty\dfrac{x^k}{k!}\)</span>，系数比值<span class="math inline">\(\lim_{n\to\infty}\abs{\dfrac{1/(n+1)!}{1/n!}}=\lim_{n\to\infty}\abs{\dfrac1{n+1}}=0\)</span>，所以收敛半径是<span class="math inline">\(+\infty\)</span>，在实数域上收敛.</p></li>
 <li><p><span class="math inline">\(\sum_{k=0}^\infty k!{x^k}\)</span>，系数比值<span class="math inline">\(\lim_{n\to\infty}\abs{\dfrac{1/(n+1)!}{1/n!}}=\lim_{n\to\infty}\abs{n+1}=+\infty\)</span>，收敛半径是<span class="math inline">\(0\)</span>，仅在<span class="math inline">\(x=0\)</span>处收敛.</p></li>
@@ -515,19 +515,19 @@ a+aq+aq^2+aq^3+\dots=\sum_{k=0}^\infty aq^n
 =\lim_{n\to\infty}\abs{\frac{x^2}{(2n+1)(2n+2)}}=0&lt;1
 \]</span> 这个极限和<span class="math inline">\(x\)</span>无关，所以不论<span class="math inline">\(x\)</span>取何值，级数均会收敛.</p></li>
 </ol>
-</blockquote>
+</div>
 <p><strong>根值判别法</strong>(Cauchy根值判别法)，对于级数<span class="math inline">\(\sum_{k=1}^n a_k\)</span>，如果 <span class="math display">\[
 \rho=\limsup_{n\to\infty} \sqrt[n]{|a_n|}
 \]</span> 那么：当<span class="math inline">\(\rho&lt;1\)</span>，收敛；<span class="math inline">\(\rho&gt;1\)</span>，发散；<span class="math inline">\(\rho=1\)</span>且<span class="math inline">\(\sqrt[n]{|a_n|}\ge1\)</span>，发散''；其他情况不确定.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>其中<span class="math inline">\(\limsup\)</span>指数列上极限，如果数列收敛，那么它就等于数列极限<span class="math inline">\(\lim\)</span>；如果数列不收敛，那么它等于所有收敛子列的极限值的上确界.</p>
 <p>例如<span class="math inline">\(\set{a_n}=1,2,3,1,2,3,\dots\)</span>的极限不存在，但是上极限存在：<span class="math inline">\(\displaystyle\limsup_{n\to\infty}a_n=3\)</span>.</p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-secondary">
 <p>同样拿等比级数解释，设<span class="math inline">\(\set{a_n}=1,q,q^2,q^3,\dots,q^{n-1},\dots\)</span>，则级数<span class="math inline">\(\sum a_n\)</span>用根值判别法判断收敛性有 <span class="math display">\[
 \rho=\limsup_{n\to\infty}\sqrt[n]{|q^{n-1}|}=q
 \]</span> 当<span class="math inline">\(q&lt;1\)</span>时收敛；<span class="math inline">\(q&gt;1\)</span>时发散. 推广一下，就是如果级数大致呈公比<span class="math inline">\(q&lt;1\)</span>的等比级数的趋势的话就会收敛，呈现出<span class="math inline">\(q&gt;1\)</span>的等比级数的趋势就会发散.</p>
-</blockquote>
+</div>
 </body></html>
                 
               </div>
@@ -923,7 +923,6 @@ a+aq+aq^2+aq^3+\dots=\sum_{k=0}^\infty aq^n
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

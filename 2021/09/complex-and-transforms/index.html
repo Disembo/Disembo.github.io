@@ -280,27 +280,27 @@
             
               <div class="markdown-body">
                 
-                <html><head></head><body><blockquote>
+                <html><head></head><body><div class="note note-secondary">
 <p>推荐：<em>Visualizing Complex Analysis</em> by Tristan Needham.（《复分析可视化方法》尼达姆著.）</p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-secondary">
 <p>数学在某方面类似于考古学. 你也许会找到某个东西的一角，并由此判断它是有趣的. 于是你开始在别处挖掘，又找到了非常相似的另一角，你会想，是否有更深的联系？你继续挖掘，最终发现了地下的结构. 当某些东西最终表明有意义时，你有一种发现的激动.</p>
 <div data-align="right">
 ——陶哲轩
 </div>
 <p>很多数学问题看似毫无关联，或者似乎有关联却无法理论解释. 但是若站在更高、更抽象和更一般的角度上往往能发现它们之间的关联.</p>
-</blockquote>
+</div>
 <h2 id="复数的引入">1 复数的引入</h2>
 <p>方程求根是数学研究中一个非常核心的问题了，它催生出了许多新的数学分支. 在实数域内，不是所有的二次方程都有根，例如<span class="math inline">\(x^2=-2\)</span>​，没有任何一个实数的平方是负数. 而对于三次方程，在使用求根公式求根的过程中，即使系数和根都是实数，也会不可避免地遇到负数开平方的问题.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>Tartaglia公式给出了形式为<span class="math inline">\(x^3=px+q\)</span>​​的三次方程的解，例如<span class="math inline">\(x^3=x\)</span>，解为 <span class="math display">\[
 \dfrac1{\sqrt3}\pqty{\pqty{\sqrt{-1}}^{1/3}+\pqty{\sqrt{-1}}^{-1/3}}
 \]</span></p>
-</blockquote>
+</div>
 <p>如此看来，我们必须认真面对负数开平方问题. 一个想法是定义一些新的数，这些数的平方是负数，但是它们肯定无法用无限小数的形式表示（实数和无限小数一一对应），看起来"子虚乌有"，所以命名为"虚数"，定义虚数单位<span class="math inline">\(\i:\i^2=-1\)</span>​.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>"实数(Real numbers)"和"虚数(Imaginary numbers)"两个名字都是Descartes起的.</p>
-</blockquote>
+</div>
 <p>实数单位是<span class="math inline">\(1\)</span>​​​​，虚数单位是<span class="math inline">\(\i\)</span>​​​​，两者线性组合<span class="math inline">\(z=a+b\i(a,b\in\R)\)</span>​​​​称为<strong>复数</strong>(Complex number)，复数构成及集合称为复数集<span class="math inline">\(\C=\qty{z=a+b\i|a,b\in\R}\)</span>​​.</p>
 <p>可以发现，实数是一个一维的数域，它和直线上的点一一对应；复数是一个二维的数域，自然和平面上的点一一对应：<span class="math inline">\((a,b)\leftrightarrow a+b\i\)</span>​​​. 称这个平面为<strong>复平面</strong>(Complex plane). 复平面的横轴称为实轴，纵轴称为虚轴.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/complex-and-transforms/complex-plane.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
@@ -318,12 +318,12 @@
 <p>可以理解为，多值函数把一个值对应到了一个数集，<span class="math inline">\(\Arg z=\qty{\arg z+2k\pi|k\in\Z}\)</span>.</p>
 <p><span class="math inline">\(\arg\)</span>和<span class="math inline">\(\Arg\)</span>都是以复数为自变量的函数，给这种函数一个定义：</p>
 <p><strong>复变函数</strong>(Complex function)指的是以复数作为自变量和因变量的函数（与之相应的是实变函数）.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>下面几节要讨论的复变函数一部分是多值的，而这归根到底就是因为辐角函数是多值的.</p>
-</blockquote>
+</div>
 <p>实变函数<span class="math inline">\(y=f(x)\)</span>的自变量和因变量都是一维的，可以在二维<span class="math inline">\(xOy\)</span>平面上以<span class="math inline">\((x,y)\)</span>画出它的图像.</p>
 <p>复变函数<span class="math inline">\(w=f(z)\)</span>的自变量和因变量都是二维的，若要同时表示自变量和因变量，需要在四维的坐标系中，我们难以构建. 所以人们想出了别的方法，把四个自由度在二维或三维空间中表现出来：</p>
-<blockquote>
+<div class="note note-secondary">
 <ul>
 <li><p><strong>模-辐角图</strong>：给复平面上每个点都涂上颜色，色相和明暗表示这一点函数值的辐角和模.</p>
 <ul>
@@ -340,7 +340,7 @@ f(x,y)=u(x,y)+\i v(x,y)
 \]</span> 所以可以把<span class="math inline">\(u,v\)</span>的图像曲面分别在两个三维坐标系中画出.</p></li>
 <li><p><strong>动画</strong>：把复平面上每个点<span class="math inline">\(z_0\)</span>"移动"到对应的<span class="math inline">\(f(z_0)\)</span>，这在之后会展示.</p></li>
 </ul>
-</blockquote>
+</div>
 <h2 id="加法与乘法">2 加法与乘法</h2>
 <h3 id="加法与平移">2.1 加法与平移</h3>
 <p>每个复数都可以看做复平面中的一个点，或者是一个向量（这里我们用列向量）， <span class="math display">\[
@@ -368,9 +368,9 @@ f(\pmqty{a\\b}) = \pmqty{a\\b}+\pmqty{c\\d} = \pmqty{a+c\\b+d}
 <p>对于复数乘法，我们按照多项式乘法原则定义 <span class="math display">\[
 (a+b\i)\cdot(c+d\i)=ac+ad\i+bc\i+bd\i^2=(ac-bd)+(ad+bc)\i
 \]</span> 显然，复数乘法是满足交换律（可交换）的，而且对于加法满足分配律，且对之前定义的标量乘法兼容（即<span class="math inline">\(d=0\)</span>​​​的情况.）</p>
-<blockquote>
+<div class="note note-secondary">
 <p>下面需要一定线性代数基础，可以直接跳过看<span class="math inline">\(\S3.1\)</span>.</p>
-</blockquote>
+</div>
 <p>重新来看复数乘法的式子，用向量<span class="math inline">\(\pmqty{a\\b},\pmqty{c\\d}\)</span>表示复数<span class="math inline">\(a+b\i,c+d\i\)</span>，两者相乘，得到了<span class="math inline">\(\pmqty{ac-bd\\bc+ad}\)</span>，可以看出是一个矩阵和向量相乘的结果： <span class="math display">\[
 \pmqty{ac-bd\\bc+ad}=\pmqty{a&amp;-b\\b&amp;a}\pmqty{c\\d}
 \]</span> 所以说，复数乘法（一个数乘以<span class="math inline">\(z=a+b\i\)</span>）实际上和矩阵<span class="math inline">\(\vb{Z}=\pmqty{a&amp;-b\\b&amp;a}\)</span>表示的变换是等价的. 对矩阵进行变形： <span class="math display">\[
@@ -386,10 +386,10 @@ f(\pmqty{a\\b}) = \pmqty{a\\b}+\pmqty{c\\d} = \pmqty{a+c\\b+d}
 <p><img src="https://gitee.com/disembo/media/raw/master/complex-and-transforms/right-trig-of-complex-number.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>所以<span class="math inline">\(\theta\)</span>实际上是<span class="math inline">\(z\)</span>的辐角（主值）.</p>
 <p>所以一个数乘以一个复数<span class="math inline">\(z\)</span>，就是把它表示的点（或向量）绕原点旋转<span class="math inline">\(\theta\)</span>（逆时针为正），并且放大<span class="math inline">\(|w|\)</span>倍. 若复数是单位复数（模长为一），那么保留下来的就只有旋转. 单位复数和二维旋转变换是一一对应的. 采用极坐标表示复数的话，这一点会更加清晰.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>每个复数都与一个"缩放旋转"矩阵对应，若<span class="math inline">\(|z|=1\)</span>，则它的矩阵只表示旋转.</p>
 <p><span class="math inline">\(1\)</span>对应单位阵<span class="math inline">\(\pmqty{1&amp;0\\0&amp;1}\)</span>；虚数单位<span class="math inline">\(\i\)</span>对应<span class="math inline">\(\pmqty{0&amp;-1\\1&amp;0}\)</span>，是旋转<span class="math inline">\(90^\circ\)</span>矩阵.</p>
-</blockquote>
+</div>
 <h2 id="极坐标形式">3 极坐标形式</h2>
 <h3 id="乘法与除法">3.1 乘法与除法</h3>
 <p>给定一个辐角<span class="math inline">\(\theta\)</span>和模<span class="math inline">\(r\ge0\)</span>​​可以唯一确定一个复数， <span class="math display">\[
@@ -416,16 +416,16 @@ z\cdot w
 <video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 平方变换.mp4" type="video/mp4">
 </video>
-<blockquote>
+<div class="note note-secondary">
 <p>变换后的坐标系格线都是抛物线. <span class="math display">\[
 z=a+b\i \to (a+b\i)^2=(a^2-b^2)+2ab\i \to \text{点}(a^2-b^2,2ab)
 \]</span></p>
-</blockquote>
+</div>
 <p>关于除法，刚好和乘法反过来. 除以一个数就是乘它的倒数. 定义一个非零复数的倒数<span class="math inline">\(z^{-1}\)</span>： <span class="math display">\[
 z\cdot z^{-1} = 1
 \]</span> 因为<span class="math inline">\(1\)</span>的辐角主值为<span class="math inline">\(0\)</span>，模为<span class="math inline">\(1\)</span>，所以<span class="math inline">\(z^{-1}\)</span>的辐角主值为<span class="math inline">\(-\arg z\)</span>，模为<span class="math inline">\(\dfrac1{|z|}\)</span>；所以，除以<span class="math inline">\(z\)</span>，即乘以<span class="math inline">\(z^{-1}\)</span>，辐角加了<span class="math inline">\(-\arg{z}\)</span>，也就是辐角相减；模乘以<span class="math inline">\(\dfrac1{|z|}\)</span>，也就是模相除.</p>
 <p>此外，也可以等价地按照多项式除法定义：<span class="math inline">\((a+b\i)/(c+d\i)\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>下面展示了<span class="math inline">\(f(z)=\dfrac1z\)</span>对复平面的作用（最后放大了方便看），变换后的格线很像圆.</p>
 <video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 乘法逆变换.mp4" type="video/mp4">
@@ -438,13 +438,13 @@ z^{-1}=\frac{a-b\i}{a^2+b^2}=\frac{a}{a^2+b^2}+\frac{-b}{a^2+b^2}\i \to
 <li><p>消去<span class="math inline">\(a\)</span>得到<span class="math inline">\(x^2+\pqty{y+\dfrac1{2b}}^2=\pqty{\dfrac1{2b}}^2\)</span>，即当<span class="math inline">\(b\)</span>为定值（即原来黄色的横向格线），变换后的图形是圆心在纵轴，且与横轴相切的圆.</p></li>
 <li><p>消去<span class="math inline">\(b\)</span>得到<span class="math inline">\(\pqty{x-\dfrac1{2a}}^2+y^2=\pqty{\dfrac1{2a}}^2\)</span>，即当<span class="math inline">\(a\)</span>为定值（即原来蓝色的纵向格线），变换后的图形是圆心在横轴，且与纵轴相切的圆.</p></li>
 </ul>
-</blockquote>
+</div>
 <p>复数乘法的几何意义使得它有很多几何上的应用，例如：</p>
-<blockquote>
+<div class="note note-secondary">
 <p>例子：平面四边形<span class="math inline">\(abcd\)</span>，在每条边外作正方形，求证：相对的正方形中心连线<span class="math inline">\(pq,st\)</span>垂直且相等.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/complex-and-transforms/multiplication-application.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>可以尝试使用复数乘法解决这个问题，也可以想想用纯几何方法怎么做.</p>
-</blockquote>
+</div>
 <h3 id="de-moivre公式">3.2 de Moivre公式</h3>
 <p><strong>棣莫弗公式</strong>(de Moivre's formula)是上面乘法结论的推广，对<span class="math inline">\(\theta\in\R\)</span>​​和<span class="math inline">\(n\in\Z\)</span>​​， <span class="math display">\[
 (\cos\theta+\i\sin\theta)^n=\cos{n\theta}+\i\sin{n\theta}
@@ -462,37 +462,37 @@ x = \cos\dfrac{2k\pi}n+\i\sin\dfrac{2k\pi}n, k\in\Z
 </ol>
 <h3 id="指数函数euler公式">4.1 指数函数&amp;Euler公式</h3>
 <p><strong>指数函数</strong>(Exponential function)​的定义可以参考实指数函数：</p>
-<blockquote>
+<div class="note note-secondary">
 <p>指数函数可以由幂级数<span class="math inline">\(\sum\limits_{k=0}^\infty\dfrac{x^k}{k!}=1+\dfrac{x^1}{1!}+\dfrac{x^2}{2!}+\dfrac{x^3}{3!}+\dots\)</span>定义（收敛半径为<span class="math inline">\(+\infty\)</span>，可推广到任意<span class="math inline">\(z\in\C\)</span>）.</p>
-</blockquote>
+</div>
 <p>定义指数函数函数<span class="math inline">\(\exp: \C\to\C\)</span>， <span class="math display">\[
 \e^z = \exp{z} := \sum_{k=0}^\infty \dfrac{z^k}{k!}
 \]</span> （规定<span class="math inline">\(z^0=1\)</span>；与实指数函数不同，这里的<span class="math inline">\(\e^z\)</span>不表示无理数<span class="math inline">\(2.718\dots\)</span>的<span class="math inline">\(z\)</span>次幂，而是一个记法）</p>
-<blockquote>
+<div class="note note-secondary">
 <p>随便选定一个复数<span class="math inline">\(z\)</span>，把<span class="math inline">\(1,\dfrac{z^1}{1!},\dfrac{z^2}{2!},\dfrac{z^3}{3!},\dots\)</span>首尾相接地画出来，会形成一个线段组成的螺旋：</p>
 <video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 指数函数级数.mp4" type="video/mp4">
 </video>
 <p>每两条线段之间的夹角是定值，等于<span class="math inline">\(z\)</span>的辐角.</p>
-</blockquote>
+</div>
 <p>指数函数是单值的，而且满足<span class="math inline">\((\exp z)'=\exp z\)</span>，是指数函数的一个非常重要的特征.</p>
 <p><strong>欧拉公式</strong>(Euler's formula)在复分析领域是一个非常基本、有用的公式，它把三角函数和指数函数联系了起来. 对<span class="math inline">\(\theta\in\R\)</span>​​， <span class="math display">\[
 \large{ \e^{\i\theta} = \cos\theta+\i\sin\theta }
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p>将<span class="math inline">\(\theta=\pi\)</span>代入，可以得到著名的Euler恒等式：<span class="math inline">\(\e^{\i\pi}+1=0\)</span>.</p>
-</blockquote>
+</div>
 <p>通过这个公式，每一个模长为<span class="math inline">\(1\)</span>的复数<span class="math inline">\(z\)</span>都可以写成指数形式，<span class="math inline">\(z=\e^{\i\Arg z}\)</span>. 如果我们在这前面乘上一个系数<span class="math inline">\(|z|&gt;0\)</span>作为<span class="math inline">\(z\)</span>模长，那么复平面上每个非零复数都可以用指数表示（若<span class="math inline">\(z=0\)</span>即<span class="math inline">\(|z|=0\)</span>，那么无论<span class="math inline">\(\Arg{z}\)</span>取何值，下式都为零）：， <span class="math display">\[
 z = |z|\cdot\e^{\i\Arg z}
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p>证明：从质点运动的角度，</p>
 <p>设<span class="math inline">\(w=\cos t+\i\sin t\)</span>​，当<span class="math inline">\(t\)</span>​改变时，<span class="math inline">\(w\)</span>​在单位圆上逆时针运动. 在每单位时间内，<span class="math inline">\(w\)</span>​走了<span class="math inline">\(1\)</span>​弧度，所以运动的角速度大小为<span class="math inline">\(1\)</span>​，从而速度大小为<span class="math inline">\(1\)</span>​​.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/complex-and-transforms/euler-formula-from-kinematics.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>又因为速度<span class="math inline">\(v\)</span>方向沿单位圆切线，与位矢方向呈<span class="math inline">\(90^\circ\)</span>夹角，也就是位矢<span class="math inline">\(w\)</span>乘以<span class="math inline">\(\i\)</span>，所以 <span class="math display">\[
 v=\dv{w}{t}=\i w
 \]</span> 因为指数函数的导数等于它自身<span class="math inline">\((\e^z)'=\e^z\)</span>，所以解得<span class="math inline">\(w=C\e^{\i t}\)</span>，再代入<span class="math inline">\(w(0)=1\)</span>，得到<span class="math inline">\(w=\e^{\i t}\)</span>，从而<span class="math inline">\(\cos t+\i\sin t=w=e^{\i t}\)</span>​.​</p>
-</blockquote>
+</div>
 <p>考虑一个函数 <span class="math display">\[
 z(t) = A\e^{\i(\omega t+\varphi)}
 \]</span> 其中<span class="math inline">\(A\ge0\)</span>​​，<span class="math inline">\(\omega,\varphi\in\R\)</span>​​​​. 它描述了一个复平面上的匀速圆周运动，圆心在原点，<span class="math inline">\(A\)</span>是半径，<span class="math inline">\(\omega\)</span>是角速度，<span class="math inline">\(\varphi\)</span>是初始角度. 这个圆周运动在实轴和虚轴上的投影分别是两个简谐运动： <span class="math display">\[
@@ -505,9 +505,9 @@ z(t) = A\e^{\i(\omega t+\varphi)}
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 圆周运动与简谐运动.mp4" type="video/mp4">
 </video>
 <p>所以说，简谐运动是匀速圆周运动的投影，Euler公式给我们带来了一种非常简便的描述这些运动的方式.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>拓展：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vt411N7Ti">从热流到画圈圈</a>.</p>
-</blockquote>
+</div>
 <p>下面来看指数函数的一些性质.</p>
 <p>可以证明，实数域上指数的运算法则仍然成立（加法法则）：<span class="math inline">\(\exp(z+w)=\exp(z)\exp(w)\)</span>.</p>
 <p>从而可以得指数函数是周期函数： <span class="math display">\[
@@ -519,13 +519,13 @@ z(t) = A\e^{\i(\omega t+\varphi)}
 <video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 指数函数变换.mp4" type="video/mp4">
 </video>
-<blockquote>
+<div class="note note-secondary">
 <p>实部<span class="math inline">\(\Re\)</span>的等值线（蓝色）好像变成了以原点为圆心的圆.（虚轴形成了黑色的单位圆.）</p>
 <p>虚部<span class="math inline">\(\Im\)</span>的等值线（黄色）似乎变成了以原点为端点的射线.</p>
 <p>比较容易解释：设<span class="math inline">\(z=a+b\i(a,b\in\R)\)</span>，则 <span class="math display">\[
 w=\exp(a+b\i)=\exp(a)\exp(b\i)=\exp(a)\pqty{\cos{b}+\i\sin{b}}
 \]</span> 若<span class="math inline">\(a\)</span>是定值，则所有<span class="math inline">\(w\)</span>构成一个半径为<span class="math inline">\(\exp(a)\)</span>的圆；若<span class="math inline">\(b\)</span>是定值，则所有<span class="math inline">\(w\)</span>构成一条角度是<span class="math inline">\(b\)</span>的去端射线.</p>
-</blockquote>
+</div>
 <p>之前说过可以用模长-辐角图是可视化复变函数的一种方法，<span class="math inline">\(w=\exp(z)\)</span>：</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/complex-and-transforms/complex-plot-of-exp.png" style="zoom:63%;" cloud-img="" lazyload="true"></p>
 <p>图中白色平面（<span class="math inline">\(\Im(z)=0\)</span>）和图像的交线就是实变函数<span class="math inline">\(y=\e^x\)</span>的图线.</p>
@@ -553,11 +553,11 @@ z=|z|\cdot\exp(\i\Arg z)=\exp(\ln|z|+\i\Arg z),\quad z\ne0
 <video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 对数函数变换.mp4" type="video/mp4">
 </video>
-<blockquote>
+<div class="note note-secondary">
 <p>函数在原点没有定义，原点附近的值会被拉到左边很远的地方，所以都去掉了.</p>
 <p>每格的边长为<span class="math inline">\(1/2\)</span>.</p>
 <p>可以注意到函数把复平面压缩在了虚部为<span class="math inline">\((-\pi,\pi]\)</span>的部分.</p>
-</blockquote>
+</div>
 <p>如果把两个函数复合起来，对数在内<span class="math inline">\(g(z)=\exp(\ln z)=z\)</span>（<span class="math inline">\(z\ne0\)</span>），</p>
 <video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 对数+指数变换.mp4" type="video/mp4">
@@ -567,13 +567,13 @@ z=|z|\cdot\exp(\i\Arg z)=\exp(\ln|z|+\i\Arg z),\quad z\ne0
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 指数+对数变换.mp4" type="video/mp4">
 </video>
 <p>平面最后没有被复原，而是折叠到了<span class="math inline">\(\qty{z|\Im{z}\in(-\pi,\pi]}\)</span>的区域.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>此外，三角函数、双曲函数这两种基本初等函数和它们的反函数也可推广到复数域，在这里不说了.</p>
-</blockquote>
+</div>
 <h3 id="幂函数">4.3 幂函数</h3>
-<blockquote>
+<div class="note note-secondary">
 <p>这一部分偏重代数运算，如果不想看可以跳过.</p>
-</blockquote>
+</div>
 <p>实际上在之前de Moivre公式一节里面，我们已经发现，对于<span class="math inline">\(w=z^n\)</span>，如果<span class="math inline">\(n\)</span>是整数，那么一个<span class="math inline">\(z\)</span>恰好对应一个<span class="math inline">\(w\)</span>（对<span class="math inline">\(n&lt;0\)</span>要求<span class="math inline">\(z\ne0\)</span>），即此时<span class="math inline">\(w\)</span>是单值的函数. 而类似<span class="math inline">\(w=z^{1/5}\)</span>的则是多值的. 为了更好研究这一点，我们先严谨的给出幂函数的定义.</p>
 <p>对于实数<span class="math inline">\(x\)</span>，那么有一种表示指数的方法<span class="math inline">\(x^3=\e^{3\ln{x}}\)</span>，现在看看能不能同样用指数和对数定义复变指数函数， <span class="math display">\[
 w=z^\alpha=\exp(\alpha\cdot{\rm Ln}\,{z}), \quad z\ne0
@@ -605,7 +605,7 @@ w
 <p>所以此时<span class="math inline">\(\exp(2\orange{k}\pi\i\cdot\alpha)\)</span>只有<span class="math inline">\(q\)</span>个不同的取值，所以<span class="math inline">\(w=z^\alpha\)</span>是<span class="math inline">\(q\)</span>值的.</p></li>
 <li><p>如果<span class="math inline">\(\alpha\)</span>的值是无理数，甚至虚数，那么<span class="math inline">\(\exp(2\orange{k}\pi\i\cdot\alpha)\)</span>就不会重复了，它有无穷多个不同的值，幂函数是无穷多值的.</p></li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>例如，<span class="math inline">\(\i^\i\)</span>是多少？ <span class="math display">\[
 \Align{
 \i^\i
@@ -616,8 +616,8 @@ w
 }
 \]</span></p>
 <p>有无穷多个值，但它们都是实数！</p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-secondary">
 <p>有一个很经典的错误案例：<span class="math inline">\(-1=\sqrt{-1}^2=\sqrt{-1}\cdot\sqrt{-1}\;{\color{red}=}\;\sqrt{(-1)\cdot(-1)}=\sqrt{1}=1\)</span>，错就错在了红色等号处，因为对于<span class="math inline">\(x_1,x_2&lt;0\)</span>，不满足<span class="math inline">\(\sqrt{x_1}\sqrt{x_2}=\sqrt{x_1x_2}\)</span>.</p>
 <p>为什么？原因就在上面. 上面的开算术平方根实际上对应了幂函数<span class="math inline">\(z^{1/2}\)</span>（是2值的），而算术平方根只取了其中一个，在非负实数范围内，这看不出来影响，但若拓展到实数甚至复数域，就会有问题了.</p>
 <p>引入复变幂函数后，有 <span class="math display">\[
@@ -637,18 +637,18 @@ z_1^{1/2} \cdot z_2^{1/2} = (z_1z_2)^{1/2}
 </ul></li>
 </ul>
 <p>而最初展示的错误案例让<span class="math inline">\(z_1,z_2\)</span>的<span class="math inline">\(1/2\)</span>次方都取了<span class="math inline">\(\i\)</span>，而乘积的<span class="math inline">\(1/2\)</span>次方却取了<span class="math inline">\(+1\)</span>，显然有问题，归根结底就在算术平方根的"选择性取值"上.</p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-secondary">
 <p>到这里，我们发现：如果我们把<span class="math inline">\(z=\e=2.718\dots\)</span>代入<span class="math inline">\(w=z^\alpha\)</span>，即<span class="math inline">\(w=\e^z\)</span>，和我们之前定义的指数函数长得很像，但是这里的<span class="math inline">\(\e^z\)</span>显然是多值的，但是之前定义的指数函数是单值的啊？为了避免这种困惑，我们在之前就做出了规定，指数函数<span class="math inline">\(\e^z\)</span>不是常规意义上的<span class="math inline">\((2.718\dots)^z\)</span>，而是一种记号. 为了避免混淆，我们还发明了指数函数专门的记号<span class="math inline">\(\exp(z)\)</span>.</p>
-</blockquote>
+</div>
 <h2 id="变换的几何性质">5 变换的几何性质</h2>
 <p>前面几节的动图展示的变换有一些共有的几何性质，这一节我们主要研究这些性质.</p>
 <p>宏观上看，这些变换好像没什么共同点，既没有把几何图形伸缩固定的倍数或者旋转一定的角度，也没有保持直线的平行等关系（甚至有的直线变成了曲线、曲线变成了直线）.</p>
 <p>这时候我们可以从更"细致"的角度，即微观的角度：</p>
 <p>观察格线的交点，则可以发现：原来垂直的格线（黄色和蓝色的），在变换之后仍然垂直（交点处的切线垂直，这是微观的角度）. 既然如此，我们就需要研究复变函数变换的微观特性，即研究微积分理论.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><span class="math inline">\(\S5.1\)</span>给出了一些概念的严格定义，不想看的话可以先看<span class="math inline">\(\S5.2\)</span>：先有一个直观上的认识；况且复变函数的微分理论和实变函数有很多相似点，可以大致当成实变函数来理解.</p>
-</blockquote>
+</div>
 <h3 id="函数的可导">5.1 函数的可导</h3>
 <p>在数轴上，我们有邻域、开区间、闭区间的定义，现在我们把它们拓展到复平面上. 这些定义看起来比较吓人，但是它们都有很直观的几何解释.</p>
 <p><strong>邻域</strong>(Neighborhood)：<span class="math inline">\(z_0\)</span>的邻域：<span class="math inline">\(U(z_0,\delta)=\qty{z\big||z-z_0|&lt;\delta}\)</span>，是一个不含边界的圆盘.</p>
@@ -674,18 +674,18 @@ z_1^{1/2} \cdot z_2^{1/2} = (z_1z_2)^{1/2}
 \]</span> 如果自变量该变量的模<span class="math inline">\(|\Delta z|\)</span>充分小（<span class="math inline">\(\to0\)</span>），直接略去高阶无穷小，得到 <span class="math display">\[
 \dd{w}=f'(z_0)\dd{z}
 \]</span> 其中<span class="math inline">\(\dd w\)</span>称为因变量在<span class="math inline">\(z_0\)</span>的的微分，<span class="math inline">\(\dd z\)</span>称为自变量在<span class="math inline">\(z_0\)</span>的微分.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>例如，函数<span class="math inline">\(w=z^2\)</span>在<span class="math inline">\(z_0\in\C\)</span>处的导数： <span class="math display">\[
 \lim_{\Delta z\to0}\frac{\Delta w}{\Delta z}
 =\lim_{\Delta z\to0}\frac{(z_0+\Delta z)^2-z_0^2}{\Delta z}
 =\lim_{\Delta z\to0}\frac{2z_0\Delta z+\Delta z^2}{\Delta z}
 =\lim_{\Delta z\to0}(2z_0+\Delta z)=2z_0
 \]</span></p>
-</blockquote>
+</div>
 <p>如果<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(z_0\)</span>的某个邻域中每个点都可导，那么称<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(z_0\)</span><strong>解析</strong>，如果<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(D\)</span>中的每个点都解析，那么称<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(D\)</span>上解析，称<span class="math inline">\(f(z)\)</span>是<strong>解析函数</strong>(Analytic function). 解析函数具有一些很好的性质，是复分析的主要研究对象.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>函数在区域（区域是开集）内处处可导<span class="math inline">\(\iff\)</span>函数在区域内解析.</p>
-</blockquote>
+</div>
 <h3 id="导数的几何意义">5.2 导数的几何意义</h3>
 <p>要解决夹角问题，我们只需要研究在一个很小的局部内，变换的效果是什么.</p>
 <p>设在复平面上的区域<span class="math inline">\(D\)</span>内解析（即<span class="math inline">\(D\)</span>内处处可导）的函数<span class="math inline">\(w=f(z)\)</span>，<span class="math inline">\(z_0\in D\)</span>.</p>
@@ -703,15 +703,15 @@ z_1^{1/2} \cdot z_2^{1/2} = (z_1z_2)^{1/2}
 }
 \]</span> 所以线段的长度乘以了导数的模，并且按照导数的辐角旋转了一个角度.</p>
 <p>从而可以说：在<span class="math inline">\(z_0\in D\)</span>的一个很小的邻域内，解析函数<span class="math inline">\(w=f(z)\)</span>表示的变换的作用效果是缩放和旋转的复合. 如果<span class="math inline">\(|f'(z_0)|=0\)</span>，函数把这一区域压缩成了一个点；如果<span class="math inline">\(|f'(z_0)|\ne0\)</span>，那么这一区域内变换前后的图形是相似的.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>实变函数可以看作对数轴的变换，导数的大小表示的是某一点附近被拉伸的程度.</p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-secondary">
 <p>下面的动画展示了<span class="math inline">\(f(z)=\dfrac12z^2\)</span>在点<span class="math inline">\(1+\sqrt3\i\)</span>的附近对图形的变换. 左下角展示了局部放大的画面. 为了方便对比，放了一个字在<span class="math inline">\(1+\sqrt3\i\)</span>上面.</p>
 <video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 共形映射局部放大.mp4" type="video/mp4">
 </video>
-</blockquote>
+</div>
 <p>我们把这种在局部具有如此性质的映射给出一个正式的描述：</p>
 <p><strong>共形映射</strong>(Conformal mapping)，也称保形变换. 若区域<span class="math inline">\(D\)</span>上的<span class="math inline">\(w=f(z)\)</span>满足：</p>
 <ul>
@@ -725,9 +725,9 @@ z_1^{1/2} \cdot z_2^{1/2} = (z_1z_2)^{1/2}
 \boxed{\text{解析}} + \boxed{f'(z)\ne0} + \boxed{\text{一一映射}}
 = \text{共形映射}
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><span class="math inline">\(w=\exp(z)\)</span>不是共形的，因为<span class="math inline">\(\exp(z+2\pi\i)=\exp(z)\)</span>，不是一一射. 如果限制其定义域为<span class="math inline">\(\qty{z|\Im z\in(-\pi,\pi)}\)</span>，那么它就是一个一一映射，而且<span class="math inline">\((\exp z')=\exp z\ne0\)</span>，从而是一个共形映射.</p>
-</blockquote>
+</div>
 <p>下面我们来讨论一种特殊的共形映射——分式线性映射.</p>
 <h3 id="分式线性映射">5.3 分式线性映射</h3>
 <p><span class="math display">\[
@@ -735,7 +735,7 @@ w=\frac{az+b}{cz+d}, \quad (ad-bc\ne0)
 \]</span> 这种映射被称为<strong>分式线性映射</strong>(Linear fractional mapping)，其中<span class="math inline">\(a,b,c,d\)</span>都可以在复数域内取值.</p>
 <p>令<span class="math inline">\(ad-bc\ne0\)</span>是为了使它有逆映射，即<span class="math inline">\(z=\dfrac{dw-b}{-cw+a}\)</span>.</p>
 <p>分式线性映射可以分解成更基本映射的复合：</p>
-<blockquote>
+<div class="note note-secondary">
 <p>例：<span class="math inline">\(w=\dfrac{2z}{z+\i}\)</span>. <span class="math display">\[
 \Align{
 w
@@ -755,7 +755,7 @@ z
 <video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 分式变换的分解.mp4" type="video/mp4">
 </video>
-</blockquote>
+</div>
 <p>一个一般的分式线性映射可以由以下四种最简单的分式线性映射复合而成：</p>
 <ol type="1">
 <li>平移<span class="math inline">\(w=z+b\)</span>（<span class="math inline">\(b\in\C\)</span>）.</li>
@@ -771,32 +771,32 @@ w=\dfrac1z
 \]</span> 可以看出是先缩放<span class="math inline">\(\dfrac1{|z|^2}\)</span>倍，再取共轭（关于实轴对称）. 经过第一步缩放后，单位圆外的点到了单位圆内；单位圆内的点到了单位圆外，圆上的点不变，所以这个缩放也可以看作"<u>关于圆的对称</u>".</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/complex-and-transforms/inversion-transform.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>反演映射在原点没有定义，但是若我们扩充复数集：</p>
-<blockquote>
+<div class="note note-secondary">
 <p>设<span class="math inline">\(1/0=\infty\)</span>为无穷大，<span class="math inline">\(\hat\C=\C\cup\qty{\infty}\)</span>称为<strong>扩充的复数集</strong>.</p>
 <p>无大对应扩充复平面上的<strong>无穷远点</strong>(Point at infinity)，是一个假想的点. 任何直线都通过无穷远点.</p>
 <p>作一个与复平面相切于原点的球面，切点为原点<span class="math inline">\(S\)</span>（南极），过原点作垂直于复平面的直线，交球面于另一点<span class="math inline">\(N\)</span>（北极）. 取球面上除<span class="math inline">\(N\)</span>外任意一点<span class="math inline">\(P\)</span>，射线<span class="math inline">\(NP\)</span>交复平面（除无穷远点）于唯一一点<span class="math inline">\(Q\)</span>，这两个点是一一对应的. 如果<span class="math inline">\(P=N\)</span>，即<span class="math inline">\(NP\)</span>是球面在<span class="math inline">\(N\)</span>的切线，那么<span class="math inline">\(NP\)</span>与复平面的交点<span class="math inline">\(Q\)</span>是无穷远点.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/complex-and-transforms/complex-sphere.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>这个模型是黎曼球面(Riemann sphere)模型.</p>
 <p>运算：对<span class="math inline">\(z\in\C\)</span>：<span class="math inline">\(z/0=\infty(z\ne0)\)</span>，<span class="math inline">\(z/\infty=0\)</span>，<span class="math inline">\(z+\infty=\infty\)</span>，<span class="math inline">\(z\cdot\infty=\infty(z\ne0)\)</span>.</p>
-</blockquote>
+</div>
 <p>对于<span class="math inline">\(w=1/z\)</span>，有<span class="math inline">\(1/0=\infty\)</span>，<span class="math inline">\(1/\infty=0\)</span>，所以<span class="math inline">\(w=1/z\)</span>成功地成为了扩充复数集上的双射. 其他3种简单分式线性映射也可以推广到扩充复数集，而且是一一映射. 进而可以证明，分式线性映射是解析的，所以分式线性映射是共形映射.</p>
 <p>分式线性映射作为一种特殊的共形映射，有它自己的特殊的性质.</p>
 <p><strong>保圆性</strong>：在扩充复平面上，分式线性映射把圆映成圆.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>这里的圆是扩充复平面中的，除了一般的欧式空间中的圆之外，直线也算作圆，半径是无穷大.</p>
-</blockquote>
-<blockquote>
+</div>
+<div class="note note-secondary">
 <p>性质的证明：第1-3种简单分式线性变换显然保圆，只需证明反演变换的保圆形即可. 把变换前的点坐标用变换后的坐标表示，代入圆的方程即可证得.</p>
-</blockquote>
+</div>
 <p>显然，如果一个圆不经过<span class="math inline">\(z_0\)</span>（<span class="math inline">\(z_0\)</span>代入变换后分母为零），那么它会被映成一个半径有限大的圆；反之则会被映成半径无穷大的圆（直线）.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>下面的动画展示了反演变换的保圆性.</p>
 <video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 反演的保圆性.mp4" type="video/mp4">
 </video>
-</blockquote>
+</div>
 <hr>
-<blockquote>
+<div class="note note-secondary">
 <p>复数值得研究的东西有很多，这里只展示了冰山一角.</p>
 <p>复数的引入不仅完善了数学体系（复数域对加减乘除、指对幂、极限都是封闭的），同时还能解释一些以前解释不通的东西：</p>
 <ul>
@@ -814,7 +814,7 @@ w=\dfrac1z
 <li>解析函数的实部和虚部可以表示某种流体的流和势.</li>
 </ul>
 <p>……</p>
-</blockquote>
+</div>
 </body></html>
                 
               </div>
@@ -1206,7 +1206,6 @@ w=\dfrac1z
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

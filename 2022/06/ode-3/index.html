@@ -298,14 +298,14 @@ x(t)=A\cos(\sqrt{\dfrac km} \cdot t+\varphi)
 </video>
 <p>椭圆上的每个点<span class="math inline">\((x,v)\)</span>都是系统某一时刻的<u>状态</u>. 实际上，<span class="math inline">\(v-x\)</span>平面中的每一个点<span class="math inline">\((v,x)\)</span>都代表了系统的一个可能的状态：改变系统的初始值，就能够得到不同大小的椭圆.</p>
 <p>我们把<span class="math inline">\(v-x\)</span>平面叫做<strong>相空间</strong>(phase space)，把其中的那个椭圆叫做<strong>轨线</strong>(trajectory).</p>
-<blockquote>
+<div class="note note-secondary">
 <p>相空间包含了系统所有的状态. 一个<span class="math inline">\(n\)</span>阶的微分方程的相空间是<span class="math inline">\(n\)</span>维的.</p>
 <ul>
 <li>一阶微分方程<span class="math inline">\(N'=rN\)</span>的相空间是一条直线.</li>
 <li>二阶微分方程<span class="math inline">\(x''=-\dfrac kmx\)</span>的相空间是一个二维平面（也称为相平面）. 为什么是二维的？因为要确定一个简谐振子的振动状况需要两个量：初始位置<span class="math inline">\(x_0\)</span>和初始速度<span class="math inline">\(v_0\)</span>.</li>
 </ul>
 <p>轨线是相空间中的一条曲线，它描述了系统的一种演化方式.</p>
-</blockquote>
+</div>
 <h3 id="向量场">1.2 向量场</h3>
 <p>在上一篇文章中，我们研究了一阶微分方程. 一阶方程的相空间是一条直线，如下图中的<span class="math inline">\(v\)</span>轴. 同时，我们在相空间上建立了一个向量场：把每一点<span class="math inline">\(v\)</span>都对应到了一个一维向量<span class="math inline">\(v'\)</span>，来表示<span class="math inline">\(v\)</span>的变化率.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/single-rod-vector-field.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
@@ -314,12 +314,12 @@ x(t)=A\cos(\sqrt{\dfrac km} \cdot t+\varphi)
 = \pmqty{x'\\v'}
 = \pmqty{\blue{ v}\\-\frac km \orange{ x}}
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p>*这里把向量的两个分量纵向排列<span class="math inline">\(\pmqty{\ast\\\ast}\)</span>（"列向量"），理解起来和横着写的<span class="math inline">\((\ast,\ast)\)</span>（"行向量"）一样.</p>
 <p>这个向量形式的式子等价于方程组 <span class="math display">\[
 \Cases{x'=v\\v'=-\frac km x}
 \]</span> 这个方程组与原方程是等价的，但是这里的最高阶数是<span class="math inline">\(1\)</span>. 一般我们采用变量替换的方式来把<u>高阶微分方程</u>转化为<u>一阶微分方程组</u>，使得问题易于考虑，同时便于可视化.</p>
-</blockquote>
+</div>
 <p>于是可以画出这个向量场（向量的长度由颜色体现）：</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/spring-oscillation-trajectory.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>注意到，轨线上每一点处的向量总是与轨线相切的，而且指向轨线延伸的方向（即<span class="math inline">\(t\)</span>增大的方向）.</p>
@@ -333,7 +333,7 @@ mx''=-\mu x'-kx
 </video>
 <p>我们可以发现，当<span class="math inline">\(\mu&gt;0\)</span>时，原点<span class="math inline">\((0,0)\)</span>是一个稳定的不动点，所有的解都会趋于原点.</p>
 <h3 id="不动点">1.3 不动点</h3>
-<blockquote>
+<div class="note note-secondary">
 <p>回顾：我们知道，对于一阶线性微分方程 <span class="math display">\[
 y'=ay
 \]</span> 不动点的性质是由<span class="math inline">\(a\)</span>的正负决定的：</p>
@@ -342,7 +342,7 @@ y'=ay
 <li>如果<span class="math inline">\(a&lt;0\)</span>，恰有一个不动点，且是稳定的；</li>
 <li>如果<span class="math inline">\(a=0\)</span>，所有的点都是不动点.</li>
 </ul>
-</blockquote>
+</div>
 <p>一个二阶（齐次）线性微分方程的一般形式是 <span class="math display">\[
 y''-py'-qy=0
 \]</span> 令<span class="math inline">\(\vb{y}=\pmqty{y\\y'}\)</span>，于是有<span class="math inline">\(\dv{}{t}\pmqty{y\\y'}=\pmqty{y'\\y''}=\pmqty{y'\\py'+qy}\)</span>. 再进一步，我们可以地把方程写成<span class="math inline">\(\vb{y}'=\vb{A}\vb{y}\)</span>的形式，与一阶方程相似. 不过这里的<span class="math inline">\(\vb{A}\)</span>是一个<span class="math inline">\(2\times2\)</span>的矩阵. <span class="math display">\[
@@ -360,10 +360,10 @@ y''-py'-qy=0
 <li>如果<span class="math inline">\(\lambda&lt;0\)</span>，那么这条直线上的<span class="math inline">\(\vb{y}\)</span>会靠近不动点.</li>
 <li>如果<span class="math inline">\(\lambda=0\)</span>，那么这条直线上的点都是不动点.</li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>对于<span class="math inline">\(\vb{Ay}=\lambda\vb{y}\)</span>（<span class="math inline">\(\vb{y}\ne\vb0\)</span>），我们称<span class="math inline">\(\lambda\)</span>是<span class="math inline">\(\vb{A}\)</span>的一个特征值，<span class="math inline">\(\vb{y}\)</span>是所<span class="math inline">\(\lambda\)</span>对应的特征向量.</p>
 <p>要了解特征值与特征向量，可观看视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E?p=14">特征向量与特征值</a>.</p>
-</blockquote>
+</div>
 <p>特征值<span class="math inline">\(\lambda\)</span>满足<strong>特征方程</strong>： <span class="math display">\[
 \lambda^2-p\lambda-q=0
 \]</span> 有两个根<span class="math inline">\(\lambda_1,\lambda_2\)</span>（称为特征根）.</p>
@@ -377,9 +377,9 @@ y''-py'-qy=0
 <li><p><span class="math inline">\(\lambda_1,\lambda_2\)</span>异号，那么不动点在一个方向上是吸引的，另一个方向上是排斥的，不动点称为<strong>鞍点</strong>.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/plane-saddle-point.png" style="zoom:40%;" cloud-img="" lazyload="true"></p></li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>方程的通解为<span class="math inline">\(y=A\e^{\lambda_1t}+B\e^{\lambda_2t}\)</span>，<span class="math inline">\(A,B\)</span>是待定常数. 如果至少一个根大于<span class="math inline">\(0\)</span>，那么<span class="math inline">\(y\)</span>是以指数的速度无限制增大的.</p>
-</blockquote></li>
+</div></li>
 <li><p>如果<span class="math inline">\(\lambda_1,\lambda_2\)</span>是两个相等的实根，与上面<span class="math inline">\(\lambda_1,\lambda_2\)</span>同号的情况比较相似，可以按照根的正负判断不动点稳定性.</p></li>
 <li><p>如果<span class="math inline">\(\lambda_1,\lambda_2\)</span>是两个共轭虚根，情况变得有意思了. 此时通解为<span class="math inline">\(y=A\e^{\lambda_1t}+B\e^{\lambda_2t}\)</span>，虚指数在几何上表现为旋转.</p>
 <ul>
@@ -389,21 +389,21 @@ y''-py'-qy=0
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/plane-unstable-spiral.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/plane-stable-spiral.png" style="zoom:40%;" cloud-img="" lazyload="true"></p></li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>利用<u>Euler公式</u>（<span class="math inline">\(\e^{\i t}=\cos{t}+\i\sin{t}\)</span>），可以把通解<span class="math inline">\(A_1\e^{\lambda_1t}+B_1\e^{\lambda_2t}\)</span>中的虚指数转化为三角函数：</p>
 <p>设<span class="math inline">\(\lambda_{1,2}=\alpha\pm\i\beta\)</span>，于是方程的通解可以化为<span class="math inline">\(y=A\e^{\alpha t}\cos(\beta t+\varphi)\)</span>，<span class="math inline">\(A,\varphi\)</span>是待定常数（与<span class="math inline">\(A_1,B_1\)</span>有关）. y是周期性振动的，其振幅按照指数增/减：</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/oscillation-decaying.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
-</blockquote></li>
+</div></li>
 </ul>
 <p>如果<span class="math inline">\(\lambda_1\lambda_2=0\)</span>，那么某条直线上的所有点都是不动点.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>由于此时<span class="math inline">\(q=0\)</span>，那么方程化为<span class="math inline">\(y''-py'=0\)</span>，做替换：<span class="math inline">\(Y=y'\)</span>，可以把方程降至一阶：<span class="math inline">\(Y'-pY=0\)</span>. 可以解得<span class="math inline">\(Y=C_0\e^{pt}\)</span>，从而<span class="math inline">\(y=C_1\e^{pt}+C_2\)</span>，和一阶（齐次）方程的解只相差一个常数. 从图中可以看出，方程的轨线是直线.</p>
 <p>此时，方程表现了和低阶方程相似的性质，称为<strong>退化</strong>微分方程.</p>
-</blockquote>
+</div>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/plane-line-of-fixed-points.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
-<blockquote>
+<div class="note note-secondary">
 <p>这一节关于不动点（奇点）的讨论是Poincaré（庞加莱）在《微分方程所定义的积分曲线》（1881-1886）中首次给出的.</p>
-</blockquote>
+</div>
 <h2 id="单摆">2 单摆</h2>
 <h3 id="线性化">2.1 线性化</h3>
 <p>一个理想单摆的运动方程是 <span class="math display">\[
@@ -850,7 +850,6 @@ y'(t)=\lim_{h\to0} \frac{y(t+h)-y(t)}{h}
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

@@ -24,7 +24,7 @@
 <meta property="og:description" content="从展开式定义, 公理化定义和泛性质定义, 逐步发掘行列式的真相.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-28T06:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-15T09:14:01.603Z">
+<meta property="article:modified_time" content="2023-10-24T13:59:46.578Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="线性代数">
@@ -264,37 +264,8 @@
             
               <div class="markdown-body">
                 
-                <html><head></head><body><blockquote>
-<p><u>Draft</u></p>
-<ul>
-<li><p>大部分教材的定义</p>
-<ul>
-<li>展开式定义, 一些基本性质(不加证明)</li>
-</ul></li>
-<li><p>characterizing properties (relying on a basis)</p>
-<ul>
-<li>multilinear maps, alternating maps的定义.</li>
-<li>性质 alternating <span class="math inline">\(\Rightarrow\)</span> skew-symmetric, i.e. <span class="math inline">\(\sigma f=(\sgn\sigma)f\)</span>.</li>
-<li>推导出展开式(Leibniz formula), Cramer's rule</li>
-</ul></li>
-<li><p>泛性质(交替线性形式)</p>
-<ul>
-<li><p>定义<span class="math inline">\((\bar{T}f)(v_1,\dots,v_n) := f(Tv_1,\dots,Tv_n)\)</span>.</p></li>
-<li><p>定理. 给定线性<span class="math inline">\(T:V\to V\)</span>, 唯一存在<span class="math inline">\(\lambda\in F\)</span>, 使得对任意交替<span class="math inline">\(n\)</span>-线性<span class="math inline">\(f:V^n\to F\)</span>, 有 <span class="math display">\[
-\bar{T}f = \lambda f.
-\]</span> 定义<span class="math inline">\(\det{T}:=\lambda\)</span>.</p></li>
-<li><p>推导出multiplicativity</p></li>
-</ul></li>
-<li><p>泛性质(general linear group的abelianization)</p>
-<ul>
-<li><p><span class="math inline">\({\rm GL}_n(F)\)</span>的交换化, <span class="math inline">\(\pi:{\rm GL}_n(F)\to{\rm GL}_n(F)^{\rm ab}\)</span>.</p></li>
-<li><p>对于任意同态<span class="math inline">\(f:{\rm GL}_n(F)\to H\)</span>(其中<span class="math inline">\(H\)</span>是交换群), 都唯一存在同态<span class="math inline">\(\tilde{f}:F^\times\to H\)</span>, 使得 <span class="math display">\[
-f = \tilde{f}\circ\det.
-\]</span></p></li>
-</ul></li>
-</ul>
-</blockquote>
-<h1 id="about-the-determinant-...">About the Determinant ...</h1>
+                <html><head></head><body>
+
 <h2 id="部分教材上的定义">1  部分教材上的定义</h2>
 <p>一部分线性代数的教材从解线性方程组讲起, 从方程组的解来得到行列式的定义. 具体来说, 一个方阵<span class="math inline">\(A=(a_{ij})\)</span>的行列式(determinant)是用排列来定义的, <span class="math display">\[
 |A| := \sum_{\sigma\in S_n}(\sgn\sigma)
@@ -326,7 +297,7 @@ a_{1\sigma(1)} \cdots a_{n\sigma(n)}.
 </ol>
 <p>简单来说, 行列式<span class="math inline">\(\det\)</span>是一个归一化的(normalized)交错(alternating)<span class="math inline">\(n\)</span>-线性形式(<span class="math inline">\(n\)</span>-linear form).</p>
 <p>从这个定义可以推出行列式的一切性质. 在此之前, 先给出几个引理.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Lemma 1</u> 设<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\)</span>. 如果<span class="math inline">\(f\)</span>是交错的, 则<span class="math inline">\(f\)</span>是反对称的.</p>
 <ul>
 <li>反对称(anti-symmetric)的含义如下: 交换<span class="math inline">\(f\)</span>的任意两个向量, <span class="math inline">\(f\)</span>多一个负号, 即 <span class="math display">\[
@@ -345,7 +316,7 @@ f(v_{\sigma(1)},\dots,v_{\sigma(n)})
 <p><u>Lemma 3</u> 设反对称的<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\neq0\)</span>, <span class="math inline">\(v_1,\dots,v_n\in V\)</span>, 则 <span class="math display">\[
 v_1,\dots,v_n\,\textsf{线性无关}\iff f(v_1,\dots,v_n)\neq0.
 \]</span></p>
-</blockquote>
+</div>
 <p>由Def 1, 我们可以得到行列式的展开形式. 设<span class="math inline">\(v_1,\dots,v_n\in V\)</span>, 且<span class="math inline">\(v_i=\sum_{j=1}^nv_{ij}e_j\)</span>, 则 <span class="math display">\[
 \Align{
 \det(v_1,\dots,v_n)
@@ -372,9 +343,9 @@ x_1A_1 + \dots + x_nA_n = B, \tag{a}
 \det(A_1,\dots,A_n)\, x_i = \det(A_1,\dots,A_{i-1},B,A_{i+1},\dots,A_n).
 \tag{b}
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 只需<span class="math inline">\(\text{(a)}\)</span>式的<span class="math inline">\(B\)</span>代入<span class="math inline">\(\text{(b)}\)</span>式, 利用<span class="math inline">\(\det\)</span>的线性性和交错性即得.</p>
-</blockquote>
+</div>
 <p>现在我们给出了一个行列式的不依赖于展开式的定义, 看上去十分简洁清晰. 然而, 如果我们要推导一些重要结论, 例如</p>
 <ul>
 <li>矩阵乘积的行列式等于行列式的乘积.</li>
@@ -402,7 +373,7 @@ F \ar@{.&gt;}[r]^{\lambda} &amp; F
 <li><p>立刻可以看出, 恒等映射<span class="math inline">\({\rm id}_V\)</span>的行列式为<span class="math inline">\(1\)</span>.</p></li>
 </ul>
 <p>Def 2定义的行列式是一个映射<span class="math inline">\(\det:{\rm End}_F(V)\to F\)</span>. 这个定义比较抽象, 不涉及具体的基底和坐标, 然而却将行列式的性质挖掘得更加深入(之后证明定理的过程中就可看出). 下面我们给出Def 2定义的行列式的一种构造方法, 进而说明Def 2和展开式定义以及Def 1是等价的.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>取<span class="math inline">\(V\)</span>的一个基底<span class="math inline">\(\qty{e_i}\)</span>, 设<span class="math inline">\(Te_i=\sum_{j=1}^n e_jT_{ji}\)</span>, 于是(仿照上一节的推导) <span class="math display">\[
 \Align{
 (\det{T})f(e_1,\dots,e_n)
@@ -421,10 +392,10 @@ F \ar@{.&gt;}[r]^{\lambda} &amp; F
   (\sgn\sigma)f(e_1,\dots,e_n).
 }
 \]</span> 由Lemma 3, <span class="math inline">\(f(e_1,\dots,e_n)\neq0\)</span>, 两边约去后得到<span class="math inline">\(\det{T}\)</span>在基底<span class="math inline">\(\qty{e_i}\)</span>下的表达式, 也称为矩阵<span class="math inline">\((T_{ji})\)</span>的<strong>行列式</strong>. 由于<span class="math inline">\(\det{T}\)</span>是唯一由<span class="math inline">\(T\)</span>决定的, 所以<span class="math inline">\(\det{T}\)</span>在不同基底下的矩阵具有相同的行列式.</p>
-</blockquote>
+</div>
 <p>接下来给出几个定理. 利用行列式的展开式证明这些定理是不太容易的, 但是泛性质定义大大简化了证明过程.</p>
 <p><u>Proposition 2</u> 对于<span class="math inline">\(S,T\in{\rm End}_F(V)\)</span>, 有<span class="math inline">\(\det(ST)=(\det{S})(\det{T})\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 取线性无关的<span class="math inline">\(v_1,\dots,v_n\)</span>, 则<span class="math inline">\(f(v_1,\dots,v_n)\neq0\)</span>. 有 <span class="math display">\[
 \Align{
 (\det{ST}) f(v_1,\dots,v_n)
@@ -434,9 +405,9 @@ F \ar@{.&gt;}[r]^{\lambda} &amp; F
 &amp;=\det{S}\cdot\det{T}\cdot f(v_1,\dots,v_n),
 }
 \]</span> (第三步, 因为<span class="math inline">\(S^{(n)}f\)</span>也是一个<span class="math inline">\(n\)</span>-形式, 对<span class="math inline">\(T\)</span>应用行列式的定义可得.) 所以<span class="math inline">\(\det{ST}=\det{S}\det{T}\)</span>.</p>
-</blockquote>
+</div>
 <p><u>Proposition 3</u> <span class="math inline">\(T\in{\rm End}_F(V)\)</span>可逆的充要条件是<span class="math inline">\(\det{T}\neq0\)</span>. 此时<span class="math inline">\(\det(T^{-1})=(\det{T})^{-1}\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 若<span class="math inline">\(T\)</span>可逆, 则<span class="math inline">\(TT^{-1}={\rm id}_V\)</span>, 由Proposition 2有<span class="math inline">\(\det{T}\det(T^{-1})=\det({\rm id}_V)=1\)</span>, 所以<span class="math inline">\(\det{T}\neq0\)</span>且<span class="math inline">\(\det(T^{-1})=(\det{T})^{-1}\)</span>.</p>
 <p>若<span class="math inline">\(\det{T}\neq0\)</span>, 取<span class="math inline">\(V\)</span>的基底<span class="math inline">\(\qty{e_i}\)</span>, 由Lemma 3得<span class="math inline">\(f(e_1,\dots,e_n)\neq0\)</span>, 于是 <span class="math display">\[
 \Align{
@@ -445,7 +416,7 @@ F \ar@{.&gt;}[r]^{\lambda} &amp; F
 =f(Te_1,\dots,Te_n),
 }
 \]</span> 再次应用Lemma 3可知, <span class="math inline">\(Te_1,\dots,Te_n\)</span>线性无关, 进而是<span class="math inline">\(V\)</span>的基底. <span class="math inline">\(T\)</span>将基底映为基底, 即<span class="math inline">\(T\)</span>可逆.</p>
-</blockquote>
+</div>
 <h2 id="泛性质-一般线性群的交换化">4  泛性质: 一般线性群的交换化</h2>
 <p>线性空间<span class="math inline">\(V\)</span>的<strong>一般线性群(general linear group)</strong>是所有可逆线性映射<span class="math inline">\(T:V\to V\)</span>, 以映射的复合为乘法, 所构成的群, 记作<span class="math inline">\({\rm GL}(V)\)</span>. 由Proposition3, <span class="math inline">\({\rm GL}(V)\)</span>中元素的行列式非零. 而Proposition 2, <span class="math display">\[
 \det(ST) = \det{S}\cdot\det{T},
@@ -464,7 +435,7 @@ F \ar@{.&gt;}[r]^{\lambda} &amp; F
 <ul>
 <li>这里有个小瑕疵. 当<span class="math inline">\({\rm char}\,F=\dim{V}=2\)</span>时, 如果想成立此性质, 需要将<span class="math inline">\(F^\times\)</span>换成<span class="math inline">\(\Z/2\Z\)</span>(二阶循环群). 下文中, 我们默认<span class="math inline">\({\rm char}\,F\neq2\)</span>或<span class="math inline">\(\dim{V}\neq2\)</span>.</li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>行列式<span class="math inline">\(\det\)</span>的这个泛性质其实是"交换化"的泛性质.</p>
 <p>一个群<span class="math inline">\(G\)</span>的换位子群(commutator subgroup)<span class="math inline">\(G'\)</span>定义为所有 <span class="math display">\[
 [g,h]:=ghg^{-1}h^{-1},\quad\forall g,h\in G,
@@ -476,7 +447,7 @@ G \ar[r]^(0.45){\pi} \ar[rd]_{\varphi}
 &amp; H
 }
 \]</span></p>
-</blockquote>
+</div>
 <p>回到行列式. 下面我们尝试去证明Proposition 4. 对此, 我们只需要证明<span class="math inline">\({\rm SL}(V)\)</span>是<span class="math inline">\({\rm GL}(V)\)</span>的换位子群, 从而<span class="math inline">\(\det:{\rm GL}(V)\to{\rm GL}(V)/{\rm SL}(V)\cong F^\times\)</span>作为标准投影, 满足交换化的泛性质.</p>
 <p>一般线性群<span class="math inline">\({\rm GL}(V)\)</span>的换位子群<span class="math inline">\({\rm GL}(V)'\)</span>的群元是由所有换位子 <span class="math display">\[
 [S,T]=STS^{-1}T^{-1} \quad (S,T\in{\rm GL}(V))
@@ -486,11 +457,11 @@ G \ar[r]^(0.45){\pi} \ar[rd]_{\varphi}
 {\rm SL}_n(F) &amp;:= \qty{A\in F^{n\times n}:\det{A}=1}, \\
 }
 \]</span> 它们分别和<span class="math inline">\({\rm GL}(V)\)</span>, <span class="math inline">\({\rm SL}(V)\)</span>同构, 所以我们只需证明<span class="math inline">\({\rm GL}_n(F)'\supset{\rm SL}_n(F)\)</span>. 给出几个引理:</p>
-<blockquote>
+<div class="note note-secondary">
 <p>回忆一下, 第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>(<span class="math inline">\(i\neq j\)</span>)指的是对角线上全为<span class="math inline">\(1\)</span>, 第<span class="math inline">\(i,j\)</span>元为<span class="math inline">\(\lambda\in F\)</span>, 其余位置为<span class="math inline">\(0\)</span>的矩阵. <span class="math inline">\(E_{ij}(\lambda)\)</span>可逆, 且<span class="math inline">\(\det{E_{ij}(\lambda)}=1\)</span>以及<span class="math inline">\(E_{ij}(\lambda)=E_{ij}(-\lambda)\)</span>.</p>
 <p><u>Lemma 4</u> 任意第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>都是某两个可逆矩阵<span class="math inline">\(A,B\)</span>的换位子<span class="math inline">\([A,B]\)</span>.</p>
 <p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(F)\)</span>.</p>
-</blockquote>
+</div>
 <p>根据Lemma 4, 5, 特殊线性群<span class="math inline">\({\rm SL}_n(F)\)</span>可以由所有的换位子<span class="math inline">\([A,B]\)</span>生成, 也就是说<span class="math inline">\({\rm GL}_n(F)'\supset{\rm SL}_n(F)\)</span>, 即<span class="math inline">\({\rm GL}(V)'\supset{\rm SL}(V)\)</span>. 结合第一部分有<span class="math inline">\({\rm GL}(V)'={\rm SL}(V)\)</span>. 根据定义, <span class="math inline">\({\rm GL}(V)/{\rm SL}(V)\cong F^\times\)</span>是<span class="math inline">\({\rm GL}(V)\)</span>交换化, 标准投影<span class="math inline">\(\det\)</span>也就满足泛性质: 任意一个一般线性群到交换群的同态<span class="math inline">\(\varphi\)</span>都唯一地由行列式<span class="math inline">\(\det\)</span>复合而来.</p>
 <p>Proposition 4启发我们用<span class="math inline">\({\rm GL}(V)\)</span>的交换化<span class="math inline">\((F^\times,\det:{\rm GL}(V)\to F^\times)\)</span>来定义行列式. 注意到任意满足交换化泛性质的东西<span class="math inline">\((A,\pi:{\rm GL}(V)\to A)\)</span>都是同构的(unique up to an isomorphism), 所以光有这一个条件还不能唯一确定行列式<span class="math inline">\(\det\)</span>, 还应该附加另外的条件, 然而这超出了我目前的能力范围.</p>
 <h2 id="引理的证明">5  *引理的证明</h2>
@@ -498,7 +469,7 @@ G \ar[r]^(0.45){\pi} \ar[rd]_{\varphi}
 <ul>
 <li>当<span class="math inline">\({\rm char}\,F\neq2\)</span>时, 逆命题成立.</li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 让<span class="math inline">\(f\)</span>的某两个输入相同, 则 <span class="math display">\[
 \Align{0
 =f(\dots,v+w,\dots,v+w,\dots)
@@ -509,22 +480,22 @@ G \ar[r]^(0.45){\pi} \ar[rd]_{\varphi}
 &amp;f(\dots,w,\dots,w,\dots),
 }
 \]</span> 注意到第一项和第四项为零, 于是第二项和第三项为相反数, 即得反对称性.</p>
-</blockquote>
+</div>
 <p><u>Lemma 2</u> 设反对称的<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\)</span>, <span class="math inline">\(n\)</span>阶置换<span class="math inline">\(\sigma\in S_n\)</span>, 则 <span class="math display">\[
 f(v_{\sigma(1)},\dots,v_{\sigma(n)})
 = (\sgn\sigma) f(v_1,\dots,v_n).
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 从反对称形式以及置换的符号的定义即得.</p>
-</blockquote>
+</div>
 <p><u>Lemma 3</u> 设交错<span class="math inline">\(n\)</span>形式<span class="math inline">\(f\neq0\)</span>, <span class="math inline">\(v_1,\dots,v_n\in V\)</span>, 则 <span class="math display">\[
 v_1,\dots,v_n\,\textsf{线性无关}\iff f(v_1,\dots,v_n)\neq0.
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> <span class="math inline">\(\Leftarrow\)</span>是比较容易的, 但是<span class="math inline">\(\Rightarrow\)</span>则需要用到楔积等构造来弄清<span class="math inline">\(\Lambda_k(V)\)</span>的结构, 在此略去.</p>
-</blockquote>
+</div>
 <p><u>Lemma 4</u> 任意第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>都是某两个可逆矩阵<span class="math inline">\(A,B\)</span>的换位子<span class="math inline">\([A,B]\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 分为两种情况.</p>
 <ul>
 <li>记<span class="math inline">\(E_{ij}(\lambda)=I+e_{ij}(\lambda)\)</span>, 其中<span class="math inline">\(e_{ij}(\lambda)\)</span>是<span class="math inline">\(i,j\)</span>处为<span class="math inline">\(\lambda\)</span>, 其余为零的矩阵. 注意到 <span class="math display">\[
@@ -543,9 +514,9 @@ A=\pmqty{\mu&amp;0\\0&amp;1},\quad B=\pmqty{1&amp;\frac\lambda{\mu-1}\\0&amp;1}
 \]</span> 的换位子是<span class="math inline">\(E_{12}(\lambda)\)</span>, 而下方<span class="math inline">\(A,B\)</span>的换位子是<span class="math inline">\(E_{21}(\lambda)\)</span>. <span class="math display">\[
 A=\pmqty{1&amp;0\\0&amp;\mu},\quad B=\pmqty{1&amp;0\\\frac\lambda{\mu-1}&amp;1}.
 \]</span></p>
-</blockquote>
+</div>
 <p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(F)\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 任取<span class="math inline">\(A\in{\rm SL}_n(F)\)</span>, 根据Gauss-Jordan消元法的思想, 可以将<span class="math inline">\(A\)</span>经过若干次第一类初等行变换<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">将一行的常数倍加到另一行上.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>和第一类初等列变换(即左, 右乘若干<span class="math inline">\(E_{ij}(\lambda)\)</span>)变为单位矩阵<span class="math inline">\(I\)</span>(证明见后), 即 <span class="math display">\[
 E_{i_pj_p}(\lambda_p)\cdots E_{i_1j_1}(\lambda_1) \, A \,
 E_{k_1l_1}(\mu_1)\cdots E_{k_ql_q}(\mu_q)
@@ -574,16 +545,16 @@ A_{n+1} = \pmqty{
 \]</span> 之后由归纳假设, <span class="math inline">\(A_n'\)</span>可以变成单位阵, 即证. 其中, 对<span class="math inline">\(A_{n+1}\)</span>的变换分为两步:</p>
 <p>第一步, 将<span class="math inline">\(a_{11}\)</span>变成<span class="math inline">\(1\)</span>. 对于<span class="math inline">\(a_{11}\neq1\)</span>, 进行分类讨论:</p>
 <ul>
-<li>若<span class="math inline">\(a_{11}=0\)</span>, 则<span class="math inline">\(a_{21},\dots,a_{n+1,1}\)</span>中一定有非零元<span class="math inline">\(a_{k1}\)</span>(否则矩阵不可逆), 将第<span class="math inline">\(k\)</span>行的<span class="math inline">\(\frac1k\)</span>倍加到第一行即可.</li>
+<li>若<span class="math inline">\(a_{11}=0\)</span>, 则<span class="math inline">\(a_{21},\dots,a_{n+1,1}\)</span>中一定有非零元<span class="math inline">\(a_{k1}\)</span>(否则矩阵不可逆), 将第<span class="math inline">\(k\)</span>行的<span class="math inline">\(\frac1{a_{k1}}\)</span>倍加到第一行即可.</li>
 <li>若<span class="math inline">\(a_{11}\neq0\)</span>,
 <ul>
-<li>若<span class="math inline">\(a_{21},\dots,a_{n+1,1}\)</span>与<span class="math inline">\(a_{12},\dots,a_{1,n+1}\)</span>中有非零元<span class="math inline">\(a_{k1}\)</span>(或<span class="math inline">\(a_{1k}\)</span>), 只需将第<span class="math inline">\(k\)</span>行(列)的<span class="math inline">\(\frac{1-a_{11}}k\)</span>倍加到第一行(列)即可.</li>
+<li>若<span class="math inline">\(a_{21},\dots,a_{n+1,1}\)</span>与<span class="math inline">\(a_{12},\dots,a_{1,n+1}\)</span>中有非零元<span class="math inline">\(a_{k1}\)</span>(或<span class="math inline">\(a_{1k}\)</span>), 只需将第<span class="math inline">\(k\)</span>行(列)的<span class="math inline">\(\frac{1-a_{11}}{a_{k1}}\)</span>(<span class="math inline">\(\frac{1-a_{11}}{a_{1k}}\)</span>)倍加到第一行(列)即可.</li>
 <li>若<span class="math inline">\(a_{21},\dots,a_{n+1,1}\)</span>与<span class="math inline">\(a_{12},\dots,a_{1,n+1}\)</span>均为零, 则<span class="math inline">\(A_{n+1}\)</span>的第二行一定存在非零元(否则矩阵不可逆), 将第二行加到第一行, 便转化为上面的情况.</li>
 </ul></li>
 </ul>
 <p>第二步, 将第一行乘以<span class="math inline">\(-a_{21},\dots,-a_{n+1,1}\)</span>, 分别加到第<span class="math inline">\(2\)</span>到<span class="math inline">\(n+1\)</span>行; 再将第一列乘以<span class="math inline">\(-a_{12},\dots,-a_{1,n+1}\)</span>, 分别加到第<span class="math inline">\(2\)</span>到<span class="math inline">\(n+1\)</span>列, 便消去了第一行和第一列的其他元素.</p>
 <p>经过上面两步, <span class="math inline">\(A_{n+1}\)</span>变成了我们想要的形式<span class="math inline">\(\tilde A_{n+1}\)</span>, 根据归纳假设, 可以将右下角的<span class="math inline">\(A_n'\)</span>变成单位阵(而且不影响<span class="math inline">\(\tilde A_{n+1}\)</span>的第一行和第一列), 进而整个<span class="math inline">\(A_{n+1}\)</span>就变成了单位矩阵, 即证.</p>
-</blockquote>
+</div>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -684,9 +655,9 @@ A_{n+1} = \pmqty{
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/diffgeom-gtm275-2/" title="GTM275 | 2 Curvature &amp; Vector Fields">
+                      <a href="/2023/10/diffgeom-gtm275-2/" title="GTM275 | 2 曲率与向量场">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM275 | 2 Curvature &amp; Vector Fields</span>
+                        <span class="hidden-mobile">GTM275 | 2 曲率与向量场</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -694,8 +665,8 @@ A_{n+1} = \pmqty{
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/diffgeom-gtm275-1/" title="GTM275 | 1 Curvature &amp; Vector Fields">
-                        <span class="hidden-mobile">GTM275 | 1 Curvature &amp; Vector Fields</span>
+                      <a href="/2023/09/diffgeom-gtm275-1/" title="GTM275 | 1 曲率与向量场">
+                        <span class="hidden-mobile">GTM275 | 1 曲率与向量场</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -989,7 +960,6 @@ A_{n+1} = \pmqty{
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

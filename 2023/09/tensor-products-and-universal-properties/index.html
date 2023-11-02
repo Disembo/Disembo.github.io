@@ -376,7 +376,7 @@ Y \ar@{.&gt;}[d]^(0.4){\tilde h} \\
 <li>任意一个双线性映射<span class="math inline">\(V\times W\to Z\)</span>都可以借助张量积变为一个线性映射.</li>
 </ul>
 <p>首先应当验证, 前几节的构造性定义确实满足上面的泛性质定义. 这里以商空间构造(1.1)为例.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 商空间构造中, <span class="math inline">\(\varphi:V\times W\to F(V\times W)/S\)</span>. 任取双线性映射<span class="math inline">\(h:V\times W\to Z\)</span>, 定义一个映射<span class="math inline">\(\tilde{h}:F(V\times W)/S\to Z\)</span>满足<span class="math inline">\(\tilde{h}\circ\varphi=h\)</span>. 先对<span class="math inline">\([v,w]\in F(V\times W)/S\)</span>定义 <span class="math display">\[
 \tilde{h}([v,w])
 := h(v,w),
@@ -400,7 +400,7 @@ Y \ar@{.&gt;}[d]^(0.4){\tilde h} \\
 \]</span> (第一个等号利用了等价类的性质; 第二个等号利用了<span class="math inline">\(\tilde{h}\)</span>在整个<span class="math inline">\(F(V\times W)/S\)</span>上的定义.)</p>
 <p>最后说明<span class="math inline">\(\tilde{h}\)</span>是唯一的. 条件<span class="math inline">\(\tilde{h}\circ\varphi=h\)</span>使得<span class="math inline">\(\tilde{h}([v,w])\)</span>的定义是唯一的, 而<span class="math inline">\(\qty{[v,w]}_{v\in V,w\in W}\)</span>必定包含了<span class="math inline">\(F(V\times W)/S\)</span>的一个基底, 因此将<span class="math inline">\(\tilde{h}\)</span>延拓到<span class="math inline">\(F(V\times W)/S\)</span>的方式也是唯一的.</p>
 <p>综上所述, 商空间构造满足张量积的泛性质, <span class="math inline">\((\varphi,F(V\times W)/S)\)</span>构成张量积.</p>
-</blockquote>
+</div>
 <h3 id="existence-and-uniqueness">2.2  Existence and uniqueness</h3>
 <p>泛性质定义的张量积是存在的(构造性定义便是例子), 却不唯一. 但是, 所有张量积在<strong>同构</strong>意义下唯一(unique up to an isomorphism).</p>
 <p>假设有两个张量积<span class="math inline">\((\varphi,Y)\)</span>和<span class="math inline">\((\varphi',Y')\)</span>. 对<span class="math inline">\(\varphi\)</span>应用泛性质定义(将<span class="math inline">\(\varphi'\)</span>视作<span class="math inline">\(h\)</span>), 存在线性映射<span class="math inline">\(\tilde{h}:Y\to Y'\)</span>, <span class="math inline">\(\tilde{h}\circ\varphi=\varphi'\)</span>. 同理, 对<span class="math inline">\(\varphi'\)</span>应用泛性质定义, 存在线性映射<span class="math inline">\(\tilde{h}':Y'\to Y\)</span>, <span class="math inline">\(\tilde{h}'\circ\varphi'=\varphi\)</span>. 所以有交换图 <span class="math display">\[
@@ -446,9 +446,9 @@ h(v,w)
 </ul>
 <p>综上看来, 泛性质定义的张量积是一个足够"一般"的双线性乘法, 既保持了<span class="math inline">\(V,W\)</span>的线性结构, 又没有引入其他结构.</p>
 <h2 id="the-universal-property">3  The Universal Property</h2>
-<blockquote>
+<div class="note note-secondary">
 <p>下面简单地介绍一下一般情况下泛性质的定义. 需要一定范畴论基础, 可以参考Paolo Aluffi §I.3, §I.4.</p>
-</blockquote>
+</div>
 <h3 id="terminal-objects">3.1  Terminal objects</h3>
 <p>回顾张量积的泛性质: 张量积指的是一个有序对<span class="math inline">\((\varphi,Y)\)</span>, 其中<span class="math inline">\(\varphi:V\times W\to Y\)</span>是双线性映射, 其泛性质指的是: 对于任意双线性映射<span class="math inline">\(h:V\times W\to Z\)</span>, 都<u>唯一存在</u>线性映射<span class="math inline">\(\tilde{h}:Y\to Z\)</span>, 使得下图交换: <span class="math display">\[
 \xymatrix{
@@ -492,7 +492,7 @@ Z &amp; X \ar@{..&gt;}[l]_(0.4){\sigma} \\
 &amp;&amp; B \ar@/^10pt/[llu]^{f_B} \ar[lu]^{\iota_B}
 }
 \]</span></p>
-<blockquote>
+<div class="note note-info">
 <p><u>Example</u> 集合范畴<span class="math inline">\(\sf Set\)</span>中<span class="math inline">\(A,B\)</span>的积是笛卡尔积<span class="math inline">\(A\times B\)</span>, 余积是无交并<span class="math inline">\(A\amalg B\)</span>.</p>
 <p><span class="math inline">\(\R\)</span>线性空间范畴<span class="math inline">\(\sf{Vect}_\R\)</span>中<span class="math inline">\(V,W\)</span>的积和余积都是直和<span class="math inline">\(V\oplus W\)</span>.</p>
 <p>考虑这样一个范畴<span class="math inline">\({\sf C}\)</span>, 它的对象是所有整数, 如果两个对象<span class="math inline">\(m\leq n\)</span>, 那么恰好存在一个态射<span class="math inline">\(m\to n\)</span>. 在这个范畴中,</p>
@@ -500,7 +500,7 @@ Z &amp; X \ar@{..&gt;}[l]_(0.4){\sigma} \\
 <li><span class="math inline">\(m,n\)</span>的积是两数的较大者<span class="math inline">\(\min\qty{m,n}\)</span>,</li>
 <li><span class="math inline">\(m,n\)</span>的余积是两数的较小者<span class="math inline">\(\max\qty{m,n}\)</span>.</li>
 </ul>
-</blockquote>
+</div>
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -603,9 +603,9 @@ Z &amp; X \ar@{..&gt;}[l]_(0.4){\sigma} \\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/diffgeom-gtm275-1/" title="GTM275 | 1 Curvature &amp; Vector Fields">
+                      <a href="/2023/09/diffgeom-gtm275-1/" title="GTM275 | 1 曲率与向量场">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM275 | 1 Curvature &amp; Vector Fields</span>
+                        <span class="hidden-mobile">GTM275 | 1 曲率与向量场</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -908,7 +908,6 @@ Z &amp; X \ar@{..&gt;}[l]_(0.4){\sigma} \\
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

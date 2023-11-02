@@ -24,7 +24,7 @@
 <meta property="og:description" content="《微分几何入门与广义相对论》第三章的笔记.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-21T04:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-13T14:12:56.732Z">
+<meta property="article:modified_time" content="2023-10-25T12:59:34.955Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -264,9 +264,9 @@
             
               <div class="markdown-body">
                 
-                <html><head></head><body><blockquote>
+                <html><head></head><body><div class="note note-secondary">
 <p>梁灿彬, 周彬《微分几何入门与广义相对论》第三章的笔记.</p>
-</blockquote>
+</div>
 <h2 id="intrinsic-curvature-tensors">3  Intrinsic Curvature Tensors</h2>
 <h3 id="derivative-operators">3.1  Derivative operators</h3>
 <div style="text-align: right;">
@@ -275,7 +275,7 @@
 <p><strong>无挠导数算符(torsion free derivative operator)</strong>. 记<span class="math inline">\(\mathcal{F}_M(k,l)\)</span>为光滑流形<span class="math inline">\(M\)</span>上的<span class="math inline">\((k,l)\)</span>型<span class="math inline">\(C^\infty\)</span>张量场的集合. 若算符<span class="math inline">\(\nabla_a:\mathcal{F}_M(k,l)\to\mathcal{F}(k,l+1)\)</span>满足如下条件:</p>
 <ol type="1">
 <li>线性性, <span class="math inline">\(\nabla_a(\alpha T^{\dots}{}_{\dots}+S^{\dots}{}_{\dots})=\alpha\nabla_a T^{\dots}{}_{\dots}+\nabla_a S^{\dots}{}_{\dots}\)</span>.</li>
-<li>Lebniz法则, <span class="math inline">\(\nabla_a(T^{\dots}{}_{\dots}S^{\dots}{}_{\dots})=T^{\dots}{}_{\dots}\nabla_aS^{\dots}{}_{\dots}+(\nabla_aT^{\dots}{}_{\dots})S^{\dots}{}_{\dots}\)</span>.</li>
+<li>Leibniz法则, <span class="math inline">\(\nabla_a(T^{\dots}{}_{\dots}S^{\dots}{}_{\dots})=T^{\dots}{}_{\dots}\nabla_aS^{\dots}{}_{\dots}+(\nabla_aT^{\dots}{}_{\dots})S^{\dots}{}_{\dots}\)</span>.</li>
 <li>与缩并可交换, <span class="math inline">\({\rm C}\circ\nabla=\nabla\circ{\rm C}\)</span>.</li>
 <li>规定与<span class="math inline">\((0,0)\)</span>型张量场作用的结果, <span class="math inline">\(v^a(\nabla_af)=v(f)\)</span>.
 <ul>
@@ -287,7 +287,7 @@
 <p><strong>不同导数算符差别的刻画</strong>.</p>
 <p>一个流形上的导数算子不光存在, 而且有很多. 它们作用在某个<span class="math inline">\((0,0)\)</span>型张量场的结果均相同, 故其区别只有在作用在非<span class="math inline">\((0,0)\)</span>型张量场时才能体现出来: 设<span class="math inline">\(\omega_b,\omega_b'\)</span>为两个对偶矢量场, 且<span class="math inline">\(\omega_b|_p=\omega'_b|_p\)</span>, 则一般来说<span class="math inline">\(\nabla_a\omega_b|_p\)</span>和<span class="math inline">\(\nabla_a\omega'_b|_p\)</span>是不同的. 然而, 有趣的是, 对于两个导数算符<span class="math inline">\(\nabla_a,\tilde\nabla_a\)</span>, 其"差值"<span class="math inline">\(\tilde\nabla_a-\nabla_a\)</span>分别作用于<span class="math inline">\(\omega_b,\omega'_b\)</span>后在<span class="math inline">\(p\)</span>点取值是相同的.</p>
 <p><u>Claim 1</u> 若<span class="math inline">\(\omega_b|_p=\omega'_b|_p\)</span>, 则<span class="math inline">\([(\tilde\nabla_a-\nabla_a)\omega_b]_p=[(\tilde\nabla_a-\nabla_a)\omega'_b]_p\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 即证<span class="math inline">\([\nabla_a(\omega_b-\omega'_b)]_p=[\tilde\nabla_a(\omega_b-\omega'_b)]_p\)</span>.</p>
 <p>置<span class="math inline">\(\Omega_b:=\omega_b-\omega'_b\)</span>, 其在坐标基底下展开为<span class="math inline">\(\Omega_b=\Omega_\mu(\dd{x}^\mu)_b\)</span>, 于是 <span class="math display">\[
 \lhs
@@ -298,7 +298,7 @@
 \]</span> (注意到<span class="math inline">\(\orange{\Omega_\mu|_p=0}\)</span>) 同理可得 <span class="math display">\[
 \rhs = [(\dd{x}^\mu)_b \tilde\nabla_a\Omega_\mu]_p.
 \]</span> 根据定义的第4条有<span class="math inline">\(\nabla_a\Omega_\mu=\tilde\nabla_a\Omega_\mu\)</span>, 即<span class="math inline">\(\lhs=\rhs\)</span>.</p>
-</blockquote>
+</div>
 <p>这个定理告诉我们, 给定<span class="math inline">\((0,1)\)</span>型张量<span class="math inline">\(\mu_b\in V^*_p\)</span>, 对于所有在<span class="math inline">\(p\)</span>点取值为<span class="math inline">\(\mu_b\)</span>的矢量场<span class="math inline">\(\omega_b\)</span>(称为<span class="math inline">\(\mu_b\)</span>的延拓), <span class="math inline">\([(\tilde\nabla_a-\nabla_a)\omega_b]\)</span>是一个固定的<span class="math inline">\((0,2)\)</span>型张量. 这种对应关系<span class="math inline">\(\mu_c\mapsto[(\tilde\nabla_a-\nabla_a)\omega_b]\)</span>是一个线性映射, 更具体地说是一个<span class="math inline">\((1,2)\)</span>型张量, 记作<span class="math inline">\(C^c{}_{ab}\)</span>, 于是 <span class="math display">\[
 \nabla_a\omega_b = \tilde\nabla_a\omega_b - C^c{}_{ab}\omega_c.
 \]</span> <span class="math inline">\(C^c{}_{ab}\)</span>是与<span class="math inline">\(p\)</span>点有关的张量, 它构成<span class="math inline">\(M\)</span>上的一个<span class="math inline">\((1,2)\)</span>型张量场.</p>
@@ -349,7 +349,7 @@
 <p><strong>矢量场的对易子</strong>.</p>
 <p>对易子的定义<span class="math inline">\([u,v](f):=u(v(f))-v(u(f))\)</span>是依赖于函数的, 我们可以借助导数算符给出不依赖于函数的表达式.</p>
 <p><u>Claim 6</u> 对任意导数算符<span class="math inline">\(\nabla_a\)</span>, 有<span class="math inline">\([u,v]^a=u^b\nabla_bv^a-v^b\nabla_bu^a\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 一方面, <span class="math display">\[
 \Align{
 [u,v](f)
@@ -359,16 +359,16 @@
   -v^b(\nabla_bu^a)(\nabla^af) - v^bu^a\nabla_b\nabla_af \\
 &amp;= (u^b\nabla_bv^a-v^b\nabla_bu^a)(\nabla_af),
 }
-\]</span> 其中第二个等号利用了导数算符定义第4条, 第三个等号利用了Lebniz律和与缩并可交换, 第四个等号利用了无挠性.</p>
+\]</span> 其中第二个等号利用了导数算符定义第4条, 第三个等号利用了Leibniz律和与缩并可交换, 第四个等号利用了无挠性.</p>
 <p>另一方面, 由定义第4条, <span class="math inline">\([u,v](f) = [u,v]^a\nabla_af\)</span>, 即证.</p>
-</blockquote>
+</div>
 <h3 id="parallel-transport-and-derivative-along-a-curve">3.2  Parallel transport and derivative along a curve</h3>
 <div style="text-align: right;">
 2023.7.12
 </div>
 <p><strong>矢量场沿曲线平移(parallelly transported along a curve)</strong>. 设<span class="math inline">\(v^a\)</span>是沿曲线<span class="math inline">\(C(t)\)</span>的矢量场, <span class="math inline">\(T^b\)</span>为<span class="math inline">\(C(t)\)</span>的切矢, 如果<span class="math inline">\(T^b\nabla_bv^a=0\)</span>, 则称<span class="math inline">\(v^a\)</span>是沿<span class="math inline">\(C(t)\)</span>平移的. 其中, <span class="math inline">\(T^b\nabla_bv^a\)</span>可以理解为<span class="math inline">\(v^a\)</span>沿着<span class="math inline">\(T^b\)</span>方向上的导数.</p>
 <p><u>Claim 1</u> 曲线<span class="math inline">\(C(t)\)</span>以及其上一点的矢量可以唯一确定一个沿<span class="math inline">\(C(t)\)</span>平移的矢量场.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 我们先推导矢量场沿曲线平移方程的坐标表示. 不妨取包含<span class="math inline">\(C(t)\)</span>的坐标域<span class="math inline">\(O\)</span>, 曲线参数式<span class="math inline">\(x^\mu(t)\)</span>, 则 <span class="math display">\[
 \Align{
 T^b \nabla_b v^a
@@ -390,10 +390,10 @@ T^b \nabla_b v^a
 \]</span> (第五个等号使用了链式法则) 于是<span class="math inline">\(T^b\nabla_bv^a=0\)</span>的坐标方程就是 <span class="math display">\[
 \dv{v^\mu}{t} + \Gamma^\mu{_{\nu\sigma}}T^\nu v^\sigma = 0.
 \]</span> (<span class="math inline">\(\mu=1,\dots,n\)</span>) 这是关于<span class="math inline">\(v^\mu\)</span>的一阶线性常微分方程组, 给定初值<span class="math inline">\(v^\mu(t_0)\)</span>后有唯一解, 即证.</p>
-</blockquote>
+</div>
 <p>有了平移的概念之后, 就可以将<span class="math inline">\(M\)</span>中两点<span class="math inline">\(p,q\)</span>上的矢量联系起来. 取一条曲线<span class="math inline">\(C(t)\)</span>过<span class="math inline">\(p,q\)</span>, 对<span class="math inline">\(V_p\)</span>中的元素<span class="math inline">\(v^a\)</span>, 它可以唯一确定一个沿<span class="math inline">\(C(t)\)</span>平移的矢量场, 这个矢量场在<span class="math inline">\(q\)</span>的值就称为<span class="math inline">\(v^a\)</span>平移到<span class="math inline">\(q\)</span>的结果. 这种平移依赖于曲线<span class="math inline">\(C(t)\)</span>的选择. 由于<span class="math inline">\(\nabla_a\)</span>将<span class="math inline">\(V_p\)</span>和<span class="math inline">\(V_q\)</span>联系了起来, 所以也称<span class="math inline">\(\nabla_a\)</span>为(无挠)<strong>联络(connection)</strong>.</p>
 <p><strong>与度规适配的导数算符</strong>.</p>
-<p>设<span class="math inline">\((M,g_{ab})\)</span>为度规流形, 并有联络<span class="math inline">\(\nabla_a\)</span>. 曲线<span class="math inline">\(C(t)\)</span>上有两个沿其平移的矢量场<span class="math inline">\(v^a,u^b\)</span>, 我们希望平移不改变内积, 也就是内积沿着曲线的导数为零, 即<span class="math inline">\(T^c\nabla_c(g_{ab}v^au^b) = 0\)</span>. 利用Lebniz律展开有 <span class="math display">\[
+<p>设<span class="math inline">\((M,g_{ab})\)</span>为度规流形, 并有联络<span class="math inline">\(\nabla_a\)</span>. 曲线<span class="math inline">\(C(t)\)</span>上有两个沿其平移的矢量场<span class="math inline">\(v^a,u^b\)</span>, 我们希望平移不改变内积, 也就是内积沿着曲线的导数为零, 即<span class="math inline">\(T^c\nabla_c(g_{ab}v^au^b) = 0\)</span>. 利用Leibniz律展开有 <span class="math display">\[
 \Align{
 (T^c\nabla_cg_{ab})v^au^b
 + g_{ab}(T^c\nabla_cv^a)u^b
@@ -405,7 +405,7 @@ T^b \nabla_b v^a
 \nabla_c g_{ab}=0
 \]</span> 满足这个条件的<span class="math inline">\(\nabla_c\)</span>称为与度规<span class="math inline">\(g_{ab}\)</span>适配的导数算符(也成为Levi-Civita联络, 或黎曼联络), 它一定是一个协变的导数算符.</p>
 <p><u>Claim 2</u> 对于<span class="math inline">\((M,g_{ab})\)</span>, 与度规<span class="math inline">\(g_{ab}\)</span>适配的导数算符存在且唯一.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 任取导数算符<span class="math inline">\(\tilde\nabla_a\)</span>, 现在要找到合适的<span class="math inline">\(C^c{}_{ab}\)</span>, 使得<span class="math inline">\(\nabla_a\)</span>与度规适配. 利用上一节的Claim 3, <span class="math display">\[
 0
 =\nabla_cg_{ab} 
@@ -426,7 +426,7 @@ C^c{_{ab}} = \frac12 g^{cd}(
   \tilde\nabla_bg_{ad} + \tilde\nabla_ag_{bd} - \tilde\nabla_dg_{ab}
 ).
 \]</span> 这个<span class="math inline">\(C^c{_{ab}}\)</span>与<span class="math inline">\(\tilde\nabla_a\)</span>结合得到的<span class="math inline">\(\nabla_a\)</span>便是<span class="math inline">\(\nabla_a g_{bc}=0\)</span>的解. 这个解是唯一的, 因为如果<span class="math inline">\(\nabla'_a\)</span>也满足<span class="math inline">\(\nabla_a' g_{bc}=0\)</span>, 那么将上式中的<span class="math inline">\(\tilde\nabla_a\)</span>代成<span class="math inline">\(\nabla'_a\)</span>可以得到反映<span class="math inline">\(\nabla_a\)</span>与<span class="math inline">\(\nabla'_a\)</span>差别的<span class="math inline">\(C^c{_{ab}}=0\)</span>.</p>
-</blockquote>
+</div>
 <p>给定度规流形<span class="math inline">\((M,g_{ab})\)</span>后, 就相当于给了一个与<span class="math inline">\(g_{ab}\)</span>相适配的导数算符. 后文中, 度规流形上的导数算符默认是与度规适配的.</p>
 <ul>
 <li>与欧氏度规<span class="math inline">\(\delta_{ab}\)</span>(闵氏度规<span class="math inline">\(\eta_{ab}\)</span>)适配的导数算符是笛卡尔坐标系(洛伦兹坐标系)的普通导数算符<span class="math inline">\(\partial_a\)</span>.</li>
@@ -483,7 +483,7 @@ C^c{_{ab}} = \frac12 g^{cd}(
 <li>若其为测地线, 则其重参数化后必有<span class="math inline">\(T'^b\nabla_bT'^a = \alpha T'^a\)</span>(其中<span class="math inline">\(\alpha:I\to\R\)</span>).</li>
 <li>若其切矢满足<span class="math inline">\(T^b\nabla_bT^a = \alpha T^a\)</span>, 则其必定可以重参数化为测地线.</li>
 </ol>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u></p>
 <ol type="1">
 <li><p>设<span class="math inline">\(T'^b\)</span>是<span class="math inline">\(C(t)\)</span>重参数化为<span class="math inline">\(C'(t')\)</span>后的切矢, 则<span class="math inline">\(T^b=(\pdv{t})^b=\dv{t'}{t}(\pdv{t'})^b=\dv{t'}{t}T'^b\)</span>, 代入测地线方程有 <span class="math display">\[
@@ -505,20 +505,20 @@ C^c{_{ab}} = \frac12 g^{cd}(
 }
 \]</span> 测地线方程要求<span class="math inline">\(T'^b\nabla_bT'^a=0\)</span>, 于是<span class="math inline">\(\dv[2]{t'}{t}=\alpha\dv{t'}{t}\)</span>, 解出<span class="math inline">\(t'(t)\)</span>即可.</p></li>
 </ol>
-</blockquote>
+</div>
 <p>使得曲线成为测地线的参数称为其<strong>仿射参数(affine parameter)</strong>. 为了区分, 将满足<span class="math inline">\(T^b\nabla_bT^a = \alpha T^a\)</span>(<span class="math inline">\(\alpha\)</span>不恒为零)的参数称为非仿射参数.</p>
 <p><u>Claim 3</u> 对于测地线<span class="math inline">\(C(t)\)</span>, 其中<span class="math inline">\(t\)</span>为仿射参数,</p>
 <ol type="1">
 <li><span class="math inline">\(t'\)</span>为仿射参数当且仅当<span class="math inline">\(t'=at+b\)</span>(<span class="math inline">\(a,b\)</span>为常数且<span class="math inline">\(a\neq0\)</span>).</li>
 <li>其线长参数必为仿射参数.</li>
 </ol>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u></p>
 <ol type="1">
 <li><span class="math inline">\(C(t)\)</span>重参数化后为<span class="math inline">\(C'(t')\)</span>. 若<span class="math inline">\(t'=at+b\)</span>, 则Claim 2的证明1中, <span class="math inline">\(\alpha(t)=0\)</span>, <span class="math inline">\(t'\)</span>为仿射参数; 反过来, 若<span class="math inline">\(t'\)</span>为仿射参数, 则Claim 2的证明2中, <span class="math inline">\(t'(t)\)</span>满足的微分方程变为<span class="math inline">\(\dv[2]{t'}{t}=0\)</span>, 通解为<span class="math inline">\(t'=at+b\)</span>.</li>
 <li>因为<span class="math inline">\(\nabla_a\)</span>与<span class="math inline">\(g_{ab}\)</span>适配, 所以<span class="math inline">\(|T|=\sqrt{g(T,T)}\)</span>沿曲线不变, 因此线长<span class="math inline">\(l(t)=\int_{t_0}^t|T|\dd{\tau}=|T|(t-t_0)\)</span>, (又已知<span class="math inline">\(t\)</span>为仿射参数)根据上一个命题, <span class="math inline">\(l\)</span>为仿射参数.</li>
 </ol>
-</blockquote>
+</div>
 <p><u>Claim 4</u> 设流形<span class="math inline">\(M\)</span>上的洛伦兹度规场<span class="math inline">\(g_{ab}\)</span>, 两点<span class="math inline">\(p,q\)</span>, 则<span class="math inline">\(p,q\)</span>间的光滑类空(类时)曲线为测地线当且仅当其线长取极值.</p>
 <ul>
 <li>也适用于<span class="math inline">\(g_{ab}\)</span>正定(黎曼)的情况, 此时定语"类空(类时)"略去.</li>
@@ -1074,7 +1074,6 @@ R_{\theta\theta}=1,\quad R_{\phi\phi}=\sin^2\theta,
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

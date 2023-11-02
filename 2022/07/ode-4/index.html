@@ -283,17 +283,17 @@ y''=py'+qy
 <video controls="" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/ode/vector-derivative.mp4" type="video/mp4">
 </video>
-<blockquote>
+<div class="note note-secondary">
 <p>薛定谔方程(Schrödinger equation)是一个线性微分方程： <span class="math display">\[
 \dv{}{t}\blue{\ket{\psi}}
 = \frac{1}{\i\hbar} \hat{H} \blue{\ket{\psi}}
 \]</span> 其中<span class="math inline">\(\blue{\ket{\psi(t)}}\)</span>是描述量子系统状态的向量；<span class="math inline">\(\hat{H}\)</span>是一个线性算子；<span class="math inline">\(\i\)</span>是虚数单位，<span class="math inline">\(\hbar\)</span>是约化普朗克常数. 薛定谔方程的结构和<span class="math inline">\(\displaystyle\dv{}{t}\blue{ \vb{Y}}=\vb{A}\blue{\vb{Y}}\)</span>十分相似.</p>
-</blockquote>
+</div>
 <h2 id="叠加原理">2 叠加原理</h2>
 <p>我们先不着急求解，而是研究一下这个方程的性质： <span class="math display">\[
 \vb{Y}'(t)=\vb{AY}(t)
 \]</span> 线性齐次微分方程的一个重要特性是<strong>叠加原理</strong>(superposition principle)：如果<span class="math inline">\({\color{royalblue}\vb{Y}_1}(t)\)</span>与<span class="math inline">\({\color{forestgreen}\vb{Y}_2}(t)\)</span>都是方程的解，那么它们的线性组合<span class="math inline">\(\alpha{\color{royalblue}\vb{Y}_1}(t)+\beta{\color{forestgreen}\vb{Y}_2}(t)\)</span>也是方程的解.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>原因：线性齐次微分方程<span class="math inline">\(\displaystyle\dv{}{t}\vb{Y}=\vb{AY}\)</span>的左右两边都是线性的： <span class="math display">\[
 \Align{
 \dv{}{t}(
@@ -318,7 +318,7 @@ F(\alpha{\color{royalblue}\vb{v}}) = \alpha F({\color{royalblue}\vb{v}})
 % =\alpha F({\color{royalblue}\vb{v}})
 % +\beta F({\color{forestgreen}\vb{w}})
 \]</span> （其中<span class="math inline">\(\alpha,\beta\)</span>是实数，<span class="math inline">\(\vb{v},\vb{w}\)</span>是向量）那么称映射<span class="math inline">\(F\)</span>是线性的. 导数算子<span class="math inline">\(\displaystyle\dv{}{t}\)</span>，矩阵<span class="math inline">\(\vb{A}\)</span>都是线性的.</p>
-</blockquote>
+</div>
 <p>例如，</p>
 <ul>
 <li><p>对于人口模型<span class="math inline">\(N'=rN\)</span>，当初始人口是<span class="math inline">\(n\)</span>，有<span class="math inline">\(N=N_1(t)\)</span>，那么初始人口为<span class="math inline">\({\color{coral}2}n\)</span>时，<span class="math inline">\(N={\color{coral}2}N_1(t)\)</span>.</p></li>
@@ -337,7 +337,7 @@ y(t)=\e^{at}\cdot y_0
 \quad\textsf{和}\quad
 \vb{Y}(t)=\e^{\vb{A}t}\cdot \vb{Y}_0
 \]</span> 其中<span class="math inline">\(y_0=y(0)\)</span>是一个初值条件；<span class="math inline">\(\vb{Y}_0=\vb{Y}(0)=\pmqty{y{(0)}\\y'{(0)}}\)</span>，包含了<span class="math inline">\(2\)</span>个初值条件.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><span class="math inline">\(\e^{\vb{A}}\)</span>称为矩阵<span class="math inline">\(\vb{A}\)</span>的指数函数. 回想指数函数<span class="math inline">\(f(x)=\e^x\)</span>的Taylor级数： <span class="math display">\[
 \small{
 \e^x
@@ -354,12 +354,12 @@ y(t)=\e^{at}\cdot y_0
 }
 \]</span> （认为<span class="math inline">\(\vb{A}^0=\vb{I}\)</span>为单位阵）一般把<span class="math inline">\(\e\)</span>指数函数<span class="math inline">\(\e^{\vb{A}}\)</span>记作<span class="math inline">\(\exp(\vb{A})\)</span>；函数输出的结果还是一个<span class="math inline">\(2\times2\)</span>的矩阵.</p>
 <p>当然，也可以用第二篇「一阶微分方程」<span class="math inline">\(\S4\)</span>中的思路（从差分到微分）来推导矩阵指数.</p>
-</blockquote>
+</div>
 <p>现在我们来直观地感受一下矩阵指数. 矩阵表示了一个线性变换，<span class="math inline">\(\purple{\exp(\vb{A}t)}\cdot\vb{Y}_0\)</span>表示的就是一个线性变换<span class="math inline">\(\purple{\exp(\vb{A}t)}\)</span>作用在了向量<span class="math inline">\(\vb{Y}_0\)</span>身上.</p>
 <video controls="" style="width:700px;" cloud-vid="" preload="metadata">
 <source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/ode/matrix-exponential.mp4" type="video/mp4">
 </video>
-<blockquote>
+<div class="note note-secondary">
 <p>举一个具体的例子，简谐振子的运动方程是<span class="math inline">\(\Cases{x'=v\\v'=-\dfrac{k}{m}x}\)</span>. 不妨让<span class="math inline">\(\dfrac km=1\)</span>，那么 <span class="math display">\[
 \pmqty{x\\v}'=\pmqty{0&amp;1\\-1&amp;0}\pmqty{x\\v}
 \]</span> 发现<span class="math inline">\(\vb{A}=\pmqty{0&amp;1\\-1&amp;0}\)</span>是一个顺时针<span class="math inline">\(90^\circ\)</span>的旋转矩阵，也就是说<span class="math inline">\(\vb{Y}'\)</span>的变化率与<span class="math inline">\(\vb{Y}'\)</span>垂直，也就是说，<span class="math inline">\(\vb{Y}\)</span>在<span class="math inline">\(x-v\)</span>相平面中做匀速圆周运动（如下），<span class="math inline">\(x,v\)</span>与<span class="math inline">\(t\)</span>的关系都是正弦式的.</p>
@@ -397,7 +397,7 @@ y(t)=\e^{at}\cdot y_0
 -{\color{orangered}\sin{t}} &amp; {\color{orange}\cos{t}} }
 }
 \]</span> （最后一步利用了<span class="math inline">\(\color{orange}\cos{t}\)</span>和<span class="math inline">\(\color{orangered}\sin{t}\)</span>的Taylor展开式）矩阵<span class="math inline">\(\pmqty{ {\color{orange}\cos{t}} &amp; {\color{orangered}\sin{t}}\\-{\color{orangered}\sin{t}} &amp; {\color{orange}\cos{t}} }\)</span>恰好是<u>顺时针旋转<span class="math inline">\(t\)</span>（弧度）的矩阵</u>，那么<span class="math inline">\(\vb{Y}=\pmqty{ {\color{orange}\cos{t}} &amp; {\color{orangered}\sin{t}} \\-{\color{orangered}\sin{t}} &amp; {\color{orange}\cos{t}} }\vb{Y}_0\)</span>表示：<span class="math inline">\(\vb{Y}\)</span>从<span class="math inline">\(\vb{Y}_0\)</span>开始，顺时针匀速旋转.</p>
-</blockquote>
+</div>
 <p>那么，对于一个一般的<span class="math inline">\(\vb{A}\)</span>，怎样求<span class="math inline">\(\purple{\exp(\vb{A}t)}\)</span>？我们当然希望矩阵<span class="math inline">\(\vb{A}\)</span>越简单越好，简化的方式就是把它写成更简单的矩阵的乘积（把线性变换分解为更简单的变换的复合）. 线性代数的一大主题就是把复杂的矩阵（线性算子）分解为简单的矩阵（线性算子）的乘积（复合）.</p>
 <h2 id="向量空间">4 向量空间</h2>
 <p>我们再来研究一下二阶线性微分方程的解集<span class="math inline">\(V=\set{f\,|\,f''=pf'+qf}\)</span>. 我们知道，叠加原理描述了<span class="math inline">\(V\)</span>对<u>加法、数量乘法</u>的封闭性： <span class="math display">\[
@@ -406,18 +406,18 @@ y(t)=\e^{at}\cdot y_0
 \textsf{如果}f\in V, \hspace{5pt}&amp; \textsf{那么}\alpha f\in V \quad (\alpha\in\R)
 }
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p>其中，函数的加法和数乘的概念是很自然的：</p>
 <ul>
 <li>加法：<span class="math inline">\((f+g)(x)=f(x)+g(x)\)</span>.</li>
 <li>数量乘法：<span class="math inline">\((\alpha f)(x)=\alpha f(x)\)</span>（<span class="math inline">\(\alpha\in\R\)</span>）.</li>
 </ul>
-</blockquote>
+</div>
 <p>这样的集合<span class="math inline">\(V\)</span>十分特殊，以至于我们专门给它了一个定义.</p>
 <p>我们把这种定义了加法与数量乘法（且对这两种运算封闭）的集合<span class="math inline">\(V\)</span>称作<strong>向量空间</strong>(vector space)，<span class="math inline">\(V\)</span>里面的元素<span class="math inline">\(f,g,\dots\)</span>叫做<strong>向量</strong>(vector).</p>
-<blockquote>
+<div class="note note-secondary">
 <p>这里的定义是简化版本. 要成为一个向量空间，<span class="math inline">\(V\)</span>上的加法、数量乘法还要满足一些性质，比如交换律、结合律、分配律.</p>
-</blockquote>
+</div>
 <p>我们在高中接触过平面向量，那时我们定义平面向量<span class="math inline">\(\vb{a}\)</span>是一个有方向、有大小的量，可以形象地表示为二维空间中的有向线段<span class="math inline">\(\va{OA}\)</span>，也可以表示成有序实数对<span class="math inline">\((x,y)\)</span>；与之类似的，物理中的矢量是一个有大小、方向的量，而且满足平行四边形法则……</p>
 <p>"向量空间"就是这些概念的<u>推广</u>：以上这些（平面向量的集合、有序实数对的集合、某一点上所有矢量的集合、函数的集合……）都是向量空间.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/vector-space-abstraction.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
@@ -436,7 +436,7 @@ y(t)=\e^{at}\cdot y_0
 <p>如果把线性空间比作舞台，那线性映射就是舞台上的表演. 线性映射的理论是线性代数中最精彩的部分.</p></li>
 <li><p>……</p></li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>当然，普适的代价是抽象（Abstractness is the price of generality），如果要得出脱离于具体实例的结论，当然要抛弃一部分具体与直观；但是在研究的过程中，借助直观的实例来探究、理解还是很有帮助的.</p>
 <p>下面是一些个人想法<span class="math inline">\((^-\,_\Lambda\,^-\,)\)</span></p>
 <p>在学习抽象概念的时候，极为重要的一点就是理解这个概念，构建起概念间的关系，形成框架. 在此之后，再往里面填充细节（比如定理的证明、习题等）.</p>
@@ -446,7 +446,7 @@ y(t)=\e^{at}\cdot y_0
 <li>学习不图快，也不必急，只要理解层次到了，那顿悟就是一瞬间的事.</li>
 <li>上面的"直观"包括但不限于通常说的"几何直观"，只要你构建了清晰的框架，代数什么的也可以很直观.</li>
 </ul>
-</blockquote>
+</div>
 </body></html>
                 
               </div>
@@ -846,7 +846,6 @@ y(t)=\e^{at}\cdot y_0
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

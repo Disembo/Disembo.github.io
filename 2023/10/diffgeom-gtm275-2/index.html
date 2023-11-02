@@ -18,14 +18,14 @@
   
     <meta name="description" content="GTM275的笔记.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM275 | 2 Curvature &amp; Vector Fields">
+<meta property="og:title" content="GTM275 | 2 曲率与向量场">
 <meta property="og:url" content="https://disembo.gitee.io/2023/10/diffgeom-gtm275-2/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="GTM275的笔记.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/disembo/media/raw/master/diffgeom-gtm275/5-3-local-operators-F-linearity.png">
 <meta property="article:published_time" content="2023-10-23T14:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-24T07:00:32.953Z">
+<meta property="article:modified_time" content="2023-10-25T12:50:33.079Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -35,7 +35,7 @@
   
   
   
-  <title>GTM275 | 2 Curvature &amp; Vector Fields | Jin&#39;s Blog</title>
+  <title>GTM275 | 2 曲率与向量场 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM275 | 2 Curvature &amp; Vector Fields"></span>
+            <span id="subtitle" data-typed-text="GTM275 | 2 曲率与向量场"></span>
           
         </div>
 
@@ -262,20 +262,20 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">GTM275 | 2 Curvature &amp; Vector Fields</h1>
+            <h1 style="display: none">GTM275 | 2 曲率与向量场</h1>
             
             
               <div class="markdown-body">
                 
-                <html><head></head><body><blockquote>
+                <html><head></head><body><div class="note note-secondary">
 <p>GTM275(<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>)第7-9节的笔记.</p>
-</blockquote>
+</div>
 <h2 id="vector-bundles">4  Vector Bundles</h2>
 <p>光滑向量场间的<span class="math inline">\({\cal F}\)</span>-线性映射是可以逐点(pointwise)定义的. 例如, 黎曼曲率<span class="math inline">\(R(X,Y)Z\)</span>关于<span class="math inline">\(X,Y,Z\)</span>都是<span class="math inline">\({\cal F}\)</span>-线性的, 那么就可以定义某一点的曲率<span class="math inline">\(R_p(X_p,Y_p)Z_p:=(R(X,Y)Z)_p\)</span>, 其中<span class="math inline">\(X,Y,Z\)</span>是<em>任意</em>延拓<span class="math inline">\(X_p,Y_p,Z_p\)</span>的向量场. 这一性质固然可以在向量场的框架内证明, 但是在向量丛的框架内是最自然的.</p>
 <h3 id="vector-bundles-1">4.1  Vector bundles</h3>
-<blockquote>
+<div class="note note-secondary">
 <p>想象流形<span class="math inline">\(M\)</span>的每一点<span class="math inline">\(p\)</span>都附上一个<span class="math inline">\(r\)</span>维实线性空间<span class="math inline">\(E_p\)</span>(每一点都长出了许多向量), 将这些线性空间拼起来, 就得到了一个"向量丛".</p>
-</blockquote>
+</div>
 <p>一个<strong>光滑向量丛(smooth vector bundle)</strong>指的是光滑的满射(投影映射)<span class="math inline">\(\pi:E\to M\)</span>, 满足</p>
 <ol type="1">
 <li><p>对任意<span class="math inline">\(p\in M\)</span>, 集合<span class="math inline">\(E_p:=\pi^{-1}(p)\)</span>是一个<span class="math inline">\(r\)</span>维实线性空间, 称为<span class="math inline">\(p\)</span>点的<strong>纤维(fiber)</strong>.</p></li>
@@ -325,7 +325,7 @@ f_*(p,v) := (f(p), f_*v).
 <ul>
 <li>向量丛必定局部平凡, 也就是说必定存在局部标架(即每个平凡化开子集<span class="math inline">\(U\)</span>上都存在标架).</li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 设<span class="math inline">\(E\)</span>是平凡的, 则存在一个光滑平凡化<span class="math inline">\(\phi:E\to M\times\R^r\)</span>. 设<span class="math inline">\(\qty{v_1,\dots,v_r}\)</span>是<span class="math inline">\(\R^r\)</span>的标准基底, 则截面族 <span class="math display">\[
 e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 \]</span> 给出了<span class="math inline">\(E\)</span>的一个光滑标架.</p>
@@ -334,46 +334,46 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 \]</span> 是一个光滑映射, 其逆 <span class="math display">\[
 \psi:M\times\R^r\to E,\quad (p,a^1,\dots,a^r)\mapsto\sum a^i e_i(p)
 \]</span> 也是光滑的, 意味着<span class="math inline">\(E\)</span>同构于<span class="math inline">\(M\times\R^r\)</span>.</p>
-</blockquote>
+</div>
 <p>一个流形<span class="math inline">\(M\)</span>上的丛映射<span class="math inline">\(\phi:E\to F\)</span>诱导出了截面之间的映射<span class="math inline">\(\phi_\#:\Gamma(E)\to\Gamma(F)\)</span>, <span class="math display">\[
 \phi_\#(s) := \phi\circ s.
 \]</span> 可以证明, 截面映射<span class="math inline">\(\phi_\#\)</span>是<span class="math inline">\({\cal F}\)</span>-线性的, 而接下来两节的任务就是证明任意一个<span class="math inline">\({\cal F}\)</span>-线性映射<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>都是由某个丛映射诱导出来的, 即<span class="math inline">\(\alpha=\phi_\#\)</span>.</p>
 <p>在此之前, 先给出一个有用的命题.</p>
 <p><u>Claim 2</u>(光滑截面的延拓) 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E\)</span>, <span class="math inline">\(s\)</span>是定义在开集<span class="math inline">\(U\)</span>上的光滑截面, 点<span class="math inline">\(p\in U\)</span>, 则存在<span class="math inline">\(M\)</span>上的光滑截面<span class="math inline">\(\bar{s}\)</span>, 使得在<span class="math inline">\(p\)</span>的某邻域<span class="math inline">\(N\)</span>上, <span class="math inline">\(s|_N=\bar{s}|_N\)</span>.</p>
 <h3 id="local-and-point-operators">4.3  Local and point operators</h3>
-<blockquote>
+<div class="note note-secondary">
 <p>我们说<span class="math inline">\(\R^n\)</span>上的方向导数<span class="math inline">\(D_X\)</span>具有"局部性": 若两个光滑函数<span class="math inline">\(f,g\)</span>在某开集<span class="math inline">\(U\)</span>上相等, 则两者的方向导数<span class="math inline">\(D_Xf\)</span>和<span class="math inline">\(D_Xg\)</span>在<span class="math inline">\(U\)</span>上也相等. 也就是说, 方向导数<span class="math inline">\(D_X\)</span>不关心函数在<span class="math inline">\(\R^n\)</span>上的整体行为, 而只关心函数在某一点附近(邻域内)的行为.</p>
 <p>下面用符号的语言描述<span class="math inline">\(D_X\)</span>的这一性质: 设光滑函数<span class="math inline">\(f,g\)</span>在开集<span class="math inline">\(U\)</span>上相等, 即<span class="math inline">\(f-g=0\)</span>, 则其方向导数也相等, 即<span class="math inline">\(D_Xf=D_Xg\)</span>, 或者<span class="math inline">\(D_X(f-g)=0\)</span>. 记<span class="math inline">\(F:=f-g\)</span>, 则局部性指的是<span class="math inline">\(F=0\Rightarrow D_XF=0\)</span>(在某开集<span class="math inline">\(U\)</span>上).</p>
-</blockquote>
+</div>
 <p>设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 一个<span class="math inline">\(\R\)</span>-线性映射<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>称为一个<strong>局部算子(local operator)</strong>, 如果: 若截面<span class="math inline">\(s\in\Gamma(E)\)</span>在某开集<span class="math inline">\(U\subset M\)</span>上恒为零, 则<span class="math inline">\(\alpha(s)\)</span>在<span class="math inline">\(U\)</span>上也恒为零. <span class="math inline">\(\alpha\)</span>称为一个<strong>点算子(point operator)</strong>(或者逐点算子), 如果<span class="math inline">\(s(p)=0\)</span>可以推出<span class="math inline">\(\alpha(s)(p)=0\)</span>, 对任意<span class="math inline">\(p\in M\)</span>.</p>
 <ul>
 <li>局部算子只关心截面<span class="math inline">\(s\)</span>在某个邻域内的取值; 点算子只关心<span class="math inline">\(s\)</span>在某点的取值.</li>
 <li>联络<span class="math inline">\(\nabla_X\)</span>是<span class="math inline">\(\Gamma(TM)\)</span>上的局部算子; 与函数相乘的算子<span class="math inline">\(s\mapsto fs\)</span>是<span class="math inline">\(\Gamma(TM)\)</span>上的点算子.</li>
 </ul>
 <p><u>Claim 1</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 映射<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>, 若<span class="math inline">\(\alpha\)</span>是<span class="math inline">\(\cal F\)</span>-线性的, 则<span class="math inline">\(\alpha\)</span>是局部算子.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 设<span class="math inline">\(s\in\Gamma(E)\)</span>在开集<span class="math inline">\(U\)</span>上恒为零, 任取<span class="math inline">\(p\in U\)</span>, 设光滑函数<span class="math inline">\(f_p:M\to\R\)</span>满足: ①<span class="math inline">\(f(p)=1\)</span>, ②<span class="math inline">\({\rm supp}\,f\subset U\)</span>, 如下图.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/diffgeom-gtm275/5-3-local-operators-F-linearity.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>于是<span class="math inline">\(fs\in\Gamma(E)\)</span>且<span class="math inline">\(fs\equiv0\)</span>在<span class="math inline">\(M\)</span>上恒成立, 于是(据<span class="math inline">\(\R\)</span>-线性性)<span class="math inline">\(\alpha(fs)\equiv0\)</span>. 又由<span class="math inline">\(\cal F\)</span>-线性性有 <span class="math display">\[
 0 = \alpha(fs) = f\alpha(s),
 \]</span> 在<span class="math inline">\(p\)</span>点取值, 有<span class="math inline">\(f(p)\alpha(s)(p)=0\)</span>, 即<span class="math inline">\(\alpha(s)(p)=0\)</span>. 又根据<span class="math inline">\(p\)</span>的任意性, 在<span class="math inline">\(U\)</span>上有<span class="math inline">\(\alpha(s)\equiv0\)</span>.</p>
-</blockquote>
+</div>
 <p><span class="math inline">\({\cal F}\)</span>-线性性是<span class="math inline">\(\alpha\)</span>局部的一个充分不必要条件. 联络<span class="math inline">\(\nabla_X:{\frak X}(M)\to{\frak X}(M)\)</span>不具有<span class="math inline">\({\cal F}\)</span>-线性性, 而满足Leibniz律, 可以证明它也是局部的.</p>
 <p>局部算子的一个好处是它可以被(唯一地)限制到任意开集上.</p>
 <p><u>Claim 2</u> 设流形<span class="math inline">\(M\)</span>上的向量丛<span class="math inline">\(E,F\)</span>, 局部算子<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>, 则对任意开集<span class="math inline">\(U\subset M\)</span>, 唯一存在一个线性算子<span class="math inline">\(\alpha_U:\Gamma(U,E)\to\Gamma(U,F)\)</span>, 满足 <span class="math display">\[
 \alpha_U(t|_U) = \alpha(t)|_U, \quad\forall t\in\Gamma(E),
 \]</span> 称为<span class="math inline">\(\alpha\)</span>在<span class="math inline">\(U\)</span>上的<strong>限制(restriction)</strong>. 而且, 如果<span class="math inline">\(\alpha\)</span>是<span class="math inline">\({\cal F}\)</span>-线性的, 则<span class="math inline">\(\alpha_U\)</span>是<span class="math inline">\({\cal F}(U)\)</span>-线性的.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 设截面<span class="math inline">\(s\in\Gamma(U,E)\)</span>, 点<span class="math inline">\(p\in U\)</span>. 根据上一节Claim 2, 存在截面<span class="math inline">\(\bar{s}\in\Gamma(M,E)\)</span>, 且<span class="math inline">\(s,\bar{s}\)</span>在<span class="math inline">\(p\)</span>的某邻域<span class="math inline">\(W\)</span>取值相同. 定义 <span class="math display">\[
 \alpha_U(s)(p) := \alpha(\bar{s})(p).
 \]</span> 下面我们说明<span class="math inline">\(\alpha_U\)</span>是良定义的, 即与<span class="math inline">\(\bar{s}\)</span>的选取无关. 取另一截面<span class="math inline">\(\tilde{s}\in\Gamma(M,E)\)</span>满足<span class="math inline">\(s,\tilde{s}\)</span>在<span class="math inline">\(W\)</span>取值相同, 则在<span class="math inline">\(W\)</span>上有<span class="math inline">\(\bar{s}=\tilde{s}\)</span>, 由<span class="math inline">\(\alpha\)</span>的局部性, <span class="math inline">\(\alpha(\bar{s})=\alpha(\tilde{s})\)</span>, 进而<span class="math inline">\(\alpha(\bar{s})(p)=\alpha(\tilde{s})(p)\)</span>, 这说明<span class="math inline">\(\alpha_U(s)(p)\)</span>与<span class="math inline">\(\bar{s}\)</span>的选取无关.</p>
 <p>设全局截面<span class="math inline">\(t\in\Gamma(M,E)\)</span>, 有<span class="math inline">\(\alpha_U(t|_U)(p)=\alpha(t)(p)\)</span>对任意<span class="math inline">\(p\in U\)</span>, 则<span class="math inline">\(\alpha_U(t|_U)=\alpha(t)|_U\)</span>, 即证.</p>
-</blockquote>
+</div>
 <p>下面的命题告诉我们: 一个<span class="math inline">\({\cal F}\)</span>-线性的截面映射不光是局部的, 而且还是逐点的. 我们知道(Claim 2), 局部算子可以唯一地限制到任意开集上, 而逐点算子则可以唯一地"限制"到任意一点, 即唯一地诱导出纤维<span class="math inline">\(E_p\to F_p\)</span>的线性映射.</p>
 <p><u>Claim 3</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 映射<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>, 若<span class="math inline">\(\alpha\)</span>是<span class="math inline">\(\cal F\)</span>-线性的, 则<span class="math inline">\(\alpha\)</span>是点算子. 此时, 对每个点<span class="math inline">\(p\in M\)</span>都唯一存在线性映射<span class="math inline">\(\phi_p:E_p\to F_p\)</span>, 满足 <span class="math display">\[
 \phi_p(s(p)) = \alpha(s)(p), \quad\forall s\in\Gamma(E).
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 任给<span class="math inline">\(p\)</span>, 设<span class="math inline">\(p\)</span>的邻域<span class="math inline">\(U\)</span>上有标架<span class="math inline">\(\qty{e_1,\dots,e_r}\)</span>. 截面<span class="math inline">\(s\)</span>在<span class="math inline">\(U\)</span>上展开为<span class="math inline">\(s|_U=a^\mu e_\mu\)</span>(其中<span class="math inline">\(a^\mu\in{\cal F}(U)\)</span>). 设<span class="math inline">\(s(p)=0\)</span>, 则<span class="math inline">\(a^\mu(p)=0\)</span>. 由Claim 2, <span class="math inline">\(\alpha\)</span>可以被限制到<span class="math inline">\(U\)</span>上, 且 <span class="math display">\[
 \Align{
 \alpha(s)(p) 
@@ -389,14 +389,14 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 = a\alpha(s_1)(p) + \alpha(s_2)(p)
 = a\phi_p(e_1)+\phi_p(e_2).
 \]</span></p>
-</blockquote>
+</div>
 <h3 id="cal-f-linear-section-maps-and-bundle-maps">4.4  <span class="math inline">\(\cal F\)</span>-linear section maps and bundle maps</h3>
 <p>上一节的Claim 3告诉我们, 一个光滑的<span class="math inline">\({\cal F}\)</span>-线性的截面映射<span class="math inline">\(\alpha\)</span>可以诱导出一族纤维映射<span class="math inline">\(\qty{\phi_p}_{p\in M}\)</span>, 而一个丛映射<span class="math inline">\(\psi:E\to F\)</span>无非就是一族纤维映射<span class="math inline">\(\qty{\psi_p}_{p\in M}\)</span>以一种"光滑"的方式组合起来, 所以说距离我们最终的目标(以截面映射<span class="math inline">\(\alpha\)</span>构造出丛映射<span class="math inline">\(\phi\)</span>)只差"光滑"这一步. 这恰恰是下面Claim 1要解决的.</p>
 <p><u>Claim 1</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 映射<span class="math inline">\(\phi:E\to F\)</span>保纤维(<span class="math inline">\(\phi(E_p)\subset F_p\)</span>), 且在每个纤维上都是线性映射, 则 <span class="math display">\[
 \phi\,\textsf{是光滑的}
 \iff\phi_\#\,\textsf{将光滑截面映到光滑截面.}
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> (<span class="math inline">\(\Rightarrow\)</span>) 若<span class="math inline">\(\phi\)</span>是光滑的, <span class="math inline">\(s\in\Gamma(E)\)</span>是光滑的, 那么<span class="math inline">\(\phi_\#(s)=\phi\circ s\)</span>也是光滑的.</p>
 <p>(<span class="math inline">\(\Leftarrow\)</span>) 任给定<span class="math inline">\(p\in M\)</span>, 设<span class="math inline">\(p\)</span>的邻域<span class="math inline">\(U\)</span>上有<span class="math inline">\(E,F\)</span>的标架<span class="math inline">\(\qty{e_1,\dots,e_r},\qty{f_1,\dots,f_m}\)</span>. 设 <span class="math display">\[
 \phi_\# (e_\mu) = A^\nu{_\mu}f_\nu,
@@ -406,7 +406,7 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 \phi(x^1,\dots,x^n,a^1,\dots,a^r)
 = (x^1,\dots,x^n,A^1{_\mu}a^\mu,\dots,A^m{_\mu}a^\mu)
 \]</span> 是<span class="math inline">\(E|_U\to F\)</span>的光滑映射.</p>
-</blockquote>
+</div>
 <p>至此, 我们终于可以得到想要的结论.</p>
 <p><u>Claim 2</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 则存在一一对应关系: <span class="math display">\[
 \Align{
@@ -415,7 +415,7 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 \phi &amp;{}\,\longmapsto\, \phi_\#.
 }
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 先证明满射. 设<span class="math inline">\(\cal{F}\)</span>-线性的截面映射<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>, 根据上一节Claim 3, 对任意<span class="math inline">\(p\in M\)</span>存在<span class="math inline">\(\phi_p:E_p\to F_p\)</span>, 满足<span class="math inline">\(\phi_p(s(p))=\alpha(s)(p)\)</span>. 定义<span class="math inline">\(\phi:E\to F\)</span>, <span class="math inline">\(\phi(e):=\phi_p(e)\)</span>, 其中<span class="math inline">\(e\in E_p\)</span>. 对任意<span class="math inline">\(s\in\Gamma(E)\)</span>, <span class="math inline">\(p\in M\)</span>, <span class="math display">\[
 \phi_\# (s)(p) = \phi(s(p)) = \phi_p(s(p)) = \alpha(s)(p),
 \]</span> 所以<span class="math inline">\(\phi_\#=\alpha\)</span>. 因为<span class="math inline">\(\phi_\#\)</span>将光滑截面映到光滑截面, 由本节Claim 1, <span class="math inline">\(\phi\)</span>是光滑的丛映射.</p>
@@ -425,7 +425,7 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 &amp;= \psi_\# (s)(p) = \psi(s(p)) = \psi(e),
 }
 \]</span> 得到<span class="math inline">\(\phi=\psi\)</span>, 即证.</p>
-</blockquote>
+</div>
 <h3 id="generalization-to-calf-multilinear-section-maps">4.5  Generalization to <span class="math inline">\(\cal{F}\)</span>-multilinear section maps</h3>
 <p>很容易将4.3节的Claim 3推广到多线性映射, 证明是相似的.</p>
 <p><u>Claim 1</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E_1,\dots,E_n,F\)</span>, 若 <span class="math display">\[
@@ -451,7 +451,7 @@ R(X,Y)Z=\lr{L(Y),Z}L(X)-\lr{L(X),Z}L(Y);
 \nabla_XL(Y)-\nabla_YL(X)-L([X,Y])=0.
 \]</span></p></li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 子流形<span class="math inline">\(M\)</span>的黎曼联络<span class="math inline">\(\nabla\)</span>是<span class="math inline">\(\R^3\)</span>的黎曼联络<span class="math inline">\(D\)</span>的正交投影, 也即 <span class="math display">\[
 D_YZ = \nabla_YZ + \lr{D_YZ,N}N = \nabla_YZ+\lr{L(Y),Z}N. \tag{a}
 \]</span> 所以 <span class="math display">\[
@@ -488,7 +488,7 @@ D_{[X,Y]}Z = \nabla_{[X,Y]}Z + \lr{L([X,Y]),Z}N. \tag{d}
 <p>法向分量为零, 结合<span class="math inline">\(\nabla\)</span>与<span class="math inline">\(\lr{\cdot,\cdot}\)</span>适配, 化简得 <span class="math display">\[
 \lr{\nabla_XL(Y),Z}-\lr{\nabla_YL(X),Z}-\lr{L([X,Y]),Z}=0.
 \]</span> 由<span class="math inline">\(Z\)</span>的任意性, 必有<span class="math inline">\(\nabla_XL(Y)-\nabla_YL(X)-L([X,Y])=0\)</span>成立, 即Codazzi–Mainardi方程.</p>
-</blockquote>
+</div>
 <ul>
 <li>根据第4.5节的结论, 因为<span class="math inline">\(R(X,Y)Z\)</span>是<span class="math inline">\({\cal F}\)</span>-多线性的, 可以定义<span class="math inline">\(p\)</span>点的曲率 <span class="math display">\[
 R_p(X_p,Y_p)Z_p := (R(X,Y)Z)_p,
@@ -501,7 +501,7 @@ K_p = \lr{R_p(e_1,e_2)e_2,e_1}.
 \]</span></p></li>
 <li><p>高斯曲率是<span class="math inline">\(\R^3\)</span>中光滑曲面的等距不变量.</p></li>
 </ol>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 第一部分. 设<span class="math inline">\(L(e_1)=ae_1+be_2\)</span>, <span class="math inline">\(L(e_2)=be_1+ce_2\)</span>, 则(两边取内积) <span class="math display">\[
 \Align{
 a &amp;= \lr{L(e_1),e_1}, &amp;
@@ -523,11 +523,11 @@ R_p(e_1,e_2)e_2 = \lr{L(e_2),e_2}L(e_1)-\lr{L(e_1),e_2}L(e_2),
 &amp;=K_p,
 }
 \]</span> (其中第二步根据3.3的Claim 3; 第三步根据等距同构的定义) 这说明高斯曲率<span class="math inline">\(K\)</span>是等距不变量.</p>
-</blockquote>
+</div>
 <p><u>Claim 3</u> (任意基底下的高斯曲率) 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, 点<span class="math inline">\(p\in M\)</span>, <span class="math inline">\(\qty{u,v}\)</span>是<span class="math inline">\(T_pM\)</span>的基底, 则高斯曲率 <span class="math display">\[
 K_p = \frac{ \lr{R_p(u,v)v,u} }{ \lr{u,u}\lr{v,v}-\lr{u,v}^2 }.
 \]</span></p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 设<span class="math inline">\(\qty{e_1,e_2}\)</span>是<span class="math inline">\(T_pM\)</span>的正交归一基底, <span class="math inline">\(u=ae_1+be_2\)</span>, <span class="math inline">\(v=ce_1+de_2\)</span>, 根据黎曼曲率的线性性和反对称性, 有<span class="math inline">\(R_p(u,v) = (ad-bc)R_p(e_1,e_2)\)</span>, 进而 <span class="math display">\[
 \lr{R_p(u,v)v,u} = (ad-bc)^2\lr{R_p(e_1,e_2)e_2,e_1}.
 \]</span> 另一方面, <span class="math display">\[
@@ -535,7 +535,7 @@ K_p = \frac{ \lr{R_p(u,v)v,u} }{ \lr{u,u}\lr{v,v}-\lr{u,v}^2 }.
 = (a^2+b^2)(c^2+d^2)-(ac+bd)^2
 = (ad-bc)^2,
 \]</span> 所以<span class="math inline">\(K_p = \dfrac{ \lr{R_p(u,v)v,u} }{ \lr{u,u}\lr{v,v}-\lr{u,v}^2 }\)</span>.</p>
-</blockquote>
+</div>
 <h2 id="generalization-to-hypersurfaces">6  Generalization to Hypersurfaces</h2>
 <p>之前的讨论是很容易推广到高维空间的.</p>
 <h3 id="the-shape-operator">6.1  The shape operator</h3>
@@ -637,7 +637,7 @@ R(X,Y)Z=\lr{L(Y),Z}L(X)-\lr{L(X),Z}L(Y);
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM275 | 2 Curvature &amp; Vector Fields</div>
+      <div>GTM275 | 2 曲率与向量场</div>
       <div>https://disembo.gitee.io/2023/10/diffgeom-gtm275-2/</div>
     </div>
     <div class="license-meta">
@@ -981,7 +981,6 @@ R(X,Y)Z=\lr{L(Y),Z}L(X)-\lr{L(X),Z}L(Y);
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

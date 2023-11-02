@@ -268,9 +268,9 @@
             
               <div class="markdown-body">
                 
-                <html><head></head><body><blockquote>
+                <html><head></head><body><div class="note note-secondary">
 <p>梁灿彬, 周彬《微分几何入门与广义相对论》第一章, 第二章的笔记.</p>
-</blockquote>
+</div>
 <h2 id="topology-baiscs">1  Topology Baiscs</h2>
 <h3 id="topological-spaces">1.1  Topological spaces</h3>
 <p>给集合赋予一种结构(开集):</p>
@@ -360,11 +360,11 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 <li>(Leibniz法则) <span class="math inline">\(v(fg)=f|_pv(g)+g|_pv(f)\)</span>.</li>
 </ol>
 <p>则称<span class="math inline">\(v\)</span>是流形<span class="math inline">\(M\)</span>中, 点<span class="math inline">\(p\)</span>的一个向量. <span class="math inline">\(p\)</span>点的全体向量的集合记作<span class="math inline">\(V_p\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>向量可以理解为求<span class="math inline">\(f\)</span>在<span class="math inline">\(v\)</span>"方向"的"方向导数"(于点<span class="math inline">\(p\)</span>).</p>
-</blockquote>
+</div>
 <p><u>Claim 1</u> <span class="math inline">\(V_p\)</span>是一个向量空间, 且<span class="math inline">\(\dim{V_p}=\dim{M}\equiv n\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 定义加法与数乘: <span class="math inline">\((v+u)(f):=v(f)+u(f)\)</span>, <span class="math inline">\((\alpha v)(f):=\alpha v(f)\)</span>, 于是零元<span class="math inline">\(\underline{0}(f)=0\in\R\)</span>.</p>
 <p>在<span class="math inline">\(p\)</span>附近选定坐标系<span class="math inline">\((O_p,\psi_p)\)</span>. 定义向量<span class="math inline">\(\displaystyle X_\mu(f):=\eval{\pdv{f(x)}{x^\mu}}_p\)</span>(<span class="math inline">\(\mu=1,2,\dots,n\)</span>), 下证其构成<span class="math inline">\(V_p\)</span>的一个基底.</p>
 <ol type="A">
@@ -373,7 +373,7 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 \]</span> 又<span class="math inline">\(\rhs=0\)</span>, <span class="math inline">\(\displaystyle\lhs=\alpha^\mu X_\mu(x^\nu)=\alpha^\mu\pdv{x^\nu}{x^\mu}=\alpha^\mu\delta^\nu_\mu=\alpha^\nu\)</span>, 所以<span class="math inline">\(\alpha^\nu=0\)</span>, <span class="math inline">\(X_\mu\)</span>线性无关.</p></li>
 <li><p>可线性表出性. 由<span class="math inline">\(\forall v\in V:v=v^\mu X_\mu\)</span>两边作用于<span class="math inline">\(x^\nu\)</span>, 可以得到<span class="math inline">\(v^\nu=v(x^\nu)\)</span>(<span class="math inline">\(\nu=1,2,\dots,n\)</span>).</p></li>
 </ol>
-</blockquote>
+</div>
 <p><span class="math inline">\(\set{X_\mu}\)</span>称为一个<strong>坐标基底(coordinate basis)</strong>, <span class="math inline">\(v^\mu\)</span>称为<span class="math inline">\(v\)</span>的坐标分量.</p>
 <p><u>Claim 2</u> 两个坐标基底下, <span class="math inline">\(v=v^\mu X_\mu=v'^\nu X'_\nu\)</span>, 则坐标分量满足<span class="math inline">\(\displaystyle v'^\nu=\eval{\pdv{x'^\nu}{x^\mu}}_p v^\mu\)</span>.</p>
 <p><strong>曲线(curve)</strong>: 映射<span class="math inline">\(c:I\to M\)</span>. 如果有一个坐标系<span class="math inline">\((O,\psi)\)</span>, <span class="math inline">\(c[I]\subset O\)</span>, 那么点坐标分量<span class="math inline">\(x^\mu=x^\mu(t)\)</span>(<span class="math inline">\(\mu=1,\dots,n\)</span>), 这就是曲线的参数式.</p>
@@ -382,9 +382,9 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 <p><span class="math inline">\(M\)</span>中某坐标系<span class="math inline">\(\qty{O,\psi}\)</span>的坐标线是仅有一个分量能够自由变化的曲线. 可以验证, <span class="math inline">\(X_\mu\)</span>是第<span class="math inline">\(\mu\)</span>个坐标的坐标线的切向量: <span class="math inline">\(\displaystyle X_\mu\equiv\pdv{}{x^\mu}\)</span>.</p>
 <p>应用链式法则可得, 切向量的坐标分量是该曲线的参数式之导数: <span class="math inline">\(\displaystyle \pdv{}{t}=\dv{x^\mu(t)}{t}\cdot\pdv{}{x^\mu}\)</span>.</p>
 <p>对于<span class="math inline">\(p\)</span>点的向量空间<span class="math inline">\(V_p\)</span>中每个向量<span class="math inline">\(v\)</span>, 都存在一条曲线, 使得<span class="math inline">\(v\)</span>是它的切向量, 所以<span class="math inline">\(V_p\)</span>也称为<span class="math inline">\(p\)</span>点的<strong>切空间(tangent space)</strong>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>之前说过, <span class="math inline">\(v\in V_p\)</span>可以理解为求取方向导数的算子: <span class="math inline">\(\displaystyle v=\alpha^\mu\pdv{}{x^\mu}\)</span>, 它是坐标基向量算子(即偏导数算子)的线性组合. 注意偏导数算子依赖于坐标系的选择.</p>
-</blockquote>
+</div>
 <p><strong>向量场(vector field)</strong>: 对每一点<span class="math inline">\(p\in M\)</span>, 都取<span class="math inline">\(V_p\)</span>中一个向量<span class="math inline">\(v_p\)</span>, 就有了一个向量场. 给定了一个光滑映射<span class="math inline">\(f:M\to\R\)</span>之后, <span class="math inline">\(M\)</span>中每一点<span class="math inline">\(p\)</span>都有<span class="math inline">\(v_p(f)\in\R\)</span>, 即一个实数与之对应, 所以<span class="math inline">\(v_p(f)\)</span>可以看作一个标量场, 简记为<span class="math inline">\(v(f)\)</span>. 如果<span class="math inline">\(v(f)\)</span>是<span class="math inline">\(C^r\)</span>的, 那么称向量场<span class="math inline">\(v\)</span>是<span class="math inline">\(C^r\)</span>的.</p>
 <p><strong>对易子(commutator)</strong>: 两个<span class="math inline">\(C^\infty\)</span>向量场<span class="math inline">\(u,v\)</span>的对易子为<span class="math inline">\([u,v](f):=u(v(f))-v(u(f))\)</span>. 可以验证, 它是一个向量场. 如果<span class="math inline">\([u,v]=\underline0\)</span>, 那么称<span class="math inline">\(u,v\)</span>是对易的.</p>
 <ul>
@@ -405,33 +405,33 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 </ol>
 <p>那么<span class="math inline">\(G\equiv\set{\phi_t:t\in\R}\)</span>与(2)的乘法构成单参微分同胚群. 单位元<span class="math inline">\(\phi_0(p)=p\)</span>, 逆元<span class="math inline">\(\phi_{-t}\cdot\phi_t=\phi_0\)</span>.</p>
 <p><u>Claim 3</u> 单微群<span class="math inline">\(\overset{\longrightarrow}{\underset{\text{locally}}{\longleftarrow}} C^\infty\)</span>向量场<span class="math inline">\(v\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 给定单微群. <span class="math inline">\(\forall p\in M\)</span>, 都有<span class="math inline">\(\phi_p(0)\equiv\phi(0,p)\equiv\phi_0(p)=p\)</span>, 所以曲线<span class="math inline">\(\phi_p:\R\to M\)</span>恒过<span class="math inline">\(p\)</span>, 便可以取它在<span class="math inline">\(p\)</span>处的切向量<span class="math inline">\(T\)</span>. 由于<span class="math inline">\(p\)</span>是任意的, 所以就有了一个向量场.</p>
 <p>给定光滑向量场. <span class="math inline">\(\forall p\in M\)</span>, 都有唯一一条过<span class="math inline">\(p\)</span>的积分曲线<span class="math inline">\(c_p:I\to M\)</span>, 定义<span class="math inline">\(\phi_t(p)\equiv c_p(t)\)</span>(<span class="math inline">\(t\in I\)</span>), 注意到这只对局部的参数<span class="math inline">\(t\in I\)</span>成立.</p>
-</blockquote>
+</div>
 <h3 id="dual-vector-fields">2.3  Dual vector fields</h3>
 <p><strong>对偶空间(dual space)</strong>: 给定线性空间<span class="math inline">\(V\)</span>, 一个线性映射<span class="math inline">\(\omega:V\to\R\)</span>, 称为<span class="math inline">\(V\)</span>的一个对偶向量(dual vector), 对偶向量构成的集合称为对偶空间, 记作<span class="math inline">\(V^*\)</span>.</p>
 <p><u>Claim 1</u> <span class="math inline">\(V^*\)</span>是一个线性空间, 且<span class="math inline">\(\dim{V^*}=\dim{V}\)</span>.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 定义加法与数乘: <span class="math inline">\((\omega_1+\omega_2)(v):=\omega_1(v)+\omega_2(v)\)</span>, <span class="math inline">\((\alpha \omega)(v):=\alpha \omega(v)\)</span>; 零元<span class="math inline">\(\underline{0}(v):=0\in\R\)</span>.</p>
 <p>取<span class="math inline">\(V\)</span>的基底<span class="math inline">\(e_\mu\)</span>(<span class="math inline">\(\mu=1,\dots,n\)</span>), 定义<span class="math inline">\(e^{\mu*}:V\to\R\)</span>, 满足<span class="math inline">\(e^{\mu*}(e_\nu):=\delta^\mu{}_\nu\in\R\)</span>. 下面验证它们构成基底.</p>
 <ol type="A">
 <li><p>线性无关. <span class="math inline">\(\alpha_\mu e^{\mu*}=\underline0\)</span>有<span class="math inline">\(\forall \nu:\alpha_\mu e^{\mu*}(e_\nu)=0\)</span>即<span class="math inline">\(\alpha_\mu\delta^\mu_\nu=0\)</span>, 则<span class="math inline">\(\alpha_\nu=0\)</span>.</p></li>
 <li><p>线性表出. 对任意<span class="math inline">\(v\in V\)</span>, 令<span class="math inline">\(\omega_\mu\equiv\omega(e_\mu)\in\R\)</span>, 那么容易证明<span class="math inline">\(\omega=\omega_\mu e^{\mu*}\)</span>.</p></li>
 </ol>
-</blockquote>
+</div>
 <p><span class="math inline">\(\qty{e^{\mu*}}\)</span>称为<span class="math inline">\(V\)</span>的对偶基底(dual basis). 对<span class="math inline">\(v\in V\)</span>, 对偶基底<span class="math inline">\(e^{\mu*}\)</span>的作用是取(基底<span class="math inline">\(e^\nu\)</span>下)<span class="math inline">\(v\)</span>的第<span class="math inline">\(\mu\)</span>个分量.</p>
 <p>若两个线性空间<span class="math inline">\(V,V'\)</span>之间有一个线性双射<span class="math inline">\(L\)</span>, 那么称<span class="math inline">\(L\)</span>为<strong>同构映射(isomorphism)</strong>, 称<span class="math inline">\(V,V'\)</span>是同构的(isomorphic). <span class="math inline">\(V,V'\)</span>同构<span class="math inline">\(\iff\dim{V}=\dim{V'}\)</span>. <span class="math inline">\(V\)</span>和<span class="math inline">\(V^*\)</span>同构.</p>
 <p>自然同构: <span class="math inline">\(V,V^*,V^{**}\)</span>两两同构. 构造<span class="math inline">\(L:V\to V^{**},v\mapsto v^{**}\)</span>, 满足<span class="math inline">\(v^{**}(\omega)=\omega(v)\)</span>(<span class="math inline">\(\forall\omega\in V^*\)</span>), 称<span class="math inline">\(L\)</span>是<span class="math inline">\(V,V^{**}\)</span>的自然同构. 一般将<span class="math inline">\(V,V^{**}\)</span>认为等同.</p>
 <p><u>Claim 2</u> 基变换. 若<span class="math inline">\(e'_\mu=A^\nu{}_\mu e_\nu\)</span>, 那么对偶基底<span class="math inline">\(e'^{\mu*}=(\tilde{A}^{-1})_\nu{}^\mu e^{\nu*}\)</span>.(<span class="math inline">\(\tilde{A}\)</span>为转置矩阵.)</p>
 <p><strong>对偶向量场(dual vector field)</strong>: 对每一点<span class="math inline">\(p\)</span>, 都取<span class="math inline">\(V_p^*\)</span>中一个向量<span class="math inline">\(\omega\)</span>, 就有了一个对偶矢量场. 称一个对偶向量场<span class="math inline">\(\omega\)</span>是<span class="math inline">\(C^\infty\)</span>的, 若对于任何<span class="math inline">\(C^\infty\)</span>向量场<span class="math inline">\(v\)</span>, 都有<span class="math inline">\(\omega(v)\)</span>是<span class="math inline">\(C^\infty\)</span>标量场.</p>
-<blockquote>
+<div class="note note-info">
 <p><u>Example</u> 对<span class="math inline">\(f\in\mathcal{F}_M\)</span>, 设对偶向量场<span class="math inline">\(\dd{f}\)</span>(称为<span class="math inline">\(f\)</span>诱导的对偶向量场), 让它在<span class="math inline">\(p\)</span>点的取值, 再作用于<span class="math inline">\(v\)</span>, 满足<span class="math inline">\(\dd{f}|_p(v):=v(f)\)</span>(<span class="math inline">\(\forall v\in V_p\)</span>). 对一个"方向导数算子"<span class="math inline">\(v\)</span>, 对偶向量场的效果就是把<span class="math inline">\(v\)</span>作用在<span class="math inline">\(f\)</span>上.</p>
 <p>建立坐标系<span class="math inline">\((O,\psi)\)</span>, 取<span class="math inline">\(p\in O\)</span>, 坐标标量场<span class="math inline">\(x^\mu\)</span>(取点<span class="math inline">\(p\)</span>的第<span class="math inline">\(\mu\)</span>坐标分量), 坐标基矢<span class="math inline">\(\displaystyle\pdv{}{x^\nu}\)</span>, 则 <span class="math display">\[
 \dd{x^\mu}\pqty{\pdv{}{x^\nu}}
 =\pdv{}{x^\nu}(\dd{x}^\mu)=\delta^\mu{}_\nu,
 \]</span> 称<span class="math inline">\(\dd{x^\mu}\)</span>为<strong>对偶坐标基矢</strong>.</p>
-</blockquote>
+</div>
 <p><u>Claim 3</u> <span class="math inline">\(\displaystyle\dd{f}=\pdv{f}{x^\mu}\dd{x^\mu}\)</span>, 对<span class="math inline">\(f\in\mathcal{F}_O\)</span>(注意等式右边的<span class="math inline">\(f\)</span>的自变量是在坐标系<span class="math inline">\((O,\psi)\)</span>中取值的).</p>
 <p><u>Claim 4</u> 坐标变换(与2.2 Claim 2向结合; 注意指标平衡): <span class="math display">\[
 \Align{
@@ -443,10 +443,10 @@ v=v^\mu\pdv{}{x^\mu}=v'^\nu\pdv{}{x'^\nu}
 \]</span></p>
 <h3 id="tensor-fields">2.4  Tensor fields</h3>
 <p><strong>张量(tensor)</strong>: 多重线性的映射<span class="math inline">\(T:(\underbrace{V^*\times\dots\times V^*}_{k个})\times(\underbrace{V\times\dots\times V}_{l个})\to\R\)</span>称为<span class="math inline">\(V\)</span>上的一个<span class="math inline">\((k,l)\)</span>型张量.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><span class="math inline">\(\omega\in V^*\)</span>, <span class="math inline">\(\omega:V\to\R\)</span>是一个<span class="math inline">\((0,1)\)</span>型张量.</p>
 <p><span class="math inline">\(v\in V,v^{**}\in V^{**}\)</span>, 在自然同构<span class="math inline">\(L\)</span>下, <span class="math inline">\(v\equiv v^{**}:V^*\to\R\)</span>是一个<span class="math inline">\((1,0)\)</span>型张量.</p>
-</blockquote>
+</div>
 <p><span class="math inline">\(V\)</span>上全体<span class="math inline">\((k,l)\)</span>型张量的集合记为<span class="math inline">\(\mathcal{T}_V(k,l)\)</span>. <span class="math inline">\(V=\mathcal{T}_V(1,0)\)</span>, <span class="math inline">\(V^*=\mathcal{T}_{V}(0,1)\)</span>.</p>
 <p>张量面面观: 给一个<span class="math inline">\(T(\cdot;\cdot)\in T_V(1,1)\)</span>之后, 给定一个<span class="math inline">\(\omega\in V^*\)</span>, 就有<span class="math inline">\(T(\omega;\cdot):V\to\R\)</span>, 从而<span class="math inline">\(T(\omega;\cdot)\in V^*\)</span>, 所以有<span class="math inline">\(T:V^*\to V^*\)</span>; 同样地, 也有<span class="math inline">\(T:V\to V\)</span>.</p>
 <p><strong>张量积(tensor product)</strong>: <span class="math inline">\(T\in\mathcal{T}_V(k,l)\)</span>, <span class="math inline">\(T'\in\mathcal{T}_V(k',l')\)</span>, 则定义<span class="math inline">\(T\otimes T'\in\mathcal{T}_V(k+k',l+l')\)</span>, 且 <span class="math display">\[
@@ -463,9 +463,9 @@ v=v^\mu\pdv{}{x^\mu}=v'^\nu\pdv{}{x'^\nu}
 <li>张量积不满足交换律, 但满足结合律.</li>
 </ul>
 <p><u>Claim 1</u> <span class="math inline">\(\mathcal{T}_V(k,l)\)</span>是向量空间, 且<span class="math inline">\(\dim{\mathcal{T}_V(k,l)}=n^{k+l}\)</span>(<span class="math inline">\(n\equiv\dim{V}\)</span>).</p>
-<blockquote>
+<div class="note note-info">
 <p><u>Example</u> 取<span class="math inline">\(T\in\mathcal{T}_V(2,1)\)</span>, 则<span class="math inline">\(T=T^{\mu\nu}{}_\sigma e_\mu\otimes e_\nu\otimes e^{\sigma*}\)</span>, 其中<span class="math inline">\(T^{\mu\nu}{}_\sigma\equiv T(e^{\mu*},e^{\nu*};e_\sigma)\in\R\)</span>.(注意指标平衡.) 这个式子是<span class="math inline">\(T\)</span>在基底(<span class="math inline">\(e_\mu\otimes e_\nu\otimes e^{\sigma*}\)</span>)下的展开式.</p>
-</blockquote>
+</div>
 <p><strong>张量缩并(tensor contraction)</strong>: (从矩阵的迹推广而来)<span class="math inline">\(T\in\mathcal{T}_V(k,l)\)</span>, 定义 <span class="math display">\[
 {\rm C}^i_j T :=
 T(
@@ -506,9 +506,9 @@ T'^{\mu_1\dots\mu_k}{}_{\nu_1\dots\nu_l}
 </ul>
 <p>给定<span class="math inline">\(g\)</span>, 再给一个<span class="math inline">\(v\)</span>, 可以造出<span class="math inline">\(g(v,\cdot)\in V^*\)</span>, 所以有<span class="math inline">\(g:V\to V^*\)</span>, 是一个同构映射. <span class="math inline">\(V\)</span>和<span class="math inline">\(V^*\)</span>有度规后自然同构.</p>
 <p><strong>度规张量场(metric tensor field)</strong>: <span class="math inline">\(V\)</span>上的处处对称, 非退化的张量场<span class="math inline">\(g\)</span>. 只考虑号差处处相等的度规场. 度规场可以定义曲线长度.</p>
-<blockquote>
+<div class="note note-info">
 <p><u>Example</u> <span class="math inline">\(\R^2\)</span>中, <span class="math inline">\(\dd{l}^2=(\dd{x})^2+(\dd{y})^2\)</span>, 从而<span class="math inline">\(\displaystyle\dd{l}=\sqrt{\pqty{\dv{x}{t}}^2+\pqty{\dv{y}{t}}^2}\dd{t}=|T|\dd{t}\)</span>.</p>
-</blockquote>
+</div>
 <p>黎曼度规下, <span class="math inline">\(l:=\displaystyle\int\abs{T}\dd{t}=\int\sqrt{g(T,T)}\dd{t}\)</span>.</p>
 <p>洛伦兹度规下, (类空, 类时, 类光曲线) <span class="math display">\[
 \Align{
@@ -529,14 +529,14 @@ l:=\displaystyle\int\abs{T}\dd{t}
 <ul>
 <li>保持正交归一性的坐标变换: 平移, 伪转动(<span class="math inline">\(\set{x,t}\mapsto\set{x',t'}\)</span>: <span class="math inline">\(t'=t\cosh\alpha+x\sinh\alpha\)</span>, <span class="math inline">\(x'=t\cosh\alpha+x\sinh\alpha\)</span>), 反射.</li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>把一个<span class="math inline">\(S^2\)</span>放在<span class="math inline">\((\R^3,\delta)\)</span>里面, 欧氏度规能够诱导出球面上的度规.</p>
 <p><span class="math inline">\((\R^3,\delta_{ab})\)</span>中, 笛卡尔系下线元表达式为<span class="math inline">\(\dd{s}^2=\dd{x}^2+\dd{y}^2+\dd{z}^2\)</span>, 引入球坐标系<span class="math inline">\(\qty{r,\theta,\phi}\)</span>满足 <span class="math display">\[
 \Cases{x=r\sin\theta\cos\phi,\\y=r\sin\theta\sin\phi,\\z=r\cos\theta.}
 \]</span> (<span class="math inline">\(\phi\to\)</span> 经度, <span class="math inline">\(\theta\to\)</span> 与<span class="math inline">\(z\)</span>轴夹角) 于是<span class="math inline">\(\dd{s}^2=\dd{r}^2+r^2(\dd{\theta}^2+\sin^2\theta\,\dd{\phi}^2)\)</span>. 将其限制在半径为<span class="math inline">\(R\)</span>的二维球面上, 有<span class="math inline">\(\dd{r}=0\)</span>, 于是 <span class="math display">\[
 \dd{\hat s}^2=R^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2),
 \]</span> 这是诱导出的度规(induced metric)在球面坐标系<span class="math inline">\(\qty{\theta,\phi}\)</span>下的线元表达式(称为诱导线元).</p>
-</blockquote>
+</div>
 <h3 id="abstract-index-notation">2.6  Abstract index notation</h3>
 <div style="text-align: right;">
 2023.7.7
@@ -592,7 +592,7 @@ T_{[a_1 \dots a_l]} &amp;:= \frac1{l!}\sum_{\sigma\in S_l} \sgn(\sigma)
 <li>异种括号缩并为零, <span class="math inline">\(T_{[a_1\dots a_l]}S^{(a_1\dots a_l)}=0\)</span>.</li>
 <li>若<span class="math inline">\(T\)</span>反对称, 则其对称部分为零; 若<span class="math inline">\(T\)</span>对称, 则其反对称部分为零.</li>
 </ol>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> 1证明如下, <span class="math display">\[
 \Align{
 T_{[a_1 \dots a_l]} S^{[a_1 \dots a_l]}
@@ -655,11 +655,11 @@ T_{([a_1\dots a_l])}
 <li>第3步根据<span class="math inline">\(\sum_{\sigma\in S_l} \sgn\sigma=0\)</span>.</li>
 </ul>
 <p>4是1和3的推论. 5是3的推论.</p>
-</blockquote>
+</div>
 <p><u>Claim 2</u> 对于任意矢量<span class="math inline">\((v_1)^a,\dots,(v_n)^a\)</span>, 有 <span class="math display">\[
 (v_1)^{[a_1}\cdots(v_n)^{a_n]}=(v_{[1})^{a_1}\cdots(v_{n]})^{a_n}.
 \]</span> 对偶矢量以及圆括号亦然.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><u>Pf</u> (圆括号同理) <span class="math display">\[
 \Align{
 (v_1)^{[a_1}\cdots(v_n)^{a_n]}
@@ -672,7 +672,7 @@ T_{([a_1\dots a_l])}
 &amp;=(v_{[1})^{a_1}\cdots(v_{n]})^{a_n}.
 }
 \]</span></p>
-</blockquote>
+</div>
 </body></html>
                 
               </div>
@@ -1070,7 +1070,6 @@ T_{([a_1\dots a_l])}
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 

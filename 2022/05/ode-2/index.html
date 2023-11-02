@@ -299,10 +299,10 @@ y'(t)=2
 <p>一个<span class="math inline">\(n\)</span>阶的微分方程最高涉及到<span class="math inline">\(n\)</span>阶导数，所以解的表达式中含有<span class="math inline">\(n\)</span>个待定的常数，需要<span class="math inline">\(n\)</span>个条件来确定它们.</p>
 <h2 id="电源单杆">2 电源单杆</h2>
 <p>另外一个例子.</p>
-<blockquote>
+<div class="note note-secondary">
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/single-rod.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>电源电动势为<span class="math inline">\(\varepsilon\)</span>，空间中有垂直向里的匀强磁场<span class="math inline">\(B\)</span>，水平平行光滑导轨（足够长）上有一个导体棒，电阻为<span class="math inline">\(R\)</span>. 不计阻力和其他电阻. 由物理学知识，我们知道电路中会出现顺时针的电流，导体棒会向右运动，产生的反电动势又会阻碍运动……设导体棒的速度为<span class="math inline">\(v(t)\)</span>，加速度为<span class="math inline">\(a(t)\)</span>，电路中电流为<span class="math inline">\(i(t)\)</span>（速度向右为正方向、电流顺时针为正方向），那么有：<span class="math inline">\(\Cases{ v(t)BL+i(t)R = \varepsilon \\ mv'(t) = i(t)LB }\)</span></p>
-</blockquote>
+</div>
 <p>从而有 <span class="math display">\[
 v'(t)+\frac{B^2L^2}{mR}{v(t)}=\frac{\varepsilon LB}{mR}
 \]</span> 这也是一个一阶线性微分方程，但是和人口方程不同的是，它多了一个常数项，是一个<u>非齐次</u>的微分方程.</p>
@@ -310,10 +310,10 @@ v'(t)+\frac{B^2L^2}{mR}{v(t)}=\frac{\varepsilon LB}{mR}
 <p>我们先不去解这个方程，而是采用几何方法. 原方程移项后变为<span class="math inline">\(v'=-Av+B\)</span>（<span class="math inline">\(A,B\)</span>是系数），想象一条横轴<span class="math inline">\(v\)</span>表示速度，上面的每个点<span class="math inline">\(v\)</span>都长出来了一根向量<span class="math inline">\(v'\)</span>，表示加速度，即速度的变化率.</p>
 <p>这构成了一个<strong>向量场</strong>. 为了画出它，可以先画出<span class="math inline">\(v'-v\)</span>图像，再在横轴上的每个点画出对应的加速度向量.（当<span class="math inline">\(v'&lt;0\)</span>，箭头向左；<span class="math inline">\(v'&gt;0\)</span>，箭头向右.）</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/single-rod-vector-field.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
-<blockquote>
+<div class="note note-secondary">
 <p>在数学中，<strong>场</strong>(field)<span class="math inline">\(f\)</span>是一个从几何空间<span class="math inline">\(M\)</span>到集合<span class="math inline">\(S\)</span>的映射. "向量场"和"标量场"指的是<span class="math inline">\(S\)</span>中的元素是向量还是标量. 例如，电场<span class="math inline">\(\vb{E}\)</span>给三维空间<span class="math inline">\(\R^3\)</span>中的每个点赋予了一个电场强度<span class="math inline">\(\vb{E}(x,y,z)\)</span>，是向量场；电势场<span class="math inline">\(\varphi\)</span>给<span class="math inline">\(\R^3\)</span>中的每个点赋予了一个电势<span class="math inline">\(\varphi(x,y,z)\)</span>，是标量场.</p>
 <p>这个例子中的向量场把直线上的点映射到了一个向量.</p>
-</blockquote>
+</div>
 <p>可以把横轴想象成一种流体在流动. 在<span class="math inline">\(v'&lt;0\)</span>（箭头向左）的地方，流体向左流动；在<span class="math inline">\(v'&gt;0\)</span>（箭头向右）的地方，流体向右流动. 在<span class="math inline">\(v'=0\)</span>的地方，流体不流动，所以把这个点叫做<strong>不动点</strong>(fixed point). 上图中，不动点两侧的流体都流向不动点，不动点两侧所有的<span class="math inline">\(v\)</span>都会趋近于这个不动点.</p>
 <p>所以可以得出结论：当初始速度<span class="math inline">\(v_0\ne\dfrac\varepsilon{BL}\)</span>时，速度会逐渐趋近于<span class="math inline">\(\dfrac\varepsilon{BL}\)</span>；当<span class="math inline">\(v_0=\dfrac\varepsilon{BL}\)</span>，速度会保持不变.</p>
 <p>最后看看要怎么解这个方程. <span class="math display">\[
@@ -351,7 +351,7 @@ y'=py+q
 <ul>
 <li>图中，稳定、不稳定、半稳定的不动点分别用实心、空心、半实心的点表示.</li>
 </ul>
-<blockquote>
+<div class="note note-secondary">
 <p>怎样理解"稳定"与"不稳定"？假设不动点为<span class="math inline">\(y^*\)</span>，在某一时刻<span class="math inline">\(t\)</span>，有<span class="math inline">\(y(t)=y^*\)</span>，现在给<span class="math inline">\(y\)</span>一个很小的扰动，使得<span class="math inline">\(y(t+\Delta t)=y^*+\Delta y\)</span>，</p>
 <ul>
 <li>如果不动点是稳定的，<span class="math inline">\(y\)</span>会逐渐回到<span class="math inline">\(y^*\)</span>；</li>
@@ -365,13 +365,13 @@ y'=py+q
 <li>以上情况都有可能（下右）.</li>
 </ul>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/stability-example.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
-</blockquote>
+</div>
 <h2 id="logistic人口模型">3 Logistic人口模型</h2>
 <p>现在让我们看一个非线性的系统，体会一下向量场和不动点的强大用途.</p>
-<blockquote>
+<div class="note note-secondary">
 <p>在第一节，我们给出了一个简单的人口模型，其中人口增长率是一个定值<span class="math inline">\(r\)</span>，这使得人口呈指数增长：<span class="math inline">\(N(t)=N_0\e^{at}\)</span>，但实际情况下，由于资源是有限的，人口不可能无限制增长下去. 所以，我们把增长率修改为<span class="math inline">\(r\pqty{1-\dfrac NK}\)</span> ，其中常数<span class="math inline">\(K\)</span>表示环境资源承载能力，<span class="math inline">\(N\)</span>很小时，增长率接近<span class="math inline">\(r\)</span>，<span class="math inline">\(N\)</span>越大，增长率越小，当<span class="math inline">\(N&gt;K\)</span>时，增长率是负的，表示人口减少.</p>
 <p><img src="https://gitee.com/disembo/media/raw/master/ode/logistic-population-growth-rate.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
-</blockquote>
+</div>
 <p>这样，我们得到了Logistic方程： <span class="math display">\[
 {N'}=rN\pqty{1-\frac NK}
 \]</span> 注意到展开后方程有<span class="math inline">\(N^2\)</span>项，所以这是一个非线性的一阶微分方程. 不妨把它的向量场画出来，</p>
@@ -847,7 +847,6 @@ y(T)=\e^{aT}
   
 <script src="/js/art-copyright.js"></script>
 <script src="/js/cloud-media.js"></script>
-<script src="/js/blockquote-to-note.js"></script>
 
 
 
