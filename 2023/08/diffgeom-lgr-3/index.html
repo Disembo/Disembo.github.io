@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="《微分几何入门与广义相对论》第四章的笔记.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/4-1-coordinate-transform.png">
-<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/4-3-killing-field-S2.png">
-<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/4-4-hypersurface-M2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-1-coordinate-transform.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-3-killing-field-S2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-4-hypersurface-M2.png">
 <meta property="article:published_time" content="2023-08-04T04:00:00.000Z">
 <meta property="article:modified_time" content="2023-09-13T14:13:16.867Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/4-1-coordinate-transform.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-1-coordinate-transform.png">
   
   
   
@@ -339,7 +339,7 @@ A^\nu{_\mu}\pdv{y^\sigma}{y^\nu} = \pdv{(y^\sigma\circ\phi)}{x^\mu}
 <li>坐标场和的推前和拉回(下图黄). 设<span class="math inline">\(M\)</span>上的坐标卡<span class="math inline">\((O_1,\qty{x^\mu})\)</span>, 它可以被推前为<span class="math inline">\((\phi[O_1],\qty{x^\mu\circ\phi^{-1}})\)</span>.</li>
 <li>张量场的推前和拉回(下图蓝).</li>
 </ul>
-<p><img src="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/4-1-coordinate-transform.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-1-coordinate-transform.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
 <p>一个自然的问题就是, 以上两者的变换是否是相容的? 即, 张量场的推前<span class="math inline">\(\phi_*T\)</span>在<span class="math inline">\(\phi[O_1]\)</span>的坐标分量, 是否等于变换前<span class="math inline">\(T\)</span>在<span class="math inline">\(O_1\)</span>的坐标分量?</p>
 <p>回顾分量的定义, 要求分量就要求基矢, 而基矢是坐标线的切矢, 所以我们先证明以下引理.</p>
 <p><u>Claim 2</u> 曲线像的切矢 <span class="math inline">\(=\)</span> 切矢的推前. (等价地, 曲线原像的切矢 <span class="math inline">\(=\)</span> 像的切矢的拉回.)</p>
@@ -569,7 +569,7 @@ x=\psi\cosh\eta,\quad y=\psi\sinh\eta,\quad
 \xi_3^a &amp;= \pqty{\pdv{\phi}}^a.
 }
 \]</span> 可见二维球面是最高对称空间. 将<span class="math inline">\(\xi_1,\xi_2,\xi_3\)</span>画出来(如下图), 可以看出它们分别表示绕<span class="math inline">\(x,y,z\)</span>轴的旋转.</p>
-<p><img src="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/4-3-killing-field-S2.png" style="zoom: 60%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-3-killing-field-S2.png" style="zoom: 60%;" cloud-img="" lazyload="true"></p>
 </div>
 <h3 id="hypersurfaces">4.4  Hypersurfaces</h3>
 <div style="text-align: right;">
@@ -607,7 +607,7 @@ x=\psi\cosh\eta,\quad y=\psi\sinh\eta,\quad
 <p>超曲面是<span class="math inline">\(t\)</span>坐标线, 同上. 法矢平行于<span class="math inline">\(x\)</span>轴.</p>
 <p>超曲面是<span class="math inline">\(45^\circ\)</span>斜直线, 切矢<span class="math inline">\((e_2)^a=(\pdv{t})^a+(\pdv{x})^a\)</span>, 设<span class="math inline">\((e_1)^a=\alpha(\pdv{x})^a+\beta(\pdv{t})^a\)</span>(<span class="math inline">\(\alpha\neq\beta\)</span>), 可以解得<span class="math inline">\((e^1)_a=(\alpha-\beta)^{-1}((\dd{t})_a-(\dd{x})_a)\)</span>, 升指标得到法矢<span class="math inline">\(n^a=(\beta-\alpha)^{-1}((\pdv{t})^a+(\pdv{x})^a)\)</span>, 可以发现法矢与切矢<span class="math inline">\((e_2)^a\)</span>平行! 这就是<span class="math inline">\(n^a\in W_q\)</span>的例子, 类光测地线切矢长度为零.</p>
 </div>
-<p><img src="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/4-4-hypersurface-M2.png" style="zoom: 50%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-4-hypersurface-M2.png" style="zoom: 50%;" cloud-img="" lazyload="true"></p>
 <p>称超曲面<strong>类空</strong>, 若其法矢处处类时; 超曲面<strong>类时</strong>, 若其法矢处处类空; 超曲面<strong>类光</strong>, 若其法矢处处类光. 若<span class="math inline">\(n^an_a\neq0\)</span>, 则今后谈的都是归一化法矢, 即<span class="math inline">\(g_{ab}n^an^b\equiv n^an_a=\pm1\)</span>.</p>
 <p><strong>诱导度规</strong>.</p>
 <p>设<span class="math inline">\(\phi[S]\)</span>为嵌入子流形, 在<span class="math inline">\(V_q\)</span>上有度规<span class="math inline">\(g_{ab}\)</span>, 现在在<span class="math inline">\(W_q\)</span>上找一个度规<span class="math inline">\(h_{ab}\)</span>, 如果满足 <span class="math display">\[

@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="《微分几何入门与广义相对论》第一章、第二章的笔记.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/2-1-differentiable-manifolds.png">
-<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/2-1-smoothness.png">
-<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/2-2-tangent-vectors.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-differentiable-manifolds.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-smoothness.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-2-tangent-vectors.png">
 <meta property="article:published_time" content="2023-07-08T04:00:00.000Z">
 <meta property="article:modified_time" content="2023-09-13T14:12:30.971Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/2-1-differentiable-manifolds.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-differentiable-manifolds.png">
   
   
   
@@ -333,7 +333,7 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 </ol>
 <p>则称其为一个<span class="math inline">\(n\)</span>维拓扑流形, 简称流形.</p>
 <p><span class="math inline">\(O_\alpha\)</span>中的每个点在<span class="math inline">\(\psi_\alpha\)</span>下都获得了一组<span class="math inline">\(\R^n\)</span>中的坐标, 把<span class="math inline">\((O_\alpha,\psi_\alpha)\)</span>称为一个<strong>图</strong>(chart), 或者说是坐标系. 很多个图(应当是<span class="math inline">\(M\)</span>的一个开覆盖)放在一起组成了一个<strong>图册(atlas)</strong>: <span class="math inline">\(\mathcal{A}=\set{(O_\alpha,\psi_\alpha)}\)</span>. 对图册进行更高的要求:</p>
-<p><img src="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/2-1-differentiable-manifolds.png" style="zoom:43%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-differentiable-manifolds.png" style="zoom:43%;" cloud-img="" lazyload="true"></p>
 <ol type="1">
 <li>(<span class="math inline">\(C^r\)</span>相容性) 如果<span class="math inline">\(O_\alpha\cap O_\beta\neq\varnothing\)</span>, 那么<span class="math inline">\(\psi_\beta\circ\psi^{-1}_\alpha\)</span>是<span class="math inline">\(C^r\)</span>的.</li>
 <li>(图册最大化) 如果图<span class="math inline">\((\psi_0,U_0)\)</span>满足: <span class="math inline">\(\forall(\psi_\alpha,U_\alpha)\in\mathcal{A}\)</span>与<span class="math inline">\((\psi_0,U_0)\)</span>相容, 那么<span class="math inline">\((\psi_0,U_0)\in\mathcal{A}\)</span>.</li>
@@ -346,7 +346,7 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 <li>圆<span class="math inline">\(S^1\)</span>和二维球面<span class="math inline">\(S^2\)</span>. 它们都至少需要两个图来覆盖.</li>
 </ul>
 <p>映射的<strong>光滑度</strong>: 要考虑两个微分流形<span class="math inline">\(M,M'\)</span>之间的映射<span class="math inline">\(f\)</span>, 可以借助<span class="math inline">\(\R^n\to\R^{n'}\)</span>的映射. 设<span class="math inline">\(p\in O_\alpha\subset M\)</span>, <span class="math inline">\(f(p)\in O_\beta'\subset M'\)</span>, 当<span class="math inline">\(\psi_\beta'\circ f\circ\psi_\alpha^{-1}\)</span>是<span class="math inline">\(C^r\)</span>的, 那么称<span class="math inline">\(f\)</span>是<span class="math inline">\(C^r\)</span>的.</p>
-<p><img src="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/2-1-smoothness.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-smoothness.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p><strong>微分同胚(diffeomorphism)</strong>: 如果两个微分流形间存在双射<span class="math inline">\(f\)</span>, 且它与它的逆映射都是<span class="math inline">\(C^\infty\)</span>的, 那么<span class="math inline">\(f\)</span>是微分同胚映射, 两个微分流形间是微分同胚的(diffeomorphic).</p>
 <p><strong>标量场(scalar field)</strong>: <span class="math inline">\(f:M\to\R\)</span>.</p>
 <ul>
@@ -377,7 +377,7 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 <p><span class="math inline">\(\set{X_\mu}\)</span>称为一个<strong>坐标基底(coordinate basis)</strong>, <span class="math inline">\(v^\mu\)</span>称为<span class="math inline">\(v\)</span>的坐标分量.</p>
 <p><u>Claim 2</u> 两个坐标基底下, <span class="math inline">\(v=v^\mu X_\mu=v'^\nu X'_\nu\)</span>, 则坐标分量满足<span class="math inline">\(\displaystyle v'^\nu=\eval{\pdv{x'^\nu}{x^\mu}}_p v^\mu\)</span>.</p>
 <p><strong>曲线(curve)</strong>: 映射<span class="math inline">\(c:I\to M\)</span>. 如果有一个坐标系<span class="math inline">\((O,\psi)\)</span>, <span class="math inline">\(c[I]\subset O\)</span>, 那么点坐标分量<span class="math inline">\(x^\mu=x^\mu(t)\)</span>(<span class="math inline">\(\mu=1,\dots,n\)</span>), 这就是曲线的参数式.</p>
-<p><img src="https://github.com/Disembo/blog-media/blob/master/diffgeom-lgr/2-2-tangent-vectors.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-2-tangent-vectors.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
 <p><strong>切向量(tangent vector)</strong>: 在<span class="math inline">\(t_0\)</span>处, 切向量<span class="math inline">\(T:\mathcal{F}_M\to\R\)</span>, 定义为<span class="math inline">\(\displaystyle T(f):=\eval{\dv{(f\circ c)}{t}}_{t_0}\)</span>对任意光滑<span class="math inline">\(f\)</span>. 记<span class="math inline">\(\displaystyle T\equiv\eval{\pdv{}{t}}_{t_0}\)</span>.</p>
 <p><span class="math inline">\(M\)</span>中某坐标系<span class="math inline">\(\qty{O,\psi}\)</span>的坐标线是仅有一个分量能够自由变化的曲线. 可以验证, <span class="math inline">\(X_\mu\)</span>是第<span class="math inline">\(\mu\)</span>个坐标的坐标线的切向量: <span class="math inline">\(\displaystyle X_\mu\equiv\pdv{}{x^\mu}\)</span>.</p>
 <p>应用链式法则可得, 切向量的坐标分量是该曲线的参数式之导数: <span class="math inline">\(\displaystyle \pdv{}{t}=\dv{x^\mu(t)}{t}\cdot\pdv{}{x^\mu}\)</span>.</p>
