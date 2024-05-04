@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
-  <link rel="icon" href="/img/jg.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/project/img/jg-square.png">
+  <link rel="icon" href="/project/img/jg.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="GTM275的笔记.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GTM275 | 1 曲率与向量场">
-<meta property="og:url" content="https://disembo.gitee.io/2023/09/diffgeom-gtm275-1/index.html">
+<meta property="og:url" content="https://disembo.github.io/project/2023/09/diffgeom-gtm275-1/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="GTM275的笔记.">
 <meta property="og:locale" content="zh_CN">
@@ -59,34 +59,34 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/project/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/project/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/project/css/highlight-dark.css" />
   
 
 
 
   
-<link rel="stylesheet" href="/css/additional.css">
-<link rel="stylesheet" href="/css/html-hint.css">
+<link rel="stylesheet" href="/project/css/additional.css">
+<link rel="stylesheet" href="/project/css/html-hint.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"disembo.gitee.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"disembo.github.io","root":"/project/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/project/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/project/js/utils.js" ></script>
+  <script  src="/project/js/color-schema.js" ></script>
   
 
 
@@ -103,7 +103,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/project/">
       <strong>Jin&#39;s Blog</strong>
     </a>
 
@@ -122,7 +122,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/project/">
                 <i class="iconfont icon-home-fill"></i>
                 <span>Home</span>
               </a>
@@ -134,7 +134,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/project/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>Archive</span>
               </a>
@@ -146,7 +146,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/project/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>Category</span>
               </a>
@@ -158,7 +158,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/project/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>Tag</span>
               </a>
@@ -170,7 +170,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/project/about/">
                 <i class="iconfont icon-user-fill"></i>
                 <span>About</span>
               </a>
@@ -200,7 +200,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/project/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -845,7 +845,7 @@ X\lr{Y,Z}
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  <a href="/project/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
   
   
 
@@ -860,11 +860,11 @@ X\lr{Y,Z}
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%B0%E5%AD%A6/">#数学</a>
+        <a href="/project/tags/%E6%95%B0%E5%AD%A6/">#数学</a>
       
-        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/">#微分几何</a>
+        <a href="/project/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/">#微分几何</a>
       
-        <a href="/tags/%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95/">#黎曼几何</a>
+        <a href="/project/tags/%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95/">#黎曼几何</a>
       
     </div>
   
@@ -877,7 +877,7 @@ X\lr{Y,Z}
   <div class="license-box my-3">
     <div class="license-title">
       <div>GTM275 | 1 曲率与向量场</div>
-      <div>https://disembo.gitee.io/2023/09/diffgeom-gtm275-1/</div>
+      <div>https://disembo.github.io/project/2023/09/diffgeom-gtm275-1/</div>
     </div>
     <div class="license-meta">
       
@@ -921,7 +921,7 @@ X\lr{Y,Z}
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/defs-of-determinant/" title="行列式的几种定义方式">
+                      <a href="/project/2023/09/defs-of-determinant/" title="行列式的几种定义方式">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">行列式的几种定义方式</span>
                         <span class="visible-mobile">上一篇</span>
@@ -931,7 +931,7 @@ X\lr{Y,Z}
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/tensor-products-and-universal-properties/" title="从张量积到泛性质">
+                      <a href="/project/2023/09/tensor-products-and-universal-properties/" title="从张量积到泛性质">
                         <span class="hidden-mobile">从张量积到泛性质</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1096,8 +1096,8 @@ X\lr{Y,Z}
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/project/js/events.js" ></script>
+<script  src="/project/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1119,7 +1119,7 @@ X\lr{Y,Z}
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/project/js/img-lazyload.js" ></script>
   
 
 
@@ -1218,20 +1218,20 @@ X\lr{Y,Z}
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/project/js/local-search.js" ></script>
 
 
 
 
   
-<script src="/js/art-copyright.js"></script>
-<script src="/js/cloud-media.js"></script>
+<script src="/project/js/art-copyright.js"></script>
+<script src="/project/js/cloud-media.js"></script>
 
 
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/project/js/boot.js" ></script>
 
 
   

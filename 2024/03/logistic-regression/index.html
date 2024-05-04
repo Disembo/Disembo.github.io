@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
-  <link rel="icon" href="/img/jg.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/project/img/jg-square.png">
+  <link rel="icon" href="/project/img/jg.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,15 +19,15 @@
     <meta name="description" content="Logistic回归, 最大似然估计, 梯度下降, 多分类问题, 过拟合与正则化.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习: 逻辑回归">
-<meta property="og:url" content="https://disembo.gitee.io/2024/03/logistic-regression/index.html">
+<meta property="og:url" content="https://disembo.github.io/project/2024/03/logistic-regression/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="Logistic回归, 最大似然估计, 梯度下降, 多分类问题, 过拟合与正则化.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-sigmoid.png">
-<meta property="og:image" content="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-overfit.png">
+<meta property="og:image" content="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-multiclass.png">
 <meta property="og:image" content="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-overfit.png">
 <meta property="article:published_time" content="2024-03-25T13:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-25T14:25:04.291Z">
+<meta property="article:modified_time" content="2024-04-07T04:23:30.750Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="逻辑回归">
@@ -61,34 +61,34 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/project/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/project/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/project/css/highlight-dark.css" />
   
 
 
 
   
-<link rel="stylesheet" href="/css/additional.css">
-<link rel="stylesheet" href="/css/html-hint.css">
+<link rel="stylesheet" href="/project/css/additional.css">
+<link rel="stylesheet" href="/project/css/html-hint.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"disembo.gitee.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"disembo.github.io","root":"/project/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/project/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/project/js/utils.js" ></script>
+  <script  src="/project/js/color-schema.js" ></script>
   
 
 
@@ -105,7 +105,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/project/">
       <strong>Jin&#39;s Blog</strong>
     </a>
 
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/project/">
                 <i class="iconfont icon-home-fill"></i>
                 <span>Home</span>
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/project/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>Archive</span>
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/project/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 <span>Category</span>
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/project/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>Tag</span>
               </a>
@@ -172,7 +172,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/project/about/">
                 <i class="iconfont icon-user-fill"></i>
                 <span>About</span>
               </a>
@@ -202,7 +202,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/project/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -302,14 +302,14 @@ p(y=0|\boldsymbol{x};\boldsymbol\theta)
 </ul>
 <p><strong>假设函数</strong>: 相较于线性回归, Logistic回归的假设函数是线性函数 <span class="math inline">\(g(\boldsymbol{x})=\boldsymbol\theta\T\boldsymbol{x}\)</span> 和sigmoid函数的复合, <span class="math display">\[
 h_\theta(\boldsymbol{x})
-= \frac1{1+\exp(-\boldsymbol\theta\T\boldsymbol{x})}
+= \frac1{1+\exp(-\boldsymbol\theta\T\boldsymbol{x})}.
 \]</span></p>
 <p><strong>决策边界(decision boundary)</strong>: 两类边界上的数据点构成的图形, 即超平面 <span class="math inline">\(\boldsymbol{\theta}\T\boldsymbol{x}=0\)</span>.</p>
 <div class="note note-secondary">
 <p>实际上, 可以在 <span class="math inline">\(\boldsymbol{x}\)</span> 中引入非线性项, 使得决策边界为曲面.</p>
-<p>例如, <span class="math inline">\(h_\theta(\boldsymbol{x}) = -1+0x_1+0x_2+1x_1^2+1x_2^2\)</span>的决策边界为: <span class="math display">\[
+<p>例如, <span class="math inline">\(h_\theta(\boldsymbol{x}) = -1+0x_1+0x_2+1x_1^2+1x_2^2\)</span>的决策边界 <span class="math display">\[
 \begin{align}
-C:-1+0x_1+0x_2+1x_1^2+1x_2^2&amp;=0 \\
+C:-1+0x_1+0x_2+1x_1^2+1x_2^2&amp;=0, \\
 x_1^2+x_2^2&amp;=1
 \end{align}
 \]</span> 是平面直角坐标系<span class="math inline">\(x_1Ox_2\)</span>中的单位圆.</p>
@@ -364,7 +364,7 @@ J(h_\theta) = -\frac1N\log{L(h_\theta)}
 <p>我们可以用梯度下降算法求得最佳参数, 首先对代价函数求导得到 <span class="math display">\[
 \pdv{J}{\boldsymbol\theta} = \frac1N \sum_{i=1}^N \pqty{
   h_\theta(\boldsymbol{x}^{(i)}) - y^{(i)}
-} \boldsymbol{x}^{(i)}
+} \boldsymbol{x}^{(i)}.
 \]</span></p>
 <div class="note note-secondary">
 <p>具体推导过程: 先计算</p>
@@ -429,13 +429,13 @@ h_\theta(\boldsymbol{x}^{(i)}) - y^{(i)}
 <p>缺点: 复杂.</p>
 <h2 id="multi-class-classification">4  Multi-Class Classification</h2>
 <p><strong>一对多(one-vs-all)</strong>或<strong>一对余(one-vs-rest)</strong>: 将多元分类问题转化为多个二元分类问题.</p>
-<p><img src="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-overfit.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-multiclass.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
 <ul>
 <li><p>对于每个类 <span class="math inline">\(k\in\set{1,2,\dots,K}\)</span>, 将其当作正类, 其余当作负类, 训练得到一个分类器 <span class="math inline">\(h_\theta^{(k)}(\boldsymbol{x})\)</span>.</p>
 <p>那么对于每个新的测试数据 <span class="math inline">\(\boldsymbol{x}^{(i)}\)</span>, <span class="math display">\[
-h^{(k)}_\theta(\boldsymbol{x}^{(i)}) = P(y^{(i)}=k)
+h^{(k)}_\theta(\boldsymbol{x}^{(i)}) = P(y^{(i)}=k),
 \]</span> 我们只需要取概率最大的那个类, <span class="math display">\[
-\textsf{Predict: } y^{(i)} = \argmax_{k} h_\theta^{(k)}(\boldsymbol{x}^{(i)})
+\textsf{Predict: } y^{(i)} = \argmax_{k} h_\theta^{(k)}(\boldsymbol{x}^{(i)}).
 \]</span></p></li>
 <li><p>此种方法存在一个问题, 即各个分类器是独立的, 无法统一成一个模型. 进而当类别数 <span class="math inline">\(K\)</span>​ 较大时, 分别训练各个分类器的代价太高.</p></li>
 </ul>
@@ -521,12 +521,12 @@ J(h_\theta) =
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
+  <a href="/project/categories/%E7%AC%94%E8%AE%B0/" class="category-chain-item">笔记</a>
   
   
     <span>></span>
     
-  <a href="/categories/%E7%AC%94%E8%AE%B0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  <a href="/project/categories/%E7%AC%94%E8%AE%B0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
   
   
 
@@ -543,11 +543,11 @@ J(h_\theta) =
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
+        <a href="/project/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
       
-        <a href="/tags/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/">#逻辑回归</a>
+        <a href="/project/tags/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/">#逻辑回归</a>
       
-        <a href="/tags/MLE/">#MLE</a>
+        <a href="/project/tags/MLE/">#MLE</a>
       
     </div>
   
@@ -560,7 +560,7 @@ J(h_\theta) =
   <div class="license-box my-3">
     <div class="license-title">
       <div>机器学习: 逻辑回归</div>
-      <div>https://disembo.gitee.io/2024/03/logistic-regression/</div>
+      <div>https://disembo.github.io/project/2024/03/logistic-regression/</div>
     </div>
     <div class="license-meta">
       
@@ -608,7 +608,7 @@ J(h_\theta) =
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/diffgeom-gtm275-2/" title="GTM275 | 2 曲率与向量场">
+                      <a href="/project/2023/10/diffgeom-gtm275-2/" title="GTM275 | 2 曲率与向量场">
                         <span class="hidden-mobile">GTM275 | 2 曲率与向量场</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -773,8 +773,8 @@ J(h_\theta) =
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/project/js/events.js" ></script>
+<script  src="/project/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -796,7 +796,7 @@ J(h_\theta) =
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/project/js/img-lazyload.js" ></script>
   
 
 
@@ -895,20 +895,20 @@ J(h_\theta) =
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/project/js/local-search.js" ></script>
 
 
 
 
   
-<script src="/js/art-copyright.js"></script>
-<script src="/js/cloud-media.js"></script>
+<script src="/project/js/art-copyright.js"></script>
+<script src="/project/js/cloud-media.js"></script>
 
 
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/project/js/boot.js" ></script>
 
 
   
