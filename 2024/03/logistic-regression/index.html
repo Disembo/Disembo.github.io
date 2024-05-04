@@ -23,9 +23,9 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="Logistic回归, 最大似然估计, 梯度下降, 多分类问题, 过拟合与正则化.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-sigmoid.png">
-<meta property="og:image" content="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-multiclass.png">
-<meta property="og:image" content="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-overfit.png">
+<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/ml/logistic-reg-sigmoid.png">
+<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/ml/logistic-reg-multiclass.png">
+<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/ml/logistic-reg-overfit.png">
 <meta property="article:published_time" content="2024-03-25T13:00:00.000Z">
 <meta property="article:modified_time" content="2024-04-07T04:23:30.750Z">
 <meta property="article:author" content="jin_">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="逻辑回归">
 <meta property="article:tag" content="MLE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-sigmoid.png">
+<meta name="twitter:image" content="https://github.com/Disembo/blog-media/blob/master/ml/logistic-reg-sigmoid.png">
   
   
   
@@ -289,7 +289,7 @@ p(y=1|\boldsymbol{x};\boldsymbol\theta)
 <p>这个累积分布函数 <span class="math display">\[
 \operatorname{sigmoid}(x) := \frac1{1+\exp(-x)}
 \]</span> 满足一些性质, 例如严格单调增加, 图像关于点<span class="math inline">\((0,\frac12)\)</span>对称, 光滑性等.</p>
-<p><img src="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-sigmoid.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://github.com/Disembo/blog-media/blob/master/ml/logistic-reg-sigmoid.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
 </div>
 <p>自然, 标签 <span class="math inline">\(y=0\)</span>​ 的概率 <span class="math display">\[
 p(y=0|\boldsymbol{x};\boldsymbol\theta)
@@ -429,7 +429,7 @@ h_\theta(\boldsymbol{x}^{(i)}) - y^{(i)}
 <p>缺点: 复杂.</p>
 <h2 id="multi-class-classification">4  Multi-Class Classification</h2>
 <p><strong>一对多(one-vs-all)</strong>或<strong>一对余(one-vs-rest)</strong>: 将多元分类问题转化为多个二元分类问题.</p>
-<p><img src="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-multiclass.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://github.com/Disembo/blog-media/blob/master/ml/logistic-reg-multiclass.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
 <ul>
 <li><p>对于每个类 <span class="math inline">\(k\in\set{1,2,\dots,K}\)</span>, 将其当作正类, 其余当作负类, 训练得到一个分类器 <span class="math inline">\(h_\theta^{(k)}(\boldsymbol{x})\)</span>.</p>
 <p>那么对于每个新的测试数据 <span class="math inline">\(\boldsymbol{x}^{(i)}\)</span>, <span class="math display">\[
@@ -458,7 +458,7 @@ L(\boldsymbol\theta) = \prod_{i=1}^N \frac
 <li>合适的拟合.</li>
 <li>过拟合(overfit): 高方差. 对于<span class="math inline">\(N\)</span>个数据的回归问题, 总存在<span class="math inline">\(N-1\)</span>次多项式函数能够穿过这些数据点, 但这通常对新的数据预测能力差(在测试集上代价明显高于训练集).</li>
 </ul>
-<p><img src="https://gitee.com/disembo/media/raw/master/ml/logistic-reg-overfit.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://github.com/Disembo/blog-media/blob/master/ml/logistic-reg-overfit.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
 <p>过拟合的原因一般有</p>
 <ol type="1">
 <li>某几个特征维度支配了预测, 即 <span class="math inline">\(\boldsymbol\theta\)</span> 的某些分量过大.</li>

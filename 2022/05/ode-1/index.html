@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="一个关于微分方程的系列">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/disembo/media/raw/master/ode/linear-and-nonlinear-oscillations.png">
-<meta property="og:image" content="https://gitee.com/disembo/media/raw/master/ode/logistic-chaos.png">
+<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/ode/linear-and-nonlinear-oscillations.png">
+<meta property="og:image" content="https://github.com/Disembo/blog-media/blob/master/ode/logistic-chaos.png">
 <meta property="article:published_time" content="2022-05-15T01:00:00.000Z">
 <meta property="article:modified_time" content="2023-08-18T08:58:18.032Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分方程">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/disembo/media/raw/master/ode/linear-and-nonlinear-oscillations.png">
+<meta name="twitter:image" content="https://github.com/Disembo/blog-media/blob/master/ode/linear-and-nonlinear-oscillations.png">
   
   
   
@@ -291,12 +291,12 @@ mx''(t)=-kx(t) \tag{a}
 </video>
 <p>Poincaré（庞加莱）在1881年发表论文，提出了<u>定性</u>研究微分方程的思想，即从方程本身出发，利用几何工具来定性地分析，例如：这个系统随时间（定性的）的变化趋势如何？是趋向于平衡稳定、呈现出周期变化，或者是呈现出更复杂的模式？……</p>
 <p>二十世纪初，<u>非线性</u>的震荡（与之相对的是简谐运动这类<u>线性</u>震荡）被广泛应用于雷达、收音机等电子设备中；五十年代，随着高速计算机的发明，我们可以用数值模拟的方法，得到微分方程的数值近似解.</p>
-<p><img src="https://gitee.com/disembo/media/raw/master/ode/linear-and-nonlinear-oscillations.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://github.com/Disembo/blog-media/blob/master/ode/linear-and-nonlinear-oscillations.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>1963年，气象学家Lorenz（洛伦兹）在计算机上模拟了一个简单的气流模型. 他发现气流没有呈现出周期性或者趋于稳定状态，而是不停地做无规律、非周期的震荡；并且初始状态的微小改变能使得演化趋势截然不同. 这个现象称为<strong>混沌</strong>(chaos)，这也是为什么难以预测天气的原因——大气初始状态的微小改变和误差会让模拟结果与真实情况大相径庭.</p>
 <p>之后，人们在流体流动、种群演化、化学反应、神经网络、经济学等诸多方面发现了混沌的影子. 举一个简单的例子，一个人口演化模型：<span class="math inline">\(p_n\)</span>表示第<span class="math inline">\(n\)</span>年的人口规模（<span class="math inline">\(n\in\N\)</span>，<span class="math inline">\(p_n\)</span>在<span class="math inline">\(0\)</span>到<span class="math inline">\(1\)</span>之间），<span class="math inline">\(r\)</span>是一个正常数，方程 <span class="math display">\[
 p_{n+1}=rp_n(1-p_n) \tag{b}
 \]</span> 描述了人口的迭代规律（称为Logistic迭代）. 上式是一个<strong>迭代映射</strong>(iterated map)或者<strong>差分方程</strong>(difference equation). 和微分方程相似，差分方程也是一个关于未知函数的方程，不过它的未知函数是<u>离散</u>变化的. 1976年，生物学家Robert May发现了（这个看似简单的）Logistic迭代映射背后的混沌现象.</p>
-<p><img src="https://gitee.com/disembo/media/raw/master/ode/logistic-chaos.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://github.com/Disembo/blog-media/blob/master/ode/logistic-chaos.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>之后，数学物理学家Feigenbaum（费根鲍姆）发现了一个系统从常规转变为混沌的规律；同时，Mandelbrot（曼德博）关于<strong>分形</strong>的研究也正普及于世. 总而言之，动力学，尤其是非线性动力学，是一个年轻而有活力的学科.</p>
 <p>下面介绍一下上面提及的几组概念.</p>
 <h2 id="差分与微分">2 差分与微分</h2>
