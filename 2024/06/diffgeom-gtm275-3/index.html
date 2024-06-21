@@ -16,15 +16,15 @@
   <meta name="author" content="jin_">
   <meta name="keywords" content="">
   
-    <meta name="description" content="GTM275的笔记.">
+    <meta name="description" content="向量丛上的联络, 联络形式, 高斯绝妙定理与截面曲率.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GTM275 | 3 曲率与微分形式">
 <meta property="og:url" content="https://disembo.github.io/2024/06/diffgeom-gtm275-3/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="GTM275的笔记.">
+<meta property="og:description" content="向量丛上的联络, 联络形式, 高斯绝妙定理与截面曲率.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-07T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-07T14:20:05.193Z">
+<meta property="article:modified_time" content="2024-06-21T15:06:05.078Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -281,7 +281,7 @@
 <li><span class="math inline">\(\nabla_Xs\)</span> 关于 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(\cal F\)</span>-线性的, 关于 <span class="math inline">\(s\)</span> 是 <span class="math inline">\(\R\)</span>-线性的.</li>
 <li>(Leibniz 律) 对于 <span class="math inline">\(f\in{\cal F}(M)\)</span>, <span class="math inline">\(\nabla_X(fs)=(Xf)s+f\nabla_Xs\)</span>.</li>
 </ol>
-<p>称截面 <span class="math inline">\(s\in\Gamma(E)\)</span> 为<strong>平坦的(flat)</strong>, 如果对任意 <span class="math inline">\(X\in{\frak X}(M)\)</span>, 联络 <span class="math inline">\(\nabla_Xs=0\)</span>.</p>
+<p>称截面 <span class="math inline">\(s\in\Gamma(E)\)</span> 为<strong>平坦的(flat)</strong>, 如果对任意 <span class="math inline">\(X\in{\frak X}(M)\)</span>, 联络 <span class="math inline">\(\nabla_Xs=0\)</span>​.</p>
 <ul>
 <li><p><span class="math inline">\(M\)</span> 上的仿射联络就是切丛 <span class="math inline">\(TM\to M\)</span>​ 上的一个联络.</p></li>
 <li><p>设 <span class="math inline">\(\R^n\)</span> 的子流形 <span class="math inline">\(M\)</span>, 则之前定义的子流形 <span class="math inline">\(M\)</span>​ 上的方向导数 <span class="math display">\[
@@ -329,14 +329,17 @@ X\lr{s,t} = \lr{\nabla_Xs,t}+\lr{s,\nabla_Xt},
 \nabla^U:{\frak X}(U)\times\Gamma(U,E)\to\Gamma(U,E),
 \]</span> 使得对任意全局的向量场 <span class="math inline">\(X\in{\frak X}(M)\)</span> 以及全局截面 <span class="math inline">\(s\in\Gamma(E)\)</span>, <span class="math display">\[
 \nabla^U_{X|_U}(s|_U) = (\nabla_Xs)|_U.
-\]</span> 这是良定义的, 因为只要向量场/截面在开集上的限制 <span class="math inline">\(X|_U\)</span> 和 <span class="math inline">\(s|_U\)</span> 相同, 那么 <span class="math inline">\((\nabla_Xs)|_U\)</span> 就相同 (局部算子的性质).</p>
+\]</span> 这是良定义的, 因为只要向量场/截面在开集上的限制 <span class="math inline">\(X|_U\)</span> 和 <span class="math inline">\(s|_U\)</span> 相同, 那么 <span class="math inline">\((\nabla_Xs)|_U\)</span>​ 就相同 (局部算子的性质).</p>
 <p>同样地, 任给一点 <span class="math inline">\(p\in M\)</span>, 定义 <span class="math display">\[
 \nabla: T_pM\times\Gamma(E)\to E_p,
 \]</span> 使得 <span class="math display">\[
 \nabla_{X_p}s=(\nabla_Xs)_p.
 \]</span> 即联络 (关于 <span class="math inline">\(X\)</span>) 在点 <span class="math inline">\(p\)</span> 的限制. 联络关于 <span class="math inline">\(X\)</span>​ 能够逐点定义, 很像一个对偶向量场.</p>
 <p>下面的定理表明, <span class="math inline">\(\nabla_{X_p}s\)</span> 关于 <span class="math inline">\(s\)</span> 虽然不是点算子, 但是它只依赖于 <span class="math inline">\(s\)</span> 在以 <span class="math inline">\(X_p\)</span> 为切向量的某条光滑曲线上的取值. 这是一个比局部性更强的性质.</p>
-<p><u>Claim 1</u> 设向量丛 <span class="math inline">\(E\to M\)</span>, 截面 <span class="math inline">\(s\in\Gamma(E)\)</span>. 点 <span class="math inline">\(p\in M\)</span>, 曲线 <span class="math inline">\(c\)</span> 满足 <span class="math inline">\(c(0)=p\)</span>, <span class="math inline">\(c'(0)=X_p\)</span>. 若 <span class="math inline">\(s\)</span> 在 <span class="math inline">\(c\)</span> 上恒为零, 那么 <span class="math inline">\(\nabla_{X_p}s=0\)</span>.</p>
+<p><u>Claim 1</u> 设向量丛 <span class="math inline">\(E\to M\)</span>, 截面 <span class="math inline">\(s\in\Gamma(E)\)</span>. 点 <span class="math inline">\(p\in M\)</span>, 曲线 <span class="math inline">\(c\)</span> 满足 <span class="math inline">\(c(0)=p\)</span>, <span class="math inline">\(c'(0)=X_p\)</span>. 若 <span class="math inline">\(s\)</span> 在 <span class="math inline">\(c\)</span> 上恒为零, 那么 <span class="math inline">\(\nabla_{X_p}s=0\)</span>​.</p>
+<ul>
+<li>联络 <span class="math inline">\(\nabla\)</span> 可以限制在一条曲线上, 就是后面所谓"沿曲线的协变导数".</li>
+</ul>
 <div class="note note-secondary">
 <p><u>Pf</u> 设在 <span class="math inline">\(p\)</span> 的平凡化邻域内有标架 <span class="math inline">\(\qty{e_1,\dots,e_r}\)</span>, <span class="math inline">\(s=\sum a^ie_i\)</span>. 由 Leibniz 律, <span class="math display">\[
 \Align{
@@ -404,7 +407,11 @@ R(X,Y)e_j
 &amp;= (Xh^j)e_j+h^j\nabla_Xe_j \\
 &amp;= ((Xh^i) + h^j\omega^i_j(X)) e_i.
 }
-\]</span> (上式采用了 Einstein 求和约定.) 可以验证, <span class="math inline">\(\nabla\)</span> 为 <span class="math inline">\(E|_U\)</span> 上的联络.</p>
+\]</span> (上式采用了 Einstein 求和约定.) 可以验证, <span class="math inline">\(\nabla\)</span> 为 <span class="math inline">\(E|_U\)</span>​ 上的联络.</p>
+<p>联络 <span class="math inline">\(\nabla_Xs\)</span> 关于 <span class="math inline">\(s\)</span> 不能逐点定义, 但是若给 <span class="math inline">\(\tilde\nabla\)</span> 为另一联络, <span class="math inline">\((\tilde\nabla_X-\nabla_X)s\)</span> 关于 <span class="math inline">\(s\)</span> 的确可以逐点定义 (能够验证其 <span class="math inline">\(\cal F\)</span>-线性性). 实际上, <span class="math display">\[
+(\tilde\nabla_X-\nabla_X)(h^je_j)
+= h^i(\tilde\omega^j_i(X)-\omega^j_i(X))e_j.
+\]</span></p>
 <h3 id="metric-connection-relative-to-a-orthonormal-frame">8.2  Metric connection relative to a orthonormal frame</h3>
 <p><u>Claim 1</u> 设黎曼丛 <span class="math inline">\(E\to M\)</span> 上的联络 <span class="math inline">\(\nabla\)</span>.</p>
 <ol type="1">
@@ -455,7 +462,7 @@ X\lr{s,t}&amp;=X\pqty{\sum a^ib^i}=\sum(Xa^i)b^i+a^iXb^i, \\
 {\frak X}(M)^2\times\Gamma(E)^2 &amp;\to\R, \\
 (X,Y,s,t)&amp;\mapsto\lr{R(X,Y)s,t},
 }
-\]</span> 因而是点算子, 称为<strong>曲率张量</strong>. 黎曼流形的切丛上的曲率张量称为黎曼曲率张量.</p>
+\]</span> 因而是点算子, 称为<strong>曲率张量</strong>. 黎曼联络的曲率张量称为<strong>黎曼曲率张量</strong>.</p>
 <p><u>Claim 3</u> 黎曼丛 <span class="math inline">\(E\to M\)</span> 上度量联络 <span class="math inline">\(\nabla\)</span> 的曲率张量 <span class="math inline">\(\lr{R(X,Y)s,t}\)</span> 关于 <span class="math inline">\(s,t\)</span> 反对称.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 只需在局部验证反对称性. 设在平凡化开集上有正交归一标架 <span class="math inline">\(\qty{e_1,\dots,e_n}\)</span>, 由 <span class="math inline">\({\cal F}-\)</span>线性性, 只需验证对标架的反对称性: <span class="math display">\[
@@ -585,7 +592,7 @@ e_1&amp;=y\pdv{x}, &amp; e_2&amp;=y\pdv{y}, \\
 \]</span></p>
 </div>
 <h2 id="the-theorema-egregium-using-forms">9  The Theorema Egregium Using Forms</h2>
-<p>本节中, 我们先推导高斯绝妙定理的微分形式版本, 给出两个例子; 再将高斯曲率的概念推广到任意二维黎曼流形, 乃至高维黎曼流形(截面曲率).</p>
+<p>本节中, 我们先推导高斯绝妙定理的微分形式版本, 给出几个例子; 再将高斯曲率的概念推广到任意二维黎曼流形, 乃至高维黎曼流形(截面曲率).</p>
 <h3 id="the-gauss-curvature-equation">9.1  The Gauss curvature equation</h3>
 <p>设欧氏空间 <span class="math inline">\(\R^3\)</span> 中的光滑曲面 <span class="math inline">\(M\)</span>, 点 <span class="math inline">\(p\in M\)</span> 在 <span class="math inline">\(M\)</span> 中的开邻域 <span class="math inline">\(U\)</span>. 在 <span class="math inline">\(U\)</span> 上有正交归一标架 <span class="math inline">\(e_1,e_2\)</span>, 令 <span class="math inline">\(e_3=e_1\times e_2\)</span>, 于是 <span class="math inline">\(e_1,e_2,e_3\)</span> 构成了 <span class="math inline">\(T\R^3|_U\)</span> 的正交归一标架.</p>
 <p>欧氏空间 <span class="math inline">\(\R^3\)</span> 的黎曼联络是方向导数 <span class="math inline">\(D\)</span>, 写出它的联络形式: <span class="math display">\[
@@ -643,9 +650,9 @@ K=\det L
 \Omega^1_2(e_1,e_2)=K=K(\theta^1\wedge\theta^2)(e_1,e_2),
 \]</span> 因为一个 <span class="math inline">\(2\)</span>-形式的取值由其在基底 <span class="math inline">\(e_1,e_2\)</span> 上的取值唯一确定, 所以 <span class="math inline">\(\Omega^1_2=K\theta^1\wedge\theta^2\)</span>.</p>
 </div>
-<p>作为例子, 我们分别计算 Poincaré 圆盘和 Poincaré 半平面的高斯曲率.</p>
+<p>几个例子.</p>
 <div class="note note-info">
-<p><u>Example</u> Poincaré 圆盘和 Poincaré 半平面的高斯曲率.</p>
+<p><u>Example 1</u> Poincaré 圆盘和 Poincaré 半平面的高斯曲率.</p>
 <p>先看圆盘. 之前已经算出 <span class="math display">\[
 \Align{
 \Omega^1_2=\frac{-4}{(1-|z|^2)^2}\dd{x}\wedge\dd{y},
@@ -678,22 +685,76 @@ T_{*z}(v^x+\i v^y)=\frac{2\i}{(z+\i)^2}(v^x+\i v^y),
 }
 \]</span> 所以 <span class="math inline">\(T\)</span> 的确是一个等距同构!</p>
 </div>
+<div class="note note-info">
+<p><u>Example 2</u> 曲面的高斯曲率. 设曲面 <span class="math inline">\(M\)</span> 的黎曼度量在局部坐标 <span class="math inline">\(\qty{x,y}\)</span> 下为 <span class="math display">\[
+\lr{\cdot,\cdot}_{(x,y)}
+=\phi(x,y)\dd{x}\otimes\dd{x}{} + \psi(x,y)\dd{y}\otimes\dd{y},
+\]</span> 其中 <span class="math inline">\(\phi,\psi\)</span> 为正值光滑函数. 正交归一标架和对偶标架 <span class="math display">\[
+\Align{
+e_1&amp;=\frac1\phi\pdv{x}, &amp; e_2&amp;=\frac1\psi\pdv{y}, \\
+\theta^1&amp;=\phi\dd{x}, &amp; \theta^2&amp;=\psi\dd{y}.
+}
+\]</span> 于是 <span class="math inline">\(\dd{\theta^1}=-\phi_y\dd{x}\wedge\dd{y}\)</span>, <span class="math inline">\(\dd\theta^2=\psi_x\dd{x}\wedge\dd{y}\)</span>. 解得 <span class="math display">\[
+\omega^1_2=\frac{\phi_y}{\psi}\dd{x} - \frac{\psi_x}{\phi}\dd{y}.
+\]</span> 于是 <span class="math display">\[
+\Omega^1_2
+=\dd\omega^1_2
+=-\pqty{ \pqty{\frac{\psi_x}{\phi}}_x+\pqty{\frac{\phi_y}{\psi}}_y }
+ \dd{x}\wedge\dd{y},
+\]</span> 高斯曲率 <span class="math display">\[
+K=\Omega^1_2(e_1,e_2)=-\frac1{\phi\psi}
+\pqty{ \pqty{\frac{\psi_x}{\phi}}_x+\pqty{\frac{\phi_y}{\psi}}_y }.
+\]</span> 用这个公式可以直接算出 Poincaré 双曲模型, 球面等曲面的曲率.</p>
+</div>
 <p>之前证明过, 高斯曲率在等距同构下不变. 等距同构可以看作一类更广泛的变换的特例. 黎曼流形 <span class="math inline">\(M,N\)</span> 间的<strong>共形映射(conformal map)</strong> <span class="math inline">\(T:M\to N\)</span> 指的是在每一点都保持切向量夹角的微分同胚. 换言之, 对任意 <span class="math inline">\(p\in M\)</span>, 存在正数 <span class="math inline">\(a(p)\)</span>, 使得 <span class="math display">\[
 \lr{T_*v,T_*w}_{N,T(p)} = a(p)\lr{v,w}_{M,p}.
 \]</span> 为了实际操作的方便, 一般将 <span class="math inline">\(N\)</span> 上的度量通过等距同构拉回到 <span class="math inline">\(M\)</span> 上, 于是 <span class="math inline">\(M\)</span> 上拥有了两个黎曼度量 <span class="math display">\[
 \lr{\cdot,\cdot}'_p = a(p)\lr{\cdot,\cdot}_p,
-\]</span> 称这两个度量是共形等价的(conformal equivalent), 一般还记 <span class="math inline">\(a=\e^{2\rho}\)</span> (<span class="math inline">\(\rho\in C^\infty(M)\)</span>). 研究 <span class="math inline">\(M,N\)</span> 的曲率的关系就是研究 <span class="math inline">\(M\)</span> 上这两个度量的曲率的关系.</p>
+\]</span> 称这两个度量是共形等价的(conformal equivalent), 研究 <span class="math inline">\(M,N\)</span> 的曲率的关系就是研究 <span class="math inline">\(M\)</span> 上这两个度量的曲率的关系.</p>
 <p><u>Claim 2</u> 设二维流形 <span class="math inline">\(M\)</span> 上有共形等价的度量 <span class="math inline">\(\lr{\cdot,\cdot}'=\e^{2\rho}\lr{\cdot,\cdot}\)</span>, 则它们的高斯曲率 <span class="math inline">\(\tilde K,K\)</span> 满足 <span class="math display">\[
-\tilde K=\e^{-2\rho}K-\e^{-2\rho}\Delta\rho.
+\tilde K=\e^{-2\rho}(K-\Delta\rho).
 \]</span></p>
 <ul>
-<li>其中 <span class="math inline">\(\Delta\)</span> 为 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 的 Laplace-Beltrami 算子, 定义为 <span class="math display">\[
+<li><p>其中 <span class="math inline">\(\Delta\)</span> 为 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 的 Laplace-Beltrami 算子, 是 <span class="math inline">\(\R^n\)</span> 中 Laplace 算子的推广, 定义为 <span class="math display">\[
 \Delta f:=\tr\nabla^2f\equiv\sum_i \nabla^2_{e_i,e_i}f ,
 \]</span> 而二阶协变导数 (其中 <span class="math inline">\(\nabla\)</span> 为 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 的黎曼联络) <span class="math display">\[
 \nabla^2_{X,Y}f := \nabla_X\nabla_Yf-\nabla_{\nabla_XY}f.
-\]</span></li>
+\]</span></p></li>
+<li><p>特别地, 当 <span class="math inline">\(a(p)\)</span> 为正的常数, 有 <span class="math display">\[
+\tilde{K} = \frac1{a}K.
+\]</span></p></li>
 </ul>
-<h3 id="generalizations">9.3  Generalizations</h3>
+<div class="note note-secondary">
+<p><u>Pf</u> 先给出 Laplace-Beltrami 算子在局部标架 <span class="math inline">\(\qty{e_1,\dots,e_n}\)</span> 下的公式: <span class="math display">\[
+\Delta f = \sum_i e_i(e_if) - \sum_{i,j}\omega^j_i(e_i) e_j(f).
+\]</span> 设 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 的正交归一标架 <span class="math inline">\(\{e_1,e_2\},\{\theta^1,\theta^2\}\)</span>, 则 <span class="math inline">\(\lr{\cdot,\cdot}'\)</span> 的正交归一标架 <span class="math display">\[
+\Align{
+\tilde{e}_1 &amp;= \e^{-\rho}e_1, &amp;
+\tilde{e}_2 &amp;= \e^{-\rho}e_2, &amp;
+\tilde\theta^1 &amp;= \e^\rho\theta^1, &amp;
+\tilde\theta^2 &amp;= \e^\rho\theta^2.
+}
+\]</span> 从结构方程解得两个度量的联络形式满足 <span class="math display">\[
+\tilde\omega^1_2
+= \omega^1_2 + \rho_2\theta^1 - \rho_1\theta^2,
+\]</span> 其中 <span class="math inline">\(\rho_i=e_i(\rho)\)</span>, <span class="math inline">\(\dd\rho=\sum\rho_i\theta^i\)</span>. 进一步得到曲率形式 <span class="math display">\[
+\tilde\Omega^1_2
+= \Omega^1_2
+- (\rho_{11}+\rho_{22})\theta^1\wedge\theta^2
++ \dd\rho \wedge \omega^1_2.
+\]</span> 高斯曲率 <span class="math display">\[
+\Align{
+\tilde{K}
+= \tilde\Omega^1_2(\tilde{e}_1,\tilde{e}_2)
+&amp;= \e^{-2\rho}K - \e^{-2\rho}\bqty{
+    (\rho_{11}+\rho_{22}) -
+    \rho_1\omega^1_2(e_2) - \rho_2\omega^2_1(e_1)
+  } \\
+&amp;= \e^{-2\rho}(K - \Delta\rho).
+}
+\]</span></p>
+</div>
+<h3 id="sectional-curvature">9.3  Sectional curvature</h3>
 <p>二维曲面的高斯曲率与它嵌入 <span class="math inline">\(\R^3\)</span> 的方式无关, 只和它的黎曼度量有关, 因此可以对一个抽象的二维黎曼流形定义高斯曲率. 对于一个二维黎曼流形 <span class="math inline">\(M\)</span>, 其在 <span class="math inline">\(p\)</span> 点的<strong>高斯曲率</strong>定义为 <span class="math display">\[
 K_p := \lr{R_p(u,v)v,u},
 \]</span> 其中 <span class="math inline">\(\qty{u,v}\)</span> 是 <span class="math inline">\(T_pM\)</span> 的某正交归一基底. 为了说明这是良定义的, 需要验证 <span class="math inline">\(K_p\)</span> 与基底 <span class="math inline">\(\qty{u,v}\)</span> 的取法无关. 设另一基底 <span class="math display">\[
@@ -710,7 +771,72 @@ K_p := \lr{R_p(u,v)v,u},
 K_p=\frac{\lr{R_p(u,v)v,u}}{\lr{u,u}\lr{v,v}-\lr{u,v}^2}.
 \]</span> 对于高维黎曼流形 <span class="math inline">\(M\)</span>, 设 <span class="math inline">\(T_pM\)</span> 的一个二维子空间 <span class="math inline">\(P\)</span>, 可以定义 <span class="math inline">\(P\)</span> 的<strong>截面曲率(sectional curvature)</strong> <span class="math display">\[
 K(P) := \frac{\lr{R_p(u,v)v,u}}{\lr{u,u}\lr{v,v}-\lr{u,v}^2},
-\]</span> 其中 <span class="math inline">\(\qty{u,v}\)</span> 是 <span class="math inline">\(P\)</span> 的一个基底.</p>
+\]</span> 其中 <span class="math inline">\(\qty{u,v}\)</span> 是 <span class="math inline">\(P\)</span>​​ 的一个基底.</p>
+<ul>
+<li>曲率 <span class="math inline">\(R\)</span>, 黎曼曲率张量, 截面曲率都是等距不变量.</li>
+</ul>
+<p>结合曲率形式的定义, 可以得出: 设 <span class="math inline">\(\qty{e_1,\dots,e_n}\)</span> 为 <span class="math inline">\(T_pM\)</span> 的正交归一标架, <span class="math inline">\(P\)</span> 为 <span class="math inline">\(\qty{e_i,e_j}\)</span> <span class="math inline">\((i\neq j)\)</span> 张成的二维子空间, 则截面曲率 <span class="math display">\[
+K(P) = \Omega^i_j(e_i,e_j).
+\]</span> 如果 <span class="math inline">\(M\)</span> 的任意一点的任意一个截面曲率都相同, 则称 <span class="math inline">\(M\)</span> 为<strong>常曲率流形</strong>. 常曲率流形是最简单的黎曼流形, (完备的单连通常曲率流形) 根据曲率的符号可以分为三种:</p>
+<ul>
+<li><p>单位球面 <span class="math inline">\(S^n=\qty{x\in\R^{n+1}:\|x\|=1}\)</span> 配以诱导度量, 具有常曲率 <span class="math inline">\(+1\)</span>.</p></li>
+<li><p>欧氏空间 <span class="math inline">\(\R^n\)</span>, 具有常曲率 <span class="math inline">\(0\)</span>.</p></li>
+<li><p>Poincaré 球 <span class="math inline">\(\mathbb{B}^n=\qty{x\in\R^n:\|x\|&lt;1}\)</span> 配以如下度量, 具有常曲率 <span class="math inline">\(-1\)</span>: <span class="math display">\[
+\lr{\cdot,\cdot}_{x} =
+\frac4{(1-\|x\|^2)^2}\sum_{i=1}^n\dd{x}^i\otimes\dd{x}^i.
+\]</span> 或者 Poincaré 上半空间 <span class="math inline">\(\H^n=\qty{x\in\R^n:x_n&gt;0}\)</span> 配以如下度量, 也具有常曲率 <span class="math inline">\(-1\)</span>: <span class="math display">\[
+\lr{\cdot,\cdot}_{x} =
+\frac1{(x^n)^2}\sum_{i=1}^n\dd{x}^i\otimes\dd{x}^i.
+\]</span></p></li>
+</ul>
+<p>具有其它常曲率的流形可以通过缩放度量 <span class="math inline">\(\lr{\cdot,\cdot}'=a\lr{\cdot,\cdot}\)</span> (<span class="math inline">\(a&gt;0\)</span>​​) 得到.</p>
+<div class="note note-info">
+<p><u>Example 1</u> 单位球面 <span class="math inline">\(S^n\)</span>​.</p>
+<p>单位球面有很好的对称性, 我们可以直接从定义来求曲率. 设 <span class="math inline">\(S^n\)</span> 的黎曼联络 <span class="math inline">\(\nabla\)</span>, 光滑法向量场 <span class="math inline">\(N\)</span> 指向外侧, <span class="math inline">\(X,Y\in{\frak X}(S^n)\)</span>. 首先注意到 <span class="math display">\[
+\Align{
+0 = X\lr{Y,N} = \lr{D_XY,N}+\lr{Y,D_XN}
+}
+\]</span> 于是黎曼联络 <span class="math display">\[
+\Align{
+\nabla_XY = \operatorname{pr}(D_XY)
+&amp;= D_XY - \lr{D_XY,N}N \\
+&amp;= D_XY + \lr{X,Y}N.
+}
+\]</span> 求出二阶导数 <span class="math display">\[
+\Align{
+\nabla_X\nabla_YZ
+&amp;= \nabla_XD_YZ+\nabla_X(\lr{Y,Z}N) \\
+&amp;= D_XD_YZ + \pqty{\lr{X,D_YZ}+\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}}N
+ +\lr{Y,Z}X,
+}
+\]</span> 交换 <span class="math inline">\(X,Y\)</span> 给出 <span class="math inline">\(\nabla_Y\nabla_XZ\)</span>, 同时可以求出 <span class="math inline">\(\nabla_{[X,Y]}Z\)</span>. 此三式相减, 并利用 <span class="math inline">\(D\)</span> 的曲率为零, 化简得 <span class="math display">\[
+\Align{
+R(X,Y)Z
+&amp;= \nabla_X\nabla_YZ - \nabla_Y\nabla_XZ - \nabla_{[X,Y]}Z \\
+&amp;= \lr{Y,Z}X-\lr{X,Z}Y.
+}
+\]</span> 任意一点 <span class="math inline">\(p\in S^2\)</span>, 正交归一向量组 <span class="math inline">\(\qty{e_1,e_2}\subset T_pS^2\)</span> 给出的截面曲率为 <span class="math display">\[
+K(P) = \lr{R_p(e_1,e_2)e_2,e_1}
+= \lr{e_2,e_2}\lr{e_1,e_1} - \lr{e_1,e_2}\lr{e_2,e_1} = 1.
+\]</span> 证明了 <span class="math inline">\(S^n\)</span> 是截面曲率为 <span class="math inline">\(1\)</span> 的常曲率流形.</p>
+</div>
+<div class="note note-info">
+<p><u>Example 2</u> Poincaré 上半空间 <span class="math inline">\(\H^n\)</span>​ 的截面曲率.</p>
+<p>正交归一标架 <span class="math inline">\(\qty{e_i=x^n\partial_i}\)</span>, 对偶标架 <span class="math inline">\(\qty{\theta^i=1/x^n\dd{x^i}}\)</span>, <span class="math display">\[
+\Align{
+\dd{\theta^i} &amp;= \frac1{(x^n)^2} \dd{x^i}\wedge\dd{x^n}\quad (i&lt;n), &amp;
+\dd{\theta^n} &amp;= 0.
+}
+\]</span> 解结构方程 <span class="math inline">\(0=\dd\theta^i+\sum\omega^i_j\wedge\theta^j=0\)</span> 得到 <span class="math display">\[
+\Align{
+-\omega^i_n &amp;= \omega^n_i = \frac1{x^n}\dd{x^i}\quad(i&lt;n), &amp;
+\omega^i_j &amp;= 0\quad(i,j&lt;n).
+}
+\]</span> 于是 <span class="math display">\[
+\Omega^i_j = \dd\omega^i_j+\sum_k\omega^i_k\wedge\omega^k_j
+= -\theta^i\wedge\theta^j,
+\]</span> 计算表明, 这足以保证 <span class="math inline">\(\H^n\)</span> 具有常截面曲率 <span class="math inline">\(-1\)</span>.</p>
+</div>
 </body></html>
                 
               </div>

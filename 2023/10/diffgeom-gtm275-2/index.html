@@ -16,16 +16,16 @@
   <meta name="author" content="jin_">
   <meta name="keywords" content="">
   
-    <meta name="description" content="GTM275的笔记.">
+    <meta name="description" content="仿射联络, 向量丛, 高斯绝妙定理.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GTM275 | 2 曲率与向量场">
 <meta property="og:url" content="https://disembo.github.io/2023/10/diffgeom-gtm275-2/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="GTM275的笔记.">
+<meta property="og:description" content="仿射联络, 向量丛, 高斯绝妙定理.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/5-3-local-operators-F-linearity.png">
 <meta property="article:published_time" content="2023-10-23T14:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-25T12:50:33.079Z">
+<meta property="article:modified_time" content="2024-06-21T15:06:30.663Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -267,8 +267,168 @@
             
               <div class="markdown-body">
                 
-                <html><head></head><body><div class="note note-secondary">
-<p>GTM275(<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>)第7-9节的笔记.</p>
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM275(<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>)第6-9节的笔记.</p>
+</div>
+<h2 id="affine-connections">3  Affine Connections</h2>
+<h3 id="affine-connections-1">3.1  Affine connections</h3>
+<p>在一个一般的流形<span class="math inline">\(M\)</span>上, 不一定存在一个全局的坐标系<span class="math inline">\(\qty{\pdv{x^i}}\)</span>, 所以不能像定义方向导数那样定义一个<span class="math inline">\(M\)</span>上的导数算符. 但是我们可以采用公理化的定义, 根据一个导数算符应当满足的性质来定义它.</p>
+<p>流形<span class="math inline">\(M\)</span>上的<strong>仿射联络(affine connection)</strong>是一个<span class="math inline">\(\R\)</span>-双线性映射<span class="math inline">\(\nabla:{\frak X}(M)\times{\frak X}(M)\to{\frak X}(M)\)</span>, 满足如下条件:</p>
+<ol type="1">
+<li><span class="math inline">\(\nabla_XY\)</span>关于<span class="math inline">\(X\)</span>是<span class="math inline">\({\cal F}\)</span>-线性的.</li>
+<li>(Leibniz律) <span class="math inline">\(\nabla_X(fY)=(Xf)Y+f\nabla_XY\)</span>.</li>
+</ol>
+<p>欧氏空间<span class="math inline">\(\R^n\)</span>上的方向导数算符<span class="math inline">\(D\)</span>是一个仿射联络, 也叫做欧氏联络(Euclidean connection). 相似地, 我们分别定义一个联络的<strong>挠率(torsion)</strong>和<strong>曲率(curvature)</strong>. 挠率<span class="math inline">\(T:{\frak X}(M)\times{\frak X}(M)\to{\frak X}(M)\)</span>, <span class="math display">\[
+T(X,Y) := \nabla_XY-\nabla_YX-[X,Y],
+\]</span> 曲率<span class="math inline">\(R:{\frak X}(M)\times{\frak X}(M)\times{\frak X}(M)\to{\frak X}(M)\)</span>, <span class="math display">\[
+R(X,Y)Z := [\nabla_X,\nabla_Y]Z - \nabla_{[X,Y]}Z.
+\]</span> <u>Claim 1</u> 挠率<span class="math inline">\(T\)</span>和曲率<span class="math inline">\(R\)</span>关于其每个变量都是<span class="math inline">\(\cal F\)</span>-线性的.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 挠率<span class="math inline">\(T\)</span>和曲率<span class="math inline">\(R\)</span>关于<span class="math inline">\(X,Y\)</span>均为反对称, 因此只需验证<span class="math inline">\(T\)</span>关于<span class="math inline">\(X\)</span>, <span class="math inline">\(R\)</span>关于<span class="math inline">\(X,Z\)</span>是<span class="math inline">\(\cal F\)</span>-线性的. 具体证明略, 按照联络的性质展开即可, 需要用到引理<span class="math inline">\([fX,gY]=fg[X,Y]+f(Xg)Y-g(Yf)X\)</span>.</p>
+</div>
+<h3 id="the-riemannian-connection">3.2  The Riemannian connection</h3>
+<p><strong>黎曼联络</strong>.</p>
+<p>在一个黎曼流形上, 我们还可以给仿射联络加上更多的条件. 一个<strong>黎曼联络(Riemannian connection)</strong>或者Levi-Civita联络, 是一个满足如下条件的仿射联络<span class="math inline">\(\nabla\)</span>,</p>
+<ol type="1">
+<li>(无挠性) <span class="math inline">\(T(X,Y)=0\)</span>.</li>
+<li>(与度量适配) <span class="math inline">\(X\lr{Y,Z}=\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}\)</span>.</li>
+</ol>
+<p><u>Claim 1</u> 黎曼流形上的黎曼联络存在且唯一.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 与度量适配条件<span class="math inline">\(X\lr{Y,Z}=\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}\)</span>, 循环<span class="math inline">\(X,Y,Z\)</span>, 可以写出三个恒等式: <span class="math display">\[
+\Cases{
+X\lr{Y,Z}=\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}, \\
+Y\lr{Z,X}=\lr{\nabla_YZ,X}+\lr{Z,\nabla_YX}, \\
+Z\lr{X,Y}=\lr{\nabla_ZX,Y}+\lr{X,\nabla_ZY}.
+}
+\]</span> 一式加二式减三式, 并利用<span class="math inline">\(\nabla\)</span>的无挠性, 可得 <span class="math display">\[
+X\lr{Y,Z}+Y\lr{Z,X}-Z\lr{X,Y}
+= \lr{\nabla_XY+\nabla_YX,Z}+\lr{[Y,Z],X}+\lr{[Y,[X,Z]]}
+\]</span> 将无挠性条件<span class="math inline">\(\nabla_YX=\nabla_XY-[X,Y]\)</span>代入上式, 移项后得 <span class="math display">\[
+\Align{
+2\lr{\nabla_XY,Z} = \;
+&amp;X\lr{Y,Z}+Y\lr{Z,X}-Z\lr{X,Y}+{} \\
+&amp;\lr{[X,Y],Z}-\lr{[Y,Z],X}-\lr{Y,[X,Z]}.
+}
+\]</span> 由此定义了一个联络<span class="math inline">\(\nabla_XY\)</span>, 由<span class="math inline">\(Z\)</span>的任意性知<span class="math inline">\(\nabla_XY\)</span>是唯一确定的. 可以验证, 如上定义的<span class="math inline">\(\nabla_XY\)</span>​确实是一个黎曼联络, 所以黎曼联络存在且唯一.</p>
+<ul>
+<li>最后的等式也叫做Koszul公式.</li>
+</ul>
+</div>
+<p><strong>子流形的黎曼联络</strong>.</p>
+<p>设<span class="math inline">\(M\)</span>的嵌入子流形<span class="math inline">\(S\)</span>, <span class="math inline">\(p\in S\)</span>, 定义<span class="math inline">\(p\)</span>点的<strong>正交投影(orthogonal projection)</strong>为映射<span class="math inline">\({\rm pr}_p:T_pM\to T_pS\)</span>, <span class="math display">\[
+{\rm pr}_p(X_p) := \sum_i \lr{X_p,e_i}e_i ,
+\]</span> 其中<span class="math inline">\(\qty{e_i}\)</span>是<span class="math inline">\(T_pS\)</span>的任一正交归一基底. 当<span class="math inline">\(p\)</span>点运动, 就会得到<span class="math inline">\(S\)</span>上的投影映射场<span class="math inline">\({\rm pr}:\Gamma(TM|_S)\to{\frak X}(S)\)</span>, <span class="math display">\[
+{\rm pr}(X)_p := {\rm pr}_p(X_p).
+\]</span> 可以验证, 正交投影具有如下性质:</p>
+<ul>
+<li><span class="math inline">\({\rm pr}\)</span>在<span class="math inline">\({\frak X}(S)\)</span>上为恒等映射.</li>
+<li>(<span class="math inline">\({\cal F}\)</span>-线性性) <span class="math inline">\({\rm pr}(fX)=f\,{\rm pr}(X)\)</span>.</li>
+<li>(自伴性) <span class="math inline">\(\lr{{\rm pr}(X),Y}=\lr{X,{\rm pr}(Y)}\)</span>.</li>
+</ul>
+<p><u>Claim 2</u> 设黎曼流形<span class="math inline">\(M\)</span>的黎曼联络<span class="math inline">\(\nabla\)</span>, 则嵌入子流形<span class="math inline">\(S\subset M\)</span>的黎曼联络(在诱导度量下)为 <span class="math display">\[
+\nabla'_XY = {\rm pr}(\nabla_XY).
+\]</span></p>
+<div class="note note-secondary">
+<p><u>Pf</u> 根据黎曼联络的唯一性知, 只需验证<span class="math inline">\(\nabla'\)</span>确实是黎曼联络即可.</p>
+<ol type="1">
+<li><p>关于<span class="math inline">\(X\)</span>的<span class="math inline">\(\cal F\)</span>-线性性: <span class="math display">\[
+\nabla'_{fX}Y
+={\rm pr}(\nabla_{fX}Y)
+={\rm pr}(f\nabla_XY)
+=f\,{\rm pr}(\nabla_XY)
+=f\nabla'_XY.
+\]</span></p></li>
+<li><p>Leibniz律: <span class="math display">\[
+\Align{
+\nabla'_X(fY)
+ ={\rm pr}(\nabla_XfY)
+&amp;={\rm pr}[(Xf)Y + f\nabla_XY] \\
+&amp;=(Xf)Y + f\,{\rm pr}(\nabla_XY)
+= (Xf)Y + f\nabla'_XY.
+}
+\]</span></p></li>
+<li><p>无挠性: <span class="math display">\[
+\nabla'_XY-\nabla'_YX
+= {\rm pr}(\nabla_XY-\nabla_YX)
+= {\rm pr}([X,Y])
+= [X,Y].
+\]</span></p></li>
+<li><p>和度量适配: <span class="math display">\[
+\Align{
+X\lr{Y,Z} 
+&amp;= \lr{\nabla_XY,Z} + \lr{Y,\nabla_XZ} \\
+&amp;= \lr{{\rm pr}(\nabla_XY),Z}
+ + \lr{Y,{\rm pr}(\nabla_XZ)} \\
+&amp;= \lr{\nabla'_XY,Z} + \lr{Y,\nabla'_XZ}.
+}
+\]</span> 其中第二步利用了正交投影自伴性的推论: 若<span class="math inline">\(Y\in{\frak X}(M)\)</span>, 则<span class="math inline">\(\lr{X,Y}=\lr{{\rm pr}(X),Y}\)</span>.</p></li>
+</ol>
+</div>
+<h3 id="connections-under-a-diffeomorphism">3.3  Connections under a diffeomorphism</h3>
+<p><u>Claim 1</u> 设微分同胚<span class="math inline">\(\phi:M\to\tilde M\)</span>, <span class="math inline">\(\tilde\nabla\)</span>是<span class="math inline">\(\tilde{M}\)</span>上的一个仿射联络, 则下式定义了<span class="math inline">\(M\)</span>上的一个仿射联络<span class="math inline">\(\nabla:{\frak X}(M)\times{\frak X}(M)\to{\frak X}(M)\)</span>: <span class="math display">\[
+\phi_*( \nabla_XY ) = \tilde\nabla_{\phi_*X}(\phi_*Y).
+\]</span></p>
+<div class="note note-secondary">
+<p><u>Pf</u> 首先应注意到, 因为<span class="math inline">\(\phi\)</span>是微分同胚, 所以<span class="math inline">\(\phi_*\)</span>是线性同构映射, 意味着<span class="math inline">\(\phi_*(A)=\phi_*(B)\)</span>可推出<span class="math inline">\(A=B\)</span>. 这将在这几个命题的证明中频繁使用.</p>
+<p>只需验证<span class="math inline">\(\nabla_XY\)</span>关于<span class="math inline">\(X\)</span>的<span class="math inline">\(\cal F\)</span>-线性性和关于<span class="math inline">\(Y\)</span>的Leibniz律即可. 一方面, <span class="math display">\[
+\Align{
+\phi_*(\nabla_{fX}Y)
+&amp;= \tilde\nabla_{\phi_*(fX)}(\phi_*Y) \\
+&amp;= \tilde\nabla_{\phi_*(f)\phi_*(X)}(\phi_*Y) \\
+&amp;= \phi_*(f)\tilde\nabla_{\phi_*(X)}(\phi_*Y) \\
+&amp;= \phi_*(f)\phi_*(\nabla_XY) \\
+&amp;= \phi_*(f\nabla_XY),
+}
+\]</span> (其中第三步用到了<span class="math inline">\(\tilde\nabla\)</span>关于<span class="math inline">\(X\)</span>的<span class="math inline">\(\cal F\)</span>-线性性.) 即<span class="math inline">\(\nabla_{fX}Y=f\nabla_XY\)</span>. 另一方面, <span class="math display">\[
+\Align{
+\phi_*(\nabla_X(fY))
+&amp;= \tilde\nabla_{\phi_*X}(\phi_*(fY)) \\
+&amp;= \tilde\nabla_{\phi_*X}(\phi_*(f)\phi_*(Y)) \\
+&amp;= (\phi_*X)(\phi_*(f))\phi_*(Y)
+ + \phi_*(f)\tilde\nabla_{\phi_*X}(\phi_*(Y)) \\
+&amp;= \phi_*((Xf)Y) + \phi_*(f)\phi_*(\nabla_XY) \\
+&amp;= \phi_*((Xf)Y + f\nabla_XY), \\
+}
+\]</span> (其中第三步用到了<span class="math inline">\(\tilde\nabla\)</span>关于<span class="math inline">\(Y\)</span>的Leibniz律.) 即<span class="math inline">\(\nabla_X(fY)=(Xf)Y+f\nabla_XY\)</span>.</p>
+</div>
+<p><u>Claim 2</u> 设等距同构<span class="math inline">\(\phi:M\to\tilde M\)</span>, <span class="math inline">\(\tilde\nabla\)</span>是<span class="math inline">\(\tilde{M}\)</span>上的黎曼联络, 则Claim 1中定义的<span class="math inline">\(\nabla\)</span>是<span class="math inline">\(M\)</span>上的黎曼联络.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 由等距同构的定义, 有<span class="math inline">\(\lr{X_p,Y_p}=\lr{\phi_*X_p,\phi_*Y_p}'\)</span>对任意<span class="math inline">\(X_p,Y_p\in T_pM\)</span>, <span class="math inline">\(p\in M\)</span>成立, 即 <span class="math display">\[
+\phi_*\lr{X,Y} = \lr{\phi_*X,\phi_*Y},\quad\forall X,Y\in{\frak X}(M).
+\]</span> 下面验证<span class="math inline">\(\nabla\)</span>满足无挠性和适配性. 一方面, <span class="math display">\[
+\Align{
+\phi_*(\nabla_XY-\nabla_YX)
+&amp;= \tilde\nabla_{\phi_*X}(\phi_*Y)-\tilde\nabla_{\phi_*Y}(\phi_*X) \\
+&amp;= [\phi_*X,\phi_*Y] \\
+&amp;= \phi_*[X,Y],
+}
+\]</span> (其中第二步用了<span class="math inline">\(\tilde\nabla\)</span>的无挠性) 即<span class="math inline">\(\nabla_XY-\nabla_YX=[X,Y]\)</span>. 另一方面, <span class="math display">\[
+\Align{
+\phi_*(\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ})
+&amp;= \lr{\phi_*(\nabla_XY),\phi_*Z}+\lr{\phi_*Y,\phi_*(\nabla_XZ)} \\
+&amp;= \lr{\tilde\nabla_{\phi_*X}(\phi_*Y),\phi_*Z}
+ + \lr{\phi_*Y,\tilde\nabla_{\phi_*X}(\phi_*Z)} \\
+&amp;= (\phi_*X)\lr{\phi_*Y,\phi_*Z} \\
+&amp;= (\phi_*X)\;\phi_*\lr{Y,Z} \\
+&amp;= \phi_*(X\lr{Y,Z}),
+}
+\]</span> (其中第三步用了<span class="math inline">\(\tilde\nabla\)</span>的适配性) 即<span class="math inline">\(\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}=X\lr{Y,Z}\)</span>.</p>
+</div>
+<p><u>Claim 3</u> 设<span class="math inline">\(R,\tilde{R}\)</span>分别是Claim 2中<span class="math inline">\(\nabla,\tilde\nabla\)</span>的曲率, 则 <span class="math display">\[
+\phi_*(R(X,Y)Z) = \tilde{R}(\phi_*X,\phi_*Y)\phi_*Z.
+\]</span></p>
+<div class="note note-secondary">
+<p><u>Pf</u> <span class="math display">\[
+\Align{
+\phi_*(R(X,Y)Z)
+&amp;= \phi_*([\nabla_X,\nabla_Y]Z) - \phi_*(\nabla_{[X,Y]}Z) \\
+&amp;= [\tilde\nabla_{\phi_*X},\tilde\nabla_{\phi_*Y}]\phi_*Z
+ - \tilde\nabla_{[\phi_*X,\phi_*Y]}\phi_*Z \\
+&amp;= \tilde{R}(\phi_*X,\phi_*Y)\phi_*Z.
+}
+\]</span> 其中第二步利用了结论<span class="math inline">\(\phi_*([\nabla_X,\nabla_Y]Z)=[\tilde\nabla_{\phi_*X},\tilde\nabla_{\phi_*Y}]\phi_*Z\)</span>, 将左边展开即可证明.</p>
 </div>
 <h2 id="vector-bundles">4  Vector Bundles</h2>
 <p>光滑向量场间的<span class="math inline">\({\cal F}\)</span>-线性映射是可以逐点(pointwise)定义的. 例如, 黎曼曲率<span class="math inline">\(R(X,Y)Z\)</span>关于<span class="math inline">\(X,Y,Z\)</span>都是<span class="math inline">\({\cal F}\)</span>-线性的, 那么就可以定义某一点的曲率<span class="math inline">\(R_p(X_p,Y_p)Z_p:=(R(X,Y)Z)_p\)</span>, 其中<span class="math inline">\(X,Y,Z\)</span>是<em>任意</em>延拓<span class="math inline">\(X_p,Y_p,Z_p\)</span>的向量场. 这一性质固然可以在向量场的框架内证明, 但是在向量丛的框架内是最自然的.</p>
@@ -378,8 +538,8 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 \Align{
 \alpha(s)(p) 
 &amp;= \alpha_U(s|_U)(p) \\
-&amp;= \alpha_U(a^\mu e_\mu)(p) \\
-&amp;= a^\mu(p)\cdot\alpha_U(e_\mu)(p) \\
+&amp;= \alpha_U\pqty{\sum a^i e_i}(p) \\
+&amp;= \sum a^i(p)\cdot\alpha_U(e_i)(p) \\
 &amp;= 0.
 }
 \]</span> (其中第三步由<span class="math inline">\(\alpha_U\)</span>的<span class="math inline">\({\cal F}(U)\)</span>-线性性.) 因此<span class="math inline">\(\alpha\)</span>是逐点的.</p>
@@ -399,12 +559,12 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 <div class="note note-secondary">
 <p><u>Pf</u> (<span class="math inline">\(\Rightarrow\)</span>) 若<span class="math inline">\(\phi\)</span>是光滑的, <span class="math inline">\(s\in\Gamma(E)\)</span>是光滑的, 那么<span class="math inline">\(\phi_\#(s)=\phi\circ s\)</span>也是光滑的.</p>
 <p>(<span class="math inline">\(\Leftarrow\)</span>) 任给定<span class="math inline">\(p\in M\)</span>, 设<span class="math inline">\(p\)</span>的邻域<span class="math inline">\(U\)</span>上有<span class="math inline">\(E,F\)</span>的标架<span class="math inline">\(\qty{e_1,\dots,e_r},\qty{f_1,\dots,f_m}\)</span>. 设 <span class="math display">\[
-\phi_\# (e_\mu) = A^\nu{_\mu}f_\nu,
+\phi_\# (e_i) = \sum A^j{_i}f_j,
 \]</span> 因为<span class="math inline">\(\phi_\#\)</span>将光滑截面<span class="math inline">\(e_\mu\)</span>映到光滑截面, 所以<span class="math inline">\(A^\nu{_\mu}\)</span>是<span class="math inline">\(U\)</span>上的光滑函数. 于是对任意截面<span class="math inline">\(s=a^\mu e_\mu\in\Gamma(E|_U)\)</span>, <span class="math display">\[
-\phi_\# (s) = A^\nu{_\mu} a^\mu f_\nu.
+\phi_\# (s) = \sum A^j{_i} a^i f_j.
 \]</span> 设<span class="math inline">\(E|_U\)</span>的局部坐标<span class="math inline">\((x^1,\dots,x^n,a^1,\dots,a^r)\)</span>, 则 <span class="math display">\[
 \phi(x^1,\dots,x^n,a^1,\dots,a^r)
-= (x^1,\dots,x^n,A^1{_\mu}a^\mu,\dots,A^m{_\mu}a^\mu)
+= (x^1,\dots,x^n,A^1{_i}a^i,\dots,A^m{_i}a^i)
 \]</span> 是<span class="math inline">\(E|_U\to F\)</span>的光滑映射.</p>
 </div>
 <p>至此, 我们终于可以得到想要的结论.</p>
@@ -554,7 +714,7 @@ K(p) &amp;= \prod_{i=1}^n\lambda_i = \det{L_p}.
 }
 \]</span></p>
 <h3 id="fundamental-forms">6.2  Fundamental forms</h3>
-<p>对于任意一点<span class="math inline">\(p\in M\)</span>, 都可以定义出一系列对称的双线性映射: <span class="math display">\[
+<p>对于任意一点<span class="math inline">\(p\in M\)</span>, 可以定义出一系列对称的双线性映射: <span class="math display">\[
 \Align{
 {\rm I}(X,Y) &amp;= \lr{X,Y}, \\
 {\rm II}(X,Y) &amp;= \lr{L(X),Y} = \lr{X,L(Y)}, \\
