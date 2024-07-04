@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/2-4-catenoid-helicoid.png">
 <meta property="article:published_time" content="2023-09-13T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-22T13:53:23.458Z">
+<meta property="article:modified_time" content="2024-07-04T08:55:29.569Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -295,7 +295,7 @@
 <li><span class="math inline">\(\qty{{\rm supp}\,\rho_\alpha}\)</span>是局部有限的.</li>
 <li><span class="math inline">\(\sum_{\alpha\in A}\rho_\alpha=1\)</span>. (第2条保证, 对于任意一点<span class="math inline">\(p\)</span>, 这个求和都为有限求和.)</li>
 </ol>
-<p><u>Claim 1</u> 任何流形存在黎曼度量.</p>
+<p><u>Claim 1.1</u> 任何流形存在黎曼度量.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 先给出一个引理: 有限个黎曼度量的非负系数线性组合仍为黎曼度量. 设<span class="math inline">\(\lr{\cdot,\cdot}_i\)</span>(<span class="math inline">\(i=1,\dots,n\)</span>)是开集<span class="math inline">\(U\)</span>上的黎曼度量, <span class="math inline">\(a^i\geq0\)</span>, 则<span class="math inline">\(\sum_i a^i \lr{\cdot,\cdot}_i\)</span>也是<span class="math inline">\(U\)</span>上的黎曼度量. 证明是比较显然的.</p>
 <p>回到原命题. 设流形<span class="math inline">\(M\)</span>的图册<span class="math inline">\(\qty{(O_\alpha,\psi_\alpha)}\)</span>以及从属于<span class="math inline">\(\qty{O_\alpha}\)</span>的单位分解<span class="math inline">\(\qty{\rho_\alpha}\)</span>.</p>
@@ -317,7 +317,7 @@ c'(t)(f)
 <p>如果<span class="math inline">\(t=t(u)\)</span>是闭区间的同胚, 则曲线<span class="math inline">\(\beta(u):=c(t(u))\)</span>称为<span class="math inline">\(c(t)\)</span>的<strong>重参数化(reparametrization)</strong>. 一个重要的重参数化是弧长参数化.</p>
 <p>黎曼流形<span class="math inline">\(M\)</span>上的曲线<span class="math inline">\(c:[a,b]\to M\)</span>的<strong>弧长(arc length)</strong>定义为 <span class="math display">\[
 l := \int_a^b \norm{c'(u)} \dd{u}.
-\]</span> <u>Claim 1</u> 曲线的弧长与其参数化无关.</p>
+\]</span> <u>Claim 1.2</u> 曲线的弧长与其参数化无关.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 设曲线<span class="math inline">\(c:[a,b]\to M\)</span>, 另一参数化<span class="math inline">\(c(t(u))\)</span>, <span class="math inline">\(c\leq u\leq d\)</span>, 则 <span class="math display">\[
 \Align{
@@ -328,7 +328,7 @@ l := \int_a^b \norm{c'(u)} \dd{u}.
 \]</span></p>
 </div>
 <p>定义弧长函数<span class="math inline">\(s:[a,b]\to[0,l]\)</span>, 其表达式为<span class="math inline">\(s(t):=\int_a^t\norm{c'(u)}\dd{u}\)</span>. 根据Newton-Leibniz公式, 有<span class="math inline">\(s'(t)=\norm{c'(t)}&gt;0\)</span>, 于是<span class="math inline">\(s'(t)\)</span>严格递增, 根据反函数定理, <span class="math inline">\(s(t)\)</span>具有光滑的反函数<span class="math inline">\(t(s)\)</span>. 因此, 我们可以定义曲线<span class="math inline">\(c(t)\)</span>的<strong>弧长参数化(arc length parametrization)</strong>为<span class="math inline">\(\gamma(s):=c(t(s))\)</span>.</p>
-<p><u>Claim 2</u> 曲线<span class="math inline">\(c(t)\)</span>为弧长参数化的, 当且仅当参数起始为<span class="math inline">\(0\)</span>, 且<span class="math inline">\(\norm{c'(t)}=1\)</span>恒成立.</p>
+<p><u>Claim 1.3</u> 曲线<span class="math inline">\(c(t)\)</span>为弧长参数化的, 当且仅当参数起始为<span class="math inline">\(0\)</span>, 且<span class="math inline">\(\norm{c'(t)}=1\)</span>恒成立.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> "<span class="math inline">\(\Rightarrow\)</span>", 设<span class="math inline">\(t=s(t)\)</span>, 则<span class="math inline">\(t\in[0,l]\)</span>, 且<span class="math inline">\(\norm{c'(t)}=s'(t)=1\)</span>.</p>
 <p>"<span class="math inline">\(\Leftarrow\)</span>", 设<span class="math inline">\(\norm{c'(t)}=1\)</span>且<span class="math inline">\(t\)</span>从<span class="math inline">\(0\)</span>开始, 则 <span class="math display">\[
@@ -404,7 +404,7 @@ D:{\frak X}(\R^n)\times{\frak X}(\R^n)\to{\frak X}(\R^n),
 = X^b\partial_bY^a.
 \]</span> (最后一步因为<span class="math inline">\(\partial_b\pqty{\pdv{}{x^i}}^a=0\)</span>) 其中<span class="math inline">\(\partial_a\)</span>是欧氏空间<span class="math inline">\((\R^n,\delta_{ab})\)</span>的适配导数算符.</p>
 </div>
-<p><u>Claim 1</u> 方向导数的性质.</p>
+<p><u>Claim 2.1</u> 方向导数的性质.</p>
 <ol type="1">
 <li><span class="math inline">\(D(X,Y)\)</span>关于<span class="math inline">\(X\)</span>是<span class="math inline">\({\cal F}\)</span>-线性的, 关于<span class="math inline">\(Y\)</span>是<span class="math inline">\(\R\)</span>-线性的.</li>
 <li>(Leibniz律) <span class="math inline">\(D_X(fY)=(D_Xf)Y+f(D_X Y)\)</span>.</li>
@@ -418,7 +418,7 @@ T(X,Y) := D_XY-D_YX-[X,Y].
 \in {\rm End}_\R({\frak X}(\R^n))
 }
 \]</span> 用来衡量<span class="math inline">\(D\)</span>和李代数同态的偏差, 称为<span class="math inline">\(D\)</span>的<strong>曲率(curvature)</strong>.</p>
-<p><u>Claim 2</u> 方向导数的更多性质.</p>
+<p><u>Claim 2.2</u> 方向导数的更多性质.</p>
 <ol type="1">
 <li>(零挠率) <span class="math inline">\(T(X,Y)=0\)</span>, 即<span class="math inline">\([X,Y]=D_XY-D_YX\)</span>.</li>
 <li>(零曲率) <span class="math inline">\(R(X,Y)=0\)</span>, 即<span class="math inline">\(D_{[X,Y]}=D_XD_Y-D_YD_X\)</span>.</li>
@@ -472,7 +472,7 @@ D_X\lr{Y,Z}
 <div class="note note-secondary">
 <p>实际上, <span class="math inline">\((\dv{V}{t})^a=T^b\nabla_bV^a\)</span>, 其中<span class="math inline">\(\nabla_a\)</span>是适配导数算符.</p>
 </div>
-<p><u>Claim 3</u> 对于两个沿着曲线的光滑向量场<span class="math inline">\(V,W\)</span>, 有 <span class="math display">\[
+<p><u>Claim 2.3</u> 对于两个沿着曲线的光滑向量场<span class="math inline">\(V,W\)</span>, 有 <span class="math display">\[
 \dv{}{t}\lr{V(t),W(t)} = \lr{\dv{V}{t},W} + \lr{V,\dv{W}{t}}.
 \]</span> <strong>子流形上的方向导数</strong>.</p>
 <p>对于<span class="math inline">\(\tilde{M}\)</span>的正则子流形<span class="math inline">\(M\)</span>, 其每点的都有两种向量, 一种是切于<span class="math inline">\(M\)</span>的, 另一种是"支楞出去", 不切于<span class="math inline">\(M\)</span>的. 于是我们分别定义:</p>
@@ -485,7 +485,7 @@ D_X\lr{Y,Z}
 D(X,Y) \equiv D_X Y = X(Y^i) \pdv{x^i} \in \Gamma(T\R^n|_M)
 \]</span> 此时, <span class="math inline">\(D\)</span>可以看作<span class="math inline">\({\frak X}(M)\times\Gamma(T\R^n|_M)\to\Gamma(T\R^n|_M)\)</span>的<span class="math inline">\(\R\)</span>-双线性映射, 称为<span class="math inline">\(M\)</span>上的方向导数算符. 因为<span class="math inline">\(X,Y\)</span>的地位不再对称了, 所以挠率(<span class="math inline">\(T(X,Y)=D_XY-D_YX-[X,Y]\)</span>)便没有意义, 而<span class="math inline">\(D\)</span>仍旧满足(<span class="math inline">\(\R^n\)</span>的)方向导数算符的其他性质.</p>
 <p>设<span class="math inline">\(\tilde{V}\)</span>是沿着<span class="math inline">\(\R^n\)</span>的正则子流形<span class="math inline">\(M\)</span>的向量场, <span class="math inline">\(c:[a,b]\to M\)</span>是<span class="math inline">\(M\)</span>的一条光滑曲线, 则<span class="math inline">\(\tilde{V}\)</span>诱导出了一个沿着<span class="math inline">\(c\)</span>的向量场<span class="math inline">\(V(t)=\tilde{V}_{c(t)}\in T_{c(t)}\R^n\)</span>. 下面这个定理可以将"沿曲线的导数"和"子流形的导数"联系起来.</p>
-<p><u>Claim 4</u> 沿曲线的导数(关于<span class="math inline">\(t\)</span>的导数)等于子流形上切向量方向的导数, 即 <span class="math display">\[
+<p><u>Claim 2.4</u> 沿曲线的导数(关于<span class="math inline">\(t\)</span>的导数)等于子流形上切向量方向的导数, 即 <span class="math display">\[
 \eval{\dv{V}{t}}_t = D_{c'(t)}\tilde{V}|_{c(t)}.
 \]</span></p>
 <div class="note note-secondary">
@@ -509,7 +509,7 @@ L_p(X_p) := -D_{X_p}N
 \]</span> 为<span class="math inline">\(M\)</span>在<span class="math inline">\(p\)</span>点的<strong>形状算子(shape operator)</strong>, 也叫做<strong>Weingarten映射</strong>. 对每一点都有一个形状算子, 合起来就是一个"形状算子场", 即 <span class="math display">\[
 L(X)_p := L_pX_p,
 \]</span> 其中<span class="math inline">\(X\)</span>是<span class="math inline">\(M\)</span>上的光滑向量场.</p>
-<p><u>Claim 1</u> 形状算子的性质. 对于<span class="math inline">\(X,Y\in{\frak X}(M)\)</span>, 有</p>
+<p><u>Claim 2.5</u> 形状算子的性质. 对于<span class="math inline">\(X,Y\in{\frak X}(M)\)</span>, 有</p>
 <ol type="1">
 <li><span class="math inline">\(\lr{L(X),N}=0\)</span>, 即<span class="math inline">\(L(X)\in TM\)</span>. 因此<span class="math inline">\(L\)</span>是<span class="math inline">\(TM\to TM\)</span>的线性映射.</li>
 <li><span class="math inline">\(\lr{L(X),Y}=\lr{D_XY,N}\)</span>.</li>
@@ -528,7 +528,7 @@ L(X)_p := L_pX_p,
 =\lr{[X,Y],N}=0.
 \]</span> 其中倒数第二步是根据<span class="math inline">\([X,Y]=D_XY-D_YX\)</span>; 最后一步是因为<span class="math inline">\([X,Y]\in{\frak X}(M)\)</span>.</p>
 </div>
-<p><u>Claim 2</u> (形状算子与高斯映射) 形状算子是Gauss映射的微分, <span class="math display">\[
+<p><u>Claim 2.6</u> (形状算子与高斯映射) 形状算子是Gauss映射的微分, <span class="math display">\[
 \nu_*(X_p) = -L(X_p).
 \]</span></p>
 <div class="note note-secondary">
@@ -544,7 +544,7 @@ L(X)_p := L_pX_p,
 \]</span></p>
 </div>
 <h3 id="curvature-and-the-shape-operator">2.4  Curvature and the shape operator</h3>
-<p><u>Claim 1</u> 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, 则<span class="math inline">\(p\in M\)</span>的单位法向量<span class="math inline">\(N_p\)</span>和单位切向量<span class="math inline">\(X_p\)</span>, <span class="math inline">\(\gamma(s)\)</span>是弧长参数的法截线, 则<span class="math inline">\(\gamma(s)\)</span>在<span class="math inline">\(p\)</span>点的关于<span class="math inline">\(N_p\)</span>的法曲率 <span class="math display">\[
+<p><u>Claim 2.7</u> 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, 则<span class="math inline">\(p\in M\)</span>的单位法向量<span class="math inline">\(N_p\)</span>和单位切向量<span class="math inline">\(X_p\)</span>, <span class="math inline">\(\gamma(s)\)</span>是弧长参数的法截线, 则<span class="math inline">\(\gamma(s)\)</span>在<span class="math inline">\(p\)</span>点的关于<span class="math inline">\(N_p\)</span>的法曲率 <span class="math display">\[
 \kappa(X_p) = \lr{L(X_p),X_p}.
 \]</span></p>
 <div class="note note-secondary">
@@ -554,9 +554,9 @@ L(X)_p := L_pX_p,
 = \lr{\dv{T}{s}, N_{\gamma(s)}}
 = \lr{D_TT, N_{\gamma(s)}}
 = \lr{L(T), T}.
-\]</span> (第3步依据上一节Claim 4; 第4步依据本节Claim 2的第2条.) 取<span class="math inline">\(t=0\)</span>有<span class="math inline">\(\kappa(X_p)=\lr{L(X_p),X_p}\)</span>.</p>
+\]</span> (第3步依据Claim 2.4; 第4步依据Claim2.5的第2条.) 取<span class="math inline">\(t=0\)</span>有<span class="math inline">\(\kappa(X_p)=\lr{L(X_p),X_p}\)</span>.</p>
 </div>
-<p><u>Claim 2</u> 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, 则<span class="math inline">\(p\in M\)</span>的主方向是<span class="math inline">\(L_p\)</span>的单位特征向量, 主曲率为<span class="math inline">\(L_p\)</span>的特征值.</p>
+<p><u>Claim 2.8</u> 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, 则<span class="math inline">\(p\in M\)</span>的主方向是<span class="math inline">\(L_p\)</span>的单位特征向量, 主曲率为<span class="math inline">\(L_p\)</span>的特征值.</p>
 <ul>
 <li>因此, 高斯曲率<span class="math inline">\(K=\det{L_p}\)</span>, 平均曲率<span class="math inline">\(H=\tr{L_p}/2\)</span>​.</li>
 <li>由形状算子的自伴性, 主方向相互正交.</li>
@@ -580,7 +580,7 @@ AX_p = \lambda X_p.
 = \lambda\lr{X_p,X_p} = \lambda,
 \]</span> 为<span class="math inline">\(L\)</span>的特征向量<span class="math inline">\(X_p\)</span>对应的特征值.</p>
 </div>
-<p><u>Claim 3</u> (高斯映射与总曲率) 光滑曲面<span class="math inline">\(M\)</span>的<strong>总曲率(total curvature)</strong>指的是高斯曲率在<span class="math inline">\(M\)</span>上的积分. 若高斯映射为单射, 则总曲率的绝对值等于高斯映射的像<span class="math inline">\(\nu(M)\)</span>​的面积: <span class="math display">\[
+<p><u>Claim 2.9</u> (高斯映射与总曲率) 光滑曲面<span class="math inline">\(M\)</span>的<strong>总曲率(total curvature)</strong>指的是高斯曲率在<span class="math inline">\(M\)</span>上的积分. 若高斯映射为单射, 则总曲率的绝对值等于高斯映射的像<span class="math inline">\(\nu(M)\)</span>​的面积: <span class="math display">\[
 \abs{\int_M\kappa} = \textsf{Area of }\nu(M).
 \]</span></p>
 <div class="note note-secondary">
@@ -616,12 +616,12 @@ g &amp;:= {\rm II}(e_2,e_2), \\
 }
 \]</span> 当<span class="math inline">\(p\)</span>在坐标域<span class="math inline">\((U,\psi)\)</span>内运动, <span class="math inline">\(E,F,G,e,f,g\)</span>​就成为了坐标的函数.</p>
 <ul>
-<li>结合上一小节Claim 1, 法曲率 <span class="math display">\[
+<li>结合Claim 2.7, 法曲率 <span class="math display">\[
 \kappa(X_p) = {\rm II}(X_p,X_p).
 \]</span></li>
 </ul>
-<p><u>Claim 1</u> 设<span class="math inline">\(M,M'\)</span>为<span class="math inline">\(\R^n\)</span>中的光滑曲面, <span class="math inline">\(\varphi:M\to M'\)</span>为微分同胚, <span class="math inline">\(E,F,G\)</span>为<span class="math inline">\(M\)</span>的标架<span class="math inline">\(\qty{e_1,e_2}\)</span>下的第一基本形式系数, <span class="math inline">\(E',F',G'\)</span>为<span class="math inline">\(M'\)</span>的标架<span class="math inline">\(\qty{e_1':=\varphi_*e_1,e_2':=\varphi_*e_2}\)</span>下的第一基本形式系数, 则<span class="math inline">\(\varphi\)</span>为等距同构当且仅当<span class="math inline">\(E|_p,F|_p,G|_p\)</span>分别和<span class="math inline">\(E'|_{\varphi(p)},F'|_{\varphi(p)},G'|_{\varphi(p)}\)</span>相等, 对任意<span class="math inline">\(p\in M\)</span>.</p>
-<p><u>Claim 2</u> 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, <span class="math inline">\(p\in M\)</span>, 选定<span class="math inline">\(T_pM\)</span>的基底, 则形状算子<span class="math inline">\(L\)</span>的矩阵为第一基本形式矩阵的逆乘以第二基本形式矩阵, 即 <span class="math display">\[
+<p><u>Claim 2.10</u> 设<span class="math inline">\(M,M'\)</span>为<span class="math inline">\(\R^n\)</span>中的光滑曲面, <span class="math inline">\(\varphi:M\to M'\)</span>为微分同胚, <span class="math inline">\(E,F,G\)</span>为<span class="math inline">\(M\)</span>的标架<span class="math inline">\(\qty{e_1,e_2}\)</span>下的第一基本形式系数, <span class="math inline">\(E',F',G'\)</span>为<span class="math inline">\(M'\)</span>的标架<span class="math inline">\(\qty{e_1':=\varphi_*e_1,e_2':=\varphi_*e_2}\)</span>下的第一基本形式系数, 则<span class="math inline">\(\varphi\)</span>为等距同构当且仅当<span class="math inline">\(E|_p,F|_p,G|_p\)</span>分别和<span class="math inline">\(E'|_{\varphi(p)},F'|_{\varphi(p)},G'|_{\varphi(p)}\)</span>相等, 对任意<span class="math inline">\(p\in M\)</span>.</p>
+<p><u>Claim 2.11</u> 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, <span class="math inline">\(p\in M\)</span>, 选定<span class="math inline">\(T_pM\)</span>的基底, 则形状算子<span class="math inline">\(L\)</span>的矩阵为第一基本形式矩阵的逆乘以第二基本形式矩阵, 即 <span class="math display">\[
 \pmqty{E&amp;F\\F&amp;G}^{-1}\pmqty{e&amp;f\\f&amp;g}.
 \]</span></p>
 <div class="note note-secondary">
@@ -640,7 +640,7 @@ g &amp;:= {\rm II}(e_2,e_2), \\
 <p>结合上面两者, 有 <span class="math display">\[
 {\rm II}_{ab} = g_{cb}L^c{_a} = {\rm I}_{cb}L^c{_a},\quad\textsf{即}\,
 L^c{_a} = ({\rm I}^{-1})^{cb} {\rm II}_{ba},
-\]</span> 同时证明了Claim 5.</p>
+\]</span> 同时证明了Claim 2.11.</p>
 </div>
 <div class="note note-info">
 <p><u>Example 1</u> 计算半径为<span class="math inline">\(R\)</span>的二维球面<span class="math inline">\(S^2\)</span>的形状算子和第二基本形式. 利用球坐标系 <span class="math display">\[
@@ -688,7 +688,7 @@ r\in\R,\theta\in(0,2\pi).
 := (\sinh{u}\cos\theta,\sinh{u}\sin\theta,\theta)
 \]</span></p>
 <p>给出了一个等距同构.</p>
-<p>证明思路: 取<span class="math inline">\(U\)</span>的坐标基底<span class="math inline">\(\qty{\pdv{u},\pdv\theta}\)</span>, 将其推前<span class="math inline">\(\qty{\varphi_*\pdv{u},\varphi_*\pdv\theta}\)</span>作为<span class="math inline">\(V\)</span>的基底, 分别计算<span class="math inline">\(U,V\)</span>在这这两个基底下的<span class="math inline">\(\rm I\)</span>形式系数, 证明其相等(Claim 4).</p>
+<p>证明思路: 取<span class="math inline">\(U\)</span>的坐标基底<span class="math inline">\(\qty{\pdv{u},\pdv\theta}\)</span>, 将其推前<span class="math inline">\(\qty{\varphi_*\pdv{u},\varphi_*\pdv\theta}\)</span>作为<span class="math inline">\(V\)</span>的基底, 分别计算<span class="math inline">\(U,V\)</span>在这这两个基底下的<span class="math inline">\(\rm I\)</span>形式系数, 证明其相等(Claim 2.10).</p>
 <ul>
 <li>如果把悬链面沿着母线剪开, 将母线拉直后挂起来, 曲面就会变成正螺面的形状.</li>
 </ul>
@@ -715,10 +715,10 @@ E'&amp;= \lr{\varphi_*\pdv{u},\varphi_*\pdv{u}} = \cosh^2u, \\
 F'&amp;= \lr{\varphi_*\pdv{u},\varphi_*\pdv{\theta}} = 0, \\
 G'&amp;= \lr{\varphi_*\pdv\theta,\varphi_*\pdv\theta}=\sinh^2u+1=\cosh^2u.
 }
-\]</span> 可见, <span class="math inline">\(U,V\)</span>的<span class="math inline">\(\rm I\)</span>形式系数系数分别相等. 根据Claim 1, <span class="math inline">\(\varphi\)</span>是一个等距同构.</p>
+\]</span> 可见, <span class="math inline">\(U,V\)</span>的<span class="math inline">\(\rm I\)</span>形式系数系数分别相等. 根据Claim 2.10, <span class="math inline">\(\varphi\)</span>是一个等距同构.</p>
 </div>
 <p>最后补充一个关于平均曲率的结论.</p>
-<p><u>Claim 3</u> (平均曲率) 平均曲率<span class="math inline">\(H\)</span>是法曲率的平均值, 即 <span class="math display">\[
+<p><u>Claim 2.12</u> (平均曲率) 平均曲率<span class="math inline">\(H\)</span>是法曲率的平均值, 即 <span class="math display">\[
 \frac{\kappa_1+\kappa_2}2=H=\frac1{2\pi}\int_{S^1}\kappa(X_p).
 \]</span> 其中<span class="math inline">\(X_p\in S^1\)</span>为单位向量.</p>
 <div class="note note-secondary">
