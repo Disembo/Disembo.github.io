@@ -4,7 +4,10 @@
     window.MathJax = {
         loader: {
             load: ['[custom]/xypic.js', '[tex]/physics', '[tex]/textcomp'],
-            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build'}
+            paths: {
+                // custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build',
+                custom: '/js',
+            }
         },
         tex: {
             packages: {'[+]': ['physics', 'xypic', 'xcolor', 'amsmath', 'configmacros', 'textcomp']},
