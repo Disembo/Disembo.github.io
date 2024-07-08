@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-simple-closed-curve.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-domain.png">
 <meta property="article:published_time" content="2024-06-28T02:30:00.000Z">
-<meta property="article:modified_time" content="2024-07-04T09:11:52.515Z">
+<meta property="article:modified_time" content="2024-07-08T01:48:56.422Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -332,13 +332,23 @@ l(c) \geq l(c|_{[\tilde{a},\tilde{b}]})
 </ul>
 <p><u>Claim 13.2</u> (Hopf-Rinow 定理) 设黎曼流形 <span class="math inline">\(M\)</span>, 则下列命题等价:</p>
 <ol type="1">
-<li><span class="math inline">\(M\)</span> 是测地完备的.</li>
 <li><span class="math inline">\((M,d)\)</span> 是完备的距离空间.</li>
+<li><span class="math inline">\(M\)</span> 是测地完备的.</li>
 <li><span class="math inline">\(M\)</span> 中任意有界闭子集是紧致的.</li>
 </ol>
 <p>并且, 在完备的黎曼流形中, 任意两点可由最短测地线相连.</p>
+<div class="note note-secondary">
+<p><u>Pf</u></p>
+</div>
+<p><u>Claim 13.3</u> 完备的黎曼流形上的有界向量场是完备的. 换言之, 设向量场 <span class="math inline">\(X\)</span>, 若存在常数 <span class="math inline">\(c\)</span> 使得 <span class="math inline">\(\|X\|\leq c\)</span>, 则 <span class="math inline">\(X\)</span> 的每一条不可延积分曲线的定义域为 <span class="math inline">\(\R\)</span>.</p>
+<p>完备的黎曼流形有很好的性质, 在黎曼几何中起确定性作用. 完备黎曼流形的一些重要的例子有:</p>
+<ul>
+<li>具有平坦度量的 <span class="math inline">\(\R^n\)</span>; <span class="math inline">\(\R^n\)</span> 作为闭子集的子流形.</li>
+<li>紧致黎曼流形. 根据 Claim 13.2 的第三条,</li>
+<li>齐性(homogeneous)黎曼流形. 黎曼流形 <span class="math inline">\(M\)</span> 称为齐性的, 若对任意 <span class="math inline">\(p,q\in M\)</span>, 存在等距同构 <span class="math inline">\(\varphi:M\to M\)</span>, 使得 <span class="math inline">\(\varphi(p)=q\)</span>.</li>
+</ul>
 <h3 id="volume-form">13.3  Volume form</h3>
-<p><u>Claim 13.3</u> (对偶标架的变换律) 设开集 <span class="math inline">\(U\)</span> 上的标架 <span class="math inline">\(\{e_i\}\)</span>, <span class="math inline">\(\{\bar{e_i}\}\)</span> 与其对偶标架 <span class="math inline">\(\{\theta^i\}\)</span>, <span class="math inline">\(\{\bar\theta^i\}\)</span> 分别满足 <span class="math display">\[
+<p><u>Claim 13.4</u> (对偶标架的变换律) 设开集 <span class="math inline">\(U\)</span> 上的标架 <span class="math inline">\(\{e_i\}\)</span>, <span class="math inline">\(\{\bar{e_i}\}\)</span> 与其对偶标架 <span class="math inline">\(\{\theta^i\}\)</span>, <span class="math inline">\(\{\bar\theta^i\}\)</span> 分别满足 <span class="math display">\[
 \bar{e}_j=\sum_i a^i_je_i,\quad \bar\theta^i=\sum_j b^i_j\theta^j,
 \]</span> (其中光滑函数 <span class="math inline">\(A=[a^i_j]:U\to{\rm GL}(n,\R)\)</span>) 则 <span class="math inline">\(B=[b^i_j]=A^{-1}\)</span>. 此外, <span class="math display">\[
 \bar\theta^1\wedge\dots\wedge\bar\theta^n
@@ -352,7 +362,7 @@ l(c) \geq l(c|_{[\tilde{a},\tilde{b}]})
 =(\det{A}^{-1})\,\theta^1\wedge\dots\wedge\theta^n
 =\pm\omega.
 \]</span> 当标架 <span class="math inline">\(\{e_i\}\)</span> 与 <span class="math inline">\(\{\bar e_i\}\)</span> 定向相同时, <span class="math inline">\(\bar\omega=\omega\)</span>. 上述 <span class="math inline">\(n\)</span> 形式 <span class="math inline">\(\omega\)</span> 称为 <span class="math inline">\(M\)</span> 的<strong>黎曼体积形式(Riemannian volume form)</strong>, 简称体积形式, 记作 <span class="math inline">\({\rm vol}_M\)</span>. 若 <span class="math inline">\(\int_M{\rm vol}_M\)</span> 有限, 则称 <span class="math inline">\(\int_M{\rm vol}_M\)</span> 为流形 <span class="math inline">\(M\)</span> 的<strong>体积(volume)</strong>.</p>
-<p><u>Claim 13.4</u> (坐标系下的体积形式) 在正定向的坐标系 <span class="math inline">\((U,x^1,\dots,x^n)\)</span> 下, 黎曼体积形式 <span class="math display">\[
+<p><u>Claim 13.5</u> (坐标系下的体积形式) 在正定向的坐标系 <span class="math inline">\((U,x^1,\dots,x^n)\)</span> 下, 黎曼体积形式 <span class="math display">\[
 {\rm vol}_M = \sqrt{\det{[g_{ij}]}} \dd{x^1}\wedge\cdots\wedge\dd{x^n}.
 \]</span></p>
 <div class="note note-secondary">
@@ -401,7 +411,7 @@ x_n     &amp;= \rho\sin\theta\cdots\sin\phi_{n-3}\sin\phi_{n-2}, \\
 {\rm vol}_{S^{n-1}(r)}
 &amp;= \omega^1\wedge\dots\wedge\omega^n \\
 &amp;= r^{n-1}(\sin\theta)^{n-2}(\sin\phi_1)^{n-3}\cdots(\sin\phi_{n-3})^1
-\dd{\theta}\wedge\cdots\wedge\dd{\phi_{n-1}}.
+\dd{\theta}\wedge\cdots\wedge\dd{\phi_{n-2}}.
 }
 \]</span></p>
 </div>
@@ -426,7 +436,7 @@ x_n     &amp;= \rho\sin\theta\cdots\sin\phi_{n-3}\sin\phi_{n-2}, \\
 \]</span></p>
 <h3 id="induced-volume-form">13.4  Induced volume form</h3>
 <p>回忆带边流形的诱导定向. 设定向的带边流形 <span class="math inline">\(M\)</span>, 设 <span class="math inline">\(\omega\)</span> 为 <span class="math inline">\(M\)</span> 的体积形式, <span class="math inline">\(X\)</span> 为 <span class="math inline">\(\partial M\)</span> 上的光滑外向向量场, 则 <span class="math inline">\(\partial M\)</span> 的诱导体积形式由 interior multiplication <span class="math inline">\(\iota_X\omega\)</span> 给出.</p>
-<p><u>Claim 13.5</u> (诱导体积形式) 设带边黎曼流形 <span class="math inline">\(M\)</span>, <span class="math inline">\(X\)</span> 为 <span class="math inline">\(\partial M\)</span> 上的光滑外向单位向量场, 则 <span class="math inline">\(\partial M\)</span> 的诱导黎曼体积形式 <span class="math display">\[
+<p><u>Claim 13.6</u> (诱导体积形式) 设带边黎曼流形 <span class="math inline">\(M\)</span>, <span class="math inline">\(X\)</span> 为 <span class="math inline">\(\partial M\)</span> 上的光滑外向单位向量场, 则 <span class="math inline">\(\partial M\)</span> 的诱导黎曼体积形式 <span class="math display">\[
 {\rm vol}_{\partial M} = \iota_X({\rm vol}_M).
 \]</span></p>
 <div class="note note-secondary">
@@ -479,7 +489,7 @@ X=x\pdv{x}+y\pdv{y},
 }
 \]</span></p>
 </div>
-<p><u>Claim 13.6</u> (高斯映射与体积形式) 设 <span class="math inline">\(M\)</span> 为 <span class="math inline">\(\R^{n+1}\)</span> 中紧致定向超曲面, <span class="math inline">\(M\)</span> 的高斯曲率 <span class="math inline">\(K\)</span>, 高斯映射 <span class="math inline">\(\nu:M\to S^n\)</span>, 则 <span class="math display">\[
+<p><u>Claim 13.7</u> (高斯映射与体积形式) 设 <span class="math inline">\(M\)</span> 为 <span class="math inline">\(\R^{n+1}\)</span> 中紧致定向超曲面, <span class="math inline">\(M\)</span> 的高斯曲率 <span class="math inline">\(K\)</span>, 高斯映射 <span class="math inline">\(\nu:M\to S^n\)</span>, 则 <span class="math display">\[
 \nu^*({\rm vol}_{S^n}) = (-1)^n K {\rm vol}_M.
 \]</span></p>
 <div class="note note-secondary">
