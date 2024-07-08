@@ -16,17 +16,17 @@
   <meta name="author" content="jin_">
   <meta name="keywords" content="">
   
-    <meta name="description" content="黎曼流形的距离结构, 体积, Gauss-Bonnet 定理.">
+    <meta name="description" content="黎曼流形的距离结构与完备性, 体积, Gauss-Bonnet 定理.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GTM275 | 5 测地线">
-<meta property="og:url" content="https://disembo.github.io/2024/06/diffgeom-gtm275-5/index.html">
+<meta property="og:url" content="https://disembo.github.io/2024/06/dg-gtm275-5/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="黎曼流形的距离结构, 体积, Gauss-Bonnet 定理.">
+<meta property="og:description" content="黎曼流形的距离结构与完备性, 体积, Gauss-Bonnet 定理.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-simple-closed-curve.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-domain.png">
 <meta property="article:published_time" content="2024-06-28T02:30:00.000Z">
-<meta property="article:modified_time" content="2024-07-08T01:48:56.422Z">
+<meta property="article:modified_time" content="2024-07-08T13:56:48.846Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -270,9 +270,9 @@
                 
                 <html><head></head><body>
 <div class="note note-secondary">
-<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>) 第 16-17 节的笔记.</p>
+<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>) 第 16-17 节的笔记. 补充了一点完备性的内容.</p>
 </div>
-<h2 id="distance-and-volume">13  Distance and Volume</h2>
+<h2 id="distance-and-completeness">13  Distance and Completeness</h2>
 <h3 id="distance-on-a-riemannian-manifold">13.1  Distance on a Riemannian manifold</h3>
 <p>在本系列的开始, 我们定义了光滑曲线 <span class="math inline">\(c:[a,b]\to M\)</span> 的弧长 <span class="math inline">\(l:=\int_{[a,b]}\|c'(t)\|\dd{t}\)</span>, 并证明了它不依赖于曲线的参数化. 在一个连通的黎曼流形 <span class="math inline">\(M\)</span> (进而路径连通) 中, 任意两点 <span class="math inline">\(p,q\)</span> 均有分段光滑的曲线相连, 定义 <span class="math inline">\(p,q\)</span> 间的<strong>距离(distance)</strong>为这些曲线长度的下确界: <span class="math display">\[
 d(p,q) := \inf_{c}l(c).
@@ -301,7 +301,7 @@ c(t)=\operatorname{Exp}_p(r(t)v(t)),
 c'(t) 
 &amp;= (\operatorname{Exp}_p)_{*}( r'(t)v(t)+r(t)v'(t) ) \\
 &amp;= r'(t)(\operatorname{Exp}_p)_{*}(v(t)) +
-   r(t)(\operatorname{Exp}_p)_{*}(v'(t))
+r(t)(\operatorname{Exp}_p)_{*}(v'(t))
 }
 \]</span> 注意到 <span class="math inline">\(v(t)\perp v'(t)\)</span>, 结合指数映射保持径向向量长度, 保持径向与切向的正交性 (高斯引理), 有 <span class="math display">\[
 \Align{
@@ -324,31 +324,91 @@ l(c) \geq l(c|_{[\tilde{a},\tilde{b}]})
 <h3 id="geodesic-completeness">13.2  Geodesic completeness</h3>
 <p>在微分拓扑中, 一条曲线 <span class="math inline">\(c:(a,b)\to M\)</span> 可以被光滑重参数化为 <span class="math inline">\(\bar{c}:\R\to M\)</span>, 因为 <span class="math inline">\((a,b)\)</span> 微分同胚于 <span class="math inline">\(\R\)</span>. 但是测地线只能容许线性的重参数化 <span class="math inline">\(t=au+b\)</span>, 于是定义在有限区间上的测地线, 与定义在 <span class="math inline">\(\R\)</span> 上的测地线无法通过重参数化互相转化. 我们称黎曼流形 <span class="math inline">\(M\)</span> 为<strong>测地完备的(geodesic complete)</strong>, 若其上每一条测地线的定义域均可延拓到 <span class="math inline">\(\R\)</span>.</p>
 <ul>
+<li>点 <span class="math inline">\(p\)</span> 处的测地线 <span class="math inline">\(\gamma_v(t)=\operatorname{Exp}_p(tv)\)</span> 的定义域可以延拓到 <span class="math inline">\(t\in\R\)</span> 意味着 <span class="math inline">\(\operatorname{Exp}_p\)</span> 在整个 <span class="math inline">\(T_pM\)</span> 上有定义.</li>
 <li>球面和欧氏空间都是测地完备的. 去掉一点的欧氏平面 <span class="math inline">\(\R^2-\{0\}\)</span> 不是测地完备的, 测地线 <span class="math inline">\(\gamma(t)=(t,0)\)</span>, <span class="math inline">\(t&gt;0\)</span> 的定义域不能延拓到 <span class="math inline">\(\R\)</span>.</li>
 </ul>
-<p>连通的黎曼流形还有距离空间结构. 称一个距离空间为<strong>完备(complete)</strong>的, 若任一柯西列存在极限.</p>
+<p>连通的黎曼流形还有距离空间结构. 称一个距离空间为<strong>完备(complete)</strong>的, 若任一 Cauchy 列存在极限.</p>
 <ul>
 <li>可以证明, 距离函数 <span class="math inline">\(d\)</span> 诱导的拓扑与 <span class="math inline">\(M\)</span> 作为流形的拓扑是相同的.</li>
 </ul>
 <p><u>Claim 13.2</u> (Hopf-Rinow 定理) 设黎曼流形 <span class="math inline">\(M\)</span>, 则下列命题等价:</p>
 <ol type="1">
 <li><span class="math inline">\((M,d)\)</span> 是完备的距离空间.</li>
-<li><span class="math inline">\(M\)</span> 是测地完备的.</li>
+<li>对任意 <span class="math inline">\(p\in M\)</span>, <span class="math inline">\(\operatorname{Exp}_p\)</span> 定义在整个 <span class="math inline">\(T_pM\)</span> 上 (<span class="math inline">\(M\)</span> 测地完备).</li>
+<li>存在 <span class="math inline">\(p\in M\)</span>, <span class="math inline">\(\operatorname{Exp}_p\)</span> 定义在整个 <span class="math inline">\(T_pM\)</span> 上.</li>
 <li><span class="math inline">\(M\)</span> 中任意有界闭子集是紧致的.</li>
 </ol>
-<p>并且, 在完备的黎曼流形中, 任意两点可由最短测地线相连.</p>
+<p>并且, 在完备的黎曼流形中, 任意两点可由最短测地线相连, 于是任意一点的指数映射 <span class="math inline">\(\operatorname{Exp}_p:T_pM\to M\)</span> 是满射.</p>
 <div class="note note-secondary">
-<p><u>Pf</u></p>
+<p><u>Pf</u> 我们将证明 1 <span class="math inline">\(\Rightarrow\)</span> 2 <span class="math inline">\(\Rightarrow\)</span> 3 <span class="math inline">\(\Rightarrow\)</span> 4 <span class="math inline">\(\Rightarrow\)</span> 1, 其中 2 <span class="math inline">\(\Rightarrow\)</span> 3 是显然的; 4 <span class="math inline">\(\Rightarrow\)</span> 1 是拓扑学中的结论.</p>
+<p>1 <span class="math inline">\(\Rightarrow\)</span> 2. 假设一条弧长参数的最大测地线为 <span class="math inline">\(\gamma(t)\)</span>, <span class="math inline">\(a&lt;t&lt;b\)</span>, 其中 <span class="math inline">\(b&lt;+\infty\)</span>. 距离空间的完备性保证当 <span class="math inline">\(t\uparrow b\)</span> 时, <span class="math inline">\(\gamma(t)\)</span> 趋近于某一点 <span class="math inline">\(q\in M\)</span>. 根据 Claim 11.7, 存在 <span class="math inline">\(q\)</span> 点的邻域 <span class="math inline">\(U\)</span> 以及 <span class="math inline">\(\varepsilon&gt;0\)</span>, 使得对任意 <span class="math inline">\(x\in U\)</span>, <span class="math inline">\(\operatorname{Exp}_x\)</span> 在 <span class="math inline">\(B_\varepsilon(0)\)</span> 有定义. 取 <span class="math inline">\(\gamma(t_0)\in U\)</span> 并且 <span class="math display">\[
+d(\gamma(t_0),q)&lt;\frac\varepsilon2,
+\]</span> 定义测地线 <span class="math inline">\(\zeta:[0,\varepsilon]\to M\)</span>, <span class="math inline">\(\zeta(0)=\gamma(t_0)\)</span>, <span class="math inline">\(\zeta'(0)=\gamma'(t_0)\)</span>, 则 <span class="math inline">\(\zeta\)</span> 延伸了 <span class="math inline">\(\gamma\)</span> 并超过 <span class="math inline">\(q\)</span> 点. 这导致矛盾, 说明 <span class="math inline">\(b=+\infty\)</span>. 同样能证明 <span class="math inline">\(a=-\infty\)</span>.</p>
+<p>对于 3 <span class="math inline">\(\Rightarrow\)</span> 4, 引入中间命题 5: <span class="math inline">\(M\)</span> 中任意两点可由最短测地线相连. 转而证明 3 <span class="math inline">\(\Rightarrow\)</span> 5 <span class="math inline">\(\Rightarrow\)</span> 4.</p>
+<p>3 <span class="math inline">\(\Rightarrow\)</span> 5. 结合 Claim 13.1 有 <span class="math inline">\(B_r(p)=\{ x\in M\mid d(p,x)\leq r \}\)</span> 对任意 <span class="math inline">\(r\geq0\)</span>. 考虑 <span class="math display">\[
+\Sigma_r(p) = \{x\in B_r(p)\mid p,x\textsf{ 可用最短测地线相连}\},
+\]</span> 即要证明 <span class="math inline">\(B_r(p)=\Sigma_r(p)\)</span>. 当 <span class="math inline">\(r\)</span> 充分小时这件事是对的, 所以若令 <span class="math display">\[
+\mathscr{T}=\{ r\in[0,+\infty)\mid B_r(p)=\Sigma_r(p)\},
+\]</span> 则 <span class="math inline">\(\mathscr{T}\)</span> 非空且有内点. 只要证明 <span class="math inline">\(\mathscr{T}\)</span> 既开又闭, 再由 <span class="math inline">\([0,+\infty)\)</span> 连通便可得 <span class="math inline">\(\mathscr{T}=[0,+\infty)\)</span>. 下面证明开性. 先给出 Claim 11.7 和 Claim 13.1 的推论:</p>
+<ul>
+<li>任给 <span class="math inline">\(q\in M\)</span>, 存在 <span class="math inline">\(q\)</span> 的邻域 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(\varepsilon&gt;0\)</span>, 使得 <span class="math inline">\(\operatorname{Exp}\)</span> 定义在管状区域 <span class="math inline">\(U\times B_\varepsilon(0)\)</span> 上, 于是 (推论) 任给 <span class="math inline">\(x\in K\)</span>, <span class="math inline">\(y\in M\)</span>, 只要 <span class="math inline">\(d(x,y)\leq\varepsilon\)</span>, 那么 <span class="math inline">\(x,y\)</span> 就能由最短测地线连接.</li>
+<li>考虑 <span class="math inline">\(B_r(p)\)</span>, 任给 <span class="math inline">\(q\in B_r(p)\)</span>, 能够找到如上的 <span class="math inline">\(U_q\)</span> 和 <span class="math inline">\(\varepsilon_q\)</span>. 这 <span class="math inline">\(\{U_q\}\)</span> 构成一个开覆盖. 由 <span class="math inline">\(B_r(p)\)</span> 的紧致性, <span class="math inline">\(\{U_q\}\)</span> 存在有限子覆盖 <span class="math inline">\(\{U_q\}_{q\in I}\)</span>. 取 <span class="math inline">\(\varepsilon:=\min_{q\in I}\varepsilon_q\)</span>, 则 <span class="math inline">\(B_r(p)\)</span> 关于 <span class="math inline">\(\varepsilon\)</span> 也满足如上推论.</li>
+</ul>
+<p>取 <span class="math inline">\(r\in\mathscr{T}\)</span>, <span class="math inline">\(\varepsilon\)</span> 为上面根据 <span class="math inline">\(B_r(p)\)</span> 构造出来的值. 下面证明, 对任意 <span class="math inline">\(\varepsilon'&lt;\varepsilon\)</span>, 有 <span class="math inline">\(r+\varepsilon'\in\mathscr{T}\)</span>. 任取 <span class="math inline">\(y\in B_{r+\varepsilon'}(p)\)</span>. 若 <span class="math inline">\(y\in B_r(p)\)</span>, 则 <span class="math inline">\(y\in\Sigma_r(p)\subset\Sigma_{r+\varepsilon'}(p)\)</span>. 若 <span class="math inline">\(y\in B_{r+\varepsilon'}(p)-B_r(p)\)</span>, 则存在 <span class="math inline">\(x\in\partial B_r(p)\)</span>, 且 <span class="math display">\[
+d(p,y) = d(p,x) + d(x,y).
+\]</span></p>
+<ul>
+<li>(注) 存在性是因为, 任意连接 <span class="math inline">\(p,y\)</span> 的分段光滑曲线必定穿过 <span class="math inline">\(\partial B_r(p)\)</span>, 所以 <span class="math display">\[
+\Align{
+d(p,y)
+&amp;=\inf_{c\textsf{ 连接 }p,y} l(c) \\
+&amp;=\inf_{x\in\partial B_r(p)}\pqty{
+  \inf_{c_1\textsf{ 连接 }p,x}l(c_1) +
+  \inf_{c_2\textsf{ 连接 }x,y}l(c_2)
+} \\
+&amp;=\inf_{x\in\partial B_r(p)}(d(p,x)+d(x,y)),
+}
+\]</span> 由 <span class="math inline">\(\partial B_r(p)\)</span> 的紧致性, 该下确界就等于某 <span class="math inline">\(d(p,x)+d(x,y)\)</span>.</li>
+</ul>
+<p>因为 <span class="math inline">\(x\in B_r(p)\)</span>, 所以 <span class="math inline">\(p,x\)</span> 间可以用最短测地线 <span class="math inline">\(\gamma_1\)</span> 连接. 又因为 <span class="math display">\[
+\Align{
+d(x,y)
+&amp;=d(p,y)-d(p,x) \\
+&amp;=d(p,y)-r \\
+&amp;\leq(r+\varepsilon')-r=\varepsilon',
+}
+\]</span> 所以 (根据推论) <span class="math inline">\(x,y\)</span> 可以用最短测地线 <span class="math inline">\(\gamma_2\)</span> 连接. 将 <span class="math inline">\(\gamma_1\)</span>, <span class="math inline">\(\gamma_2\)</span> 连起来, 就成为连接 <span class="math inline">\(p,y\)</span> 的最短曲线. 因为 <span class="math inline">\(y\)</span> 在测地球里, 所以这最短曲线必然是最短测地线. 于是 <span class="math inline">\(y\in\Sigma_{r+\varepsilon'}(p)\)</span>. 总之有 <span class="math inline">\(r+\varepsilon'\in\mathscr{T}\)</span>, 所以 <span class="math inline">\(\mathscr{T}\)</span> 是开的.</p>
+<p>5 <span class="math inline">\(\Rightarrow\)</span> 4. 设 <span class="math inline">\(K\subset M\)</span> 为有界闭集. 取定 <span class="math inline">\(p\in K\)</span>, 则存在 <span class="math inline">\(A\geq0\)</span>, 使得 <span class="math display">\[
+d(p,x)\leq A,\quad x\in K.
+\]</span> 又因为任给 <span class="math inline">\(x\in K\)</span>, <span class="math inline">\(p,x\)</span> 可以用最短测地线连接, 所以 <span class="math inline">\(K\subset B_A(p)=\operatorname{Exp}_p(B_A(0))\)</span>. 注意到 <span class="math inline">\(B_A(0)\)</span> 是紧致的, <span class="math inline">\(\operatorname{Exp}_p\)</span> 连续, 故 <span class="math inline">\(B_A(p)\)</span> 紧致. 集合 <span class="math inline">\(K\)</span> 作为 <span class="math inline">\(B_A(p)\)</span> 的闭子集, 也紧致.</p>
 </div>
 <p><u>Claim 13.3</u> 完备的黎曼流形上的有界向量场是完备的. 换言之, 设向量场 <span class="math inline">\(X\)</span>, 若存在常数 <span class="math inline">\(c\)</span> 使得 <span class="math inline">\(\|X\|\leq c\)</span>, 则 <span class="math inline">\(X\)</span> 的每一条不可延积分曲线的定义域为 <span class="math inline">\(\R\)</span>.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 反正. 假设 <span class="math inline">\(X\)</span> 的一条积分曲线 <span class="math inline">\(\phi:[0,a)\to M\)</span>, 且不可延伸到 <span class="math inline">\(a\)</span> (<span class="math inline">\(a&lt;+\infty\)</span>). 我们首先给出估计: 对于任意 <span class="math inline">\(0\leq t_1&lt;t_2&lt;a\)</span>, <span class="math display">\[
+\Align{
+d(\phi(t_1),\phi(t_2))
+&amp;\leq \int_{[t_1,t_2]}\|\phi'(t)\|\dd{t} \\
+&amp;= \int_{[t_1,t_2]}\|X_{\phi(t)}\|\dd{t} \\
+&amp;\leq c(t_2-t_1).
+}
+\]</span> 取 Cauchy 列 <span class="math inline">\(t_n\uparrow a\)</span>, 上面的估计意味着 <span class="math inline">\(\phi(t_n)\)</span> 也为 Cauchy 列, 根据 <span class="math inline">\(M\)</span> 的完备性, <span class="math inline">\(\phi(t_n)\to q\in M\)</span>. 上面的估计也意味着极限点 <span class="math inline">\(q\)</span> 不依赖于数列 <span class="math inline">\(\{t_n\}\)</span> 的选取. 所以当 <span class="math inline">\(t\uparrow a\)</span>, <span class="math inline">\(\phi(t)\to q\)</span>. 由 <span class="math inline">\(X\)</span> 的连续性, 此时 <span class="math inline">\(X_{\phi(t)}\to X_q\)</span>. 设从 <span class="math inline">\(q\)</span> 开始的积分曲线 <span class="math inline">\(\psi:[0,\varepsilon)\to M\)</span>, 则 <span class="math inline">\(\psi\)</span> 延伸了 <span class="math inline">\(\phi\)</span>, 导致矛盾, 所以 <span class="math inline">\(a=+\infty\)</span>.</p>
+<p>相似地, 可以证明 <span class="math inline">\(\phi\)</span> 定义区间的下限为 <span class="math inline">\(-\infty\)</span>.</p>
+</div>
 <p>完备的黎曼流形有很好的性质, 在黎曼几何中起确定性作用. 完备黎曼流形的一些重要的例子有:</p>
 <ul>
-<li>具有平坦度量的 <span class="math inline">\(\R^n\)</span>; <span class="math inline">\(\R^n\)</span> 作为闭子集的子流形.</li>
-<li>紧致黎曼流形. 根据 Claim 13.2 的第三条,</li>
-<li>齐性(homogeneous)黎曼流形. 黎曼流形 <span class="math inline">\(M\)</span> 称为齐性的, 若对任意 <span class="math inline">\(p,q\in M\)</span>, 存在等距同构 <span class="math inline">\(\varphi:M\to M\)</span>, 使得 <span class="math inline">\(\varphi(p)=q\)</span>.</li>
+<li>具有平坦度量的 <span class="math inline">\(\R^n\)</span>.</li>
+<li><span class="math inline">\(\R^n\)</span> 作为闭子集的子流形.</li>
+<li>紧致黎曼流形.</li>
+<li><strong>齐性(homogeneous)黎曼流形</strong>. 黎曼流形 <span class="math inline">\(M\)</span> 为齐性的, 当且仅当对任意 <span class="math inline">\(p,q\in M\)</span>, 存在等距同构 <span class="math inline">\(\varphi:M\to M\)</span>, 使得 <span class="math inline">\(\varphi(p)=q\)</span>.</li>
 </ul>
-<h3 id="volume-form">13.3  Volume form</h3>
-<p><u>Claim 13.4</u> (对偶标架的变换律) 设开集 <span class="math inline">\(U\)</span> 上的标架 <span class="math inline">\(\{e_i\}\)</span>, <span class="math inline">\(\{\bar{e_i}\}\)</span> 与其对偶标架 <span class="math inline">\(\{\theta^i\}\)</span>, <span class="math inline">\(\{\bar\theta^i\}\)</span> 分别满足 <span class="math display">\[
+<p><u>Claim 13.4</u> 齐性黎曼流形是完备的.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 根据 Hopf-Rinow, 只需证明 <span class="math inline">\(M\)</span> 测地完备. 设弧长参数的测地线 <span class="math inline">\(\gamma:[0,a)\to M\)</span>, 且不可延伸到 <span class="math inline">\(a\)</span>. 我们知道, 取定一个 <span class="math inline">\(p\in M\)</span>, 存在 <span class="math inline">\(\varepsilon&gt;0\)</span>, 使得从 <span class="math inline">\(p\)</span> 点开始的测地线的线至少在 <span class="math inline">\((-\varepsilon,\varepsilon)\)</span> 有定义. 取 <span class="math inline">\(\delta=\min\{\varepsilon,a/2\}\)</span>, <span class="math inline">\(q=\gamma(a-\delta)\)</span>.</p>
+<p>因为 <span class="math inline">\(M\)</span> 是齐性流形, 所以存在等距同构 <span class="math inline">\(\varphi:M\to M\)</span>, 使得 <span class="math inline">\(\varphi(p)=q\)</span>. 由于等距同构保持测地线, 所以从 <span class="math inline">\(q\)</span> 点出发的所有测地线至少在 <span class="math inline">\((-\delta,\delta)\)</span> 有定义. 特别地, <span class="math inline">\(\gamma(t)\)</span> 可以延伸到 <span class="math inline">\([0,a+\delta)\)</span>, 与假设矛盾.</p>
+</div>
+<h2 id="volume">14  Volume</h2>
+<h3 id="volume-form">14.1  Volume form</h3>
+<p><u>Claim 14.1</u> (对偶标架的变换律) 设开集 <span class="math inline">\(U\)</span> 上的标架 <span class="math inline">\(\{e_i\}\)</span>, <span class="math inline">\(\{\bar{e_i}\}\)</span> 与其对偶标架 <span class="math inline">\(\{\theta^i\}\)</span>, <span class="math inline">\(\{\bar\theta^i\}\)</span> 分别满足 <span class="math display">\[
 \bar{e}_j=\sum_i a^i_je_i,\quad \bar\theta^i=\sum_j b^i_j\theta^j,
 \]</span> (其中光滑函数 <span class="math inline">\(A=[a^i_j]:U\to{\rm GL}(n,\R)\)</span>) 则 <span class="math inline">\(B=[b^i_j]=A^{-1}\)</span>. 此外, <span class="math display">\[
 \bar\theta^1\wedge\dots\wedge\bar\theta^n
@@ -362,7 +422,7 @@ l(c) \geq l(c|_{[\tilde{a},\tilde{b}]})
 =(\det{A}^{-1})\,\theta^1\wedge\dots\wedge\theta^n
 =\pm\omega.
 \]</span> 当标架 <span class="math inline">\(\{e_i\}\)</span> 与 <span class="math inline">\(\{\bar e_i\}\)</span> 定向相同时, <span class="math inline">\(\bar\omega=\omega\)</span>. 上述 <span class="math inline">\(n\)</span> 形式 <span class="math inline">\(\omega\)</span> 称为 <span class="math inline">\(M\)</span> 的<strong>黎曼体积形式(Riemannian volume form)</strong>, 简称体积形式, 记作 <span class="math inline">\({\rm vol}_M\)</span>. 若 <span class="math inline">\(\int_M{\rm vol}_M\)</span> 有限, 则称 <span class="math inline">\(\int_M{\rm vol}_M\)</span> 为流形 <span class="math inline">\(M\)</span> 的<strong>体积(volume)</strong>.</p>
-<p><u>Claim 13.5</u> (坐标系下的体积形式) 在正定向的坐标系 <span class="math inline">\((U,x^1,\dots,x^n)\)</span> 下, 黎曼体积形式 <span class="math display">\[
+<p><u>Claim 14.2</u> (坐标系下的体积形式) 在正定向的坐标系 <span class="math inline">\((U,x^1,\dots,x^n)\)</span> 下, 黎曼体积形式 <span class="math display">\[
 {\rm vol}_M = \sqrt{\det{[g_{ij}]}} \dd{x^1}\wedge\cdots\wedge\dd{x^n}.
 \]</span></p>
 <div class="note note-secondary">
@@ -434,9 +494,9 @@ x_n     &amp;= \rho\sin\theta\cdots\sin\phi_{n-3}\sin\phi_{n-2}, \\
 \]</span> 利用 Gamma 函数可以写作 <span class="math display">\[
 \textsf{Area} = \frac{2\pi^{n/2}}{\Gamma(\frac{n}2)} r^{n-1}.
 \]</span></p>
-<h3 id="induced-volume-form">13.4  Induced volume form</h3>
+<h3 id="induced-volume-form">14.2  Induced volume form</h3>
 <p>回忆带边流形的诱导定向. 设定向的带边流形 <span class="math inline">\(M\)</span>, 设 <span class="math inline">\(\omega\)</span> 为 <span class="math inline">\(M\)</span> 的体积形式, <span class="math inline">\(X\)</span> 为 <span class="math inline">\(\partial M\)</span> 上的光滑外向向量场, 则 <span class="math inline">\(\partial M\)</span> 的诱导体积形式由 interior multiplication <span class="math inline">\(\iota_X\omega\)</span> 给出.</p>
-<p><u>Claim 13.6</u> (诱导体积形式) 设带边黎曼流形 <span class="math inline">\(M\)</span>, <span class="math inline">\(X\)</span> 为 <span class="math inline">\(\partial M\)</span> 上的光滑外向单位向量场, 则 <span class="math inline">\(\partial M\)</span> 的诱导黎曼体积形式 <span class="math display">\[
+<p><u>Claim 14.3</u> (诱导体积形式) 设带边黎曼流形 <span class="math inline">\(M\)</span>, <span class="math inline">\(X\)</span> 为 <span class="math inline">\(\partial M\)</span> 上的光滑外向单位向量场, 则 <span class="math inline">\(\partial M\)</span> 的诱导黎曼体积形式 <span class="math display">\[
 {\rm vol}_{\partial M} = \iota_X({\rm vol}_M).
 \]</span></p>
 <div class="note note-secondary">
@@ -489,7 +549,7 @@ X=x\pdv{x}+y\pdv{y},
 }
 \]</span></p>
 </div>
-<p><u>Claim 13.7</u> (高斯映射与体积形式) 设 <span class="math inline">\(M\)</span> 为 <span class="math inline">\(\R^{n+1}\)</span> 中紧致定向超曲面, <span class="math inline">\(M\)</span> 的高斯曲率 <span class="math inline">\(K\)</span>, 高斯映射 <span class="math inline">\(\nu:M\to S^n\)</span>, 则 <span class="math display">\[
+<p><u>Claim 14.4</u> (高斯映射与体积形式) 设 <span class="math inline">\(M\)</span> 为 <span class="math inline">\(\R^{n+1}\)</span> 中紧致定向超曲面, <span class="math inline">\(M\)</span> 的高斯曲率 <span class="math inline">\(K\)</span>, 高斯映射 <span class="math inline">\(\nu:M\to S^n\)</span>, 则 <span class="math display">\[
 \nu^*({\rm vol}_{S^n}) = (-1)^n K {\rm vol}_M.
 \]</span></p>
 <div class="note note-secondary">
@@ -520,8 +580,8 @@ T_{\nu(p)}\R^{n+1} &amp;= \operatorname{span}(N_p)\oplus T_{\nu(p)}S^n,
 }
 \]</span></p>
 </div>
-<h2 id="the-gauss-bonnet-theorem">14  The Gauss-Bonnet Theorem</h2>
-<h3 id="angle-function">14.1  Angle function</h3>
+<h2 id="the-gauss-bonnet-theorem">15  The Gauss-Bonnet Theorem</h2>
+<h3 id="angle-function">15.1  Angle function</h3>
 <p>切空间 <span class="math inline">\(T_pM\)</span> 中任意两个向量 <span class="math inline">\(u,v\)</span> 的夹角 <span class="math inline">\(\zeta\)</span> 定义为 <span class="math display">\[
 \cos\zeta = \frac{\lr{u,v}}{\|u\|\cdot\|v\|},
 \]</span> 于是 <span class="math inline">\(\zeta\)</span> 可以在相差 <span class="math inline">\(2\pi\)</span> 的整数倍的意义下确定.</p>
@@ -539,7 +599,7 @@ T_{\nu(p)}\R^{n+1} &amp;= \operatorname{span}(N_p)\oplus T_{\nu(p)}S^n,
 \zeta(t) = t+\frac\pi2+2k\pi,
 \]</span> 是以 <span class="math inline">\(\pi/2+2k\pi\)</span> 为初值的角度函数, 常数 <span class="math inline">\(k\in\Z\)</span>.</p>
 </div>
-<h3 id="geodesic-curvature">14.2  Geodesic curvature</h3>
+<h3 id="geodesic-curvature">15.2  Geodesic curvature</h3>
 <p>考虑黎曼流形 <span class="math inline">\(M\)</span> 上的弧长参数化的曲线 <span class="math inline">\(\gamma:[a,b]\to M\)</span>, 于是 <span class="math inline">\(T(s)=\gamma'(s)\)</span> 的长度恒为 <span class="math inline">\(1\)</span>. 曲线 <span class="math inline">\(\gamma\)</span> 是一条测地线, 当且仅当协变导数 <span class="math inline">\({\rm D}T/\dd{s}\equiv0\)</span>. 于是, 可以用 <span class="math inline">\(\|{\rm D}T/\dd{s}\|\)</span> 来衡量 <span class="math inline">\(\gamma\)</span> 偏离测地线的程度, 该值称为 <span class="math inline">\(\gamma(s)\)</span> 的<strong>测地曲率(geodesic curvature)</strong>: <span class="math display">\[
 \tilde\kappa_g := \norm{ \frac{{\rm D}T}{\dd{s}} }.
 \]</span> 对于一个可定向的二维黎曼流形 <span class="math inline">\(M\)</span>, 我们可以取沿着 <span class="math inline">\(\gamma(s)\)</span> 的法向量场 <span class="math inline">\(n(s)\)</span> (即正交于 <span class="math inline">\(T(s)\)</span>), 使得 <span class="math inline">\((T(s),n(s))\)</span> 在 <span class="math inline">\(T_{\gamma(s)}M\)</span> 中有正定向, 且正交归一. 因为 <span class="math inline">\(\lr{T,T}\equiv1\)</span>, 必然有 <span class="math display">\[
@@ -555,7 +615,7 @@ T_{\nu(p)}\R^{n+1} &amp;= \operatorname{span}(N_p)\oplus T_{\nu(p)}S^n,
 \]</span> 可以发现, 测地曲率和有符号测地曲率分别是上面两者的推广.</li>
 <li>带符号测地曲率在 <span class="math inline">\(\gamma\)</span> 上的积分 <span class="math inline">\(\int_a^b\kappa_g\dd{s}\)</span> 称为 <span class="math inline">\(\gamma\)</span> 的<strong>全测地曲率(total geodesic curvature)</strong>.</li>
 </ul>
-<p><u>Claim 14.1</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 开集 <span class="math inline">\(U\)</span> 上有正定向的正交归一标架 <span class="math inline">\(e_1,e_2\)</span>, 该标架下黎曼联络形式为 <span class="math inline">\(\omega^1_2\)</span>, 则弧长参数曲线 <span class="math inline">\(\gamma\)</span> 的测地曲率 <span class="math display">\[
+<p><u>Claim 15.1</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 开集 <span class="math inline">\(U\)</span> 上有正定向的正交归一标架 <span class="math inline">\(e_1,e_2\)</span>, 该标架下黎曼联络形式为 <span class="math inline">\(\omega^1_2\)</span>, 则弧长参数曲线 <span class="math inline">\(\gamma\)</span> 的测地曲率 <span class="math display">\[
 \kappa_g = \dv{\zeta}{s} - \omega^1_2(T).
 \]</span></p>
 <div class="note note-secondary">
@@ -577,7 +637,7 @@ n &amp;= (-\sin\zeta)e_1 + (\cos\zeta)e_2,
 }
 \]</span></p>
 </div>
-<p><u>Claim 14.2</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 弧长参数曲线 <span class="math inline">\(\gamma:[a,b]\to M\)</span> 的像是一个一维带边子流形 <span class="math inline">\(C\)</span>. 若 <span class="math inline">\(C\)</span> 处在标架开集 <span class="math inline">\(U,e_1,e_2\)</span> (正定向) 内, 联络形式 <span class="math inline">\(\omega^1_2\)</span>, 则 <span class="math display">\[
+<p><u>Claim 15.2</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 弧长参数曲线 <span class="math inline">\(\gamma:[a,b]\to M\)</span> 的像是一个一维带边子流形 <span class="math inline">\(C\)</span>. 若 <span class="math inline">\(C\)</span> 处在标架开集 <span class="math inline">\(U,e_1,e_2\)</span> (正定向) 内, 联络形式 <span class="math inline">\(\omega^1_2\)</span>, 则 <span class="math display">\[
 \int_a^b\kappa_g\dd{s} = \zeta(b)-\zeta(a)-\int_C\omega^1_2.
 \]</span></p>
 <div class="note note-secondary">
@@ -591,7 +651,7 @@ f(s)
 = \omega^1_2\pqty{ \gamma_*\dv{s} }
 = \omega^1_2(T),
 }
-\]</span> 结合 Claim 14.1, <span class="math display">\[
+\]</span> 结合 Claim 15.1, <span class="math display">\[
 \Align{
 \int_a^b\kappa_g\dd{s}
 &amp;= \int_a^b\dv{\zeta}{s}\dd{s} - \int_a^b\omega^1_2(T)\dd{s} \\
@@ -600,7 +660,7 @@ f(s)
 }
 \]</span></p>
 </div>
-<h3 id="gauss-bonnet-for-a-polygon">14.3  Gauss-Bonnet for a polygon</h3>
+<h3 id="gauss-bonnet-for-a-polygon">15.3  Gauss-Bonnet for a polygon</h3>
 <p>二维黎曼流形 <span class="math inline">\(M\)</span> 中的一个<strong>多边形(polygon)</strong>指的是一个简单分段光滑闭曲线 <span class="math inline">\(\gamma:[a,b]\to M\)</span>; "简单"指的是不自交, "闭"指的是 <span class="math inline">\(\gamma(a)=\gamma(b)\)</span>. 多边形同样有弧长参数化的概念, <span class="math inline">\(\gamma\)</span> 为弧长参数化的, 当且仅当其在每一个光滑小段上的切向量长度为 <span class="math inline">\(1\)</span>. 多边形的顶点(vertices)就是不光滑点 <span class="math inline">\(\gamma(s_0),\gamma(s_1),\dots,\gamma(s_m)\)</span>, 其中 <span class="math inline">\(a=s_0&lt;\cdots&lt;s_m=b\)</span>.</p>
 <p>设 <span class="math inline">\(\gamma\)</span> 为可定向二维黎曼流形 <span class="math inline">\(M\)</span> 中的多边形, 记 <span class="math inline">\(C\)</span> 为 <span class="math inline">\(\gamma\)</span> 的像, <span class="math inline">\(R\)</span> 为 <span class="math inline">\(C\)</span> 的内部, <span class="math inline">\(K\)</span> 为 <span class="math inline">\(M\)</span> 的高斯曲率. 在顶点 <span class="math inline">\(\gamma(s_i)\)</span> 处, 令 <span class="math inline">\(\gamma'(s_i^-)\)</span> 为前一段 <span class="math inline">\(\gamma|_{[s_{i-1},s_i]}\)</span> 在 <span class="math inline">\(s_i\)</span> 处的切向量; <span class="math inline">\(\gamma'(s_i^+)\)</span> 为后一段 <span class="math inline">\(\gamma|_{[s_i,s_{i+1}]}\)</span> 在 <span class="math inline">\(s_i\)</span> 处的切向量. <span class="math inline">\(\gamma'(s_i^-)\)</span> 和 <span class="math inline">\(\gamma'(s_i^+)\)</span> 所夹的在 <span class="math inline">\((-\pi,\pi)\)</span> 间的角度 <span class="math inline">\(\varepsilon_i\)</span> 称为 <span class="math inline">\(\gamma(s_i)\)</span> 处的<strong>跳跃角(jumping angle)</strong>, 补角 <span class="math display">\[
 \beta_i:=\pi-\varepsilon_i
@@ -608,7 +668,7 @@ f(s)
 <p>在每条边(edge) <span class="math inline">\(\gamma([s_{i-1},s_i])\)</span> 上, 切向量 <span class="math inline">\(T\)</span> 的角度变化为 <span class="math inline">\(\Delta\zeta_i=\zeta(s_i)-\zeta(s_{i-1})\)</span>. 在顶点处, 切向量角度跳变 <span class="math inline">\(\varepsilon_i\)</span>. 于是, 切向量在整个多边形上的角度变化为 <span class="math display">\[
 \sum_{i=1}^m\Delta\zeta_i + \sum_{i=1}^m\varepsilon_i.
 \]</span> 一个多边形称称为正定向的, 若切向量 <span class="math inline">\(T\)</span> 与 <span class="math inline">\(R\)</span> 在边界 <span class="math inline">\(C\)</span> 上的诱导定向相同.</p>
-<p><u>Claim 14.3</u> (Hopf Umlaufsatz) 设定向二维黎曼流形 <span class="math inline">\(M\)</span> 上的标架开集 <span class="math inline">\((U,e_1,e_2)\)</span> 内有正定向的多边形 <span class="math inline">\(\gamma:[a,b]\to U\)</span>, 那么其切向量 <span class="math inline">\(T'(s)=\gamma'(s)\)</span> 的角度变化 <span class="math display">\[
+<p><u>Claim 15.3</u> (Hopf Umlaufsatz) 设定向二维黎曼流形 <span class="math inline">\(M\)</span> 上的标架开集 <span class="math inline">\((U,e_1,e_2)\)</span> 内有正定向的多边形 <span class="math inline">\(\gamma:[a,b]\to U\)</span>, 那么其切向量 <span class="math inline">\(T'(s)=\gamma'(s)\)</span> 的角度变化 <span class="math display">\[
 \sum_{i=1}^m\Delta\zeta_i + \sum_{i=1}^m\varepsilon_i = 2\pi.
 \]</span></p>
 <ul>
@@ -636,12 +696,12 @@ f(s)
 \zeta(l)-\zeta(0)=\int_{\overline{OL}}\dd\alpha=2\pi.
 \]</span> 最后, 对于分段光滑的曲线 <span class="math inline">\(\gamma:[0,l]\to\R^2\)</span>, 将顶点 "平滑化", 即用一段光滑弧线代替. 所得的光滑曲线和原曲线具有相同的角度改变.</p>
 </div>
-<p><u>Claim 14.4</u> (多边形的 Gauss-Bonnet 定理) 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 正交归一且正定向的标架开集 <span class="math inline">\((U,e_1,e_2)\)</span>. 设正定向的, 弧长参数的多边形 <span class="math inline">\(\gamma:[a,b]\to U\)</span>, 则 <span class="math display">\[
+<p><u>Claim 15.4</u> (多边形的 Gauss-Bonnet 定理) 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 正交归一且正定向的标架开集 <span class="math inline">\((U,e_1,e_2)\)</span>. 设正定向的, 弧长参数的多边形 <span class="math inline">\(\gamma:[a,b]\to U\)</span>, 则 <span class="math display">\[
 \int_a^b\kappa_g\dd{s}
 = 2\pi - \sum_{i=1}^m\varepsilon_i - \int_R K\,{\rm vol}.
 \]</span></p>
 <div class="note note-secondary">
-<p><u>Pf</u> 根据上一小节 Claim 14.2 和 Hopf Umlaufsatz, <span class="math display">\[
+<p><u>Pf</u> 根据上一小节 Claim 15.2 和 Hopf Umlaufsatz, <span class="math display">\[
 \Align{
 \int_a^b\kappa_g\dd{s}
 &amp;= \sum_{i=1}^m\int_{s_{i-1}}^{s_i}\kappa_g\dd{s} \\
@@ -660,11 +720,11 @@ f(s)
 }
 \]</span> 与前式结合便证明了定理.</p>
 </div>
-<p>一类最特殊的多边形是由测地线组成的多边形, 称为<strong>测地多边形(geodesic polygon)</strong>, 它们相当于平面中直线段组成的多边形. 测地线的测地曲率恒为零, 由 Claim 14.4 做出如下推论.</p>
-<p><u>Claim 14.5</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 测地多边形 <span class="math inline">\(\gamma\)</span> 处于标架开集 <span class="math inline">\(U\)</span> 内, 则 <span class="math inline">\(\gamma\)</span> 的内角和 <span class="math display">\[
+<p>一类最特殊的多边形是由测地线组成的多边形, 称为<strong>测地多边形(geodesic polygon)</strong>, 它们相当于平面中直线段组成的多边形. 测地线的测地曲率恒为零, 由 Claim 15.4 做出如下推论.</p>
+<p><u>Claim 15.5</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 测地多边形 <span class="math inline">\(\gamma\)</span> 处于标架开集 <span class="math inline">\(U\)</span> 内, 则 <span class="math inline">\(\gamma\)</span> 的内角和 <span class="math display">\[
 \sum_{i=1}^m\beta_i = (m-2)\pi + \int_RK\,{\rm vol}.
 \]</span> 于是我们能得到几个关于测地三角形的有趣结论.</p>
-<p><u>Claim 14.6</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 测地三角形 <span class="math inline">\(\gamma\)</span> 处于标架开集 <span class="math inline">\(U\)</span> 内.</p>
+<p><u>Claim 15.6</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 测地三角形 <span class="math inline">\(\gamma\)</span> 处于标架开集 <span class="math inline">\(U\)</span> 内.</p>
 <ol type="1">
 <li>若 <span class="math inline">\(\gamma\)</span> 内部高斯曲率恒为零, 则 <span class="math inline">\(\gamma\)</span> 内角和为 <span class="math inline">\(\pi\)</span>.</li>
 <li>若 <span class="math inline">\(\gamma\)</span> 内部高斯曲率恒正, 则 <span class="math inline">\(\gamma\)</span> 内角和大于 <span class="math inline">\(\pi\)</span>.</li>
@@ -672,7 +732,7 @@ f(s)
 </ol>
 <div class="note note-info">
 <p><u>Example</u> 球面三角形与双曲三角形.</p>
-<p>球面 <span class="math inline">\(S^2\)</span> 具有正曲率, 其上测地三角形(球面三角形)内角和大于 <span class="math inline">\(\pi\)</span>. 设球面的半径为 <span class="math inline">\(r\)</span>, 球面三角形的三个内角分别为 <span class="math inline">\(\alpha,\beta,\gamma\)</span>, 因为球面有常曲率 <span class="math inline">\(1/r^2\)</span>, 应用 Claim 14.5, <span class="math display">\[
+<p>球面 <span class="math inline">\(S^2\)</span> 具有正曲率, 其上测地三角形(球面三角形)内角和大于 <span class="math inline">\(\pi\)</span>. 设球面的半径为 <span class="math inline">\(r\)</span>, 球面三角形的三个内角分别为 <span class="math inline">\(\alpha,\beta,\gamma\)</span>, 因为球面有常曲率 <span class="math inline">\(1/r^2\)</span>, 应用 Claim 15.5, <span class="math display">\[
 \Align{
 \alpha+\beta+\gamma
 &amp;= \pi+\int_R\frac{1}{r^2}{\rm vol} \\
@@ -682,10 +742,10 @@ f(s)
 \]</span> 给出了球面三角形的面积与内角和的关系.</p>
 <p>双曲空间具有负曲率, 测地三角形内角和小于 <span class="math inline">\(\pi\)</span>. 考虑 Poincaré 圆盘上 <span class="math inline">\(\mathbb{D}\)</span> 的测地三角形 <span class="math inline">\(ABC\)</span>, 让 <span class="math inline">\(A,B,C\)</span> 趋近于 <span class="math inline">\(\mathbb{D}\)</span> 的边界, 则 <span class="math inline">\(ABC\)</span> 的内角和趋近于 <span class="math inline">\(0\)</span>.</p>
 </div>
-<h3 id="gauss-bonnet-for-a-surface">14.4  Gauss-Bonnet for a surface</h3>
+<h3 id="gauss-bonnet-for-a-surface">15.4  Gauss-Bonnet for a surface</h3>
 <p>设紧致的二维定向黎曼空间 <span class="math inline">\(M\)</span>. 根据紧致性, <span class="math inline">\(M\)</span> 能够被划分为若干多边形, 每个多边形都处在一个标架开集 <span class="math inline">\(U_\alpha\)</span> 内. 我们称这样的多边形划分是足够细致(sufficiently fine)的. 设 <span class="math inline">\(V,E,F\)</span> 分别为多边形的总定点数, 总边数, 总面数, 定义<strong>欧拉示性数(Euler characteristic)</strong> <span class="math display">\[
 \chi(M) := V-E+F.
-\]</span> <u>Claim 14.7</u> (Gauss-Bonnet 定理) 对于一个紧致的定向二维黎曼空间 <span class="math inline">\(M\)</span>, <span class="math display">\[
+\]</span> <u>Claim 15.7</u> (Gauss-Bonnet 定理) 对于一个紧致的定向二维黎曼空间 <span class="math inline">\(M\)</span>, <span class="math display">\[
 \int_M K\,{\rm vol} = 2\pi\chi(M).
 \]</span></p>
 <div class="note note-secondary">
@@ -708,13 +768,13 @@ f(s)
 <p>欧拉示性数 <span class="math inline">\(\chi(M)\)</span> 是一个拓扑不变量. 紧致定向二维流形可以根据亏格(genus) <span class="math inline">\(g\)</span>, 即 "洞的个数", 来分类. 两个曲面微分同胚, 当且仅当它们具有相同的亏格. 亏格与欧拉示性数的关系 <span class="math display">\[
 \chi = 2-2g.
 \]</span> 高斯曲率与流形上的黎曼度量有关, 但是曲率在流形上的积分却只与流形的拓扑有关.</p>
-<p><u>Claim 14.8</u> 若定向紧致二维黎曼流形处处具有正曲率, 则它与球面同胚.</p>
+<p><u>Claim 15.8</u> 若定向紧致二维黎曼流形处处具有正曲率, 则它与球面同胚.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 根据 Gauss-Bonnet, <span class="math display">\[
 2\pi\chi(M)=\int_MK\,{\rm vol} &gt; 0,
 \]</span> 于是 <span class="math inline">\(\chi(M)=2-2g&gt;0\)</span>, 即 <span class="math inline">\(g&lt;1\)</span>, 只能有 <span class="math inline">\(g=0\)</span>, 即与球面同胚.</p>
 </div>
-<h3 id="generalizations">14.5  Generalizations</h3>
+<h3 id="generalizations">15.5  Generalizations</h3>
 <p>对于 <span class="math inline">\(\R^{2n+1}\)</span> 中的 <span class="math inline">\(2n\)</span> 维紧致定向超曲面 <span class="math inline">\(M\)</span>, 我们之前定义了它的高斯曲率 <span class="math inline">\(K\)</span> (为形状算子的行列式), 高维的 Gauss-Bonnet 定理指出, <span class="math display">\[
 \int_M K\,{\rm vol}_M = \frac{{\rm vol}(S^{2n})}{2}\chi(M).
 \]</span> 其中 <span class="math inline">\({\rm vol}(S^{2n})\)</span> 是 <span class="math inline">\(2n\)</span> 维单位球面的表面积.</p>
@@ -791,7 +851,7 @@ f(s)
   <div class="license-box my-3">
     <div class="license-title">
       <div>GTM275 | 5 测地线</div>
-      <div>https://disembo.github.io/2024/06/diffgeom-gtm275-5/</div>
+      <div>https://disembo.github.io/2024/06/dg-gtm275-5/</div>
     </div>
     <div class="license-meta">
       
@@ -835,7 +895,7 @@ f(s)
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/diffgeom-gtm275-6/" title="GTM275 | 6 代数与拓扑工具">
+                      <a href="/2024/07/dg-gtm275-6/" title="GTM275 | 6 代数与拓扑工具">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">GTM275 | 6 代数与拓扑工具</span>
                         <span class="visible-mobile">上一篇</span>
@@ -845,7 +905,7 @@ f(s)
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/diffgeom-gtm275-4/" title="GTM275 | 4 测地线">
+                      <a href="/2024/06/dg-gtm275-4/" title="GTM275 | 4 测地线">
                         <span class="hidden-mobile">GTM275 | 4 测地线</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
