@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-simple-closed-curve.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-domain.png">
 <meta property="article:published_time" content="2024-06-28T02:30:00.000Z">
-<meta property="article:modified_time" content="2024-07-08T13:56:48.846Z">
+<meta property="article:modified_time" content="2024-07-09T13:43:56.004Z">
 <meta property="article:author" content="jin_">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -349,7 +349,7 @@ d(\gamma(t_0),q)&lt;\frac\varepsilon2,
 \Sigma_r(p) = \{x\in B_r(p)\mid p,x\textsf{ 可用最短测地线相连}\},
 \]</span> 即要证明 <span class="math inline">\(B_r(p)=\Sigma_r(p)\)</span>. 当 <span class="math inline">\(r\)</span> 充分小时这件事是对的, 所以若令 <span class="math display">\[
 \mathscr{T}=\{ r\in[0,+\infty)\mid B_r(p)=\Sigma_r(p)\},
-\]</span> 则 <span class="math inline">\(\mathscr{T}\)</span> 非空且有内点. 只要证明 <span class="math inline">\(\mathscr{T}\)</span> 既开又闭, 再由 <span class="math inline">\([0,+\infty)\)</span> 连通便可得 <span class="math inline">\(\mathscr{T}=[0,+\infty)\)</span>. 下面证明开性. 先给出 Claim 11.7 和 Claim 13.1 的推论:</p>
+\]</span> 则 <span class="math inline">\(\mathscr{T}\)</span> 非空且有内点. 只要证明 <span class="math inline">\(\mathscr{T}\)</span> 既开又闭, 再由 <span class="math inline">\([0,+\infty)\)</span> 连通便可得 <span class="math inline">\(\mathscr{T}=[0,+\infty)\)</span>. 闭性是测地线连续依赖于初始向量的直接推论. 下面证明开性. 先给出 Claim 11.7 和 Claim 13.1 的推论:</p>
 <ul>
 <li>任给 <span class="math inline">\(q\in M\)</span>, 存在 <span class="math inline">\(q\)</span> 的邻域 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(\varepsilon&gt;0\)</span>, 使得 <span class="math inline">\(\operatorname{Exp}\)</span> 定义在管状区域 <span class="math inline">\(U\times B_\varepsilon(0)\)</span> 上, 于是 (推论) 任给 <span class="math inline">\(x\in K\)</span>, <span class="math inline">\(y\in M\)</span>, 只要 <span class="math inline">\(d(x,y)\leq\varepsilon\)</span>, 那么 <span class="math inline">\(x,y\)</span> 就能由最短测地线连接.</li>
 <li>考虑 <span class="math inline">\(B_r(p)\)</span>, 任给 <span class="math inline">\(q\in B_r(p)\)</span>, 能够找到如上的 <span class="math inline">\(U_q\)</span> 和 <span class="math inline">\(\varepsilon_q\)</span>. 这 <span class="math inline">\(\{U_q\}\)</span> 构成一个开覆盖. 由 <span class="math inline">\(B_r(p)\)</span> 的紧致性, <span class="math inline">\(\{U_q\}\)</span> 存在有限子覆盖 <span class="math inline">\(\{U_q\}_{q\in I}\)</span>. 取 <span class="math inline">\(\varepsilon:=\min_{q\in I}\varepsilon_q\)</span>, 则 <span class="math inline">\(B_r(p)\)</span> 关于 <span class="math inline">\(\varepsilon\)</span> 也满足如上推论.</li>
@@ -384,7 +384,7 @@ d(p,x)\leq A,\quad x\in K.
 </div>
 <p><u>Claim 13.3</u> 完备的黎曼流形上的有界向量场是完备的. 换言之, 设向量场 <span class="math inline">\(X\)</span>, 若存在常数 <span class="math inline">\(c\)</span> 使得 <span class="math inline">\(\|X\|\leq c\)</span>, 则 <span class="math inline">\(X\)</span> 的每一条不可延积分曲线的定义域为 <span class="math inline">\(\R\)</span>.</p>
 <div class="note note-secondary">
-<p><u>Pf</u> 反正. 假设 <span class="math inline">\(X\)</span> 的一条积分曲线 <span class="math inline">\(\phi:[0,a)\to M\)</span>, 且不可延伸到 <span class="math inline">\(a\)</span> (<span class="math inline">\(a&lt;+\infty\)</span>). 我们首先给出估计: 对于任意 <span class="math inline">\(0\leq t_1&lt;t_2&lt;a\)</span>, <span class="math display">\[
+<p><u>Pf</u> 反证. 假设 <span class="math inline">\(X\)</span> 的一条积分曲线 <span class="math inline">\(\phi:[0,a)\to M\)</span>, 且不可延伸到 <span class="math inline">\(a\)</span> (<span class="math inline">\(a&lt;+\infty\)</span>). 我们首先给出估计: 对于任意 <span class="math inline">\(0\leq t_1&lt;t_2&lt;a\)</span>, <span class="math display">\[
 \Align{
 d(\phi(t_1),\phi(t_2))
 &amp;\leq \int_{[t_1,t_2]}\|\phi'(t)\|\dd{t} \\
