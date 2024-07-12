@@ -23,8 +23,8 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="张量场的协变导数, 向量丛的示性类.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-11T13:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-12T07:01:10.960Z">
+<meta property="article:published_time" content="2024-07-12T14:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-12T15:30:01.749Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -215,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-11 21:00" pubdate>
-          2024年7月11日 晚上
+        <time datetime="2024-07-12 22:00" pubdate>
+          2024年7月12日 晚上
         </time>
       </span>
     
@@ -491,7 +491,128 @@ S
 \]</span> 是基底生成的所有截面曲率和的二倍. 特别地, 对于常截面曲率流形, <span class="math inline">\(S=n(n-1)K\)</span>.</p></li>
 </ul>
 <h2 id="characteristic-classes">21  Characteristic Classes</h2>
-<p>待续</p>
+<p>对于向量丛 <span class="math inline">\(E\to M\)</span> 的联络 <span class="math inline">\(\nabla\)</span>, 可以从其曲率形式 <span class="math inline">\(\Omega\)</span> 中提取一些不变量, 这些不变量不依赖于标架, 也不依赖于联络 <span class="math inline">\(\nabla\)</span> 的选取, 反映了 <span class="math inline">\(E\to M\)</span> 的某些整体性质.</p>
+<h3 id="chern-weil-homomorphism">21.1  Chern-Weil homomorphism</h3>
+<p>设 <span class="math inline">\(E\)</span> 的标架 <span class="math inline">\((U,e)\)</span>, 因为曲率矩阵 <span class="math inline">\(\Omega\)</span> 在标架变换 <span class="math inline">\(\bar{e}=ea\)</span>, <span class="math inline">\(a\in\Omega^k(U,{\rm GL}(r,\R))\)</span> 下相差一个共轭作用 <span class="math display">\[
+\bar\Omega=a^{-1}\Omega a.
+\]</span> 所以对于 <span class="math inline">\(r^2\)</span> 个变量的多项式 <span class="math inline">\(P(X)=P(x^i_j)\in\R[x^i_j]\)</span>, 若 <span class="math inline">\(P(X)\)</span> 在 <span class="math inline">\({\rm GL}(r,\R)\)</span> 的共轭作用下不变: <span class="math display">\[
+P(X) = P(A^{-1}XA),\quad\forall A\in{\rm GL}(r,\R),
+\]</span> 则 <span class="math inline">\(P(\Omega)\)</span> 给出了一个不依赖于标架的整体微分形式. 我们称这样的多项式是<strong>不变多项式(invariant polynomial)</strong>. 若 <span class="math inline">\(P\)</span> 是 <span class="math inline">\(k\)</span> 次齐次的, 则整体形式 <span class="math inline">\(P(\Omega)\in\Omega^{2k}(M,{\frak gl}(r,\R))\)</span>, 称为<strong>示性形式(characteristic form)</strong>. 下面我们要证明, <span class="math inline">\(P(\Omega)\)</span> 是闭形式. 于是其上同调类 <span class="math inline">\([P(\Omega)]\in H^{2k}(M)\)</span> 是良定义的, 我们还证明其不依赖 <span class="math inline">\(\nabla\)</span> 的选取, 称为<strong>示性类(characteristic class)</strong>.</p>
+<p><u>Claim 21.1</u> 设秩 <span class="math inline">\(r\)</span> 的向量丛 <span class="math inline">\(E\to M\)</span>, 联络 <span class="math inline">\(\nabla\)</span> 给出整体曲率形式 <span class="math inline">\(\Omega\)</span>. 任给不变多项式 <span class="math inline">\(P(X)\)</span>,</p>
+<ol type="1">
+<li><span class="math inline">\(P(\Omega)\)</span> 是闭形式.</li>
+<li><span class="math inline">\([P(\Omega)]\)</span> 不依赖 <span class="math inline">\(\nabla\)</span> 的选取.</li>
+</ol>
+<div class="note note-secondary">
+<p><u>Pf</u> 证明过程使用了一些结论, 包括不变多项式和<strong>单参数微分形式族</strong> <span class="math inline">\(\{\omega_t\}_{t\in J}\)</span> 的一些定理. 这些结论附在本节末尾.</p>
+<p>1, 因为不变多项式由迹多项式 <span class="math inline">\(\tr{X^k}\)</span> (<span class="math inline">\(k=1,\dots,r\)</span>) 生成, 所以只需对 <span class="math inline">\(\tr\Omega^k\)</span> 证明: <span class="math display">\[
+\dd(\tr\Omega^k)
+= \tr(\dd\Omega^k)
+= \tr(\Omega^k\wedge\omega-\omega\wedge\Omega^k)
+= 0.
+\]</span> 2, 任给两个联络 <span class="math inline">\(\nabla^0,\nabla^1\)</span>, 则仿射组合 <span class="math inline">\(\nabla^t=(1-t)\nabla^0+t\nabla^1\)</span> (<span class="math inline">\(t\in[0,1]\)</span>) 也是 <span class="math inline">\(E\)</span> 上的联络, 它的联络形式 <span class="math inline">\(\omega_t=(1-t)\omega_0+t\omega_1\)</span> 光滑依赖于参数 <span class="math inline">\(t\)</span>. 根据第二结构方程, <span class="math inline">\(\Omega_t\)</span> 也光滑依赖于 <span class="math inline">\(t\)</span>. 为了证明 <span class="math inline">\(\tr(\Omega^k_t)\)</span> 的上同调类不依赖于 <span class="math inline">\(t\)</span>, 一个自然的想法就是关于 <span class="math inline">\(t\)</span> 求导, 证明其导数是 <span class="math inline">\(M\)</span> 上的恰当形式.</p>
+<p>经过一番计算, 我们断言, <span class="math display">\[
+\dv{t}\tr(\Omega^k_t) = \dd(k\tr(\Omega_t^{k-1}\dot\omega)).
+\tag{\#}
+\]</span> 要说明 <span class="math inline">\(\dd\tr(\Omega^k_t)/\dd{t}\)</span> 可以整个 <span class="math inline">\(M\)</span> 上定义, 只需要验证 <span class="math inline">\(\tr(\Omega^{k-1}\dot\omega)\)</span> 在标架变换下不变. 设 <span class="math inline">\(\bar{e}=ea\)</span>, 则 <span class="math display">\[
+\bar\omega_t = a^{-1}\omega_ta+a^{-1}\dd{a},
+\]</span> 两边对 <span class="math inline">\(t\)</span> 求导, 注意 <span class="math inline">\(a\)</span> 为常数, 有 <span class="math inline">\(\dot{\bar\omega} = a^{-1} \dot\omega a\)</span>, 于是 <span class="math display">\[
+\tr(\bar\Omega^{k-1}\dot{\bar\omega})
+= \tr( a^{-1}\Omega^{k-1}aa^{-1}\dot\omega a )
+= \tr( a^{-1}\Omega^{k-1}\dot\omega a )
+= \tr(\Omega^{k-1}\dot\omega)
+\]</span> 完成了断言的证明.</p>
+<p><span class="math inline">\((\#)\)</span> 式两边在 <span class="math inline">\([0,1]\)</span> 上积分, 左边给出 <span class="math display">\[
+\int_0^1 \dv{t}\tr(\Omega^k_t) \dd{t} = \tr(\Omega^k_1)-\tr(\Omega^k_0),
+\]</span> 右边给出 <span class="math display">\[
+\int_0^1 \dd(k\tr(\Omega_t^{k-1}\dot\omega))\dd{t}
+= \dd \int_0^1 k\tr(\Omega_t^{k-1}\dot\omega) \dd{t}.
+\]</span> 结合左右两边, <span class="math display">\[
+\tr(\Omega^k_1)-\tr(\Omega^k_0)
+= \dd \int_0^1 k\tr(\Omega_t^{k-1}\dot\omega) \dd{t}
+\]</span> 即 <span class="math inline">\(\tr(\Omega^k_1),\tr(\Omega^k_0)\)</span> 相差一个恰当的整体形式, 两者给出同一个上同调类.</p>
+</div>
+<p>记 <span class="math inline">\({\rm Inv}({\frak gl}(r,\R))\)</span> 是 <span class="math inline">\({\frak gl}(r,\R)\)</span> 上所以不变多项式组成的 <span class="math inline">\(\R\)</span>-代数, <span class="math inline">\(H^*(M)\)</span> 是 <span class="math inline">\(M\)</span> 上的 de Rham 上同调代数, 则映射 <span class="math display">\[
+\Align{
+c_E: {\rm Inv}({\frak gl}(r,\R)) &amp;\to H^*(M) \\
+P(X) &amp;\mapsto [P(\Omega)]
+}
+\]</span> 给出了一个代数同态, 称为<strong>陈-Weil 同态(Chern-Weil homomorphism)</strong>.</p>
+<h3 id="functorial-definition">21.2  Functorial definition</h3>
+<p>设流形 <span class="math inline">\(M\)</span>, 映射 <span class="math display">\[
+\Align{
+c_M:\{ M \textsf{ 上向量丛的同构类} \} &amp;\to H^*(M) \\
+E &amp;\mapsto [P(\Omega)]
+}
+\]</span> 满足对任意光滑映射 <span class="math inline">\(f:N\to M\)</span> 和光滑向量丛 <span class="math inline">\(E\to M\)</span>, <span class="math display">\[
+c_N( f^*E ) = f^* c_M(E).
+\]</span></p>
+<div class="note note-secondary">
+<p><u>Pf</u> 设 <span class="math inline">\(E\to M\)</span> 的联络 <span class="math inline">\(\nabla\)</span> 在局部标架 <span class="math inline">\(e\)</span> 下有联络形式 <span class="math inline">\(\omega_e\)</span>. 则拉回丛 <span class="math inline">\(f^*E\)</span> 上有唯一的联络 <span class="math inline">\(\nabla'\)</span>, 其在标架 <span class="math inline">\(f^*e\)</span> 下的联络形式为 <span class="math inline">\(f^*\omega_e\)</span>, 曲率形式为 <span class="math display">\[
+f^*\omega_e + \frac12[f^*\omega_e,f^*\omega_e] = f^*\Omega_e
+\]</span> 因为 <span class="math inline">\(f^*\)</span> 是代数同态 (保持 <span class="math inline">\(\R\)</span>-线性运算和楔积), 有 <span class="math display">\[
+P(f^*\Omega_e) = f^*P(\Omega_e).
+\]</span> 这证明了 <span class="math inline">\(c_N(f^*E)=f^*c_M(E)\)</span>, 也说明 <span class="math inline">\(\Omega\)</span> 是一个微分同胚不变量(diffeomorphism invariance).</p>
+</div>
+<p>记 <span class="math inline">\({\rm Vect}_k(M)\)</span> 为 <span class="math inline">\(M\)</span> 上的秩 <span class="math inline">\(k\)</span> 向量丛的同构类的全体, 则 <span class="math inline">\({\rm Vect}_k(\cdot)\)</span> 和 <span class="math inline">\(H^*(\cdot)\)</span> 都是光滑流形范畴上的函子. <strong>示性类</strong>指的是自然变换 <span class="math inline">\(c:{\rm Vect}_k(\cdot)\to H^*(\cdot)\)</span>, 其自然性由 <span class="math inline">\(c_N( f^*E ) = f^* c_M(E)\)</span> 保证, 即交换图 <span class="math display">\[
+\xymatrix{
+M &amp;
+{{\rm Vect}_k(M)} \ar[r]^{c_N} \ar[d]_{f^*} &amp; H^*(M) \ar[d]^{f^*} \\
+N \ar[u]^{f} &amp;
+{{\rm Vect}_k(N)} \ar[r]_{c_M} &amp; H^*(N).
+}
+\]</span></p>
+<h3 id="invariant-polynomials">21.3  *Invariant polynomials</h3>
+<p>under construction</p>
+<h3 id="forms-depending-on-a-real-parameter">21.4  *Forms depending on a real parameter</h3>
+<p>设<strong>单参数微分形式族</strong> <span class="math inline">\(\{\omega_t\}_{t\in J}\)</span>, 开区间 <span class="math inline">\(J\subset\R\)</span>. 在坐标系 <span class="math inline">\(U,x^1,\dots,x^n\)</span> 下, <span class="math display">\[
+\omega_t=\sum_I a_I(x,t)\dd{x^I}.
+\]</span> 称 <span class="math inline">\(\omega_t\)</span> <strong>光滑依赖于 <span class="math inline">\(t\)</span></strong>, 若对于任意坐标系, <span class="math inline">\(a_I(x,t)\)</span> 在 <span class="math inline">\(U\times J\)</span> 上都是光滑的. 逐点定义 <span class="math inline">\(\omega_t\)</span> 的导数和积分: <span class="math display">\[
+\Align{
+\pqty{\dv{\omega_t}{t}}_p &amp;:= \dv{\omega_{t,p}}{t}, \\
+\pqty{\int_a^b\omega_t\dd{t}}_p &amp;:= \int_a^b\omega_{t,p}\dd{t}.
+}
+\]</span> 在局部坐标 <span class="math inline">\(U,x^1,\dots,x^n\)</span> 下, <span class="math display">\[
+\Align{
+\dv{t}\omega_t &amp;= \sum_I \pdv{a_I}{t}(x,t)\dd{x^I}, \\
+\int_a^b\omega_t &amp;= \sum_I\pqty{ \int_a^b a_I(x,t)\dd{t} } \dd{x^I}.
+}
+\]</span> 为了简便, 可以记 <span class="math inline">\(\dd\omega_t/\dd{t}=\dot{\omega}_t\)</span>.</p>
+<p><u>Claim</u> 设 <span class="math inline">\(\omega,\tau\)</span> 是光滑地依赖于参数 <span class="math inline">\(t\in J\)</span> 的矩阵值微分形式, 且 <span class="math inline">\(\omega\wedge\tau\)</span> 有意义 (即 <span class="math inline">\(\omega\)</span> 的列数等于 <span class="math inline">\(\tau\)</span> 的行数).</p>
+<ol type="1">
+<li><p>若 <span class="math inline">\(\omega\)</span> 是方阵, <span class="math display">\[
+\dv{t}(\tr\omega) = \tr\pqty{ \dv{\omega}{t} }.
+\]</span></p></li>
+<li><p>(Leibniz 律) <span class="math display">\[
+\dv{t}(\omega\wedge\tau) = \dot\omega\wedge\tau+\omega\wedge\dot\tau.
+\]</span></p></li>
+<li><p>(求导和外微分可交换) <span class="math display">\[
+\dv{t}(\dd\omega)=\dd(\dv{\omega}{t}).
+\]</span></p></li>
+<li><p>(积分和外微分可交换) <span class="math display">\[
+\int_a^b\dd{\omega}\dd{t} = \dd(
+\int_a^b\omega\dd{t}
+).
+\]</span></p></li>
+</ol>
+<div class="note note-secondary">
+<p><u>Pf</u> 1, 2, 3 都是很直接的, 下面证明 4. 在坐标系 <span class="math inline">\(U,x^1,\dots,x^n\)</span> 下, <span class="math display">\[
+\Align{
+\omega &amp;= \sum_I a_I\dd{x^I}, &amp;
+\dd\omega &amp;= \sum_{I,j} \pdv{a_I}{x^j}\dd{x^j}\wedge\dd{x^I},
+}
+\]</span> 于是一方面 <span class="math display">\[
+\int_a^b(\dd\omega)\dd{t}
+= \sum_{I,j} \pqty{ \int_a^b \pdv{a_I}{x^j}\dd{t} }
+\dd{x^j}\wedge\dd{x^I},
+\]</span> 另一方面 <span class="math display">\[
+\Align{
+\dd(\int_a^b\omega\dd{t})
+&amp;= \sum_I \dd( \pqty{\int_a^b a_I\dd{t}} \dd{x^I} ) \\
+&amp;= \sum_I \pdv{x^j}\pqty{\int_a^b a_I\dd{t}} \dd{x^j}\wedge\dd{x^I}.
+}
+\]</span> 因为 <span class="math inline">\(a_I\)</span> 和 <span class="math inline">\(\partial a_I/\partial x^j\)</span> 都在 <span class="math inline">\(U\times[a,b]\)</span> 上连续, 所以上面的偏导数和定积分可以交换顺序, 说明左右两边相等.</p>
+</div>
 </body></html>
                 
               </div>
@@ -554,7 +675,7 @@ S
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月11日</div>
+          <div>2024年7月12日</div>
         </div>
       
       

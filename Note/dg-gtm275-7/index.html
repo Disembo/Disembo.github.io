@@ -24,7 +24,7 @@
 <meta property="og:description" content="向量丛的光滑函子, 向量值微分形式.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-12T03:05:51.285Z">
+<meta property="article:modified_time" content="2024-07-12T08:19:31.357Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -632,11 +632,20 @@ A_k(T,V) \times A_l(T,W) \to A_{k+l}(T,Z),
 \alpha\cdot\beta = (-1)^{\deg\alpha\deg\beta}\beta\cdot\alpha.
 \]</span> 此时的乘积也叫做<strong>楔积</strong>, 记作 <span class="math inline">\(\alpha\wedge\beta\)</span>, 是标量值形式之楔积的推广.</p></li>
 </ul>
-<p><strong>微分形式的外微分</strong>.</p>
-<p>下面只考虑 <span class="math inline">\(V\)</span> 值微分形式, 因为对于一般的向量丛 <span class="math inline">\(E\)</span>, 情况比较复杂.</p>
+<p><strong>微分形式的协变导数</strong>.</p>
+<p>向量丛 <span class="math inline">\(E\to M\)</span> 上的联络 <span class="math inline">\(\nabla\)</span> 可以诱导出 <span class="math inline">\(E\)</span> 值微分形式 <span class="math inline">\(\alpha\in\Omega^k(M,E)\)</span> 的协变导数. 设 <span class="math inline">\(U\)</span> 上有 <span class="math inline">\(E\)</span> 的标架 <span class="math inline">\(e_1,\dots,e_r\)</span>, <span class="math inline">\(\alpha=\sum\alpha^i\otimes e_i\)</span>, 定义 <span class="math display">\[
+\nabla(\alpha|_U) :=
+\sum \dd\alpha^i\otimes e_i + \alpha^i\otimes\nabla{e_i}.
+\]</span> 可以验证, <span class="math inline">\(\nabla(\alpha|_U)\)</span> 不依赖于标架的选取, 于是可以拓展到 <span class="math inline">\(M\)</span> 整体上去: <span class="math inline">\((\nabla\alpha)|_U:=\nabla(\alpha|_U)\)</span>. 此时, <span class="math display">\[
+\nabla : \Gamma(TM) \times \Omega^k(M,E) \to \Omega^k(M,E).
+\]</span> <strong>微分形式的外微分</strong>.</p>
+<p>下面只考虑 <span class="math inline">\(V\)</span> 值微分形式.</p>
 <p>设 <span class="math inline">\(\alpha\in\Omega^k(M,V)\)</span>, 在 <span class="math inline">\(V\)</span> 的基底 <span class="math inline">\(\{v_i\}\)</span> 下展开为 <span class="math inline">\(\alpha_p=\sum\alpha^i_p\otimes v_i\)</span>, 其<strong>外微分(exterior derivative)</strong>定义为 <span class="math display">\[
 \dd\alpha := \sum \dd\alpha^i_p \otimes v_i,
 \]</span> 其中 <span class="math inline">\(\dd\alpha^i_p\)</span> 是标量微分形式 <span class="math inline">\(\alpha^i_p\in\Omega^k(M)\)</span> 的外微分. 可以证明, 这个定义不依赖于基底 <span class="math inline">\(\{v_i\}\)</span> 的选择.</p>
+<ul>
+<li><span class="math inline">\(E\)</span> 值微分形式 <span class="math inline">\(\alpha\in\Omega^k(M,E)\)</span> 的w'w'f不能这样定义, 因为上式依赖于局部标架的选取.</li>
+</ul>
 <p><u>Claim 19.2</u> (外微分是反导子) 设 <span class="math inline">\(\alpha\in\Omega^k(M,V)\)</span>, <span class="math inline">\(\beta\in\Omega^l(M,W)\)</span>, 乘法 <span class="math inline">\(\mu:V\times W\to Z\)</span>, 则 <span class="math display">\[
 \dd(\alpha\cdot\beta) =
 (\dd\alpha)\cdot\beta + (-1)^{\deg\alpha}\alpha\cdot(\dd\beta).
