@@ -1,0 +1,912 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM275 | 8 向量丛与示性类">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-8/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="...">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-11T13:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-12T03:06:02.139Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分几何">
+<meta property="article:tag" content="黎曼几何">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>GTM275 | 8 向量丛与示性类 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archive</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Category</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tag</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM275 | 8 向量丛与示性类"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-11 21:00" pubdate>
+          2024年7月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">GTM275 | 8 向量丛与示性类</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>) 第 22-23 节的笔记.</p>
+</div>
+<h2 id="connections-and-curvature-again">20  Connections and Curvature Again</h2>
+<h3 id="connection-and-curvature-matrices">20.1  Connection and curvature matrices</h3>
+<p>我们知道, 向量丛 <span class="math inline">\(E\to M\)</span> 上的联络 <span class="math inline">\(\nabla\)</span> 可以限制到标架开集 <span class="math inline">\(U,e=[e_1,\dots,e_r]\)</span> 上: <span class="math display">\[
+\nabla:\Gamma(U,TM)\times\Gamma(U,E)\to\Gamma(U,E).
+\]</span> 联络矩阵 <span class="math inline">\(\omega\in\Omega^1(U,{\frak gl}(r,\R))\)</span> 和曲率矩阵 <span class="math inline">\(\Omega\in\Omega^2(U,{\frak gl}(r,\R))\)</span> 分别定义为 <span class="math display">\[
+\Align{
+\nabla e &amp;= e\omega, &amp; R(e) &amp;= e\Omega, \\
+\nabla e_j &amp;= e_i\omega^i_j, &amp; R(e_j) &amp;= e_i\Omega^i_j. \\
+}
+\]</span> 下面考虑 <span class="math inline">\(U\)</span> 上的标架变换 <span class="math display">\[
+\bar{e}_l(p)=\sum e_k(p)a^k_l(p),
+\]</span> 其中 <span class="math inline">\(a^k_l\in\Omega^0(U,\R)\)</span>, 于是矩阵 <span class="math inline">\(a=[a^k_l]\in\Omega^0(U,{\rm GL}(r,\R))\)</span>. 上式用矩阵乘法写作 <span class="math display">\[
+\bar{e} = ea.
+\]</span> 为了和上式适配, 我们将 Leibniz 律中的函数 <span class="math inline">\(f\)</span> 写作右乘: <span class="math display">\[
+\nabla(sf)
+= s\dd{f} + (\nabla s)f.
+\]</span> <u>Claim 20.1</u> (联络与曲率矩阵的变换律) 设开集 <span class="math inline">\(U\)</span> 上的两个标架满足 <span class="math inline">\(\bar{e}=ea\)</span>, <span class="math inline">\(a\in\Omega^0(U,{\rm GL}(r,\R))\)</span>, 则联络 <span class="math inline">\(\nabla\)</span> 在这两个标架下的联络与曲率矩阵满足 <span class="math display">\[
+\Align{
+\bar\omega &amp;= a^{-1}\omega a + a^{-1}\dd{a}, \\
+\bar\Omega &amp;= a^{-1}\Omega a.
+}
+\]</span></p>
+<div class="note note-secondary">
+<p><u>Pf</u> 由定义, <span class="math display">\[
+\Align{
+\nabla\bar{e}
+&amp;= \nabla(ea) \\
+&amp;= e\dd{a}{} + (\nabla e)a \\
+&amp;= e(\dd{a}{} + \omega a) \\
+&amp;= \bar{e}a^{-1}(\dd{a}{} + \omega a).
+}
+\]</span> 即 <span class="math inline">\(\bar\omega=a^{-1}\dd{a}+a^{-1}\omega a\)</span>. 对于曲率矩阵的变换, 可以将第二结构方程带入上式得到, 也可以直接从曲率的定义看出: <span class="math display">\[
+\Align{
+R(\bar{e})
+&amp;= R(ea) \\
+&amp;= R(e)a \\
+&amp;= e\Omega a \\
+&amp;= \bar{e}a^{-1}\Omega a,
+}
+\]</span> 即 <span class="math inline">\(\bar\Omega=a^{-1}\Omega a\)</span>.</p>
+</div>
+<p>在标架开集 <span class="math inline">\((U,e)\)</span> 上, 我们能用联络矩阵 <span class="math inline">\(\omega_e\)</span> 来定义局部联络 <span class="math inline">\(\nabla^U\)</span>. 取定 <span class="math inline">\(E\)</span> 的一个平凡化开覆盖 <span class="math inline">\(\{(U,e)\}\)</span>, 如果我们将每个 <span class="math inline">\((U,e)\)</span> 上的联络 <span class="math inline">\(\omega_e\)</span> "拼接" 起来, 就能定义出了一个整体的联络. 这些局部联络能够 "拼合" 的充要条件就是满足变换律 <span class="math display">\[
+\omega_{\bar{e}} = a^{-1}\omega_ea+a^{-1}\dd{a}
+\]</span> 对任意 <span class="math inline">\((U,e)\)</span> 和 <span class="math inline">\((U',\bar{e})\)</span>, 其中在 <span class="math inline">\(U\cap U'\neq\emptyset\)</span> 上有 <span class="math inline">\(\bar{e}=ea\)</span>.</p>
+<p>下面我们用这种方法定义拉回丛上的联络.</p>
+<p><u>Claim 20.2</u> (拉回丛上的联络) 设 <span class="math inline">\(E\to M\)</span> 上的联络 <span class="math inline">\(\nabla\)</span>, 光滑映射 <span class="math inline">\(f:N\to M\)</span>. 设 <span class="math inline">\(E\)</span> 的平凡化开覆盖 <span class="math inline">\(\{(U,e)\}\)</span>, 对应的联络矩阵为 <span class="math inline">\(\omega_e\)</span>, 则存在唯一 <span class="math inline">\(f^*E\)</span> 上的联络, 其在标架开集 <span class="math inline">\((f^{-1}(U),f^*e)\)</span> 上的联络矩阵是 <span class="math inline">\(f^*(\omega_e)\)</span>.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 只需验证任意两个联络矩阵是相容的: 取 <span class="math inline">\(f^*(\omega_e)\)</span> 和 <span class="math inline">\(f^*(\omega_{\bar{e}})\)</span> (<span class="math inline">\(\bar{e}=ea\)</span>), 因为拉回和乘积, 外微分都可交换, <span class="math display">\[
+f^*(\omega_{\bar{e}})=(f^*a)^{-1}f^*(\omega_e)f^*a
++(f^*a)^{-1}\dd(f^*a),
+\]</span> 由于 <span class="math inline">\(f^*\bar{e}=(f^*e)(f^*a)\)</span>, 上式说明 <span class="math inline">\(f^*(\omega_e)\)</span> 和 <span class="math inline">\(f^*(\omega_{\bar{e}})\)</span> 在标架变换 <span class="math inline">\(f^*a\)</span> 下是相容的.</p>
+</div>
+<h3 id="covariant-derivative-of-tensor-fields">20.2  Covariant derivative of tensor fields</h3>
+<p><strong>协变导数</strong>.</p>
+<p>切丛 <span class="math inline">\(TM\)</span> 上的联络 <span class="math inline">\(\nabla\)</span> 诱导出了任意张量丛 <span class="math inline">\(T^{r,s}(M)\)</span> 上的<strong>协变导数</strong>. 设 <span class="math inline">\(X\in\Gamma(TM)\)</span>.</p>
+<p>对 <span class="math inline">\((0,0)\)</span> 型张量场 (即光滑函数) <span class="math inline">\(f\in C^\infty(M)\)</span>, 有 <span class="math inline">\(\nabla_Xf=Xf=\dd{f}(X)\)</span>.</p>
+<p>对 <span class="math inline">\((0,1)\)</span> 型张量场 (即 <span class="math inline">\(1\)</span>-形式) <span class="math inline">\(\omega\in\Omega^1(M,\R)\)</span>, 定义 <span class="math display">\[
+(\nabla_X\omega)(Y) := X(\omega(Y)) - \omega(\nabla_XY).
+\]</span> 一般地, 对 <span class="math inline">\((r,s)\)</span> 型张量场 <span class="math inline">\(T\in\Gamma(T^{r,s}(M))\)</span>, 定义 <span class="math display">\[
+\Align{
+(\nabla_XT)(\omega_1,\dots,\omega_r;Y_1,\dots,Y_s) :={}
+&amp; X(T(\omega_1,\dots,\omega_r;Y_1,\dots,Y_s)) \\
+&amp; -\sum_{i=1}^r
+  T(\omega_1,\dots,\nabla_X\omega_i,\dots,\omega_r;Y_1,\dots,Y_s) \\
+&amp; -\sum_{j=1}^s
+  T(\omega_1,\dots,\omega_r;Y_1,\dots,\nabla_XY_j,\dots,Y_s).
+}
+\]</span> 容易看出, <span class="math inline">\(\nabla_XT\)</span> 关于 <span class="math inline">\(X\)</span> 是 <span class="math inline">\({\cal F}\)</span>-线性的, 所以仍旧可以逐点定义. 还需要证明如此定义的 <span class="math inline">\(\nabla_X\omega\)</span> 和 <span class="math inline">\(\nabla_XT\)</span> 确实是 <span class="math inline">\(M\)</span> 上的张量场, 即验证它们的 <span class="math inline">\({\cal F}\)</span>-线性性, 此处略去. 记 <span class="math display">\[
+T^{*,*}(M) = \bigoplus_{r,s=0}^\infty T^{r,s}(M)
+\]</span> 为 <span class="math inline">\(M\)</span> 上的张量代数, 则依据关于 <span class="math inline">\(T\)</span> 的可加性, 协变导数可以推广到 <span class="math display">\[
+\nabla_X:\Gamma(T^{*,*}(M))\to\Gamma(T^{*,*}(M)).
+\]</span> 协变导数定义看上去很突然, 但这实际上保证了 Leibniz 律, 而且是 Leibniz 律的必然结果.</p>
+<p><u>Claim 20.3</u> (协变导数是导子) 任给张量场 <span class="math inline">\(T_1,T_2\in\Gamma(T^{*,*}(M))\)</span> 和向量场 <span class="math inline">\(X\in\Gamma(TM)\)</span>, <span class="math display">\[
+\nabla_X(T_1\otimes T_2) =
+(\nabla_XT_1)\otimes T_2 + T_1\otimes(\nabla_XT_2).
+\]</span> <strong>曲率, 二阶协变导数, Laplace 算子</strong>.</p>
+<p>曲率可以直接推广到张量场上: 对 <span class="math inline">\(X,Y\in\Gamma(TM)\)</span>, 曲率 <span class="math inline">\(R(X,Y):\Gamma(T^{*,*}(M))\to\Gamma(T^{*,*}(M))\)</span>, <span class="math display">\[
+R(X,Y)T := \nabla_X\nabla_YT-\nabla_Y\nabla_XT-\nabla_{[X,Y]}T.
+\]</span> 挠率则没有什么新的东西: <span class="math inline">\(T(X,Y)=\nabla_XY-\nabla_YX-[X,Y]\)</span>.</p>
+<p>还可以定义张量场的<strong>二阶协变导数</strong>: 对 <span class="math inline">\(T\in\Gamma(T^{r,s}(M))\)</span>, <span class="math display">\[
+\nabla^2_{X,Y}T := \nabla_X\nabla_YT-\nabla_{\nabla_XY}T.
+\]</span></p>
+<ul>
+<li><p>应当区分 <span class="math inline">\(\nabla^2_{X,Y}\)</span> 和 <span class="math inline">\(\nabla_X\nabla_Y\)</span>, 它们一般不相等. 利用抽象指标, 这两者分别写作 <span class="math display">\[
+X^aX^b\nabla_a\nabla_b \quad\textsf{和}\quad X^a\nabla_aY^b\nabla_b.
+\]</span></p></li>
+<li></li>
+<li><p>对于函数 <span class="math inline">\(f\in C^\infty(M)\)</span>, <span class="math inline">\(\nabla^2_{X,Y}f=XYf-(\nabla_XY)f\)</span>. 若 <span class="math inline">\(\nabla\)</span> 无挠, 则 <span class="math display">\[
+\Align{
+\nabla^2_{X,Y}f-\nabla^2_{Y,X}f
+&amp;= XYf-YXf+(\nabla_YX)f-(\nabla_XY)f \\
+&amp;= -T(X,Y)f = 0,
+}
+\]</span> 即 <span class="math inline">\(\nabla^2f\)</span> 是一个对称的 <span class="math inline">\((0,2)\)</span> 型张量场, 称为 <span class="math inline">\(f\)</span> 的 <strong>Hessian</strong>. 这是欧氏空间中 Hessian 的推广: 在欧氏空间中, <span class="math display">\[
+\nabla^2_{X,Y}f = \sum X^iY^j \pdv{^2f}{x^ix^j}.
+\]</span></p></li>
+</ul>
+<p>对于一般的张量场, 黎曼联络的二阶协变导数不是对称的, 其非对称性由曲率刻画.</p>
+<p><u>Claim 20.3</u> (Ricci 恒等式) 设 <span class="math inline">\(M\)</span> 上的黎曼联络 <span class="math inline">\(\nabla\)</span>. 对 <span class="math inline">\(X,Y\in\Gamma(TM)\)</span>, <span class="math inline">\(T\in\Gamma(T^{r,s}(M))\)</span>, <span class="math display">\[
+\nabla^2_{X,Y}T-\nabla^2_{Y,X}T = R(X,Y)T
+\]</span></p>
+<ul>
+<li>借助曲率形式, Ricci 恒等式也可以写作</li>
+</ul>
+<p><strong>Laplace-Beltrami 算子</strong> (简称 Laplace 算子) 是欧氏空间的 Laplace 算子的推广. 由黎曼度量 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 的非退化性, 存在唯一的线性映射 <span class="math inline">\(\eta:T_pM\to T_pM\)</span>, 满足 <span class="math inline">\(\nabla^2_{X,Y}f=\lr{\eta(X),Y}\)</span>. Laplace 算子定义为 <span class="math inline">\(\eta\)</span> 的迹: <span class="math display">\[
+\Delta{f} := \tr{\eta}
+= \sum_{i=1}^n\lr{\eta(e_i),e_i}
+= \sum_{i=1}^n\nabla^2_{e_i,e_i}f
+\]</span> 对于局部标架 <span class="math inline">\(\{e_i\}\)</span>. 因为迹在标架变换下不变, 所以 <span class="math inline">\(\Delta\)</span> 可以定义在整个 <span class="math inline">\(M\)</span> 上: <span class="math inline">\(\Delta:C^\infty(M)\to C^\infty(M)\)</span>.</p>
+<h3 id="bianchi-identities">20.3  Bianchi identities</h3>
+<p>联络 <span class="math inline">\(\nabla\)</span> 的<strong>黎曼曲率张量(Riemann curvature tensor)</strong>定义为 <span class="math display">\[
+\operatorname{Rm}(X,Y,Z,W) := \lr{R(X,Y)Z,W},\quad X,Y,Z,W\in\Gamma(TM),
+\]</span> 黎曼联络的曲率张量有一些对称性, 它们由 Bianchi 恒等式描述.</p>
+<p><u>Claim 20.4</u> (Bianchi 恒等式, 微分形式版本) 设 <span class="math inline">\(M\)</span> 上的联络 <span class="math inline">\(\nabla\)</span>, 标架 <span class="math inline">\(e=[e_1,\dots,e_n]\)</span> 下的联络矩阵 <span class="math inline">\(\omega\)</span>, 曲率矩阵 <span class="math inline">\(\Omega\)</span>, 对偶标架 <span class="math inline">\(\theta=[\theta^1,\dots,\theta^n]\T\)</span>, 挠率矩阵 <span class="math inline">\(\tau=[\tau^1,\dots,\tau^n]\T\)</span>, 则</p>
+<ol type="1">
+<li>(第一 Bianchi 恒等式) <span class="math inline">\(\dd\tau=\Omega\wedge\theta-\omega\wedge\tau\)</span>.</li>
+<li>(第二 Bianchi 恒等式) <span class="math inline">\(\dd\Omega=\Omega\wedge\omega-\omega\wedge\Omega\)</span>.</li>
+<li>(推广的第二 Bianchi 恒等式) <span class="math inline">\(\dd(\Omega^k)=\Omega^k\wedge\omega-\omega\wedge\Omega^k\)</span>, 其中 <span class="math inline">\(\Omega^k:=\Omega\wedge\cdots\wedge\Omega\)</span> 共 <span class="math inline">\(k\)</span> 个.</li>
+</ol>
+<ul>
+<li>推广的第二 Bianchi 恒等式也适用于向量丛 <span class="math inline">\(E\to M\)</span> 上的联络. 根据 Claim 19.5, 推广的第二 Bianchi 恒等式还可以写作 <span class="math display">\[
+\dd(\Omega^k) = [\Omega^k,\omega].
+\]</span></li>
+</ul>
+<div class="note note-secondary">
+<p><u>Pf</u> 回顾 Cartan 结构方程 <span class="math inline">\(\tau=\dd\theta+\omega\wedge\theta\)</span> 和 <span class="math inline">\(\Omega=\dd\omega+\omega\wedge\omega\)</span>. 第一结构方程两边外微分 <span class="math display">\[
+\Align{
+\dd\tau
+&amp;= \dd\omega\wedge\theta - \omega\wedge\dd\theta \\
+&amp;= (\Omega-\omega\wedge\omega)\wedge\theta
+ - \omega\wedge(\tau-\omega\wedge\theta) \\
+&amp;= \Omega\wedge\theta-\omega\wedge\tau.
+}
+\]</span> 第二结构方程两边外微分 <span class="math display">\[
+\Align{
+\dd\Omega
+&amp;= \dd\omega\wedge\omega - \omega\wedge\dd\omega \\
+&amp;= (\Omega-\omega\wedge\omega)\wedge\omega
+ - \omega\wedge(\Omega-\omega\wedge\omega) \\
+&amp;= \Omega\wedge\omega-\omega\wedge\Omega.
+}
+\]</span> 假设 3 对 <span class="math inline">\(k\geq1\)</span> 为真, 下面证明它对 <span class="math inline">\(k+1\)</span> 为真: <span class="math display">\[
+\Align{
+\dd(\Omega^{k+1}) = \dd(\Omega^k\wedge\Omega)
+&amp;= \dd(\Omega^k)\wedge\Omega+\Omega^k\wedge\dd\Omega \\
+&amp;= (\Omega^k\wedge\omega-\omega\wedge\Omega^k)\wedge\Omega
+ + \Omega^k\wedge(\Omega\wedge\omega-\omega\wedge\Omega) \\
+&amp;= \Omega^k\wedge\omega-\omega\wedge\Omega^k.
+}
+\]</span></p>
+</div>
+<p><u>Claim 20.5</u> (Bianchi 恒等式, 向量场版本) 设 <span class="math inline">\(M\)</span> 上的黎曼联络 <span class="math inline">\(\nabla\)</span>, 向量场 <span class="math inline">\(X,Y,Z\in\Gamma(TM)\)</span>,</p>
+<ol type="1">
+<li>(第一 Bianchi 恒等式) <span class="math inline">\(R(X,Y)Z+R(Y,Z)X+R(Z,X)Y=0\)</span>.</li>
+<li>(第二 Bianchi 恒等式) <span class="math inline">\((\nabla_X\operatorname{Rm})(Y,Z,-)+(\nabla_Y\operatorname{Rm})(Z,X,-)+(\nabla_Z\operatorname{Rm})(X,Y,-)=0\)</span>.</li>
+</ol>
+<div class="note note-secondary">
+<p><u>Pf</u> 1, 取标架开集 <span class="math inline">\(U,e_1,\dots,e_n\)</span>, 对偶标架 <span class="math inline">\(\theta^1,\dots,\theta^n\)</span>, 则 <span class="math inline">\(Z=\sum\theta^j(Z)e_j\)</span>. 由 <span class="math inline">\(R\)</span> 的 <span class="math inline">\({\cal F}\)</span>-线性性, <span class="math display">\[
+R(X,Y)Z
+= \sum_jR(X,Y)\theta^j(Z)e_j
+= \sum_{i,j}\Omega^i_j(X,Y)\theta^j(Z)e_i.
+\]</span> 微分形式的第一 Bianchi 恒等式给出 <span class="math display">\[
+\Align{
+0
+&amp;= (\Omega\wedge\omega)(X,Y,Z) \\
+&amp;= \sum_{i,j} (\Omega^i_j\wedge\theta^j)(X,Y,Z)e_i \\
+&amp;= \sum_{i,j} \pqty{
+   \Omega^i_j(X,Y)\theta^j(Z)+
+   \Omega^i_j(Y,Z)\theta^j(X)+
+   \Omega^i_j(Z,X)\theta^j(Y)
+   } e_i \\
+&amp;= R(X,Y)Z + R(Y,Z)X + R(Z,X)Y.
+}
+\]</span> 2, 因为 <span class="math inline">\(R\)</span> 是 <span class="math inline">\({\cal F}\)</span>-线性的, 只需对标架证明, 特别地, 取坐标基底 <span class="math inline">\(\{\partial_i\}\)</span>. 这样做的好处是坐标基底满足 <span class="math display">\[
+[\partial_i,\partial_j]=0,\quad
+\nabla_{\partial_i}\partial_j = 0.
+\]</span> 设 <span class="math inline">\(X,Y,Z,V,W\)</span> 为坐标基底场, <span class="math display">\[
+\Align{
+(\nabla_X\operatorname{Rm})(Y,Z,V,W)
+&amp;= X(\operatorname{Rm}(Y,Z,V,W)) -
+   \operatorname{Rm}(\nabla_XY,Z,V,W) - \cdots \\
+&amp;= X(\operatorname{Rm}(Y,Z,V,W)) \\
+&amp;= X\lr{R(Y,Z)V,W} \\
+&amp;= \lr{\nabla_XR(Y,Z)V,W} + \lr{R(Y,Z)V,\nabla_XW} \\
+&amp;= \lr{\nabla_X\nabla_Y\nabla_ZV,W} - \lr{\nabla_X\nabla_Z\nabla_Y,W}.
+}
+\]</span> (其中第四个等号根据 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 与 <span class="math inline">\(\nabla\)</span> 相容.) 循环 <span class="math inline">\(X,Y,Z\)</span> 并相加给出第二 Bianchi 恒等式.</p>
+</div>
+<p><u>Claim 20.6</u> 黎曼曲率张量的对称性:</p>
+<ol type="1">
+<li><span class="math inline">\(\operatorname{Rm}(X,Y,Z,W)=-\operatorname{Rm}(Y,X,Z,W)\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Rm}(X,Y,Z,W)=-\operatorname{Rm}(X,Y,W,Z)\)</span>.</li>
+<li>(Bianchi) <span class="math inline">\(\sum_{\textsf{cyclic in }X,Y,Z}\operatorname{Rm}(X,Y,Z,W)=0\)</span>.</li>
+<li>(Bianchi) <span class="math inline">\(\sum_{\textsf{cyclic in }X,Y,Z}\nabla_X\operatorname{Rm}(Y,Z,V,W)=0\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Rm}(X,Y,Z,W)=\operatorname{Rm}(Z,W,X,Y)\)</span>.</li>
+</ol>
+<div class="note note-secondary">
+<p><u>Pf</u> 1 由曲率的定义得; 2 是 Claim 8.4; 3 和 4 是 Bianchi 恒等式. 5 是第一 Bianchi 恒等式的推论.</p>
+</div>
+<h3 id="ricci-and-scalar-curvature">20.4  Ricci and scalar curvature</h3>
+<p><strong>里奇张量(Ricci tensor)</strong>是线性映射 <span class="math inline">\(w\mapsto R(u,w)v\)</span> 的迹. 设 <span class="math inline">\(U\)</span> 上的正交归一标架 <span class="math inline">\(\{e_i\}\)</span>, <span class="math display">\[
+\operatorname{Ric}(X,Y)
+:= \sum_{i=1}^n \operatorname{Rm}(X,e_i,e_i,Y).
+\]</span> 由 Claim 20.6 的 5, <span class="math inline">\(\operatorname{Ric}\)</span> 是一个对称的 <span class="math inline">\((0,2)\)</span> 型张量.</p>
+<p>根据黎曼度量 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 的非退化性, 存在唯一的线性映射 <span class="math inline">\(\rho:T_pM\to T_pM\)</span>, 满足 <span class="math display">\[
+\operatorname{Ric}(u,v) = \lr{\rho(u),v}.
+\]</span> <strong>标量曲率(scalar curvature)</strong>是线性映射 <span class="math inline">\(\rho\)</span> 的迹: <span class="math display">\[
+\Align{
+S := \tr\rho
+&amp;= \sum_{i=1}^n\lr{\rho(e_j),e_j} \\
+&amp;= \sum_{i=1}^n\operatorname{Ric}(e_j,e_j) \\
+&amp;= \sum_{i=1}^n\operatorname{Rm}(e_i,e_j,e_j,e_i).
+}
+\]</span></p>
+<ul>
+<li><p>对于高斯曲率为 <span class="math inline">\(K\)</span> 的二维黎曼流形 <span class="math inline">\((M,g)\)</span>, 里奇曲率 <span class="math inline">\(\operatorname{Ric}=Kg\)</span>, 标量曲率 <span class="math inline">\(S=2K\)</span>.</p></li>
+<li><p>一般地, 对于黎曼流形 <span class="math inline">\(M\)</span>, <span class="math inline">\(T_pM\)</span> 的一个正交归一基底 <span class="math inline">\(\{e_i\}\)</span>, <span class="math inline">\(P_{ij}=\operatorname{span}(e_i,e_j)\)</span> 的截面曲率 <span class="math display">\[
+K(P_{ij}) = \operatorname{Rm}(e_i,e_j,e_j,e_i).
+\]</span> 标量曲率 <span class="math display">\[
+S
+= \sum_{i,j}\operatorname{Rm}(e_i,e_j,e_j,e_i)
+= \sum_{i,j}K(P_{ij})
+= 2\sum_{i&lt;j}K(P_{ij})
+\]</span> 是基底生成的所有截面曲率和的二倍. 特别地, 对于常截面曲率流形, <span class="math inline">\(S=n(n-1)K\)</span>.</p></li>
+</ul>
+<h2 id="characteristic-classes">21  Characteristic Classes</h2>
+<p>待续</p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/">#微分几何</a>
+      
+        <a href="/tags/%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95/">#黎曼几何</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM275 | 8 向量丛与示性类</div>
+      <div>https://disembo.github.io/Note/dg-gtm275-8/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-index/" title="GTM275 | 笔记索引">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 笔记索引</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-7/" title="GTM275 | 7 代数与拓扑工具">
+                        <span class="hidden-mobile">GTM275 | 7 代数与拓扑工具</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'Comment');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/art-copyright.js"></script>
+<script src="/js/cloud-media.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
