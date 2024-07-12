@@ -16,15 +16,15 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="...">
+    <meta name="description" content="张量场的协变导数, 向量丛的示性类.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GTM275 | 8 向量丛与示性类">
 <meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-8/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="...">
+<meta property="og:description" content="张量场的协变导数, 向量丛的示性类.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-11T13:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-12T03:06:02.139Z">
+<meta property="article:modified_time" content="2024-07-12T07:01:10.960Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -355,7 +355,6 @@ R(X,Y)T := \nabla_X\nabla_YT-\nabla_Y\nabla_XT-\nabla_{[X,Y]}T.
 <li><p>应当区分 <span class="math inline">\(\nabla^2_{X,Y}\)</span> 和 <span class="math inline">\(\nabla_X\nabla_Y\)</span>, 它们一般不相等. 利用抽象指标, 这两者分别写作 <span class="math display">\[
 X^aX^b\nabla_a\nabla_b \quad\textsf{和}\quad X^a\nabla_aY^b\nabla_b.
 \]</span></p></li>
-<li></li>
 <li><p>对于函数 <span class="math inline">\(f\in C^\infty(M)\)</span>, <span class="math inline">\(\nabla^2_{X,Y}f=XYf-(\nabla_XY)f\)</span>. 若 <span class="math inline">\(\nabla\)</span> 无挠, 则 <span class="math display">\[
 \Align{
 \nabla^2_{X,Y}f-\nabla^2_{Y,X}f
@@ -370,9 +369,6 @@ X^aX^b\nabla_a\nabla_b \quad\textsf{和}\quad X^a\nabla_aY^b\nabla_b.
 <p><u>Claim 20.3</u> (Ricci 恒等式) 设 <span class="math inline">\(M\)</span> 上的黎曼联络 <span class="math inline">\(\nabla\)</span>. 对 <span class="math inline">\(X,Y\in\Gamma(TM)\)</span>, <span class="math inline">\(T\in\Gamma(T^{r,s}(M))\)</span>, <span class="math display">\[
 \nabla^2_{X,Y}T-\nabla^2_{Y,X}T = R(X,Y)T
 \]</span></p>
-<ul>
-<li>借助曲率形式, Ricci 恒等式也可以写作</li>
-</ul>
 <p><strong>Laplace-Beltrami 算子</strong> (简称 Laplace 算子) 是欧氏空间的 Laplace 算子的推广. 由黎曼度量 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 的非退化性, 存在唯一的线性映射 <span class="math inline">\(\eta:T_pM\to T_pM\)</span>, 满足 <span class="math inline">\(\nabla^2_{X,Y}f=\lr{\eta(X),Y}\)</span>. Laplace 算子定义为 <span class="math inline">\(\eta\)</span> 的迹: <span class="math display">\[
 \Delta{f} := \tr{\eta}
 = \sum_{i=1}^n\lr{\eta(e_i),e_i}
@@ -412,11 +408,11 @@ X^aX^b\nabla_a\nabla_b \quad\textsf{和}\quad X^a\nabla_aY^b\nabla_b.
 }
 \]</span> 假设 3 对 <span class="math inline">\(k\geq1\)</span> 为真, 下面证明它对 <span class="math inline">\(k+1\)</span> 为真: <span class="math display">\[
 \Align{
-\dd(\Omega^{k+1}) = \dd(\Omega^k\wedge\Omega)
-&amp;= \dd(\Omega^k)\wedge\Omega+\Omega^k\wedge\dd\Omega \\
-&amp;= (\Omega^k\wedge\omega-\omega\wedge\Omega^k)\wedge\Omega
- + \Omega^k\wedge(\Omega\wedge\omega-\omega\wedge\Omega) \\
-&amp;= \Omega^k\wedge\omega-\omega\wedge\Omega^k.
+\dd(\Omega^{k+1}) = \dd(\Omega\wedge\Omega^k)
+&amp;= \dd\Omega\wedge\Omega^k+\Omega\wedge\dd(\Omega^k) \\
+&amp;= (\Omega\wedge\omega-\omega\wedge\Omega)\wedge\Omega
+ + \Omega\wedge(\Omega^k\wedge\omega-\omega\wedge\Omega^k) \\
+&amp;= \Omega^{k+1}\wedge\omega-\omega\wedge\Omega^{k+1}.
 }
 \]</span></p>
 </div>
@@ -589,12 +585,6 @@ S
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
-                    
-                      <a href="/Note/dg-gtm275-index/" title="GTM275 | 笔记索引">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM275 | 笔记索引</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
                     
                   </article>
                   <article class="post-next col-6">
