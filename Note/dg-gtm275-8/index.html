@@ -23,8 +23,8 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="张量场的协变导数, 向量丛的示性类.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-12T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-12T15:30:01.749Z">
+<meta property="article:published_time" content="2024-07-13T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-13T04:19:20.485Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -215,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-12 22:00" pubdate>
-          2024年7月12日 晚上
+        <time datetime="2024-07-13 12:00" pubdate>
+          2024年7月13日 中午
         </time>
       </span>
     
@@ -492,7 +492,7 @@ S
 </ul>
 <h2 id="characteristic-classes">21  Characteristic Classes</h2>
 <p>对于向量丛 <span class="math inline">\(E\to M\)</span> 的联络 <span class="math inline">\(\nabla\)</span>, 可以从其曲率形式 <span class="math inline">\(\Omega\)</span> 中提取一些不变量, 这些不变量不依赖于标架, 也不依赖于联络 <span class="math inline">\(\nabla\)</span> 的选取, 反映了 <span class="math inline">\(E\to M\)</span> 的某些整体性质.</p>
-<h3 id="chern-weil-homomorphism">21.1  Chern-Weil homomorphism</h3>
+<h3 id="the-chern-weil-homomorphism">21.1  The Chern-Weil homomorphism</h3>
 <p>设 <span class="math inline">\(E\)</span> 的标架 <span class="math inline">\((U,e)\)</span>, 因为曲率矩阵 <span class="math inline">\(\Omega\)</span> 在标架变换 <span class="math inline">\(\bar{e}=ea\)</span>, <span class="math inline">\(a\in\Omega^k(U,{\rm GL}(r,\R))\)</span> 下相差一个共轭作用 <span class="math display">\[
 \bar\Omega=a^{-1}\Omega a.
 \]</span> 所以对于 <span class="math inline">\(r^2\)</span> 个变量的多项式 <span class="math inline">\(P(X)=P(x^i_j)\in\R[x^i_j]\)</span>, 若 <span class="math inline">\(P(X)\)</span> 在 <span class="math inline">\({\rm GL}(r,\R)\)</span> 的共轭作用下不变: <span class="math display">\[
@@ -563,7 +563,67 @@ N \ar[u]^{f} &amp;
 }
 \]</span></p>
 <h3 id="invariant-polynomials">21.3  *Invariant polynomials</h3>
-<p>under construction</p>
+<p>设 <span class="math inline">\(R\)</span> 是含幺交换环, <span class="math inline">\(R\)</span> 上的 <span class="math inline">\(n\)</span> 元<strong>多项式</strong>是 <span class="math inline">\(R\)</span>-代数 <span class="math inline">\(R[x_1,\dots,x_n]\)</span> 的元素. <strong>多项式函数</strong>指的是一个 <span class="math inline">\(R^n\to R\)</span> 的函数 <span class="math inline">\(\hat{P}:(x_1,\dots,x_n)\mapsto P(x_1,\dots,x_n)\)</span>. 记 <span class="math inline">\({\rm Fun}(R^n,R)\)</span> 是 <span class="math inline">\(R^n\to R\)</span> 的函数组成的 <span class="math inline">\(R\)</span>-代数, 则有代数同态 <span class="math display">\[
+\Align{
+\varepsilon:R[x_1,\dots,x_n] &amp;\to {\rm Fun}(R^n,R) \\
+P &amp;\mapsto \hat{P}.
+}
+\]</span> <u>Claim</u> 若 <span class="math inline">\(R=F\)</span> 是无限域, 则 <span class="math inline">\(\varepsilon:R[x_i]\to{\rm Fun}(R^n,R)\)</span> 是单射.</p>
+<p>因此, 多项式 <span class="math inline">\(P\in F[x_i]\)</span> 可以与多项式函数认同.</p>
+<p><u>Claim</u> 若整系数多项式 <span class="math inline">\(P\in\Z[x_i]\)</span> 在某特征为零的域上取值恒为零, 则 <span class="math inline">\(P\)</span> 在任意含幺交换环上取值恒为零.</p>
+<p>设域 <span class="math inline">\(F\)</span>. 矩阵代数 <span class="math inline">\({\rm gl}(r,F)\)</span> 上的<strong>多项式</strong>指的是 <span class="math inline">\(r^2\)</span> 个变量的多项式 <span class="math inline">\(P\in F[x^i_j]\)</span>. 矩阵群 <span class="math inline">\({\rm GL}(r,F)\)</span> 可以作用在多项式上: <span class="math display">\[
+(AP)(X) = P(A^{-1}XA),\quad A\in{\rm GL}(r,F).
+\]</span> 多项式 <span class="math inline">\(P\in F[x^i_j]\)</span> 称为 <span class="math inline">\({\rm Ad}_{{\rm GL}(r,F)}\)</span>-不变多项式, 简称<strong>不变多项式</strong>, 若 <span class="math inline">\(AP=A\)</span> 对任意 <span class="math inline">\(A\in{\rm GL}(r,F)\)</span>. 所有 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式组成的 <span class="math inline">\(F\)</span>-代数记作 <span class="math inline">\({\rm Inv}({\frak gl}(r,F))\)</span>.</p>
+<p><u>Claim</u> 若 <span class="math inline">\(P\)</span> 是 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式, 则对任意 <span class="math inline">\(F\)</span>-含幺代数 <span class="math inline">\(R\)</span> 和矩阵 <span class="math inline">\(X\in R^{r\times r}\)</span>, <span class="math display">\[
+P(A^{-1}XA)=P(X),\quad A\in{\rm GL}(r,F).
+\]</span> <u>Claim</u> 设特征为零的域 <span class="math inline">\(F\)</span>, 则特征多项式 <span class="math display">\[
+\det(\lambda I+X) =
+\lambda^r+f_1(X)\lambda^{r-1}+\dots+f_{r-1}(X)\lambda+f_r(X)
+\]</span> 的系数 <span class="math inline">\(f_k(X)\in\Z[x^i_j]\)</span> 是 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式.</p>
+<ul>
+<li>推论: <strong>迹多项式</strong> <span class="math inline">\(\Sigma_k(X):=\tr(X^k)\in\Z[x^i_j]\)</span> 也是 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式.</li>
+</ul>
+<p>特别地, 对角矩阵 <span class="math inline">\(X=\diag(t_1,\dots,t_r)\)</span> 的 <span class="math inline">\(f_k(X)\)</span> 和 <span class="math inline">\(\Sigma_k(X)\)</span> 是关于 <span class="math inline">\(t_i\)</span> 的对称多项式. 关于 <span class="math inline">\(t_1,\dots,t_r\)</span> 的所有对称多项式组成的 <span class="math inline">\(F\)</span>-代数记作 <span class="math inline">\(F[t_1,\dots,t_r]^{S_r}\)</span>. 下面的定理表明, 不变多项式与对称多项式一一对应.</p>
+<p><u>Claim</u> 设 <span class="math inline">\(F=\R\)</span> 或 <span class="math inline">\(\C\)</span>. 下列映射是一个 <span class="math inline">\(F\)</span>-代数同构: <span class="math display">\[
+\Align{
+\varphi:{\rm Inv}({\frak gl}(r,F)) &amp;\to F[t_1,\dots,t_r]^{S_r} \\
+P(X) &amp;\mapsto \tilde{P}(t_1,\dots,t_r) := P(\diag(t_1,\dots,t_r)).
+}
+\]</span></p>
+<div class="note note-secondary">
+<p><u>Pf</u> <em>复数情形</em>. 证明用到两个事实: 1. 可对角化矩阵在 <span class="math inline">\({\frak gl}(r,\C)\)</span> 中稠密; 2. (对称多项式基本定理) 对称多项式由<strong>初等对称多项式</strong> <span class="math inline">\(\sigma_1,\dots,\sigma_r\)</span> 生成, 其中: <span class="math display">\[
+\sigma_k(t_1,\dots,t_k) :=
+\sum_{1\leq i_1&lt;\dots&lt;i_k\leq r}t_{i_1}\cdots t_{i_k}.
+\]</span> 单射性. 假设 <span class="math inline">\(P(X)\)</span> 在对角阵上取值为零, 根据不变性, <span class="math inline">\(P(X)\)</span> 在可对角化的矩阵上取值为零. 因为可对角化的矩阵是稠密的, 根据 <span class="math inline">\(P(X)\)</span> 的连续性, <span class="math inline">\(P(X)\)</span> 是零函数, 进而也是零多项式.</p>
+<p>满射性. 容易看出, <span class="math inline">\(f_k(X)\)</span> 在 <span class="math inline">\(\varphi\)</span> 下的像恰好是 <span class="math inline">\(\sigma_k\)</span>. 根据对称多项式基本定理, <span class="math inline">\(\C[t_i]^{S_r}\)</span> 中的任何多项式都是 <span class="math inline">\(\sigma_i\)</span> 的多项式 <span class="math inline">\(Q(\sigma_1,\dots,\sigma_r)\)</span>. 于是 <span class="math display">\[
+\Align{
+Q(\sigma_1,\dots,\sigma_r)
+&amp;= Q(\varphi(f_1(X)),\dots,\varphi(f_r(X))) \\
+&amp;= \varphi(Q(f_1(X),\dots,f_r(X))) \\
+&amp;= \varphi(P(X))
+}
+\]</span> 对于 <span class="math inline">\(P(X)=Q(f_1(X),\dots,f_k(X))\in{\rm Inv}({\frak gl}(r,\C))\)</span>.</p>
+<p><em>实数情形</em>. 注意到一个事实: 若 <span class="math inline">\({\frak gl}(r,\R)\)</span> 上的实多项式 <span class="math inline">\(P(X)\)</span> 在 <span class="math inline">\({\rm GL}(r,\R)\)</span> 下不变, 则 <span class="math inline">\(P(X)\)</span> 在 <span class="math inline">\({\rm GL}(r,\C)\)</span> 下也不变. 换言之, <span class="math inline">\({\rm Inv}({\frak gl}(r,\R))={\rm Inv}({\frak gl}(r,\C))\cap\R[x^i_j]\)</span>. 于是有交换图 <span class="math display">\[
+\xymatrix{
+{{\rm Inv}({\frak gl}(r,\C))} \ar[r]^(.6){\varphi}
+&amp; \C[t_i]^{S_r} \\
+{{\rm Inv}({\frak gl}(r,\R))} \ar[r]_(.6){\varphi_\R}
+\ar@{}[u]|{\bigcup}
+&amp; \R[t_i]^{S_r}. \ar@{}[u]|{\bigcup}
+}
+\]</span> <span class="math inline">\(\varphi_\R\)</span> 的单射性从 <span class="math inline">\(\varphi\)</span> 的单射性立刻得出. 满射性和复数情形的证明一样的.</p>
+</div>
+<p>在这个同构下, 特征多项式的系数 <span class="math inline">\(f_k\)</span> 映到初等对称多项式. 因为初等对称多项式能生成 <span class="math inline">\(F[t_1,\dots,t_k]^{S_r}\)</span>, 所以 <span class="math inline">\(f_k\)</span> 能生成所以不变多项式.</p>
+<p>迹多项式 <span class="math inline">\(\Sigma_k\)</span> 映到幂和多项式 <span class="math display">\[
+\tilde{\Sigma}_k(t_1,\dots,t_k)
+= \tr(\diag(t_1^k,\dots,t_r^k))
+= \sum t_i^k.
+\]</span> 根据 Newton 恒等式, 幂和多项式都能也生成 <span class="math inline">\(F[t_1,\dots,t_k]^{S_r}\)</span>, 所以 <span class="math inline">\(\Sigma_k\)</span> 也可以生成所有不变多项式.</p>
+<p><u>Claim</u> 设 <span class="math inline">\(F=\R\)</span> 或 <span class="math inline">\(\C\)</span>. 矩阵代数 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式由特征多项式的系数 <span class="math inline">\(f_k(X)\)</span> 或者迹多项式 <span class="math inline">\(\Sigma_k(X)\)</span> 生成: <span class="math display">\[
+{\rm Inv}({\frak gl}(r,F))
+=F[ f_1(X),\dots,f_r(X) ]
+=F[ \Sigma_1(X),\dots,\Sigma_k(X) ].
+\]</span></p>
 <h3 id="forms-depending-on-a-real-parameter">21.4  *Forms depending on a real parameter</h3>
 <p>设<strong>单参数微分形式族</strong> <span class="math inline">\(\{\omega_t\}_{t\in J}\)</span>, 开区间 <span class="math inline">\(J\subset\R\)</span>. 在坐标系 <span class="math inline">\(U,x^1,\dots,x^n\)</span> 下, <span class="math display">\[
 \omega_t=\sum_I a_I(x,t)\dd{x^I}.
@@ -675,7 +735,7 @@ N \ar[u]^{f} &amp;
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月12日</div>
+          <div>2024年7月13日</div>
         </div>
       
       
