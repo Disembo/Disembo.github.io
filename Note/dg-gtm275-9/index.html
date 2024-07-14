@@ -23,8 +23,8 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="Pontrjagin 类, Euler 类, Chern 类, 示性类的一些应用列举.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-13T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-13T14:46:24.283Z">
+<meta property="article:published_time" content="2024-07-14T14:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-14T14:56:16.649Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -215,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-13 22:00" pubdate>
-          2024年7月13日 晚上
+        <time datetime="2024-07-14 22:00" pubdate>
+          2024年7月14日 晚上
         </time>
       </span>
     
@@ -310,6 +310,9 @@ p_k(E) := \bqty{ f_{2k}\pqty{\frac{\i}{2\pi}\Omega} } \in H^{4k}(M).
 \]</span> 则它可以在 <span class="math inline">\(M\)</span> 上积分, <span class="math display">\[
 \int_M p_1^{a_1}(\Omega)\cdots p_{[r/2]}^{a_{[r/2]}}(\Omega)
 \]</span> 称为 <span class="math inline">\(E\)</span> 的 <strong>Pontrjagin 数</strong>. 流形 <span class="math inline">\(M\)</span> 的 Pontrjagin 数定义为其切丛 <span class="math inline">\(TM\)</span> 的 Pontrjagin 数.</p>
+<ul>
+<li>实际上, Pontrjagin 数不光是流形的微分同胚不变量, 还是拓扑不变量.</li>
+</ul>
 <h3 id="the-whitney-product-formula">22.3  The Whitney product formula</h3>
 <p><u>Claim 22.2</u> (Whitney 乘积公式) 设 <span class="math inline">\(M\)</span> 上的向量丛 <span class="math inline">\(E',E''\)</span>, 则 <span class="math display">\[
 p(E'\otimes E'')=p(E')p(E'').
@@ -391,13 +394,77 @@ J_{2m}:=\diag(S,\dots,S).
 <p>还可以证明, <span class="math inline">\(\operatorname{Pf}(\Omega)\)</span> 是闭形式, 且 <span class="math inline">\([\operatorname{Pf}(\Omega)]\in H^{2m}(M)\)</span> 不依赖联络的选取. 我们在之后会证明推广的情形. 定义黎曼丛 <span class="math inline">\(E\)</span> 的 <strong>Euler 类</strong>为 <span class="math display">\[
 e(E) := \bqty{\operatorname{Pf}\pqty{\frac{1}{2\pi}\Omega}}
 = \bqty{(2\pi)^{-m}\operatorname{Pf}(\Omega)}.
-\]</span> <u>Claim 23.3</u> (Gauss-Bonnet) 设 <span class="math inline">\(M\)</span> 是 <span class="math inline">\(2m\)</span> 维紧致可定向黎曼流形, 切丛 <span class="math inline">\(TM\)</span> 的曲率矩阵 <span class="math inline">\(\Omega\)</span>, 则 <span class="math display">\[
+\]</span> 推广的 Gauss-Bonnet 定理表明, Euler 数就是 Euler 类在流形上的积分.</p>
+<p><u>Claim 23.3</u> (推广的 Gauss-Bonnet 定理) 设 <span class="math inline">\(M\)</span> 是 <span class="math inline">\(2m\)</span> 维紧致可定向黎曼流形, 切丛 <span class="math inline">\(TM\)</span> 的曲率矩阵 <span class="math inline">\(\Omega\)</span>, 则 <span class="math display">\[
 \int_M e(TM) = \chi(M).
 \]</span></p>
 <h2 id="chern-classes">24  Chern Classes</h2>
 <h3 id="complex-vector-bundles">24.1  Complex vector bundles</h3>
+<p>Chern 类可以认为是复向量丛上的 Pontrjagin 类.</p>
+<p>光滑流形 <span class="math inline">\(M\)</span> 上的<strong>复向量丛(complex vector bundle)</strong>指的是以 <span class="math inline">\(\C^r\)</span> 为纤维, 局部微分同胚于 <span class="math inline">\(U\times\C^r\)</span> 的向量丛.</p>
+<ul>
+<li>一个实向量丛 <span class="math inline">\(E\)</span> 可以构造出一个复向量丛 <span class="math inline">\(E\otimes\C\)</span>, 称为 <span class="math inline">\(E\)</span> 的<strong>复化(complexification)</strong>, 其中每一点的纤维 <span class="math inline">\(E_p\otimes_\R\C\)</span> 上有 <span class="math inline">\(\C\)</span>-数量乘法结构 <span class="math inline">\(w(v\otimes z)=v\otimes(zw)\)</span>.</li>
+<li><strong>复流形(complex manifold)</strong>指的是第二可数的, Hausdorff 的, 局部同胚于 <span class="math inline">\(\C^n\)</span> 的, 并且转移函数是全纯函数的拓扑流形, 称 <span class="math inline">\(n\)</span> 是 <span class="math inline">\(M\)</span> 的复维数. 复流形 <span class="math inline">\(M\)</span> 显然也具有光滑流形结构, 它的实维数是 <span class="math inline">\(2n\)</span>.</li>
+<li>复流形 <span class="math inline">\(M\)</span> 的切丛 <span class="math inline">\(TM\)</span> 具有复向量丛结构, 并且投射 <span class="math inline">\(\pi:TM\to M\)</span> 是全纯的. 称这样的向量丛是<strong>全纯向量丛(holomorphic vector bundle)</strong>.</li>
+</ul>
+<p>和流形上的实向量丛一样, 每个复向量丛上都存在 <strong>Hermit 度量(Hermitian metric)</strong>, 即光滑的复内积场 <span class="math inline">\(p\mapsto\lr{\cdot,\cdot}_p\)</span>.</p>
+<p>复向量丛 <span class="math inline">\(E\)</span> 上的<strong>联络</strong>指的是 <span class="math inline">\(\R\)</span>-双线性映射 <span class="math inline">\(\nabla:\Gamma(TM)\times\Gamma(E)\to\Gamma(E)\)</span> 满足对第一个分量的 <span class="math inline">\({\cal F}\)</span>-线性性和对第二个分量的 <span class="math inline">\(\C\)</span>-线性性. 任意复向量丛上都存在联络. 一个<strong>与 Hermit 度量相容</strong>的联络指的是满足下式的联络 <span class="math inline">\(\nabla\)</span>: <span class="math display">\[
+X\lr{s,t}=\lr{\nabla_Xs,t}+\lr{s,\nabla_Xt},
+\quad\forall X\in\Gamma(TM),s,t\in\Gamma(E).
+\]</span> 联络 <span class="math inline">\(\nabla\)</span> 的曲率的定义和实向量丛完全相同.</p>
+<p>在标架 <span class="math inline">\((U,e)\)</span> 下, <span class="math inline">\(\nabla\)</span> 的联络形式是复值微分形式 <span class="math inline">\(\omega^i_j\in\Omega^1(U,\C)\)</span>, <span class="math display">\[
+\nabla_Xe_j = \sum_{i=1}^r\omega^i_j(X)e_i,\quad
+\nabla e=e\omega.
+\]</span> 曲率形式 <span class="math inline">\(\Omega^i_j\in\Omega^2(U,\C)\)</span>, <span class="math display">\[
+R(X,Y)e_j=\sum_{i=1}^r\Omega^i_j(X,Y) e_i,\quad R(e)=e\Omega,
+\]</span> 满足结构方程 <span class="math inline">\(\Omega=\dd\omega+\omega\wedge\omega\)</span>, 且有标架变换律 <span class="math inline">\(\bar\Omega=a^{-1}\Omega a\)</span>, <span class="math inline">\(a\in\Omega^0(U,{\rm GL}(r,\C))\)</span>.</p>
 <h3 id="chern-classes-1">24.2  Chern classes</h3>
+<p>若 <span class="math inline">\({\frak gl}(r,\C)\)</span> 上的多项式 <span class="math inline">\(Q(X)\)</span> 是 <span class="math inline">\(\operatorname{Ad}_{{\rm GL}(r,\C)}\)</span>-不变的, 则 <span class="math inline">\(Q(\Omega)\)</span> 定义了 <span class="math inline">\(M\)</span> 上的整体形式. 能够证明 <span class="math inline">\(Q(\Omega)\)</span> 是闭形式且它的 de Rham 上同调类不依赖联络的选取. 取 <span class="math inline">\(Q(X)=\det(I+\i/2\pi\cdot X)\)</span>, <span class="math display">\[
+Q(\Omega)
+=\det\pqty{I+\frac\i{2\pi}\Omega}
+=1+c_1(\Omega)+\dots+c_r(\Omega),
+\]</span> 其中 <span class="math inline">\([Q(\Omega)]\)</span> 为<strong>总 Chern 类</strong>, <span class="math inline">\(c_i(E):=[c_i(\Omega)]\)</span> 称为<strong>第 <span class="math inline">\(k\)</span> Chern 类</strong>.</p>
+<p>设复维数 <span class="math inline">\(n\)</span> 的复流形 <span class="math inline">\(M\)</span>, 切丛 <span class="math inline">\(TM\)</span> 有 Chern 类 <span class="math inline">\(c_i(\Omega)\)</span>. 若 <span class="math inline">\(c_1^{i_1}(\Omega)\cdots c_n^{i_n}(\Omega)\)</span> 的次数是 <span class="math inline">\(2(i_1+\dots+i_n)\)</span>. 若这个数等于实维数 <span class="math inline">\(2n\)</span>, 则积分 <span class="math display">\[
+\int_M c_i^{i_1}(\Omega)\cdots c_n^{i_n}(\Omega)
+\]</span> 称为 <span class="math inline">\(M\)</span> 的 <strong>Chern 数</strong>. Chern 数是复流形的拓扑不变量.</p>
 <h2 id="some-applications">25  Some Applications</h2>
+<h3 id="the-cobordism-problem">25.1  The cobordism problem</h3>
+<p>定向流形 <span class="math inline">\(M_1,M_2\)</span> 称为(定向)<strong>配边的(cobordant)</strong>, 若存在定向带边流形 <span class="math inline">\(N\)</span>, 使得 <span class="math display">\[
+\partial{N}=M_1\sqcup(-M_2),
+\]</span> 其中 <span class="math inline">\(-M_2\)</span> 表示具有相反定向的 <span class="math inline">\(M_2\)</span>. 定向流形是另一个流形的边界, 当且仅当它与空集配边. 定向配边是定向流形间的等价关系.</p>
+<p>Pontrjagin 数给出了流形配边的一个必要条件.</p>
+<p><u>Claim 25.1</u> 若 <span class="math inline">\(4n\)</span> 维紧致定向流形 <span class="math inline">\(M\)</span> 与空集配边, 则 <span class="math inline">\(M\)</span> 的所有 Pontrjagin 数为零.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 设 <span class="math inline">\(M=\partial{N}\)</span>, <span class="math inline">\(p_1^{i_1}\cdots p_n^{i_n}\)</span> 次数是 <span class="math inline">\(4n\)</span>, 根据 Stokes 定理, <span class="math display">\[
+\Align{
+\int_M p_1^{i_1}\cdots p_n^{i_n}
+&amp;= \int_{\partial{N}}p_1^{i_1}\cdots p_n^{i_n} \\
+&amp;= \int_{N}\dd(p_1^{i_1}\cdots p_n^{i_n}) \\
+&amp;= 0.
+}
+\]</span></p>
+</div>
+<p><u>Claim 25.2</u> (Pontrjagin 数是配边不变量) 若紧致定向流形 <span class="math inline">\(M_1,M_2\)</span> 配边, 则它们的 Pontrjagin 数相等.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 设 <span class="math inline">\(M_1\sqcup(-M_2)=\partial{N}\)</span>, 由 Claim 25.1, <span class="math inline">\(\int_{M_1\sqcup(-M_2)}p_1^{i_1}\cdots p_n^{i_n}=0\)</span>, 即 <span class="math display">\[
+\int_{M_1}p_1^{i_1}\cdots p_n^{i_n}=
+\int_{M_2}p_1^{i_1}\cdots p_n^{i_n}.
+\]</span></p>
+</div>
+<h3 id="the-embedding-problem">25.2  The embedding problem</h3>
+<p>Whitney 嵌入定理表明, <span class="math inline">\(n\)</span> 维光滑流形 <span class="math inline">\(M\)</span> 可以嵌入 <span class="math inline">\(\R^{2n+1}\)</span>. 在某些情况下, 这个维数是可以改进的.</p>
+<p><u>Claim 25.3</u> 若紧致 <span class="math inline">\(4n\)</span> 维流形 <span class="math inline">\(M\)</span> 可以作为超曲面嵌入 <span class="math inline">\(\R^{4n+1}\)</span>, 则 <span class="math inline">\(M\)</span> 的所有 Pontrjagin 类为零.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 设嵌入 <span class="math inline">\(i:M\hookrightarrow\R^{4n+1}\)</span>. 因为 <span class="math inline">\(M\)</span> 可定向, <span class="math inline">\(M\)</span> 有外向单位法向量场 于是 <span class="math inline">\(i(M)\)</span> 的法丛 <span class="math inline">\(N\)</span> 平凡. 根据光滑向量丛的短正合列 <span class="math display">\[
+0\to TM \to T\R^{4n+1}|_{i(M)}\to N\to 0,
+\]</span> 有直和 <span class="math display">\[
+T\R^{4n+1}|_{i(M)} \cong TM \oplus N.
+\]</span> 根据 Whitney 乘积公式, <span class="math display">\[
+1= p(T\R^{4n+1}|_{i(M)}) = p(TM)p(N) = p(TM)
+\]</span> 即 <span class="math inline">\(TM\)</span> 的 Pontrjagin 类平凡.</p>
+</div>
+<h3 id="the-hirzebruch-signature-formula">25.3  The Hirzebruch signature formula</h3>
+<h3 id="the-riemann-roch-problem">25.4  The Riemann-Roch problem</h3>
 </body></html>
                 
               </div>
@@ -460,7 +527,7 @@ e(E) := \bqty{\operatorname{Pf}\pqty{\frac{1}{2\pi}\Omega}}
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月13日</div>
+          <div>2024年7月14日</div>
         </div>
       
       
