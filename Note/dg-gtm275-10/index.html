@@ -24,7 +24,7 @@
 <meta property="og:description" content="李群作用和基本向量场, 主丛, 标架丛和竖直子丛.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-16T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-16T04:49:12.949Z">
+<meta property="article:modified_time" content="2024-07-16T06:24:52.173Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -328,7 +328,7 @@ f(g) = f(eg) = f(e)g = l_{f(e)}g,\quad\forall g\in G.
 <p><u>Pf</u> 记 <span class="math inline">\(N,M\)</span> 上的 <span class="math inline">\(G\)</span> 作用分别由 <span class="math inline">\(\sigma_g(x)=xg\)</span> 和 <span class="math inline">\(\rho_g(y)=yg\)</span> 给出. 等变性给出 <span class="math inline">\(f\circ\sigma_g=\rho_g\circ f\)</span>, 应用链式法则得到交换图 <span class="math display">\[
 \xymatrix{
 T_xN \ar[r]^(.45){f_{*,x}} \ar[d]_{\sigma_g} &amp;
-T_{f(x)}M \ar[d]^{\tau_g} \\
+T_{f(x)}M \ar[d]^{\rho_g} \\
 T_xN \ar[r]_(.45){f_{*,xg}} &amp; T_{f(x)}M.
 }
 \]</span> 上图中竖直的映射都是线性同构, 所以 <span class="math inline">\(f_{*,x}\)</span> 和 <span class="math inline">\(f_{*,xg}\)</span> 有相同的秩. 因为 <span class="math inline">\(G\)</span> 传递地作用于 <span class="math inline">\(N\)</span>, 所以 <span class="math inline">\(xg\)</span> 取遍 <span class="math inline">\(N\)</span>, <span class="math inline">\(f\)</span> 是常秩映射.</p>
@@ -600,6 +600,7 @@ TP \ar[rrd]^{\pi_*} \ar[rdd] \ar@{.&gt;}[rd]|{\tilde{\pi}_*} \\
 TP \overset{\tilde\pi_*}\longrightarrow \pi^*TM \longrightarrow 0.
 \]</span></p>
 <h3 id="horizontal-distributions">27.4  Horizontal distributions</h3>
+<p>流形 <span class="math inline">\(P\)</span> 上的一个<strong>分布(distribution)</strong>指的是切丛 <span class="math inline">\(TP\)</span> 的子丛 <span class="math inline">\(D\)</span>.</p>
 <p>总空间的切丛 <span class="math inline">\(TP\)</span> 有典范的竖直子丛 <span class="math inline">\({\cal V}\)</span>. 若 <span class="math inline">\(TP\)</span> 的子丛 <span class="math inline">\({\cal H}\)</span> 满足 <span class="math inline">\(TP={\cal V}\oplus{\cal H}\)</span>, 则称之为一个<strong>水平分布(horizontal distribution)</strong>. 一般来说, <span class="math inline">\(TP\)</span> 上没有一个典范的水平分布.</p>
 <p><u>Claim 27.5</u> (分裂引理) 设流形 <span class="math inline">\(P\)</span> 上向量丛的短正合列 <span class="math display">\[
 0 \longrightarrow A \overset{i}\longrightarrow
