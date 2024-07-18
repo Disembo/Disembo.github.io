@@ -16,16 +16,16 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="主丛上联络的两种定义, 标架丛上的联络.">
+    <meta name="description" content="主丛上联络的两种定义, 标架丛上的联络, 联络的曲率.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GTM275 | 11 主丛与示性类">
 <meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-11/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="主丛上联络的两种定义, 标架丛上的联络.">
+<meta property="og:description" content="主丛上联络的两种定义, 标架丛上的联络, 联络的曲率.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/frame-bundle-horizontal-vector.png">
-<meta property="article:published_time" content="2024-07-17T11:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-17T15:28:27.848Z">
+<meta property="article:published_time" content="2024-07-18T07:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-18T07:35:24.086Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -217,8 +217,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-17 19:00" pubdate>
-          2024年7月17日 晚上
+        <time datetime="2024-07-18 15:00" pubdate>
+          2024年7月18日 下午
         </time>
       </span>
     
@@ -269,7 +269,7 @@
                 
                 <html><head></head><body>
 <div class="note note-secondary">
-<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>) 第 28-29 节的笔记.</p>
+<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>) 第 28-30 节的笔记.</p>
 </div>
 <h2 id="connections-on-a-principal-bundle">28  Connections on a Principal Bundle</h2>
 <p>主丛 <span class="math inline">\(G\to P\to M\)</span> 上的联络有两种等价的定义方式:</p>
@@ -588,6 +588,155 @@ r_{a*}\underline{\omega_s(X_x)}_{(x,1)}f
 }
 \]</span> 即 <span class="math inline">\(e^*\omega=\omega_e\)</span>.</p>
 </div>
+<h2 id="curvature-on-a-principal-bundle">30  Curvature on a Principal Bundle</h2>
+<h3 id="the-curvature-form">30.1  The curvature form</h3>
+<p>Bianchi 恒等式给了我们一种定义曲率的方法. 设主丛 <span class="math inline">\(G\to P\to M\)</span>, Ehresmann 联络 <span class="math inline">\(\omega\in\Omega^1(P,{\frak g})\)</span>, 它的<strong>曲率</strong>定义为 <span class="math inline">\(\Omega\in\Omega^2(P,{\frak g})\)</span>, <span class="math display">\[
+\Omega := \dd\omega + \frac12[\omega,\omega].
+\]</span> 其中 <span class="math inline">\([\cdot,\cdot]\)</span> 是李括号诱导的矩阵值微分形式的乘积.</p>
+<p><u>Claim 30.1</u> 设向量丛 <span class="math inline">\(E\to M\)</span> 的联络 <span class="math inline">\(\nabla\)</span> 诱导出标架丛 <span class="math inline">\({\rm Fr}(E)\to M\)</span> 上的 Ehresmann 联络 <span class="math inline">\(\omega\)</span>. 若 <span class="math inline">\(E|_U\)</span> 有局部标架 <span class="math inline">\(e\in\Gamma(U,{\rm Fr}(E))\)</span>, 则 <span class="math inline">\(\nabla\)</span> 在 <span class="math inline">\(e\)</span> 下的曲率矩阵 <span class="math display">\[
+\Omega_e = e^*\Omega.
+\]</span></p>
+<div class="note note-secondary">
+<p><u>Pf</u> (下面第二个等号利用 Claim 19.3; 第三个等号利用 Claim 29.6) <span class="math display">\[
+\Align{
+e^*\Omega
+&amp;= e^*\dd\omega + \frac12e^*[\omega,\omega] \\
+&amp;= \dd e^*\omega + \frac12[e^*\omega,e^*\omega] \\
+&amp;= \dd\omega_e + \frac12[\omega_e,\omega_e] \\
+&amp;= \Omega_e.
+}
+\]</span></p>
+</div>
+<div class="note note-info">
+<p><u>Example</u> Maurer-Cartan 联络.</p>
+<p>在 19.3 节, 我们知道李群 <span class="math inline">\(G\)</span> 上有一个标准的左不变 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\theta\in\Omega^1(G,{\frak g})\)</span>, 称为 Maurer-Cartan 形式, 满足 ① (等变性) <span class="math inline">\(r_g^*\theta=(\operatorname{Ad}_{g^{-1}})\theta\)</span>, ② 对于 <span class="math inline">\(A\in{\frak g}\)</span>, 有 <span class="math inline">\(\theta_e(A)=A\)</span>.</p>
+<p>Maurer-Cartan 形式可以看作积丛 <span class="math inline">\(\pi:P=M\times G\to G\)</span> 上的联络.</p>
+<p>设自然投射 <span class="math inline">\(\eta:P\to G\)</span>, 则 (18.5 节末 Example) <span class="math display">\[
+TP = \pi^* TM \oplus \eta^* TG
+\]</span> 其中 <span class="math inline">\(\eta^*TG\)</span> 是 <span class="math inline">\(\pi_*:TP\to TM\)</span> 的核, 即竖直子丛. 因此 <span class="math inline">\(P\)</span> 上有典范的水平分布 <span class="math inline">\({\cal H}=\pi^*TM\)</span>. 定义 <span class="math inline">\(P\)</span> 上的联络 <span class="math display">\[
+\omega(X) := (\eta^*\theta)(X) = \theta(\eta_*X),
+\]</span></p>
+<p>不难验证, 这就是 <span class="math inline">\({\cal H}\)</span> 所确定的那个 Ehresmann 联络:</p>
+<ol type="1">
+<li><p>恒等映射: <span class="math display">\[
+\Align{
+\omega_{(x,g)}(\underline{A}_{(x,g)})
+&amp;= \theta_g(\eta_*\circ j_{(x,g)*})A \\
+&amp;= \theta_g(l_{g*}A)
+= \theta_e(A) = A.
+}
+\]</span></p></li>
+<li><p>等变性: (注意 <span class="math inline">\(\eta\circ r_g=\)</span> 李群 <span class="math inline">\(G\)</span> 上的 <span class="math inline">\(r_g\)</span>) <span class="math display">\[
+\Align{
+r_g^*\omega
+&amp;= r_g^*(\eta^*\theta) \\
+&amp;= (\eta\circ r_g)^*\theta
+= r_g^*\theta
+= (\operatorname{Ad}_{g^{-1}})\theta
+= (\operatorname{Ad}_{g^{-1}})\omega.
+}
+\]</span></p></li>
+<li><p>与 <span class="math inline">\({\cal H}\)</span> 适配: <span class="math inline">\(\omega(X)=0\)</span> 只要 <span class="math inline">\(X\in\Gamma({\cal H})\)</span>.</p></li>
+</ol>
+<p>该联络的曲率 <span class="math display">\[
+\Align{
+\Omega
+= \dd\omega + \frac12[\omega,\omega]
+= \eta^*\pqty{\dd\theta + \frac12[\theta,\theta]} = 0.
+}
+\]</span></p>
+</div>
+<h3 id="properties-of-the-curvature-form">30.2  Properties of the curvature form</h3>
+<p>和 <span class="math inline">\(\omega\)</span> 一样, <span class="math inline">\(\Omega\)</span> 也具有 <span class="math inline">\(G\)</span>-等变性. 不同的是, <span class="math inline">\(\omega\)</span> 将水平向量映到 <span class="math inline">\(0\)</span>, 而 <span class="math inline">\(\Omega\)</span> 将竖直向量映到 <span class="math inline">\(0\)</span>.</p>
+<p><u>Claim 30.2</u> 设 <span class="math inline">\(G\)</span>-主丛 <span class="math inline">\(\pi:P\to M\)</span> 上的联络 <span class="math inline">\(\omega\)</span>, 点 <span class="math inline">\(p\in P\)</span>.</p>
+<ol type="1">
+<li>任意竖直向量 <span class="math inline">\(X_p\in T_pP\)</span> 可以延拓到某 <span class="math inline">\(A\in{\frak g}\)</span> 的基本向量场 <span class="math inline">\(\underline{A}\)</span>.</li>
+<li>任意水平向量 <span class="math inline">\(Y_p\in T_pP\)</span> 可以延拓到某 <span class="math inline">\(B\in\Gamma(TM)\)</span> 的水平提升 <span class="math inline">\(\tilde{B}\)</span>.</li>
+</ol>
+<div class="note note-secondary">
+<p><u>Pf</u> 1, 因为 <span class="math inline">\(j_{p*}:{\frak g}\to{\cal V}_p\)</span> 是满射, 所以存在 <span class="math inline">\(A\in{\frak g}\)</span>, 使 <span class="math inline">\(X_p=j_{p*}(A)=\underline{A}_p\)</span>.</p>
+<p>2, 设 <span class="math inline">\(\pi_*(Y_p)=B_{\pi(x)}\in T_{\pi(p)}M\)</span>, 将 <span class="math inline">\(B_{\pi(x)}\)</span> 延拓到 <span class="math inline">\(M\)</span> 上的光滑向量场 <span class="math inline">\(B\)</span>, 则水平提升 <span class="math inline">\(\tilde{B}\)</span> 延拓 <span class="math inline">\(Y_p\)</span>.</p>
+</div>
+<p><u>Claim 30.3</u> (曲率的性质) 设 <span class="math inline">\(G\)</span>-主丛上的联络 <span class="math inline">\(\omega\)</span> 和曲率 <span class="math inline">\(\Omega\)</span>.</p>
+<ol type="1">
+<li>(水平性) <span class="math inline">\(\Omega(X,Y)=(\dd\omega)(hX,hY)\)</span> 对任意 <span class="math inline">\(X,Y\in\Gamma(TP)\)</span>.</li>
+<li>(<span class="math inline">\(G\)</span>-等变性) <span class="math inline">\(r_g^*\Omega=(\operatorname{Ad}_{g^{-1}})\Omega\)</span> 对任意 <span class="math inline">\(g\in G\)</span>.</li>
+<li>(第二 Bianchi 恒等式) <span class="math inline">\(\dd\Omega=[\Omega,\omega]\)</span>.</li>
+</ol>
+<div class="note note-secondary">
+<p><u>Pf</u> 1, 我们逐点地证明. 因为 <span class="math inline">\(X_p,Y_p\)</span> 都能分解为水平分量和竖直分量, 所以只需对水平和竖直向量证明. 分为 3 种情况.</p>
+<p>情形 A. <span class="math inline">\(X_p,Y_p\)</span> 都水平, 此时 <span class="math inline">\([\omega_p,\omega_p](X_p,Y_p)=0\)</span>, <span class="math display">\[
+\Omega_p(X_p,Y_p) = (\dd\omega)_p(X_p,Y_p) = (\dd\omega)_p(hX_p,hY_p).
+\]</span> 情形 B. <span class="math inline">\(X_p\)</span> 竖直, <span class="math inline">\(Y_p\)</span> 水平, 此时也有 <span class="math inline">\([\omega_p,\omega_p](X_p,Y_p)=0\)</span>. 根据 Claim 30.2, <span class="math inline">\(X_p\)</span> 延拓到基本向量场 <span class="math inline">\(\underline{A}\)</span>, <span class="math inline">\(Y_p\)</span> 延拓到右不变水平向量场 <span class="math inline">\(\tilde{B}\)</span>. 因此待证等式左边 <span class="math display">\[
+\Omega(\underline{A},\tilde{B})
+= \dd\omega(\underline{A},\tilde{B})
+= \underline{A}\omega(\tilde{B})-
+  \tilde{B}\omega(\underline{A})-
+  \omega([\underline{A},\tilde{B}]).
+\]</span> 其中 <span class="math inline">\(\omega(\tilde{B})\)</span> 为零, 因为 <span class="math inline">\(\tilde{B}\)</span> 水平; <span class="math inline">\(\tilde{B}\omega(\underline{A})=\tilde{B}A=0\)</span>, 因为 <span class="math inline">\(A\)</span> 为常数; <span class="math inline">\([\underline{A},\tilde{B}]=0\)</span> 根据 Claim 28.4. 因此上式为零. 另一方面, 因为 <span class="math inline">\(X_p\)</span> 竖直, 所以待证等式右边 <span class="math inline">\((\dd\omega)_p(hX_p,hY_p)\)</span> 也为零.</p>
+<p>情形 C. <span class="math inline">\(X_p,Y_p\)</span> 都竖直. 取延拓 <span class="math inline">\(X_p=\underline{A}_p\)</span>, <span class="math inline">\(Y_p=\underline{B}_p\)</span>, <span class="math display">\[
+\Align{
+\Omega(\underline{A},\underline{B})
+&amp;= \dd\omega(\underline{A},\underline{B}) +
+\frac12\Big(
+  [\omega(\underline{A}),\omega(\underline{B})] -
+  [\omega(\underline{B}),\omega(\underline{A})]
+\Big) \\
+&amp;= \dd\omega(\underline{A},\underline{B}) + [A,B].
+}
+\]</span> 其中第一项 <span class="math display">\[
+\Align{
+\dd\omega(\underline{A},\underline{B})
+&amp;= \underline{A}\omega(\underline{B})-
+\underline{B}\omega(\underline{A})-
+\omega([\underline{A},\underline{B}]) \\
+&amp;= \underline{A}(B)-\underline{B}(A) - \omega(\underline{[A,B]}) \\
+&amp;= 0 - 0 - [A,B],
+}
+\]</span> 因此 <span class="math inline">\(\Omega(\underline{A},\underline{B})=-[A,B]+[A,B]=0\)</span>. 而另一方面, <span class="math inline">\((\dd\omega)_p(hX_p,hY_p)=(\dd\omega)_p(0,0)\)</span> 也为零.</p>
+<p>2, 由 <span class="math inline">\(\omega\)</span> 的等变性, <span class="math display">\[
+\Align{
+r_g^*\Omega
+&amp;= r_g^*\dd\omega + r_g^*\frac12[\omega,\omega] \\
+&amp;= \dd{r_g^*\omega} + \frac12[r_g^*\omega,r_g^*\omega] \\
+&amp;= \dd(\operatorname{Ad}_{g^{-1}})\omega +
+\frac12[(\operatorname{Ad}_{g^{-1}})\omega,
+(\operatorname{Ad}_{g^{-1}})\omega] \\
+&amp;= (\operatorname{Ad}_{g^{-1}})\pqty{\dd\omega+\frac12[\omega,\omega]} \\
+&amp;= (\operatorname{Ad}_{g^{-1}})\Omega.
+}
+\]</span> 其中倒数第二个等号: <span class="math inline">\(\operatorname{Ad}_{g^{-1}}=(c_{g^{-1}})_*\)</span> 作为李群同态的微分, 是李代数同态.</p>
+<p>3, 反复利用 Claim 19.4 及其推论, <span class="math display">\[
+\Align{
+\dd\Omega
+&amp;= \frac12\dd{[\omega,\omega]} \\
+&amp;= \frac12([\dd\omega,\omega]-[\omega,\dd\omega]) \\
+&amp;= [\dd\omega,\omega] \\
+&amp;= \bqty{\Omega-\frac12[\omega,\omega],\omega} \\
+&amp;= [\Omega,\omega] - \frac12[[\omega,\omega],\omega] \\
+&amp;= [\Omega,\omega].
+}
+\]</span></p>
+</div>
+<p><u>Claim 30.4</u> (标架丛上推广的 Bianchi 恒等式) 标架丛上联络 <span class="math inline">\(\omega\)</span> 的曲率 <span class="math inline">\(\Omega\)</span> 满足 <span class="math display">\[
+\dd\Omega^k = [\Omega^k,\omega].
+\]</span> 其中 <span class="math inline">\(\Omega^k=\Omega\wedge\cdots\wedge\Omega\)</span>, <span class="math inline">\(\wedge\)</span> 是矩阵乘法诱导出的楔积. (在一般的 <span class="math inline">\(G\)</span>-主丛上, <span class="math inline">\({\frak g}\)</span> 不一定是矩阵代数, 所以可能没有 <span class="math inline">\(\wedge\)</span> 的概念.)</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 和向量丛的情形 (Claim 20.4) 完全一样.</p>
+</div>
+<p><u>Claim 30.5</u> 设 <span class="math inline">\(G\)</span>-主丛上的联络 <span class="math inline">\(\omega\)</span> 和曲率 <span class="math inline">\(\Omega\)</span>. 若 <span class="math inline">\(X,Y\)</span> 为水平向量场, 则</p>
+<ol type="1">
+<li><span class="math inline">\(\Omega(X,Y)=-\omega([X,Y])\)</span>.</li>
+<li><span class="math inline">\([X,Y]\)</span> 水平当且仅当 <span class="math inline">\(\Omega(X,Y)=0\)</span>.</li>
+</ol>
+<div class="note note-secondary">
+<p><u>Pf</u> 1, 利用 Claim 30.3 之 1 和 <span class="math inline">\(\omega\)</span> 的竖直性, <span class="math display">\[
+\Omega(X,Y)
+= \dd\omega(X,Y)
+= X\omega(Y)-Y\omega(X)-\omega([X,Y])
+= -\omega([X,Y]).
+\]</span> 2, 因为 <span class="math inline">\(\ker{\omega_p}={\cal H}_p\)</span>, 所以 <span class="math inline">\(\omega(Z)=0\)</span> 当且仅当 <span class="math inline">\(Z\)</span> 是水平向量场. 利用 1 即得.</p>
+</div>
 </body></html>
                 
               </div>
@@ -650,7 +799,7 @@ r_{a*}\underline{\omega_s(X_x)}_{(x,1)}f
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月17日</div>
+          <div>2024年7月18日</div>
         </div>
       
       
