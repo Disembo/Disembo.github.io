@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/associate-bundle-sketch.png">
 <meta property="article:published_time" content="2024-07-19T10:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-19T12:21:00.884Z">
+<meta property="article:modified_time" content="2024-07-19T15:42:00.372Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -286,7 +286,7 @@
 <h3 id="the-associated-bundle">31.1  The associated bundle</h3>
 <p>设 <span class="math inline">\(G\)</span>-主丛 <span class="math inline">\(\pi:P\to M\)</span>. 李群 <span class="math inline">\(G\)</span> 的一个(有限维)<strong>表示(representation)</strong>指的是 <span class="math inline">\(G\)</span> 到有限维线性空间 <span class="math inline">\(V\)</span> 的一般线性群 <span class="math inline">\({\rm GL}(V)\)</span> 的李群同态 <span class="math display">\[
 \rho:G\to{\rm GL}(V).
-\]</span> 此时, <span class="math inline">\(G\)</span> 在 <span class="math inline">\(V\)</span> 上自然地有左作用 <span class="math inline">\(g\cdot v:=\rho(g)v\)</span>. <strong>配丛(associate bundle)</strong> <span class="math inline">\(E:=P\times_\rho V\)</span> 指的是 <span class="math inline">\(P\times V\)</span> 商去等价关系 <span class="math display">\[
+\]</span> 此时, <span class="math inline">\(G\)</span> 在 <span class="math inline">\(V\)</span> 上自然地有左作用 <span class="math inline">\(g\cdot v:=\rho(g)v\)</span>. <strong>配丛(associated bundle)</strong> <span class="math inline">\(E:=P\times_\rho V\)</span> 指的是 <span class="math inline">\(P\times V\)</span> 商去等价关系 <span class="math display">\[
 (p,v)\sim(pg,g^{-1}\cdot v),\quad\forall g\in G,(p,v)\in P\times V.
 \]</span> 记 <span class="math inline">\((p,v)\)</span> 所在等价类为 <span class="math inline">\([p,v]\)</span>. 配丛有自然投射 <span class="math inline">\(\beta:E\to M\)</span>, <span class="math inline">\(\beta([p,v])=\pi(p)\)</span>. 这是良定义的, 因为 <span class="math display">\[
 \beta([pg,g^{-1}\cdot v])=\pi(pg)=\pi(p)=\beta([p,v]).
@@ -387,7 +387,7 @@ f^{-1}_p(\psi(\pi_*u_1,\dots,\pi_*u_k)) \in V.
 \Omega^k_\rho(P,V) \to \Omega^k(M,E),\quad \varphi\mapsto\varphi^\flat
 \]</span> 是线性同构, 逆映射为 <span class="math inline">\(\psi\mapsto\psi^\sharp\)</span>.</p>
 <div class="note note-secondary">
-<p><u>Pf</u> (1) 我们要证明 <span class="math inline">\(\phi^\flat\)</span> 良定义, 就要说明如上定义不依赖于 ① <span class="math inline">\(p\in P_x\)</span> 的选择, ② 提升 <span class="math inline">\(u_i\in T_pP\)</span> 的选择. 先证明 ②. 设 <span class="math inline">\(u_1',\dots,u_k'\in T_pP\)</span> 是另一组提升 <span class="math inline">\(v_i\)</span> 的向量, 则 <span class="math inline">\(\pi_*(u_i-u_i')=0\)</span>, 即 <span class="math inline">\(u_i-u_i'\)</span> 是竖直向量, 利用 <span class="math inline">\(\varphi\)</span> 的水平性和 <span class="math inline">\(\R\)</span>-线性性, <span class="math display">\[
+<p><u>Pf</u> (一) 我们要证明 <span class="math inline">\(\phi^\flat\)</span> 良定义, 就要说明如上定义不依赖于 ① <span class="math inline">\(p\in P_x\)</span> 的选择, ② 提升 <span class="math inline">\(u_i\in T_pP\)</span> 的选择. 先证明 ②. 设 <span class="math inline">\(u_1',\dots,u_k'\in T_pP\)</span> 是另一组提升 <span class="math inline">\(v_i\)</span> 的向量, 则 <span class="math inline">\(\pi_*(u_i-u_i')=0\)</span>, 即 <span class="math inline">\(u_i-u_i'\)</span> 是竖直向量, 利用 <span class="math inline">\(\varphi\)</span> 的水平性和 <span class="math inline">\(\R\)</span>-线性性, <span class="math display">\[
 \Align{
 \varphi_p(u_1',\dots,u_k')
 &amp;= \varphi_p(u_1+\textsf{vertical},\dots,u_k+\textsf{vertical}) \\
@@ -404,8 +404,7 @@ f_{pg}\big(\varphi_{pg}(r_{g*}u_1\dots)\big)
 &amp;= f_p(\varphi_p(u_1\dots)).
 }
 \]</span> (其中第二个等号利用 <span class="math inline">\(\varphi\)</span> 的等变性; 第三个等号利用 Claim 31.2) 这证明了 <span class="math inline">\(\varphi^\flat\)</span> 不依赖 <span class="math inline">\(p\in P_x\)</span> 的选取. 总之, <span class="math inline">\(\varphi^\flat\)</span> 是良定义的.</p>
-<ol start="2" type="1">
-<li>对于 <span class="math inline">\(\psi^\sharp\)</span>, 只需要说明其右等变性, 水平性即可. 水平性是显然的: 若 <span class="math inline">\(u_i\)</span> 水平, 则 <span class="math inline">\(\pi_*u_i=0\)</span>, 由 <span class="math inline">\(\psi\)</span> 的多重线性性, 结果为 <span class="math inline">\(0\)</span>. 右等变性: (其中第三个等号利用 Claim 31.2) <span class="math display">\[
+<p>(二) 对于 <span class="math inline">\(\psi^\sharp\)</span>, 只需要说明其右等变性, 水平性即可. 水平性是显然的: 若 <span class="math inline">\(u_i\)</span> 水平, 则 <span class="math inline">\(\pi_*u_i=0\)</span>, 由 <span class="math inline">\(\psi\)</span> 的多重线性性, 结果为 <span class="math inline">\(0\)</span>. 右等变性: (其中第三个等号利用 Claim 31.2) <span class="math display">\[
 \Align{
 (r_g^*\psi^\sharp)_p(u_1\dots)
 &amp;= \psi^\sharp_{pg}(r_{g*}u_1\dots) \\
@@ -413,16 +412,14 @@ f_{pg}\big(\varphi_{pg}(r_{g*}u_1\dots)\big)
 &amp;= \rho(g^{-1})\cdot f_p^{-1}(\psi(\pi_*u_1\dots)) \\
 &amp;= \rho(g^{-1})\cdot \psi_p^\sharp(u_1\dots).
 }
-\]</span></li>
-<li>互逆性比较好证. 例如, 取 <span class="math inline">\(u_i\in T_pP\)</span>, 直接由定义, <span class="math display">\[
+\]</span> (三) 互逆性比较好证. 例如, 取 <span class="math inline">\(u_i\in T_pP\)</span>, 直接由定义, <span class="math display">\[
 \Align{
 \varphi^{\flat\sharp}_p(u_1\dots)
 &amp;= f_p^{-1}(\varphi^\flat_x(\pi_*u_1\dots)) \\
 &amp;= f_p^{-1}(f_p(\varphi_p(u_1\dots))) \\
 &amp;= \varphi_p(u_1\dots).
 }
-\]</span> 同样有 <span class="math inline">\(\psi^{\sharp\flat}=\psi\)</span>.</li>
-</ol>
+\]</span> 同样有 <span class="math inline">\(\psi^{\sharp\flat}=\psi\)</span>.</p>
 </div>
 <p>Claim 31.4 中, 令 <span class="math inline">\(k=0\)</span>, 可以得到 <span class="math display">\[
 \Omega^0_\rho(P,V) \cong \Omega^0(M,E).
