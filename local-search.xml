@@ -4,37 +4,6 @@
   
   
   <entry>
-    <title>GTM275 | 笔记索引</title>
-    <link href="/Note/dg-gtm275-index/"/>
-    <url>/Note/dg-gtm275-index/</url>
-    
-    <content type="html"><![CDATA[<html><head></head><body><div class="note note-secondary"><p>GTM275 (<em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>) 的笔记.</p></div><ol type="1"><li><a href="/Note/dg-gtm275-1">曲率与张量场</a>: 黎曼流形, 欧氏空间的方向导数, 曲面的曲率 (法曲率, 形状算子, 基本形式).</li><li><a href="/Note/dg-gtm275-2">曲率与张量场</a>: 仿射联络, 黎曼联络 (黎曼几何基本定理), 拉回联络; 向量丛 (点算子和局部算子); 高斯绝妙定理的证明和推广.</li><li><a href="/Note/dg-gtm275-3">曲率与微分形式</a>: 向量丛上的联络, 联络与曲率形式, 高斯曲率与曲率形式的关系 (绝妙定理), 截面曲率和常曲率流形.</li><li><a href="/Note/dg-gtm275-4">测地线</a>: 克氏符, 沿曲线的协变导数, 测地线, 指数映射.<ul><li><a href="/Note/dg-gtm275-4-Lie">李群上的指数映射</a>: 李群的指数映射, 双不变度量. 1under construction</li></ul></li><li><a href="/Note/dg-gtm275-5">测地线</a>: 黎曼流形的距离结构, 完备性 (Hopf-Rinow 定理); 体积形式, Gauss-Bonnet 定理.</li><li><a href="/Note/dg-gtm275-6">代数与拓扑工具</a>: 模的张量积和楔积.</li><li><a href="/Note/dg-gtm275-7">代数与拓扑工具</a>: 向量丛的构造 (子丛, 商丛, 拉回丛, 光滑函子), 张量场和向量值微分形式.</li><li><a href="/Note/dg-gtm275-8">向量丛与示性类</a>: 张量场的协变导数, 曲率张量与 Bianchi 恒等式, 向量丛的示性类.</li><li><a href="/Note/dg-gtm275-9">向量丛与示性类</a>: Pontrjagin, Euler 和 Chern 类简介, 一点应用.</li><li><a href="/Note/dg-gtm275-10">主丛与示性类</a>: 李群作用和基本向量场, 主丛, 标架丛, 竖直子丛, 水平分布.</li><li><a href="/Note/dg-gtm275-11">主丛与示性类</a>: 主丛上的联络 (两种定义的等价性), 标架丛上的诱导联络, 联络的曲率.</li><li><a href="/Note/dg-gtm275-12">主丛与示性类</a>: 配丛, 张量性形式的协变导数, 主丛上的示性类.</li></ol></body></html>]]></content>
-    
-    
-    <categories>
-      
-      <category>Note</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>数学</tag>
-      
-      <tag>微分几何</tag>
-      
-      <tag>示性类</tag>
-      
-      <tag>黎曼几何</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>GTM275 | 12 主丛与示性类</title>
     <link href="/Note/dg-gtm275-12/"/>
     <url>/Note/dg-gtm275-12/</url>
@@ -142,9 +111,9 @@
       
       <tag>微分几何</tag>
       
-      <tag>示性类</tag>
-      
       <tag>黎曼几何</tag>
+      
+      <tag>示性类</tag>
       
     </tags>
     
@@ -173,9 +142,9 @@
       
       <tag>微分几何</tag>
       
-      <tag>示性类</tag>
-      
       <tag>黎曼几何</tag>
+      
+      <tag>示性类</tag>
       
     </tags>
     
