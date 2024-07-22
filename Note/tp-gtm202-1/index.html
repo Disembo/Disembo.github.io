@@ -1,0 +1,1125 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="拓扑空间与拓扑流形; 构造新的拓扑空间.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM202 | 1 拓扑空间">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-1/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="拓扑空间与拓扑流形; 构造新的拓扑空间.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-22T14:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-22T14:13:26.934Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="拓扑">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>GTM202 | 1 拓扑空间 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM202 | 1 拓扑空间"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-22 22:00" pubdate>
+          2024年7月22日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM202 | 1 拓扑空间</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 2 的笔记.</p>
+</div>
+<h2 id="topological-spaces">1  Topological Spaces</h2>
+<h3 id="topology">1.1  Topology</h3>
+<ol type="1">
+<li><p><strong>拓扑</strong>: <span class="math inline">\(X,\emptyset\)</span> 是开集; 开集有限交是开集; 开集任意并是开集.</p>
+<ul>
+<li><p><strong>更精细(finer)</strong>/强, <strong>更粗糙(coarser)</strong>/弱.</p></li>
+<li><p><strong>离散拓扑</strong>(最精细), <strong>平凡拓扑</strong>(最粗糙), <strong>度量拓扑</strong>.</p></li>
+<li><p>度量 <span class="math inline">\(d,d'\)</span> 给出同一个拓扑 <span class="math inline">\(\iff\)</span> 对任意 <span class="math inline">\(x\in M\)</span> 和 <span class="math inline">\(r&gt;0\)</span>, 存在 <span class="math inline">\(r_1,r_2&gt;0\)</span>, <span class="math display">\[
+B'_{r_1}(x)\subset B_r(x),\quad
+B_{r_2}(x)\subset B'_r(x).
+\]</span></p>
+<ul>
+<li>充分条件: 常数 <span class="math inline">\(c_1,c_2&gt;0\)</span> 使 <span class="math inline">\(c_1d'\leq d\leq c_2d'\)</span>.</li>
+</ul></li>
+<li><p>离散度量给出离散拓扑.</p></li>
+</ul></li>
+<li><p>闭集: 开集之补. 邻域: 包含某点/子集的开集.</p>
+<ul>
+<li>(de Morgan) <span class="math inline">\(\bigcup(A_\alpha^C)=(\bigcap A_\alpha)^C\)</span> 等.</li>
+<li><strong>闭包</strong>: ${A}={}$. 闭包是闭集.</li>
+<li><strong>内部</strong>: <span class="math inline">\({\rm Int}A=\bigcup\{A\textsf{ 的开子集}\}\)</span>. 内部是开集.</li>
+<li><strong>外部</strong>: <span class="math inline">\({\rm Ext}A=(\bar{A})^C\)</span>. 外部是开集.</li>
+<li><strong>边界</strong>: <span class="math inline">\(\partial{A}=({\rm Int}A\cup{\rm Ext}A)^C=\bar{A}\setminus{\rm Int}A\)</span>. 边界是闭集.
+<ul>
+<li><span class="math inline">\(x\in{\rm Int}A\iff\)</span> 某邻域 <span class="math inline">\(U_x\subset A\)</span>.</li>
+<li><span class="math inline">\(x\in{\rm Ext}A\iff\)</span> 某邻域 <span class="math inline">\(U_x\cap A=\emptyset\)</span>.</li>
+<li><span class="math inline">\(x\in\partial{A}\iff\)</span> 任意邻域 <span class="math inline">\(U_x\cap A,U_x\cap A^C\neq\emptyset\)</span>.</li>
+<li><span class="math inline">\(\bar{A}=A\cup\partial{A}={\rm Int}A\cup\partial{A}\)</span>.</li>
+<li>(开集刻画) <span class="math inline">\(A\)</span> 开<span class="math inline">\(\iff A={\rm Int}A\iff\partial{A}\cap A=\emptyset\iff\)</span> 任一点有邻域 <span class="math inline">\(U\subset A\)</span>.</li>
+<li>(闭集刻画) <span class="math inline">\(A\)</span> 闭<span class="math inline">\(\iff A=\bar{A}\iff\partial{A}\subset A\iff\)</span> 任 <span class="math inline">\(A^C\)</span> 一点有邻域 <span class="math inline">\(U\subset A^C\)</span>.</li>
+</ul></li>
+</ul></li>
+<li><p><span class="math inline">\(A\)</span> 中的点要么是极限点, 要么是孤立点.</p>
+<ol type="1">
+<li><strong>极限点</strong>: <span class="math inline">\(p\)</span> 的任意邻域 <span class="math inline">\(U\cap A\)</span> 包含 <span class="math inline">\(p\)</span> 以外的点.
+<ul>
+<li><span class="math inline">\(A\)</span> 闭 <span class="math inline">\(\iff\)</span> <span class="math inline">\(A\)</span> 包含所有极限点.</li>
+</ul></li>
+<li><strong>孤立点</strong>: <span class="math inline">\(p\)</span> 的某个邻域 <span class="math inline">\(U\cap A=\{p\}\)</span>.</li>
+</ol></li>
+<li><p><strong>稠密(dense)</strong>: <span class="math inline">\(\bar{A}=X\)</span>.</p>
+<ul>
+<li><span class="math inline">\(A\)</span> 稠密 <span class="math inline">\(\iff\)</span> <span class="math inline">\(X\)</span> 任意非空开集包含 <span class="math inline">\(A\)</span> 中的点.</li>
+</ul></li>
+</ol>
+<h3 id="convergence-continuity">1.2  Convergence &amp; continuity</h3>
+<ol type="1">
+<li><strong>极限</strong>: 对任意 <span class="math inline">\(x\)</span> 的邻域 <span class="math inline">\(U_x\)</span>, 存在 <span class="math inline">\(N\)</span>, 使得 <span class="math inline">\(i\geq N\Rightarrow x_i\in U_x\)</span>.
+<ul>
+<li>离散拓扑: 只有最终常值序列收敛. 平凡拓扑: 所有序列收敛到任意点.</li>
+</ul></li>
+<li><strong>连续</strong>: 开集的原象是开集. (闭集的原象是闭集.)
+<ul>
+<li>(逆的好性质) <span class="math inline">\(f^{-1}(\bigcap U_\alpha)=\bigcap f^{-1}(U_\alpha)\)</span>, <span class="math inline">\(f^{-1}(Y\setminus A)=X\setminus f^{-1}(A)\)</span> 等.</li>
+<li><strong>开映射</strong>: 开集映到开集.</li>
+<li><strong>闭映射</strong>: 闭集映到闭集.</li>
+<li>(局部连续 <span class="math inline">\(=\)</span> 连续) 连续, 当且仅当, 任意一点有邻域 <span class="math inline">\(U\)</span>, 使得 <span class="math inline">\(f|_U\)</span> 连续.</li>
+<li>(性质) 恒等映射, 常值映射连续. 连续映射的复合连续. 连续映射在开集上的限制连续.</li>
+</ul></li>
+<li><strong>同胚</strong>: 双射, 双边连续.
+<ol type="1">
+<li>(完全保持拓扑) <span class="math inline">\(f:(X_1,{\cal T}_1)\to(X_2,{\cal T}_2)\)</span> 同胚 <span class="math inline">\(\iff f({\cal T}_1)={\cal T}_2\)</span>.</li>
+<li>(限制) 在开集上的限制是同胚.</li>
+<li>(同胚判断) 若 <span class="math inline">\(f\)</span> 连续且双射, 则 同胚 <span class="math inline">\(\iff\)</span> 开映射 <span class="math inline">\(\iff\)</span> 闭映射.</li>
+<li>(刻画)
+<ul>
+<li><span class="math inline">\(f\)</span> 连续 <span class="math inline">\(\iff f(\bar{A})=\overline{f(A)}\)</span>.</li>
+<li><span class="math inline">\(f\)</span> 闭 <span class="math inline">\(\iff\)</span> <span class="math inline">\(f(\bar{A})\supset\overline{f(A)}\)</span>.</li>
+<li><span class="math inline">\(f\)</span> 连续 <span class="math inline">\(\iff\)</span> <span class="math inline">\(f^{-1}({\rm Int}B)\subset{\rm Int}f^{-1}(B)\)</span>.</li>
+<li><span class="math inline">\(f\)</span> 开 <span class="math inline">\(\iff f^{-1}({\rm Int}B)\supset{\rm Int}f^{-1}(B)\)</span>.</li>
+</ul></li>
+<li><strong>局部同胚</strong>: 任意一点存在邻域 <span class="math inline">\(U\)</span>, 使得 <span class="math inline">\(f(U)\)</span> 开且 <span class="math inline">\(f|_U:U\to f(U)\)</span> 是同胚.
+<ul>
+<li>局部同胚是连续的开映射.</li>
+<li>双射 + 局部同胚 = 同胚.</li>
+</ul></li>
+</ol></li>
+</ol>
+<h3 id="hausdorff-spaces">1.3  Hausdorff spaces</h3>
+<p>拓扑不能过于粗糙.</p>
+<ol type="1">
+<li><strong>Hausdorff 空间</strong>: 任两个点可邻域分离.
+<ul>
+<li>(充分条件) 任意 <span class="math inline">\(p\)</span>, 存在连续函数 <span class="math inline">\(f:X\to\R\)</span>, <span class="math inline">\(f^{-1}(0)=\{p\}\)</span>.</li>
+<li>(性质) 有限子集是闭集. 序列的极限唯一.</li>
+<li>若 <span class="math inline">\(p\)</span> 是 <span class="math inline">\(A\)</span> 的极限点, 则任意邻域包含 <span class="math inline">\(A\)</span> 中无穷多个点.</li>
+</ul></li>
+</ol>
+<h3 id="bases-countability">1.4  Bases &amp; countability</h3>
+<p>拓扑不能过于精细.</p>
+<ol type="1">
+<li><strong>拓扑基</strong>: <span class="math inline">\({\cal B}\)</span> 任意元素是开集, <span class="math inline">\(X\)</span> 任意开集是 <span class="math inline">\({\cal B}\)</span> 中元素之并.
+<ul>
+<li>(开集 basis criterion) <span class="math inline">\(U\)</span> 中任意一点 <span class="math inline">\(p\)</span>, 存在 <span class="math inline">\(B\in{\cal B}\)</span> 使得 <span class="math inline">\(p\in B\subset U\)</span>.</li>
+<li>(连续 basis criterion) 任给 <span class="math inline">\(B\in{\cal B}_Y\)</span>, <span class="math inline">\(f^{-1}(B)\)</span> 在 <span class="math inline">\(X\)</span> 中开.</li>
+<li>(生成拓扑): <span class="math inline">\({\cal B}\)</span> 可以生成拓扑 (开集定义为其中任意元素的并) 当且仅当
+<ul>
+<li><span class="math inline">\(\bigcup B=X\)</span>.</li>
+<li>任给 <span class="math inline">\(B_1,B_2\in{\cal B}\)</span> 且 <span class="math inline">\(x\in B_1\cap B_2\)</span>, 存在 <span class="math inline">\(B_3\in{\cal B}\)</span> 使得 <span class="math inline">\(x\in B_3\subset B_1\cap B_2\)</span>.</li>
+</ul></li>
+</ul></li>
+<li><strong>第一可数</strong>: 任意一点存在可数邻域基.
+<ul>
+<li><strong>邻域基</strong>: <span class="math inline">\(p\)</span> 的任意邻域包含某 <span class="math inline">\(B\in{\cal B}_p\)</span>.</li>
+<li>度量空间中, 一点处的所有有理半径球, 构成可数邻域基.</li>
+<li><strong>嵌套邻域基</strong>: 邻域基 <span class="math inline">\((U_i)_{i=1}^\infty\)</span> 满足 <span class="math inline">\(U_{i+1}\subset U_i\)</span>.</li>
+<li>(嵌套邻域基引理) 第一可数空间, 任意一点存在嵌套邻域基.
+<ul>
+<li>Sequences are sufficient to detect most topological properties.</li>
+</ul></li>
+<li>(序列引理) 第一可数空间 <span class="math inline">\(X\)</span> 的子集 <span class="math inline">\(A\)</span>,
+<ul>
+<li><span class="math inline">\(x\in\bar{A}\iff x\)</span> 是 <span class="math inline">\(A\)</span> 中某序列的极限.</li>
+<li><span class="math inline">\(x\in{\rm Int}A\iff\)</span> 任意收敛到 <span class="math inline">\(x\)</span> 的序列最终在 <span class="math inline">\(A\)</span> 内 (只有有限项不在 <span class="math inline">\(A\)</span>).</li>
+<li><span class="math inline">\(A\)</span> 闭 <span class="math inline">\(\iff A\)</span> 包含任意 <span class="math inline">\(A\)</span> 中任意收敛序列的极限.</li>
+<li><span class="math inline">\(A\)</span> 开 <span class="math inline">\(\iff\)</span> 任意收敛到 <span class="math inline">\(A\)</span> 中某点的序列最终在 <span class="math inline">\(A\)</span> 内.</li>
+</ul></li>
+</ul></li>
+<li><strong>第二可数</strong>: 存在可数拓扑基.
+<ul>
+<li>欧氏空间中, 有理点处有理半径球, 构成可数基.</li>
+<li>(性质) 设 <span class="math inline">\(X\)</span> 第二可数, 则
+<ul>
+<li><span class="math inline">\(X\)</span> 第一可数.</li>
+<li><span class="math inline">\(X\)</span> 有稠密的可数子集. (<strong>可分离</strong>)</li>
+<li>任意开覆盖有可数子覆盖. (<strong>Lindelöf 空间</strong>)</li>
+</ul></li>
+<li>(开覆盖) <span class="math inline">\(X\)</span> 的开覆盖 <span class="math inline">\(\cal U\)</span>.
+<ul>
+<li>所有 <span class="math inline">\(U\in{\cal U}\)</span> 的基之并构成 <span class="math inline">\(X\)</span> 的基.</li>
+<li>若 <span class="math inline">\({\cal U}\)</span> 可数, <span class="math inline">\(U\in{\cal U}\)</span> 第二可数, 那么 <span class="math inline">\(X\)</span> 第二可数.</li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="manifolds">1.5  Manifolds</h3>
+<ol type="1">
+<li><strong>局部欧氏</strong>: 给定 <span class="math inline">\(n\)</span>, 任意一点的某邻域同胚于 <span class="math inline">\(\R^n\)</span> 的某开集.
+<ul>
+<li>(等价) 任意一点某邻域同胚于 <span class="math inline">\(\R^n\)</span>. 任意一点某邻域同胚于 <span class="math inline">\(\R^n\)</span> 的开球.</li>
+<li>坐标域, 坐标映射, 坐标系 <span class="math inline">\((U,\psi)\)</span>.</li>
+</ul></li>
+<li><strong>拓扑流形</strong>: 局部欧氏, Hausdorff, 第二可数的拓扑空间.
+<ul>
+<li><span class="math inline">\(0\)</span>-流形是可数的离散拓扑空间.</li>
+<li>(继承) 拓扑流形的开子集是拓扑流形.</li>
+</ul></li>
+<li><strong>带边流形</strong>: 局部同胚于 <span class="math inline">\(\R^n\)</span> 或 <span class="math inline">\(\H^n\)</span> 开子集, Hausdorff, 第二可数的拓扑空间.
+<ul>
+<li><span class="math inline">\(\H^n=\{(x_1,\dots,x_n)\mid x_n\geq0\}\)</span>. 流形边界 <span class="math inline">\(\partial\H^n=\{x_n=0\}\)</span>, 流形内部 <span class="math inline">\({\rm Int}\H^n=\{x_n&gt;0\}\)</span>.</li>
+<li>内部坐标系, 边界坐标系 (<span class="math inline">\(\psi(U)\cap\partial\H^n\neq\emptyset\)</span>).</li>
+<li>内部点, 边界点 (<span class="math inline">\(\psi(p)\in\partial\H^n\)</span>).</li>
+<li>注意: 区分拓扑边界 &amp; 流形边界.
+<ul>
+<li>闭球 <span class="math inline">\(\bar{\mathbb{B}}^2\)</span> 本身视作拓扑空间, 流形边界是 <span class="math inline">\(S^2\)</span>, 拓扑边界为空. 若 <span class="math inline">\(\bar{\mathbb{B}}^2\)</span> 视作 <span class="math inline">\(\R^3\)</span> 的子集, 拓扑边界是它本身.</li>
+</ul></li>
+<li>(流形内部) 带边流形 <span class="math inline">\(M\)</span> 的流形内部 <span class="math inline">\({\rm Int}M\)</span> 是开子集, 是无边流形.</li>
+<li>(边界不变性) 流形边界 <span class="math inline">\(\partial M\)</span> 和流形内部 <span class="math inline">\({\rm Int}M\)</span> 交集为空, 并集为 <span class="math inline">\(M\)</span>.
+<ul>
+<li>进而 <span class="math inline">\(\partial M\)</span> 是 <span class="math inline">\(M\)</span> 的闭子集.</li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="new-spaces-from-old">2  New Spaces from Old</h2>
+<h3 id="subspaces">2.1  Subspaces</h3>
+<ol type="1">
+<li><p><strong>子空间拓扑 / 相对拓扑</strong>: <span class="math inline">\({\cal T}_S=\{V\cap S\mid V\in{\cal T}\}\)</span>.</p>
+<ul>
+<li><p>开集 <span class="math inline">\(U\subset S\)</span> 为 <span class="math inline">\(X\)</span> 中开集与 <span class="math inline">\(S\)</span> 的交. 闭集同理.</p></li>
+<li><p>(度量空间) 子空间拓扑 = 限制度量得到的拓扑.</p></li>
+<li><p>注意: <span class="math inline">\(S\)</span> 中的<strong>相对开子集</strong>, <strong>相对闭子集</strong>.</p>
+<ul>
+<li><span class="math inline">\(S_1=[0,1]\cup(2,3)\)</span>, 闭子集 <span class="math inline">\([0,1]\)</span> 是相对开子集. <span class="math inline">\(S_2=\{1/n\}_{n=1}^\infty\)</span>, 单点子集是相对开子集.</li>
+</ul></li>
+<li><p>(相对开/闭子集) <span class="math inline">\(X\)</span> 的子空间 <span class="math inline">\(S\)</span>, <span class="math inline">\(U\subset X\)</span>.</p>
+<ul>
+<li>(继承) <span class="math inline">\(U\)</span> 在 <span class="math inline">\(S\)</span> 中开, <span class="math inline">\(S\)</span> 在 <span class="math inline">\(X\)</span> 中开, 则 <span class="math inline">\(U\)</span> 在 <span class="math inline">\(X\)</span> 中开. (对闭同理.)</li>
+<li><span class="math inline">\(U\)</span> 在 <span class="math inline">\(X\)</span> 中开/闭, 则 <span class="math inline">\(U\)</span> 在 <span class="math inline">\(S\)</span> 中开/闭.</li>
+</ul></li>
+<li><p>(泛性质) 子空间 <span class="math inline">\(S\subset X\)</span>. 任给 <span class="math inline">\(f:Y\to S\)</span>, <span class="math inline">\(f\)</span> 连续当且仅当 <span class="math inline">\(i\circ f:Y\to X\)</span> 连续. <span class="math display">\[
+\xymatrix{
+&amp; X \\
+Y \ar[r]_f \ar[ru]^{i\circ f} &amp; S \ar@{_{(}-&gt;}[u]_i
+}
+\]</span></p>
+<ul>
+<li>包含映射 <span class="math inline">\(i:S\to X\)</span> 是连续的.</li>
+</ul></li>
+<li><p>(限制) <span class="math inline">\(f:X\to Y\)</span> 连续.</p>
+<ul>
+<li>(限制定义域) <span class="math inline">\(f|_S:S\to Y\)</span> 连续 (<span class="math inline">\(S\subset\)</span> 子空间).</li>
+<li>(限制陪域) <span class="math inline">\(f:X\to T\)</span> 连续 (<span class="math inline">\(T\subset Y\)</span> 子空间).</li>
+<li>(扩张陪域) <span class="math inline">\(f:X\to Z\)</span> 连续 (<span class="math inline">\(Y\subset Z\)</span> 子空间).</li>
+</ul></li>
+<li><p>(唯一性) 子空间拓扑是满足泛性质的唯一拓扑.</p>
+<ul>
+<li>我们想要子空间拓扑满足: 1, 包含映射连续 (要有足够开集); 2, 若连续映射 <span class="math inline">\(f:Y\to X\)</span> 的像集包含在 <span class="math inline">\(S\)</span> 内, 则 <span class="math inline">\(f:Y\to S\)</span> 也连续 (不能有太多开集). 子空间拓扑是平衡两者的唯一选择.</li>
+</ul></li>
+<li><p>(性质) <span class="math inline">\(X\)</span> 的子空间 <span class="math inline">\(S\)</span>.</p>
+<ul>
+<li><span class="math inline">\(R\)</span> 是 <span class="math inline">\(S\)</span> 的子空间, 则 <span class="math inline">\(R\)</span> 也是 <span class="math inline">\(X\)</span> 的子空间.</li>
+<li>(子空间的基) <span class="math inline">\({\cal B}_S=\{B\cap S\mid B\in{\cal B}\}\)</span>.</li>
+<li><span class="math inline">\(S\)</span> 中序列在 <span class="math inline">\(S\)</span> 下收敛到 <span class="math inline">\(p\in S\)</span> 当且仅当在 <span class="math inline">\(X\)</span> 下收敛到 <span class="math inline">\(p\)</span>.</li>
+<li>(继承) Hausdorff, 第一可数, 第二可数.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>拓扑嵌入</strong>: <span class="math inline">\(f:A\to X\)</span> 单射, 且 <span class="math inline">\(A\to f(A)\)</span> 是同胚.</p>
+<ul>
+<li>子空间的包含映射 <span class="math inline">\(i:S\hookrightarrow X\)</span> 是嵌入.</li>
+<li>(刻画) 开/闭的连续单射是嵌入.</li>
+<li>(与同胚) 满射嵌入是同胚.</li>
+<li>(粘合引理, gluing) 设 <span class="math inline">\(X\)</span> 的开覆盖/有限闭覆盖 <span class="math inline">\(\{A_i\}\)</span>. 映射 <span class="math inline">\(f_i:A_i\to Y\)</span> 满足 <span class="math inline">\(f_i|_{A_{ij}}=f_j|_{A_{ij}}\)</span>, 则存在唯一连续映射 <span class="math inline">\(f:X\to Y\)</span> 满足 <span class="math inline">\(f|_{A_i}=f_i\)</span>.</li>
+</ul></li>
+<li><p>流形的例子.</p>
+<ul>
+<li><p><strong>图像</strong>: 连续映射 <span class="math inline">\(f:\R^n\supset U\to\R^k\)</span> 的图像 <span class="math inline">\(\Gamma(f)=\{(x,y)\mid x\in U,y=f(x)\}\subset\R^{n+k}\)</span>, 赋予子空间拓扑. 实际上, <span class="math inline">\(\Gamma(f)\)</span> 同胚于 <span class="math inline">\(U\)</span>. 考虑 <span class="math inline">\(\psi:U\to\R^{n+k}\)</span>, <span class="math inline">\(\psi(x)=(x,f(x))\)</span>, 这是一个连续单射. 连续的投射 <span class="math inline">\(\pi_1:\Gamma(f)\to U\)</span> 是 <span class="math inline">\(\psi\)</span> 的逆映射 (即 <span class="math inline">\(\psi\)</span> 是开映射) 所以 <span class="math inline">\(\psi\)</span> 是嵌入, <span class="math inline">\(\Gamma(f)\)</span> 同胚于 <span class="math inline">\(U\)</span>.</p></li>
+<li><p><strong>单位球面</strong>: 考虑 <span class="math inline">\(\R^{n+1}\)</span> 中的单位球面 <span class="math inline">\(S^n\)</span>.</p>
+<ul>
+<li><p>作为函数图像. 可以将 <span class="math inline">\(S^n\)</span> 分成若干个函数的函数图像. 设 <span class="math inline">\(U_i^+\)</span> 表示 <span class="math inline">\(\R^{n+1}\)</span> 中满足 <span class="math inline">\(x_i&gt;0\)</span> 的子集. <span class="math inline">\(U_i^-\)</span> 表示 <span class="math inline">\(x_i&lt;0\)</span> 的子集. 因为 <span class="math inline">\(S^n\)</span> 不包含原点, 所以 <span class="math inline">\(U_1^\pm,\dots,U_n^\pm\)</span> 覆盖住 <span class="math inline">\(S^n\)</span>. 在 <span class="math inline">\(U_i^\pm\)</span> 上解方程 <span class="math inline">\(\|x\|=1\)</span> 得到 <span class="math inline">\(x\in S^n\cap U_i^\pm\)</span> 当且仅当 <span class="math display">\[
+x_i =
+\pm\sqrt{1-(x_1)^2-\dots-(x_{i-1})^2-(x_{i+1})^2-\dots-(x_n)^2}.
+\]</span> 因此 <span class="math inline">\(S^n\cap U_i^\pm\)</span> 是连续函数的图像, 同胚于 <span class="math inline">\(\R^n\)</span> 中的开集. 因此 <span class="math inline">\(S^n\)</span> 是 <span class="math inline">\(n\)</span> 维流形.</p></li>
+<li><p><strong>球极投影</strong> (stereographic projection). 设北极点 <span class="math inline">\(N=(0,\dots,0,1)\)</span>, 映射 <span class="math inline">\(\sigma:S^n\setminus\{N\}\to\R^n\)</span> 将 <span class="math inline">\(x\in S^n\setminus\{N\}\)</span> 映到点 <span class="math inline">\(u\in\R^n\)</span>, 满足 <span class="math inline">\(N,x,U=(u,0)\)</span> 三点共线. 可得 <span class="math display">\[
+\sigma(x_1,\dots,x_{n+1})=\frac{(x_1,\dots,x_n)}{1-x_{n+1}}.
+\]</span> 容易算出其逆映射为 <span class="math display">\[
+\sigma^{-1}(x_1,\dots,x_n) =
+\frac{(2u_1,\dots,2u_n,\|u\|^2-1)}{\|u\|^2+1}.
+\]</span> 因为 <span class="math inline">\(\sigma,\sigma^{-1}\)</span> 都是连续的, 所以 <span class="math inline">\(S^n\setminus\{N\}\)</span> 同胚于 <span class="math inline">\(\R^n\)</span>, 给出了 <span class="math inline">\(N\)</span> 以外的点的欧氏邻域. 南极点的球极投影给出了 <span class="math inline">\(N\)</span> 的欧氏邻域.</p></li>
+</ul></li>
+<li><p><strong>环面</strong>: <span class="math inline">\(xz\)</span>-平面中的圆周 <span class="math inline">\(C:(x-2)^2+z^2=1\)</span> 绕 <span class="math inline">\(z\)</span> 轴旋转一周所得的曲面. 令 <span class="math inline">\(r=\sqrt{x^2+y^2}\)</span>, 则环面由方程 <span class="math inline">\((r-2)^2+z^2=1\)</span> 给出. 引入参数 <span class="math inline">\(\theta\)</span> 表示以 <span class="math inline">\(z\)</span> 为轴的经度角, <span class="math inline">\(\phi\)</span> 表示圆 <span class="math inline">\(C\)</span> 的圆心角, 则环面 <span class="math inline">\(D\)</span> 的一个参数化是 <span class="math inline">\(F:\R^2\to D\)</span>, <span class="math display">\[
+F(u,v)=((2+\cos{2\pi u})\cos{2\pi v},(2+\cos{2\pi u})\sin{2\pi v},
+\sin{2\pi u}).
+\]</span> <span class="math inline">\(F\)</span> 是局部同胚, 所以 <span class="math inline">\(D\)</span> 是 <span class="math inline">\(2\)</span>-流形.</p></li>
+</ul></li>
+</ol>
+<h3 id="product-spaces">2.2  Product spaces</h3>
+<ol type="1">
+<li><p><strong>积拓扑</strong>: 拓扑空间 <span class="math inline">\(X_1,\dots,X_n\)</span> 的乘积拓扑由 <span class="math inline">\({\cal B}=\{U_1\times\cdots\times U_n\mid U_i\in{\cal T}_i\}\)</span> 生成.</p>
+<ul>
+<li><p>欧氏空间 <span class="math inline">\(\R^n=\R\times\cdots\times\R\)</span> 的乘积拓扑与度量拓扑相同.</p></li>
+<li><p>(泛性质) 映射 <span class="math inline">\(f:Y\to\prod X_i\)</span> 连续, 当且仅当任何分量 <span class="math inline">\(f_i=\pi_i\circ f\)</span> 连续. <span class="math display">\[
+\xymatrix{
+&amp; \prod X_i \ar@{-&gt;&gt;}[d]^{\pi_i} \\
+Y \ar[r]_{f_i} \ar[ur]^f &amp; X_i 
+}
+\]</span></p>
+<ul>
+<li>自然投射 <span class="math inline">\(\pi_i:\prod X_i\to X_i\)</span> 连续.</li>
+</ul></li>
+<li><p>(唯一性) 乘积拓扑是满足泛性质的唯一拓扑.</p>
+<ul>
+<li><u>Pf</u> 设 <span class="math inline">\(\prod X_i\)</span> 上的另一个拓扑也满足泛性质, 考虑恒等映射 <span class="math inline">\({\rm id}_{\prod X_i}\)</span>, 利用两次泛性质得到恒等映射是同胚.</li>
+</ul></li>
+<li><p>(性质)</p>
+<ul>
+<li><p>(结合性) <span class="math inline">\(X_1\times X_2\times X_3\)</span>, <span class="math inline">\((X_1\times X_2)\times X_3\)</span>, <span class="math inline">\(X_1\times(X_2\times X_3)\)</span> 上的拓扑相同.</p></li>
+<li><p>(嵌入) 下面映射是拓扑嵌入 <span class="math display">\[
+\Align{
+f: X_i &amp;\to X_1\times\cdots\times X_n, \\
+x &amp;\mapsto (x_1,\dots,x_{i-1},x,x_{i+1},\dots,x_n).
+}
+\]</span></p>
+<ul>
+<li>可以证明, 这是一个闭的连续单射.</li>
+</ul></li>
+<li><p>(自然投射) 自然投射 <span class="math inline">\(\pi_i:\prod X_i\to X_i\)</span> 是开映射.</p></li>
+<li><p>(基的乘积) <span class="math inline">\(X_i\)</span> 的基 <span class="math inline">\({\cal B}_i\)</span>, 则积拓扑的基 <span class="math inline">\(\{B_1\times\cdots\times B_n\mid B_i\in{\cal B}_i\}\)</span>.</p></li>
+<li><p>(积与子空间拓扑) <span class="math inline">\(S_i\)</span> 为 <span class="math inline">\(X_i\)</span> 子空间, 则 <span class="math inline">\(\prod S_i\)</span> 的积拓扑与作为 <span class="math inline">\(\prod X_i\)</span> 的子空间拓扑相同.</p></li>
+<li><p>(继承) <span class="math inline">\(X_i\)</span> Hausdorff/第一可数/第二可数, 则 <span class="math inline">\(\prod X_i\)</span> 也具有相同性质.</p></li>
+</ul></li>
+<li><p>(Hausdorff 的对角线刻画) <span class="math inline">\(X\)</span> Hausdorff 当且仅当<strong>对角线</strong> <span class="math inline">\(\Delta=\{(x,x)\mid x\in X\}\)</span> 在 <span class="math inline">\(X\times X\)</span> 中闭.</p>
+<ul>
+<li><u>Pf</u> 设 Hausdorff. 任给 <span class="math inline">\((x,y)\in\Delta^C\)</span>, 则 <span class="math inline">\(x\neq y\)</span>, 存在邻域 <span class="math inline">\(U_x\cap U_y=\emptyset\)</span>, 进而 <span class="math inline">\(U_x\times U_y\subset\Delta^C\)</span>, 说明 <span class="math inline">\(\Delta^C\)</span> 开, 即 <span class="math inline">\(\Delta\)</span> 闭. 反之, 设 <span class="math inline">\(\Delta\)</span> 闭, 则任给 <span class="math inline">\((x,y)\in\Delta^C\)</span>, 则存在邻域 <span class="math inline">\(U_{(x,y)}\subset\Delta^C\)</span>, 自然投射 <span class="math inline">\(U_x=\pi_1(U_{(x,y)})\)</span> 和 <span class="math inline">\(U_y=\pi_2(U_{x,y})\)</span> 给出了 <span class="math inline">\(x,y\)</span> 的不交邻域.</li>
+</ul></li>
+<li><p><strong>积映射</strong>: <span class="math inline">\((\prod f_i)(x_1,\dots,x_k)=(f_1(x_1),\dots,f_k(x_k))\)</span>.</p>
+<ul>
+<li>连续映射的乘积是连续映射, 同胚的乘积是同胚.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>积流形</strong>: <span class="math inline">\(M_1,\dots,M_k\)</span> 分别为 <span class="math inline">\(n_1,\dots,n_k\)</span> 维流形, 则 <span class="math inline">\(\prod M_i\)</span> 是 <span class="math inline">\(\sum n_i\)</span> 维流形.</p>
+<ul>
+<li><strong>环面</strong>: <span class="math inline">\(T^n=S^1\times\cdots\times S^1\)</span>.</li>
+</ul></li>
+<li><p>无穷乘积: <span class="math inline">\(\prod X_\alpha\)</span>, 默认为积拓扑.</p>
+<ul>
+<li><p><strong>箱拓扑</strong>: <span class="math inline">\({\cal B}_0=\{\prod U_\alpha\mid U_\alpha\in{\cal T}_\alpha\}\)</span> 生成.</p></li>
+<li><p><strong>积拓扑</strong>: <span class="math inline">\({\cal B}=\{\prod U_\alpha\mid U_\alpha\in{\cal T}_\alpha,\textsf{ 只有有限个 } U_\alpha\neq X_\alpha\}\)</span> 生成.</p>
+<ul>
+<li>当只有有限个 <span class="math inline">\(X_\alpha\)</span> 具有非平凡拓扑时, 积拓扑与箱拓扑相同.</li>
+<li>若有无穷多个非平凡 <span class="math inline">\(X_\alpha\)</span>, 考虑 <span class="math inline">\(U=\prod U_\alpha\)</span>, 其中无穷多个 <span class="math inline">\(U_\alpha\neq X_\alpha\)</span>. 则 <span class="math inline">\(U\)</span> 在箱拓扑下开, 在积拓扑下不是开集.</li>
+</ul></li>
+<li><p>(泛性质) 映射 <span class="math inline">\(f:Y\to\prod X_\alpha\)</span> 连续, 当且仅当所有 <span class="math inline">\(f_\alpha=\pi_\alpha\circ f\)</span> 连续. 积拓扑是满足泛性质的唯一拓扑.</p>
+<ul>
+<li><u>Pf</u> <span class="math inline">\(f\)</span> 连续推出 <span class="math inline">\(f_i\)</span> 连续是平凡的. 设 <span class="math inline">\(f_i\)</span> 连续, 开集 <span class="math inline">\(\prod U_\alpha\subset \prod X_\alpha\)</span>. 因为 <span class="math display">\[
+f^{-1}\pqty{\prod U_\alpha}=\bigcap f^{-1}(U_\alpha),
+\]</span> 注意, 只有有限个 <span class="math inline">\(U_\alpha\neq X_\alpha\)</span>, 所以右边实际上是有限交, 因此仍是开集.</li>
+</ul></li>
+</ul></li>
+</ol>
+<h3 id="disjoint-union-spaces">2.3  Disjoint union spaces</h3>
+<ol type="1">
+<li><p><strong>不交并拓扑</strong>: 设不交并 <span class="math inline">\(\coprod X_\alpha\)</span>. 子集 <span class="math inline">\(U\subset\coprod X_\alpha\)</span> 是开集, 当且仅当所有 <span class="math inline">\(U\cap X_\alpha\)</span> 是开集.</p>
+<ul>
+<li><p>(泛性质) 映射 <span class="math inline">\(f:\coprod X_\alpha\to Y\)</span> 连续, 当且仅当任意限制 <span class="math inline">\(f_\alpha=f\circ i_\alpha\)</span> 连续. 不交并拓扑是满足泛性质的唯一拓扑. <span class="math display">\[
+\xymatrix{
+&amp; \coprod X_\alpha \\
+Y \ar[r]_{f_\alpha} \ar[ru]^f &amp; X_\alpha \ar@{_{(}-&gt;}[u]_{i_\alpha}
+}
+\]</span></p>
+<ul>
+<li><u>Pf</u> 设 <span class="math inline">\(f\)</span> 连续, 由 <span class="math inline">\(f_\alpha^{-1}(U)=X_\alpha\cap f^{-1}(U)\)</span> 即得. 设 <span class="math inline">\(f_\alpha\)</span> 连续, 注意到 <span class="math inline">\(f^{-1}(U) = \bigcup f_\alpha^{-1}(U)\)</span>, 开集的任意并都是开集.</li>
+</ul></li>
+<li><p>(性质)</p>
+<ul>
+<li>(闭集) <span class="math inline">\(U\subset\coprod X_\alpha\)</span> 闭, 当且仅当每个 <span class="math inline">\(U\cap X_\alpha\)</span> 闭.</li>
+<li>(包含映射) <span class="math inline">\(i_\alpha:X_\alpha\to\coprod X_\alpha\)</span> 是拓扑嵌入 (连续单射, 既开又闭).</li>
+<li>(不交并与积拓扑) 若 <span class="math inline">\(Y\)</span> 是离散空间, 则拓扑空间 <span class="math inline">\(X\times Y\)</span> 与 <span class="math inline">\(\coprod_{y\in Y}X\)</span> 认同.</li>
+<li>(继承) <span class="math inline">\(X_i\)</span> Hausdorff/第一可数/第二可数(且指标集可数), 则 <span class="math inline">\(\prod X_i\)</span> 也具有相同性质.</li>
+</ul></li>
+<li><p><strong>不交并流形</strong>: 若干 <span class="math inline">\(n\)</span> 维流形 <span class="math inline">\((M_\alpha)_{\alpha\in A}\)</span> 的不交并是流形, 当且仅当 <span class="math inline">\(\alpha\)</span> 可数.</p></li>
+</ul></li>
+</ol>
+<h3 id="quotient-spaces">2.4  Quotient spaces</h3>
+<ol type="1">
+<li><p><strong>商拓扑</strong>: 拓扑空间 <span class="math inline">\(X\)</span>, 满射 <span class="math inline">\(q:X\to Y\)</span>. 定义 <span class="math inline">\(U\subset Y\)</span> 为开集, 当且仅当 <span class="math inline">\(q^{-1}(U)\)</span> 是 <span class="math inline">\(X\)</span> 的开集. 此时 <span class="math inline">\(q\)</span> 称为<strong>商映射</strong>. 商映射显然是连续的.</p>
+<ul>
+<li>设拓扑空间 <span class="math inline">\(X\)</span> 上的等价关系 <span class="math inline">\(\sim\)</span>, <span class="math inline">\(q:X\to X/{\sim}\)</span>, <span class="math inline">\(x\mapsto[x]\)</span>. 在 <span class="math inline">\(q\)</span> 的商拓扑下, <span class="math inline">\(X/{\sim}\)</span> 称为<strong>商空间</strong>.
+<ul>
+<li>商空间一般不继承 Hausdorff, 可数, 局部欧氏性质.</li>
+</ul></li>
+<li>(商的第二可数条件) 设 <span class="math inline">\(P\)</span> 第二可数, <span class="math inline">\(M\)</span> 是商空间. 若 <span class="math inline">\(M\)</span> 局部欧氏, 则它也第二可数.
+<ul>
+<li><u>Pf</u> 记商映射 <span class="math inline">\(q:P\to M\)</span>. 对于 <span class="math inline">\(M\)</span> 的坐标球开覆盖 <span class="math inline">\({\cal U}\)</span>, <span class="math inline">\(q^{-1}[{\cal U}]\)</span> 是 <span class="math inline">\(P\)</span> 的开覆盖. 它有可数子覆盖 <span class="math inline">\(q[{\cal U}']\)</span>, 其中 <span class="math inline">\({\cal U}'\)</span> 可数. 于是 <span class="math inline">\({\cal U}'\)</span> 是 <span class="math inline">\(M\)</span> 的坐标球可数开覆盖. 坐标球第二可数, 则 <span class="math inline">\(M\)</span> 也第二可数.</li>
+<li>因此, 流形的商空间, 如果局部欧氏且 Hausdorff 的话, 也是流形.</li>
+</ul></li>
+<li>(商的 Hausdorff 条件) <span class="math inline">\(q:X\to Y\)</span>, 则 <span class="math inline">\(Y\)</span> Hausdorff 当且仅当 <span class="math inline">\({\cal R}=\{(x_1,x_2)\mid q(x_1)=q(x_2)\}\)</span> 在 <span class="math inline">\(X\times X\)</span> 中闭.
+<ul>
+<li><u>Pf</u> 设 <span class="math inline">\(Y\)</span> Hausdorff. 对 <span class="math inline">\((x_1,x_2)\notin{\cal R}\)</span>, 存在 <span class="math inline">\(q(x_1),q(x_2)\)</span> 的不交邻域 <span class="math inline">\(V_1,V_2\subset Y\)</span>, 则 <span class="math inline">\(q^{-1}(V_1)\times q^{-1}(V_2)\)</span> 是 <span class="math inline">\((x_1,x_2)\)</span> 的邻域, 且与 <span class="math inline">\({\cal R}\)</span> 不交, 因此 <span class="math inline">\({\cal R}\)</span> 闭. 反之, 设 <span class="math inline">\({\cal R}\)</span> 闭. 设不同的两点 <span class="math inline">\(y_1,y_2\in Y\)</span>, 取 <span class="math inline">\(x_i\in X\)</span> 满足 <span class="math inline">\(q(x_i)=y_i\)</span>. 因为 <span class="math inline">\((x_1,x_2)\notin{\cal R}\)</span>, 存在邻域 <span class="math inline">\(U_1\times U_2\subset X\times X\)</span> 与 <span class="math inline">\({\cal R}\)</span> 不交. 因为 <span class="math inline">\(q\)</span> 开, <span class="math inline">\(q(U_1),q(U_2)\)</span> 是 <span class="math inline">\(y_1,y_2\)</span> 的不交邻域.</li>
+<li>若 <span class="math inline">\(q\)</span> 是等价关系 <span class="math inline">\(\sim\)</span> 确定的, 则定理表明, <span class="math inline">\(X/{\sim}\)</span> 闭当且仅当 <span class="math inline">\(\sim\)</span> 在 <span class="math inline">\(X\times X\)</span> 闭.</li>
+</ul></li>
+</ul></li>
+<li><p>商映射的性质. 设 <span class="math inline">\(X,Y\)</span> 为拓扑空间, <span class="math inline">\(q:X\to Y\)</span> 是商映射.</p>
+<ul>
+<li>子集 <span class="math inline">\(q^{-1}(y)\)</span> 称为 <span class="math inline">\(y\in Y\)</span> 的<strong>纤维</strong>. 子集 <span class="math inline">\(U\subset X\)</span> 称为<strong>关于 <span class="math inline">\(q\)</span> 饱和</strong>, 若 <span class="math inline">\(U=q^{-1}(V)\)</span>.
+<ul>
+<li><span class="math inline">\(U\)</span> 饱和 <span class="math inline">\(\iff U=q^{-1}(q(U))\iff U\)</span> 是纤维之并.</li>
+</ul></li>
+<li>(商映射刻画) 连续满射 <span class="math inline">\(q:X\to Y\)</span> 是商映射, 当且仅当 <span class="math inline">\(q\)</span> 将饱和开/闭集映到开/闭集.</li>
+<li>(充分条件) 连续的开/闭满射是商映射.</li>
+<li>(性质)
+<ul>
+<li>(复合) 商映射的复合是商映射.</li>
+<li>单射的商映射是同胚.</li>
+<li><span class="math inline">\(K\subset Y\)</span> 闭, 当且仅当 <span class="math inline">\(q^{-1}(K)\)</span> 闭.</li>
+<li>(限制) 商映射在饱和开/闭集上的限制是商映射.</li>
+<li>一族商映射 <span class="math inline">\(q_\alpha:X_\alpha\to Y_\alpha\)</span>, 若 <span class="math inline">\(q:\coprod X_\alpha\to\coprod Y_\alpha\)</span> 满足 <span class="math inline">\(q|_{X_\alpha}=q_\alpha\)</span>, 则 <span class="math inline">\(q\)</span> 也是商映射.</li>
+</ul></li>
+<li>(开/闭映射的性质总结) 设开/闭映射 <span class="math inline">\(f:X\to Y\)</span>.
+<ul>
+<li>若单射, 则是拓扑嵌入.</li>
+<li>若满射, 则是商映射.</li>
+<li>若双射, 则是同胚.</li>
+</ul></li>
+</ul></li>
+<li><p>泛性质.</p>
+<ul>
+<li><p>(泛性质) 商映射 <span class="math inline">\(q:X\to Y\)</span>. 映射 <span class="math inline">\(f:Y\to Z\)</span> 连续当且仅当 <span class="math inline">\(f\circ q\)</span> 连续. <span class="math display">\[
+\xymatrix{
+X \ar[d]_q \ar[dr]^{f\circ q} \\
+Y \ar[r]_f &amp; Z
+}
+\]</span></p>
+<ul>
+<li><u>Pf</u> 对开集 <span class="math inline">\(U\)</span>, 因为 <span class="math inline">\(q^{-1}(f^{-1}(U))=(f\circ q)^{-1}(U)\)</span>, 所以 <span class="math inline">\(f^{-1}(U)\)</span> 开当且仅当 <span class="math inline">\((f\circ q)^{-1}(U)\)</span> 开.</li>
+</ul></li>
+<li><p>(拓扑唯一性) 设拓扑空间 <span class="math inline">\(X\)</span>, 集合 <span class="math inline">\(Y\)</span>, 满射 <span class="math inline">\(q:X\to Y\)</span>. 商拓扑是满足泛性质的唯一拓扑.</p></li>
+<li><p>(唯一下降) 设商映射 <span class="math inline">\(q:X\to Y\)</span>. 任给连续映射 <span class="math inline">\(f:Y\to Z\)</span> 满足在纤维上常值, 则存在唯一连续映射 <span class="math inline">\(\tilde{f}:Y\to Z\)</span> 使得 <span class="math inline">\(f=\tilde{f}\circ q\)</span>. <span class="math display">\[
+\xymatrix{
+X \ar[d]_q \ar[dr]^f \\
+Y \ar@{.&gt;}[r]_{\tilde{f}} &amp; Z
+}
+\]</span></p>
+<ul>
+<li><u>Pf</u> 存在唯一性由商集合泛性质保证. 连续性由商拓扑泛性质保证.</li>
+<li>其中 <span class="math inline">\(\tilde{f}\)</span> 称为 <span class="math inline">\(f\)</span> <strong>在商空间的下降</strong>.</li>
+</ul></li>
+<li><p>(商空间唯一性) 设商映射 <span class="math inline">\(q_1:X\to Y_1\)</span> 和 <span class="math inline">\(q_2:X\to Y_2\)</span> 满足 <span class="math inline">\(q_1(x)=q_1(x')\)</span> 当且仅当 <span class="math inline">\(q_2(x)=q_2(x')\)</span>, 则存在唯一的同胚 <span class="math inline">\(\phi:Y_1\to Y_2\)</span>, 使得 <span class="math inline">\(\phi\circ q_1=q_2\)</span>.</p></li>
+</ul></li>
+<li><p>商空间的例子.</p>
+<ul>
+<li><span class="math inline">\(\R\)</span> 上的等价关系 <span class="math inline">\(x\sim y\iff x-y\in\Z\)</span>. 商空间 <span class="math inline">\(\R/{\sim}\)</span> 同胚于 <span class="math inline">\(S^1\)</span>.
+<ul>
+<li><u>Pf</u> 设 <span class="math inline">\(q:\R\to S^1\)</span>, <span class="math inline">\(q(t)=\e^{2\pi\i t}\)</span>. 要证明 <span class="math inline">\(q\)</span> 开, 只需考虑 <span class="math inline">\(\R\)</span> 的拓扑基, 即所有的开区间即可. 对于长度 <span class="math inline">\(\geq1\)</span> 的开区间, 它映到整个 <span class="math inline">\(S^1\)</span>, 当然是开的. 对于长度 <span class="math inline">\(&lt;1\)</span> 的开区间, 它映到 <span class="math inline">\(S^1\)</span> 上的一段弧 (不含端点), 显然是某 <span class="math inline">\(\R^2\)</span> 开球与 <span class="math inline">\(S^1\)</span> 的交, 所以是开集. 因此 <span class="math inline">\(q\)</span> 是开的满射, 进而是商映射. 注意到 <span class="math inline">\(q:\R\to S^1\)</span> 和 <span class="math inline">\(\R\to\R/{\sim}\)</span> 给出相同的 identification, 根据商映射的唯一性 <span class="math inline">\(S^1\)</span> 同胚于 <span class="math inline">\(\R/{\sim}\)</span>.</li>
+<li>连续的 <span class="math inline">\(\Z\)</span> 周期函数 <span class="math inline">\(f:\R\to\R\)</span> 可以唯一地下降到 <span class="math inline">\(\tilde{f}:\R/{\sim}\to\R\)</span>.</li>
+</ul></li>
+<li><strong>实射影空间</strong>. <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span> 上的等价关系 <span class="math inline">\(x\sim y\iff x=\lambda y\)</span> (<span class="math inline">\(\lambda\in\R^*\)</span>). 商空间称为实射影空间 <span class="math inline">\(\R P^n\)</span>.</li>
+<li><strong>将子集坍缩为一点</strong>. 设子集 <span class="math inline">\(A\subset X\)</span>. 等价关系 <span class="math inline">\(a_1\sim a_2\)</span> 对任意 <span class="math inline">\(a_1,a_2\in A\)</span>, 而 <span class="math inline">\(x\sim x\)</span> 对任意 <span class="math inline">\(x\notin A\)</span>. 记 <span class="math inline">\(X/A:=X/{\sim}\)</span>, 即将 <span class="math inline">\(A\)</span> 坍缩到一点.</li>
+<li><strong>锥(cone)</strong>. <span class="math inline">\(I=[0,1]\)</span>. 商空间 <span class="math inline">\((X\times I)/(X\times\{0\})\)</span> 称为 <span class="math inline">\(X\)</span> 上的锥, 记作 <span class="math inline">\(CX\)</span>.
+<ul>
+<li>考虑 <span class="math inline">\(X\times I\)</span> 的饱和子集 <span class="math inline">\(X\times\{1\}\)</span>, 商映射 <span class="math inline">\(q:X\times I\to CX\)</span> 限制到 <span class="math inline">\(X\times\{1\}\)</span> 仍是商映射. 记 <span class="math inline">\(X^*=q(X\times\{1\})\)</span>, 则商映射 <span class="math inline">\(X\cong X\times\{1\}\to X^*\)</span> 是单射, 进而是同胚. 一般认同 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(X^*\)</span>, 将 <span class="math inline">\(X\)</span> 视作 <span class="math inline">\(CX\)</span> 的子空间.</li>
+</ul></li>
+<li><strong>楔和/一点并</strong>. 设拓扑空间 <span class="math inline">\(X_\alpha\)</span>, 给定 <span class="math inline">\(p_\alpha\in X_\alpha\)</span> 称为<strong>基点</strong>. 楔和 <span class="math inline">\(\bigvee X_\alpha\)</span> 定义为 <span class="math inline">\(\coprod X_\alpha\)</span> 将 <span class="math inline">\(\{p_\alpha\}_{\alpha}\)</span> 认同为一点的商空间. 例如, <span class="math inline">\(\R\vee\R\)</span> 同胚于平面上的 <span class="math inline">\(xy\)</span> 轴之并; <span class="math inline">\(S^1\vee S^1\)</span> 同胚于一个 8 字.</li>
+</ul></li>
+</ol>
+<h3 id="adjunction-spaces">2.5  Adjunction spaces</h3>
+<ol type="1">
+<li><p><strong>黏着空间</strong>: 设拓扑空间 <span class="math inline">\(X,Y\)</span>, 闭子集 <span class="math inline">\(A\subset X\)</span>, 连续映射 <span class="math inline">\(f:A\to Y\)</span>. 设 <span class="math inline">\(X\amalg Y\)</span> 上的等价关系 <span class="math inline">\(a\sim f(a)\)</span> 对任意 <span class="math inline">\(a\in A\)</span>, 则黏着空间 <span class="math inline">\(X\cup_fY:=(X\amalg Y)/{\sim}\)</span>. 称 <span class="math inline">\(Y\)</span> 沿着 <span class="math inline">\(f\)</span> 黏合到 <span class="math inline">\(X\)</span>, 映射 <span class="math inline">\(f\)</span> 称为<strong>贴映射(attaching map)</strong>. 特别地, 若 <span class="math inline">\(A\)</span> 空, 则黏着空间是不交并.</p>
+<ul>
+<li>(性质) 设商映射 <span class="math inline">\(q:X\amalg Y\to X\cup_fY\)</span>.
+<ul>
+<li><span class="math inline">\(q|_X\)</span> 是拓扑嵌入, <span class="math inline">\(q(X)\)</span> 是 <span class="math inline">\(X\cup_fY\)</span> 的闭子空间.</li>
+<li><span class="math inline">\(q|_{Y\setminus A}\)</span> 是拓扑嵌入, <span class="math inline">\(q(Y\setminus A)\)</span> 是 <span class="math inline">\(X\cup_fY\)</span> 的开子空间.</li>
+<li><span class="math inline">\(X\cup_fY\)</span> 是 <span class="math inline">\(q(X)\)</span> 和 <span class="math inline">\(q(Y\setminus A)\)</span> 的不交并.</li>
+<li>因此, <span class="math inline">\(X,Y\setminus A\)</span> 分别认同于 <span class="math inline">\(q(X),q(Y\setminus A)\)</span>, 视作 <span class="math inline">\(X\cup_fY\)</span> 的子空间.</li>
+</ul></li>
+</ul></li>
+<li><p>黏着空间的例子.</p>
+<ul>
+<li>选定基点 <span class="math inline">\(x,y\)</span> 的拓扑空间 <span class="math inline">\(X,Y\)</span>, 令 <span class="math inline">\(A=\{y\}\)</span>, <span class="math inline">\(f:A\to X\)</span> 定义为 <span class="math inline">\(f(y)=x\)</span>, 则 <span class="math inline">\(X\cup_fY\)</span> 是楔和 <span class="math inline">\(X\vee Y\)</span>.</li>
+<li>令 <span class="math inline">\(A=S^2\subset\bar B^2\)</span>, 包含映射 <span class="math inline">\(f:A\hookrightarrow\bar{B}^2\)</span>, 则 <span class="math inline">\(\bar{B}^2\cup_f\bar{B}^2\)</span> 同胚于 <span class="math inline">\(S^2\)</span>.</li>
+</ul></li>
+<li><p><strong>流形沿着边界贴合</strong>. 设 <span class="math inline">\(n\)</span> 维带边流形 <span class="math inline">\(M,N\)</span>, 边界非空且 <span class="math inline">\(h:\partial N\to\partial M\)</span> 同胚. 注意 <span class="math inline">\(\partial{N}\)</span> 是 <span class="math inline">\(N\)</span> 的闭子集, 则有黏着空间 <span class="math inline">\(M\cup_hN\)</span>.</p>
+<ul>
+<li><p>(流形沿着边界贴合) <span class="math inline">\(M\cup_hN\)</span> 是 <span class="math inline">\(n\)</span> 维无边流形. 有嵌入 <span class="math inline">\(e:M\to M\cup_hN\)</span>, <span class="math inline">\(f:N\to M\cup_hN\)</span>, 其像都是闭子集, 且 <span class="math display">\[
+\Align{
+e(M)\cup f(N)&amp;=M\cup_hN \\
+e(M)\cap f(N)&amp;=e(\partial M)=f(\partial N).
+}
+\]</span></p></li>
+<li><p><strong>流形的双倍</strong>: 设带边流形 <span class="math inline">\(M\)</span>, 恒等映射 <span class="math inline">\(h={\rm id}_{\partial M}\)</span>, 则 <span class="math inline">\(D(M):=M\cup_hM\)</span> 称为 <span class="math inline">\(M\)</span> 的双倍. 若 <span class="math inline">\(\partial M\)</span> 为空, 则 <span class="math inline">\(D(M)=M\amalg M\)</span>.</p></li>
+<li><p>(带边流形) 任意带边 <span class="math inline">\(n\)</span>-流形都与 <span class="math inline">\(n\)</span>-流形 (比如 <span class="math inline">\(D(M)\)</span>) 的闭子集同胚.</p></li>
+</ul></li>
+</ol>
+<h3 id="topological-groups-group-actions">2.6  Topological groups &amp; group actions</h3>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM202 | 1 拓扑空间</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202-index/" title="GTM202 | 笔记索引">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM202 | 笔记索引</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-index/" title="GTM275 | 笔记索引">
+                        <span class="hidden-mobile">GTM275 | 笔记索引</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/art-copyright.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
