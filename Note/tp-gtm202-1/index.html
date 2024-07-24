@@ -24,7 +24,7 @@
 <meta property="og:description" content="拓扑空间与拓扑流形.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-22T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-24T01:49:47.370Z">
+<meta property="article:modified_time" content="2024-07-24T13:32:06.280Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -296,6 +296,7 @@ B_{r_2}(x)\subset B'_r(x).
 <li><p><strong>闭集</strong>: 开集之补.</p></li>
 <li><p><strong>邻域</strong>: 包含某点/某子集的开集.</p></li>
 </ul>
+<h3 id="subsets-and-points">1.2  Subsets and points</h3>
 <p>开集与闭集的性质.</p>
 <ul>
 <li><p>(de Morgan) <span class="math inline">\(\bigcup(A_\alpha^C)=(\bigcap A_\alpha)^C\)</span> 等.</p></li>
@@ -341,7 +342,7 @@ B_{r_2}(x)\subset B'_r(x).
 <p>若 <span class="math inline">\(X\)</span> 的任意非空开集包含 <span class="math inline">\(A\)</span> 中的点, 反证, 设 <span class="math inline">\(\bar{A}\subsetneq X\)</span>, 则 <span class="math inline">\(\bar{A}^C\)</span> 是非空开集, 然而 <span class="math inline">\(\bar{A}^C\)</span> 不包含 <span class="math inline">\(A\)</span> 中的点, 与题设矛盾.</p>
 </div></li>
 </ul>
-<h3 id="convergence-continuity">1.2  Convergence &amp; continuity</h3>
+<h2 id="convergence-continuity">2  Convergence &amp; Continuity</h2>
 <p><strong>极限</strong>: 对任意 <span class="math inline">\(x\)</span> 的邻域 <span class="math inline">\(U_x\)</span>, 存在 <span class="math inline">\(N\)</span>, 使得 <span class="math inline">\(i\geq N\Rightarrow x_i\in U_x\)</span>.</p>
 <ul>
 <li>离散拓扑: 只有最终常值序列收敛. 平凡拓扑: 所有序列收敛到任意点.</li>
@@ -390,7 +391,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li>局部同胚是连续的开映射.</li>
 <li>双射 + 局部同胚 = 同胚.</li>
 </ul>
-<h3 id="hausdorff-spaces">1.3  Hausdorff spaces</h3>
+<h2 id="hausdorff-spaces">3  Hausdorff Spaces</h2>
 <p>拓扑不能过于粗糙.</p>
 <p><strong>Hausdorff 空间</strong>: 任两个点可邻域分离.</p>
 <ul>
@@ -411,8 +412,9 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <p>3, 假设 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U\)</span> 只包含 <span class="math inline">\(A\)</span> 中 (除 <span class="math inline">\(p\)</span> 外) 有限个点 <span class="math inline">\(a_1,\dots,a_n\)</span>. 存在邻域 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U_i\subset U\)</span> 和 <span class="math inline">\(a_i\)</span> 的邻域 <span class="math inline">\(A_i\)</span>, 使得 <span class="math inline">\(U_i\cap A_i=\emptyset\)</span>. 有限交集 <span class="math inline">\(\bigcap U_i\)</span> 也是 <span class="math inline">\(p\)</span> 的邻域, 但是 <span class="math inline">\((\bigcap U_i)\cap A\)</span> 不包含除 <span class="math inline">\(p\)</span> 外任何一点, 与极限点的定义矛盾.</p>
 </div></li>
 </ul>
-<h3 id="bases-countability">1.4  Bases &amp; countability</h3>
+<h2 id="bases-countability">4  Bases &amp; countability</h2>
 <p>拓扑不能过于精细.</p>
+<h3 id="bases">4.1  Bases</h3>
 <p><strong>拓扑基</strong>: <span class="math inline">\({\cal B}\)</span> 任意元素是开集, <span class="math inline">\(X\)</span> 任意开集是 <span class="math inline">\({\cal B}\)</span> 中元素之并.</p>
 <ul>
 <li>(开集 basis criterion) <span class="math inline">\(U\)</span> 中任意一点 <span class="math inline">\(p\)</span>, 存在 <span class="math inline">\(B\in{\cal B}\)</span> 使得 <span class="math inline">\(p\in B\subset U\)</span>.</li>
@@ -423,6 +425,27 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li>任给 <span class="math inline">\(B_1,B_2\in{\cal B}\)</span> 且 <span class="math inline">\(x\in B_1\cap B_2\)</span>, 存在 <span class="math inline">\(B_3\in{\cal B}\)</span> 使得 <span class="math inline">\(x\in B_3\subset B_1\cap B_2\)</span>.</li>
 </ul></li>
 </ul>
+<p><strong>子基</strong>: 设集合 <span class="math inline">\(X\)</span>, 集合 <span class="math inline">\({\cal S}\subset{\cal P}(X)\)</span>. 令 <span class="math inline">\({\cal T}\)</span> 包含 <span class="math inline">\(X,\emptyset\)</span> 以及 <span class="math inline">\({\cal S}\)</span> 中集合之有限交的任意并. 则 <span class="math inline">\({\cal T}\)</span> 是拓扑, <span class="math inline">\({\cal S}\)</span> 称为子基.</p>
+<ul>
+<li><p><span class="math inline">\({\cal T}\)</span> 是以 <span class="math inline">\({\cal A}\)</span> 中集合为开集的最弱拓扑.</p></li>
+<li><p>(连续 subbasis criterion) 任给 <span class="math inline">\(S\in{\cal S}_Y\)</span>, <span class="math inline">\(f^{-1}(S)\)</span> 在 <span class="math inline">\(X\)</span> 中开.</p></li>
+<li><p><strong>序拓扑</strong>. 设全序集 <span class="math inline">\((X,&lt;)\)</span>, 以下列集合为子基, 生成的拓扑称为序拓扑. <span class="math display">\[
+\Align{
+(a,+\infty)&amp;=\{x\in X\mid x&gt;a\},\\
+(-\infty,a)&amp;=\{x\in X\mid x&lt;a\}.
+}
+\]</span></p>
+<ul>
+<li><span class="math inline">\((a,b)=\{x\in X\mid a&lt;x&lt;b\}\)</span> 是开集, <span class="math inline">\([a,b]=\{x\in X\mid a\leq x\leq b\}\)</span> 是闭集.</li>
+<li>(Hausdorff) 任给 <span class="math inline">\(x&lt;y\)</span>, 则存在邻域不交邻域 <span class="math inline">\(U_x\cap U_y=\emptyset\)</span>. 实际上, 若 <span class="math inline">\(z\in(x,y)\)</span>, 取 <span class="math inline">\((-\infty,z)\)</span> 和 <span class="math inline">\((z,+\infty)\)</span> 即可. 若 <span class="math inline">\((x,y)=\emptyset\)</span>, 取 <span class="math inline">\((-\infty,y)\)</span> 和 <span class="math inline">\((x,+\infty)\)</span> 即可.</li>
+<li>(线性连续统) <span class="math inline">\(\R\)</span> 序拓扑的性质: (Dedekind 完备性) 非空有上界子集有上确界. (稠密性) 任给 <span class="math inline">\(x&lt;y\)</span>, 存在 <span class="math inline">\(z\)</span> 使得 <span class="math inline">\(x&lt;z&lt;y\)</span>.
+<ul>
+<li><span class="math inline">\(\R\)</span> 上的序拓扑和度量拓扑相同.</li>
+</ul></li>
+<li>(闭包) <span class="math inline">\(\overline{(a,b)}\subset[a,b]\)</span>, 若具有稠密性, 则取等. 实际上, 取 <span class="math inline">\(x\in[a,b]\)</span>, 其任意邻域 <span class="math inline">\((s,t)\)</span>, 则 <span class="math inline">\(t&gt;x\geq a\)</span>, 因此存在 <span class="math inline">\(c\)</span> 使得 <span class="math inline">\(t&lt;c&lt;a\)</span>, 即 <span class="math inline">\(c\in(s,t)\cap(a,b)\)</span>, 说明 <span class="math inline">\([a,b]=\overline{(a,b)}\)</span>.</li>
+</ul></li>
+</ul>
+<h3 id="first-countability">4.2  First countability</h3>
 <p><strong>第一可数</strong>: 任意一点存在可数邻域基.</p>
 <ul>
 <li><p><strong>邻域基</strong>: <span class="math inline">\(p\)</span> 的任意邻域包含某 <span class="math inline">\(B\in{\cal B}_p\)</span>.</p>
@@ -448,6 +471,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <p>3, 4 是 1, 2 的推论.</p>
 </div></li>
 </ul>
+<h3 id="second-countability">4.3  Second countability</h3>
 <p><strong>第二可数</strong>: 存在可数拓扑基.</p>
 <ul>
 <li><p>欧氏空间中, 有理点处有理半径球, 构成可数基.</p></li>
@@ -470,7 +494,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li>若 <span class="math inline">\({\cal U}\)</span> 可数, <span class="math inline">\(U\in{\cal U}\)</span> 第二可数, 那么 <span class="math inline">\(X\)</span> 第二可数.</li>
 </ul></li>
 </ul>
-<h3 id="manifolds">1.5  Manifolds</h3>
+<h2 id="topological-manifolds">5  Topological Manifolds</h2>
 <p><strong>局部欧氏</strong>: 给定 <span class="math inline">\(n\)</span>, 任意一点的某邻域同胚于 <span class="math inline">\(\R^n\)</span> 的开子集.</p>
 <ul>
 <li>(等价说法) 任意一点某邻域同胚于 <span class="math inline">\(\R^n\)</span>. 任意一点某邻域同胚于 <span class="math inline">\(\R^n\)</span> 的开球.</li>
@@ -480,7 +504,6 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <ul>
 <li><span class="math inline">\(0\)</span>-流形是可数的离散拓扑空间.</li>
 <li>(继承) 拓扑流形的开子集是拓扑流形.</li>
-<li>(同胚不变) 同胚于拓扑流形的空间是拓扑流形.</li>
 </ul>
 <p><strong>带边流形</strong>: 局部同胚于 <span class="math inline">\(\R^n\)</span> 或 <span class="math inline">\(\H^n\)</span> 的开子集, Hausdorff, 第二可数的拓扑空间.</p>
 <ul>
@@ -495,13 +518,40 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <ul>
 <li>闭球 <span class="math inline">\(\bar{\mathbb{B}}^2\)</span> 本身视作拓扑空间, 流形边界是 <span class="math inline">\(S^2\)</span>, 拓扑边界为空. 若 <span class="math inline">\(\bar{\mathbb{B}}^2\)</span> 视作 <span class="math inline">\(\R^3\)</span> 的子集, 拓扑边界是它本身.</li>
 </ul></li>
+<li><p>(流形的基) 流形存在由坐标球构成的拓扑基.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 任取 <span class="math inline">\(x\in M\)</span>, 取欧氏邻域 <span class="math inline">\(U,\psi\)</span>. 考虑 <span class="math inline">\(\psi(x)\in\R^n\)</span> 的一个邻域基 <span class="math display">\[
+{\cal B}=\{\textsf{开球} B\mid
+\psi(x)\in B\subset\psi(U)
+\}.
+\]</span> 令 <span class="math inline">\({\cal B}'=\psi^{-1}[{\cal B}]=\{\psi^{-1}(B)\mid B\in{\cal B}\}\)</span>, 则 <span class="math inline">\({\cal B'}\)</span> 由坐标球组成. 任给 <span class="math inline">\(x\)</span> 的邻域 <span class="math inline">\(V\)</span>, 则 <span class="math inline">\(V\cap U\)</span> 是一个欧氏邻域, 且 <span class="math inline">\(\psi(V\cap U)\)</span> 是 <span class="math inline">\(\psi(x)\)</span> 的邻域. 因此存在 <span class="math inline">\(B\in{\cal B}\)</span>, 满足 <span class="math inline">\(B\subset\psi(V\cap U)\)</span>. 进而 <span class="math inline">\(\psi^{-1}(B)\subset V\cap U\subset V\)</span>, 这说明 <span class="math inline">\({\cal B}'\)</span> 构成 <span class="math inline">\(x\)</span> 的邻域基.</p>
+<p>将每个 <span class="math inline">\(x\in M\)</span> 的 (坐标开球组成的) 邻域基并起来, 就得到了 <span class="math inline">\(M\)</span> 的 (坐标开球组成的) 拓扑基.</p>
+<p>上面的证明是对内部点的. 对于边界点, 在构造 <span class="math inline">\({\cal B}\)</span> 时, 取开球与 <span class="math inline">\(\H^n\)</span> 之交 (在诱导度量下是开的).</p>
+</div></li>
+<li><p>(维数不变性) 对于 <span class="math inline">\(m\neq n\)</span>, 空间 <span class="math inline">\(M\)</span> 不能同时是 <span class="math inline">\(m\)</span> 维流形和 <span class="math inline">\(n\)</span> 维流形. (证明在之后给出.)</p>
+<ul>
+<li>流形的维数是良定义的.</li>
+</ul></li>
 <li><p>(流形内部) 带边流形 <span class="math inline">\(M\)</span> 的流形内部 <span class="math inline">\({\rm Int}M\)</span> 是 <span class="math inline">\(M\)</span> 的开子集, 是无边流形.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 根据定义, <span class="math inline">\({\rm Int}M\)</span> 由所有的内部坐标邻域组成, 作为开集的并, 也是开集. 因为存在一套同胚于 <span class="math inline">\(\R^n\)</span> 的子集的坐标覆盖, 所以是无边流形.</p>
 </div></li>
 <li><p>(边界不变性) 流形边界 <span class="math inline">\(\partial M\)</span> 和流形内部 <span class="math inline">\({\rm Int}M\)</span> 交集为空, 并集为 <span class="math inline">\(M\)</span>. (证明在之后给出.)</p>
 <ul>
-<li>进而 <span class="math inline">\(\partial M\)</span> 是 <span class="math inline">\(M\)</span> 的闭子集.</li>
+<li>流形的边界是良定义的.</li>
+</ul></li>
+<li><p>(边界) <span class="math inline">\(\partial M\)</span> 是 <span class="math inline">\(M\)</span> 的闭子集, 且 <span class="math inline">\(M\)</span> 是一个无边流形当且仅当 <span class="math inline">\(\partial{M}=\emptyset\)</span>.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 根据边界不变性, <span class="math inline">\(\partial{M}=M\setminus{\rm Int}M\)</span>, 其中流形内部是开集, 所以边界闭. 若 <span class="math inline">\(M\)</span> 无边, 则任意点都在某内部坐标系内, 故 <span class="math inline">\(M={\rm Int}M\)</span>. 若 <span class="math inline">\(\partial{M}=\emptyset\)</span>, 则 <span class="math inline">\(M={\rm Int}M\)</span>, 是一个无边流形.</p>
+</div></li>
+</ul>
+<p>流形/不是流形的例子. (更多例子之后逐步介绍.)</p>
+<ul>
+<li><span class="math inline">\(\R^n\)</span> 及其开子集是无边流形.</li>
+<li>不第二可数的例子. 对于给定的 <span class="math inline">\(a,b,c\in\R\)</span>, 记 <span class="math inline">\(I_{abc}=\{(c,y)\in\R^2\mid a&lt;y&lt;b\}\)</span>. 令 <span class="math inline">\({\cal B}\)</span> 是所有这样的 <span class="math inline">\(I_{abc}\)</span> 的全体 (可看作所有平行于 <span class="math inline">\(y\)</span> 轴的开线段). 容易验证这是 <span class="math inline">\(\R^2\)</span> 的拓扑基, 并且 <span class="math inline">\({\cal B}\)</span> 生成的拓扑 <span class="math inline">\({\cal T}\)</span> 比度量拓扑细致.
+<ul>
+<li>因为 <span class="math inline">\({\cal T}\)</span> 中包含了所有平行于 <span class="math inline">\(y\)</span> 轴的开线段, 因此 Hausdorff 和局部欧氏是显然的 (局部同胚于 <span class="math inline">\(\R\)</span>, 是一维的).</li>
+<li>第二可数: 只需找到它的一个开覆盖, 其不存在可数子覆盖. 实际上, 取 <span class="math inline">\(y\)</span> 轴的一个开覆盖 <span class="math inline">\({\cal U}\)</span>, 它也可以作为任意平行于 <span class="math inline">\(y\)</span> 轴的直线的开覆盖. 因此我们找到了 <span class="math inline">\(\R^2\)</span> 的开覆盖 <span class="math inline">\({\cal U}_0=\bigcup_{x\in\R}{\cal U}\)</span>. 注意这是不可数个集合的(无交)并, 是一个不可数开覆盖, 并且不存在可数子覆盖.</li>
 </ul></li>
 </ul>
 </body></html>
