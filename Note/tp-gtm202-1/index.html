@@ -24,7 +24,7 @@
 <meta property="og:description" content="拓扑空间与拓扑流形.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-22T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-24T13:32:06.280Z">
+<meta property="article:modified_time" content="2024-07-25T15:12:32.437Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -377,8 +377,8 @@ f^{-1}(A)
 </ul>
 <div class="note note-secondary">
 <p><u>Pf</u> 1, <span class="math inline">\(\Leftarrow\)</span>, 任给闭集 <span class="math inline">\(A\subset X\)</span>, 则 <span class="math inline">\(f(A)=f(\bar{A})\supset\overline{f(A)}\)</span>. 然而 <span class="math inline">\(f(A)\subset\overline{f(A)}\)</span>, 于是两相等, 即 <span class="math inline">\(f(A)\)</span> 闭. <span class="math inline">\(\Rightarrow\)</span>, 有 <span class="math inline">\(f(\bar{A})\)</span> 是闭集, 所以 <span class="math inline">\(\overline{f(\bar{A})}=f(\bar{A})\)</span>. 注意到 <span class="math inline">\(A\subset\bar{A}\)</span>, 于是 <span class="math inline">\(\overline{f(A)}\subset \overline{f(\bar{A})}=f(\bar{A})\)</span>.</p>
-<p>2,</p>
-<p>3,</p>
+<p>2, TODO</p>
+<p>3, TODO</p>
 <p>4, <span class="math inline">\(\Leftarrow\)</span>, 任给开集 <span class="math inline">\(B\subset Y\)</span>, 则 <span class="math display">\[
 f^{-1}(B)=f^{-1}({\rm Int}B)\subset{\rm Int}f^{-1}(B)\subset f^{-1}(B)
 \]</span> 因此上式全部取等, 进而 <span class="math inline">\(f^{-1}(B)={\rm Int}f^{-1}(B)\)</span> 是开集, 故 <span class="math inline">\(f\)</span> 连续. <span class="math inline">\(\Rightarrow\)</span>, 注意到 <span class="math display">\[
@@ -396,6 +396,9 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <p><strong>Hausdorff 空间</strong>: 任两个点可邻域分离.</p>
 <ul>
 <li><p>(充分条件) 对任意 <span class="math inline">\(p\)</span>, 存在连续函数 <span class="math inline">\(f:X\to\R\)</span>, <span class="math inline">\(f^{-1}(0)=\{p\}\)</span>, 则 <span class="math inline">\(X\)</span> Hausdorff.</p>
+<ul>
+<li>度量空间 Hausdorff. 对任意 <span class="math inline">\(p\)</span>, 考虑连续函数 <span class="math inline">\(d(p,-):X\to\R\)</span> 即可.</li>
+</ul>
 <div class="note note-secondary">
 <p><u>Pf</u> (将 <span class="math inline">\(\R\)</span> 的 Hausdorff 性带到 <span class="math inline">\(X\)</span> 上) 任给 <span class="math inline">\(p\neq q\)</span>, 存在连续函数 <span class="math inline">\(f:X\to\R\)</span>, <span class="math inline">\(f^{-1}(0)=\{p\}\)</span>. 设 <span class="math inline">\(f(q)=x\neq0\)</span>, 取 <span class="math inline">\(\varepsilon=x/2\)</span>, 则 <span class="math inline">\(U_1=(-\varepsilon,\varepsilon)\)</span> 和 <span class="math inline">\(U_2=(x-\varepsilon,x+\varepsilon)\)</span> 分别是 <span class="math inline">\(f(p),f(q)\)</span> 的不交邻域. 由连续性, <span class="math inline">\(f^{-1}(U_1),f^{-1}(U_2)\)</span> 分别是 <span class="math inline">\(p,q\)</span> 的不交邻域. 因此 <span class="math inline">\(X\)</span> Hausdorff.</p>
 </div></li>
@@ -436,13 +439,15 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 }
 \]</span></p>
 <ul>
-<li><span class="math inline">\((a,b)=\{x\in X\mid a&lt;x&lt;b\}\)</span> 是开集, <span class="math inline">\([a,b]=\{x\in X\mid a\leq x\leq b\}\)</span> 是闭集.</li>
-<li>(Hausdorff) 任给 <span class="math inline">\(x&lt;y\)</span>, 则存在邻域不交邻域 <span class="math inline">\(U_x\cap U_y=\emptyset\)</span>. 实际上, 若 <span class="math inline">\(z\in(x,y)\)</span>, 取 <span class="math inline">\((-\infty,z)\)</span> 和 <span class="math inline">\((z,+\infty)\)</span> 即可. 若 <span class="math inline">\((x,y)=\emptyset\)</span>, 取 <span class="math inline">\((-\infty,y)\)</span> 和 <span class="math inline">\((x,+\infty)\)</span> 即可.</li>
-<li>(线性连续统) <span class="math inline">\(\R\)</span> 序拓扑的性质: (Dedekind 完备性) 非空有上界子集有上确界. (稠密性) 任给 <span class="math inline">\(x&lt;y\)</span>, 存在 <span class="math inline">\(z\)</span> 使得 <span class="math inline">\(x&lt;z&lt;y\)</span>.
+<li><p><span class="math inline">\((a,b)=\{x\in X\mid a&lt;x&lt;b\}\)</span> 是开集, <span class="math inline">\([a,b]=\{x\in X\mid a\leq x\leq b\}\)</span> 是闭集.</p></li>
+<li><p>(Hausdorff) 任给 <span class="math inline">\(x&lt;y\)</span>, 则存在邻域不交邻域 <span class="math inline">\(U_x\cap U_y=\emptyset\)</span>. 实际上, 若 <span class="math inline">\(z\in(x,y)\)</span>, 取 <span class="math inline">\((-\infty,z)\)</span> 和 <span class="math inline">\((z,+\infty)\)</span> 即可. 若 <span class="math inline">\((x,y)=\emptyset\)</span>, 取 <span class="math inline">\((-\infty,y)\)</span> 和 <span class="math inline">\((x,+\infty)\)</span> 即可.</p></li>
+<li><p><strong>线性连续统</strong>: 至少有两个元素的全序集, 且满足</p>
 <ul>
-<li><span class="math inline">\(\R\)</span> 上的序拓扑和度量拓扑相同.</li>
-</ul></li>
-<li>(闭包) <span class="math inline">\(\overline{(a,b)}\subset[a,b]\)</span>, 若具有稠密性, 则取等. 实际上, 取 <span class="math inline">\(x\in[a,b]\)</span>, 其任意邻域 <span class="math inline">\((s,t)\)</span>, 则 <span class="math inline">\(t&gt;x\geq a\)</span>, 因此存在 <span class="math inline">\(c\)</span> 使得 <span class="math inline">\(t&lt;c&lt;a\)</span>, 即 <span class="math inline">\(c\in(s,t)\cap(a,b)\)</span>, 说明 <span class="math inline">\([a,b]=\overline{(a,b)}\)</span>.</li>
+<li>(Dedekind 完备性) 非空有上界子集有上确界;</li>
+<li>(稠密性) 任给 <span class="math inline">\(x&lt;y\)</span>, 存在 <span class="math inline">\(z\)</span> 使得 <span class="math inline">\(x&lt;z&lt;y\)</span>.</li>
+</ul>
+<p>例如, <span class="math inline">\(\R\)</span> 是线性连续统, 它的序拓扑和度量拓扑相同.</p></li>
+<li><p>(闭包) <span class="math inline">\(\overline{(a,b)}\subset[a,b]\)</span>, 若具有稠密性, 则取等. 实际上, 取 <span class="math inline">\(x\in[a,b]\)</span>, 其任意邻域 <span class="math inline">\((s,t)\)</span>, 则 <span class="math inline">\(t&gt;x\geq a\)</span>, 因此存在 <span class="math inline">\(c\)</span> 使得 <span class="math inline">\(t&lt;c&lt;a\)</span>, 即 <span class="math inline">\(c\in(s,t)\cap(a,b)\)</span>, 说明 <span class="math inline">\([a,b]=\overline{(a,b)}\)</span>.</p></li>
 </ul></li>
 </ul>
 <h3 id="first-countability">4.2  First countability</h3>
@@ -518,7 +523,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <ul>
 <li>闭球 <span class="math inline">\(\bar{\mathbb{B}}^2\)</span> 本身视作拓扑空间, 流形边界是 <span class="math inline">\(S^2\)</span>, 拓扑边界为空. 若 <span class="math inline">\(\bar{\mathbb{B}}^2\)</span> 视作 <span class="math inline">\(\R^3\)</span> 的子集, 拓扑边界是它本身.</li>
 </ul></li>
-<li><p>(流形的基) 流形存在由坐标球构成的拓扑基.</p>
+<li><p>(坐标球基) 流形存在由<strong>坐标球</strong> (同胚于 <span class="math inline">\(\R^n\)</span> 的开球) 构成的拓扑基.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 任取 <span class="math inline">\(x\in M\)</span>, 取欧氏邻域 <span class="math inline">\(U,\psi\)</span>. 考虑 <span class="math inline">\(\psi(x)\in\R^n\)</span> 的一个邻域基 <span class="math display">\[
 {\cal B}=\{\textsf{开球} B\mid
@@ -526,7 +531,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 \}.
 \]</span> 令 <span class="math inline">\({\cal B}'=\psi^{-1}[{\cal B}]=\{\psi^{-1}(B)\mid B\in{\cal B}\}\)</span>, 则 <span class="math inline">\({\cal B'}\)</span> 由坐标球组成. 任给 <span class="math inline">\(x\)</span> 的邻域 <span class="math inline">\(V\)</span>, 则 <span class="math inline">\(V\cap U\)</span> 是一个欧氏邻域, 且 <span class="math inline">\(\psi(V\cap U)\)</span> 是 <span class="math inline">\(\psi(x)\)</span> 的邻域. 因此存在 <span class="math inline">\(B\in{\cal B}\)</span>, 满足 <span class="math inline">\(B\subset\psi(V\cap U)\)</span>. 进而 <span class="math inline">\(\psi^{-1}(B)\subset V\cap U\subset V\)</span>, 这说明 <span class="math inline">\({\cal B}'\)</span> 构成 <span class="math inline">\(x\)</span> 的邻域基.</p>
 <p>将每个 <span class="math inline">\(x\in M\)</span> 的 (坐标开球组成的) 邻域基并起来, 就得到了 <span class="math inline">\(M\)</span> 的 (坐标开球组成的) 拓扑基.</p>
-<p>上面的证明是对内部点的. 对于边界点, 在构造 <span class="math inline">\({\cal B}\)</span> 时, 取开球与 <span class="math inline">\(\H^n\)</span> 之交 (在诱导度量下是开的).</p>
+<p>上面的证明是对内部点的. 对于边界点, 在构造 <span class="math inline">\({\cal B}\)</span> 时, 取开球与 <span class="math inline">\(\H^n\)</span> 之交 (<strong>坐标半球</strong>).</p>
 </div></li>
 <li><p>(维数不变性) 对于 <span class="math inline">\(m\neq n\)</span>, 空间 <span class="math inline">\(M\)</span> 不能同时是 <span class="math inline">\(m\)</span> 维流形和 <span class="math inline">\(n\)</span> 维流形. (证明在之后给出.)</p>
 <ul>
