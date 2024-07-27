@@ -42,6 +42,7 @@
                 sgn: "\\mathop{\\rm sgn}",
                 diag: "\\mathop{\\rm diag}",
                 rank: "\\mathop{\\rm rank}",
+                supp: "\\mathop{\\rm supp}",
                 argmin: "\\mathop{\\rm argmin}",
                 argmax: "\\mathop{\\rm argmax}",
                 rhs: "\\mathop{\\rm RHS}",
