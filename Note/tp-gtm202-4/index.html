@@ -16,17 +16,16 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="紧致性, 局部紧性, 仿紧性, 逆紧映射.">
+    <meta name="description" content="紧致性, 局部紧性.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM202 | 3 紧致性">
+<meta property="og:title" content="GTM202 | 4 紧致性">
 <meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-4/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="紧致性, 局部紧性, 仿紧性, 逆紧映射.">
+<meta property="og:description" content="紧致性, 局部紧性.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/precompact-subneighborhood-lemma.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/paracompactness-theorem.png">
 <meta property="article:published_time" content="2024-07-26T13:40:00.000Z">
-<meta property="article:modified_time" content="2024-07-27T14:15:53.726Z">
+<meta property="article:modified_time" content="2024-07-28T05:11:09.267Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -35,7 +34,7 @@
   
   
   
-  <title>GTM202 | 3 紧致性 | Jin&#39;s Blog</title>
+  <title>GTM202 | 4 紧致性 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -218,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM202 | 3 紧致性"></span>
+            <span id="subtitle" data-typed-text="GTM202 | 4 紧致性"></span>
           
         </div>
 
@@ -273,7 +272,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GTM202 | 3 紧致性</h1>
+            <h1 id="seo-header">GTM202 | 4 紧致性</h1>
             
             
               <div class="markdown-body">
@@ -514,93 +513,6 @@ S^n \overset{i}\hookrightarrow \R^{n+1}\setminus\{0\}
 <p>② <span class="math inline">\(X\)</span> 是完备度量空间. 只需对上面的过程做如下修改. 在归纳步骤中, 因为 <span class="math inline">\(V_n\cap W_{n-1}\)</span> 是非空开集, 存在 <span class="math inline">\(x_n\in X\)</span> 和 <span class="math inline">\(\varepsilon_n&gt;0\)</span> 使得 <span class="math inline">\(B_{\varepsilon_n}(x_n)\subset V_n\cap W_{n-1}\)</span>. 取 <span class="math inline">\(r_n&lt;\min(\varepsilon_n,1/n)\)</span>, 我们得到了嵌套闭球列 <span class="math inline">\(\bar{B}_{r_n}(x_n)\subset U\cap V_1\cap\cdots\cap V_n\)</span>. 因为 <span class="math inline">\(r_n\to0\)</span>, 球心 <span class="math inline">\((x_n)\)</span> 构成 Cauchy 列, 有极限 <span class="math inline">\(x\in U\cap(\bigcap_nV_n)\)</span>.</p>
 </div></li>
 </ul>
-<h2 id="paracompactness">15  Paracompactness</h2>
-<h3 id="paracompactness-1">15.1  Paracompactness</h3>
-<p>仿紧的 Hausdorff 空间有一些好性质.</p>
-<p><strong>仿紧</strong>: <span class="math inline">\(X\)</span> 的任意开覆盖都有局部有限的开加细.</p>
-<ul>
-<li><p><strong>局部有限</strong>: 对任意 <span class="math inline">\(x\in X\)</span>, 存在邻域 <span class="math inline">\(U_x\)</span>, 使得 <span class="math inline">\(U_x\)</span> 只和 <span class="math inline">\({\cal A}\)</span> 中有限个元素相交.</p></li>
-<li><p><strong>加细</strong>: 对任意 <span class="math inline">\(B\in{\cal B}\)</span>, 存在 <span class="math inline">\(A\in{\cal A}\)</span>, 满足 <span class="math inline">\(B\subset A\)</span>.</p></li>
-<li><p>(闭包局部有限) <span class="math inline">\(X\)</span> 的子集族 <span class="math inline">\({\cal A}\)</span> 局部有限, 当且仅当 <span class="math inline">\(\overline{\cal A}=\{\overline{A}\mid A\in{\cal A}\}\)</span> 局部有限.</p>
-<div class="note note-secondary">
-<p><u>Pf</u> 因为 <span class="math inline">\(A\subset\overline{A}\)</span>, 所以当 <span class="math inline">\(\overline{\cal A}\)</span> 局部有限, <span class="math inline">\(\cal A\)</span> 也局部有限. 若 <span class="math inline">\({\cal A}\)</span> 局部有限, 任给 <span class="math inline">\(x\in X\)</span>, 设邻域 <span class="math inline">\(W\)</span> 只与 <span class="math inline">\({\cal A}\)</span> 中有限个集合 <span class="math inline">\(A_1,\dots,A_n\)</span> 相交. 因为 <span class="math inline">\(W\cap\overline{A}\)</span> 非空蕴含 <span class="math inline">\(W\cap A\)</span> 非空 (对任意 <span class="math inline">\(A\in{\cal A}\)</span>), 因此满足 <span class="math inline">\(W\cap\overline{A}\)</span> 的 <span class="math inline">\(A\)</span> 一定在 <span class="math inline">\(A_1,\dots,A_n\)</span> 中, 所以 <span class="math inline">\(W\)</span> 只与 <span class="math inline">\(\overline{\cal A}\)</span> 中有限个元素相交.</p>
-</div></li>
-<li><p>(局部有限集族的性质) 若 <span class="math inline">\({\cal A}\)</span> 局部有限, 则 <span class="math inline">\(\overline{\bigcup_{A\in{\cal A}}A}=\bigcup_{A\in{\cal A}}\overline{A}\)</span>.</p>
-<div class="note note-secondary">
-<p><u>Pf</u> 注意 <span class="math inline">\(\overline{\bigcup_{A\in{\cal A}}A}\supset\bigcup_{A\in{\cal A}}\overline{A}\)</span> 是平凡的, 所以只证反向包含. 考虑逆否命题, 即任给 <span class="math inline">\(x\notin\bigcup_{A\in{\cal A}}\overline{A}\)</span>, 要证明 <span class="math inline">\(x\notin\overline{\bigcup_{A\in{\cal A}}A}\)</span>. 因为 <span class="math inline">\({\cal A}\)</span> 局部有限, 所以 <span class="math inline">\(\overline{\cal A}\)</span> 局部有限, 存在 <span class="math inline">\(x\)</span> 的邻域 <span class="math inline">\(U\)</span> 只与有限个 <span class="math inline">\(\overline{A}\)</span> 相交, 记为 <span class="math inline">\(\overline{A_1},\dots,\overline{A_n}\)</span>. 则 <span class="math inline">\(U\setminus(\overline{A_1}\cup\cdots\cup\overline{A_n})\)</span> 是 <span class="math inline">\(x\)</span> 的邻域, 且与 <span class="math inline">\({\cal A}\)</span> 中任意集合不交, 故 <span class="math inline">\(x\notin\overline{\bigcup_{A\in{\cal A}}A}\)</span>.</p>
-</div></li>
-<li><p><strong>紧穷竭</strong>: 紧集列 <span class="math inline">\((K_i)_{i=1}^\infty\)</span>, 满足 <span class="math inline">\(X=\bigcup_iX_i\)</span> 且 <span class="math inline">\(K_i\subset{\rm Int}K_{i+1}\)</span>.</p></li>
-<li><p>(紧穷竭存在性) 第二可数, 局部紧的 Hausdorff 空间存在紧穷竭.</p>
-<div class="note note-secondary">
-<p><u>Pf</u> 因为 <span class="math inline">\(X\)</span> 是局部紧的 Hausdorff 空间, 存在预紧开集组成的拓扑基. 又由第二可数性, <span class="math inline">\(X\)</span> 可以被可数多个这样的开集覆盖, 记为 <span class="math inline">\(\{U_i\}_{i=1}^\infty\)</span>.</p>
-<p>我们只需要构造紧集列 <span class="math inline">\((K_i)_{i=1}^\infty\)</span> 满足 <span class="math inline">\(U_j\subset K_j\)</span> 且 <span class="math inline">\(K_j\subset{\rm Int}K_{j+1}\)</span>. 用归纳法.</p>
-<p>令 <span class="math inline">\(K_1=\overline{U}_1\)</span>. 假设我们构造了 <span class="math inline">\(K_1,\dots,K_n\)</span> 满足条件. 因为 <span class="math inline">\(K_n\)</span> 紧, (能被有限个 <span class="math inline">\(U_i\)</span> 覆盖) 所以存在正整数 <span class="math inline">\(k_n\)</span>, 使得 <span class="math inline">\(K_n\subset U_1\cup\cdots\cup U_{k_n}\)</span>. 令 <span class="math inline">\(K_{n+1}=\overline{U_1}\cup\cdots\cup \overline{U_{k_n}}\)</span>, 则 <span class="math inline">\(K_{n+1}\)</span> 紧, 且根据 "局部有限集族的性质", <span class="math inline">\(K_{n+1}=\overline{U_1\cup\cdots\cup U_{k_n}}\)</span>, 于是 <span class="math inline">\({\rm Int}K_{n+1}=U_1\cup\cdots\cup U_{k_n}\supset K_n\)</span>. 如果我们进一步要求 <span class="math inline">\(k_n&gt;n+1\)</span>, 则有 <span class="math inline">\(U_{n+1}\subset K_{n+1}\)</span>, 完成了归纳.</p>
-</div></li>
-<li><p>(仿紧性定理) 第二可数, 局部紧的 Hausdorff 空间是仿紧的.</p>
-<div class="note note-secondary">
-<p><u>Pf</u> 设 <span class="math inline">\(X\)</span> 是局部紧的 Hausdorff 空间, <span class="math inline">\((K_i)_{i=1}^\infty\)</span> 是其紧穷竭. 任给开覆盖 <span class="math inline">\({\cal U}\)</span>.</p>
-<p>对 <span class="math inline">\(j\in\N^+\)</span>, 令 <span class="math inline">\(A_j=K_{j+1}\setminus{\rm Int}K_k\)</span> 以及 <span class="math inline">\(W_j={\rm Int}K_{j+2}\setminus K_{j-1}\)</span> (规定 <span class="math inline">\(K_0=\emptyset\)</span>). 则 <span class="math inline">\(A_j\)</span> 作为紧集 <span class="math inline">\(K_{j+1}\)</span> 的闭子集, 是紧集; <span class="math inline">\(W_j\)</span> 是开集, 且 <span class="math inline">\(A_j\subset W_j\)</span>.</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/paracompactness-theorem.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
-<p>对任意 <span class="math inline">\(x\in A_j\)</span>, 取 <span class="math inline">\({\cal U}\)</span> 中包含 <span class="math inline">\(x\)</span> 的开集 <span class="math inline">\(U_x\)</span>, 令 <span class="math inline">\(V_x=U_x\cap W_j\)</span>. 当 <span class="math inline">\(x\)</span> 取遍 <span class="math inline">\(A_j\)</span>, 开集 <span class="math inline">\(V_x\)</span> 组成 <span class="math inline">\(A_j\)</span> 的开覆盖. 因为 <span class="math inline">\(A_j\)</span> 紧, 它有有限子覆盖 <span class="math inline">\({\cal A}_j\)</span>. 当 <span class="math inline">\(j\)</span> 取遍 <span class="math inline">\(\N^+\)</span>, 所有 <span class="math inline">\({\cal A}_j\)</span> 之并组成 <span class="math inline">\(M\)</span> 的开覆盖, 且构成 <span class="math inline">\({\cal U}\)</span> 的加细. 因为 <span class="math inline">\(W_j\)</span> 与 <span class="math inline">\(W_{j'}\)</span> 相交当且仅当 <span class="math inline">\(j-2\leq j'\leq j+2\)</span>, 因此上述开覆盖是局部有限的.</p>
-</div></li>
-</ul>
-<h3 id="normal-spaces">15.2  Normal spaces</h3>
-<p><strong>正则空间</strong>: Hausdorff, 且闭集和其外一点可被开集分离.</p>
-<p><strong>正规空间</strong>: Hausdorff, 且不交的闭集可被开集分离.</p>
-<ul>
-<li><p>正规 <span class="math inline">\(\Rightarrow\)</span> 正则 <span class="math inline">\(\Rightarrow\)</span> Hausdorff.</p>
-<ul>
-<li>紧 + Hausdorff <span class="math inline">\(\Rightarrow\)</span> 正规. (Hausdorff 空间中, 紧子集可被开集分离的直接推论.)</li>
-<li>(继承) 正规空间的闭子集正规.</li>
-</ul></li>
-<li><p>(正规条件) Hausdorff 空间 <span class="math inline">\(X\)</span> 正规, 当且仅当对任意闭集 <span class="math inline">\(A\subset X\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在 <span class="math inline">\(A\)</span> 的邻域 <span class="math inline">\(V\)</span> 满足 <span class="math inline">\(\overline{V}\subset U\)</span>.</p>
-<div class="note note-secondary">
-<p><u>Pf</u> 若 <span class="math inline">\(X\)</span> 正规, 则闭集 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B=X\setminus U\)</span> 可被开集 <span class="math inline">\(V,W\)</span> 分离, 则 <span class="math inline">\(V\)</span> 真包含于闭集 <span class="math inline">\(X\setminus W\)</span>, 后者包含于 <span class="math inline">\(U\)</span>, 进而 <span class="math inline">\(\overline{V}\subset U\)</span>.</p>
-<p>反之, 若满足右侧的条件, 任给不交闭集 <span class="math inline">\(A,B\)</span>, 则 <span class="math inline">\(U=X\setminus B\)</span> 是 <span class="math inline">\(A\)</span> 的邻域. 存在 <span class="math inline">\(A\)</span> 的邻域 <span class="math inline">\(V\)</span> 满足 <span class="math inline">\(V\subset\overline{V}\subset U\)</span>, 则 <span class="math inline">\(V\)</span> 和 <span class="math inline">\({\rm Ext}V\)</span> 分离 <span class="math inline">\(A,B\)</span>.</p>
-</div></li>
-<li><p>(正规性定理) 仿紧的 Hausdorff 空间是正规的.</p>
-<div class="note note-secondary">
-<p><u>Pf</u></p>
-</div></li>
-<li><p>(Urysohn 引理) <span class="math inline">\(X\)</span> 正规. 若 <span class="math inline">\(A,B\)</span> 为不交闭子集, 存在连续函数 <span class="math inline">\(f:X\to[0,1]\)</span> 满足 <span class="math inline">\(f|_A\equiv0\)</span>, <span class="math inline">\(f|_B\equiv1\)</span>.</p>
-<ul>
-<li>正规空间中, 不交闭集可被连续函数分离.</li>
-</ul>
-<div class="note note-secondary">
-<p><u>Pf</u></p>
-</div></li>
-<li><p><strong>支集</strong>: 连续函数 <span class="math inline">\(f:X\to\R\)</span> 的支集指的是 <span class="math inline">\(\supp f=\overline{\{x\in X\mid f(x)\neq0\}}\)</span>.</p></li>
-<li><p><strong>鼓包函数</strong>: 设闭子集 <span class="math inline">\(A\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 满足 <span class="math inline">\(f|_A\equiv1\)</span> 且 <span class="math inline">\(\supp f\subset U\)</span> 的连续函数 <span class="math inline">\(f:X\to[0,1]\)</span> 称为 <span class="math inline">\(A\)</span> 的支在 <span class="math inline">\(U\)</span> 上的鼓包函数.</p></li>
-<li><p>(鼓包函数存在性) <span class="math inline">\(X\)</span> 正规. 任给闭子集 <span class="math inline">\(A\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在 <span class="math inline">\(A\)</span> 的支在 <span class="math inline">\(U\)</span> 上的鼓包函数.</p>
-<div class="note note-secondary">
-<p><u>Pf</u> 对 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B=X\setminus U\)</span> 应用 Urysohn 引理.</p>
-</div></li>
-</ul>
-<h3 id="partitions-of-unity">15.3  Partitions of unity</h3>
-<p><strong>单位分解</strong>: <span class="math inline">\(X\)</span> 的开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>. 一个从属于 <span class="math inline">\({\cal U}\)</span> 的单位分解指的是一族连续函数 <span class="math inline">\(\psi_\alpha:X\to\R\)</span>, 满足</p>
-<ol type="1">
-<li><span class="math inline">\(0\leq\psi_\alpha(p)\leq1\)</span>, 对任意 <span class="math inline">\(\alpha\in A,p\in X\)</span>.</li>
-<li><span class="math inline">\(\supp\psi_\alpha\subset U_\alpha\)</span>.</li>
-<li>支集族 <span class="math inline">\((\supp\psi_\alpha)_{\alpha\in A}\)</span> 局部有限.</li>
-<li><span class="math inline">\(\sum_\alpha\psi_\alpha(p)=1\)</span>, 对任意 <span class="math inline">\(p\in X\)</span>.</li>
-</ol>
-<ul>
-<li><p>(局部有限加细引理) <span class="math inline">\(X\)</span> 是仿紧 Hausdorff 空间. 设开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>, 则 <span class="math inline">\({\cal U}\)</span> 存在局部有限加细 <span class="math inline">\((V_\alpha)_{\alpha\in A}\)</span> 且 <span class="math inline">\(\overline{V_\alpha}\subset U_\alpha\)</span>.</p>
-<div class="note note-secondary">
-<p><u>Pf</u></p>
-</div></li>
-<li><p>(单位分解存在性) <span class="math inline">\(X\)</span> 是仿紧 Hausdorff 空间. 任给开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>, 存在从属于其的单位分解.</p>
-<div class="note note-secondary">
-<p><u>Pf</u></p>
-</div></li>
-</ul>
-<p>单位分解的应用.</p>
-<ul>
-<li>(紧流形的可嵌入性) 紧流形同胚于欧氏空间的子集.</li>
-<li>(连续函数的零点集) 设流形 <span class="math inline">\(M\)</span> 的闭子集 <span class="math inline">\(B\)</span>, 则存在连续函数 <span class="math inline">\(f:M\to[0,+\infty)\)</span>, 其零点集恰为 <span class="math inline">\(B\)</span>.</li>
-<li>(穷竭函数存在性) 流形上存在正穷竭函数.</li>
-</ul>
-<h2 id="proper-maps">16  Proper Maps</h2>
 </body></html>
                 
               </div>
@@ -648,7 +560,7 @@ S^n \overset{i}\hookrightarrow \R^{n+1}\setminus\{0\}
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM202 | 3 紧致性</div>
+      <div>GTM202 | 4 紧致性</div>
       <div>https://disembo.github.io/Note/tp-gtm202-4/</div>
     </div>
     <div class="license-meta">
@@ -692,6 +604,12 @@ S^n \overset{i}\hookrightarrow \R^{n+1}\setminus\{0\}
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Note/tp-gtm202-5/" title="GTM202 | 5 紧致性">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM202 | 5 紧致性</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

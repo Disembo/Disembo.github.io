@@ -1,0 +1,814 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="仿紧性与单位分解, 逆紧映射.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM202 | 5 紧致性">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-5/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="仿紧性与单位分解, 逆紧映射.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/paracompactness-theorem.png">
+<meta property="article:published_time" content="2024-07-28T05:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-28T05:11:39.010Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="拓扑">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/paracompactness-theorem.png">
+  
+  
+  
+  <title>GTM202 | 5 紧致性 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM202 | 5 紧致性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-28 13:00" pubdate>
+          2024年7月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM202 | 5 紧致性</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 4 的笔记.</p>
+</div>
+<h2 id="paracompactness">15  Paracompactness</h2>
+<h3 id="paracompactness-1">15.1  Paracompactness</h3>
+<p>仿紧的 Hausdorff 空间有一些好性质.</p>
+<p><strong>仿紧</strong>: <span class="math inline">\(X\)</span> 的任意开覆盖都有局部有限的开加细.</p>
+<ul>
+<li><p><strong>局部有限</strong>: 对任意 <span class="math inline">\(x\in X\)</span>, 存在邻域 <span class="math inline">\(U_x\)</span>, 使得 <span class="math inline">\(U_x\)</span> 只和 <span class="math inline">\({\cal A}\)</span> 中有限个元素相交.</p></li>
+<li><p><strong>加细</strong>: 对任意 <span class="math inline">\(B\in{\cal B}\)</span>, 存在 <span class="math inline">\(A\in{\cal A}\)</span>, 满足 <span class="math inline">\(B\subset A\)</span>.</p></li>
+<li><p>(闭包局部有限) <span class="math inline">\(X\)</span> 的子集族 <span class="math inline">\({\cal A}\)</span> 局部有限, 当且仅当 <span class="math inline">\(\overline{\cal A}=\{\overline{A}\mid A\in{\cal A}\}\)</span> 局部有限.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 因为 <span class="math inline">\(A\subset\overline{A}\)</span>, 所以当 <span class="math inline">\(\overline{\cal A}\)</span> 局部有限, <span class="math inline">\(\cal A\)</span> 也局部有限. 若 <span class="math inline">\({\cal A}\)</span> 局部有限, 任给 <span class="math inline">\(x\in X\)</span>, 设邻域 <span class="math inline">\(W\)</span> 只与 <span class="math inline">\({\cal A}\)</span> 中有限个集合 <span class="math inline">\(A_1,\dots,A_n\)</span> 相交. 因为 <span class="math inline">\(W\cap\overline{A}\)</span> 非空蕴含 <span class="math inline">\(W\cap A\)</span> 非空 (对任意 <span class="math inline">\(A\in{\cal A}\)</span>), 因此满足 <span class="math inline">\(W\cap\overline{A}\)</span> 的 <span class="math inline">\(A\)</span> 一定在 <span class="math inline">\(A_1,\dots,A_n\)</span> 中, 所以 <span class="math inline">\(W\)</span> 只与 <span class="math inline">\(\overline{\cal A}\)</span> 中有限个元素相交.</p>
+</div></li>
+<li><p>(局部有限集族的性质) 若 <span class="math inline">\({\cal A}\)</span> 局部有限, 则 <span class="math inline">\(\overline{\bigcup_{A\in{\cal A}}A}=\bigcup_{A\in{\cal A}}\overline{A}\)</span>.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 注意 <span class="math inline">\(\overline{\bigcup_{A\in{\cal A}}A}\supset\bigcup_{A\in{\cal A}}\overline{A}\)</span> 是平凡的, 所以只证反向包含. 考虑逆否命题, 即任给 <span class="math inline">\(x\notin\bigcup_{A\in{\cal A}}\overline{A}\)</span>, 要证明 <span class="math inline">\(x\notin\overline{\bigcup_{A\in{\cal A}}A}\)</span>. 因为 <span class="math inline">\({\cal A}\)</span> 局部有限, 所以 <span class="math inline">\(\overline{\cal A}\)</span> 局部有限, 存在 <span class="math inline">\(x\)</span> 的邻域 <span class="math inline">\(U\)</span> 只与有限个 <span class="math inline">\(\overline{A}\)</span> 相交, 记为 <span class="math inline">\(\overline{A_1},\dots,\overline{A_n}\)</span>. 则 <span class="math inline">\(U\setminus(\overline{A_1}\cup\cdots\cup\overline{A_n})\)</span> 是 <span class="math inline">\(x\)</span> 的邻域, 且与 <span class="math inline">\({\cal A}\)</span> 中任意集合不交, 故 <span class="math inline">\(x\notin\overline{\bigcup_{A\in{\cal A}}A}\)</span>.</p>
+</div></li>
+<li><p><strong>紧穷竭</strong>: 紧集列 <span class="math inline">\((K_i)_{i=1}^\infty\)</span>, 满足 <span class="math inline">\(X=\bigcup_iX_i\)</span> 且 <span class="math inline">\(K_i\subset{\rm Int}K_{i+1}\)</span>.</p></li>
+<li><p>(紧穷竭存在性) 第二可数, 局部紧的 Hausdorff 空间存在紧穷竭.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 因为 <span class="math inline">\(X\)</span> 是局部紧的 Hausdorff 空间, 存在预紧开集组成的拓扑基. 又由第二可数性, <span class="math inline">\(X\)</span> 可以被可数多个这样的开集覆盖, 记为 <span class="math inline">\(\{U_i\}_{i=1}^\infty\)</span>.</p>
+<p>我们只需要构造紧集列 <span class="math inline">\((K_i)_{i=1}^\infty\)</span> 满足 <span class="math inline">\(U_j\subset K_j\)</span> 且 <span class="math inline">\(K_j\subset{\rm Int}K_{j+1}\)</span>. 用归纳法.</p>
+<p>令 <span class="math inline">\(K_1=\overline{U}_1\)</span>. 假设我们构造了 <span class="math inline">\(K_1,\dots,K_n\)</span> 满足条件. 因为 <span class="math inline">\(K_n\)</span> 紧, (能被有限个 <span class="math inline">\(U_i\)</span> 覆盖) 所以存在正整数 <span class="math inline">\(k_n\)</span>, 使得 <span class="math inline">\(K_n\subset U_1\cup\cdots\cup U_{k_n}\)</span>. 令 <span class="math inline">\(K_{n+1}=\overline{U_1}\cup\cdots\cup \overline{U_{k_n}}\)</span>, 则 <span class="math inline">\(K_{n+1}\)</span> 紧, 且根据 "局部有限集族的性质", <span class="math inline">\(K_{n+1}=\overline{U_1\cup\cdots\cup U_{k_n}}\)</span>, 于是 <span class="math inline">\({\rm Int}K_{n+1}=U_1\cup\cdots\cup U_{k_n}\supset K_n\)</span>. 如果我们进一步要求 <span class="math inline">\(k_n&gt;n+1\)</span>, 则有 <span class="math inline">\(U_{n+1}\subset K_{n+1}\)</span>, 完成了归纳.</p>
+</div></li>
+<li><p>(仿紧性定理) 第二可数, 局部紧的 Hausdorff 空间是仿紧的.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 设 <span class="math inline">\(X\)</span> 是局部紧的 Hausdorff 空间, <span class="math inline">\((K_i)_{i=1}^\infty\)</span> 是其紧穷竭. 任给开覆盖 <span class="math inline">\({\cal U}\)</span>.</p>
+<p>对 <span class="math inline">\(j\in\N^+\)</span>, 令 <span class="math inline">\(A_j=K_{j+1}\setminus{\rm Int}K_k\)</span> 以及 <span class="math inline">\(W_j={\rm Int}K_{j+2}\setminus K_{j-1}\)</span> (规定 <span class="math inline">\(K_0=\emptyset\)</span>). 则 <span class="math inline">\(A_j\)</span> 作为紧集 <span class="math inline">\(K_{j+1}\)</span> 的闭子集, 是紧集; <span class="math inline">\(W_j\)</span> 是开集, 且 <span class="math inline">\(A_j\subset W_j\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/paracompactness-theorem.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>对任意 <span class="math inline">\(x\in A_j\)</span>, 取 <span class="math inline">\({\cal U}\)</span> 中包含 <span class="math inline">\(x\)</span> 的开集 <span class="math inline">\(U_x\)</span>, 令 <span class="math inline">\(V_x=U_x\cap W_j\)</span>. 当 <span class="math inline">\(x\)</span> 取遍 <span class="math inline">\(A_j\)</span>, 开集 <span class="math inline">\(V_x\)</span> 组成 <span class="math inline">\(A_j\)</span> 的开覆盖. 因为 <span class="math inline">\(A_j\)</span> 紧, 它有有限子覆盖 <span class="math inline">\({\cal A}_j\)</span>. 当 <span class="math inline">\(j\)</span> 取遍 <span class="math inline">\(\N^+\)</span>, 所有 <span class="math inline">\({\cal A}_j\)</span> 之并组成 <span class="math inline">\(M\)</span> 的开覆盖, 且构成 <span class="math inline">\({\cal U}\)</span> 的加细. 因为 <span class="math inline">\(W_j\)</span> 与 <span class="math inline">\(W_{j'}\)</span> 相交当且仅当 <span class="math inline">\(j-2\leq j'\leq j+2\)</span>, 因此上述开覆盖是局部有限的.</p>
+</div></li>
+</ul>
+<h3 id="normal-spaces">15.2  Normal spaces</h3>
+<p><strong>正则空间</strong>: Hausdorff, 且闭集和其外一点可被开集分离.</p>
+<p><strong>正规空间</strong>: Hausdorff, 且不交的闭集可被开集分离.</p>
+<ul>
+<li><p>正规 <span class="math inline">\(\Rightarrow\)</span> 正则 <span class="math inline">\(\Rightarrow\)</span> Hausdorff.</p>
+<ul>
+<li>紧 + Hausdorff <span class="math inline">\(\Rightarrow\)</span> 正规. (Hausdorff 空间中, 紧子集可被开集分离的直接推论.)</li>
+<li>(继承) 正规空间的闭子集正规.</li>
+</ul></li>
+<li><p>(正规条件) Hausdorff 空间 <span class="math inline">\(X\)</span> 正规, 当且仅当对任意闭集 <span class="math inline">\(A\subset X\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在 <span class="math inline">\(A\)</span> 的邻域 <span class="math inline">\(V\)</span> 满足 <span class="math inline">\(\overline{V}\subset U\)</span>.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 若 <span class="math inline">\(X\)</span> 正规, 则闭集 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B=X\setminus U\)</span> 可被开集 <span class="math inline">\(V,W\)</span> 分离, 则 <span class="math inline">\(V\)</span> 真包含于闭集 <span class="math inline">\(X\setminus W\)</span>, 后者包含于 <span class="math inline">\(U\)</span>, 进而 <span class="math inline">\(\overline{V}\subset U\)</span>.</p>
+<p>反之, 若满足右侧的条件, 任给不交闭集 <span class="math inline">\(A,B\)</span>, 则 <span class="math inline">\(U=X\setminus B\)</span> 是 <span class="math inline">\(A\)</span> 的邻域. 存在 <span class="math inline">\(A\)</span> 的邻域 <span class="math inline">\(V\)</span> 满足 <span class="math inline">\(V\subset\overline{V}\subset U\)</span>, 则 <span class="math inline">\(V\)</span> 和 <span class="math inline">\({\rm Ext}V\)</span> 分离 <span class="math inline">\(A,B\)</span>.</p>
+</div></li>
+<li><p>(正规性定理) 仿紧的 Hausdorff 空间是正规的.</p>
+<ul>
+<li>证明和之前的 "分离性引理" (不交紧集被开集分离) 很像.</li>
+</ul>
+<div class="note note-secondary">
+<p><u>Pf</u> 第一步, 证明 <span class="math inline">\(X\)</span> 是正则的. 任给不交闭集 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B=\{q\}\)</span>. 由 Hausdorff, 任给 <span class="math inline">\(p\in A\)</span>, 存在不交邻域 <span class="math inline">\(U_p\ni p\)</span>, <span class="math inline">\(V_p\ni q\)</span>. 当 <span class="math inline">\(p\)</span> 取遍 <span class="math inline">\(A\)</span>, 所有 <span class="math inline">\(U_p\)</span> 连同 <span class="math inline">\(X\setminus A\)</span> 一起构成了 <span class="math inline">\(X\)</span> 的开覆盖. 由仿紧性, 它有局部有限的开加细 <span class="math inline">\({\cal W}\)</span>. <span class="math inline">\({\cal W}\)</span> 中的任意元素或者是某 <span class="math inline">\(U_p\)</span> 的子集, 或者是 <span class="math inline">\(X\setminus A\)</span> 的子集, 令 <span class="math inline">\({\cal U}\)</span> 是所有前者的全体. 则 <span class="math inline">\({\cal U}\)</span> 是 <span class="math inline">\(A\)</span> 的局部有限开覆盖, 并且, 任给 <span class="math inline">\(U\in{\cal U}\)</span>, 存在 <span class="math inline">\(q\)</span> 的邻域 <span class="math inline">\(V\)</span> 与 <span class="math inline">\(U\)</span> 不交, 因此 <span class="math inline">\(\overline{U}\)</span> 不包含 <span class="math inline">\(q\)</span>.</p>
+<p>令 <span class="math inline">\(\mathbb{U}=\bigcup_{U\in\cal U}U\)</span>, <span class="math inline">\(\mathbb{V}=X\setminus\overline{\mathbb{U}}\)</span>. 因为 <span class="math inline">\({\cal U}\)</span> 局部有限, 所以 <span class="math inline">\(\overline{\mathbb{U}}=\bigcup_{U\in\cal U}\overline{U}\)</span>, 进而 <span class="math inline">\(\overline{\mathbb{U}}\)</span> 不包含 <span class="math inline">\(q\)</span>. 因此, <span class="math inline">\(\mathbb{U},\mathbb{V}\)</span> 分别是 <span class="math inline">\(A,B\)</span> 的不交邻域.</p>
+<p>第二步, 证明 <span class="math inline">\(X\)</span> 是正规的. 和第一步一样, 只不过将 Hausdorff 性换成正则性.</p>
+</div></li>
+<li><p>(Urysohn 引理) <span class="math inline">\(X\)</span> 正规. 若 <span class="math inline">\(A,B\)</span> 为不交闭子集, 存在连续函数 <span class="math inline">\(f:X\to[0,1]\)</span> 满足 <span class="math inline">\(f|_A\equiv0\)</span>, <span class="math inline">\(f|_B\equiv1\)</span>.</p>
+<ul>
+<li>正规空间中, 不交闭集可被连续函数分离.</li>
+<li>这意味着正规空间中的函数的 "等高线" 可以足够密集. 证明中, 我们通过构造一系列密集的下水平集, 来确定一个函数 <span class="math inline">\(f\)</span>.</li>
+</ul>
+<div class="note note-secondary">
+<p><u>Pf</u> 我们将构造 <span class="math inline">\(X\)</span> 的开集族 <span class="math inline">\(\{U_r\}_{r\in\Q}\)</span>, 满足:</p>
+<ol type="1">
+<li>当 <span class="math inline">\(r&lt;0\)</span>, <span class="math inline">\(U_r=\emptyset\)</span>; 当 <span class="math inline">\(r&gt;1\)</span>, <span class="math inline">\(U_r=X\)</span>.</li>
+<li><span class="math inline">\(U_0\supset A\)</span>.</li>
+<li><span class="math inline">\(U_1=X\setminus B\)</span>.</li>
+<li>对于 <span class="math inline">\(p&lt;q\)</span>, <span class="math inline">\(\overline{U}_p\subset U_q\)</span>.</li>
+</ol>
+<p>条件 1 确定了 <span class="math inline">\(r\notin[0,1]\)</span> 时的 <span class="math inline">\(U_r\)</span>. 定义 <span class="math inline">\(U_1=X\setminus B\)</span>, 根据正规性, 存在闭集 <span class="math inline">\(A\)</span> 的邻域 <span class="math inline">\(U_0\)</span> 使得 <span class="math inline">\(\overline{U_0}\subset U_1\)</span>.</p>
+<p>对于 <span class="math inline">\(r\in(0,1)\)</span>, 我们用归纳法. 将 <span class="math inline">\((0,1)\)</span> 间的有理数 (不重不漏地) 排成序列 <span class="math inline">\((r_i)_{i\in\N^+}\)</span>.</p>
+<ul>
+<li>首先, 根据正规性, 存在开集 <span class="math inline">\(U_{r_1}\subset X\)</span>, 使得 <span class="math inline">\(\overline{U_0}\subset U_{r_1}\)</span> 且 <span class="math inline">\(\overline{U_{r_1}}\subset U_1\)</span>.</li>
+<li>现假设我们已经对 <span class="math inline">\(i=1,\dots,n\)</span> 构造出了开集 <span class="math inline">\(U_{r_i}\)</span> 满足 <span class="math inline">\(\overline{U_0}\subset U_{r_i}\)</span>, <span class="math inline">\(\overline{U_{r_i}}\subset U_1\)</span> 并且满足条件 4. 对于下一个有理数 <span class="math inline">\(r_{n+1}\)</span>, 考虑集合 <span class="math inline">\(\{0,r_1,\dots,r_n,1\}\)</span>, 令 <span class="math inline">\(p\)</span> 是该集合中小于 <span class="math inline">\(r_{n+1}\)</span> 的最大数; 令 <span class="math inline">\(q\)</span> 是该集合中大于 <span class="math inline">\(r_{n+1}\)</span> 的最小数. 根据归纳假设, <span class="math inline">\(\overline{U_p}\subset U_q\)</span>. 根据正规性, 存在 <span class="math inline">\(\overline{U_p}\)</span> 开邻域 <span class="math inline">\(U_{r_{n+1}}\)</span> 满足 <span class="math inline">\(\overline{U_p}\subset U_{r_{n+1}}\)</span> 且 <span class="math inline">\(\overline{U_{r_{n+1}}}\subset U_q\)</span>. 于是 <span class="math inline">\(U_{r_{n+1}}\)</span> 也满足条件.</li>
+</ul>
+<p>根据归纳法原理, 我们构造出了满足条件 1-4 的开集族 <span class="math inline">\(\{U_r\}_{r\in\Q}\)</span>.</p>
+<p>现在, 我们可以定义函数 <span class="math inline">\(f:X\to\R\)</span>, <span class="math display">\[
+f(x)=\inf\{r\in\Q\mid x\in U_r\}.
+\]</span> 由条件 1, <span class="math inline">\(f\)</span> 是良定义的, 且 <span class="math inline">\(f(x)\in[0,1]\)</span>. 条件 2 保证 <span class="math inline">\(f(A)=0\)</span>, 条件 3 和 4 保证 <span class="math inline">\(f(B)=1\)</span>. 只需要证明 <span class="math inline">\(f\)</span> 是连续的.</p>
+<p>由连续性的 subbasis criterion, 我们只需要对 <span class="math inline">\([0,1]\)</span> 的子基, 即形如 <span class="math inline">\((-\infty,a),(a,+\infty)\)</span> 的开集验证原像的开性. 注意以下两个观察: <span class="math display">\[
+\Align{
+f(x)&lt;a &amp;\iff x\in U_r\textsf{ 对某 }r&lt;a, \\
+f(x)\leq a &amp;\iff x\in\overline{U_r}\textsf{ 对任意 } r&gt;a.
+}
+\]</span></p>
+<ul>
+<li><p>第一条, 根据 <span class="math inline">\(f\)</span> 的定义立刻得到.</p></li>
+<li><p>第二条, 设 <span class="math inline">\(f(x)\leq a\)</span>, 任给 <span class="math inline">\(r&gt;a\)</span>, 由 <span class="math inline">\(f\)</span> 的定义, 存在 <span class="math inline">\(s&lt;r\)</span> 使得 <span class="math inline">\(x\in U_s\subset U_r\subset\overline{U_r}\)</span>.</p>
+<p>反之, 设 <span class="math inline">\(x\in\overline{U_r}\)</span> 对任意 <span class="math inline">\(r&gt;a\)</span>. 若有理数 <span class="math inline">\(s&gt;a\)</span>, 则存在有理数 <span class="math inline">\(r\)</span> 使得 <span class="math inline">\(s&gt;r&gt;a\)</span>, 根据假设, <span class="math inline">\(x\in\overline{U_r}\subset U_s\)</span>, 说明 <span class="math inline">\(f(x)\leq s\)</span>. 因为这对任意 <span class="math inline">\(s&gt;a\)</span> 成立, 所以 <span class="math inline">\(f(x)\leq a\)</span>.</p></li>
+</ul>
+<p>因此, 原像集 <span class="math display">\[
+\Align{
+f^{-1}((-\infty,a)) &amp;=\bigcup_{r\in\Q_{&lt;a}} U_r, &amp;
+f^{-1}((a,+\infty)) &amp;=X\setminus \bigcap_{r\in\Q_{&gt;a}}\overline{U_r},
+}
+\]</span> (开集的任意并开; 闭集的任意交闭) 是开集.</p>
+</div></li>
+<li><p><strong>支集</strong>: 连续函数 <span class="math inline">\(f:X\to\R\)</span> 的支集指的是 <span class="math inline">\(\supp f=\overline{\{x\in X\mid f(x)\neq0\}}\)</span>.</p></li>
+<li><p><strong>鼓包函数</strong>: 设闭子集 <span class="math inline">\(A\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 满足 <span class="math inline">\(f|_A\equiv1\)</span> 且 <span class="math inline">\(\supp f\subset U\)</span> 的连续函数 <span class="math inline">\(f:X\to[0,1]\)</span> 称为 <span class="math inline">\(A\)</span> 的支在 <span class="math inline">\(U\)</span> 上的鼓包函数.</p></li>
+<li><p>(鼓包函数存在性) <span class="math inline">\(X\)</span> 正规. 任给闭子集 <span class="math inline">\(A\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在 <span class="math inline">\(A\)</span> 的支在 <span class="math inline">\(U\)</span> 上的鼓包函数.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 对 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B=X\setminus U\)</span> 应用 Urysohn 引理.</p>
+</div></li>
+</ul>
+<h3 id="partitions-of-unity">15.3  Partitions of unity</h3>
+<p><strong>单位分解</strong>: <span class="math inline">\(X\)</span> 的开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>. 一个从属于 <span class="math inline">\({\cal U}\)</span> 的单位分解指的是一族连续函数 <span class="math inline">\(\psi_\alpha:X\to\R\)</span>, 满足</p>
+<ol type="1">
+<li><span class="math inline">\(0\leq\psi_\alpha(p)\leq1\)</span>, 对任意 <span class="math inline">\(\alpha\in A,p\in X\)</span>.</li>
+<li><span class="math inline">\(\supp\psi_\alpha\subset U_\alpha\)</span>.</li>
+<li>支集族 <span class="math inline">\((\supp\psi_\alpha)_{\alpha\in A}\)</span> 局部有限.</li>
+<li><span class="math inline">\(\sum_\alpha\psi_\alpha(p)=1\)</span>, 对任意 <span class="math inline">\(p\in X\)</span>.</li>
+</ol>
+<ul>
+<li><p>(局部有限加细引理) <span class="math inline">\(X\)</span> 是仿紧 Hausdorff 空间. 设开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>, 则 <span class="math inline">\({\cal U}\)</span> 存在局部有限加细 <span class="math inline">\((V_\alpha)_{\alpha\in A}\)</span> 且 <span class="math inline">\(\overline{V_\alpha}\subset U_\alpha\)</span>.</p>
+<div class="note note-secondary">
+<p><u>Pf</u></p>
+</div></li>
+<li><p>(单位分解存在性) <span class="math inline">\(X\)</span> 是仿紧 Hausdorff 空间. 任给开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>, 存在从属于其的单位分解.</p>
+<div class="note note-secondary">
+<p><u>Pf</u></p>
+</div></li>
+</ul>
+<p>单位分解的应用.</p>
+<ul>
+<li>(紧流形的可嵌入性) 紧流形同胚于欧氏空间的子集.</li>
+<li>(连续函数的零点集) 设流形 <span class="math inline">\(M\)</span> 的闭子集 <span class="math inline">\(B\)</span>, 则存在连续函数 <span class="math inline">\(f:M\to[0,+\infty)\)</span>, 其零点集恰为 <span class="math inline">\(B\)</span>.</li>
+<li>(穷竭函数存在性) 流形上存在正穷竭函数.</li>
+</ul>
+<h2 id="proper-maps">16  Proper Maps</h2>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM202 | 5 紧致性</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202-4/" title="GTM202 | 4 紧致性">
+                        <span class="hidden-mobile">GTM202 | 4 紧致性</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/art-copyright.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
