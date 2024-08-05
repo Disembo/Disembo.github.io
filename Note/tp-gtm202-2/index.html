@@ -24,7 +24,7 @@
 <meta property="og:description" content="构造新的拓扑空间, 群作用.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-23T13:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-24T11:51:03.559Z">
+<meta property="article:modified_time" content="2024-08-05T08:14:27.613Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -316,6 +316,7 @@ Y \ar[r]_f \ar[ru]^{i\circ f} &amp; S \ar@{_{(}-&gt;}[u]_i
 <li><p>(唯一性) 子空间拓扑是满足泛性质的唯一拓扑.</p>
 <ul>
 <li>我们想要子空间拓扑满足: (1) 包含映射连续 (要有足够开集); (2) 若连续映射 <span class="math inline">\(f:Y\to X\)</span> 的像集包含在 <span class="math inline">\(S\)</span> 内, 则 <span class="math inline">\(f:Y\to S\)</span> 也连续 (不能有太多开集). 子空间拓扑是平衡两者的唯一选择.</li>
+<li>子空间拓扑是使得包含映射 <span class="math inline">\(S\hookrightarrow X\)</span> 连续的最弱拓扑.</li>
 </ul></li>
 <li><p>(性质) <span class="math inline">\(X\)</span> 的子空间 <span class="math inline">\(S\)</span>.</p>
 <ul>
@@ -326,13 +327,13 @@ Y \ar[r]_f \ar[ru]^{i\circ f} &amp; S \ar@{_{(}-&gt;}[u]_i
 </ul></li>
 <li><p>(稠密性夹逼) 设 <span class="math inline">\(A\subset B\subset X\)</span>, 则 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(X\)</span> 中稠密, 当且仅当 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中稠密, 且 <span class="math inline">\(B\)</span> 在 <span class="math inline">\(X\)</span> 中稠密.</p>
 <div class="note note-secondary">
-<p><u>Pf</u> 设 <span class="math inline">\(\bar{A}=X\)</span>, 则 <span class="math inline">\(\bar{B}\supset\bar{A}=X\)</span>, 于是 <span class="math inline">\(\bar{A}=\bar{B}=X\)</span>.</p>
-<p>设 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中稠密, <span class="math inline">\(B\)</span> 在 <span class="math inline">\(X\)</span> 中稠密. 记 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中的闭包为 <span class="math inline">\(\bar{A}^B\)</span>, 则 <span class="math display">\[
+<p><u>Pf</u> 设 <span class="math inline">\(\overline{A}=X\)</span>, 则 <span class="math inline">\(\overline{B}\supset\overline{A}=X\)</span>, 于是 <span class="math inline">\(\overline{A}=\overline{B}=X\)</span>.</p>
+<p>设 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中稠密, <span class="math inline">\(B\)</span> 在 <span class="math inline">\(X\)</span> 中稠密. 记 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中的闭包为 <span class="math inline">\(\overline{A}^B\)</span>, 则 <span class="math display">\[
 B
-= \bar{A}^B
+= \overline{A}^B
 = \bigcap\{(\textsf{包含 }A\textsf{ 的闭集})\cap B\}
-= \bar{A}\cap B.
-\]</span> 因此 <span class="math inline">\(B\subset\bar{A}\)</span>, 进而 <span class="math inline">\(X=\bar{B}\subset\bar{\bar{A}}=\bar{A}\)</span>, 有 <span class="math inline">\(\bar{A}=X\)</span>.</p>
+= \overline{A}\cap B.
+\]</span> 因此 <span class="math inline">\(B\subset\overline{A}\)</span>, 进而 <span class="math inline">\(X=\overline{B}\subset\overline{\overline{A}}=\overline{A}\)</span>, 有 <span class="math inline">\(\overline{A}=X\)</span>.</p>
 </div></li>
 <li><p>(边界是流形) 带边 <span class="math inline">\(n\)</span>-流形 <span class="math inline">\(M\)</span> 的非空边界 <span class="math inline">\(\partial M\)</span> (子空间拓扑) 是 <span class="math inline">\((n-1)\)</span> 维流形.</p>
 <div class="note note-secondary">
@@ -356,18 +357,18 @@ B
 <p>流形的例子.</p>
 <ul>
 <li><p><strong>图像</strong>: 连续映射 <span class="math inline">\(f:\R^n\supset U\to\R^k\)</span> 的图像 <span class="math inline">\(\Gamma(f)=\{(x,y)\mid x\in U,y=f(x)\}\subset\R^{n+k}\)</span>, 赋予子空间拓扑. 实际上, <span class="math inline">\(\Gamma(f)\)</span> 同胚于 <span class="math inline">\(U\)</span>. 考虑 <span class="math inline">\(\psi:U\to\R^{n+k}\)</span>, <span class="math inline">\(\psi(x)=(x,f(x))\)</span>, 这是一个连续单射. 连续的投射 <span class="math inline">\(\pi_1:\Gamma(f)\to U\)</span> 是 <span class="math inline">\(\psi\)</span> 的逆映射 (即 <span class="math inline">\(\psi\)</span> 是开映射) 所以 <span class="math inline">\(\psi\)</span> 是嵌入, <span class="math inline">\(\Gamma(f)\)</span> 同胚于 <span class="math inline">\(U\)</span>.</p></li>
-<li><p><strong>单位球面</strong>: 考虑 <span class="math inline">\(\R^{n+1}\)</span> 中的单位球面 <span class="math inline">\(S^n\)</span>.</p>
+<li><p><strong>单位球面</strong>: 考虑 <span class="math inline">\(\R^{n+1}\)</span> 中的单位球面 <span class="math inline">\(\mathbb{S}^n\)</span>.</p>
 <ul>
-<li><p>作为函数图像. 可以将 <span class="math inline">\(S^n\)</span> 分成若干个函数的函数图像. 设 <span class="math inline">\(U_i^+\)</span> 表示 <span class="math inline">\(\R^{n+1}\)</span> 中满足 <span class="math inline">\(x_i&gt;0\)</span> 的子集. <span class="math inline">\(U_i^-\)</span> 表示 <span class="math inline">\(x_i&lt;0\)</span> 的子集. 因为 <span class="math inline">\(S^n\)</span> 不包含原点, 所以 <span class="math inline">\(U_1^\pm,\dots,U_n^\pm\)</span> 覆盖住 <span class="math inline">\(S^n\)</span>. 在 <span class="math inline">\(U_i^\pm\)</span> 上解方程 <span class="math inline">\(\|x\|=1\)</span> 得到 <span class="math inline">\(x\in S^n\cap U_i^\pm\)</span> 当且仅当 <span class="math display">\[
+<li><p>作为函数图像. 可以将 <span class="math inline">\(\mathbb{S}^n\)</span> 分成若干个函数的函数图像. 设 <span class="math inline">\(U_i^+\)</span> 表示 <span class="math inline">\(\R^{n+1}\)</span> 中满足 <span class="math inline">\(x_i&gt;0\)</span> 的子集. <span class="math inline">\(U_i^-\)</span> 表示 <span class="math inline">\(x_i&lt;0\)</span> 的子集. 因为 <span class="math inline">\(\mathbb{S}^n\)</span> 不包含原点, 所以 <span class="math inline">\(U_1^\pm,\dots,U_n^\pm\)</span> 覆盖住 <span class="math inline">\(\mathbb{S}^n\)</span>. 在 <span class="math inline">\(U_i^\pm\)</span> 上解方程 <span class="math inline">\(\|x\|=1\)</span> 得到 <span class="math inline">\(x\in \mathbb{S}^n\cap U_i^\pm\)</span> 当且仅当 <span class="math display">\[
 x_i =
 \pm\sqrt{1-(x_1)^2-\dots-(x_{i-1})^2-(x_{i+1})^2-\dots-(x_n)^2}.
-\]</span> 因此 <span class="math inline">\(S^n\cap U_i^\pm\)</span> 是连续函数的图像, 同胚于 <span class="math inline">\(\R^n\)</span> 中的开集. 因此 <span class="math inline">\(S^n\)</span> 是 <span class="math inline">\(n\)</span> 维流形.</p></li>
-<li><p><strong>球极投影</strong> (stereographic projection). 设北极点 <span class="math inline">\(N=(0,\dots,0,1)\)</span>, 映射 <span class="math inline">\(\sigma:S^n\setminus\{N\}\to\R^n\)</span> 将 <span class="math inline">\(x\in S^n\setminus\{N\}\)</span> 映到点 <span class="math inline">\(u\in\R^n\)</span>, 满足 <span class="math inline">\(N,x,U=(u,0)\)</span> 三点共线. 可得 <span class="math display">\[
+\]</span> 因此 <span class="math inline">\(\mathbb{S}^n\cap U_i^\pm\)</span> 是连续函数的图像, 同胚于 <span class="math inline">\(\R^n\)</span> 中的开集. 因此 <span class="math inline">\(\mathbb{S}^n\)</span> 是 <span class="math inline">\(n\)</span> 维流形.</p></li>
+<li><p><strong>球极投影</strong> (stereographic projection). 设北极点 <span class="math inline">\(N=(0,\dots,0,1)\)</span>, 映射 <span class="math inline">\(\sigma:\mathbb{S}^n\setminus\{N\}\to\R^n\)</span> 将 <span class="math inline">\(x\in \mathbb{S}^n\setminus\{N\}\)</span> 映到点 <span class="math inline">\(u\in\R^n\)</span>, 满足 <span class="math inline">\(N,x,U=(u,0)\)</span> 三点共线. 可得 <span class="math display">\[
 \sigma(x_1,\dots,x_{n+1})=\frac{(x_1,\dots,x_n)}{1-x_{n+1}}.
 \]</span> 容易算出其逆映射为 <span class="math display">\[
 \sigma^{-1}(x_1,\dots,x_n) =
 \frac{(2u_1,\dots,2u_n,\|u\|^2-1)}{\|u\|^2+1}.
-\]</span> 因为 <span class="math inline">\(\sigma,\sigma^{-1}\)</span> 都是连续的, 所以 <span class="math inline">\(S^n\setminus\{N\}\)</span> 同胚于 <span class="math inline">\(\R^n\)</span>, 给出了 <span class="math inline">\(N\)</span> 以外的点的欧氏邻域. 南极点的球极投影给出了 <span class="math inline">\(N\)</span> 的欧氏邻域.</p></li>
+\]</span> 因为 <span class="math inline">\(\sigma,\sigma^{-1}\)</span> 都是连续的, 所以 <span class="math inline">\(\mathbb{S}^n\setminus\{N\}\)</span> 同胚于 <span class="math inline">\(\R^n\)</span>, 给出了 <span class="math inline">\(N\)</span> 以外的点的欧氏邻域. 南极点的球极投影给出了 <span class="math inline">\(N\)</span> 的欧氏邻域.</p></li>
 </ul></li>
 <li><p><strong>甜甜圈面</strong>: <span class="math inline">\(xz\)</span>-平面中的圆周 <span class="math inline">\(C:(x-2)^2+z^2=1\)</span> 绕 <span class="math inline">\(z\)</span> 轴旋转一周所得曲面 <span class="math inline">\(D\)</span>. 令 <span class="math inline">\(r=\sqrt{x^2+y^2}\)</span>, 则环面由方程 <span class="math inline">\((r-2)^2+z^2=1\)</span> 给出. 引入参数 <span class="math inline">\(\theta\)</span> 表示以 <span class="math inline">\(z\)</span> 为轴的经度角, <span class="math inline">\(\phi\)</span> 表示圆 <span class="math inline">\(C\)</span> 的圆心角, 则环面 <span class="math inline">\(D\)</span> 的一个参数化是 <span class="math inline">\(F:\R^2\to D\)</span>, <span class="math display">\[
 F(u,v)=((2+\cos{2\pi u})\cos{2\pi v},(2+\cos{2\pi u})\sin{2\pi v},
@@ -431,7 +432,7 @@ x &amp;\mapsto (x_1,\dots,x_{i-1},x,x_{i+1},\dots,x_n).
 <div class="note note-secondary">
 <p><u>Pf</u> 积空间 <span class="math inline">\(\prod M_i\)</span> 继承第二可数和 Hausdorff 性. 设 <span class="math inline">\((x_1,\dots,x_k)\in\prod M_i\)</span>, 取 <span class="math inline">\(x_i\)</span> 的欧氏邻域 <span class="math inline">\(U_i\in M_i\)</span>, 则 <span class="math inline">\(\prod U_i\)</span> 也是开集, 又因为同胚的乘积还是同胚, 所以 <span class="math inline">\(\prod U_i\)</span> 同胚于 <span class="math inline">\(\prod\R^{n_i}=\R^{\sum n_i}\)</span> 的开集. 因此 <span class="math inline">\(\prod M_i\)</span> 是 <span class="math inline">\(\sum n_i\)</span> 维流形.</p>
 </div></li>
-<li><p><strong>环面</strong>: <span class="math inline">\(T^n=S^1\times\cdots\times S^1\)</span>.</p></li>
+<li><p><strong>环面</strong>: <span class="math inline">\(\mathbb{T}^n=\mathbb{S}^1\times\cdots\times \mathbb{S}^1\)</span>.</p></li>
 </ul>
 <h3 id="infinite-products">7.2  Infinite products</h3>
 <p>无穷乘积: <span class="math inline">\(\prod X_\alpha\)</span>, 默认为积拓扑.</p>
@@ -554,22 +555,22 @@ Y \ar@{.&gt;}[r]_{\tilde{f}} &amp; Z
 </ul>
 <p>商空间的例子.</p>
 <ul>
-<li><p><strong>单位圆</strong>. <span class="math inline">\(\R\)</span> 上的等价关系 <span class="math inline">\(x\sim y\iff x-y\in\Z\)</span>. 商空间 <span class="math inline">\(\R/{\sim}\)</span> 同胚于 <span class="math inline">\(S^1\)</span>.</p>
+<li><p><strong>单位圆</strong>. <span class="math inline">\(\R\)</span> 上的等价关系 <span class="math inline">\(x\sim y\iff x-y\in\Z\)</span>. 商空间 <span class="math inline">\(\R/{\sim}\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</p>
 <div class="note note-secondary">
-<p><u>Pf</u> 设 <span class="math inline">\(q:\R\to S^1\)</span>, <span class="math inline">\(q(t)=\e^{2\pi\i t}\)</span>. 要证明 <span class="math inline">\(q\)</span> 开, 只需考虑 <span class="math inline">\(\R\)</span> 的拓扑基, 即所有的开区间即可. 对于长度 <span class="math inline">\(\geq1\)</span> 的开区间, 它映到整个 <span class="math inline">\(S^1\)</span>, 当然是开的. 对于长度 <span class="math inline">\(&lt;1\)</span> 的开区间, 它映到 <span class="math inline">\(S^1\)</span> 上的一段弧 (不含端点), 显然是某 <span class="math inline">\(\R^2\)</span> 开球与 <span class="math inline">\(S^1\)</span> 的交, 所以是开集. 因此 <span class="math inline">\(q\)</span> 是开的满射, 进而是商映射.</p>
-<p>注意到 <span class="math inline">\(q:\R\to S^1\)</span> 和 <span class="math inline">\(\R\to\R/{\sim}\)</span> 给出相同的 identification, 根据商映射的唯一性 <span class="math inline">\(S^1\)</span> 同胚于 <span class="math inline">\(\R/{\sim}\)</span>.</p>
+<p><u>Pf</u> 设 <span class="math inline">\(q:\R\to \mathbb{S}^1\)</span>, <span class="math inline">\(q(t)=\e^{2\pi\i t}\)</span>. 要证明 <span class="math inline">\(q\)</span> 开, 只需考虑 <span class="math inline">\(\R\)</span> 的拓扑基, 即所有的开区间即可. 对于长度 <span class="math inline">\(\geq1\)</span> 的开区间, 它映到整个 <span class="math inline">\(\mathbb{S}^1\)</span>, 当然是开的. 对于长度 <span class="math inline">\(&lt;1\)</span> 的开区间, 它映到 <span class="math inline">\(\mathbb{S}^1\)</span> 上的一段弧 (不含端点), 显然是某 <span class="math inline">\(\R^2\)</span> 开球与 <span class="math inline">\(\mathbb{S}^1\)</span> 的交, 所以是开集. 因此 <span class="math inline">\(q\)</span> 是开的满射, 进而是商映射.</p>
+<p>注意到 <span class="math inline">\(q:\R\to \mathbb{S}^1\)</span> 和 <span class="math inline">\(\R\to\R/{\sim}\)</span> 给出相同的 identification, 根据商映射的唯一性 <span class="math inline">\(\mathbb{S}^1\)</span> 同胚于 <span class="math inline">\(\R/{\sim}\)</span>.</p>
 </div>
 <ul>
 <li>连续的 <span class="math inline">\(\Z\)</span> 周期函数 <span class="math inline">\(f:\R\to\R\)</span> 可以唯一地下降到 <span class="math inline">\(\tilde{f}:\R/{\sim}\to\R\)</span>.</li>
 </ul></li>
-<li><p><strong>球面</strong>. <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span>, 定义映射 <span class="math inline">\(q:\R^{n+1}\setminus\{0\}\to S^n\)</span>, <span class="math inline">\(q(x)=x/\|x\|\)</span>. 这是一个连续的满射. <span class="math inline">\(q\)</span> 的饱和开子集是开射线之并, 显然 <span class="math inline">\(q\)</span> 将饱和开子集映到饱和开子集, 进而是商映射.</p></li>
-<li><p><strong>实射影空间</strong>. <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span> 上的等价关系 <span class="math inline">\(x\sim y\iff x=\lambda y\)</span> (<span class="math inline">\(\lambda\in\R^*\)</span>). 商空间称为实射影空间 <span class="math inline">\(\R P^n\)</span>.</p></li>
+<li><p><strong>球面</strong>. <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span>, 定义映射 <span class="math inline">\(q:\R^{n+1}\setminus\{0\}\to \mathbb{S}^n\)</span>, <span class="math inline">\(q(x)=x/\|x\|\)</span>. 这是一个连续的满射. <span class="math inline">\(q\)</span> 的饱和开子集是开射线之并, 显然 <span class="math inline">\(q\)</span> 将饱和开子集映到饱和开子集, 进而是商映射.</p></li>
+<li><p><strong>实射影空间</strong>. <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span> 上的等价关系 <span class="math inline">\(x\sim y\iff x=\lambda y\)</span> (<span class="math inline">\(\lambda\in\R^*\)</span>). 商空间称为实射影空间 <span class="math inline">\(\mathbb{RP}^n\)</span>.</p></li>
 <li><p><strong>将子集坍缩为一点</strong>. 设子集 <span class="math inline">\(A\subset X\)</span>. 等价关系 <span class="math inline">\(a_1\sim a_2\)</span> 对任意 <span class="math inline">\(a_1,a_2\in A\)</span>, 而 <span class="math inline">\(x\sim x\)</span> 对任意 <span class="math inline">\(x\notin A\)</span>. 记 <span class="math inline">\(X/A:=X/{\sim}\)</span>, 即将 <span class="math inline">\(A\)</span> 坍缩到一点.</p></li>
 <li><p><strong>锥(cone)</strong>. <span class="math inline">\(I=[0,1]\)</span>. 商空间 <span class="math inline">\((X\times I)/(X\times\{0\})\)</span> 称为 <span class="math inline">\(X\)</span> 上的锥, 记作 <span class="math inline">\(CX\)</span>.</p>
 <ul>
 <li>考虑 <span class="math inline">\(X\times I\)</span> 的饱和子集 <span class="math inline">\(X\times\{1\}\)</span>, 商映射 <span class="math inline">\(q:X\times I\to CX\)</span> 限制到 <span class="math inline">\(X\times\{1\}\)</span> 仍是商映射. 记 <span class="math inline">\(X^*=q(X\times\{1\})\)</span>, 则商映射 <span class="math inline">\(X\cong X\times\{1\}\to X^*\)</span> 是单射, 进而是同胚. 一般认同 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(X^*\)</span>, 将 <span class="math inline">\(X\)</span> 视作 <span class="math inline">\(CX\)</span> 的子空间.</li>
 </ul></li>
-<li><p><strong>楔和/一点并</strong>. 设拓扑空间 <span class="math inline">\(X_\alpha\)</span>, 给定 <span class="math inline">\(p_\alpha\in X_\alpha\)</span> 称为<strong>基点</strong>. 楔和 <span class="math inline">\(\bigvee X_\alpha\)</span> 定义为 <span class="math inline">\(\coprod X_\alpha\)</span> 将 <span class="math inline">\(\{p_\alpha\}_{\alpha}\)</span> 认同为一点的商空间. 例如, <span class="math inline">\(\R\vee\R\)</span> 同胚于平面上的 <span class="math inline">\(xy\)</span> 轴之并; <span class="math inline">\(S^1\vee S^1\)</span> 同胚于一个 8 字.</p></li>
+<li><p><strong>楔和/一点并</strong>. 设拓扑空间 <span class="math inline">\(X_\alpha\)</span>, 给定 <span class="math inline">\(p_\alpha\in X_\alpha\)</span> 称为<strong>基点</strong>. 楔和 <span class="math inline">\(\bigvee X_\alpha\)</span> 定义为 <span class="math inline">\(\coprod X_\alpha\)</span> 将 <span class="math inline">\(\{p_\alpha\}_{\alpha}\)</span> 认同为一点的商空间. 例如, <span class="math inline">\(\R\vee\R\)</span> 同胚于平面上的 <span class="math inline">\(xy\)</span> 轴之并; <span class="math inline">\(\mathbb{S}^1\vee \mathbb{S}^1\)</span> 同胚于一个 8 字.</p></li>
 <li><p><strong>两个原点的直线</strong>. 令 <span class="math inline">\(X=(\R\times\{0\})\cup(\R\times\{1\})\subset\R^2\)</span>, 等价关系 <span class="math inline">\((x,0)\sim(x,1)\)</span> 对 <span class="math inline">\(x\neq0\)</span>. 商空间 <span class="math inline">\(X/{\sim}\)</span> 称为两个原点的直线. 它是局部欧氏且第二可数的, 但不 Hausdorff.</p></li>
 </ul>
 <h2 id="adjunction-spaces">10  Adjunction spaces</h2>
@@ -594,7 +595,7 @@ q^{-1}(q(B))\cap X,\quad q^{-1}(q(B))\cap Y
 <p>黏着空间的例子.</p>
 <ul>
 <li>选定基点 <span class="math inline">\(x,y\)</span> 的拓扑空间 <span class="math inline">\(X,Y\)</span>, 令 <span class="math inline">\(A=\{y\}\)</span>, <span class="math inline">\(f:A\to X\)</span> 定义为 <span class="math inline">\(f(y)=x\)</span>, 则 <span class="math inline">\(X\cup_fY\)</span> 是楔和 <span class="math inline">\(X\vee Y\)</span>.</li>
-<li>令 <span class="math inline">\(A=S^2\subset\bar B^2\)</span>, 包含映射 <span class="math inline">\(f:A\hookrightarrow\bar{B}^2\)</span>, 则 <span class="math inline">\(\bar{B}^2\cup_f\bar{B}^2\)</span> 同胚于 <span class="math inline">\(S^2\)</span>.</li>
+<li>令 <span class="math inline">\(A=\mathbb{S}^2\subset\overline{\mathbb{B}^2}\)</span>, 包含映射 <span class="math inline">\(f:A\hookrightarrow\overline{\mathbb{B}^2}\)</span>, 则 <span class="math inline">\(\overline{\mathbb{B}^2}\cup_f\overline{\mathbb{B}^2}\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^2\)</span>.</li>
 </ul>
 <p><strong>流形沿着边界贴合</strong>. 设 <span class="math inline">\(n\)</span> 维带边流形 <span class="math inline">\(M,N\)</span>, 边界非空且 <span class="math inline">\(h:\partial N\to\partial M\)</span> 同胚. 注意 <span class="math inline">\(\partial{N}\)</span> 是 <span class="math inline">\(N\)</span> 的闭子集, 则有黏着空间 <span class="math inline">\(M\cup_hN\)</span>.</p>
 <ul>
@@ -622,8 +623,8 @@ e(M)\cap f(N)&amp;=e(\partial M)=f(\partial N).
 <p>2, 设直积群 <span class="math inline">\(H=\prod G_i\)</span> 配以积拓扑. 一方面, 逆 <span class="math inline">\(\iota_H=\prod\iota_i\)</span> 作为连续映射的积, 是连续的. 另一方面, <span class="math inline">\(H\times H\cong \prod(G_i\times G_i)\)</span>, 进而乘积 <span class="math display">\[
 \mu_H:H\times H\cong \prod(G_i\times G_i)\to\prod G_i
 \]</span> 可以认同为 <span class="math inline">\(\prod \mu_i\)</span>, 所以是连续的.</p>
-<p>3, 设子群 <span class="math inline">\(H\)</span>, 需要证明 <span class="math inline">\(\bar{H}\)</span> 对乘积 <span class="math inline">\(\mu\)</span> 和逆 <span class="math inline">\(\iota\)</span> 封闭. 对于逆, <span class="math inline">\(\iota\)</span> 连续且 <span class="math inline">\(\iota(H)=H\)</span>, 利用连续的刻画,</p>
-<p><span class="math inline">\(\iota(\bar{H})=\overline{\iota(H)}=\bar{H}\)</span>, 可得 <span class="math inline">\(\bar{H}\)</span> 对逆封闭. 同理可得 <span class="math inline">\(\bar{H}\)</span> 对 <span class="math inline">\(\mu\)</span> 封闭.</p>
+<p>3, 设子群 <span class="math inline">\(H\)</span>, 需要证明 <span class="math inline">\(\overline{H}\)</span> 对乘积 <span class="math inline">\(\mu\)</span> 和逆 <span class="math inline">\(\iota\)</span> 封闭. 对于逆, <span class="math inline">\(\iota\)</span> 连续且 <span class="math inline">\(\iota(H)=H\)</span>, 利用连续的刻画,</p>
+<p><span class="math inline">\(\iota(\overline{H})=\overline{\iota(H)}=\overline{H}\)</span>, 可得 <span class="math inline">\(\overline{H}\)</span> 对逆封闭. 同理可得 <span class="math inline">\(\overline{H}\)</span> 对 <span class="math inline">\(\mu\)</span> 封闭.</p>
 </div></li>
 <li><p><strong>左平移</strong>: <span class="math inline">\(l_g(g')=gg'\)</span>, 是连续的, 因为 <span class="math inline">\(l_g=\mu\circ i_g\)</span>, 其中嵌入 <span class="math inline">\(i_g(g')=(g,g')\)</span>. 又 <span class="math inline">\(l_g^{-1}=l_{g^{-1}}\)</span>, 所以左平移是同胚.</p></li>
 <li><p><strong>右平移</strong> <span class="math inline">\(r_g(g')=g'g\)</span> 也是同胚.</p></li>
@@ -633,8 +634,8 @@ e(M)\cap f(N)&amp;=e(\partial M)=f(\partial N).
 <ul>
 <li>实数加法群 <span class="math inline">\(\R\)</span> 和直积群 <span class="math inline">\(\R^n\)</span>.</li>
 <li>实数乘法群 <span class="math inline">\(\R^*\)</span> 和子群, 正实数乘法群 <span class="math inline">\(\R^+\)</span>.</li>
-<li>复数乘法群 <span class="math inline">\(\C^*\)</span> 和子群, 单位复数乘法群 <span class="math inline">\(S^1\)</span>.</li>
-<li>环面 <span class="math inline">\(T^n=S^1\times\cdots\times S^1\)</span>.</li>
+<li>复数乘法群 <span class="math inline">\(\C^*\)</span> 和子群, 单位复数乘法群 <span class="math inline">\(\mathbb{S}^1\)</span>.</li>
+<li>环面 <span class="math inline">\(\mathbb{T}^n=\mathbb{S}^1\times\cdots\times \mathbb{S}^1\)</span>.</li>
 <li><strong>离散群</strong>, 拥有离散拓扑的群.</li>
 <li><strong>一般线性群</strong> <span class="math inline">\({\rm GL}(n,\R)\)</span>, 由 <span class="math inline">\(n\times n\)</span> 可逆实矩阵组成, 拥有 <span class="math inline">\(\R^{n^2}\)</span> 的子空间拓扑.</li>
 <li><strong>复一般线性群</strong> <span class="math inline">\({\rm GL}(n,\C)\)</span>.</li>
@@ -701,23 +702,23 @@ G/\Gamma \ar[r]_{\theta_g} &amp; G/\Gamma.
 <ul>
 <li>轨道空间同胚于 <span class="math inline">\([0,+\infty)\)</span>: 考虑 <span class="math inline">\(f:\R^n\to[0,+\infty)\)</span>, <span class="math inline">\(f(x)=\|x\|\)</span>, 则 <span class="math inline">\(f\)</span> 是连续的开满射, 进而是商映射. <span class="math inline">\(f\)</span> 和轨道关系给出相同的 identification, 根据商空间的唯一性, 轨道空间同胚于 <span class="math inline">\([0,+\infty)\)</span>.</li>
 </ul></li>
-<li><p><span class="math inline">\({\rm O}(n)\)</span> 在 <span class="math inline">\(\R^n\)</span> 的单位球面 <span class="math inline">\(S^{n-1}\)</span> 上的作用是传递的.</p></li>
-<li><p><strong>实射影空间</strong>. <span class="math inline">\(\R^*\)</span> 在 <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span> 上的左作用 (数量乘法). 这个作用是自由的, 轨道空间由所有过原点的直线 (去掉原点) 组成, 即 <span class="math inline">\(\R P^n\)</span>. 下面将说明, <span class="math inline">\(\R P^n\)</span> 是 <span class="math inline">\(n\)</span> 维的拓扑流形.</p>
+<li><p><span class="math inline">\({\rm O}(n)\)</span> 在 <span class="math inline">\(\R^n\)</span> 的单位球面 <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 上的作用是传递的.</p></li>
+<li><p><strong>实射影空间</strong>. <span class="math inline">\(\R^*\)</span> 在 <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span> 上的左作用 (数量乘法). 这个作用是自由的, 轨道空间由所有过原点的直线 (去掉原点) 组成, 即 <span class="math inline">\(\mathbb{RP}^n\)</span>. 下面将说明, <span class="math inline">\(\mathbb{RP}^n\)</span> 是 <span class="math inline">\(n\)</span> 维的拓扑流形.</p>
 <ul>
-<li><p>Hausdorff. 考虑 <span class="math inline">\({\cal O}=\{(x_1,x_2)\mid x_1=\lambda x_2,\lambda\neq0\}\)</span>, 将 <span class="math inline">\(x_1,x_2\)</span> 视作列向量, 则 <span class="math inline">\((x_1,x_2)\)</span> 是秩为 <span class="math inline">\(1\)</span> 的 <span class="math inline">\((n+1)\times 2\)</span> 矩阵. 秩为 <span class="math inline">\(1\)</span> 等价于所以二阶子式为零. 因为某二阶子式的零点是闭集, 所以 <span class="math inline">\({\cal O}\)</span> 作为有限闭集之交, 也是闭集. 这说明 <span class="math inline">\(\R P^n\)</span> 是 Hausdorff 的.</p></li>
-<li><p>局部欧氏. 设开集 <span class="math inline">\(U_i=\{(x_1,\dots,x_{n+1})\mid x_i\neq0\}\)</span>, 则所有 <span class="math inline">\(q(U_i)\)</span> 构成 <span class="math inline">\(\R P^n\)</span> 的开覆盖. 定义 <span class="math display">\[
+<li><p>Hausdorff. 考虑 <span class="math inline">\({\cal O}=\{(x_1,x_2)\mid x_1=\lambda x_2,\lambda\neq0\}\)</span>, 将 <span class="math inline">\(x_1,x_2\)</span> 视作列向量, 则 <span class="math inline">\((x_1,x_2)\)</span> 是秩为 <span class="math inline">\(1\)</span> 的 <span class="math inline">\((n+1)\times 2\)</span> 矩阵. 秩为 <span class="math inline">\(1\)</span> 等价于所以二阶子式为零. 因为某二阶子式的零点是闭集, 所以 <span class="math inline">\({\cal O}\)</span> 作为有限闭集之交, 也是闭集. 这说明 <span class="math inline">\(\mathbb{RP}^n\)</span> 是 Hausdorff 的.</p></li>
+<li><p>局部欧氏. 设开集 <span class="math inline">\(U_i=\{(x_1,\dots,x_{n+1})\mid x_i\neq0\}\)</span>, 则所有 <span class="math inline">\(q(U_i)\)</span> 构成 <span class="math inline">\(\mathbb{RP}^n\)</span> 的开覆盖. 定义 <span class="math display">\[
 \Align{
 \psi_i:U_i &amp;\to \R^n \\
 (x_1,\dots,x_{n+1}) &amp;\mapsto
 \frac1{x_i}(x_1,\dots,\widehat{x_i},\dots,x_{n+1}),
 }
-\]</span> 是连续的开映射, 于是 <span class="math inline">\(\psi_i\circ q\)</span> 也是连续的开映射. 注意到 <span class="math inline">\(\psi_i\circ q\)</span> 还是双射, 进而是同胚. 因此, <span class="math inline">\(\{(q(U_i),\psi_i\circ q)\}\)</span> 构成了 <span class="math inline">\(\R P^n\)</span> 的图册.</p></li>
+\]</span> 是连续的开映射, 于是 <span class="math inline">\(\psi_i\circ q\)</span> 也是连续的开映射. 注意到 <span class="math inline">\(\psi_i\circ q\)</span> 还是双射, 进而是同胚. 因此, <span class="math inline">\(\{(q(U_i),\psi_i\circ q)\}\)</span> 构成了 <span class="math inline">\(\mathbb{RP}^n\)</span> 的图册.</p></li>
 </ul></li>
-<li><p><strong>复射影空间</strong>. <span class="math inline">\(\C^*\)</span> 在 <span class="math inline">\(\C^{n+1}\setminus\{0\}\)</span> 上的左作用. 轨道空间记作 <span class="math inline">\(\C P^n\)</span>, 是一个 <span class="math inline">\(2n\)</span> 维拓扑流形.</p></li>
+<li><p><strong>复射影空间</strong>. <span class="math inline">\(\C^*\)</span> 在 <span class="math inline">\(\C^{n+1}\setminus\{0\}\)</span> 上的左作用. 轨道空间记作 <span class="math inline">\(\mathbb{RP}^n\)</span>, 是一个 <span class="math inline">\(2n\)</span> 维拓扑流形.</p></li>
 <li><p><strong>环面</strong>. <span class="math inline">\(\Z\)</span> 在 <span class="math inline">\(\R\)</span> 上有连续的作用 <span class="math inline">\(n\cdot x=n+x\)</span>. 考虑陪集空间 <span class="math inline">\(\R/\Z\)</span>. 因为 <span class="math inline">\(x,y\)</span> 在同一条轨道当且仅当 <span class="math inline">\(x-y\in\Z\)</span>, 所以 <span class="math inline">\(\R/\Z\)</span> 和单位圆 <span class="math inline">\(\R/{\sim}\)</span> 由同样的等价关系生成, 所以同胚.</p>
 <ul>
-<li><p>同样可以说明 <span class="math inline">\(\R^n/\Z^n\)</span> 与 <span class="math inline">\(T^n=S^1\times\cdots\times S^1\)</span> 同胚.</p></li>
-<li><p>回忆 <span class="math inline">\(\R\to S^1\)</span> 的一个商映射是 <span class="math inline">\(q(t)=\e^{2\pi\i t}\)</span>, 则 <span class="math inline">\(\R^n\to T^n\)</span> 的一个商映射是 <span class="math display">\[
+<li><p>同样可以说明 <span class="math inline">\(\R^n/\Z^n\)</span> 与 <span class="math inline">\(\mathbb{T}^n=\mathbb{S}^1\times\cdots\times \mathbb{S}^1\)</span> 同胚.</p></li>
+<li><p>回忆 <span class="math inline">\(\R\to \mathbb{S}^1\)</span> 的一个商映射是 <span class="math inline">\(q(t)=\e^{2\pi\i t}\)</span>, 则 <span class="math inline">\(\R^n\to \mathbb{T}^n\)</span> 的一个商映射是 <span class="math display">\[
 (t_1,\dots,t_n)\mapsto(\e^{2\pi\i t_1},\dots,\e^{2\pi\i t_n}),
 \]</span> 称作<strong>指数商映射</strong>.</p></li>
 </ul></li>

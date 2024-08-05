@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/precompact-subneighborhood-lemma.png">
 <meta property="article:published_time" content="2024-07-26T13:40:00.000Z">
-<meta property="article:modified_time" content="2024-07-28T07:20:25.329Z">
+<meta property="article:modified_time" content="2024-08-05T08:15:19.168Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -425,15 +425,15 @@ q_{n_{k+1}}
 <p><u>Pf</u> 我们证明 1 <span class="math inline">\(\iff\)</span> 2 和 1 <span class="math inline">\(\iff\)</span> 3. 其中 1 <span class="math inline">\(\Rightarrow\)</span> 2 由闭映射引理. 1 <span class="math inline">\(\Rightarrow\)</span> 3 的证法和 "商拓扑" 一节 "商的 Hausdorff 条件" 证法相同.</p>
 <p>TODO</p>
 </div></li>
-<li><p><strong>正则坐标球</strong>: 坐标球 <span class="math inline">\(B\subset M\)</span>, 且存在 <span class="math inline">\(\bar{B}\)</span> 的邻域 <span class="math inline">\(B'\)</span> 和同胚 <span class="math inline">\(\phi:B'\to B_{r'}(x)\subset\R^n\)</span>, 满足 <span class="math inline">\(\phi(B)=B_{r}(x)\)</span>, <span class="math inline">\(\phi(\bar B)=\bar B_r(x)\)</span>, 其中 <span class="math inline">\(r'&gt;r&gt;0\)</span>.</p>
+<li><p><strong>正则坐标球</strong>: 坐标球 <span class="math inline">\(B\subset M\)</span>, 且存在 <span class="math inline">\(\overline{B}\)</span> 的邻域 <span class="math inline">\(B'\)</span> 和同胚 <span class="math inline">\(\phi:B'\to B_{r'}(x)\subset\R^n\)</span>, 满足 <span class="math inline">\(\phi(B)=B_{r}(x)\)</span>, <span class="math inline">\(\phi(\overline{B})=\overline{B_r(x)}\)</span>, 其中 <span class="math inline">\(r'&gt;r&gt;0\)</span>.</p>
 <ul>
 <li>正则坐标球是坐标球的改进版本. 一般来说, 坐标球的闭包不一定同胚于 <span class="math inline">\(\R^n\)</span> 的闭球.</li>
 </ul></li>
 <li><p>(正则坐标球) 流形 <span class="math inline">\(M\)</span>. 若 <span class="math inline">\(B'\subset M\)</span> 为坐标球, <span class="math inline">\(\phi:B'\to B_{r'}(x)\subset\R^n\)</span> 为同胚, 则对任意 <span class="math inline">\(0&lt;r&lt;r'\)</span>, <span class="math inline">\(\phi^{-1}(B_r(x))\)</span> 是正则坐标球.</p>
 <div class="note note-secondary">
-<p><u>Pf</u> 显然 <span class="math inline">\(\phi\)</span> 是一个从 <span class="math inline">\(B=\phi^{-1}(B_r(x))\)</span> 到 <span class="math inline">\(B_r(x)\)</span> 的同胚. 只需要证明 <span class="math inline">\(\phi\)</span> 将 <span class="math inline">\(\bar{B}\)</span> 映到 <span class="math inline">\(\bar{B}_r(x)\)</span>, 也即 <span class="math display">\[
-\phi^{-1}(\bar{B}_r(x))=\bar{B}.
-\]</span> 将 <span class="math inline">\(\phi^{-1}\)</span> 视作从 <span class="math inline">\(\bar{B}_r(x)\)</span> 到 <span class="math inline">\(M\)</span> 的映射, 则由闭映射引理, <span class="math inline">\(\phi^{-1}\)</span> 是闭的, 则上式由 "闭映射的刻画" 保证.</p>
+<p><u>Pf</u> 显然 <span class="math inline">\(\phi\)</span> 是一个从 <span class="math inline">\(B=\phi^{-1}(B_r(x))\)</span> 到 <span class="math inline">\(B_r(x)\)</span> 的同胚. 只需要证明 <span class="math inline">\(\phi\)</span> 将 <span class="math inline">\(\overline{B}\)</span> 映到 <span class="math inline">\(\overline{B_r(x)}\)</span>, 也即 <span class="math display">\[
+\phi^{-1}(\overline{B_r(x)})=\overline{B}.
+\]</span> 将 <span class="math inline">\(\phi^{-1}\)</span> 视作从 <span class="math inline">\(\overline{B_r(x)}\)</span> 到 <span class="math inline">\(M\)</span> 的映射, 则由闭映射引理, <span class="math inline">\(\phi^{-1}\)</span> 是闭的, 则上式由 "闭映射的刻画" 保证.</p>
 </div></li>
 <li><p>(正则坐标球基) 流形具有可数正则坐标球基.</p>
 <div class="note note-secondary">
@@ -446,25 +446,25 @@ q_{n_{k+1}}
 <ul>
 <li><p><strong>环面的另一构造</strong>. 设闭区间 <span class="math inline">\(I=[0,1]\)</span>, 将单位正方形 <span class="math inline">\(I\times I\)</span> 的上下两条边认同 (<span class="math inline">\((x,0)\sim(x,1)\)</span>), 左右两条边认同 (<span class="math inline">\((0,y)\sim(1,y)\)</span>), 我们断言商空间 <span class="math inline">\((I\times I)/\sim\)</span> 同胚于环面.</p>
 <ul>
-<li>考虑 <span class="math inline">\(q:I\times I\to T^2\)</span>, <span class="math inline">\(q(u,v)=(\e^{2\pi\i u},\e^{2\pi\i v})\)</span>, 这是连续的满射. 注意 <span class="math inline">\(I\times I\)</span> 紧, <span class="math inline">\(T^2\)</span> Hausdorff, 根据闭映射引理, <span class="math inline">\(q\)</span> 闭, 进而是商映射. 因为 <span class="math inline">\(q\)</span> 和 <span class="math inline">\(\R^2\to\R^2/\Z^2\cong T^2\)</span> 给出相同的 identification, 故同胚.</li>
+<li>考虑 <span class="math inline">\(q:I\times I\to \mathbb{T}^2\)</span>, <span class="math inline">\(q(u,v)=(\e^{2\pi\i u},\e^{2\pi\i v})\)</span>, 这是连续的满射. 注意 <span class="math inline">\(I\times I\)</span> 紧, <span class="math inline">\(\mathbb{T}^2\)</span> Hausdorff, 根据闭映射引理, <span class="math inline">\(q\)</span> 闭, 进而是商映射. 因为 <span class="math inline">\(q\)</span> 和 <span class="math inline">\(\R^2\to\R^2/\Z^2\cong \mathbb{T}^2\)</span> 给出相同的 identification, 故同胚.</li>
 </ul></li>
 <li><p>甜甜圈面同胚于环面. 甜甜圈面由映射 <span class="math inline">\(F:\R^2\to D\)</span> 给出. 根据闭映射引理, <span class="math inline">\(F\)</span> 在 <span class="math inline">\(I\times I\)</span> 上的限制是商映射. 因为 <span class="math inline">\(F|_{I\times I}\)</span> 和环面给出相同 identification, 故同胚.</p></li>
-<li><p><strong>实射影空间的另一构造</strong>. 对径点认同的球面 <span class="math inline">\(S^n\)</span> 同胚于 <span class="math inline">\(\R P^n\)</span>.</p>
+<li><p><strong>实射影空间的另一构造</strong>. 对径点认同的球面 <span class="math inline">\(\mathbb{S}^n\)</span> 同胚于 <span class="math inline">\(\mathbb{RP}^n\)</span>.</p>
 <ul>
-<li><p>记商映射 <span class="math inline">\(p:S^n\to S^n/{\sim}\)</span> (<span class="math inline">\(x\sim-x\)</span>), 考虑复合映射 <span class="math display">\[
-S^n \overset{i}\hookrightarrow \R^{n+1}\setminus\{0\}
-\overset{q}\twoheadrightarrow \R P^n,
-\]</span> 其中 <span class="math inline">\(i\)</span> 是自然嵌入, <span class="math inline">\(q\)</span> 是定义 <span class="math inline">\(\R P^n\)</span> 的商映射. 由闭映射引理, <span class="math inline">\(q\circ i\)</span> 是商映射, 且和 <span class="math inline">\(p\)</span> 给出相同的 identification. 因此 <span class="math inline">\(\R P^n\cong S^n/{\sim}\)</span>.</p></li>
-<li><p>(紧致性) <span class="math inline">\(\R P^n\)</span> 作为紧 <span class="math inline">\(S^n\)</span> 的商空间, 是紧的.</p></li>
-<li><p>(Hausdorff) 此前, 我们通过证明轨道关系 <span class="math inline">\({\cal O}\)</span> 是闭子集来说明 <span class="math inline">\(\R P^n\)</span> 是 Haudorff 的. 现在, 因为 <span class="math inline">\(p\)</span> 是闭映射且 <span class="math inline">\(S^n\)</span> 是紧致的 Hausdorff 空间, 由上面的定理, <span class="math inline">\(S^n/{\sim}\)</span> 自动具有 Hausdorff 性.</p></li>
+<li><p>记商映射 <span class="math inline">\(p:\mathbb{S}^n\to \mathbb{S}^n/{\sim}\)</span> (<span class="math inline">\(x\sim-x\)</span>), 考虑复合映射 <span class="math display">\[
+\mathbb{S}^n \overset{i}\hookrightarrow \R^{n+1}\setminus\{0\}
+\overset{q}\twoheadrightarrow \mathbb{RP}^n,
+\]</span> 其中 <span class="math inline">\(i\)</span> 是自然嵌入, <span class="math inline">\(q\)</span> 是定义 <span class="math inline">\(\mathbb{RP}^n\)</span> 的商映射. 由闭映射引理, <span class="math inline">\(q\circ i\)</span> 是商映射, 且和 <span class="math inline">\(p\)</span> 给出相同的 identification. 因此 <span class="math inline">\(\mathbb{RP}^n\cong \mathbb{S}^n/{\sim}\)</span>.</p></li>
+<li><p>(紧致性) <span class="math inline">\(\mathbb{RP}^n\)</span> 作为紧 <span class="math inline">\(\mathbb{S}^n\)</span> 的商空间, 是紧的.</p></li>
+<li><p>(Hausdorff) 此前, 我们通过证明轨道关系 <span class="math inline">\({\cal O}\)</span> 是闭子集来说明 <span class="math inline">\(\mathbb{RP}^n\)</span> 是 Haudorff 的. 现在, 因为 <span class="math inline">\(p\)</span> 是闭映射且 <span class="math inline">\(\mathbb{S}^n\)</span> 是紧致的 Hausdorff 空间, 由上面的定理, <span class="math inline">\(\mathbb{S}^n/{\sim}\)</span> 自动具有 Hausdorff 性.</p></li>
 </ul></li>
-<li><p><strong>球面的锥</strong>. 球面 <span class="math inline">\(S^n\)</span> 的锥 <span class="math inline">\(CS^n\)</span> 同胚于闭球 <span class="math inline">\(\bar{B}^{n+1}\)</span>. 由闭映射引理, 连续满射 <span class="math inline">\(F:S^n\times I\to\bar{B}^{n+1}\)</span>, <span class="math inline">\(F(x,s)=sx\)</span> 是一个商映射. <span class="math inline">\(F\)</span> 将 <span class="math inline">\(S^n\times\{0\}\)</span> 映到 <span class="math inline">\(0\in\bar{B}^{n+1}\)</span>, 且在其他地方都是单射的, 因此和商映射 <span class="math inline">\(S^n\times I\to CS^n\)</span> 给出相同 identification. 故 <span class="math inline">\(CS^n\cong\bar{B}^{n+1}\)</span>. 并且, <span class="math inline">\(F\)</span> 在 <span class="math inline">\(S^n\times\{1\}\)</span> 上的限制是恒等映射, 即 <span class="math inline">\(S^n\cong S^n\times\{1\}\)</span> 视作 <span class="math inline">\(\bar{B}^{n+1}\)</span> 的子空间.</p></li>
+<li><p><strong>球面的锥</strong>. 球面 <span class="math inline">\(\mathbb{S}^n\)</span> 的锥 <span class="math inline">\(C\mathbb{S}^n\)</span> 同胚于闭球 <span class="math inline">\(\overline{B^{n+1}}\)</span>. 由闭映射引理, 连续满射 <span class="math inline">\(F:\mathbb{S}^n\times I\to\overline{B^{n+1}}\)</span>, <span class="math inline">\(F(x,s)=sx\)</span> 是一个商映射. <span class="math inline">\(F\)</span> 将 <span class="math inline">\(\mathbb{S}^n\times\{0\}\)</span> 映到 <span class="math inline">\(0\in\overline{B^{n+1}}\)</span>, 且在其他地方都是单射的, 因此和商映射 <span class="math inline">\(\mathbb{S}^n\times I\to C\mathbb{S}^n\)</span> 给出相同 identification. 故 <span class="math inline">\(C\mathbb{S}^n\cong\overline{B^{n+1}}\)</span>. 并且, <span class="math inline">\(F\)</span> 在 <span class="math inline">\(\mathbb{S}^n\times\{1\}\)</span> 上的限制是恒等映射, 即 <span class="math inline">\(\mathbb{S}^n\cong \mathbb{S}^n\times\{1\}\)</span> 视作 <span class="math inline">\(\overline{B^{n+1}}\)</span> 的子空间.</p></li>
 </ul>
 <h2 id="local-compactness">14  Local Compactness</h2>
 <h3 id="local-compactness-1">14.1  Local compactness</h3>
 <p>局部紧的 Hausdorff 空间有一些好性质, 和度量空间有相似之处.</p>
 <p><strong>局部紧</strong>: 任给 <span class="math inline">\(p\in X\)</span>, 存在紧集 <span class="math inline">\(A\subset X\)</span> 包含住 <span class="math inline">\(p\)</span> 的某邻域.</p>
-<p><strong>预紧/相对紧</strong>: 子集 <span class="math inline">\(A\subset X\)</span> 满足 <span class="math inline">\(\bar{A}\)</span> 紧, 则称 <span class="math inline">\(A\)</span> 预紧.</p>
+<p><strong>预紧/相对紧</strong>: 子集 <span class="math inline">\(A\subset X\)</span> 满足 <span class="math inline">\(\overline{A}\)</span> 紧, 则称 <span class="math inline">\(A\)</span> 预紧.</p>
 <ul>
 <li><p>(局部紧的 Hausdorff 空间) <span class="math inline">\(X\)</span> Hausdorff, TFAE:</p>
 <ul>
@@ -475,13 +475,13 @@ S^n \overset{i}\hookrightarrow \R^{n+1}\setminus\{0\}
 <div class="note note-secondary">
 <p><u>Pf</u> 显然 3 <span class="math inline">\(\Rightarrow\)</span> 2 <span class="math inline">\(\Rightarrow\)</span> 1, 我们证明 1 <span class="math inline">\(\Rightarrow\)</span> 3.</p>
 <p>设 <span class="math inline">\(X\)</span> 局部紧, 只需证明 <span class="math inline">\(X\)</span> 的每一点有预紧开集组成的邻域基. 任给 <span class="math inline">\(p\in X\)</span>, 设紧集 <span class="math inline">\(K\)</span> 包含 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U\)</span>. <span class="math inline">\(p\)</span> 的所有包含于 <span class="math inline">\(U\)</span> 的邻域全体 <span class="math inline">\({\cal V}\)</span> 显然构成邻域基.</p>
-<p>因为 <span class="math inline">\(X\)</span> Hausdorff, 紧子集 <span class="math inline">\(K\)</span> 是闭的. 设 <span class="math inline">\(V\in{\cal V}\)</span>, 则 <span class="math inline">\(V\subset K\)</span>, 进而 <span class="math inline">\(\bar{V}\subset\bar{K}=K\)</span>. 因为 <span class="math inline">\(\bar{V}\)</span> 是紧集 <span class="math inline">\(K\)</span> 的闭子集, 故紧. 因此 <span class="math inline">\(V\in{\cal V}\)</span> 是预紧的.</p>
+<p>因为 <span class="math inline">\(X\)</span> Hausdorff, 紧子集 <span class="math inline">\(K\)</span> 是闭的. 设 <span class="math inline">\(V\in{\cal V}\)</span>, 则 <span class="math inline">\(V\subset K\)</span>, 进而 <span class="math inline">\(\overline{V}\subset\overline{K}=K\)</span>. 因为 <span class="math inline">\(\overline{V}\)</span> 是紧集 <span class="math inline">\(K\)</span> 的闭子集, 故紧. 因此 <span class="math inline">\(V\in{\cal V}\)</span> 是预紧的.</p>
 </div></li>
 <li><p>(流形) 无边/带边流形是局部紧的.</p>
 <div class="note note-secondary">
-<p><u>Pf</u> 因为任意流形存在正则坐标(半)球组成的拓扑基, 正则坐标(半)球是预紧的, 因为其闭包同胚于 <span class="math inline">\(\R^n\)</span> 的闭球 <span class="math inline">\(\bar{B}_r(x)\)</span> (或 <span class="math inline">\(\H^n\)</span> 的闭半球).</p>
+<p><u>Pf</u> 因为任意流形存在正则坐标(半)球组成的拓扑基, 正则坐标(半)球是预紧的, 因为其闭包同胚于 <span class="math inline">\(\R^n\)</span> 的闭球 <span class="math inline">\(\overline{B_r(x)}\)</span> (或 <span class="math inline">\(\H^n\)</span> 的闭半球).</p>
 </div></li>
-<li><p>(预紧子邻域引理) <span class="math inline">\(X\)</span> Hausdorff 且局部紧. 任给 <span class="math inline">\(x\in X\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在预紧邻域 <span class="math inline">\(V\)</span> 满足 <span class="math inline">\(\bar{V}\subset U\)</span>.</p>
+<li><p>(预紧子邻域引理) <span class="math inline">\(X\)</span> Hausdorff 且局部紧. 任给 <span class="math inline">\(x\in X\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在预紧邻域 <span class="math inline">\(V\)</span> 满足 <span class="math inline">\(\overline{V}\subset U\)</span>.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 设 <span class="math inline">\(W\)</span> 是 <span class="math inline">\(x\)</span> 的预紧邻域, 则 <span class="math inline">\(\overline{W}\setminus U\)</span> 是 <span class="math inline">\(\overline{W}\)</span> 的闭子集, 故紧. Hausdorff 空间中, 不交的紧集可被开集分离, 所以存在不交的开集 <span class="math inline">\(Y,Y'\)</span> 满足 <span class="math inline">\(\{x\}\subset Y\)</span>, <span class="math inline">\(\overline{W}\setminus U\subset Y'\)</span>. 令 <span class="math inline">\(V=Y\cap W\)</span>, 则 <span class="math inline">\(\overline{V}\subset\overline{W}\)</span>. 作为紧集的闭子集, <span class="math inline">\(\overline{V}\)</span> 紧.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/precompact-subneighborhood-lemma.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
@@ -491,25 +491,25 @@ S^n \overset{i}\hookrightarrow \R^{n+1}\setminus\{0\}
 <div class="note note-secondary">
 <p><u>Pf</u> 因为 Hausdorff 空间 <span class="math inline">\(X\)</span> 的子空间也 Hausdorff, 所以只要证明局部紧.</p>
 <p>若 <span class="math inline">\(Y\subset X\)</span> 开, 则预紧子邻域引理保证, <span class="math inline">\(Y\)</span> 中任意一点存在预邻域, 其闭包含于 <span class="math inline">\(Y\)</span>. 故 <span class="math inline">\(Y\)</span> 局部紧.</p>
-<p>若 <span class="math inline">\(Z\subset X\)</span> 闭, 任意 <span class="math inline">\(x\in Z\)</span> 在 <span class="math inline">\(X\)</span> 中有预紧邻域 <span class="math inline">\(U\)</span>. 因为 <span class="math inline">\(\overline{U\cap Z}\)</span> 是紧集 <span class="math inline">\(\overline{U}\)</span> 的闭子集, 所以是紧的. 又注意到 <span class="math inline">\(\overline{U\cap Z}\subset\bar{Z}=Z\)</span>, 所以 <span class="math inline">\(U\cap Z\)</span> 是 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(Z\)</span> 中的预紧邻域. 故 <span class="math inline">\(Z\)</span> 局部紧.</p>
+<p>若 <span class="math inline">\(Z\subset X\)</span> 闭, 任意 <span class="math inline">\(x\in Z\)</span> 在 <span class="math inline">\(X\)</span> 中有预紧邻域 <span class="math inline">\(U\)</span>. 因为 <span class="math inline">\(\overline{U\cap Z}\)</span> 是紧集 <span class="math inline">\(\overline{U}\)</span> 的闭子集, 所以是紧的. 又注意到 <span class="math inline">\(\overline{U\cap Z}\subset\overline{Z}=Z\)</span>, 所以 <span class="math inline">\(U\cap Z\)</span> 是 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(Z\)</span> 中的预紧邻域. 故 <span class="math inline">\(Z\)</span> 局部紧.</p>
 </div></li>
 <li><p>(商映射的积) 商映射 <span class="math inline">\(q:X\to Y\)</span>, <span class="math inline">\(K\)</span> 是局部紧的 Hausdorff 空间, 则 <span class="math inline">\(q\times{\rm id}_K:X\times K\to Y\times K\)</span> 是商映射.</p></li>
 </ul>
 <h3 id="baires-category-theorem">14.2  Baire's category theorem</h3>
-<p><strong>无处稠密</strong>: <span class="math inline">\(X\)</span> 的子集 <span class="math inline">\(F\)</span> 称为无处稠密的, 若 <span class="math inline">\(\bar{F}\)</span> 的补是稠密的.</p>
+<p><strong>无处稠密</strong>: <span class="math inline">\(X\)</span> 的子集 <span class="math inline">\(F\)</span> 称为无处稠密的, 若 <span class="math inline">\(\overline{F}\)</span> 的补是稠密的.</p>
 <p><strong>第一纲集</strong>: 无处稠密子集的可数并. (十分 "稀疏" 的子集.)</p>
 <p><strong>第二纲集</strong>: 不是第一纲集的子集.</p>
 <ul>
 <li><p><strong>Baire 空间</strong>: <span class="math inline">\(X\)</span> 中可数个稠密开子集的交是稠密的. (较为 "稠密" 的空间)</p></li>
 <li><p>(性质) Baire 空间 <span class="math inline">\(X\)</span> 中, 第一纲集的补集是稠密的.</p>
 <div class="note note-secondary">
-<p><u>Pf</u> 设第一纲集 <span class="math inline">\(F=\bigcup_{i\in\N}F_i\)</span>, 其中 <span class="math inline">\(F_i\)</span> 无处稠密. 补集 <span class="math inline">\(F^C=\bigcap_i F_i^C\)</span>. 注意 <span class="math inline">\(F_i^C\supset \bar{F}_i^C\)</span>, 而 <span class="math inline">\(\bar{F}_i^C\)</span> 根据定义是稠密的, 则 <span class="math inline">\(F_i^C\)</span> 稠密. 因为 <span class="math inline">\(X\)</span> 是 Baire 空间, 可数交 <span class="math inline">\(F^C\)</span> 稠密.</p>
+<p><u>Pf</u> 设第一纲集 <span class="math inline">\(F=\bigcup_{i\in\N}F_i\)</span>, 其中 <span class="math inline">\(F_i\)</span> 无处稠密. 补集 <span class="math inline">\(F^C=\bigcap_i F_i^C\)</span>. 注意 <span class="math inline">\(F_i^C\supset \overline{F_i^C}\)</span>, 而 <span class="math inline">\(\overline{F_i^C}\)</span> 根据定义是稠密的, 则 <span class="math inline">\(F_i^C\)</span> 稠密. 因为 <span class="math inline">\(X\)</span> 是 Baire 空间, 可数交 <span class="math inline">\(F^C\)</span> 稠密.</p>
 </div></li>
 <li><p>(Baire 纲定理) 局部紧 Haudorff 空间/完备度量空间是 Baire 空间.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 设 <span class="math inline">\(X\)</span> 是满足条件的空间, 稠密子集列 <span class="math inline">\(\{V_n\}_{n\in\N^+}\)</span>. 要证明 <span class="math inline">\(\bigcap_nV_n\)</span> 稠密, 只需说明任意非空开集与它交集非空. 任给非空开集 <span class="math inline">\(U\subset X\)</span>.</p>
 <p>① <span class="math inline">\(X\)</span> 是局部紧的 Hausdorff 空间. 因为 <span class="math inline">\(V_1\)</span> 稠密, 所以 <span class="math inline">\(U\cap V_1\)</span> 非空. 预紧子邻域引理表明, 存在非空预紧集 <span class="math inline">\(W_1\)</span> 使 <span class="math inline">\(\overline{W}_1\subset U\cap V_1\)</span>. 同样, 存在非空预紧集 <span class="math inline">\(W_2\)</span> 使 <span class="math inline">\(\overline{W}_2\subset U\cap W_2\subset U\cap V_1\cap V_2\)</span>. 根据归纳法, 我们得到了非空的嵌套紧集列 <span class="math inline">\(\overline{W}_1\supset\overline{W}_2\supset\cdots\)</span>, 满足 <span class="math inline">\(\overline{W}_n\subset U\cap V_1\cap\cdots\cap V_n\)</span>. 根据紧集套定理, 存在 <span class="math inline">\(\emptyset\neq\bigcap_n\overline{W}_n\subset U\cap(\bigcap_n V_n)\)</span>.</p>
-<p>② <span class="math inline">\(X\)</span> 是完备度量空间. 只需对上面的过程做如下修改. 在归纳步骤中, 因为 <span class="math inline">\(V_n\cap W_{n-1}\)</span> 是非空开集, 存在 <span class="math inline">\(x_n\in X\)</span> 和 <span class="math inline">\(\varepsilon_n&gt;0\)</span> 使得 <span class="math inline">\(B_{\varepsilon_n}(x_n)\subset V_n\cap W_{n-1}\)</span>. 取 <span class="math inline">\(r_n&lt;\min(\varepsilon_n,1/n)\)</span>, 我们得到了嵌套闭球列 <span class="math inline">\(\bar{B}_{r_n}(x_n)\subset U\cap V_1\cap\cdots\cap V_n\)</span>. 因为 <span class="math inline">\(r_n\to0\)</span>, 球心 <span class="math inline">\((x_n)\)</span> 构成 Cauchy 列, 有极限 <span class="math inline">\(x\in U\cap(\bigcap_nV_n)\)</span>.</p>
+<p>② <span class="math inline">\(X\)</span> 是完备度量空间. 只需对上面的过程做如下修改. 在归纳步骤中, 因为 <span class="math inline">\(V_n\cap W_{n-1}\)</span> 是非空开集, 存在 <span class="math inline">\(x_n\in X\)</span> 和 <span class="math inline">\(\varepsilon_n&gt;0\)</span> 使得 <span class="math inline">\(B_{\varepsilon_n}(x_n)\subset V_n\cap W_{n-1}\)</span>. 取 <span class="math inline">\(r_n&lt;\min(\varepsilon_n,1/n)\)</span>, 我们得到了嵌套闭球列 <span class="math inline">\(\overline{B_{r_n}(x_n)}\subset U\cap V_1\cap\cdots\cap V_n\)</span>. 因为 <span class="math inline">\(r_n\to0\)</span>, 球心 <span class="math inline">\((x_n)\)</span> 构成 Cauchy 列, 有极限 <span class="math inline">\(x\in U\cap(\bigcap_nV_n)\)</span>.</p>
 </div></li>
 </ul>
 </body></html>
