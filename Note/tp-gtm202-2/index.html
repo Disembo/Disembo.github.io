@@ -24,7 +24,7 @@
 <meta property="og:description" content="构造新的拓扑空间, 群作用.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-23T13:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-05T08:14:27.613Z">
+<meta property="article:modified_time" content="2024-08-06T10:59:27.541Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -294,7 +294,7 @@
 <li>(继承) <span class="math inline">\(U\)</span> 在 <span class="math inline">\(S\)</span> 中开, <span class="math inline">\(S\)</span> 在 <span class="math inline">\(X\)</span> 中开, 则 <span class="math inline">\(U\)</span> 在 <span class="math inline">\(X\)</span> 中开. (对闭同理.)</li>
 <li><span class="math inline">\(U\)</span> 在 <span class="math inline">\(X\)</span> 中开/闭, 则 <span class="math inline">\(U\)</span> 在 <span class="math inline">\(S\)</span> 中开/闭.</li>
 </ul></li>
-<li><p>(泛性质) 子空间 <span class="math inline">\(S\subset X\)</span>. 任给 <span class="math inline">\(f:Y\to S\)</span>, <span class="math inline">\(f\)</span> 连续当且仅当 <span class="math inline">\(i\circ f:Y\to X\)</span> 连续. <span class="math display">\[
+<li><p>(特征性质) 子空间 <span class="math inline">\(S\subset X\)</span>. 任给 <span class="math inline">\(f:Y\to S\)</span>, <span class="math inline">\(f\)</span> 连续当且仅当 <span class="math inline">\(i\circ f:Y\to X\)</span> 连续. <span class="math display">\[
 \xymatrix{
 &amp; X \\
 Y \ar[r]_f \ar[ru]^{i\circ f} &amp; S \ar@{_{(}-&gt;}[u]_i
@@ -313,7 +313,7 @@ Y \ar[r]_f \ar[ru]^{i\circ f} &amp; S \ar@{_{(}-&gt;}[u]_i
 <li>(限制陪域) <span class="math inline">\(f:X\to T\)</span> 连续 (<span class="math inline">\(T\subset Y\)</span> 子空间).</li>
 <li>(扩张陪域) <span class="math inline">\(f:X\to Z\)</span> 连续 (<span class="math inline">\(Y\subset Z\)</span> 子空间).</li>
 </ul></li>
-<li><p>(唯一性) 子空间拓扑是满足泛性质的唯一拓扑.</p>
+<li><p>(唯一性) 子空间拓扑是满足特征性质的唯一拓扑.</p>
 <ul>
 <li>我们想要子空间拓扑满足: (1) 包含映射连续 (要有足够开集); (2) 若连续映射 <span class="math inline">\(f:Y\to X\)</span> 的像集包含在 <span class="math inline">\(S\)</span> 内, 则 <span class="math inline">\(f:Y\to S\)</span> 也连续 (不能有太多开集). 子空间拓扑是平衡两者的唯一选择.</li>
 <li>子空间拓扑是使得包含映射 <span class="math inline">\(S\hookrightarrow X\)</span> 连续的最弱拓扑.</li>
@@ -380,7 +380,7 @@ F(u,v)=((2+\cos{2\pi u})\cos{2\pi v},(2+\cos{2\pi u})\sin{2\pi v},
 <p><strong>积拓扑</strong>: 拓扑空间 <span class="math inline">\(X_1,\dots,X_n\)</span> 的乘积拓扑由 <span class="math inline">\({\cal B}=\{U_1\times\cdots\times U_n\mid U_i\in{\cal T}_i\}\)</span> 生成.</p>
 <ul>
 <li><p>欧氏空间 <span class="math inline">\(\R^n=\R\times\cdots\times\R\)</span> 的乘积拓扑与度量拓扑相同.</p></li>
-<li><p>(泛性质) 映射 <span class="math inline">\(f:Y\to\prod X_i\)</span> 连续, 当且仅当任何分量 <span class="math inline">\(f_i=\pi_i\circ f\)</span> 连续. <span class="math display">\[
+<li><p>(特征性质) 映射 <span class="math inline">\(f:Y\to\prod X_i\)</span> 连续, 当且仅当任何分量 <span class="math inline">\(f_i=\pi_i\circ f\)</span> 连续. <span class="math display">\[
 \xymatrix{
 &amp; \prod X_i \ar@{-&gt;&gt;}[d]^{\pi_i} \\
 Y \ar[r]_{f_i} \ar[ur]^f &amp; X_i 
@@ -389,9 +389,9 @@ Y \ar[r]_{f_i} \ar[ur]^f &amp; X_i
 <ul>
 <li>自然投射 <span class="math inline">\(\pi_i:\prod X_i\to X_i\)</span> 连续.</li>
 </ul></li>
-<li><p>(唯一性) 乘积拓扑是满足泛性质的唯一拓扑.</p>
+<li><p>(唯一性) 乘积拓扑是满足特征性质的唯一拓扑.</p>
 <div class="note note-secondary">
-<p><u>Pf</u> 设 <span class="math inline">\(\prod X_i\)</span> 上的另一个拓扑也满足泛性质, 考虑恒等映射 <span class="math inline">\({\rm id}_{\prod X_i}\)</span>, 利用两次泛性质得到恒等映射是同胚.</p>
+<p><u>Pf</u> 设 <span class="math inline">\(\prod X_i\)</span> 上的另一个拓扑也满足特征性质, 考虑恒等映射 <span class="math inline">\({\rm id}_{\prod X_i}\)</span>, 利用两次特征性质得到恒等映射是同胚.</p>
 </div></li>
 <li><p>(性质)</p>
 <ul>
@@ -443,7 +443,7 @@ x &amp;\mapsto (x_1,\dots,x_{i-1},x,x_{i+1},\dots,x_n).
 <li>当只有有限个 <span class="math inline">\(X_\alpha\)</span> 具有非平凡拓扑时, 积拓扑与箱拓扑相同.</li>
 <li>若有无穷多个非平凡 <span class="math inline">\(X_\alpha\)</span>, 考虑 <span class="math inline">\(U=\prod U_\alpha\)</span>, 其中无穷多个 <span class="math inline">\(U_\alpha\neq X_\alpha\)</span>. 则 <span class="math inline">\(U\)</span> 在箱拓扑下开, 在积拓扑下不是开集.</li>
 </ul></li>
-<li><p>(泛性质) 映射 <span class="math inline">\(f:Y\to\prod X_\alpha\)</span> 连续, 当且仅当所有 <span class="math inline">\(f_\alpha=\pi_\alpha\circ f\)</span> 连续. 积拓扑是满足泛性质的唯一拓扑.</p>
+<li><p>(特征性质) 映射 <span class="math inline">\(f:Y\to\prod X_\alpha\)</span> 连续, 当且仅当所有 <span class="math inline">\(f_\alpha=\pi_\alpha\circ f\)</span> 连续. 积拓扑是满足特征性质的唯一拓扑.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> <span class="math inline">\(f\)</span> 连续推出 <span class="math inline">\(f_i\)</span> 连续是平凡的. 设 <span class="math inline">\(f_i\)</span> 连续, 开集 <span class="math inline">\(\prod U_\alpha\subset \prod X_\alpha\)</span>. 因为 <span class="math display">\[
 f^{-1}\pqty{\prod U_\alpha}=\bigcap f^{-1}(U_\alpha),
@@ -453,7 +453,7 @@ f^{-1}\pqty{\prod U_\alpha}=\bigcap f^{-1}(U_\alpha),
 <h2 id="disjoint-union-spaces">8  Disjoint union spaces</h2>
 <p><strong>不交并拓扑</strong>: 设不交并 <span class="math inline">\(\coprod X_\alpha\)</span>. 子集 <span class="math inline">\(U\subset\coprod X_\alpha\)</span> 是开集, 当且仅当所有 <span class="math inline">\(U\cap X_\alpha\)</span> 是开集.</p>
 <ul>
-<li><p>(泛性质) 映射 <span class="math inline">\(f:\coprod X_\alpha\to Y\)</span> 连续, 当且仅当任意限制 <span class="math inline">\(f_\alpha=f\circ i_\alpha\)</span> 连续. 不交并拓扑是满足泛性质的唯一拓扑. <span class="math display">\[
+<li><p>(特征性质) 映射 <span class="math inline">\(f:\coprod X_\alpha\to Y\)</span> 连续, 当且仅当任意限制 <span class="math inline">\(f_\alpha=f\circ i_\alpha\)</span> 连续. 不交并拓扑是满足特征性质的唯一拓扑. <span class="math display">\[
 \xymatrix{
 &amp; \coprod X_\alpha \\
 Y \ar[r]_{f_\alpha} \ar[ru]^f &amp; X_\alpha \ar@{_{(}-&gt;}[u]_{i_\alpha}
@@ -530,9 +530,9 @@ Y \ar[r]_{f_\alpha} \ar[ru]^f &amp; X_\alpha \ar@{_{(}-&gt;}[u]_{i_\alpha}
 <li>若双射, 则是同胚.</li>
 </ul></li>
 </ul>
-<p>商的泛性质.</p>
+<p>商的特征性质.</p>
 <ul>
-<li><p>(泛性质) 商映射 <span class="math inline">\(q:X\to Y\)</span>. 映射 <span class="math inline">\(f:Y\to Z\)</span> 连续当且仅当 <span class="math inline">\(f\circ q\)</span> 连续. <span class="math display">\[
+<li><p>(特征性质) 商映射 <span class="math inline">\(q:X\to Y\)</span>. 映射 <span class="math inline">\(f:Y\to Z\)</span> 连续当且仅当 <span class="math inline">\(f\circ q\)</span> 连续. <span class="math display">\[
 \xymatrix{
 X \ar[d]_q \ar[dr]^{f\circ q} \\
 Y \ar[r]_f &amp; Z
@@ -541,15 +541,15 @@ Y \ar[r]_f &amp; Z
 <div class="note note-secondary">
 <p><u>Pf</u> 对开集 <span class="math inline">\(U\)</span>, 因为 <span class="math inline">\(q^{-1}(f^{-1}(U))=(f\circ q)^{-1}(U)\)</span>, 所以 <span class="math inline">\(f^{-1}(U)\)</span> 开当且仅当 <span class="math inline">\((f\circ q)^{-1}(U)\)</span> 开.</p>
 </div></li>
-<li><p>(拓扑唯一性) 设拓扑空间 <span class="math inline">\(X\)</span>, 集合 <span class="math inline">\(Y\)</span>, 满射 <span class="math inline">\(q:X\to Y\)</span>. 商拓扑是满足泛性质的唯一拓扑.</p></li>
-<li><p>(唯一下降) 设商映射 <span class="math inline">\(q:X\to Y\)</span>. 任给连续映射 <span class="math inline">\(f:Y\to Z\)</span> 满足在纤维上常值, 则存在唯一连续映射 (称为 <span class="math inline">\(f\)</span> <strong>在商空间的下降</strong>) <span class="math inline">\(\tilde{f}:Y\to Z\)</span> 使得 <span class="math inline">\(f=\tilde{f}\circ q\)</span>. <span class="math display">\[
+<li><p>(拓扑唯一性) 设拓扑空间 <span class="math inline">\(X\)</span>, 集合 <span class="math inline">\(Y\)</span>, 满射 <span class="math inline">\(q:X\to Y\)</span>. 商拓扑是满足特征性质的唯一拓扑.</p></li>
+<li><p>(唯一下降/泛性质) 设商映射 <span class="math inline">\(q:X\to Y\)</span>. 任给连续映射 <span class="math inline">\(f:X\to Z\)</span> 满足在纤维上常值, 则存在唯一连续映射 (称为 <span class="math inline">\(f\)</span> <strong>在商空间的下降</strong>) <span class="math inline">\(\tilde{f}:Y\to Z\)</span> 使得 <span class="math inline">\(f=\tilde{f}\circ q\)</span>. <span class="math display">\[
 \xymatrix{
 X \ar[d]_q \ar[dr]^f \\
 Y \ar@{.&gt;}[r]_{\tilde{f}} &amp; Z
 }
 \]</span></p>
 <div class="note note-secondary">
-<p><u>Pf</u> 存在唯一性由商集合泛性质保证. 连续性由商拓扑泛性质保证.</p>
+<p><u>Pf</u> 存在唯一性由商集合的泛性质保证. 连续性由商拓扑特征性质保证.</p>
 </div></li>
 <li><p>(商空间唯一性) 设商映射 <span class="math inline">\(q_1:X\to Y_1\)</span> 和 <span class="math inline">\(q_2:X\to Y_2\)</span> 满足 <span class="math inline">\(q_1(x)=q_1(x')\)</span> 当且仅当 <span class="math inline">\(q_2(x)=q_2(x')\)</span>, 则存在唯一的同胚 <span class="math inline">\(\phi:Y_1\to Y_2\)</span>, 使得 <span class="math inline">\(\phi\circ q_1=q_2\)</span>.</p></li>
 </ul>
