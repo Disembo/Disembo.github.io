@@ -1,0 +1,798 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="圆的提升性质, 基本群与映射度理论.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM202 | 12 圆的基本群">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-12/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="圆的提升性质, 基本群与映射度理论.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-08T14:30:00.000Z">
+<meta property="article:modified_time" content="2024-08-08T15:33:52.220Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="拓扑">
+<meta property="article:tag" content="同伦论">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>GTM202 | 12 圆的基本群 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM202 | 12 圆的基本群"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-08 22:30" pubdate>
+          2024年8月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM202 | 12 圆的基本群</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 8 的笔记.</p>
+</div>
+<h2 id="the-fundamental-group-of-the-circle">32  The Fundamental Group of The Circle</h2>
+<h3 id="lifting-properties">32.1  Lifting properties</h3>
+<p>我们仍然将 <span class="math inline">\(\mathbb{S}^1\)</span> 视作 <span class="math inline">\(\C\)</span> 的子集, 取 <span class="math inline">\(1\in\C\)</span> 作为基点. 设指数商映射 <span class="math inline">\(\varepsilon:\R\to\mathbb{S}^1\)</span>, <span class="math inline">\(\varepsilon(r)=\e^{2\pi\i r}\)</span>.</p>
+<p>任给拓扑空间 <span class="math inline">\(B\)</span> 和连续映射 <span class="math inline">\(\varphi:B\to\mathbb{S}^1\)</span>, <span class="math inline">\(\varphi\)</span> 的一个<strong>提升 (lift)</strong> 指的是连续映射 <span class="math inline">\(\tilde{\varphi}:B\to\R\)</span>, 满足交换图 <span class="math display">\[
+\xymatrix{
+&amp; \R \ar[d]^{\varepsilon} \\
+B \ar[r]_{\varphi} \ar@{.&gt;}[ur]^{\tilde{\varphi}} &amp; \mathbb{S}^1.
+}
+\]</span> <u>Claim 32.1</u> (指数商映射的性质) 任意一点 <span class="math inline">\(z\in\mathbb{S}^1\)</span> 存在邻域 <span class="math inline">\(U\)</span>, 满足:</p>
+<ul>
+<li><span class="math inline">\(\varepsilon^{-1}(U)\)</span> 是可数个不交的开区间 <span class="math inline">\(\tilde{U}_n\)</span> (<span class="math inline">\(n\in\Z\)</span>) 之并, 并且 <span class="math inline">\(\varepsilon\)</span> 将每个 <span class="math inline">\(\tilde{U}_n\)</span> 同胚地映到 <span class="math inline">\(U\)</span>.</li>
+</ul>
+<div class="note note-secondary">
+<p><u>Pf</u> 证明是直接的. 可以用四个开半圆覆盖 <span class="math inline">\(\mathbb{S}^1\)</span>: <span class="math display">\[
+\Align{
+X_+&amp;=\{x+\i y\in\mathbb{S}^1 \mid x&gt;0\}, &amp;
+Y_+&amp;=\{x+\i y\in\mathbb{S}^1 \mid y&gt;0\}, \\
+X_-&amp;=\{x+\i y\in\mathbb{S}^1 \mid x&lt;0\}, &amp;
+Y_-&amp;=\{x+\i y\in\mathbb{S}^1 \mid y&lt;0\}.
+}
+\]</span> 这四个开半圆的原像都是一系列不交的, 长度为 <span class="math inline">\(1/2\)</span> 的开区间. 例如, <span class="math display">\[
+\varepsilon^{-1}(X_+)
+= \bigcup_{n\in\Z} \pqty{n-\frac14,n+\frac14},
+\]</span> 固定 <span class="math inline">\(n\)</span>, 在开区间 <span class="math inline">\((n-\frac14,n+\frac14)\)</span> 上, 连续的 (局部) 逆由下式给出: <span class="math display">\[
+\Align{
+\varepsilon^{-1}: X_+ &amp;\to\pqty{n-\frac14,n+\frac14}, \\
+x+\i y &amp;\mapsto n+\frac1{2\pi}\sin^{-1}y
+}
+\]</span> 因为 <span class="math inline">\(\mathbb{S}^1\)</span> 的任意一点都上述四个开半圆之一, 即证.</p>
+</div>
+<p>满足上面定理中的条件的开集 <span class="math inline">\(U\subset\mathbb{S}^1\)</span> 称作<strong>被均匀覆叠的 (evenly covered)</strong>. 可知, <span class="math inline">\(\varepsilon^{-1}(U)\)</span> 作为可数个 <span class="math inline">\(\tilde{U}_n\)</span> 的不交并, 其 (道路) 分量恰好就是所有 <span class="math inline">\(\tilde{U}_n\)</span>.</p>
+<p>对于连续的满射 <span class="math inline">\(q:X\to Y\)</span>, 它的一个<strong>截面 (section)</strong> 指的是连续的右逆 <span class="math inline">\(\sigma:Y\to X\)</span>, 即满足 <span class="math inline">\(q\circ\sigma={\rm id}_Y\)</span>. 若 <span class="math inline">\(U\subset Y\)</span> 是开子集, 则 <span class="math inline">\(q\)</span> 在 <span class="math inline">\(U\)</span> 上的一个<strong>局部截面 (local section)</strong> 指的是连续映射 <span class="math inline">\(\sigma:U\to X\)</span>, 满足 <span class="math inline">\(q\circ\sigma={\rm id}_U\)</span>.</p>
+<ul>
+<li>上面的证明中构造的 (局部) 逆映射就是 <span class="math inline">\(\varepsilon\)</span> 在 <span class="math inline">\(X_+\)</span> 与上的局部截面.</li>
+</ul>
+<p>下面的定理表明, 圆的任意均匀覆叠的开子集上都存在很多截面.</p>
+<p><u>Claim 32.2</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的局部截面) 设均匀覆叠的开子集 <span class="math inline">\(U\subset\mathbb{S}^1\)</span>. 任给 <span class="math inline">\(z\in U\)</span>, <span class="math inline">\(r\in\varepsilon^{-1}(z)\)</span>, 存在 <span class="math inline">\(\varepsilon\)</span> 在 <span class="math inline">\(U\)</span> 上的局部截面 <span class="math inline">\(\sigma:U\to\R\)</span>, 满足 <span class="math inline">\(\sigma(z)=r\)</span>.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 令 <span class="math inline">\(\tilde{U}\subset\R\)</span> 是 <span class="math inline">\(\varepsilon^{-1}(U)\)</span> 的包含 <span class="math inline">\(r\)</span> 的分量. 根据均匀覆叠的定义, <span class="math inline">\(\varepsilon:\tilde{U}\to U\)</span> 是同胚, <span class="math inline">\(\sigma=(\varepsilon|_{\tilde{U}})^{-1}\)</span> 即为所求.</p>
+</div>
+<p><u>Claim 32.3</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的唯一提升性质) 设 <span class="math inline">\(B\)</span> 连通, 连续映射 <span class="math inline">\(\varphi:B\to\mathbb{S}^1\)</span> 的两个提升 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi}_2:B\to\R\)</span>. 若 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi_2}\)</span> 在 <span class="math inline">\(B\)</span> 中某点取值相同, 则它们恒相等.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 我们使用 "连通性论证". 令 <span class="math inline">\({\cal A}=\{b\in B\mid\tilde{\varphi}_1(b)=\tilde{\varphi}_2(b)\}\)</span>. 根据假设, <span class="math inline">\({\cal A}\)</span> 非空. 我们只需证明 <span class="math inline">\({\cal A}\)</span> 既开又闭, 则由 <span class="math inline">\(B\)</span> 的连通性, <span class="math inline">\({\cal A}=B\)</span>.</p>
+<p>开性: 取 <span class="math inline">\(b\in{\cal A}\)</span>, 记 <span class="math inline">\(r=\tilde{\varphi}_1(b)=\tilde{\varphi}_2(b)\)</span>, <span class="math inline">\(z=\varepsilon(r)=\varphi(b)\)</span>. 令 <span class="math inline">\(U\subset\mathbb{S}^1\)</span> 是 <span class="math inline">\(z\)</span> 的一个均匀覆叠的邻域, 令 <span class="math inline">\(\tilde{U}\)</span> 是 <span class="math inline">\(\varepsilon^{-1}(U)\)</span> 的包含 <span class="math inline">\(r\)</span> 的分量. 若令 <span class="math inline">\(V=\tilde{\varphi}_1^{-1}(\tilde{U})\cap\tilde{\varphi}_2^{-1}(\tilde{U})\)</span>, 则 <span class="math inline">\(V\)</span> 是 <span class="math inline">\(b\)</span> 的邻域, 且 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi}_2\)</span> 在其上的取值都在 <span class="math inline">\(\tilde{U}\)</span> 内. 提升满足 <span class="math inline">\(\varphi=\varepsilon\circ\tilde{\varphi}_1=\varepsilon\circ\tilde{\varphi}_2\)</span>. 因为 <span class="math inline">\(\varepsilon\)</span> 在 <span class="math inline">\(\tilde{U}\)</span> 上是单射, 所以 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi}_2\)</span> 在 <span class="math inline">\(V\)</span> 上恒相等, 有 <span class="math inline">\(V\subset{\cal A}\)</span>. 故 <span class="math inline">\({\cal A}\)</span> 开.</p>
+<p>闭性: 我们证明 <span class="math inline">\({\cal A}^C\)</span> 开. 设 <span class="math inline">\(b\notin{\cal A}\)</span>, 记 <span class="math inline">\(r_1=\tilde{\varphi}_1(b)\)</span>, <span class="math inline">\(r_2=\tilde{\varphi}_2(b)\)</span>, 有 <span class="math inline">\(r_1\neq r_2\)</span>. 令 <span class="math inline">\(z=\varepsilon(r_1)=\varphi(b)\)</span>, 取 <span class="math inline">\(z\)</span> 的一个均匀覆叠邻域 <span class="math inline">\(U\)</span>. 若 <span class="math inline">\(\tilde{U}_1\)</span> 和 <span class="math inline">\(\tilde{U}_2\)</span> 分别是 <span class="math inline">\(\varepsilon^{-1}(U)\)</span> 的包含 <span class="math inline">\(r_1\)</span> 和 <span class="math inline">\(r_2\)</span> 的分量, 则 <span class="math inline">\(\tilde{U}_1\cap\tilde{U}_2=\emptyset\)</span>, 并且 <span class="math inline">\(\varepsilon\)</span> 在 <span class="math inline">\(\tilde{U}_1\)</span> 和 <span class="math inline">\(\tilde{U}_2\)</span> 上的限制都是同胚. 若令 <span class="math inline">\(V=\tilde{\varphi}_1^{-1}(\tilde{U})\cap\tilde{\varphi}_2^{-1}(\tilde{U})\)</span>, 则 <span class="math inline">\(\tilde{\varphi}_1(V)\subset\tilde{U}_1\)</span> 且 <span class="math inline">\(\tilde{\varphi}_2(V)\subset\tilde{U}_2\)</span>, 因此在 <span class="math inline">\(V\)</span> 上 <span class="math inline">\(\tilde{\varphi}_1\neq\tilde{\varphi}_2\)</span>, 故 <span class="math inline">\(V\subset{\cal A}^C\)</span>, 证明了 <span class="math inline">\({\cal A}^C\)</span> 的开性.</p>
+</div>
+<p><u>Claim 32.4</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的同伦提升性质) 设 <span class="math inline">\(B\)</span> 局部连通, 连续映射 <span class="math inline">\(\varphi_0,\varphi_1:B\to\mathbb{S}^1\)</span> 间有同伦 <span class="math inline">\(H:B\times I\to\mathbb{S}^1\)</span>. 若 <span class="math inline">\(\tilde{\varphi}_0:B\to\R\)</span> 是 <span class="math inline">\(\varphi_0\)</span> 的一个提升, 则 <span class="math inline">\(H\)</span> 有唯一提升 <span class="math inline">\(\tilde{H}:B\times I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{H}_0=\tilde\varphi_0\)</span>. 若 <span class="math inline">\(H\)</span> 保持子集 <span class="math inline">\(A\subset B\)</span> 不动, 则 <span class="math inline">\(\tilde{H}\)</span> 也保持 <span class="math inline">\(A\)</span> 不动.</p>
+<p><u>Claim 32.5</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的道路提升性质) 设道路 <span class="math inline">\(f:I\to\mathbb{S}^1\)</span>, 实数 <span class="math inline">\(r_0\in\varepsilon^{-1}(f(0))\)</span>, 则存在唯一提升 <span class="math inline">\(\tilde{f}:I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{f}(0)=r_0\)</span>, 并且任意给定的另一提升与 <span class="math inline">\(\tilde{f}\)</span> 相差一个常整数.</p>
+<ul>
+<li>即任给两个提升 <span class="math inline">\(\tilde{f},\tilde{f}'\)</span>, 则 <span class="math inline">\(\tilde{f}-\tilde{f}'\)</span> 是常数.</li>
+</ul>
+<div class="note note-secondary">
+<p><u>Pf</u> 一条道路 <span class="math inline">\(f:I\to\mathbb{S}^1\)</span> 可以视作两个从独点空间 <span class="math inline">\(\{*\}\)</span> 到 <span class="math inline">\(\mathbb{S}^1\)</span> 的连续映射间的同伦. 这两个连续映射是 <span class="math inline">\(*\mapsto f(0)\)</span> 和 <span class="math inline">\(*\mapsto f(1)\)</span>. 根据 <span class="math inline">\(\mathbb{S}^1\)</span> 的同伦提升性质, <span class="math inline">\(\tilde{f}:I\to\R\)</span> 唯一存在.</p>
+<p>设 <span class="math inline">\(\tilde{f}'\)</span> 是 <span class="math inline">\(f\)</span> 的另一个提升, 即 <span class="math inline">\(\varepsilon(\tilde{f}(s))=f(s)=\varepsilon(\tilde{f}'(s))\)</span>, 因此对任意 <span class="math inline">\(s\)</span>, <span class="math inline">\(\tilde{f}(s)-\tilde{f}'(s)\)</span> 都是整数. 又因为 <span class="math inline">\(\tilde{f}-\tilde{f}'\)</span> 是从连通空间 <span class="math inline">\(I\)</span> 到离散空间 <span class="math inline">\(\Z\)</span> 的连续映射, 其只能是常映射.</p>
+</div>
+<p><u>Claim 32.6</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 上的道路同伦条件) 设 <span class="math inline">\(f_0,f_1\)</span> 是 <span class="math inline">\(\mathbb{S}^1\)</span> 上拥有相同起点与终点的道路, <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 分别是两条道路的提升, 且 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 起点相同. 则 <span class="math inline">\(f_0\sim f_1\)</span> 当且仅当 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 终点相同.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 若 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 终点相同 (根据假设, 它们起点也相同). 注意 <span class="math inline">\(\R\)</span> 单连通, 由单连通性的等价刻画 (Claim 28.2), <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 道路同伦, 因此 <span class="math inline">\(f_0=\varepsilon\circ\tilde{f}_0\)</span> 和 <span class="math inline">\(f_1=\varepsilon\circ\tilde{f}_1\)</span> 道路同伦.</p>
+<p>若 <span class="math inline">\(f_0\sim f_1\)</span>, 设 <span class="math inline">\(H:I\times I\to\mathbb{S}^1\)</span> 是 <span class="math inline">\(f_0,f_1\)</span> 间的道路同伦. 根据 <span class="math inline">\(\mathbb{S}^1\)</span> 的同伦提升性质, <span class="math inline">\(H\)</span> 提升到同伦 <span class="math inline">\(\tilde{H}:I\times I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{H}_0=\tilde{f}_0\)</span>. 因为 <span class="math inline">\(H\)</span> 保持 <span class="math inline">\(\{0,1\}\)</span> 不变, <span class="math inline">\(\tilde{H}\)</span> 亦然, 意味着 <span class="math inline">\(\tilde{H}\)</span> 是一个道路同伦. 道路 <span class="math inline">\(\tilde{H}_1:I\to\R\)</span> 是 <span class="math inline">\(f_1\)</span> 的一个提升, 且它和 <span class="math inline">\(\tilde{f}_1\)</span> 有相同的起点. 根据唯一性, <span class="math inline">\(\tilde{H}_1=\tilde{f}_1\)</span>. 因此 <span class="math inline">\(\tilde{f}_0\)</span> 与 <span class="math inline">\(\tilde{f}_1\)</span> 道路同伦. 特别地, 它们终点相同.</p>
+</div>
+<h3 id="the-fundamental-group">32.2  The fundamental group</h3>
+<p>现在我们将提升理论应用到 <span class="math inline">\(\mathbb{S}^1\)</span> 的环路上.</p>
+<p>设 <span class="math inline">\(f:I\to\mathbb{S}^1\)</span> 是以 <span class="math inline">\(z_0\in\mathbb{S}^1\)</span> 为基点的环路. 任给提升 <span class="math inline">\(\tilde{f}:I\to\R\)</span>, 因为 <span class="math inline">\(\tilde{f}(0)\)</span> 和 <span class="math inline">\(\tilde{f}(1)\)</span> 都在纤维 <span class="math inline">\(\varepsilon^{-1}(z_0)\)</span> 中, 所以它们相差一个整数. 注意到 <span class="math inline">\(f\)</span> 的任意两个提升的差值是常数, 所以 <span class="math inline">\(\tilde{f}(1)-\tilde{f}(0)\)</span> 是一个只与 <span class="math inline">\(f\)</span> 有关, 而与提升的选择无关的整数. 这个整数称为 <span class="math inline">\(f\)</span> 的<strong>卷绕数 (winding number)</strong>, 记作 <span class="math inline">\(N(f)\)</span>.</p>
+<p><u>Claim 32.7</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的环路的同伦分类) <span class="math inline">\(\mathbb{S}^1\)</span> 中基点相同的两条环路道路同伦, 当且仅当它们具有相同卷绕数.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 设相同基点处的环路 <span class="math inline">\(f_0,f_1\)</span>. 根据道路提升性质, 存在提升 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1:I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{f}_0(0)=\tilde{f}_1(0)\)</span>. 根据道路同伦的充要条件, <span class="math inline">\(f_0\sim f_1\)</span> 当且仅当 <span class="math inline">\(\tilde{f}_0\)</span> 和 <span class="math inline">\(\tilde{f}_1\)</span> 终点相同, 即 <span class="math inline">\(f_0,f_1\)</span> 的卷绕数相同.</p>
+</div>
+<p>回忆 <span class="math inline">\(\omega:I\to\mathbb{S}^1\)</span> 表示以 <span class="math inline">\(1\)</span> 为基点的, 逆时针绕 <span class="math inline">\(\mathbb{S}^1\)</span> 一周的环路: <span class="math inline">\(\omega(s)=\e^{2\pi\i s}\)</span>.</p>
+<p><u>Claim 32.8</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的基本群) <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 是由 <span class="math inline">\([\omega]\)</span> 生成的无穷阶循环群.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 定义映射 <span class="math inline">\(J:\Z\to\pi_1(\mathbb{S}^1,1)\)</span> 和 <span class="math inline">\(K:\pi_1(\mathbb{S}^1,1)\to\Z\)</span>, <span class="math display">\[
+\Align{
+J(n)&amp;=[\omega]^n,&amp; K([f])&amp;=N(f).
+}
+\]</span> (因为道路同伦的环路具有相同的卷绕数, 所以 <span class="math inline">\(K\)</span> 是良定义的.) 下面证明它们是群同构. 显然 <span class="math inline">\(J\)</span> 是群同态: <span class="math inline">\([\omega]^{m+n}=[\omega]^m*[\omega]^n\)</span>. 只需要证明 <span class="math inline">\(K\)</span> 是 <span class="math inline">\(J\)</span> 的双侧逆.</p>
+<p>我们先构造 <span class="math inline">\([\omega]^n\)</span> 的代表元. 定义 <span class="math inline">\(\alpha_n:I\to\mathbb{S}^1\)</span>, <span class="math inline">\(\alpha_n(s)=\e^{2\pi\i ns}\)</span>. 显然有 <span class="math inline">\(\alpha_1=\omega\)</span>, <span class="math inline">\(\alpha_{-1}=\bar\omega\)</span>. 因为 <span class="math inline">\(\alpha_{n-1}*\omega\)</span> 是 <span class="math inline">\(\omega\)</span> 的一个重参数化, 所以根据归纳法, <span class="math inline">\([\alpha_n]=[\omega]^n\)</span>. 直接的计算表明, <span class="math inline">\(\alpha\)</span> 的一个提升是 <span class="math inline">\(\tilde{\alpha}(s)=ns\)</span>, 因此卷绕数 <span class="math inline">\(N(\alpha_n)=\tilde{\alpha}(1)-\tilde{\alpha}(0)=n\)</span>. 因为卷绕数相同, 所以 <span class="math inline">\([\omega]^n=[\alpha_n]\)</span>.</p>
+<p>要证明 <span class="math inline">\(K\circ J={\rm id}_\Z\)</span>, 任给 <span class="math inline">\(n\in\Z\)</span>, 有 <span class="math inline">\(K(J(n))=K([\omega]^n)=K([\alpha_n])=N(\alpha_n)=n\)</span>.</p>
+<p>要证明 <span class="math inline">\(J\circ K={\rm id}_{\pi_1(\mathbb{S}^1,1)}\)</span>, 任给 <span class="math inline">\([f]\in\pi_1(\mathbb{S}^1,1)\)</span>, 记 <span class="math inline">\(n=N(f)\)</span>, 则 <span class="math inline">\(f\)</span> 与 <span class="math inline">\(\alpha_n\)</span> 具有相同的卷绕数 (且基点相同), 进而道路同伦. 因此 <span class="math inline">\(J(K(f))=J(n)=[\omega]^n=[\alpha_n]=[f]\)</span>.</p>
+</div>
+<p><span class="math inline">\(\mathbb{S}^1\)</span> 的结论可以应用到相关的空间:</p>
+<ul>
+<li><p>(去掉一点的平面) 因为 <span class="math inline">\(\mathbb{S}^1\)</span> 是 <span class="math inline">\(\C\setminus\{0\}\cong\R^2\setminus\{0\}\)</span> 的强形变收缩, 两者同伦等价, 故具有相同的基本群: <span class="math inline">\(\pi_1(\C\setminus\{0\},1)\)</span> 也是 <span class="math inline">\([\omega]\)</span> 生成的无穷阶循环群.</p>
+<ul>
+<li>可以定义环路 <span class="math inline">\(f:I\to\C\setminus\{0\}\)</span> 的<strong>卷绕数</strong>, 定义为 <span class="math inline">\(r\circ f\)</span> 的卷绕数, 其中收缩映射 <span class="math inline">\(r:\C\setminus\{0\}\to\mathbb{S}^1\)</span> 自然地定义为 <span class="math inline">\(r(z)=z/|z|\)</span>.</li>
+<li>(<span class="math inline">\(\C\setminus\{0\}\)</span> 的环路的同伦分类) <span class="math inline">\(\C\setminus\{0\}\)</span> 中的两条环路道路同伦, 当且仅当它们有相同卷绕数.</li>
+</ul></li>
+<li><p>(环面) 设 <span class="math inline">\(n\)</span> 维环面 <span class="math inline">\(\mathbb{T}^n=\mathbb{S}^1\times\dots\times\mathbb{S}^1\)</span> 取定基点 <span class="math inline">\(p=(1,\dots,1)\)</span>. 因为积空间的基本群是基本群的积, 所以 <span class="math inline">\(\mathbb{T}^n\)</span> 同构于 <span class="math inline">\(\Z^n\)</span>.</p>
+<ul>
+<li><p>记 <span class="math inline">\(\omega_j=\iota_j\circ\omega\)</span> 是第 <span class="math inline">\(j\)</span> 个 <span class="math inline">\(\mathbb{S}^1\)</span> 中的标准环路, 则一个群同构是 <span class="math inline">\(\phi:\Z^n\to\pi_1(\mathbb{T}^n,p)\)</span>, <span class="math display">\[
+\phi(k_1,\dots,k_n)=[\omega_1]^{k_1}*\dots*[\omega_n]^{k_n}.
+\]</span></p></li>
+<li><p>当 <span class="math inline">\(n\geq2\)</span> 时, <span class="math inline">\(\mathbb{S}^n\)</span> 是单连通的, <span class="math inline">\(\mathbb{T}^n\)</span> 不是, 因此两者不同胚.</p></li>
+</ul></li>
+</ul>
+<h2 id="degree-theory-for-the-circle">33  Degree Theory for the Circle</h2>
+<h3 id="the-degree-of-a-map">33.1  The degree of a map</h3>
+<p><u>Claim 33.1</u> (映射度的刻画)</p>
+<p><u>Claim 33.2</u> (映射度的性质)</p>
+<ol type="1">
+<li>(同伦不变性) 同伦的连续映射具有相同的映射度.</li>
+<li>(复合) 若 <span class="math inline">\(\varphi,\psi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span>, 则 <span class="math inline">\(\deg(\psi\circ\varphi)=(\deg\psi)(\deg\varphi)\)</span>.</li>
+</ol>
+<p><u>Claim 33.3</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 上连续映射的同伦分类) <span class="math inline">\(\mathbb{S}^1\)</span> 上的两个连续映射同伦, 当且仅当其映射度相同.</p>
+<p><u>Claim 33.4</u> (映射度决定映射的性质) 设 <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span>.</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\deg\varphi\neq0\)</span>, 则 <span class="math inline">\(\varphi\)</span> 是满射.</li>
+<li>若 <span class="math inline">\(\deg\varphi\neq1\)</span>, 则 <span class="math inline">\(\varphi\)</span> 有不动点.</li>
+</ol>
+<h3 id="some-applications">33.2  Some applications</h3>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+      
+        <a href="/tags/%E5%90%8C%E4%BC%A6%E8%AE%BA/" class="print-no-link">#同伦论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM202 | 12 圆的基本群</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-12/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202-11/" title="GTM202 | 11 同伦与基本群">
+                        <span class="hidden-mobile">GTM202 | 11 同伦与基本群</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/art-copyright.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
