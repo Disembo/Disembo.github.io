@@ -27,11 +27,10 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/path-class-product-properties.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/the-square-lemma.png">
 <meta property="article:published_time" content="2024-08-06T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-08T02:40:27.475Z">
+<meta property="article:modified_time" content="2024-08-09T14:46:42.528Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
-<meta property="article:tag" content="同伦论">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/straight-line-homotopy.png">
   
@@ -431,6 +430,27 @@ f(2-2s), &amp; 1-\frac{t}2\leq s\leq1. \\
 <div class="note note-secondary">
 <p><u>Pf</u> 到凸集的任意连续映射是同伦的, 因而任意起点与终点相同的道路是道路同伦的. 由 Claim 28.2, 凸集单连通.</p>
 </div>
+<p>补充. 基点变换映射 <span class="math inline">\(\Phi_g:\pi_1(X,p)\to\pi_1(X,q)\)</span> 一般是依赖于道路 <span class="math inline">\(g\)</span> 的选择的. 然而, 当基本群是交换群时, <span class="math inline">\(\Phi_g\)</span> 与 <span class="math inline">\(g\)</span> 的选取无关.</p>
+<p><u>Claim 28.4</u> (基点变换与道路无关的充要条件) 设 <span class="math inline">\(X\)</span> 道路连通, <span class="math inline">\(p,q\in X\)</span>. 任意连接 <span class="math inline">\(p,q\)</span> 的道路给出相同的同构, 当且仅当 <span class="math inline">\(\pi_1(X,p)\)</span> 是交换群.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 若 <span class="math inline">\(\pi_1(X,p)\)</span> 是交换群. 任给两条连接 <span class="math inline">\(p,q\)</span> 的道路 <span class="math inline">\(g,h\)</span>, 取 <span class="math inline">\([f]\in\pi_1(X,p)\)</span>. 有 <span class="math display">\[
+\Align{
+\Phi_{g}[f]
+&amp;= [\bar{g}]*[f]*[g] \\
+&amp;= ([\bar{g}]*[f]*[h])*([\bar{h}]*[g]) \\
+&amp;= ([\bar{h}]*[g])*([\bar{g}]*[f]*[h]) \\
+&amp;= [\bar{h}]*[f]*[h] \\
+&amp;= \Phi_h[f].
+}
+\]</span> (其中 <span class="math inline">\([\bar{g}]*[f]*[h]\)</span>, <span class="math inline">\([h]*[\bar{g}]\)</span>, 都属于 <span class="math inline">\(\pi_1(X,p)\)</span>, 两者可交换.)</p>
+<p>若任意连接 <span class="math inline">\(p,q\)</span> 的道路给出相同的同构. 任取 <span class="math inline">\(f,f'\in\pi_1(X,p)\)</span>. 任给连接 <span class="math inline">\(p,q\)</span> 的道路 <span class="math inline">\(g\)</span>, 注意到 <span class="math inline">\(h:=f*g\)</span> 也是一条连接 <span class="math inline">\(p,q\)</span> 的道路, 且 <span class="math inline">\(\bar{h}=\bar{g}*\bar{f}\)</span>. 根据假设, <span class="math display">\[
+\Align{
+\Phi_g[f'] &amp;= \Phi_h[f'], \\
+\iff [\bar{g}]*[f']*[g] &amp;= [\bar{g}]*[\bar{f}]*[f']*[f]*[g] \\
+\iff [f'] &amp;= [\bar{f}]*[f']*[f],
+}
+\]</span> 两边左乘 <span class="math inline">\([f]\)</span> 得到 <span class="math inline">\([f]*[f']=[f']*[f]\)</span>, 即 <span class="math inline">\(\pi_1(X,p)\)</span></p>
+</div>
 <h3 id="circle-representatives">28.2  Circle representatives</h3>
 <p>环路 <span class="math inline">\(f\in\Omega(X,p)\)</span> 的特殊之处在于 <span class="math inline">\(f(0)=f(1)\)</span>, 使得我们能够将其下降到 <span class="math inline">\(\mathbb{S}^1\)</span> 上.</p>
 <p>考虑商映射 <span class="math inline">\(q:I\to\mathbb{S}^1\)</span>, 则 <span class="math inline">\(f\)</span> 在纤维上取值相同, 根据唯一下降定理, 存在唯一连续映射 <span class="math inline">\(\tilde{f}:\mathbb{S}^1\to X\)</span>, 使得 <span class="math inline">\(f=\tilde{f}\circ q\)</span>. <span class="math display">\[
@@ -440,7 +460,7 @@ I \ar[d]_q \ar[dr]^f \\
 }
 \]</span></p>
 <p>映射 <span class="math inline">\(\tilde{f}\)</span> 称为 <span class="math inline">\(f\)</span> 的<strong>圆代表元 (circle representative)</strong>. 任意环路唯一确定一个圆代表元; 反之, 任意连续映射 <span class="math inline">\(\tilde{f}:\mathbb{S}^1\to X\)</span> 唯一确定一个环路 <span class="math inline">\(f=\tilde{f}\circ q\)</span>.</p>
-<p><u>Claim 28.4</u> (零伦环路的圆代表元刻画) 设拓扑空间 <span class="math inline">\(X\)</span>, 以 <span class="math inline">\(p\)</span> 为基点的环路 <span class="math inline">\(f\)</span> 和圆代表元 <span class="math inline">\(\tilde{f}\)</span>. TFAE:</p>
+<p><u>Claim 28.5</u> (零伦环路的圆代表元刻画) 设拓扑空间 <span class="math inline">\(X\)</span>, 以 <span class="math inline">\(p\)</span> 为基点的环路 <span class="math inline">\(f\)</span> 和圆代表元 <span class="math inline">\(\tilde{f}\)</span>. TFAE:</p>
 <ol type="1">
 <li><span class="math inline">\(f\)</span> 是零伦环路.</li>
 <li><span class="math inline">\(\tilde{f}\)</span> 是零伦映射. (自由同伦于常映射.)</li>
@@ -460,7 +480,7 @@ I \ar[d]_q \ar[dr]^f \\
 }
 \]</span></p>
 </div>
-<p><u>Claim 28.5</u> (正方形引理) 设连续映射 <span class="math inline">\(F:I\times I\to X\)</span>, 道路 <span class="math inline">\(f,g,h,k\)</span> 定义为 <span class="math display">\[
+<p><u>Claim 28.6</u> (正方形引理) 设连续映射 <span class="math inline">\(F:I\times I\to X\)</span>, 道路 <span class="math inline">\(f,g,h,k\)</span> 定义为 <span class="math display">\[
 \Align{
 f(s) &amp;= F(s,0), \\
 g(s) &amp;= F(1,s), \\
@@ -476,27 +496,27 @@ k(s) &amp;= F(s,1), \\
 <p>最重要的基本群是球面的基本群. 下一章我们会证明, <span class="math inline">\(\mathbb{S}^1\)</span> 的基本群是环路 <span class="math inline">\(\omega(s)=\e^{2\pi\i s}\)</span> 生成的无穷阶循环群. 现在我们将目光聚焦在高维球面的基本群.</p>
 <p>根据球极投影, 球面去掉一个点后同胚于 <span class="math inline">\(\R^n\)</span>. 因此, 只要 <span class="math inline">\(\mathbb{S}^n\)</span> (<span class="math inline">\(n\geq2\)</span>) 上的环路不经过某一点, 那么它便是零伦环路. 不幸的是, 空间填充曲线 (space-filling curves) 给出了连续的满射 <span class="math inline">\(f:I\to I\times I\)</span>, 因此的确存在经过 <span class="math inline">\(\mathbb{S}^n\)</span> 中任何一点的道路. 我们的想法是将道路 "微调", 使之道路同伦于一条不经过某一点的道路.</p>
 <p>度量空间的子集 <span class="math inline">\(S\)</span> 的<strong>直径</strong>定义为元素距离的上确界: <span class="math inline">\({\rm diam}(S)=\sup\{d(x,y)\mid x,y\in S\}\)</span>. 设度量空间 <span class="math inline">\(X\)</span> 的开覆盖 <span class="math inline">\({\cal U}\)</span>, 该开覆盖的 <strong>Lebesgue 数</strong>指的是正实数 <span class="math inline">\(\delta&gt;0\)</span>, 满足: 任意直径小于 <span class="math inline">\(\delta\)</span> 的子集和包含于某一个 <span class="math inline">\(U\in{\cal U}\)</span> 中.</p>
-<p><u>Claim 28.6</u> (Lebesgue 数引理) 紧度量空间的任意开覆盖具有 Lebesgue 数.</p>
+<p><u>Claim 28.7</u> (Lebesgue 数引理) 紧度量空间的任意开覆盖具有 Lebesgue 数.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 设紧度量空间 <span class="math inline">\(M\)</span> 的开覆盖 <span class="math inline">\(\cal U\)</span>. 任一点 <span class="math inline">\(x\in M\)</span> 处在某 <span class="math inline">\(U\in{\cal U}\)</span> 内, 由开性, 存在 <span class="math inline">\(r(x)&gt;0\)</span> 使得 <span class="math inline">\(B_{2r(x)}(x)\subset U\)</span>. 开球族 <span class="math inline">\(\{B_{r(x)}(x)\mid x\in M\}\)</span> 构成 <span class="math inline">\(M\)</span> 的开覆盖, 它有有限子覆盖 <span class="math inline">\(\{B_{r(x_i)}(x_i)\}_{i=1}^n\)</span>.</p>
 <p>取 <span class="math inline">\(\delta=\min\{r(x_1),\dots,r(x_n)\}\)</span>, 则 <span class="math inline">\(\delta\)</span> 是 <span class="math inline">\({\cal U}\)</span> 的 Lebesgue 数. 任给直径小于 <span class="math inline">\(\delta\)</span> 的子集 <span class="math inline">\(S\)</span>, 取 <span class="math inline">\(y_0\in S\)</span>, 则 <span class="math inline">\(y_0\)</span> 在某 <span class="math inline">\(B_{r(x_i)}(x_i)\)</span> 中. 只需证明 <span class="math inline">\(S\subset B_{2r(x_i)}(x_i)\)</span>, 因为后者是某 <span class="math inline">\(U\in{\cal U}\)</span> 的子集. 这是容易看出的: <span class="math inline">\(S\)</span> 中任意一点 <span class="math inline">\(z\)</span> 与 <span class="math inline">\(y_0\)</span> 的距离小于 <span class="math inline">\(\delta\)</span>, 进而由三角不等式, <span class="math display">\[
 d(z,x_i)\leq d(z,y_0)+d(y_0,x_i)&lt;\delta+r(x_i)&lt;2r(x_i),
 \]</span> 即 <span class="math inline">\(z\in B_{2r(x_i)}(x_i)\)</span>.</p>
 </div>
-<p><u>Claim 28.7</u> (微调道路使之不过某点) 设维数 <span class="math inline">\(n\geq2\)</span> 的流形 <span class="math inline">\(M\)</span>, <span class="math inline">\(f\)</span> 是连接 <span class="math inline">\(p_1,p_2\)</span> 的道路, <span class="math inline">\(q\)</span> 是 <span class="math inline">\(p_1,p_2\)</span> 外一点, 则 <span class="math inline">\(f\)</span> 道路同伦于一条不经过 <span class="math inline">\(q\)</span> 的道路.</p>
+<p><u>Claim 28.8</u> (微调道路使之不过某点) 设维数 <span class="math inline">\(n\geq2\)</span> 的流形 <span class="math inline">\(M\)</span>, <span class="math inline">\(f\)</span> 是连接 <span class="math inline">\(p_1,p_2\)</span> 的道路, <span class="math inline">\(q\)</span> 是 <span class="math inline">\(p_1,p_2\)</span> 外一点, 则 <span class="math inline">\(f\)</span> 道路同伦于一条不经过 <span class="math inline">\(q\)</span> 的道路.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 设 <span class="math inline">\(M\)</span> 的开覆盖 <span class="math inline">\(\{U,V\}\)</span>, 其中 <span class="math inline">\(U\)</span> 是 <span class="math inline">\(q\)</span> 为中心的坐标球, <span class="math inline">\(V=M\setminus\{q\}\)</span>. 由连续性, <span class="math inline">\(\{f^{-1}(U),f^{-1}(V)\}\)</span> 构成 <span class="math inline">\(I\)</span> 的开覆盖, 记其 Lebesgue 数为 <span class="math inline">\(\delta\)</span>. 令 <span class="math inline">\(m\)</span> 是满足 <span class="math inline">\(1/m&lt;\delta\)</span> 的正整数, 则在每个小区间 <span class="math inline">\([k/m,(k+1)/m]\)</span> 上, 道路 <span class="math inline">\(f\)</span> 的像全部在 <span class="math inline">\(U\)</span> 内或全部在 <span class="math inline">\(V\)</span> 内.</p>
 <p>令 <span class="math inline">\(0=a_0&lt;\dots&lt;a_l=1\)</span> 表示所有形如 <span class="math inline">\(k/m\)</span> 的数, 且满足 <span class="math inline">\(f(a_i)\neq q\)</span>. 于是每个小段 <span class="math inline">\(f|_{[a_{i-1},a_i]}\)</span> 完全包含于 <span class="math inline">\(U\)</span> 或完全包含于 <span class="math inline">\(V\)</span>, 且端点不等于 <span class="math inline">\(q\)</span>. (若 <span class="math inline">\(f(k/m)=q\in U\)</span> 对某 <span class="math inline">\(k\)</span>, 则 <span class="math inline">\([(k-1)/m,k/m]\)</span> 和 <span class="math inline">\([k/m,(k+1)/m]\)</span> 都映到 <span class="math inline">\(U\)</span> 内.)</p>
 <p>这些小段中, 完全包含于 <span class="math inline">\(V\)</span> 的小段自然不经过 <span class="math inline">\(q\)</span>. 下面考虑完全包含于 <span class="math inline">\(U\)</span> 的小段. 因为 <span class="math inline">\(U\setminus\{q\}\)</span> 同胚于 <span class="math inline">\(\mathbb{B}^n\setminus\{0\}\)</span>, 是道路连通的 (这里用到维数 <span class="math inline">\(n\geq2\)</span>), 因此对于包含于 <span class="math inline">\(U\)</span> 的小段 <span class="math inline">\(f|_{[a_{i-1},a_i]}\)</span>, 可以用 <span class="math inline">\(U\setminus\{q\}\)</span> 中的一段有相同端点的道路 <span class="math inline">\(g\)</span> 替代. 因为 <span class="math inline">\(U\)</span> 单连通, 所以 <span class="math inline">\(f|_{[a_{i-1},a_i]}\)</span> 和 <span class="math inline">\(g\)</span> 是道路同伦的.</p>
 </div>
-<p><u>Claim 28.8</u> (高维球面的单连通性) 对 <span class="math inline">\(n\geq2\)</span>, <span class="math inline">\(\mathbb{S}^n\)</span> 单连通.</p>
+<p><u>Claim 28.9</u> (高维球面的单连通性) 对 <span class="math inline">\(n\geq2\)</span>, <span class="math inline">\(\mathbb{S}^n\)</span> 单连通.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 设北极点 <span class="math inline">\(N\in\mathbb{S}^n\)</span>, 任取另外一点 <span class="math inline">\(p\)</span>. 上面的引理表明, 以 <span class="math inline">\(p\)</span> 为基点的任一环路 <span class="math inline">\(f\)</span> 道路同伦于一条不经过 <span class="math inline">\(N\)</span> 的环路 <span class="math inline">\(g\)</span>, 即 <span class="math inline">\(\mathbb{S}^n\setminus\{N\}\)</span> 内的环路. 由球极投影, <span class="math inline">\(\mathbb{S}^n\setminus\{N\}\cong\R^n\)</span>, 所以 <span class="math inline">\(g\)</span> 是零伦环路, 故 <span class="math inline">\(f\)</span> 也是零伦环路.</p>
 </div>
-<p><u>Claim 28.9</u> (流形的基本群) 流形的基本群是可数的.</p>
+<p><u>Claim 28.10</u> (流形的基本群) 流形的基本群是可数的.</p>
 <p>这里补充 Lebesgue 数的另一个应用: 一致连续. 设度量空间 <span class="math inline">\((M_1,d_1),(M_2,d_2)\)</span>, 映射 <span class="math inline">\(f:M_1\to M_2\)</span> 称为<strong>一致连续的 (uniformly continuous)</strong>, 若对任意 <span class="math inline">\(\varepsilon&gt;0\)</span>, 存在 <span class="math inline">\(\delta&gt;0\)</span>, 使得对任意 <span class="math inline">\(x,y\in M_1\)</span>, <span class="math display">\[
 d_1(x,y)&lt;\delta \Rightarrow d_2(f(x),f(y))&lt;\delta.
-\]</span> <u>Claim 28.10</u> (紧度量空间上的连续函数一致连续) 若 <span class="math inline">\(M_1\)</span> 紧, 则连续函数 <span class="math inline">\(f:M_1\to M_2\)</span> 一致连续.</p>
+\]</span> <u>Claim 28.11</u> (紧度量空间上的连续函数一致连续) 若 <span class="math inline">\(M_1\)</span> 紧, 则连续函数 <span class="math inline">\(f:M_1\to M_2\)</span> 一致连续.</p>
 <div class="note note-secondary">
 <p><u>Pf</u> 任给 <span class="math inline">\(\varepsilon&gt;0\)</span>. 设 <span class="math inline">\(M_2\)</span> 的开覆盖 <span class="math inline">\({\cal U}=\{B_\varepsilon(x)\mid x\in M_2\}\)</span>. 根据连续性, <span class="math inline">\(f^{-1}[{\cal U}]\)</span> 是 <span class="math inline">\(M_1\)</span> 的开覆盖, 由 <span class="math inline">\(M_1\)</span> 的紧性, 它有 Lebesgue 数 <span class="math inline">\(\delta\)</span>. 对于任意 <span class="math inline">\(x,y\)</span> 满足 <span class="math inline">\(d(x,y)&lt;\delta\)</span>, 有 <span class="math inline">\(\{x,y\}\)</span> 包含于 <span class="math inline">\(f^{-1}[{\cal U}]\)</span> 中的某开集, 于是 <span class="math inline">\(\{f(x),f(y)\}\)</span> 包含于 <span class="math inline">\({\cal U}\)</span> 中的某开集, 即 <span class="math inline">\(d(f(x),f(y))&lt;\varepsilon\)</span>.</p>
 </div>
@@ -536,8 +556,6 @@ d_1(x,y)&lt;\delta \Rightarrow d_2(f(x),f(y))&lt;\delta.
         <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
       
         <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
-      
-        <a href="/tags/%E5%90%8C%E4%BC%A6%E8%AE%BA/" class="print-no-link">#同伦论</a>
       
     </div>
   
