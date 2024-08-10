@@ -23,12 +23,15 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="圆的提升性质, 基本群, 映射度理论及其应用.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-08T14:30:00.000Z">
-<meta property="article:modified_time" content="2024-08-09T14:46:33.066Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/indices-of-vector-fields.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/sum-of-indices.png">
+<meta property="article:published_time" content="2024-08-10T12:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-10T15:27:45.444Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/indices-of-vector-fields.png">
   
   
   
@@ -226,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-08 22:30" pubdate>
-          2024年8月8日 晚上
+        <time datetime="2024-08-10 20:00" pubdate>
+          2024年8月10日 晚上
         </time>
       </span>
     
@@ -390,7 +393,41 @@ J(n)&amp;=[\omega]^n,&amp; K([f])&amp;=N(f).
 <li>设 <span class="math inline">\(2\)</span> 维带边流形 <span class="math inline">\(M\)</span>, 则 <span class="math inline">\(M\)</span> 中的点不能既是内部点也是边界点.</li>
 </ol>
 <div class="note note-secondary">
-<p><u>Pf</u></p>
+<p><u>Pf</u> 一维的情形是利用连通性证明的. 二维情形则利用单连通性.</p>
+<p>维数不变性. 假设 <span class="math inline">\(X\)</span> 既是 <span class="math inline">\(2\)</span> 维流形, 也是 <span class="math inline">\(n\)</span> (<span class="math inline">\(n&gt;2\)</span>) 维流形. 设 <span class="math inline">\(p\in X\)</span> 的一个 <span class="math inline">\(2\)</span> 维欧氏邻域 <span class="math inline">\(U\cong\R^2\)</span>. 因为 <span class="math inline">\(X\)</span> 存在 <span class="math inline">\(n\)</span> 维坐标开球构成的拓扑基, 所以存在 <span class="math inline">\(U\)</span> 的开子集 <span class="math inline">\(V\cong\mathbb{B}^n\)</span>. 与此同时 <span class="math inline">\(V\)</span> 作为 <span class="math inline">\(U\)</span> 的开子集, 同胚于 <span class="math inline">\(\R^2\)</span> 的开子集 <span class="math inline">\(A\)</span> (同胚在开集的限制是同胚), 于是 <span class="math inline">\(A\cong\mathbb{B}^n\)</span>, 但这是不可能的.</p>
+<p>证明 <span class="math inline">\(A\)</span> 不同胚于 <span class="math inline">\(\mathbb{B}^n\)</span>. 重点是说明对于 <span class="math inline">\(p\in A\)</span>, <span class="math inline">\(A\setminus\{p\}\)</span> 不单连通, 但 <span class="math inline">\(\mathbb{B}^n\setminus\{q\}\)</span> 是单连通的, 所以原本的两个集合不同胚. 由 <span class="math inline">\(A\)</span> 的开性, 某 <span class="math inline">\(B_r(p)\subset A\)</span>. 由可以定义连续映射 <span class="math display">\[
+\Align{
+r:A\setminus\{p\}&amp;\to\partial{B}_r(p), &amp;
+x&amp;\mapsto p+r\frac{x-p}{|x-p|}.
+}
+\]</span> 容易验证 <span class="math inline">\(r|_{\partial{B}_r(p)}\)</span> 是恒等映射, 即 <span class="math inline">\(r\)</span> 是收缩. 由于 <span class="math inline">\(\partial{B}_r(p)\cong\mathbb{S}^1\)</span> 非单连通, 所以 <span class="math inline">\(A\setminus\{p\}\)</span> 非单连通.</p>
+<p>边界不变性. 假设 <span class="math inline">\(p\)</span> 有内部坐标邻域 <span class="math inline">\((U,\varphi)\)</span> 和边界坐标邻域 <span class="math inline">\((V,\psi)\)</span> 满足 <span class="math inline">\(\psi(p)\in\partial\H^2\)</span>. 取 <span class="math inline">\(U\cap V\)</span> 的包含 <span class="math inline">\(p\)</span> 的连通分量 <span class="math inline">\(A\)</span>, 则 <span class="math inline">\(A\)</span> 同胚于 <span class="math inline">\(\R^2\)</span> 的开子集 <span class="math inline">\(\varphi(A)\)</span> 和 <span class="math inline">\(\H^2\)</span> 的开子集 <span class="math inline">\(\psi(A)\)</span>. 然而在去掉 <span class="math inline">\(p\)</span> 的像点后, <span class="math inline">\(\varphi(A)\setminus\{\varphi(p)\}\)</span> 不是单连通的, 但 <span class="math inline">\(\psi(A)\setminus\{\psi(p)\}\)</span> 是单连通的 (因为 <span class="math inline">\(\psi(p)\in\partial\H^2\)</span>), 导致矛盾.</p>
+</div>
+<p><u>Claim 32.10</u> (卷绕数的复积分公式) 设 <span class="math inline">\(f:I\to\C\setminus\{0\}\)</span> 是连续可微环路, 则 <span class="math display">\[
+N(f) = \frac1{2\pi\i}\int_0^1\frac{f'(s)}{f(s)}\dd{s}.
+\]</span></p>
+<div class="note note-secondary">
+<p><u>Pf</u> 根据卷绕数的定义 <span class="math inline">\(N(f)=N(r\circ f)\)</span>, 其中 <span class="math inline">\(r(z)=z/|z|\)</span>. 因此, 我们的思路是构造 <span class="math inline">\(r\circ f\)</span> 的提升 <span class="math inline">\(H:I\to\R\)</span>, 满足 <span class="math inline">\(\varepsilon\circ H=r\circ f\)</span>, 即 <span class="math inline">\(\e^{2\pi\i H(t)}=f(t)/|f(t)|\)</span>.</p>
+<p>首先令 <span class="math inline">\(h:I\to\C\)</span>, <span class="math display">\[
+h(t) = \frac1{2\pi\i}\int_0^t\frac{f'(s)}{f(s)}\dd{s},
+\]</span> 有 <span class="math inline">\(h(0)=0\)</span> 以及 <span class="math inline">\(h'(t)=1/2\pi\i\cdot f'(t)/f(t)\)</span>. 直接的计算表明 <span class="math display">\[
+\dv{t}(\e^{-2\pi\i h(t)}f(t)) \equiv 0,
+\]</span> 因此 <span class="math inline">\(\e^{-2\pi\i h(t)}f(t)\)</span> 是常数, 代入 <span class="math inline">\(t=0\)</span>, 有 <span class="math inline">\(\e^{-2\pi\i h(t)}f(t)\equiv f(0)\)</span>. 于是 <span class="math display">\[
+\Align{
+(r\circ f)(t) = \frac{f(t)}{|f(t)|}
+&amp;= \frac{f(0)}{|f(t)|} \exp(2\pi\i h(t)) \\
+&amp;= \exp\pqty{
+  2\pi\i h(t)+
+  \ln\frac{|f(0)|}{|f(t)|} + \i\arg f(0)},
+}
+\]</span> 因此一个满足条件的 <span class="math inline">\(H\)</span> 是 <span class="math display">\[
+H(t) = h(t) + \frac1{2\pi\i}\pqty{
+  \ln\frac{|f(0)|}{|f(t)|} + \i\arg f(0)
+}.
+\]</span> 注意 <span class="math inline">\(1/2\pi\i(\cdots)\)</span> 中的项在 <span class="math inline">\(\{0,1\}\)</span> 上常值, 故 <span class="math display">\[
+N(f) = H(1)-H(0) = h(1)-h(0) =
+\frac1{2\pi\i}\int_0^1\frac{f'(s)}{f(s)}\dd{s}.
+\]</span></p>
 </div>
 <h2 id="degree-theory-for-the-circle">33  Degree Theory for the Circle</h2>
 <h3 id="the-degree-of-a-map">33.1  The degree of a map</h3>
@@ -474,13 +511,13 @@ J(n)&amp;=[\omega]^n,&amp; K([f])&amp;=N(f).
 <p>2, 证明其逆否命题. 设 <span class="math inline">\(\varphi\)</span> 没有不动点, 于是连接 <span class="math inline">\(\varphi(z)\)</span> 与 <span class="math inline">\(-z\)</span> 的线段不经过原点, 进而可以定义同伦 <span class="math display">\[
 H(z,t) = \frac{(1-t)\varphi(z)-tz}{|(1-t)\varphi(z)-tz|}.
 \]</span> 对径映射的映射度为 <span class="math inline">\(1\)</span>, 故 <span class="math inline">\(\deg\varphi=1\)</span>.</p>
-<p>3,</p>
+<p>3, TODO</p>
 </div>
 <h3 id="some-applications-1">33.2  Some applications</h3>
 <p>先证明一个引理.</p>
 <p><u>Claim 33.5</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 上连续映射的扩张) <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span> 可以扩张到 <span class="math inline">\(\Phi\in C(\overline{\mathbb{B}^2},\mathbb{S}^1)\)</span>, 当且仅当 <span class="math inline">\(\deg\varphi=0\)</span>.</p>
 <div class="note note-secondary">
-<p><u>Pf</u> 回顾圆代表元的定义, 连续映射 <span class="math inline">\(\varphi:\mathbb{S}^1\to\mathbb{S}^1\)</span> 可以看作道路 <span class="math inline">\(f=\varphi\circ\varepsilon\)</span> 的圆代表元. 根据 Claim 28.4 (零伦环路的圆代表元刻画), <span class="math inline">\(\varphi\)</span> 零伦当且仅当 <span class="math inline">\(\varphi\)</span> 可扩张到连续映射 <span class="math inline">\(\overline{\mathbb{B}^2}\to\mathbb{S}^1\)</span>. 而根据 <span class="math inline">\(\mathbb{S}^1\)</span> 上映射的同伦分类, <span class="math inline">\(\varphi\)</span> 零伦当且仅当 <span class="math inline">\(\deg\varphi=0\)</span>.</p>
+<p><u>Pf</u> 回顾圆代表元的定义, 连续映射 <span class="math inline">\(\varphi:\mathbb{S}^1\to\mathbb{S}^1\)</span> 可以看作道路 <span class="math inline">\(f=\varphi\circ\varepsilon\)</span> 的圆代表元. 根据 Claim 28.5 (零伦环路的圆代表元刻画), <span class="math inline">\(\varphi\)</span> 零伦当且仅当 <span class="math inline">\(\varphi\)</span> 可扩张到连续映射 <span class="math inline">\(\overline{\mathbb{B}^2}\to\mathbb{S}^1\)</span>. 而根据 <span class="math inline">\(\mathbb{S}^1\)</span> 上映射的同伦分类, <span class="math inline">\(\varphi\)</span> 零伦当且仅当 <span class="math inline">\(\deg\varphi=0\)</span>.</p>
 </div>
 <p>下面是著名的 Brouwer 不动点定理的二维情形. 我们之后还会证明一般的 <span class="math inline">\(n\)</span> 维情形.</p>
 <p><u>Claim 33.6</u> (二维 Brouwer 不动点定理) 连续映射 <span class="math inline">\(f\in C(\overline{\mathbb{B}^2},\overline{\mathbb{B}^2})\)</span> 存在不动点.</p>
@@ -508,9 +545,25 @@ H(z,t) = \frac{(1-t)p_\varepsilon(z)+tz^n}{|(1-t)p_\varepsilon(z)+tz^n|}
 <p>欧氏空间 <span class="math inline">\(\R^n\)</span> 上的<strong>向量场 (vector field)</strong> 指的是连续映射 <span class="math inline">\(V:\R^n\to\R^n\)</span>. 若 <span class="math inline">\(V(p)=0\)</span>, 则 <span class="math inline">\(p\)</span> 称为向量场的<strong>奇点 (singular point)</strong>; 若 <span class="math inline">\(V(p)\neq0\)</span>, 则 <span class="math inline">\(p\)</span> 称为向量场的<strong>正则点 (regular point)</strong>. 奇点 <span class="math inline">\(p\)</span> 称为<strong>孤立的 (isolated)</strong>, 若它的某个邻域内不存在其他奇点.</p>
 <p>设 <span class="math inline">\(V\)</span> 是 <span class="math inline">\(\R^2\)</span> 上的向量场, 记 <span class="math inline">\({\cal R}_V\subset\R^2\)</span> 为其正则点全体. 对于环路 <span class="math inline">\(f:I\to{\cal R}_V\)</span>, 向量场 <strong><span class="math inline">\(V\)</span> 关于 <span class="math inline">\(f\)</span> 的卷绕数 (winding number of <span class="math inline">\(V\)</span> around <span class="math inline">\(f\)</span>)</strong> 定义为环路 <span class="math inline">\(V\circ f:I\to\R^2\setminus\{0\}\)</span> 的卷绕数. 记作 <span class="math inline">\(N(V,f)\)</span>.</p>
 <ul>
-<li><span class="math inline">\(N(V,f)\)</span> 只依赖于 <span class="math inline">\(f\)</span> 所在的道路类.</li>
+<li><p><span class="math inline">\(N(V,f)\)</span> 只依赖于 <span class="math inline">\(f\)</span> 所在的道路类. 实际上, 若有环路同伦 <span class="math inline">\(f\sim g:I\to{\cal R}_V\)</span>, 则 <span class="math inline">\(V\circ f\sim V\circ g\)</span> 也环路同伦. 根据 <span class="math inline">\(\R^2\setminus\{0\}\)</span> 上环路的同伦分类, <span class="math inline">\(V\circ f\)</span> 和 <span class="math inline">\(V\circ g\)</span> 有相同的卷绕数.</p></li>
+<li><p><span class="math inline">\(N(V,f)\)</span> 与映射度的关系. 由定义, <span class="math inline">\(N(V,f)=N(r\circ V\circ f)\)</span>, 其中 <span class="math inline">\(r:\R^2\setminus\{0\}\to\mathbb{S}^1\)</span> 是标准的收缩映射. 取 <span class="math inline">\(f\)</span> 的圆代表元 <span class="math inline">\(\tilde{f}:\mathbb{S}^1\to{\cal R}_V\)</span>, 有 <span class="math inline">\(f=\tilde{f}\circ\omega\)</span>. 故 <span class="math display">\[
+N(V,f)
+= N(r\circ V\circ f)
+= N(r\circ V\circ\tilde{f}\circ\omega)
+= \deg(r\circ V\circ\tilde{f}),
+\]</span> 即 <span class="math inline">\(N(V,f)\)</span> 是映射 <span class="math inline">\(r\circ V\circ\tilde{f}:\mathbb{S}^1\to\mathbb{S}^1\)</span> 的映射度. 所以 <span class="math inline">\(N(V,f)\)</span> 是一个同伦不变量, 同伦的 <span class="math inline">\(\tilde{f}\)</span> 给出相同的卷绕数.</p></li>
 </ul>
-<p>设 <span class="math inline">\(p\)</span> 是向量场 <span class="math inline">\(V\)</span> 的孤立奇点, 则当 <span class="math inline">\(\varepsilon&gt;0\)</span> 足够小时, 小环路 <span class="math inline">\(f_\varepsilon(s)=p+\varepsilon\omega(s)\)</span> 的像集及其内部不含有其他的奇点, 因此 <span class="math inline">\(N(V,f_\varepsilon)\)</span> 有定义. 当 <span class="math inline">\(\varepsilon\)</span> 充分小时, <span class="math inline">\(N(V,f_\varepsilon)\)</span> 是一个与 <span class="math inline">\(\varepsilon\)</span> 无关的整数, 称为 <span class="math inline">\(V\)</span> 在 <span class="math inline">\(p\)</span> 处的<strong>指标 (index)</strong>, 记作 <span class="math inline">\({\rm Ind}(V,p)\)</span>.</p>
+<p>设 <span class="math inline">\(p\)</span> 是向量场 <span class="math inline">\(V\)</span> 的孤立奇点, 则存在 <span class="math inline">\(r&gt;0\)</span> 使得 <span class="math inline">\(B_r(p)\)</span> 内没有其他奇点. 对于小正数 <span class="math inline">\(\varepsilon&lt;r\)</span>, 小环路 <span class="math inline">\(f_\varepsilon(s)=p+\varepsilon\omega(s)\)</span> 不穿过奇点, 因此 <span class="math inline">\(N(V,f_\varepsilon)\)</span> 有定义. 此时, <span class="math inline">\(N(V,f_\varepsilon)\)</span> 是一个与 <span class="math inline">\(\varepsilon\)</span> 无关的整数, 称为 <span class="math inline">\(V\)</span> 在 <span class="math inline">\(p\)</span> 处的<strong>指标 (index)</strong>, 记作 <span class="math inline">\({\rm Ind}(V,p)\)</span>.</p>
+<ul>
+<li><p>注意到对于 <span class="math inline">\(\varepsilon,\varepsilon'&lt;r\)</span>, <span class="math inline">\(f_\varepsilon,f_{\varepsilon'}\)</span> 的圆代表元 <span class="math inline">\(\tilde{f}_\varepsilon,\tilde{f}_{\varepsilon'}\)</span> 是自由同伦的 (取直线同伦即可), 因此, 根据前面的讨论, <span class="math inline">\(N(V,f_\varepsilon)=N(V,f_{\varepsilon'})\)</span>. 故向量场的指标是良定义的.</p></li>
+<li><p>几个简单向量场的指标:</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/indices-of-vector-fields.png" style="zoom:60%;" cloud-img="" lazyload="true"></p></li>
+</ul>
+<p><u>Claim 33.9</u> (指标和等于边界的卷绕数) 设向量场 <span class="math inline">\(V\)</span> 在 <span class="math inline">\(\overline{\mathbb{B}^2}\)</span> 内只有有限个奇点, 且都在其内部, 则 <span class="math inline">\(V\)</span> 这些奇点的指标之和等于 <span class="math inline">\(N(V,\omega)\)</span>.</p>
+<div class="note note-secondary">
+<p><u>Pf</u> 如下图, 根据同伦不变性, <span class="math inline">\(N(V,\omega)=N(V,f)\)</span>. 因为道路乘积对应卷绕数加和, 所以 <span class="math inline">\(N(V,f)\)</span> 是所有 <span class="math inline">\(N(V,f_i)\)</span> 之和, 即 <span class="math inline">\({\rm Ind}(V,p_i)\)</span> 之和.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/sum-of-indices.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+</div>
 <p><strong><span class="math inline">\(\mathbb{T}^2\)</span> 上连续映射的同伦分类</strong>.</p>
 <p>环面 <span class="math inline">\(\mathbb{T}^2\)</span> 在基点 <span class="math inline">\(p=(1,1)\)</span> 处的基本群 <span class="math inline">\(\pi_1(\mathbb{T}^2,p)\)</span> 由两条标准环路 <span class="math display">\[
 \Align{\omega_1(s)&amp;=(\e^{2\pi\i s},1),&amp;\omega_2(s)&amp;=(1,\e^{2\pi\i s})}
@@ -520,15 +573,23 @@ N{(r_1\circ\varphi\circ\omega_1)} &amp; N{(r_1\circ\varphi\circ\omega_2)} \\
 N{(r_2\circ\varphi\circ\omega_1)} &amp; N{(r_2\circ\varphi\circ\omega_2)}
 },
 \]</span> 它可以视作 <span class="math inline">\(\varphi\)</span> 的 "映射度".</p>
-<p><u>Claim 33.8</u> (<span class="math inline">\(\mathbb{T}^2\)</span> 上连续映射的同伦分类) 设 <span class="math inline">\(\varphi,\psi\in C(\mathbb{T}^2,\mathbb{T}^2)\)</span>.</p>
+<ul>
+<li><p>恒等映射 <span class="math inline">\({\rm id}_{\mathbb{T}^2}\)</span> 和旋转映射 <span class="math inline">\(\rho(z,w)=(\e^{\i\theta}z,\e^{\i\phi}w)\)</span> 对应单位阵.</p></li>
+<li><p>任给 <span class="math inline">\(m,n,k,l\in\Z\)</span>, 定义 "幂映射" <span class="math display">\[
+\Align{
+\varphi:\mathbb{T}^2 &amp;\to\mathbb{T}^2, &amp;
+\varphi(z,w)&amp;=(z^mw^n,z^kw^l),
+}
+\]</span> 它对应的矩阵 <span class="math display">\[
+D(\varphi) = \pmqty{m &amp; n \\ k &amp; l}.
+\]</span></p></li>
+</ul>
+<p><u>Claim 33.10</u> (<span class="math inline">\(\mathbb{T}^2\)</span> 上连续映射的同伦分类) 设 <span class="math inline">\(\varphi,\psi\in C(\mathbb{T}^2,\mathbb{T}^2)\)</span>.</p>
 <ol type="1">
 <li>(分类) <span class="math inline">\(\varphi\sim\psi\)</span> 当且仅当 <span class="math inline">\(D(\varphi)=D(\psi)\)</span>.</li>
-<li>(复合) <span class="math inline">\(D(\psi\circ\varphi)=D(\psi)D(\varphi)\)</span>.</li>
-<li>(同胚) <span class="math inline">\(\varphi\)</span> 同伦于一个同胚, 当且仅当 <span class="math inline">\(D(\varphi)\)</span> 在 <span class="math inline">\(\Z\)</span> 上是可逆矩阵.</li>
+<li>(函子性) <span class="math inline">\(D(\psi\circ\varphi)=D(\psi)D(\varphi)\)</span>.</li>
+<li>(同胚) <span class="math inline">\(\varphi\)</span> 同伦于一个同伦等价映射, 当且仅当 <span class="math inline">\(D(\varphi)\)</span> 是 <span class="math inline">\(\Z\)</span> 上的可逆矩阵.</li>
 </ol>
-<div class="note note-secondary">
-<p><u>Pf</u></p>
-</div>
 </body></html>
                 
               </div>
@@ -589,7 +650,7 @@ N{(r_2\circ\varphi\circ\omega_1)} &amp; N{(r_2\circ\varphi\circ\omega_2)}
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月8日</div>
+          <div>2024年8月10日</div>
         </div>
       
       
@@ -620,6 +681,12 @@ N{(r_2\circ\varphi\circ\omega_1)} &amp; N{(r_2\circ\varphi\circ\omega_2)}
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Note/tp-gtm202-13/" title="GTM202 | 13 一些群论">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM202 | 13 一些群论</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

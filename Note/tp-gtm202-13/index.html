@@ -16,23 +16,23 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="GTM202 的笔记合集: 拓扑流形">
+    <meta name="description" content="自由积, 自由群, 自由交换群, 群的表现.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM202 | 笔记索引">
-<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-index/index.html">
+<meta property="og:title" content="GTM202 | 13 一些群论">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-13/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="GTM202 的笔记合集: 拓扑流形">
+<meta property="og:description" content="自由积, 自由群, 自由交换群, 群的表现.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-22T14:10:00.000Z">
-<meta property="article:modified_time" content="2024-08-10T15:32:36.930Z">
+<meta property="article:published_time" content="2024-08-10T15:30:00.000Z">
+<meta property="article:modified_time" content="2024-08-10T15:31:13.446Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
-<meta property="article:tag" content="拓扑">
+<meta property="article:tag" content="代数">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>GTM202 | 笔记索引 | Jin&#39;s Blog</title>
+  <title>GTM202 | 13 一些群论 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM202 | 笔记索引"></span>
+            <span id="subtitle" data-typed-text="GTM202 | 13 一些群论"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-22 22:10" pubdate>
-          2024年7月22日 晚上
+        <time datetime="2024-08-10 23:30" pubdate>
+          2024年8月10日 晚上
         </time>
       </span>
     
@@ -270,39 +270,47 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GTM202 | 笔记索引</h1>
+            <h1 id="seo-header">GTM202 | 13 一些群论</h1>
             
             
               <div class="markdown-body">
                 
                 <html><head></head><body>
 <div class="note note-secondary">
-<p>GTM202 (<em>Introduction to Topological Manifolds</em>).</p>
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 9 的笔记.</p>
 </div>
-<p><strong>第一部分: 拓扑空间与拓扑流形的基本性质.</strong></p>
-<ol type="1">
-<li><a href="/Note/tp-gtm202-1">拓扑空间</a>: 拓扑空间, 连续性, Hausdorff 与可数性, 拓扑流形.</li>
-<li><a href="/Note/tp-gtm202-2">构造新的拓扑空间</a>: 拓扑空间的构造 (子空间, 积, 不交并, 商, 黏着), 拓扑群与群作用.</li>
-<li><a href="/Note/tp-gtm202-3">连通性</a>: 连通和道路连通, 分量, 局部的连通性.</li>
-<li><a href="/Note/tp-gtm202-4">紧致性</a>: 紧致性, 局部紧性.</li>
-<li><a href="/Note/tp-gtm202-5">紧致性</a>: 仿紧性与单位分解, 逆紧映射.</li>
-</ol>
-<p><strong>第二部分: 胞腔复形与低维流形的分类.</strong></p>
-<ol start="6" type="1">
-<li><a href="/Note/tp-gtm202-6">胞腔复形</a>: 胞腔复形与 CW 复形, CW 复形的拓扑性质.</li>
-<li>胞腔复形</li>
-<li>紧曲面</li>
-<li>紧曲面</li>
-</ol>
-<p><strong>第三部分: 同伦与基本群.</strong></p>
-<ol start="10" type="1">
-<li><a href="/Note/tp-gtm202-10">同伦与基本群</a>: 同伦与道路同伦; 基本群的定义, 高维球面与流形的基本群.</li>
-<li><a href="/Note/tp-gtm202-11">同伦与基本群</a>: 基本群的函子性 &amp; 拓扑不变性; 同伦等价, 基本群的同伦不变性; 高阶同伦群简介.</li>
-<li><a href="/Note/tp-gtm202-12">圆</a>: 圆的提升性质, 基本群, 映射度理论及其应用.</li>
-<li><a href="/Note/tp-gtm202-13">一些群论</a>: 自由积, 自由群, 自由交换群, 群的表现.</li>
-<li>Siefert-Van Kampen 定理.</li>
-</ol>
-<p><strong>第四部分: 同调群.</strong></p>
+<h2 id="some-group-theory">34  Some Group Theory</h2>
+<h3 id="free-products">34.1  Free products</h3>
+<p>自由积是群范畴的余积构造.</p>
+<p>设群族 <span class="math inline">\((G_\alpha)_{\alpha\in A}\)</span>, 该群族的一个<strong>字 (word)</strong> 指的是有限长序列 <span class="math inline">\((g_1,\dots,g_m)\)</span>, 其中 <span class="math inline">\(g_i\in\coprod_\alpha G_\alpha\)</span>. 长度为零的字称为<strong>空字 (empty word)</strong>, 记作 <span class="math inline">\(()\)</span>.</p>
+<p>记 <span class="math inline">\({\cal W}\)</span> 为 <span class="math inline">\((G_\alpha)\)</span> 的所有字的集合, <span class="math inline">\(e_\alpha\)</span> 为 <span class="math inline">\(G_\alpha\)</span> 的恒等元. 我们在 <span class="math inline">\({\cal W}\)</span> 上定义乘法: <span class="math display">\[
+(g_1,\dots,g_m)(h_1,\dots,h_k)=(g_1,\dots,g_m,h_1,\dots,h_k).
+\]</span> 显然这个乘法满足结合律, 且空字 <span class="math inline">\(()\)</span> 是乘法的双侧恒等元. 然而, 字只会越乘越长, 导致非空字没有逆元. 为了解决这个问题, 我们利用 <span class="math inline">\(G_\alpha\)</span> 的群结构将字化简.</p>
+<p>字的<strong>初等约化 (elementary reduction)</strong> 指的是下列两种操作: <span class="math display">\[
+\Align{
+(g_1,\dots,g_i,g_{i+1},\dots,g_m) 
+&amp;\mapsto (g_1,\dots,g_i\cdot g_{i+1},\dots,g_m)
+\quad\textsf{若 } g_i,g_{i+1}\in G_\alpha, \\
+(g_1,\dots,g_{i-1},1_\alpha,g_{i+1},\dots,g_m) 
+&amp;\mapsto (g_1,\dots,g_{i-1},g_{i+1},\dots,g_m).
+}
+\]</span> 第一种操作将相邻的群元合并, 第二种操作将恒等元略去. 记 <span class="math inline">\(\sim\)</span> 是初等约化生成的等价关系. 具体来说, 字 <span class="math inline">\(W\sim W'\)</span> 当且仅当存在有限字序列 <span class="math inline">\(W=W_0,W_1,\dots,W_n=W\)</span>, 满足任意相邻的两个字 <span class="math inline">\(W_{i-1},W_i\)</span> (<span class="math inline">\(i=1,\dots,n\)</span>), 其中一个是另一个的初等约化. 等价类的集合 <span class="math inline">\({\cal W}/{\sim}\)</span> 称为 <span class="math inline">\((G_\alpha)\)</span> 的<strong>自由积 (free product)</strong>, 记作 <span class="math inline">\(\mathop{\LARGE*}_{\alpha\in A}G_\alpha\)</span>. 有限个群的自由积也可记作 <span class="math inline">\(G_1*\dots*G_n\)</span>.</p>
+<p><u>Claim 34.1</u> <span class="math inline">\(\mathop{\LARGE*}_{\alpha\in A}G_\alpha\)</span> 上的乘法是良定义的, 且构成群乘法.</p>
+<p>一个字 <span class="math inline">\((g_1,\dots,g_m)\)</span> 称为<strong>既约的 (reduced)</strong>, 若它不能再被初等约化. 换言之, 它不含恒等元, 且任意相邻项不在同一个群中. 显然任何一个字都等价于某既约字, 但要证明这个既约字是唯一的却不容易.</p>
+<p><u>Claim 34.2</u> (唯一既约代表元) <span class="math inline">\(\mathop{\LARGE*}_{\alpha\in A}G_\alpha\)</span> 的任一群元有唯一的既约代表元.</p>
+<p><u>Claim 34.3</u> (自由积的泛性质) 设群族 <span class="math inline">\((G_\alpha)_{\alpha\in A}\)</span>. 任给群 <span class="math inline">\(H\)</span> 和群同态族 <span class="math inline">\(\varphi_\alpha:G_\alpha\to H\)</span>, 存在唯一的同态 <span class="math inline">\(\Phi:\mathop{\LARGE*}_{\alpha\in A}G_\alpha\to H\)</span> 满足交换图: <span class="math display">\[
+\xymatrix@R=3.5em{
+\mathop{\LARGE*}_{\alpha\in A} G_\alpha \ar@{.&gt;}[rd]^\Phi \\
+G_\alpha \ar[r]_{\varphi_\alpha} \ar[u]^{\iota_\alpha} &amp; H.
+}
+\]</span></p>
+<ul>
+<li>自由积是群范畴的余积构造.</li>
+<li>在同构意义下, 自由积是唯一的满足泛性质的构造.</li>
+</ul>
+<h3 id="free-groups">34.2  Free groups</h3>
+<h3 id="free-abelian-groups">34.3  Free abelian groups</h3>
+<h3 id="presentation-of-groups">34.4  Presentation of groups</h3>
 </body></html>
                 
               </div>
@@ -338,7 +346,7 @@
       
         <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
       
-        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+        <a href="/tags/%E4%BB%A3%E6%95%B0/" class="print-no-link">#代数</a>
       
     </div>
   
@@ -350,8 +358,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM202 | 笔记索引</div>
-      <div>https://disembo.github.io/Note/tp-gtm202-index/</div>
+      <div>GTM202 | 13 一些群论</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-13/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +371,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月22日</div>
+          <div>2024年8月10日</div>
         </div>
       
       
@@ -395,18 +403,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-2/" title="GTM202 | 2 构造新的拓扑空间">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM202 | 2 构造新的拓扑空间</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-1/" title="GTM202 | 1 拓扑空间">
-                        <span class="hidden-mobile">GTM202 | 1 拓扑空间</span>
+                      <a href="/Note/tp-gtm202-12/" title="GTM202 | 12 圆的基本群">
+                        <span class="hidden-mobile">GTM202 | 12 圆的基本群</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
