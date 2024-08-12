@@ -375,7 +375,7 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 <p>向量可以理解为求<span class="math inline">\(f\)</span>在<span class="math inline">\(v\)</span>"方向"的"方向导数"(于点<span class="math inline">\(p\)</span>).</p>
 </div>
 <p><u>Claim 1</u> <span class="math inline">\(V_p\)</span>是一个向量空间, 且<span class="math inline">\(\dim{V_p}=\dim{M}\equiv n\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 定义加法与数乘: <span class="math inline">\((v+u)(f):=v(f)+u(f)\)</span>, <span class="math inline">\((\alpha v)(f):=\alpha v(f)\)</span>, 于是零元<span class="math inline">\(\underline{0}(f)=0\in\R\)</span>.</p>
 <p>在<span class="math inline">\(p\)</span>附近选定坐标系<span class="math inline">\((O_p,\psi_p)\)</span>. 定义向量<span class="math inline">\(\displaystyle X_\mu(f):=\eval{\pdv{f(x)}{x^\mu}}_p\)</span>(<span class="math inline">\(\mu=1,2,\dots,n\)</span>), 下证其构成<span class="math inline">\(V_p\)</span>的一个基底.</p>
 <ol type="A">
@@ -416,14 +416,14 @@ A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
 </ol>
 <p>那么<span class="math inline">\(G\equiv\set{\phi_t:t\in\R}\)</span>与(2)的乘法构成单参微分同胚群. 单位元<span class="math inline">\(\phi_0(p)=p\)</span>, 逆元<span class="math inline">\(\phi_{-t}\cdot\phi_t=\phi_0\)</span>.</p>
 <p><u>Claim 3</u> 单微群<span class="math inline">\(\overset{\longrightarrow}{\underset{\text{locally}}{\longleftarrow}} C^\infty\)</span>向量场<span class="math inline">\(v\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 给定单微群. <span class="math inline">\(\forall p\in M\)</span>, 都有<span class="math inline">\(\phi_p(0)\equiv\phi(0,p)\equiv\phi_0(p)=p\)</span>, 所以曲线<span class="math inline">\(\phi_p:\R\to M\)</span>恒过<span class="math inline">\(p\)</span>, 便可以取它在<span class="math inline">\(p\)</span>处的切向量<span class="math inline">\(T\)</span>. 由于<span class="math inline">\(p\)</span>是任意的, 所以就有了一个向量场.</p>
 <p>给定光滑向量场. <span class="math inline">\(\forall p\in M\)</span>, 都有唯一一条过<span class="math inline">\(p\)</span>的积分曲线<span class="math inline">\(c_p:I\to M\)</span>, 定义<span class="math inline">\(\phi_t(p)\equiv c_p(t)\)</span>(<span class="math inline">\(t\in I\)</span>), 注意到这只对局部的参数<span class="math inline">\(t\in I\)</span>成立.</p>
 </div>
 <h3 id="dual-vector-fields">2.3  Dual vector fields</h3>
 <p><strong>对偶空间(dual space)</strong>: 给定线性空间<span class="math inline">\(V\)</span>, 一个线性映射<span class="math inline">\(\omega:V\to\R\)</span>, 称为<span class="math inline">\(V\)</span>的一个对偶向量(dual vector), 对偶向量构成的集合称为对偶空间, 记作<span class="math inline">\(V^*\)</span>.</p>
 <p><u>Claim 1</u> <span class="math inline">\(V^*\)</span>是一个线性空间, 且<span class="math inline">\(\dim{V^*}=\dim{V}\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 定义加法与数乘: <span class="math inline">\((\omega_1+\omega_2)(v):=\omega_1(v)+\omega_2(v)\)</span>, <span class="math inline">\((\alpha \omega)(v):=\alpha \omega(v)\)</span>; 零元<span class="math inline">\(\underline{0}(v):=0\in\R\)</span>.</p>
 <p>取<span class="math inline">\(V\)</span>的基底<span class="math inline">\(e_\mu\)</span>(<span class="math inline">\(\mu=1,\dots,n\)</span>), 定义<span class="math inline">\(e^{\mu*}:V\to\R\)</span>, 满足<span class="math inline">\(e^{\mu*}(e_\nu):=\delta^\mu{}_\nu\in\R\)</span>. 下面验证它们构成基底.</p>
 <ol type="A">
@@ -603,7 +603,7 @@ T_{[a_1 \dots a_l]} &amp;:= \frac1{l!}\sum_{\sigma\in S_l} \sgn(\sigma)
 <li>异种括号缩并为零, <span class="math inline">\(T_{[a_1\dots a_l]}S^{(a_1\dots a_l)}=0\)</span>.</li>
 <li>若<span class="math inline">\(T\)</span>反对称, 则其对称部分为零; 若<span class="math inline">\(T\)</span>对称, 则其反对称部分为零.</li>
 </ol>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1证明如下, <span class="math display">\[
 \Align{
 T_{[a_1 \dots a_l]} S^{[a_1 \dots a_l]}
@@ -670,7 +670,7 @@ T_{([a_1\dots a_l])}
 <p><u>Claim 2</u> 对于任意矢量<span class="math inline">\((v_1)^a,\dots,(v_n)^a\)</span>, 有 <span class="math display">\[
 (v_1)^{[a_1}\cdots(v_n)^{a_n]}=(v_{[1})^{a_1}\cdots(v_{n]})^{a_n}.
 \]</span> 对偶矢量以及圆括号亦然.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> (圆括号同理) <span class="math display">\[
 \Align{
 (v_1)^{[a_1}\cdots(v_n)^{a_n]}

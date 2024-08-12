@@ -354,7 +354,7 @@ A^\nu{_\mu}\pdv{y^\sigma}{y^\nu} = \pdv{(y^\sigma\circ\phi)}{x^\mu}
 <p>一个自然的问题就是, 以上两者的变换是否是相容的? 即, 张量场的推前<span class="math inline">\(\phi_*T\)</span>在<span class="math inline">\(\phi[O_1]\)</span>的坐标分量, 是否等于变换前<span class="math inline">\(T\)</span>在<span class="math inline">\(O_1\)</span>的坐标分量?</p>
 <p>回顾分量的定义, 要求分量就要求基矢, 而基矢是坐标线的切矢, 所以我们先证明以下引理.</p>
 <p><u>Claim 2</u> 曲线像的切矢 <span class="math inline">\(=\)</span> 切矢的推前. (等价地, 曲线原像的切矢 <span class="math inline">\(=\)</span> 像的切矢的拉回.)</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 对曲线<span class="math inline">\(c\)</span>和微分同胚<span class="math inline">\(\phi\)</span>, 设<span class="math inline">\(T\)</span>为<span class="math inline">\(c(t)\)</span>在<span class="math inline">\(t_0\in I\)</span>处的切矢, <span class="math inline">\(T'\)</span>为<span class="math inline">\(\phi(c(t))\)</span>在<span class="math inline">\(t_0\)</span>处的切矢, 则 <span class="math display">\[
 (\phi_*T)(f) = T(\phi^* f) = T(f\circ\phi)
 = \dv{t}((f\circ\phi)\circ c)
@@ -371,7 +371,7 @@ A^\nu{_\mu}\pdv{y^\sigma}{y^\nu} = \pdv{(y^\sigma\circ\phi)}{x^\mu}
 T^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_p =
 (\phi_*T)'^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_{\phi(p)},
 \]</span> 其中左边是<span class="math inline">\(T\)</span>在<span class="math inline">\(O_1\)</span>上的坐标分量, 右边是<span class="math inline">\(\phi_*T\)</span>在<span class="math inline">\(\phi[O_1]\)</span>上的坐标分量.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 根据坐标分量的定义, <span class="math display">\[
 \Align{
 (\phi_*T)'^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_{\phi(p)}
@@ -417,7 +417,7 @@ T'^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_p =
 {\cal L}_v T := \lim_{t\to0} \frac{\phi_t^*T-T}{t}
 \]</span> 为张量场<span class="math inline">\(T\)</span>沿着矢量场<span class="math inline">\(v\)</span>的<strong>李导数(Lie derivative)</strong>, 是一个与<span class="math inline">\(T\)</span>同型的张量场. <span class="math inline">\({\cal L}_v\)</span>是线性的, 而且与缩并可交换.</p>
 <p><u>Claim 1</u> <span class="math inline">\({\cal L}_vf=v(f)\)</span>, 对于<span class="math inline">\(f\in{\cal F}_M\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 任取<span class="math inline">\(p\in M\)</span>, 设<span class="math inline">\(c(t)\)</span>为矢量场<span class="math inline">\(v^a\)</span>从<span class="math inline">\(p\)</span>出发的积分曲线, 于是有<span class="math inline">\(c(0)=p\)</span>, <span class="math inline">\(c(t)=\phi_t(p)\)</span>, 所以 <span class="math display">\[
 \Align{
 {\cal L}_vf |_p
@@ -436,7 +436,7 @@ T'^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_p =
 <ul>
 <li>需要注意的是, 上面的等式只在适配的坐标系下成立, 不服从张量变换律, 故不能写成张量等式.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 取适配坐标系包含<span class="math inline">\(p,q=\phi_t(p)\)</span>两点, 另注意到<span class="math inline">\(\phi^*_t=(\phi^{-1}_t)_*=\phi_{-t*}\)</span>, 有 <span class="math display">\[
 \Align{
 ({\cal L}_vT)^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_p
@@ -496,7 +496,7 @@ x'^1 = x^1-t,\quad x'^\tau=x^\tau,
 }
 \]</span></p></li>
 </ol>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 第1个. 只需证明两个张量在某坐标系下分量相等. 取<span class="math inline">\(v^a\)</span>的适配坐标系以及普通导数算符, <span class="math display">\[
 \Align{
 [v,u]^\mu
@@ -526,7 +526,7 @@ x'^1 = x^1-t,\quad x'^\tau=x^\tau,
 \quad\textsf{或}\, \nabla_{(a}\xi_{b)}=0,
 \quad\textsf{或}\, \nabla_{a}\xi_{b}=\nabla_{[a}\xi_{b]},
 \]</span> <u>Claim 2</u> 设Killing场<span class="math inline">\(\xi^a\)</span>, 测地线切矢<span class="math inline">\(T^a\)</span>, 则两者内积沿测地线不变, 即<span class="math inline">\(T^a\nabla_a(T^b\xi_b)=0\)</span>. (其中<span class="math inline">\(\nabla_cg_{ab}=0\)</span>.)</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> <span class="math inline">\(T^a\nabla_a(T^b\xi_b)=T^a\xi_b\nabla_aT^b+T^aT^b\nabla_a\xi_b=\xi_b(T^a\nabla_aT^b)+T^{(a}T^{b)}\nabla_{[a}\xi_{b]}=0\)</span>.</p>
 </div>
 <p><u>Claim 3</u> (与曲率的关系) 设<span class="math inline">\((M,g_{ab})\)</span>的Killing场<span class="math inline">\(\xi^a\)</span>, 黎曼张量<span class="math inline">\(R_{abc}{^d}\)</span>, 里奇张量<span class="math inline">\(R_{ac}\)</span>, 则</p>
@@ -539,7 +539,7 @@ x'^1 = x^1-t,\quad x'^\tau=x^\tau,
 <li>线性组合<span class="math inline">\(\alpha\xi^a+\beta\eta^a\)</span>, 对易子<span class="math inline">\([\xi,\eta]^a\)</span>也都是Killing场.</li>
 <li>推前<span class="math inline">\(\phi_*\xi^a\)</span>也是Killing场, 其中<span class="math inline">\(\phi:M\to M\)</span>等度规.</li>
 </ol>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 第1条, <span class="math inline">\(\alpha\xi^a+\beta\eta^a\)</span>的Killing性由Killing方程的线性性即得; 而利用上一节Claim 4容易得到 <span class="math display">\[
 {\cal L}_{[\xi,\eta]}g_{ab}
 = [{\cal L}_\xi,{\cal L}_\eta]g_{ab}
@@ -604,11 +604,11 @@ x=\psi\cosh\eta,\quad y=\psi\sinh\eta,\quad
 </ul>
 <p><u>Claim 1</u> 对于超曲面<span class="math inline">\(\phi[S]\)</span>, 其上任意一点<span class="math inline">\(q\)</span>都有法余矢, 且两个法余矢之间相差非零实数.</p>
 <p><u>Claim 2</u> 设<span class="math inline">\(\phi[S]\)</span>是光滑函数<span class="math inline">\(f=0\)</span>给出的超曲面, 则<span class="math inline">\(\nabla_af|_q\)</span>(<span class="math inline">\(q\in\phi[S]\)</span>)是该曲面的法余矢.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 任取<span class="math inline">\(q\in\phi[S]\)</span>和<span class="math inline">\(w^a\in W_q\)</span>, 因为<span class="math inline">\(w^a\)</span>一定是超曲面上某条曲线<span class="math inline">\(c(t)\)</span>的切矢, 而<span class="math inline">\(c(t)\)</span>上的点总有<span class="math inline">\(f=0\)</span>为常数, 所以<span class="math inline">\(w^a\nabla_af=w(f)=\pdv{f}{t}=0\)</span>.</p>
 </div>
 <p><u>Claim 3</u> 设<span class="math inline">\(n_a\)</span>为超曲面<span class="math inline">\(\phi[S]\)</span>的法余矢, 则<span class="math inline">\(n^a\in W_q\)</span>的充要条件为<span class="math inline">\(n^an_a=0\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> (<span class="math inline">\(\Rightarrow\)</span>) 因为<span class="math inline">\(n_a\)</span>为法余矢, 且<span class="math inline">\(n^a\in W_q\)</span>, 所以<span class="math inline">\(n^an_a=0\)</span>.</p>
 <p>(<span class="math inline">\(\Leftarrow\)</span>) 取<span class="math inline">\(V_q\)</span>的基底<span class="math inline">\(\qty{(e_\mu)^a}\)</span>使得<span class="math inline">\((e_2)^a,\dots,(e_n)^a\in W_q\)</span>, 且<span class="math inline">\((e_1)_a=n_a\)</span>, 因此<span class="math inline">\(n^a\)</span>在该基底的第一分量<span class="math inline">\(n^1=n^a(e_1)_a=n^an_a=0\)</span>, 所以<span class="math inline">\(n^a\)</span>可以被<span class="math inline">\(\qty{(e_2)^a,\dots,(e_n)^a}\)</span>表出, <span class="math inline">\(n^a\in W_q\)</span>.</p>
 </div>

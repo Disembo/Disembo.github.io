@@ -298,7 +298,7 @@
 <p><strong>不同导数算符差别的刻画</strong>.</p>
 <p>一个流形上的导数算子不光存在, 而且有很多. 它们作用在某个<span class="math inline">\((0,0)\)</span>型张量场的结果均相同, 故其区别只有在作用在非<span class="math inline">\((0,0)\)</span>型张量场时才能体现出来: 设<span class="math inline">\(\omega_b,\omega_b'\)</span>为两个对偶矢量场, 且<span class="math inline">\(\omega_b|_p=\omega'_b|_p\)</span>, 则一般来说<span class="math inline">\(\nabla_a\omega_b|_p\)</span>和<span class="math inline">\(\nabla_a\omega'_b|_p\)</span>是不同的. 然而, 有趣的是, 对于两个导数算符<span class="math inline">\(\nabla_a,\tilde\nabla_a\)</span>, 其"差值"<span class="math inline">\(\tilde\nabla_a-\nabla_a\)</span>分别作用于<span class="math inline">\(\omega_b,\omega'_b\)</span>后在<span class="math inline">\(p\)</span>点取值是相同的.</p>
 <p><u>Claim 1</u> 若<span class="math inline">\(\omega_b|_p=\omega'_b|_p\)</span>, 则<span class="math inline">\([(\tilde\nabla_a-\nabla_a)\omega_b]_p=[(\tilde\nabla_a-\nabla_a)\omega'_b]_p\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 即证<span class="math inline">\([\nabla_a(\omega_b-\omega'_b)]_p=[\tilde\nabla_a(\omega_b-\omega'_b)]_p\)</span>.</p>
 <p>置<span class="math inline">\(\Omega_b:=\omega_b-\omega'_b\)</span>, 其在坐标基底下展开为<span class="math inline">\(\Omega_b=\Omega_\mu(\dd{x}^\mu)_b\)</span>, 于是 <span class="math display">\[
 \lhs
@@ -360,7 +360,7 @@
 <p><strong>矢量场的对易子</strong>.</p>
 <p>对易子的定义<span class="math inline">\([u,v](f):=u(v(f))-v(u(f))\)</span>是依赖于函数的, 我们可以借助导数算符给出不依赖于函数的表达式.</p>
 <p><u>Claim 6</u> 对任意导数算符<span class="math inline">\(\nabla_a\)</span>, 有<span class="math inline">\([u,v]^a=u^b\nabla_bv^a-v^b\nabla_bu^a\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 一方面, <span class="math display">\[
 \Align{
 [u,v](f)
@@ -379,7 +379,7 @@
 </div>
 <p><strong>矢量场沿曲线平移(parallelly transported along a curve)</strong>. 设<span class="math inline">\(v^a\)</span>是沿曲线<span class="math inline">\(C(t)\)</span>的矢量场, <span class="math inline">\(T^b\)</span>为<span class="math inline">\(C(t)\)</span>的切矢, 如果<span class="math inline">\(T^b\nabla_bv^a=0\)</span>, 则称<span class="math inline">\(v^a\)</span>是沿<span class="math inline">\(C(t)\)</span>平移的. 其中, <span class="math inline">\(T^b\nabla_bv^a\)</span>可以理解为<span class="math inline">\(v^a\)</span>沿着<span class="math inline">\(T^b\)</span>方向上的导数.</p>
 <p><u>Claim 1</u> 曲线<span class="math inline">\(C(t)\)</span>以及其上一点的矢量可以唯一确定一个沿<span class="math inline">\(C(t)\)</span>平移的矢量场.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 我们先推导矢量场沿曲线平移方程的坐标表示. 不妨取包含<span class="math inline">\(C(t)\)</span>的坐标域<span class="math inline">\(O\)</span>, 曲线参数式<span class="math inline">\(x^\mu(t)\)</span>, 则 <span class="math display">\[
 \Align{
 T^b \nabla_b v^a
@@ -416,7 +416,7 @@ T^b \nabla_b v^a
 \nabla_c g_{ab}=0
 \]</span> 满足这个条件的<span class="math inline">\(\nabla_c\)</span>称为与度规<span class="math inline">\(g_{ab}\)</span>适配的导数算符(也成为Levi-Civita联络, 或黎曼联络), 它一定是一个协变的导数算符.</p>
 <p><u>Claim 2</u> 对于<span class="math inline">\((M,g_{ab})\)</span>, 与度规<span class="math inline">\(g_{ab}\)</span>适配的导数算符存在且唯一.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 任取导数算符<span class="math inline">\(\tilde\nabla_a\)</span>, 现在要找到合适的<span class="math inline">\(C^c{}_{ab}\)</span>, 使得<span class="math inline">\(\nabla_a\)</span>与度规适配. 利用上一节的Claim 3, <span class="math display">\[
 0
 =\nabla_cg_{ab} 
@@ -494,7 +494,7 @@ C^c{_{ab}} = \frac12 g^{cd}(
 <li>若其为测地线, 则其重参数化后必有<span class="math inline">\(T'^b\nabla_bT'^a = \alpha T'^a\)</span>(其中<span class="math inline">\(\alpha:I\to\R\)</span>).</li>
 <li>若其切矢满足<span class="math inline">\(T^b\nabla_bT^a = \alpha T^a\)</span>, 则其必定可以重参数化为测地线.</li>
 </ol>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u></p>
 <ol type="1">
 <li><p>设<span class="math inline">\(T'^b\)</span>是<span class="math inline">\(C(t)\)</span>重参数化为<span class="math inline">\(C'(t')\)</span>后的切矢, 则<span class="math inline">\(T^b=(\pdv{t})^b=\dv{t'}{t}(\pdv{t'})^b=\dv{t'}{t}T'^b\)</span>, 代入测地线方程有 <span class="math display">\[
@@ -523,7 +523,7 @@ C^c{_{ab}} = \frac12 g^{cd}(
 <li><span class="math inline">\(t'\)</span>为仿射参数当且仅当<span class="math inline">\(t'=at+b\)</span>(<span class="math inline">\(a,b\)</span>为常数且<span class="math inline">\(a\neq0\)</span>).</li>
 <li>其线长参数必为仿射参数.</li>
 </ol>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u></p>
 <ol type="1">
 <li><span class="math inline">\(C(t)\)</span>重参数化后为<span class="math inline">\(C'(t')\)</span>. 若<span class="math inline">\(t'=at+b\)</span>, 则Claim 2的证明1中, <span class="math inline">\(\alpha(t)=0\)</span>, <span class="math inline">\(t'\)</span>为仿射参数; 反过来, 若<span class="math inline">\(t'\)</span>为仿射参数, 则Claim 2的证明2中, <span class="math inline">\(t'(t)\)</span>满足的微分方程变为<span class="math inline">\(\dv[2]{t'}{t}=0\)</span>, 通解为<span class="math inline">\(t'=at+b\)</span>.</li>

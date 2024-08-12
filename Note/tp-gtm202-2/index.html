@@ -300,7 +300,7 @@
 Y \ar[r]_f \ar[ru]^{i\circ f} &amp; S \ar@{_{(}-&gt;}[u]_i
 }
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(f\)</span> 连续. 任给开集 <span class="math inline">\(U\subset X\)</span>, 因为 <span class="math inline">\((i\circ f)^{-1}(U)=f^{-1}(U\cap S)\)</span>, 子空间拓扑意味 <span class="math inline">\(U\cap S\)</span> 开, 所以 <span class="math inline">\(f^{-1}(U\cap S)\)</span> 开.</p>
 <p>设 <span class="math inline">\(i\circ f\)</span> 连续. 任给开集 <span class="math inline">\(U\subset S\)</span>, 存在开集 <span class="math inline">\(V\subset X\)</span> 使得 <span class="math inline">\(U=V\cap S\)</span>, 有 <span class="math inline">\(f^{-1}(U)=(i\circ f)^{-1}(V)\)</span> 是开集.</p>
 </div>
@@ -326,7 +326,7 @@ Y \ar[r]_f \ar[ru]^{i\circ f} &amp; S \ar@{_{(}-&gt;}[u]_i
 <li>(继承) Hausdorff, 第一可数, 第二可数.</li>
 </ul></li>
 <li><p>(稠密性夹逼) 设 <span class="math inline">\(A\subset B\subset X\)</span>, 则 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(X\)</span> 中稠密, 当且仅当 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中稠密, 且 <span class="math inline">\(B\)</span> 在 <span class="math inline">\(X\)</span> 中稠密.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(\overline{A}=X\)</span>, 则 <span class="math inline">\(\overline{B}\supset\overline{A}=X\)</span>, 于是 <span class="math inline">\(\overline{A}=\overline{B}=X\)</span>.</p>
 <p>设 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中稠密, <span class="math inline">\(B\)</span> 在 <span class="math inline">\(X\)</span> 中稠密. 记 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中的闭包为 <span class="math inline">\(\overline{A}^B\)</span>, 则 <span class="math display">\[
 B
@@ -336,7 +336,7 @@ B
 \]</span> 因此 <span class="math inline">\(B\subset\overline{A}\)</span>, 进而 <span class="math inline">\(X=\overline{B}\subset\overline{\overline{A}}=\overline{A}\)</span>, 有 <span class="math inline">\(\overline{A}=X\)</span>.</p>
 </div></li>
 <li><p>(边界是流形) 带边 <span class="math inline">\(n\)</span>-流形 <span class="math inline">\(M\)</span> 的非空边界 <span class="math inline">\(\partial M\)</span> (子空间拓扑) 是 <span class="math inline">\((n-1)\)</span> 维流形.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 子空间 <span class="math inline">\(\partial{M}\)</span> 继承 Hausdorff 性与第二可数性. 下面证明局部欧氏. <span class="math inline">\(M\)</span> 的坐标开覆盖 <span class="math inline">\({(U_\alpha,\psi_\alpha)}\)</span> 给出了 <span class="math inline">\(\partial{M}\)</span> 的一个开覆盖 <span class="math inline">\(\{U_\alpha\cap\partial{M}\}\)</span>. 根据边界的定义, <span class="math inline">\(\psi_\alpha(U_\alpha\cap\partial{M})=\psi(U_\alpha)\cap\partial{\H^n}\)</span>, 其中右边是 <span class="math inline">\(\partial\H^n=\R^{n-1}\)</span> 的开子集. 因此 <span class="math inline">\(U_\alpha\cap\partial{M}\)</span> 同胚于 <span class="math inline">\(\R^{n-1}\)</span> 的开子集, 是欧氏邻域.</p>
 </div></li>
 </ul>
@@ -347,7 +347,7 @@ B
 <li><p>(刻画) 开/闭的连续单射是嵌入.</p></li>
 <li><p>(与同胚) 满射嵌入是同胚.</p></li>
 <li><p>(粘合引理, gluing) 设 <span class="math inline">\(X\)</span> 的开覆盖/有限闭覆盖 <span class="math inline">\(\{A_i\}\)</span>. 连续映射 <span class="math inline">\(f_i:A_i\to Y\)</span> 满足 <span class="math inline">\(f_i|_{A_{ij}}=f_j|_{A_{ij}}\)</span>, 则存在唯一连续映射 <span class="math inline">\(f:X\to Y\)</span> 满足 <span class="math inline">\(f|_{A_i}=f_i\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 显然 <span class="math inline">\(f:X\to Y\)</span> 是唯一存在的.</p>
 <p>若 <span class="math inline">\(\{A_i\}\)</span> 是开覆盖, 则根据连续性的局部 criterion, <span class="math inline">\(f\)</span> 连续.</p>
 <p>若 <span class="math inline">\(\{A_i\}\)</span> 是有限闭覆盖. 设 <span class="math inline">\(K\subset Y\)</span> 闭, 注意到 <span class="math inline">\(f^{-1}(K)\cap A_i=f_i^{-1}(K)\)</span>, 且这是闭集 (因为 <span class="math inline">\(f_i\)</span> 连续, <span class="math inline">\(f_i^{-1}(K)\)</span> 是 <span class="math inline">\(A_i\)</span> 的闭子集, 而 <span class="math inline">\(A_i\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集, 所有 <span class="math inline">\(f^{-1}(K)\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集).</p>
@@ -390,7 +390,7 @@ Y \ar[r]_{f_i} \ar[ur]^f &amp; X_i
 <li>自然投射 <span class="math inline">\(\pi_i:\prod X_i\to X_i\)</span> 连续.</li>
 </ul></li>
 <li><p>(唯一性) 乘积拓扑是满足特征性质的唯一拓扑.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(\prod X_i\)</span> 上的另一个拓扑也满足特征性质, 考虑恒等映射 <span class="math inline">\({\rm id}_{\prod X_i}\)</span>, 利用两次特征性质得到恒等映射是同胚.</p>
 </div></li>
 <li><p>(性质)</p>
@@ -411,7 +411,7 @@ x &amp;\mapsto (x_1,\dots,x_{i-1},x,x_{i+1},\dots,x_n).
 <li><p>(继承) <span class="math inline">\(X_i\)</span> Hausdorff/第一可数/第二可数, 则 <span class="math inline">\(\prod X_i\)</span> 也具有相同性质.</p></li>
 </ul></li>
 <li><p>(Hausdorff 的对角线刻画) <span class="math inline">\(X\)</span> Hausdorff 当且仅当<strong>对角线</strong> <span class="math inline">\(\Delta=\{(x,x)\mid x\in X\}\)</span> 在 <span class="math inline">\(X\times X\)</span> 中闭.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 Hausdorff. 任给 <span class="math inline">\((x,y)\in\Delta^C\)</span>, 则 <span class="math inline">\(x\neq y\)</span>, 存在邻域 <span class="math inline">\(U_x\cap U_y=\emptyset\)</span>, 进而 <span class="math inline">\(U_x\times U_y\subset\Delta^C\)</span>, 说明 <span class="math inline">\(\Delta^C\)</span> 开, 即 <span class="math inline">\(\Delta\)</span> 闭.</p>
 <p>反之, 设 <span class="math inline">\(\Delta\)</span> 闭, 则任给 <span class="math inline">\((x,y)\in\Delta^C\)</span>, 则存在邻域 <span class="math inline">\(U_{(x,y)}\subset\Delta^C\)</span>, 自然投射 <span class="math inline">\(U_x=\pi_1(U_{(x,y)})\)</span> 和 <span class="math inline">\(U_y=\pi_2(U_{x,y})\)</span> 给出了 <span class="math inline">\(x,y\)</span> 的不交邻域.</p>
 </div></li>
@@ -419,7 +419,7 @@ x &amp;\mapsto (x_1,\dots,x_{i-1},x,x_{i+1},\dots,x_n).
 <p><strong>积映射</strong>: <span class="math inline">\((\prod f_i)(x_1,\dots,x_k)=(f_1(x_1),\dots,f_k(x_k))\)</span>.</p>
 <ul>
 <li><p>连续映射的乘积是连续映射, 同胚的乘积是同胚.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(f_i:X_i\to Y_i\)</span> 连续, (连续的基 criterion) 取 <span class="math inline">\(\prod Y_i\)</span> 的开集 <span class="math inline">\(\prod U_i\)</span> (<span class="math inline">\(U_i\)</span> 是 <span class="math inline">\(Y_i\)</span> 的开集), 则 <span class="math display">\[
 \pqty{\prod f_i}^{-1}\pqty{\prod U_i}
 = \prod f_i^{-1}(U_i),
@@ -429,7 +429,7 @@ x &amp;\mapsto (x_1,\dots,x_{i-1},x,x_{i+1},\dots,x_n).
 <p><strong>积流形</strong>:</p>
 <ul>
 <li><p><span class="math inline">\(M_1,\dots,M_k\)</span> 分别为 <span class="math inline">\(n_1,\dots,n_k\)</span> 维流形, 则 <span class="math inline">\(\prod M_i\)</span> 是 <span class="math inline">\(\sum n_i\)</span> 维流形.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 积空间 <span class="math inline">\(\prod M_i\)</span> 继承第二可数和 Hausdorff 性. 设 <span class="math inline">\((x_1,\dots,x_k)\in\prod M_i\)</span>, 取 <span class="math inline">\(x_i\)</span> 的欧氏邻域 <span class="math inline">\(U_i\in M_i\)</span>, 则 <span class="math inline">\(\prod U_i\)</span> 也是开集, 又因为同胚的乘积还是同胚, 所以 <span class="math inline">\(\prod U_i\)</span> 同胚于 <span class="math inline">\(\prod\R^{n_i}=\R^{\sum n_i}\)</span> 的开集. 因此 <span class="math inline">\(\prod M_i\)</span> 是 <span class="math inline">\(\sum n_i\)</span> 维流形.</p>
 </div></li>
 <li><p><strong>环面</strong>: <span class="math inline">\(\mathbb{T}^n=\mathbb{S}^1\times\cdots\times \mathbb{S}^1\)</span>.</p></li>
@@ -444,7 +444,7 @@ x &amp;\mapsto (x_1,\dots,x_{i-1},x,x_{i+1},\dots,x_n).
 <li>若有无穷多个非平凡 <span class="math inline">\(X_\alpha\)</span>, 考虑 <span class="math inline">\(U=\prod U_\alpha\)</span>, 其中无穷多个 <span class="math inline">\(U_\alpha\neq X_\alpha\)</span>. 则 <span class="math inline">\(U\)</span> 在箱拓扑下开, 在积拓扑下不是开集.</li>
 </ul></li>
 <li><p>(特征性质) 映射 <span class="math inline">\(f:Y\to\prod X_\alpha\)</span> 连续, 当且仅当所有 <span class="math inline">\(f_\alpha=\pi_\alpha\circ f\)</span> 连续. 积拓扑是满足特征性质的唯一拓扑.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> <span class="math inline">\(f\)</span> 连续推出 <span class="math inline">\(f_i\)</span> 连续是平凡的. 设 <span class="math inline">\(f_i\)</span> 连续, 开集 <span class="math inline">\(\prod U_\alpha\subset \prod X_\alpha\)</span>. 因为 <span class="math display">\[
 f^{-1}\pqty{\prod U_\alpha}=\bigcap f^{-1}(U_\alpha),
 \]</span> 注意, 只有有限个 <span class="math inline">\(U_\alpha\neq X_\alpha\)</span>, 所以右边实际上是有限交, 因此仍是开集.</p>
@@ -459,7 +459,7 @@ f^{-1}\pqty{\prod U_\alpha}=\bigcap f^{-1}(U_\alpha),
 Y \ar[r]_{f_\alpha} \ar[ru]^f &amp; X_\alpha \ar@{_{(}-&gt;}[u]_{i_\alpha}
 }
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(f\)</span> 连续, 由 <span class="math inline">\(f_\alpha^{-1}(U)=X_\alpha\cap f^{-1}(U)\)</span> 即得. 设 <span class="math inline">\(f_\alpha\)</span> 连续, 注意到 <span class="math inline">\(f^{-1}(U) = \bigcup f_\alpha^{-1}(U)\)</span>, 开集的任意并都是开集.</p>
 </div></li>
 <li><p>(性质)</p>
@@ -471,7 +471,7 @@ Y \ar[r]_{f_\alpha} \ar[ru]^f &amp; X_\alpha \ar@{_{(}-&gt;}[u]_{i_\alpha}
 </ul></li>
 </ul>
 <p><strong>不交并流形</strong>: 若干 <span class="math inline">\(n\)</span> 维流形 <span class="math inline">\((M_\alpha)_{\alpha\in A}\)</span> 的不交并是流形, 当且仅当 <span class="math inline">\(A\)</span> 可数.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 若 <span class="math inline">\(A\)</span> 可数, 则 <span class="math inline">\(\coprod M_\alpha\)</span> 第二可数且 Hausdorff. 任意 <span class="math inline">\(M_\alpha\)</span> 的某欧氏邻域 <span class="math inline">\(U\)</span> 也是 <span class="math inline">\(\coprod M_\alpha\)</span> 的欧氏邻域.</p>
 <p>若 <span class="math inline">\(A\)</span> 不可数, 只需说明 <span class="math inline">\(\coprod M_\alpha\)</span> 不是第二可数的. 设 <span class="math inline">\(M_\alpha\)</span> 的开覆盖 <span class="math inline">\(\{U_\alpha\}\)</span>, 则 <span class="math inline">\(\coprod\{U_\alpha\}\)</span> 构成了 <span class="math inline">\(\coprod M_\alpha\)</span> 的开覆盖. 这个覆盖不可数, 且没有可数子覆盖 (不满足第二可数空间的性质).</p>
 </div>
@@ -482,7 +482,7 @@ Y \ar[r]_{f_\alpha} \ar[ru]^f &amp; X_\alpha \ar@{_{(}-&gt;}[u]_{i_\alpha}
 <ul>
 <li><p>商空间一般不继承 Hausdorff, 可数, 局部欧氏性质.</p></li>
 <li><p>(商的第二可数条件) 设 <span class="math inline">\(P\)</span> 第二可数, <span class="math inline">\(M\)</span> 是商空间. 若 <span class="math inline">\(M\)</span> 局部欧氏, 则它也第二可数.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 记商映射 <span class="math inline">\(q:P\to M\)</span>. 对于 <span class="math inline">\(M\)</span> 的坐标球开覆盖 <span class="math inline">\({\cal U}\)</span>, <span class="math inline">\(q^{-1}[{\cal U}]\)</span> 是 <span class="math inline">\(P\)</span> 的开覆盖. 它有可数子覆盖 <span class="math inline">\(q[{\cal U}']\)</span>, 其中 <span class="math inline">\({\cal U}'\)</span> 可数. 于是 <span class="math inline">\({\cal U}'\)</span> 是 <span class="math inline">\(M\)</span> 的坐标球可数开覆盖. 坐标球第二可数, 则 <span class="math inline">\(M\)</span> 也第二可数.</p>
 </div>
 <ul>
@@ -491,7 +491,7 @@ Y \ar[r]_{f_\alpha} \ar[ru]^f &amp; X_\alpha \ar@{_{(}-&gt;}[u]_{i_\alpha}
 <li><p>(商的 Hausdorff 条件) 设开的商映射 <span class="math inline">\(q:X\to Y\)</span>, 则 <span class="math inline">\(Y\)</span> Hausdorff 当且仅当 <span class="math display">\[
 {\cal R}=\{(x_1,x_2)\mid q(x_1)=q(x_2)\}
 \]</span> 在 <span class="math inline">\(X\times X\)</span> 中闭.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(Y\)</span> Hausdorff. 对 <span class="math inline">\((x_1,x_2)\notin{\cal R}\)</span>, 存在 <span class="math inline">\(q(x_1),q(x_2)\)</span> 的不交邻域 <span class="math inline">\(V_1,V_2\subset Y\)</span>, 则 <span class="math inline">\(q^{-1}(V_1)\times q^{-1}(V_2)\)</span> 是 <span class="math inline">\((x_1,x_2)\)</span> 的邻域, 且与 <span class="math inline">\({\cal R}\)</span> 不交, 因此 <span class="math inline">\({\cal R}\)</span> 闭.</p>
 <p>反之, 设 <span class="math inline">\({\cal R}\)</span> 闭. 设不同的两点 <span class="math inline">\(y_1,y_2\in Y\)</span>, 取 <span class="math inline">\(x_i\in X\)</span> 满足 <span class="math inline">\(q(x_i)=y_i\)</span>. 因为 <span class="math inline">\((x_1,x_2)\notin{\cal R}\)</span>, 存在邻域 <span class="math inline">\(U_1\times U_2\subset X\times X\)</span> 与 <span class="math inline">\({\cal R}\)</span> 不交. 因为 <span class="math inline">\(q\)</span> 开, <span class="math inline">\(q(U_1),q(U_2)\)</span> 是 <span class="math inline">\(y_1,y_2\)</span> 的不交邻域.</p>
 </div>
@@ -510,7 +510,7 @@ Y \ar[r]_{f_\alpha} \ar[ru]^f &amp; X_\alpha \ar@{_{(}-&gt;}[u]_{i_\alpha}
 <ul>
 <li>一个充分条件: 连续的开/闭满射是商映射.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(q\)</span> 商映射, 则是连续的, 显然将饱和开/闭集映到开/闭集.</p>
 <p>设 <span class="math inline">\(q\)</span> 将饱和开集映到开集. 任给子集 <span class="math inline">\(U\subset Y\)</span>, 注意 <span class="math inline">\(q^{-1}(U)\)</span> 是饱和子集. 若 <span class="math inline">\(q^{-1}(U)\)</span> 开, 则 <span class="math inline">\(U\)</span> 开. 若 <span class="math inline">\(U\)</span> 开, 则 <span class="math inline">\(q^{-1}(U)\)</span> 开 (因为 <span class="math inline">\(q\)</span> 连续). 因此 <span class="math inline">\(q\)</span> 是商映射.</p>
 <p>设 <span class="math inline">\(q\)</span> 将饱和闭集映到闭集. 任给子集 <span class="math inline">\(U\subset Y\)</span>. 若 <span class="math inline">\(q^{-1}(U)\)</span> 开, 即 <span class="math inline">\(X\setminus q^{-1}(U)=q^{-1}(Y\setminus U)\)</span> 闭, 则 <span class="math inline">\(Y\setminus U\)</span> 闭, 即 <span class="math inline">\(U\)</span> 开. 若 <span class="math inline">\(U\)</span> 开, 则 <span class="math inline">\(q^{-1}(U)\)</span> 开 (连续性). 因此 <span class="math inline">\(q\)</span> 是商映射.</p>
@@ -538,7 +538,7 @@ X \ar[d]_q \ar[dr]^{f\circ q} \\
 Y \ar[r]_f &amp; Z
 }
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 对开集 <span class="math inline">\(U\)</span>, 因为 <span class="math inline">\(q^{-1}(f^{-1}(U))=(f\circ q)^{-1}(U)\)</span>, 所以 <span class="math inline">\(f^{-1}(U)\)</span> 开当且仅当 <span class="math inline">\((f\circ q)^{-1}(U)\)</span> 开.</p>
 </div></li>
 <li><p>(拓扑唯一性) 设拓扑空间 <span class="math inline">\(X\)</span>, 集合 <span class="math inline">\(Y\)</span>, 满射 <span class="math inline">\(q:X\to Y\)</span>. 商拓扑是满足特征性质的唯一拓扑.</p></li>
@@ -548,7 +548,7 @@ X \ar[d]_q \ar[dr]^f \\
 Y \ar@{.&gt;}[r]_{\tilde{f}} &amp; Z
 }
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 存在唯一性由商集合的泛性质保证. 连续性由商拓扑特征性质保证.</p>
 </div></li>
 <li><p>(商空间唯一性) 设商映射 <span class="math inline">\(q_1:X\to Y_1\)</span> 和 <span class="math inline">\(q_2:X\to Y_2\)</span> 满足 <span class="math inline">\(q_1(x)=q_1(x')\)</span> 当且仅当 <span class="math inline">\(q_2(x)=q_2(x')\)</span>, 则存在唯一的同胚 <span class="math inline">\(\phi:Y_1\to Y_2\)</span>, 使得 <span class="math inline">\(\phi\circ q_1=q_2\)</span>.</p></li>
@@ -556,7 +556,7 @@ Y \ar@{.&gt;}[r]_{\tilde{f}} &amp; Z
 <p>商空间的例子.</p>
 <ul>
 <li><p><strong>单位圆</strong>. <span class="math inline">\(\R\)</span> 上的等价关系 <span class="math inline">\(x\sim y\iff x-y\in\Z\)</span>. 商空间 <span class="math inline">\(\R/{\sim}\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(q:\R\to \mathbb{S}^1\)</span>, <span class="math inline">\(q(t)=\e^{2\pi\i t}\)</span>. 要证明 <span class="math inline">\(q\)</span> 开, 只需考虑 <span class="math inline">\(\R\)</span> 的拓扑基, 即所有的开区间即可. 对于长度 <span class="math inline">\(\geq1\)</span> 的开区间, 它映到整个 <span class="math inline">\(\mathbb{S}^1\)</span>, 当然是开的. 对于长度 <span class="math inline">\(&lt;1\)</span> 的开区间, 它映到 <span class="math inline">\(\mathbb{S}^1\)</span> 上的一段弧 (不含端点), 显然是某 <span class="math inline">\(\R^2\)</span> 开球与 <span class="math inline">\(\mathbb{S}^1\)</span> 的交, 所以是开集. 因此 <span class="math inline">\(q\)</span> 是开的满射, 进而是商映射.</p>
 <p>注意到 <span class="math inline">\(q:\R\to \mathbb{S}^1\)</span> 和 <span class="math inline">\(\R\to\R/{\sim}\)</span> 给出相同的 identification, 根据商映射的唯一性 <span class="math inline">\(\mathbb{S}^1\)</span> 同胚于 <span class="math inline">\(\R/{\sim}\)</span>.</p>
 </div>
@@ -585,7 +585,7 @@ Y \ar@{.&gt;}[r]_{\tilde{f}} &amp; Z
 <li>因此, <span class="math inline">\(X,Y\setminus A\)</span> 分别认同于 <span class="math inline">\(q(X),q(Y\setminus A)\)</span>, 视作 <span class="math inline">\(X\cup_fY\)</span> 的子空间.</li>
 </ul></li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 先证明 <span class="math inline">\(q\)</span> 是闭映射. 任取闭集 <span class="math inline">\(B\subset X\)</span>, 要证明 <span class="math inline">\(q(B)\)</span> 在 <span class="math inline">\(X\cup_fY\)</span> 中闭, 等价于 <span class="math inline">\(q^{-1}(q(B))\)</span> 在 <span class="math inline">\(X\amalg Y\)</span> 中闭, 即 <span class="math display">\[
 q^{-1}(q(B))\cap X,\quad q^{-1}(q(B))\cap Y
 \]</span> 分别闭. 前者等于 <span class="math inline">\(B\)</span>, 根据假设是闭的. 后者等于 <span class="math inline">\(f^{-1}(B)\)</span>, 由 <span class="math inline">\(f\)</span> 的连续性, 是闭的. 这样, <span class="math inline">\(q\)</span> 是闭映射, 所以 <span class="math inline">\(q(X)\)</span> 是闭集. 又 <span class="math inline">\(q|_X\)</span> 是单的闭映射, 进而是嵌入.</p>
@@ -618,7 +618,7 @@ e(M)\cap f(N)&amp;=e(\partial M)=f(\partial N).
 <li>(直积群) 有限直积是拥有积拓扑的拓扑群.</li>
 <li>(闭包) 子群的闭包也是子群.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1, 设子群 <span class="math inline">\(H\)</span> 配以子空间拓扑, 嵌入 <span class="math inline">\(i_H:H\to G\)</span>, 则 <span class="math inline">\(\mu_H=\mu\circ(i_H,i_H)\)</span> 以及 <span class="math inline">\(\iota_H=\iota\circ i_H\)</span> 作为连续映射的复合, 都是连续的.</p>
 <p>2, 设直积群 <span class="math inline">\(H=\prod G_i\)</span> 配以积拓扑. 一方面, 逆 <span class="math inline">\(\iota_H=\prod\iota_i\)</span> 作为连续映射的积, 是连续的. 另一方面, <span class="math inline">\(H\times H\cong \prod(G_i\times G_i)\)</span>, 进而乘积 <span class="math display">\[
 \mu_H:H\times H\cong \prod(G_i\times G_i)\to\prod G_i
@@ -652,7 +652,7 @@ e(M)\cap f(N)&amp;=e(\partial M)=f(\partial N).
 <li>连续的作用是同胚作用.</li>
 <li>若 <span class="math inline">\(G\)</span> 离散, 则作用是连续的当且仅当它是同胚作用.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设作用 <span class="math inline">\(G\times X\to X\)</span> 连续, 这意味着 <span class="math inline">\(x\mapsto g\cdot x\)</span> 也连续, 因为它是复合 <span class="math inline">\(x\mapsto(g,x)\mapsto g\cdot x\)</span>. 左作用的定义保证 <span class="math inline">\(x\mapsto g\cdot x\)</span> 的逆映射是 <span class="math inline">\(x\mapsto g^{-1}\cdot x\)</span>, 它也是连续的. 因此 <span class="math inline">\(x\mapsto g\cdot x\)</span> 是同胚.</p>
 <p>设 <span class="math inline">\(G\)</span> 离散, 只需证明同胚作用是连续的. 此时, 映射 <span class="math inline">\(G\times X\to X\)</span> 限制到任意 <span class="math inline">\(\{g\}\times X\)</span> 上是连续的. 因为 <span class="math inline">\(\{g\}\times X\)</span> 构成 <span class="math inline">\(G\times X\)</span> 的开覆盖, 由 gluing lemma, <span class="math inline">\(G\times X\to X\)</span> 是连续的.</p>
 </div></li>
@@ -661,7 +661,7 @@ e(M)\cap f(N)&amp;=e(\partial M)=f(\partial N).
 <li><p><strong>自由作用</strong>: <span class="math inline">\(g\cdot x=x\)</span> (存在 <span class="math inline">\(x\in X\)</span>) 蕴含 <span class="math inline">\(g=e\)</span>.</p></li>
 <li><p><strong>轨道空间</strong>: 等价关系 <span class="math inline">\(x\sim y\iff x=g\cdot y\)</span>, 即 <span class="math inline">\(x,y\)</span> 在同一轨道中. 商空间 <span class="math inline">\(X/{\sim}:=X/G\)</span> 称为轨道空间. 等价关系称作轨道关系.</p></li>
 <li><p>(轨道关系是开的) 商映射 <span class="math inline">\(q:X\to X/G\)</span> 是开映射.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 任给 <span class="math inline">\(U\subset X\)</span>, 要证明 <span class="math inline">\(q(U)\)</span> 开, 即证 <span class="math inline">\(q^{-1}(q(U))\)</span> 开. 根据定义, <span class="math display">\[
 q^{-1}(q(U))
 = \{g\cdot x\in X\mid g\in G, x\in U\}
@@ -676,7 +676,7 @@ q^{-1}(q(U))
 <ul>
 <li><p>拓扑群 <span class="math inline">\(G\)</span> 的子群 <span class="math inline">\(\Gamma\)</span> 右作用于 <span class="math inline">\(G\)</span>. 轨道 <span class="math inline">\(\{g\gamma\mid\gamma\in\Gamma\}=g\Gamma\)</span> 是 <span class="math inline">\(\Gamma\)</span> 的左陪集. 轨道空间 <span class="math inline">\(G/\Gamma\)</span> 称为<strong>左陪集空间</strong>.</p></li>
 <li><p>(陪集空间的齐性) 陪集空间 <span class="math inline">\(G/\Gamma\)</span> 是拓扑齐性的.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 任取 <span class="math inline">\(g\in G\)</span>, 同胚 <span class="math inline">\(l_g:G\to G\)</span>, 考虑 <span class="math inline">\(\theta_g:G/\Gamma\to G/\Gamma\)</span>, <span class="math inline">\(\theta_g(h\Gamma)=gh\Gamma\)</span>. 显然这是双射, 且满足交换图 <span class="math display">\[
 \xymatrix{
 G \ar[d]_q \ar[r]^{l_g} &amp; G \ar[d]^q \\
@@ -686,7 +686,7 @@ G/\Gamma \ar[r]_{\theta_g} &amp; G/\Gamma.
 <p>任意两个陪集 <span class="math inline">\(g\Gamma,h\Gamma\)</span> 通过同胚 <span class="math inline">\(\theta_{hg^{-1}}\)</span> 联系.</p>
 </div></li>
 <li><p>(商群) 若 <span class="math inline">\(\Gamma\)</span> 是正规子群, 则商群 <span class="math inline">\(G/\Gamma\)</span> 是拥有商拓扑的拓扑群.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 只需证明 <span class="math inline">\(G/\Gamma\)</span> 上的 <span class="math inline">\(\mu',\iota'\)</span> 连续. 根据商群的定义, <span class="math display">\[
 \Align{
 \mu'\circ(q,q) &amp;= (q,q)\circ\mu,&amp;

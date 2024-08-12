@@ -287,7 +287,7 @@
 \tr(\Omega^k)=0.
 \]</span> 因为 <span class="math inline">\(\tr(X^k)\)</span> 是 <span class="math inline">\({\frak gl}(r,\R)\)</span> 上的不变多项式, 所以在任意标架 (不论是否正交归一) 下都有 <span class="math inline">\(\tr(\Omega^k)=0\)</span>. 又因为上同调类 <span class="math inline">\([\tr(\Omega^k)]\)</span> 不依赖于联络的选取 (不论是否与度量相容), 所以在总有 <span class="math inline">\([\tr(\Omega^k)]=0\)</span>. 这一事实不依赖 <span class="math inline">\(E\)</span> 上的黎曼结构.</p>
 <p><u>Claim 22.1</u> 设不变多项式 <span class="math inline">\(P(X)\in{\rm Inv}({\frak gl}(r,\R))\)</span> 是齐次的, 且 <span class="math inline">\(\deg{P}\)</span> 为奇数, 则对向量丛 <span class="math inline">\(E\to M\)</span> 上的任意联络 <span class="math inline">\(\nabla\)</span>, 上同调类 <span class="math inline">\([P(\Omega)]=0\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 因为不变多项式由迹多项式生成, 所以 <span class="math inline">\(P(X)\)</span> 的每一个单项式都是 <span class="math display">\[
 \Sigma_1^{i_1}\cdots\Sigma_r^{i_r}
 \]</span> 的倍数. 因为 <span class="math inline">\(P(X)\)</span> 是奇数次齐次的, 所以单项式中必含有奇数次因子 <span class="math inline">\(\Sigma_j^{i_j}\)</span> (<span class="math inline">\(j\)</span> 为奇数). 根据前面的讨论, 有 <span class="math display">\[
@@ -329,7 +329,7 @@ p_k(E) := \bqty{ f_{2k}\pqty{\frac{\i}{2\pi}\Omega} } \in H^{4k}(M).
 <p><u>Claim 22.2</u> (Whitney 乘积公式) 设 <span class="math inline">\(M\)</span> 上的向量丛 <span class="math inline">\(E',E''\)</span>, 则 <span class="math display">\[
 p(E'\otimes E'')=p(E')p(E'').
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(E',E''\)</span> 上的联络 <span class="math inline">\(\nabla',\nabla''\)</span>, 它们的直和 <span class="math inline">\(\nabla:=\nabla'\oplus\nabla''\)</span> 定义了 <span class="math inline">\(E:=E'\oplus E''\)</span> 上的联络: <span class="math display">\[
 \nabla_X\pmqty{s'\\s''}=\pmqty{\nabla'_Xs'\\\nabla''_Xs''},
 \quad X\in\Gamma(TM),s'\in\Gamma(E'),s''\in\Gamma(E''),
@@ -369,7 +369,7 @@ A\T XA=\diag(S,\dots,S,0,\dots,0),
 (\det{A})^2\det{X} = \det(A\T XA) = (\det S)\cdots(\det S)=1,
 \]</span> 因此 <span class="math inline">\(\det{X}\)</span> 是一个完全平方 <span class="math inline">\((1/\det{A})^2\in F\)</span>.</p>
 <p><u>Claim 23.1</u> 设 <span class="math inline">\(X=[x^i_j]\)</span> 是 <span class="math inline">\(2m\)</span> 阶反对称不定元矩阵, 则 <span class="math inline">\(\det(X)\in\Z[x^i_j]\)</span> 是完全平方式.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(Q(x^i_j)\)</span> 为在 <span class="math inline">\(\Q\)</span> 中添加 <span class="math inline">\(x^i_j\)</span> 所生成的域. 因为存在 <span class="math inline">\(x^i_j\in\Z\)</span> 使得 <span class="math inline">\(\det(X)\neq0\)</span>, 因此 <span class="math inline">\(\det(X)\in\Z[x^i_j]\)</span> 不是零多项式, 进而 <span class="math inline">\(\det(X)\)</span> 作为 <span class="math inline">\(Q(x^i_j)\)</span> 上的矩阵是可逆的[?]. 根据前面的讨论, 存在矩阵 <span class="math inline">\(A\in{\rm GL}(2m,\Q(x^i_j))\)</span>, 满足 <span class="math display">\[
 \det{X}=\pqty{\frac1{\det{A}}}^2\in\Q(x^i_j).
 \]</span> 这说明 <span class="math inline">\(\det{X}\)</span> 是 <span class="math inline">\(\Q(x^i_j)\)</span> 中的完全平方. 假设 <span class="math display">\[
@@ -386,7 +386,7 @@ J_{2m}:=\diag(S,\dots,S).
 \]</span> <u>Claim 23.2</u> 设不定元矩阵 <span class="math inline">\(A=[a^i_j]\in{\frak gl}(2m,\R)\)</span>, <span class="math inline">\(X=[x^i_j]\in{\frak s0}(2m)\)</span>, 则 <span class="math display">\[
 \operatorname{Pf}(A\T XA)=\det(A)\operatorname{Pf}(X).
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 根据行列式的性质, <span class="math display">\[
 \det(A\T XA)=(\det{A})^2\det{X}.
 \]</span> 因为 <span class="math inline">\(A\T XA\)</span> 和 <span class="math inline">\(X\)</span> 反对称, 上式等价于 <span class="math display">\[
@@ -446,7 +446,7 @@ Q(\Omega)
 \]</span> 其中 <span class="math inline">\(-M_2\)</span> 表示具有相反定向的 <span class="math inline">\(M_2\)</span>. 定向流形是另一个流形的边界, 当且仅当它与空集配边. 定向配边是定向流形间的等价关系.</p>
 <p>Pontrjagin 数给出了流形配边的一个必要条件.</p>
 <p><u>Claim 25.1</u> 若 <span class="math inline">\(4n\)</span> 维紧致定向流形 <span class="math inline">\(M\)</span> 与空集配边, 则 <span class="math inline">\(M\)</span> 的所有 Pontrjagin 数为零.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(M=\partial{N}\)</span>, <span class="math inline">\(p_1^{i_1}\cdots p_n^{i_n}\)</span> 次数是 <span class="math inline">\(4n\)</span>, 根据 Stokes 定理, <span class="math display">\[
 \Align{
 \int_M p_1^{i_1}\cdots p_n^{i_n}
@@ -457,7 +457,7 @@ Q(\Omega)
 \]</span></p>
 </div>
 <p><u>Claim 25.2</u> (Pontrjagin 数是配边不变量) 若紧致定向流形 <span class="math inline">\(M_1,M_2\)</span> 配边, 则它们的 Pontrjagin 数相等.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(M_1\sqcup(-M_2)=\partial{N}\)</span>, 由 Claim 25.1, <span class="math inline">\(\int_{M_1\sqcup(-M_2)}p_1^{i_1}\cdots p_n^{i_n}=0\)</span>, 即 <span class="math display">\[
 \int_{M_1}p_1^{i_1}\cdots p_n^{i_n}=
 \int_{M_2}p_1^{i_1}\cdots p_n^{i_n}.
@@ -466,7 +466,7 @@ Q(\Omega)
 <h3 id="the-embedding-problem">25.2  The embedding problem</h3>
 <p>Whitney 嵌入定理表明, <span class="math inline">\(n\)</span> 维光滑流形 <span class="math inline">\(M\)</span> 可以嵌入 <span class="math inline">\(\R^{2n+1}\)</span>. 在某些情况下, 这个维数是可以改进的.</p>
 <p><u>Claim 25.3</u> 若紧致 <span class="math inline">\(4n\)</span> 维流形 <span class="math inline">\(M\)</span> 可以作为超曲面嵌入 <span class="math inline">\(\R^{4n+1}\)</span>, 则 <span class="math inline">\(M\)</span> 的所有 Pontrjagin 类为零.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设嵌入 <span class="math inline">\(i:M\hookrightarrow\R^{4n+1}\)</span>. 因为 <span class="math inline">\(M\)</span> 可定向, <span class="math inline">\(M\)</span> 有外向单位法向量场 于是 <span class="math inline">\(i(M)\)</span> 的法丛 <span class="math inline">\(N\)</span> 平凡. 根据光滑向量丛的短正合列 <span class="math display">\[
 0\to TM \to T\R^{4n+1}|_{i(M)}\to N\to 0,
 \]</span> 有直和 <span class="math display">\[

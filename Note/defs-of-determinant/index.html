@@ -308,7 +308,7 @@ a_{1\sigma(1)} \cdots a_{n\sigma(n)}.
 </ol>
 <p>简单来说, 行列式<span class="math inline">\(\det\)</span>是一个归一化的(normalized)交错(alternating)<span class="math inline">\(n\)</span>-线性形式(<span class="math inline">\(n\)</span>-linear form).</p>
 <p>从这个定义可以推出行列式的一切性质. 在此之前, 先给出几个引理.</p>
-<div class="note note-secondary">
+<div class="note note-success">
 <p><u>Lemma 1</u> 设<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\)</span>. 如果<span class="math inline">\(f\)</span>是交错的, 则<span class="math inline">\(f\)</span>是反对称的.</p>
 <ul>
 <li>反对称(anti-symmetric)的含义如下: 交换<span class="math inline">\(f\)</span>的任意两个向量, <span class="math inline">\(f\)</span>多一个负号, 即 <span class="math display">\[
@@ -354,7 +354,7 @@ x_1A_1 + \dots + x_nA_n = B, \tag{a}
 \det(A_1,\dots,A_n)\, x_i = \det(A_1,\dots,A_{i-1},B,A_{i+1},\dots,A_n).
 \tag{b}
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 只需<span class="math inline">\(\text{(a)}\)</span>式的<span class="math inline">\(B\)</span>代入<span class="math inline">\(\text{(b)}\)</span>式, 利用<span class="math inline">\(\det\)</span>的线性性和交错性即得.</p>
 </div>
 <p>现在我们给出了一个行列式的不依赖于展开式的定义, 看上去十分简洁清晰. 然而, 如果我们要推导一些重要结论, 例如</p>
@@ -406,7 +406,7 @@ F \ar@{.&gt;}[r]^{\lambda} &amp; F
 </div>
 <p>接下来给出几个定理. 利用行列式的展开式证明这些定理是不太容易的, 但是泛性质定义大大简化了证明过程.</p>
 <p><u>Proposition 2</u> 对于<span class="math inline">\(S,T\in{\rm End}_F(V)\)</span>, 有<span class="math inline">\(\det(ST)=(\det{S})(\det{T})\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 取线性无关的<span class="math inline">\(v_1,\dots,v_n\)</span>, 则<span class="math inline">\(f(v_1,\dots,v_n)\neq0\)</span>. 有 <span class="math display">\[
 \Align{
 (\det{ST}) f(v_1,\dots,v_n)
@@ -418,7 +418,7 @@ F \ar@{.&gt;}[r]^{\lambda} &amp; F
 \]</span> (第三步, 因为<span class="math inline">\(S^{(n)}f\)</span>也是一个<span class="math inline">\(n\)</span>-形式, 对<span class="math inline">\(T\)</span>应用行列式的定义可得.) 所以<span class="math inline">\(\det{ST}=\det{S}\det{T}\)</span>.</p>
 </div>
 <p><u>Proposition 3</u> <span class="math inline">\(T\in{\rm End}_F(V)\)</span>可逆的充要条件是<span class="math inline">\(\det{T}\neq0\)</span>. 此时<span class="math inline">\(\det(T^{-1})=(\det{T})^{-1}\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 若<span class="math inline">\(T\)</span>可逆, 则<span class="math inline">\(TT^{-1}={\rm id}_V\)</span>, 由Proposition 2有<span class="math inline">\(\det{T}\det(T^{-1})=\det({\rm id}_V)=1\)</span>, 所以<span class="math inline">\(\det{T}\neq0\)</span>且<span class="math inline">\(\det(T^{-1})=(\det{T})^{-1}\)</span>.</p>
 <p>若<span class="math inline">\(\det{T}\neq0\)</span>, 取<span class="math inline">\(V\)</span>的基底<span class="math inline">\(\qty{e_i}\)</span>, 由Lemma 3得<span class="math inline">\(f(e_1,\dots,e_n)\neq0\)</span>, 于是 <span class="math display">\[
 \Align{
@@ -480,7 +480,7 @@ G \ar[r]^(0.45){\pi} \ar[rd]_{\varphi}
 <ul>
 <li>当<span class="math inline">\({\rm char}\,F\neq2\)</span>时, 逆命题成立.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 让<span class="math inline">\(f\)</span>的某两个输入相同, 则 <span class="math display">\[
 \Align{0
 =f(\dots,v+w,\dots,v+w,\dots)
@@ -496,17 +496,17 @@ G \ar[r]^(0.45){\pi} \ar[rd]_{\varphi}
 f(v_{\sigma(1)},\dots,v_{\sigma(n)})
 = (\sgn\sigma) f(v_1,\dots,v_n).
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 从反对称形式以及置换的符号的定义即得.</p>
 </div>
 <p><u>Lemma 3</u> 设交错<span class="math inline">\(n\)</span>形式<span class="math inline">\(f\neq0\)</span>, <span class="math inline">\(v_1,\dots,v_n\in V\)</span>, 则 <span class="math display">\[
 v_1,\dots,v_n\,\textsf{线性无关}\iff f(v_1,\dots,v_n)\neq0.
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> <span class="math inline">\(\Leftarrow\)</span>是比较容易的, 但是<span class="math inline">\(\Rightarrow\)</span>则需要用到楔积等构造来弄清<span class="math inline">\(\Lambda_k(V)\)</span>的结构, 在此略去.</p>
 </div>
 <p><u>Lemma 4</u> 任意第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>都是某两个可逆矩阵<span class="math inline">\(A,B\)</span>的换位子<span class="math inline">\([A,B]\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 分为两种情况.</p>
 <ul>
 <li>记<span class="math inline">\(E_{ij}(\lambda)=I+e_{ij}(\lambda)\)</span>, 其中<span class="math inline">\(e_{ij}(\lambda)\)</span>是<span class="math inline">\(i,j\)</span>处为<span class="math inline">\(\lambda\)</span>, 其余为零的矩阵. 注意到 <span class="math display">\[
@@ -527,7 +527,7 @@ A=\pmqty{1&amp;0\\0&amp;\mu},\quad B=\pmqty{1&amp;0\\\frac\lambda{\mu-1}&amp;1}.
 \]</span></p>
 </div>
 <p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(F)\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 任取<span class="math inline">\(A\in{\rm SL}_n(F)\)</span>, 根据Gauss-Jordan消元法的思想, 可以将<span class="math inline">\(A\)</span>经过若干次第一类初等行变换<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">将一行的常数倍加到另一行上.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>和第一类初等列变换(即左, 右乘若干<span class="math inline">\(E_{ij}(\lambda)\)</span>)变为单位矩阵<span class="math inline">\(I\)</span>(证明见后), 即 <span class="math display">\[
 E_{i_pj_p}(\lambda_p)\cdots E_{i_1j_1}(\lambda_1) \, A \,
 E_{k_1l_1}(\mu_1)\cdots E_{k_ql_q}(\mu_q)

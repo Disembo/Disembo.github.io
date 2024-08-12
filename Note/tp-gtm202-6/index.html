@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/cw-complexes-counterexamples.png">
 <meta property="article:published_time" content="2024-08-05T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-06T13:50:00.581Z">
+<meta property="article:modified_time" content="2024-08-12T02:48:58.909Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -285,8 +285,10 @@
 <p>胞腔复形是一类很重要也具有一般性的拓扑空间, 可以看作不断地将 <span class="math inline">\(n\)</span> 维闭球 (更一般地, <span class="math inline">\(n\)</span> 维胞腔) 沿着其边界粘贴到一个拓扑空间上所得. 我们最关心的一类胞腔复形是 CW 复形, 即向胞腔复形附加两个额外条件所得, 使得其拓扑性质与胞腔的拓扑性质关系更紧密.</p>
 <h3 id="cell-complexes">17.1  Cell complexes</h3>
 <p>一个同胚于 <span class="math inline">\(\mathbb{B}^n\)</span> 的拓扑空间称为 <strong><span class="math inline">\(n\)</span> 维开胞腔</strong>; 同胚于 <span class="math inline">\(\overline{\mathbb{B}^n}\)</span> 的拓扑空间称为 <strong><span class="math inline">\(n\)</span> 维闭胞腔</strong>.</p>
+<div class="note note-success">
 <p><u>Claim 17.1</u> (凸紧子集是胞腔) 设内部非空的凸紧子集 <span class="math inline">\(D\subset\R^n\)</span>, 则 <span class="math inline">\(D\)</span> 是一个 <span class="math inline">\(n\)</span> 维闭胞腔, <span class="math inline">\({\rm Int}D\)</span> 是一个 <span class="math inline">\(n\)</span> 维开胞腔. 实际上, 任给 <span class="math inline">\(p\in{\rm Int}D\)</span>, 存在同胚 <span class="math inline">\(F:\overline{\mathbb{B}^n}\to D\)</span> 将 <span class="math inline">\(0\)</span> 映到 <span class="math inline">\(p\)</span>, 将 <span class="math inline">\(\mathbb{B}^n\)</span> 映到 <span class="math inline">\({\rm Int}D\)</span>, 将 <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 映到 <span class="math inline">\(\partial{D}\)</span>.</p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 通过平移 <span class="math inline">\(x\mapsto x-p\)</span>, 不妨设 <span class="math inline">\(0=p\in{\rm Int}D\)</span>. 因为 <span class="math inline">\(p\)</span> 是内点, 开球 <span class="math inline">\(B_\varepsilon(0)\subset D\)</span>. 通过缩放 <span class="math inline">\(x\mapsto x/\varepsilon\)</span>, 有 <span class="math inline">\(\mathbb{B}^n=B_1(0)\subset D\)</span>.</p>
 <p>核心是证明: 从原点出发的射线 <span class="math inline">\(R\)</span> 与 <span class="math inline">\(\partial{D}\)</span> 恰好交于一点. 因为 <span class="math inline">\(D\)</span> 紧, 其与 <span class="math inline">\(R\)</span> 的交是紧的, 因此存在 <span class="math inline">\(x_0\in D\cap R\)</span> 使得 <span class="math inline">\(\|x_0\|\)</span> 取最大值. 根据凸性, <span class="math inline">\(x_0\)</span> 一定在 <span class="math inline">\(\partial{D}\)</span> 中. 为了证明 <span class="math inline">\(D\cap R\)</span> 只能有这一个点, 我们证明连接 <span class="math inline">\(0\)</span> 与 <span class="math inline">\(x_0\)</span> 的开线段完全在 <span class="math inline">\({\rm Int}D\)</span> 中. 开线段上的任意一点可写作 <span class="math inline">\(\lambda x_0\)</span>, <span class="math inline">\(0&lt;\lambda&lt;1\)</span>. 设 <span class="math inline">\(z\in B_{1-\lambda}(\lambda x_0)\)</span>, 令 <span class="math inline">\(y=(z-\lambda x_0)/(1-\lambda)\)</span>, 直接的计算表明 <span class="math inline">\(\|y\|&lt;1\)</span>, 即 <span class="math inline">\(y\in\mathbb{B}^n\subset D\)</span>. 注意 <span class="math inline">\(x_0,y\)</span> 都在 <span class="math inline">\(D\)</span> 中, 而 <span class="math inline">\(z=\lambda x_0+(1-\lambda)y\)</span>, 由凸性, <span class="math inline">\(z\)</span> 也在 <span class="math inline">\(D\)</span> 中. 这说明 <span class="math inline">\(B_{1-\lambda}(\lambda x_0)\subset D\)</span>, 即 <span class="math inline">\(\lambda x_0\)</span> 是内点.</p>
 <p>现在可以定义映射 <span class="math inline">\(f:\partial{D}\to\mathbb{S}^{n-1}\)</span>, <span class="math display">\[
@@ -323,12 +325,14 @@ F(x)=\Cases{
 <li>根据子空间拓扑的定义, 若 <span class="math inline">\(U\)</span> 是开集, 则 <span class="math inline">\(U\cap B\)</span> 由定义是开集. 因此, 只有反向的蕴含关系是需要验证的: 若 <span class="math inline">\(U\)</span> 与任意 <span class="math inline">\(B\)</span> 的交是 <span class="math inline">\(B\)</span> 的开子集, 则 <span class="math inline">\(U\)</span> 是开集.</li>
 <li>等价地, 可将定义中的 "开" 全部换成 "闭".</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 17.2</u> (连贯拓扑的性质) 空间 <span class="math inline">\(X\)</span> 的拓扑与子空间族 <span class="math inline">\({\cal B}\)</span> 连贯.</p>
 <ol type="1">
 <li>映射 <span class="math inline">\(f:X\to Y\)</span> 连续, 当且仅当对任意 <span class="math inline">\(B\in\cal B\)</span>, <span class="math inline">\(f|_B\)</span> 连续.</li>
 <li>包含映射 <span class="math inline">\(B\hookrightarrow X\)</span> 的不交并 <span class="math inline">\(\coprod_{B\in\cal B}B\to X\)</span> 是商映射.</li>
 <li><span class="math inline">\(X\)</span> 的拓扑是使得包含映射 <span class="math inline">\(B\hookrightarrow X\)</span> (<span class="math inline">\(B\in\cal B\)</span>) 连续的最强拓扑.</li>
 </ol>
+</div>
 <p><strong>CW 复形</strong>指的是满足下面两个条件的复形 <span class="math inline">\((X,{\cal E})\)</span>:</p>
 <ul>
 <li>(闭包有限, <strong>c</strong>losure finiteness) 任意胞腔的闭包可被有限多个胞腔覆盖.</li>
@@ -337,8 +341,10 @@ F(x)=\Cases{
 <li>历史上, 拓扑强弱的概念曾与现在相反. 这里的 "弱拓扑" 现在看来是 "强拓扑": <span class="math inline">\(X\)</span> 的拓扑是使得包含映射 <span class="math inline">\(\overline{e}\to X\)</span> 连续的最强拓扑.</li>
 </ul></li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 17.3</u> (局部有限复形是 CW 复形) 局部有限胞腔复形 <span class="math inline">\((X,{\cal E})\)</span> 是 CW 复形.</p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> (C), 任给 <span class="math inline">\(e\in\cal E\)</span>, 闭包 <span class="math inline">\(\overline{e}\)</span> 中的每一点 <span class="math inline">\(p\)</span> 都有一个邻域 <span class="math inline">\(U_p\)</span>, 使得 <span class="math inline">\(U_p\)</span> 只与有限个胞腔相交. 因为 <span class="math inline">\(\overline{e}\)</span> 是紧的, 所以 <span class="math inline">\(\overline{e}\)</span> 可以被有限个这样的 <span class="math inline">\(U_p\)</span> 覆盖.</p>
 <p>(W), 设 <span class="math inline">\(A\subset X\)</span> 与任意 <span class="math inline">\(\overline{e}\)</span> 的交是 <span class="math inline">\(\overline{e}\)</span> 的闭子集, 要证明 <span class="math inline">\(A\)</span> 是闭的. 任给 <span class="math inline">\(x\in X\setminus A\)</span>, (因为 <span class="math inline">\({\cal E}\)</span> 局部有限, 所以 <span class="math inline">\(\overline{\cal E}\)</span> 局部有限) 设 <span class="math inline">\(x\)</span> 的 <span class="math inline">\(W\)</span> 只与 <span class="math inline">\(\overline{\cal E}\)</span> 中有限个闭集相交, 记为 <span class="math inline">\(\overline{e_1},\dots,\overline{e_m}\)</span>. 因为 <span class="math inline">\(A\cap\overline{e_i}\)</span> 在 <span class="math inline">\(\overline{e_i}\)</span> 中闭, 所以也在 <span class="math inline">\(X\)</span> 中闭, 于是 <span class="math display">\[
 W\setminus A=W\setminus\big(
@@ -347,15 +353,19 @@ W\setminus A=W\setminus\big(
 \]</span> 是 <span class="math inline">\(x\)</span> 的包含于 <span class="math inline">\(X\setminus A\)</span> 的邻域. 因此 <span class="math inline">\(X\setminus A\)</span> 开, 即 <span class="math inline">\(A\)</span> 闭.</p>
 </div>
 <p>若存在整数 <span class="math inline">\(n\)</span>, 使得 <span class="math inline">\(X\)</span> 的任意胞腔的维数不超过 <span class="math inline">\(n\)</span>, 则称 <span class="math inline">\(X\)</span> 是<strong>有限维的</strong>; 否则称 <span class="math inline">\(X\)</span> 是无限维的. 对有限维的 <span class="math inline">\(X\)</span>, 它的维数定义为其胞腔的维数的最大值.</p>
+<div class="note note-success">
 <p><u>Claim 17.4</u> (最高维开胞腔是开集) 设 <span class="math inline">\(n\)</span> 维 CW 复形 <span class="math inline">\(X\)</span>, 则所有 <span class="math inline">\(n\)</span> 维胞腔都是开集.</p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(e_0\in{\cal E}\)</span> 是 <span class="math inline">\(n\)</span> 为胞腔. 我们利用条件 (w) 来证明它是开集, 即证明 <span class="math inline">\(e_0\)</span> 与任意胞腔的闭包交为开集.</p>
 <p>一方面, 设 <span class="math inline">\(\Phi:D\to X\)</span> 是 <span class="math inline">\(e_0\)</span> 的特征映射, 将其视作紧空间 <span class="math inline">\(D\)</span> 到 Hausdorff 空间 <span class="math inline">\(\overline{e_0}\)</span> 的满射, 根据闭映射引理, 它是商映射. 因为 <span class="math inline">\(\Phi^{-1}(e_0)={\rm Int}D\)</span> 在 <span class="math inline">\(D\)</span> 中开, 所以 <span class="math inline">\(e_0\)</span> 在 <span class="math inline">\(\overline{e_0}\)</span> 中开.</p>
 <p>另一方面, 任给其他的胞腔 <span class="math inline">\(e\in{\cal E}\)</span>, 则 <span class="math inline">\(e_0\cap e=\emptyset\)</span>, 因此 <span class="math inline">\(e_0\cap\overline{e}\)</span> 包含于 <span class="math inline">\(\overline{e}\setminus e\)</span>, 进而被有限多个维数小于 <span class="math inline">\(n\)</span> 的胞腔覆盖. 但 <span class="math inline">\(e_0\)</span> 的维数为 <span class="math inline">\(n\)</span>, 所以 <span class="math inline">\(e_0\cap\overline{e}=\emptyset\)</span> 是开集.</p>
 </div>
 <p>胞腔复形 <span class="math inline">\((X,{\cal E})\)</span> 的<strong>子复形</strong>是一些胞腔之并 <span class="math inline">\(Y\subset X\)</span>, 满足 <span class="math inline">\(Y\)</span> 中胞腔的闭包仍在 <span class="math inline">\(Y\)</span> 中 (因此特征映射是有意义的). 子复形的任意交和任意并仍是子复形. 对自然数 <span class="math inline">\(n\)</span>, 定义 <span class="math inline">\(X\)</span> 的 <strong><span class="math inline">\(n\)</span> 维骨架 (<span class="math inline">\(n\)</span>-skeleton)</strong> <span class="math inline">\(X_n\)</span> 是所有维数小于等于 <span class="math inline">\(n\)</span> 的胞腔组成的子复形.</p>
+<div class="note note-success">
 <p><u>Claim 17.5</u> (子 CW 复形) 设 CW 复形 <span class="math inline">\(X\)</span>, 若 <span class="math inline">\(Y\)</span> 是 <span class="math inline">\(X\)</span> 的子复形, 则 <span class="math inline">\(Y\)</span> 是闭子集, 且在子空间拓扑与继承自 <span class="math inline">\(X\)</span> 的胞腔分解下, <span class="math inline">\(Y\)</span> 构成 CW 复形.</p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 作为子空间, <span class="math inline">\(Y\)</span> Hausdorff; 由定义, <span class="math inline">\(Y\)</span> 是其胞腔的无交并. 因为对任意胞腔 <span class="math inline">\(e\subset Y\)</span>, 有 <span class="math inline">\(\overline{e}\subset Y\)</span>, 所以 <span class="math inline">\(e\)</span> 在 <span class="math inline">\(X\)</span> 中的特征映射 <span class="math inline">\(\Phi\)</span> 可以作为 <span class="math inline">\(e\)</span> 在 <span class="math inline">\(Y\)</span> 中的特征映射. 所以 <span class="math inline">\(Y\)</span> 构成胞腔.</p>
 <p>(C), 任给胞腔 <span class="math inline">\(e\subset Y\)</span>, 有 <span class="math inline">\(\overline{e}\subset Y\)</span>, 所以所有与 <span class="math inline">\(\overline{e}\)</span> 相交的 <span class="math inline">\(X\)</span> 的 (有限个) 胞腔也必须在 <span class="math inline">\(Y\)</span> 中, 构成了 <span class="math inline">\(\overline{e}\)</span> 由 <span class="math inline">\(Y\)</span> 中胞腔的有限覆盖.</p>
 <p>(W), 设 <span class="math inline">\(S\subset Y\)</span> 满足 <span class="math inline">\(S\cap\overline{e}\)</span> 是 <span class="math inline">\(\overline{e}\)</span> 的闭集 (对任意 <span class="math inline">\(Y\)</span> 中胞腔 <span class="math inline">\(e\)</span>). 设 <span class="math inline">\(e\)</span> 是 <span class="math inline">\(X\)</span> 的胞腔且不在 <span class="math inline">\(Y\)</span> 中, 根据 <span class="math inline">\(X\)</span> 的闭有限性, <span class="math inline">\(\overline{e}\setminus e\)</span> 由有限个 <span class="math inline">\(X\)</span> 的胞腔覆盖, 其中那些也在 <span class="math inline">\(Y\)</span> 中的胞腔记作 <span class="math inline">\(e_1,\dots,e_k\)</span>. 于是 <span class="math inline">\(\overline{e_1}\cup\cdots\cup\overline{e_k}\subset Y\)</span>, 且 <span class="math display">\[
@@ -366,8 +376,10 @@ S\cap\overline{e}
 \]</span> 这是 <span class="math inline">\(\overline{e}\)</span> 的闭子集 (首先 <span class="math inline">\(S\cap\overline{e_i}\)</span> 是 <span class="math inline">\(\overline{e_i}\)</span> 的闭子集, 进而也是 <span class="math inline">\(X\)</span> 的闭子集; 其有限并也是闭子集; 再由 <span class="math inline">\(X\)</span> 与 <span class="math inline">\(\overline{\cal E}\)</span> 的连贯性, 这闭子集与 <span class="math inline">\(\overline{e}\)</span> 的交是 <span class="math inline">\(\overline{e}\)</span> 的闭集). 由连贯性, <span class="math inline">\(S\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集, 进而是 <span class="math inline">\(Y\)</span> 的闭子集 (子空间拓扑).</p>
 <p>最后, 要说明 <span class="math inline">\(Y\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集, 对 <span class="math inline">\(S=Y\)</span> 应用前一段论证即可.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 17.6</u> (骨架族) 设 CW 复形 <span class="math inline">\(X\)</span>, 则 <span class="math inline">\(X\)</span> 与骨架族 <span class="math inline">\(\{X_n\mid n\in\N\}\)</span> 连贯.</p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 任给 <span class="math inline">\(S\subset X\)</span> 满足 <span class="math inline">\(S\cap X_n\)</span> 是 <span class="math inline">\(X_n\)</span> 的闭子集. 任给 <span class="math inline">\(n\)</span> 维胞腔 <span class="math inline">\(e\subset X_n\)</span>, 因为 <span class="math inline">\(\overline{e}\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集, 所以也是 <span class="math inline">\(X_n\)</span> 的闭子集, 因此 <span class="math display">\[
 S\cap\overline{e} = (S\cap X_n)\cap\overline{e}
 \]</span> 作为 <span class="math inline">\(X_n\)</span> 两个闭子集的交, 也是 <span class="math inline">\(X_n\)</span> 的闭子集, 进而是 <span class="math inline">\(\overline{e}\)</span> 的闭子集. 应用 <span class="math inline">\(X\)</span> 与 <span class="math inline">\(\overline{\cal E}\)</span> 的连贯性, <span class="math inline">\(S\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集, 即证.</p>
@@ -407,6 +419,7 @@ I
 <h2 id="topological-properties-of-cw-complexes">18  Topological Properties of CW Complexes</h2>
 <h3 id="topological-properties">18.1  Topological properties</h3>
 <p>CW 复形的连通性和道路连通性是等价的, 它们都由其骨架的连通性刻画.</p>
+<div class="note note-success">
 <p><u>Claim 18.1</u> (CW 复形的连通性) 设 CW 复形 <span class="math inline">\(X\)</span>, TFAE:</p>
 <ol type="1">
 <li><span class="math inline">\(X\)</span> 道路连通.</li>
@@ -414,36 +427,57 @@ I
 <li><span class="math inline">\(X\)</span> 的 <span class="math inline">\(1\)</span> 维骨架连通.</li>
 <li><span class="math inline">\(X\)</span> 的某 <span class="math inline">\(n\)</span> 维骨架连通.</li>
 </ol>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 显然 1 <span class="math inline">\(\Rightarrow\)</span> 2, 3 <span class="math inline">\(\Rightarrow\)</span> 4.</p>
 <p>2 <span class="math inline">\(\Rightarrow\)</span> 3,</p>
 <p>4 <span class="math inline">\(\Rightarrow\)</span> 1,</p>
 </div>
 <p>下面讨论 CW 复形的紧性. 先给出两个引理.</p>
+<div class="note note-success">
 <p><u>Claim 18.2</u> (胞腔的闭包) CW 复形的任一胞腔的闭包包含于一个有限子复形.</p>
+</div>
+<div class="note note-success">
 <p><u>Claim 18.3</u> (离散子集刻画) CW 复形 <span class="math inline">\(X\)</span> 的子集 <span class="math inline">\(S\)</span> 离散, 当且仅当 <span class="math inline">\(S\)</span> 与每个胞腔的交是有限集.</p>
+</div>
+<div class="note note-success">
 <p><u>Claim 18.4</u> (CW 复形的紧性) CW 复形 <span class="math inline">\(X\)</span> 的子集 <span class="math inline">\(S\)</span> 紧, 当且仅当 <span class="math inline">\(S\)</span> 在 <span class="math inline">\(X\)</span> 中闭, 且包含于一个有限子复形. 特别地, <span class="math inline">\(X\)</span> 紧当且仅当它是一个有限复形.</p>
+</div>
+<div class="note note-success">
 <p><u>Claim 18.5</u> (CW 复形的局部紧性) CW 复形局部紧当且仅当它局部有限.</p>
+</div>
 <h3 id="inductive-construction">18.2  Inductive construction</h3>
 <p>除了在给定的拓扑空间上选取一个胞腔分解外, 还可以归纳地来构造一个 CW 复形. 简单地说, 就是向一个离散空间上不断地粘贴 <span class="math inline">\(n\)</span> 维胞腔 (<span class="math inline">\(n=1,2,\dots\)</span>).</p>
 <p>设非空拓扑空间 <span class="math inline">\(X\)</span>, 一族 <span class="math inline">\(n\)</span> (<span class="math inline">\(n\geq1\)</span>) 维闭胞腔 <span class="math inline">\(\{D_\alpha\}\)</span>, 且对每个 <span class="math inline">\(\alpha\)</span>, 有连续映射 <span class="math inline">\(\varphi_\alpha:\partial{D}_\alpha\to X\)</span>. 设贴映射 <span class="math display">\[
 \varphi:\coprod_\alpha \partial D_\alpha \to X,
 \]</span> 其在每个 <span class="math inline">\(\partial{D}_\alpha\)</span> 的限制是 <span class="math inline">\(\varphi_\alpha\)</span>. 我们把黏着空间 <span class="math inline">\(X\cup_\varphi(\coprod_\alpha D_\alpha)\)</span> 叫做<strong>向 <span class="math inline">\(X\)</span> 粘贴 <span class="math inline">\(n\)</span> 维胞腔</strong>得到的空间.</p>
+<div class="note note-success">
 <p><u>Claim 18.6</u> (引理) 设 CW 复形 <span class="math inline">\(X\)</span>, 其胞腔 <span class="math inline">\(\{e_\alpha\}\)</span> 和对应的特征映射 <span class="math inline">\(\Phi_\alpha:D_\alpha\to X\)</span>, 则特征映射的不交并 <span class="math inline">\(\Phi:\coprod_\alpha D_\alpha\to X\)</span> 是商映射.</p>
+</div>
+<div class="note note-success">
 <p><u>Claim 18.7</u> (骨架的构造) 设 CW 复形 <span class="math inline">\(X\)</span>, 则骨架 <span class="math inline">\(X_n\)</span> 是向骨架 <span class="math inline">\(X_{n-1}\)</span> 粘贴 <span class="math inline">\(n\)</span> 维胞腔所得.</p>
+</div>
+<div class="note note-success">
 <p><u>Claim 18.8</u> (CW 复形构造定理) 设拓扑空间链 <span class="math inline">\(X_0\subset X_1\subset X_2\subset\cdots\)</span> 满足:</p>
 <ol type="1">
 <li><span class="math inline">\(X_0\)</span> 为非空的离散空间;</li>
 <li>对 <span class="math inline">\(n\geq1\)</span>, <span class="math inline">\(X_n\)</span> 是向 <span class="math inline">\(X_{n-1}\)</span> 粘贴 <span class="math inline">\(n\)</span> 维胞腔所得;</li>
 </ol>
 <p>则 <span class="math inline">\(X=\bigcup_nX_n\)</span> 具有唯一的与 <span class="math inline">\(\{X_n\mid n\in\N\}\)</span> 连贯的拓扑, 和唯一的胞腔分解, 使得它成为以 <span class="math inline">\(X_n\)</span> 为骨架的 CW 复形.</p>
+</div>
 <ul>
 <li>(无穷维球面) 我们知道, <span class="math inline">\(\mathbb{S}^n\)</span> 是向 <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 粘贴两个 <span class="math inline">\(n\)</span> 维胞腔所得的空间, 通过归纳法让这个过程一直进行下去, 我们得到了一个无穷维 CW 复形 <span class="math inline">\(\mathbb{S}^\infty=\bigcup_n\mathbb{S}^n\)</span>. 它包含有所有维数的胞腔各两个; 其骨架是所有球面 <span class="math inline">\(\mathbb{S}^n\)</span> (<span class="math inline">\(n\in\N\)</span>).</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 18.9</u> (CW 复形的仿紧性) CW 复形是仿紧的.</p>
+</div>
 <h3 id="cw-complexes-as-manifolds">18.3  CW complexes as manifolds</h3>
+<div class="note note-success">
 <p><u>Claim 18.10</u> (CW 复形的流形性质) 设 <span class="math inline">\(X\)</span> 是具有可数个胞腔的 CW 复形, 若 <span class="math inline">\(X\)</span> 局部欧氏, 则 <span class="math inline">\(X\)</span> 是流形.</p>
+</div>
+<div class="note note-success">
 <p><u>Claim 18.11</u> (CW 复形的流形维数) 设 <span class="math inline">\(X\)</span> 既是 CW 复形也是流形, 则 CW 复形维数等于流形维数.</p>
+</div>
 </body></html>
                 
               </div>

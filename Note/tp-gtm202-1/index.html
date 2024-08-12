@@ -316,7 +316,7 @@ B_{r_2}(x)\subset B'_r(x).
 <li>(开集刻画) <span class="math inline">\(A\)</span> 开<span class="math inline">\(\iff A={\rm Int}A\iff\partial{A}\cap A=\emptyset\iff\)</span> 任一点有邻域 <span class="math inline">\(U\subset A\)</span>.</li>
 <li>(闭集刻画) <span class="math inline">\(A\)</span> 闭<span class="math inline">\(\iff A=\bar{A}\iff\partial{A}\subset A\iff\)</span> 任 <span class="math inline">\(A^C\)</span> 一点有邻域 <span class="math inline">\(U\subset A^C\)</span>.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1,2 是平凡的; 3 是 2 的否定; 4 是 (1 或 2) 的否定. 开/闭集刻画是 1-4 的推论.</p>
 </div></li>
 </ul>
@@ -328,7 +328,7 @@ B_{r_2}(x)\subset B'_r(x).
 <li><span class="math inline">\(A\)</span> 中的点要么是极限点, 要么是孤立点.</li>
 </ul></li>
 <li><p>(闭集的极限点刻画) <span class="math inline">\(A\)</span> 闭 <span class="math inline">\(\iff\)</span> <span class="math inline">\(A\)</span> 包含所有极限点.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 若 <span class="math inline">\(A\)</span> 闭, 反证, 假设极限点 <span class="math inline">\(p\notin A=\bar{A}\)</span>, 则 <span class="math inline">\(p\in{\rm Ext}A\)</span>, 于是某邻域 <span class="math inline">\(U_p\cap A=\emptyset\)</span> 矛盾.</p>
 <p>若 <span class="math inline">\(A\)</span> 包含所有极限点, 反证, 假设 <span class="math inline">\(A\)</span> 不闭, 则 <span class="math inline">\(A\subsetneq\bar A\)</span>. 取 <span class="math inline">\(p\in\bar{A}\setminus A\)</span>, 则 <span class="math inline">\(p\)</span> 的任意邻域 <span class="math inline">\(U\cap A\neq\emptyset\)</span>. 显然 <span class="math inline">\(U\cap A\)</span> 有 <span class="math inline">\(p\)</span> 以外的点, 因此 <span class="math inline">\(p\)</span> 是极限点, 然而 <span class="math inline">\(p\notin A\)</span>, 矛盾.</p>
 </div></li>
@@ -337,7 +337,7 @@ B_{r_2}(x)\subset B'_r(x).
 <ul>
 <li><p><strong>稠密(dense)</strong>: <span class="math inline">\(\bar{A}=X\)</span>.</p></li>
 <li><p>(稠密刻画) <span class="math inline">\(A\)</span> 稠密 <span class="math inline">\(\iff\)</span> <span class="math inline">\(X\)</span> 任意非空开集包含 <span class="math inline">\(A\)</span> 中的点.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 若 <span class="math inline">\(A\)</span> 稠密, 反证, 设某非空开集 <span class="math inline">\(U\cap A=\emptyset\)</span>, 则 <span class="math inline">\(U\subset{\rm Ext}A\neq\emptyset\)</span>. 但因为 <span class="math inline">\({\rm Ext}A\cap\bar{A}=\emptyset\)</span>, 其中 <span class="math inline">\(\bar{A}=X\)</span>, 矛盾.</p>
 <p>若 <span class="math inline">\(X\)</span> 的任意非空开集包含 <span class="math inline">\(A\)</span> 中的点, 反证, 设 <span class="math inline">\(\bar{A}\subsetneq X\)</span>, 则 <span class="math inline">\(\bar{A}^C\)</span> 是非空开集, 然而 <span class="math inline">\(\bar{A}^C\)</span> 不包含 <span class="math inline">\(A\)</span> 中的点, 与题设矛盾.</p>
 </div></li>
@@ -353,7 +353,7 @@ B_{r_2}(x)\subset B'_r(x).
 <li><p><strong>开映射</strong>: 开集映到开集.</p></li>
 <li><p><strong>闭映射</strong>: 闭集映到闭集.</p></li>
 <li><p>(连续的局部 criterion) <span class="math inline">\(f:X\to Y\)</span> 连续, 当且仅当, 任意一点 <span class="math inline">\(x\in X\)</span> 有邻域 <span class="math inline">\(U\)</span>, 使得 <span class="math inline">\(f|_U\)</span> 连续.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(f\)</span> 连续, 取 <span class="math inline">\(U=A\)</span> 即可.</p>
 <p>反之, 设 <span class="math inline">\(f\)</span> 局部连续. 任给开集 <span class="math inline">\(A\subset Y\)</span>, 对于任意 <span class="math inline">\(x\in f^{-1}(A)\)</span>, 存在邻域 <span class="math inline">\(U_x\)</span>, 使得 <span class="math inline">\(f|_{U_x}\)</span> 连续. 因此 <span class="math inline">\((f|_{U_x})^{-1}(A)=f^{-1}(A)\cap U_x\)</span> 是开集. 注意到 <span class="math display">\[
 f^{-1}(A)
@@ -375,7 +375,7 @@ f^{-1}(A)
 <li><span class="math inline">\(f\)</span> 开 <span class="math inline">\(\iff f^{-1}({\rm Int}B)\supset{\rm Int}f^{-1}(B)\)</span>.</li>
 <li><span class="math inline">\(f\)</span> 连续 <span class="math inline">\(\iff\)</span> <span class="math inline">\(f^{-1}({\rm Int}B)\subset{\rm Int}f^{-1}(B)\)</span>.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1, <span class="math inline">\(\Leftarrow\)</span>, 任给闭集 <span class="math inline">\(A\subset X\)</span>, 则 <span class="math inline">\(f(A)=f(\bar{A})\supset\overline{f(A)}\)</span>. 然而 <span class="math inline">\(f(A)\subset\overline{f(A)}\)</span>, 于是两相等, 即 <span class="math inline">\(f(A)\)</span> 闭. <span class="math inline">\(\Rightarrow\)</span>, 有 <span class="math inline">\(f(\bar{A})\)</span> 是闭集, 所以 <span class="math inline">\(\overline{f(\bar{A})}=f(\bar{A})\)</span>. 注意到 <span class="math inline">\(A\subset\bar{A}\)</span>, 于是 <span class="math inline">\(\overline{f(A)}\subset \overline{f(\bar{A})}=f(\bar{A})\)</span>.</p>
 <p>2, TODO</p>
 <p>3, TODO</p>
@@ -399,7 +399,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <ul>
 <li>度量空间 Hausdorff. 对任意 <span class="math inline">\(p\)</span>, 考虑连续函数 <span class="math inline">\(d(p,-):X\to\R\)</span> 即可.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> (将 <span class="math inline">\(\R\)</span> 的 Hausdorff 性带到 <span class="math inline">\(X\)</span> 上) 任给 <span class="math inline">\(p\neq q\)</span>, 存在连续函数 <span class="math inline">\(f:X\to\R\)</span>, <span class="math inline">\(f^{-1}(0)=\{p\}\)</span>. 设 <span class="math inline">\(f(q)=x\neq0\)</span>, 取 <span class="math inline">\(\varepsilon=x/2\)</span>, 则 <span class="math inline">\(U_1=(-\varepsilon,\varepsilon)\)</span> 和 <span class="math inline">\(U_2=(x-\varepsilon,x+\varepsilon)\)</span> 分别是 <span class="math inline">\(f(p),f(q)\)</span> 的不交邻域. 由连续性, <span class="math inline">\(f^{-1}(U_1),f^{-1}(U_2)\)</span> 分别是 <span class="math inline">\(p,q\)</span> 的不交邻域. 因此 <span class="math inline">\(X\)</span> Hausdorff.</p>
 </div></li>
 <li><p>离散空间是 Hausdorff 的. (继承) 子空间也是 Hausdorff 的.</p></li>
@@ -409,7 +409,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li>序列的极限唯一.</li>
 <li>若 <span class="math inline">\(p\)</span> 是子集 <span class="math inline">\(A\)</span> 的极限点, 则任意邻域包含 <span class="math inline">\(A\)</span> 中无穷多个点.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1, 设 <span class="math inline">\(\{x\}\subset X\)</span>. 任给 <span class="math inline">\(y\neq x\)</span>, 存在邻域 <span class="math inline">\(U_x\cap U_y=\emptyset\)</span>, 进而 <span class="math inline">\(U_y\subset X\setminus\{p\}\)</span>, 意味着 <span class="math inline">\(X\setminus\{x\}\)</span> 是开集, 即 <span class="math inline">\(\{x\}\)</span> 是闭集. 有限子集是独点集的有限并, 也是闭集.</p>
 <p>2, 设 <span class="math inline">\(x_n\)</span> 同时收敛到 <span class="math inline">\(x\neq y\)</span>. 则存在邻域 <span class="math inline">\(U_x\cap U_y=\emptyset\)</span>. 收敛性意味着存在 <span class="math inline">\(N_x,N_y\)</span>, 当 <span class="math inline">\(i&gt;N_x\)</span> 时 <span class="math inline">\(x_i\in U_x\)</span>, 当 <span class="math inline">\(i&gt;N_y\)</span> 时 <span class="math inline">\(x_i\in U_y\)</span>. 因此 <span class="math inline">\(i&gt;\max(N_x,N_y)\)</span> 时有矛盾.</p>
 <p>3, 假设 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U\)</span> 只包含 <span class="math inline">\(A\)</span> 中 (除 <span class="math inline">\(p\)</span> 外) 有限个点 <span class="math inline">\(a_1,\dots,a_n\)</span>. 存在邻域 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U_i\subset U\)</span> 和 <span class="math inline">\(a_i\)</span> 的邻域 <span class="math inline">\(A_i\)</span>, 使得 <span class="math inline">\(U_i\cap A_i=\emptyset\)</span>. 有限交集 <span class="math inline">\(\bigcap U_i\)</span> 也是 <span class="math inline">\(p\)</span> 的邻域, 但是 <span class="math inline">\((\bigcap U_i)\cap A\)</span> 不包含除 <span class="math inline">\(p\)</span> 外任何一点, 与极限点的定义矛盾.</p>
@@ -476,7 +476,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li>Sequences are sufficient to detect most topological properties.</li>
 </ul></li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1, <span class="math inline">\(\Leftarrow\)</span> 是平凡的. 反之, 设 <span class="math inline">\(x\in\bar{A}\)</span>, 则 <span class="math inline">\(x\)</span> 的任意邻域交 <span class="math inline">\(A\)</span> 不空. 设 <span class="math inline">\(x\)</span> 的嵌套邻域基 <span class="math inline">\((U_i)_{i=1}^\infty\)</span>, 则 <span class="math inline">\(U_i\cap A\neq\emptyset\)</span>, 取 <span class="math inline">\(x_i\in U_i\cap A\)</span>. 容易看出, <span class="math inline">\((x_i)_{i=1}^\infty\)</span> 是 <span class="math inline">\(A\)</span> 中收敛到 <span class="math inline">\(x\)</span> 的序列.</p>
 <p>2, <span class="math inline">\(\Rightarrow\)</span> 是平凡的. 反之, 设任意收敛到 <span class="math inline">\(x\)</span> 的序列最终在 <span class="math inline">\(A\)</span> 内. 由 1, 显然 <span class="math inline">\(x\in\bar{A}\)</span>. 反证法, 假设 <span class="math inline">\(x\in\bar{A}\setminus{\rm Int}A=\partial{A}\)</span>. 设 <span class="math inline">\(x\)</span> 的嵌套邻域基 <span class="math inline">\((U_i)_{i=1}^\infty\)</span>.</p>
 <p>因为 <span class="math inline">\(x\in\partial{A}\)</span>, 所以 <span class="math inline">\(U_i\cap A^C\neq\emptyset\)</span>. 取 <span class="math inline">\(x_i\in U_i\cap A^C\)</span>, 则序列 <span class="math inline">\((x_i)_{i=1}^\infty\)</span> 收敛到 <span class="math inline">\(x\)</span>. 然而 <span class="math inline">\(x_i\)</span> 永远不在 <span class="math inline">\(A\)</span> 中, 与题设矛盾.</p>
@@ -493,7 +493,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li><span class="math inline">\(X\)</span> 有稠密的可数子集. (<strong>可分离</strong>)</li>
 <li>任意开覆盖有可数子覆盖. (<strong>Lindelöf 空间</strong>)</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\({\cal B}\)</span> 是 <span class="math inline">\(X\)</span> 的可数基.</p>
 <p>1, 因为拓扑基中, 所有包含 <span class="math inline">\(p\)</span> 的开集构成 <span class="math inline">\(p\)</span> 的邻域基, 所以邻域基可数.</p>
 <p>2, 在每个 <span class="math inline">\(B\in{\cal B}\)</span> 中取一点 <span class="math inline">\(x_B\)</span>, 构成可数子集 <span class="math inline">\(A=\{x_B\mid B\in{\cal B}\}\)</span>. 任取非空开集 <span class="math inline">\(U\subset X\)</span>, 根据开集 basis criterion, 存在 <span class="math inline">\(B\in{\cal B}\)</span> 使得 <span class="math inline">\(B\subset U\)</span>, 于是 <span class="math inline">\(x_B\in U\)</span>. 因此任意非空开集与 <span class="math inline">\(A\)</span> 交非空, 根据稠密的刻画, <span class="math inline">\(A\)</span> 稠密.</p>
@@ -511,7 +511,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li><span class="math inline">\(M\)</span> 可分离.</li>
 <li><span class="math inline">\(M\)</span> 是 Lindelöf 空间.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 因为 1 <span class="math inline">\(\Rightarrow\)</span> 2 且 1 <span class="math inline">\(\Rightarrow\)</span> 3, 我们只需证明反向蕴含.</p>
 <p>2 <span class="math inline">\(\Rightarrow\)</span> 1, 设可数子集 <span class="math inline">\(\{p_i\mid i\in\N\}\)</span> 在 <span class="math inline">\(M\)</span> 中稠密. 设 <span class="math inline">\({\cal B}=\{B_{1/n}(p_i)\mid n\in\N^+,i\in\N\}\)</span>, 则 <span class="math inline">\({\cal B}\)</span> 是可数的. 下面我们证明 <span class="math inline">\({\cal B}\)</span> 构成 <span class="math inline">\(M\)</span> 的基. 任取非空开集 <span class="math inline">\(S\subset M\)</span> 和 <span class="math inline">\(x\in S\)</span>, 都存在球邻域 <span class="math inline">\(B_\varepsilon(x)\subset S\)</span>. 因为 <span class="math inline">\(\{p_i\}\)</span> 在 <span class="math inline">\(M\)</span> 中稠密, 所以 <span class="math inline">\(B_\varepsilon(x)\)</span> 中含有某 <span class="math inline">\(p_i\)</span>. 只需要找到 <span class="math inline">\(B_{1/n}(p_i)\)</span> 完全包含于 <span class="math inline">\(B_\varepsilon(x)\subset S\)</span> 中, 进而由拓扑基的等价说法, 即证. 取 <span class="math inline">\(n\in\N^+\)</span> 满足 <span class="math inline">\(1/n&lt;\varepsilon+d(x,p_i)\)</span> 即可.</p>
 <p>3 <span class="math inline">\(\Rightarrow\)</span> 1, 任给 <span class="math inline">\(n\in\N^+\)</span>, 考虑开覆盖 <span class="math inline">\({\cal U}_n\)</span>, 它由 <span class="math inline">\(M\)</span> 中所有点处的 <span class="math inline">\(1/n\)</span>-球构成. 由 Lindelöf 性, <span class="math inline">\({\cal U}_n\)</span> 有可数子覆盖 <span class="math inline">\({\cal B}_n\)</span>. 并集 <span class="math inline">\({\cal B}=\bigcup_n{\cal B}_n\)</span> 是可数覆盖, 下面证明它构成 <span class="math inline">\(M\)</span> 的基.</p>
@@ -543,7 +543,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li>闭球 <span class="math inline">\(\bar{\mathbb{B}}^2\)</span> 本身视作拓扑空间, 流形边界是 <span class="math inline">\(\mathbb{S}^2\)</span>, 拓扑边界为空. 若 <span class="math inline">\(\bar{\mathbb{B}}^2\)</span> 视作 <span class="math inline">\(\R^3\)</span> 的子集, 拓扑边界是它本身.</li>
 </ul></li>
 <li><p>(坐标球基) 流形存在由<strong>坐标球</strong> (同胚于 <span class="math inline">\(\R^n\)</span> 的开球) 构成的拓扑基.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 任取 <span class="math inline">\(x\in M\)</span>, 取欧氏邻域 <span class="math inline">\(U,\psi\)</span>. 考虑 <span class="math inline">\(\psi(x)\in\R^n\)</span> 的一个邻域基 <span class="math display">\[
 {\cal B}=\{\textsf{开球} B\mid
 \psi(x)\in B\subset\psi(U)
@@ -558,7 +558,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li>一个等价说法是, 对于 <span class="math inline">\(m\neq n\)</span>, <span class="math inline">\(\R^m\)</span> 的开子集 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(\R^n\)</span> 的开子集 <span class="math inline">\(V\)</span> 不同胚.</li>
 </ul></li>
 <li><p>(流形内部) <span class="math inline">\({\rm Int}M\)</span> 是 <span class="math inline">\(M\)</span> 的开子集, 是 <span class="math inline">\(n\)</span> 维无边流形.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 根据定义, <span class="math inline">\({\rm Int}M\)</span> 由所有的内部坐标邻域组成, 作为开集的并, 也是开集. 取 <span class="math inline">\(M\)</span> 的一个可数坐标覆盖, 其中所有的内部坐标系构成了 <span class="math inline">\({\rm Int}M\)</span> 的可数坐标覆盖, 因此 <span class="math inline">\({\rm Int}M\)</span> 局部 <span class="math inline">\(\R^n\)</span> 且第二可数. 作为 <span class="math inline">\(M\)</span> 的子空间, <span class="math inline">\({\rm Int}M\)</span> Hausdorff, 故构成 <span class="math inline">\(n\)</span> 维无边流形.</p>
 </div></li>
 <li><p>(边界不变性) 流形边界 <span class="math inline">\(\partial M\)</span> 和流形内部 <span class="math inline">\({\rm Int}M\)</span> 交集为空, 并集为 <span class="math inline">\(M\)</span>. (之后给出证明.)</p>
@@ -566,7 +566,7 @@ f^{-1}({\rm Int}B)\subset f^{-1}(B)={\rm Int}f^{-1}(B).
 <li>流形的边界是良定义的.</li>
 </ul></li>
 <li><p>(边界) <span class="math inline">\(\partial M\)</span> 是 <span class="math inline">\(M\)</span> 的闭子集, 且 <span class="math inline">\(M\)</span> 是一个无边流形当且仅当 <span class="math inline">\(\partial{M}=\emptyset\)</span>. 此外, 若 <span class="math inline">\(M\)</span> 是 <span class="math inline">\(n\)</span> 维流形, 则 <span class="math inline">\(\partial{M}\)</span> 是 <span class="math inline">\((n-1)\)</span> 维无边流形.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 根据边界不变性, <span class="math inline">\(\partial{M}=M\setminus{\rm Int}M\)</span>, 其中流形内部是开集, 所以边界闭.</p>
 <p>若 <span class="math inline">\(M\)</span> 无边, 则任意点都在某内部坐标系内, 故 <span class="math inline">\(M={\rm Int}M\)</span>. 反之, 若 <span class="math inline">\(\partial{M}=\emptyset\)</span>, 则 <span class="math inline">\(M={\rm Int}M\)</span>, 是一个无边流形.</p>
 <p>取 <span class="math inline">\(M\)</span> 的可数坐标覆盖 <span class="math inline">\({\cal U}\)</span>. 任给 <span class="math inline">\(p\in\partial M\)</span>, 存在 <span class="math inline">\(p\)</span> 的边界坐标邻域 <span class="math inline">\((U,\psi)\in{\cal U}\)</span> 满足. 根据边界不变性, <span class="math inline">\(\psi(\partial{M}\cap U)\subset\partial\H^n\cong\R^{n-1}\)</span>, 即 <span class="math inline">\(\partial{M}\cap U\)</span> 同胚于 <span class="math inline">\(\R^{n-1}\)</span> 的开子集. 当 <span class="math inline">\(p\)</span> 取遍 <span class="math inline">\(\partial{M}\)</span>, 所有这样的 <span class="math inline">\(\{\partial{M}\cap U\}\)</span> 构成 <span class="math inline">\(\partial{M}\)</span> 的可数坐标开覆盖. 故 <span class="math inline">\(\partial{M}\)</span> 构成 <span class="math inline">\((n-1)\)</span> 维无边流形.</p>

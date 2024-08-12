@@ -16,23 +16,23 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="GTM202 的笔记合集: 拓扑流形">
+    <meta name="description" content="定理的内容, 应用及其证明.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM202 | 笔记索引">
-<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-index/index.html">
+<meta property="og:title" content="GTM202 | 14 Seifert–Van Kampen 定理">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-14/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="GTM202 的笔记合集: 拓扑流形">
+<meta property="og:description" content="定理的内容, 应用及其证明.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-22T14:10:00.000Z">
-<meta property="article:modified_time" content="2024-08-12T02:59:52.915Z">
+<meta property="article:published_time" content="2024-08-12T03:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-12T03:04:33.780Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
-<meta property="article:tag" content="拓扑">
+<meta property="article:tag" content="代数拓扑">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>GTM202 | 笔记索引 | Jin&#39;s Blog</title>
+  <title>GTM202 | 14 Seifert–Van Kampen 定理 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM202 | 笔记索引"></span>
+            <span id="subtitle" data-typed-text="GTM202 | 14 Seifert–Van Kampen 定理"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-22 22:10" pubdate>
-          2024年7月22日 晚上
+        <time datetime="2024-08-12 11:00" pubdate>
+          2024年8月12日 上午
         </time>
       </span>
     
@@ -270,39 +270,86 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GTM202 | 笔记索引</h1>
+            <h1 id="seo-header">GTM202 | 14 Seifert–Van Kampen 定理</h1>
             
             
               <div class="markdown-body">
                 
                 <html><head></head><body>
 <div class="note note-secondary">
-<p><em>Introduction to Topological Manifolds</em> (GTM202) by John M. Lee.</p>
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 10 的笔记.</p>
 </div>
-<p><strong>第一部分: 拓扑空间与拓扑流形的基本性质.</strong></p>
-<ol type="1">
-<li><a href="/Note/tp-gtm202-1">拓扑空间</a>: 拓扑空间, 连续性, Hausdorff 与可数性, 拓扑流形.</li>
-<li><a href="/Note/tp-gtm202-2">构造新的拓扑空间</a>: 拓扑空间的构造 (子空间, 积, 不交并, 商, 黏着), 拓扑群与群作用.</li>
-<li><a href="/Note/tp-gtm202-3">连通性</a>: 连通和道路连通, 分量, 局部的连通性.</li>
-<li><a href="/Note/tp-gtm202-4">紧致性</a>: 紧致性, 局部紧性.</li>
-<li><a href="/Note/tp-gtm202-5">紧致性</a>: 仿紧性与单位分解, 逆紧映射.</li>
-</ol>
-<p><strong>第二部分: 胞腔复形与低维流形的分类.</strong></p>
-<ol start="6" type="1">
-<li><a href="/Note/tp-gtm202-6">胞腔复形</a>: 胞腔复形与 CW 复形, CW 复形的拓扑性质.</li>
-<li>胞腔复形</li>
-<li>紧曲面</li>
-<li>紧曲面</li>
-</ol>
-<p><strong>第三部分: 同伦与基本群.</strong></p>
-<ol start="10" type="1">
-<li><a href="/Note/tp-gtm202-10">同伦与基本群</a>: 同伦与道路同伦; 基本群的定义, 高维球面与流形的基本群.</li>
-<li><a href="/Note/tp-gtm202-11">同伦与基本群</a>: 基本群的函子性 &amp; 拓扑不变性; 同伦等价, 基本群的同伦不变性; 高阶同伦群简介.</li>
-<li><a href="/Note/tp-gtm202-12">圆</a>: 圆的提升性质, 基本群, 映射度理论及其应用.</li>
-<li><a href="/Note/tp-gtm202-13">一些群论</a>: 自由积, 自由群, 群的表现, 自由 Abel 群.</li>
-<li><a href="/Note/tp-gtm202-14">Siefert-Van Kampen 定理</a>: 定理的内容, 应用及其证明.</li>
-</ol>
-<p><strong>第四部分: 同调群.</strong></p>
+<h2 id="the-seifertvan-kampen-theorem">35  The Seifert–Van Kampen Theorem</h2>
+<p>本章中, 我们介绍一个计算基本群的重要定理, 可以用来计算诸如 CW 复形, 紧曲面等空间的基本群.</p>
+<p>这个重要定理, 即 Seifert–Van Kampen 定理, 通过考察拓扑空间 <span class="math inline">\(X\)</span> 的子空间的基本群, 进而给出全空间的基本群.</p>
+<h3 id="statement-of-the-theorem">35.1  Statement of the theorem</h3>
+<p>设拓扑空间 <span class="math inline">\(X\)</span> 的开覆盖 <span class="math inline">\(\{U,V\}\)</span>, 设 <span class="math inline">\(U,V,U\cap V\)</span> 道路连通, 并且我们能计算这三个子集的基本群. 我们会发现, <span class="math inline">\(X\)</span> 中的任一环路道路同伦于若干环路的积, 积的每一项都在 <span class="math inline">\(U\)</span> 或者 <span class="math inline">\(V\)</span> 中. 这样的一条道路可以代表 <span class="math inline">\(\pi_1(U)*\pi_1(V)\)</span> 中某的群元. 然而, <span class="math inline">\(\pi_1(U\cap V)\)</span> 中的环路在自由积群中被视作不同的群元 (分别作为 <span class="math inline">\(\pi_1(U)\)</span> 和 <span class="math inline">\(\pi_1(V)\)</span> 的群元参与自由积), 因此我们还需要在此基础上商去某些关系.</p>
+<p>下面我们给出定理的严谨叙述.</p>
+<p>设 <span class="math inline">\(X\)</span> 为拓扑空间, <span class="math inline">\(\{U,V\}\)</span> 是 <span class="math inline">\(X\)</span> 的开覆盖, 且 <span class="math inline">\(U\cap V\neq\emptyset\)</span>. 任取基点 <span class="math inline">\(p\in U\cap V\)</span>. 我们有四个包含映射 <span class="math display">\[
+\xymatrix@!{
+&amp; U \ar[rd]^k \\
+U\cap V \ar[ru]^i \ar[rd]_j &amp;&amp; X \\
+&amp; V \ar[ru]_l
+}
+\]</span> 它们诱导出基本群同态 <span class="math display">\[
+\xymatrix@!{
+&amp; \pi_1(U,p) \ar[rd]^{k_*} \\
+\pi_1(U\cap V,p) \ar[ru]^{i_*} \ar[rd]_{j_*} &amp;&amp; \pi_1(X,p) \\
+&amp; \pi_1(V,p) \ar[ru]_{l_*}
+}
+\]</span> 下面将 <span class="math inline">\(\pi_1(U)*\pi_1(V)\)</span> 插入这个交换图. 根据自由积的泛性质, 同态 <span class="math inline">\(k_*\)</span> 和 <span class="math inline">\(l_*\)</span> 唯一地诱导出同态 <span class="math inline">\(\Phi:\pi_1(U)*\pi_1(V)\to\pi_1(X)\)</span>, 使得下图交换: <span class="math display">\[
+\xymatrix@!@C=1em{
+&amp; \pi_1(U,p) \ar[rd]^{k_*} \ar@{^{(}-&gt;}[d] \\
+\pi_1(U\cap V,p) \ar[ru]^{i_*} \ar[rd]_{j_*} &amp;
+\pi_1(U,p)*\pi_1(V,p) \ar[r]^(.58)\Phi &amp;
+\pi_1(X,p) \\
+&amp; \pi_1(V,p) \ar[ru]_{l_*} \ar@{_{(}-&gt;}[u]
+}
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 35.1</u> (Seifert–Van Kampen 定理) 设拓扑空间 <span class="math inline">\(X\)</span> 的开覆盖 <span class="math inline">\(\{U,V\}\)</span>, 满足 <span class="math inline">\(U,V,U\cap V\)</span> 道路连通. 令 <span class="math inline">\(p\in U\cap V\)</span>, 定义子集 <span class="math inline">\(C\subset\pi_1(U,p)*\pi_1(V,p)\)</span>, <span class="math display">\[
+C=\{(i_*\gamma)(j_*\gamma)^{-1}\mid \gamma\in\pi_1(U\cap V,p)\}.
+\]</span> 则如上定义的 <span class="math inline">\(\Phi\)</span> 是满同态, 且 <span class="math inline">\(\ker\Phi\)</span> 等于 <span class="math inline">\(C\)</span> 在 <span class="math inline">\(\pi_1(U,p)*\pi_1(V,p)\)</span> 中的正规闭包. 因此, <span class="math display">\[
+\pi_1(X,p) \cong \big(\pi_1(U,p)*\pi_1(V,p)\big) \big/ \overline{C}.
+\]</span> 特别地, <span class="math inline">\(\pi_1(X,p)\)</span> 由 <span class="math inline">\(\pi_1(U,p)\)</span> 和 <span class="math inline">\(\pi_1(V,p)\)</span> 在 <span class="math inline">\(\Phi\)</span> 下的像生成.</p>
+</div>
+<ul>
+<li>利用融合自由积的语言, <span class="math inline">\(\pi_1(X,p)\)</span> 同构于 <span class="math inline">\(\pi_1(U,p)\)</span> 和 <span class="math inline">\(\pi_1(V,p)\)</span> 沿着 <span class="math inline">\(\pi_1(U\cap V,p)\)</span> 的融合自由积: <span class="math display">\[
+\pi_1(X,p) \cong \pi_1(U,p) *_{\pi_1(U\cap V,p)} \pi_1(V,p),
+\]</span> 其中, 融合自由积定义中的群同态由 <span class="math inline">\(i_*\)</span> 和 <span class="math inline">\(j_*\)</span> 给出.</li>
+</ul>
+<p>在后面几节的大多数应用中, 我们只需要考虑定理的特殊情况.</p>
+<div class="note note-success">
+<p><u>Claim 35.2</u> (Seifert–Van Kampen, 交集单连通) 假设同 Seifert–Van Kampen, 若还有 <span class="math inline">\(U\cap V\)</span> 单连通, 则 <span class="math inline">\(\Phi\)</span> 是 <span class="math inline">\(\pi_1(U,p)*\pi_1(V,p)\)</span> 与 <span class="math inline">\(\pi_1(X,p)\)</span> 的群同构. 如果 <span class="math inline">\(U,V\)</span> 的基本群有表现 <span class="math display">\[
+\Align{
+\pi_1(U,p) &amp;\cong \lr{\alpha_1,\dots,\alpha_n\mid\rho_1,\dots,\rho_r}, \\
+\pi_1(V,p) &amp;\cong \lr{\beta_1,\dots,\beta_m\mid\sigma_1,\dots,\sigma_s},
+}
+\]</span> 则 <span class="math inline">\(X\)</span> 的基本群有表现 <span class="math display">\[
+\pi_1(X,p) \cong \lr{
+  \alpha_1,\dots,\alpha_n,\beta_1,\dots,\beta_m \mid
+  \rho_1,\dots,\rho_r,\sigma_1,\dots,\sigma_s
+}.
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 35.3</u> (Seifert–Van Kampen, 一个开集单连通) 假设同 Seifert–Van Kampen, 若还有 <span class="math inline">\(U\)</span> 单连通, 则包含映射 <span class="math inline">\(l:V\hookrightarrow X\)</span> 诱导群同构 <span class="math display">\[
+\pi_1(X,p)\cong\pi_1(V,p)\Big/\overline{j_*\pi_1(U\cap V,p)},
+\]</span> 其中 <span class="math inline">\(\overline{j_*\pi_1(U\cap V,p)}\)</span> 是 <span class="math inline">\({j_*\pi_1(U\cap V,p)}\)</span> 在 <span class="math inline">\(\pi_1(V,p)\)</span> 中的正规闭包. 若 <span class="math inline">\(V,U\cap V\)</span> 的基本群有表现 <span class="math display">\[
+\Align{
+\pi_1(V,p) &amp;\cong \lr{\beta_1,\dots,\beta_m\mid\sigma_1,\dots,\sigma_s}, \\
+\pi_1(U\cap V,p) &amp;\cong \lr{\gamma_1,\dots,\gamma_p\mid\tau_1,\dots,\tau_t},
+}
+\]</span> 则 <span class="math inline">\(X\)</span> 的基本群有表现 <span class="math display">\[
+\pi_1(X,p) \cong \lr{
+  \beta_1,\dots,\beta_m \mid
+  \sigma_1,\dots,\sigma_s,v_1,\dots,v_p
+},
+\]</span> 其中 <span class="math inline">\(v_a\)</span> 是 <span class="math inline">\(j_*\gamma_a\in\pi_1(V,p)\)</span> 关于生成元 <span class="math inline">\(\{\beta_i\}\)</span> 的表达式.</p>
+</div>
+<h3 id="applications">35.2  Applications</h3>
+<h3 id="fundamental-groups-of-compact-surfaces">35.3  Fundamental groups of compact surfaces</h3>
+<h3 id="proof-of-the-theorem">35.4  Proof of the theorem</h3>
 </body></html>
                 
               </div>
@@ -338,7 +385,7 @@
       
         <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
       
-        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+        <a href="/tags/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/" class="print-no-link">#代数拓扑</a>
       
     </div>
   
@@ -350,8 +397,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM202 | 笔记索引</div>
-      <div>https://disembo.github.io/Note/tp-gtm202-index/</div>
+      <div>GTM202 | 14 Seifert–Van Kampen 定理</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-14/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +410,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月22日</div>
+          <div>2024年8月12日</div>
         </div>
       
       
@@ -395,18 +442,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-2/" title="GTM202 | 2 构造新的拓扑空间">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM202 | 2 构造新的拓扑空间</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-1/" title="GTM202 | 1 拓扑空间">
-                        <span class="hidden-mobile">GTM202 | 1 拓扑空间</span>
+                      <a href="/Note/tp-gtm202-13/" title="GTM202 | 13 一些群论">
+                        <span class="hidden-mobile">GTM202 | 13 一些群论</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

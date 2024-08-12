@@ -310,7 +310,7 @@
 <ul>
 <li>由于对称性, 黎曼联络克氏符的 <span class="math inline">\(n^3\)</span> 个分量中, 只有 <span class="math inline">\(\frac12n^2(n+1)\)</span> 个独立分量.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设联络无挠. 在任意坐标系下, <span class="math inline">\([\partial_i,\partial_j]=0\)</span>. 由无挠性, <span class="math display">\[
 \nabla_{\partial_i}\partial_j-\nabla_{\partial_j}\partial_i
 = [\partial_i,\partial_j] = 0,
@@ -333,7 +333,7 @@ T(\partial_i,\partial_j)
 \pdv{g_{li}}{x^j} + \pdv{g_{lj}}{x^i} - \pdv{g_{ij}}{x^l}
 }.
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 下面要用到之前证明黎曼度量存在唯一性时导出的 Koszul 公式: 对 <span class="math inline">\(X,Y,Z\in{\frak X}(M)\)</span>, <span class="math display">\[
 \Align{
 2\lr{\nabla_XY,Z} = \;
@@ -406,7 +406,7 @@ V:[a,b]\to\coprod_{t\in[a,b]} T_{c(t)}M,
 \]</span></p></li>
 </ol>
 <p><u>Claim 10.3</u> 任给联络 <span class="math inline">\(\nabla\)</span> 和光滑曲线 <span class="math inline">\(c\)</span>, 存在唯一的沿着曲线 <span class="math inline">\(c\)</span>​ 的协变导数算子.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 假设协变导数存在. 在标架开集 <span class="math inline">\((U,e_1,\dots,e_n)\)</span> 上, 沿着 <span class="math inline">\(c\)</span> 的向量场 <span class="math inline">\(V(t)=\sum v^i(t)e_{i,c(t)}\)</span>. 有 <span class="math display">\[
 \Align{
 \frac{{\rm D}V}{\dd{t}}
@@ -425,7 +425,7 @@ V:[a,b]\to\coprod_{t\in[a,b]} T_{c(t)}M,
 \eval{ \frac{{\rm\bar D}W}{\dd{t}} }_t
 = \eval{\frac{{\rm D}V}{\dd{t}}}_{u(t)} \eval{\dv{u}{t}}_t.
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 若 <span class="math inline">\(V(t)\)</span> 是沿着 <span class="math inline">\(c\)</span> 的向量场, 即 <span class="math inline">\(V(t)\in T_{c(t)}M\)</span>, 则 <span class="math inline">\(W(t)=V(u(t))=T_{c(u(t))}M\)</span>, 因此 <span class="math inline">\(W\)</span> 是沿着重参数化后的曲线 <span class="math inline">\(\bar{c}=c\circ u\)</span> 的向量场.</p>
 <p>下面证明链式法则. 只需在标价开集 <span class="math inline">\((U,e_1,\dots,e_n)\)</span> 上验证. 设 <span class="math inline">\(V(t)=\sum v^i(t)e_{i,c(t)}\)</span>, 则 <span class="math display">\[
 W(t) = \sum w^i(t) e_{i,\bar{c}(t)},
@@ -459,7 +459,7 @@ W(t) = \sum w^i(t) e_{i,\bar{c}(t)},
 \frac{{\rm D}'V}{\dd{t}} = {\rm pr}\pqty{ \frac{{\rm D}V}{\dd{t}} }.
 \]</span></p></li>
 </ol>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 第一条, 取局部正交归一标架 <span class="math inline">\(e_1,\dots,e_n\)</span> 后不难证明. 第二条根据协变导数的公理 3 是很显然的.</p>
 </div>
 <p>我们知道, 设流形 <span class="math inline">\((M,\nabla)\)</span>, 微分同胚 <span class="math inline">\(f:M\to\tilde{M}\)</span> 能够将 <span class="math inline">\(M\)</span> 上的联络搬到 <span class="math inline">\(\tilde{M}\)</span> 上去, 定义出一个 <span class="math inline">\(\tilde{M}\)</span> 上的联络 <span class="math inline">\(\tilde\nabla\)</span>: <span class="math display">\[
@@ -474,7 +474,7 @@ W(t) = \sum w^i(t) e_{i,\bar{c}(t)},
 \frac{{\rm\tilde D}(f_*V)}{\dd{t}} = f_*\pqty{ \frac{{\rm D}V}{\dd{t}} },
 \quad V\in\Gamma(TM|_{c(t)}).
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(V\in\Gamma(TM|_{c(t)})\)</span>, <span class="math inline">\(\bar{V}\in\Gamma(TM)\)</span> 为其延拓, 则 <span class="math inline">\(f_*\bar{V}\)</span> 是 <span class="math inline">\(f_*V\)</span> 的延拓, 这从定义直接看出: <span class="math display">\[
 (f_*\bar{V})_{f(c(t))}
 = f_{*,c(t)}\bar{V}_{c(t)}
@@ -520,12 +520,12 @@ a=t_0&lt;t_1&lt;\cdots&lt;t_r=b,
 <ul>
 <li>平移能够将不同点处的切空间联系起来, 这也是"联络"名称的由来.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 只需要考虑光滑曲线, 对于分段光滑曲线, 只需要在每一段上平移.</p>
 <p>向量场 <span class="math inline">\(V(t)\)</span> 的存在唯一性由常微分方程组的存在唯一性保证. 映射 <span class="math inline">\(\varphi_{a,b}\)</span> 的线性性由线性齐次微分方程组的叠加原理保证, 其单射性由解的唯一性保证. 由于切空间维数相等, <span class="math inline">\(\varphi_{a,b}\)</span> 为同构.</p>
 </div>
 <p><u>Claim 11.2</u> 设黎曼流形 <span class="math inline">\(M\)</span> 与黎曼联络 <span class="math inline">\(\nabla\)</span>, 则沿着曲线 <span class="math inline">\(c\)</span> 的平移保持向量的内积. 换言之, <span class="math inline">\(\varphi_{a,b}\)</span> 是切空间的等距同构.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(V(t),W(t)\)</span> 是沿着 <span class="math inline">\(c\)</span> 的向量场. 根据黎曼联络的协变导数的性质, <span class="math display">\[
 \dv{t}\lr{V,W}
 = \lr{\frac{{\rm D}V}{\dd{t}},W} + \lr{V,\frac{{\rm D}W}{\dd{t}}}
@@ -543,7 +543,7 @@ a=t_0&lt;t_1&lt;\cdots&lt;t_r=b,
 <ul>
 <li>若 <span class="math inline">\(\gamma(t)\)</span> 是以 <span class="math inline">\(\gamma(0)=p\)</span> 为起点, <span class="math inline">\(\gamma'(0)=v\)</span> 为起始速度的测地线, 那么 <span class="math inline">\(\gamma(kt)\)</span> 是以 <span class="math inline">\(p\)</span> 为起点, <span class="math inline">\(kv\)</span> 为起始速度的测地线.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(\gamma'(t)=T(t)\)</span>, <span class="math inline">\(\bar\gamma'(t)=\bar{T}(t)\)</span>. 由链式法则, <span class="math display">\[
 \bar{T}=\dv{t}(\gamma\circ u)=T(u(t))u'(t).
 \]</span> 利用 Leibniz 律和链式法则化简 <span class="math inline">\(\bar\gamma(t)\)</span> 切向量的协变导数: <span class="math display">\[
@@ -629,7 +629,7 @@ T_\varepsilon(U) =
 \]</span> 内有定义.</p></li>
 </ul>
 <p><u>Claim 12.1</u> 在流形 <span class="math inline">\((M,\nabla)\)</span> 上, 从任意一点 <span class="math inline">\(q\)</span> 开始的极大测地线 <span class="math inline">\(\gamma_v(t)=\operatorname{Exp}_q(tv)\)</span>​.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> <span class="math inline">\(\operatorname{Exp}_q(tv)=\gamma_{tv}(1)=\gamma_v(t)\)</span>.</p>
 </div>
 <p><u>Claim 12.2</u> (指数映射的自然性) 设 <span class="math inline">\(f:(M,\nabla)\to(M',\nabla')\)</span> 为保联络的微分同胚, <span class="math inline">\(p\in M\)</span>. 设 <span class="math inline">\(\operatorname{Exp}_p\)</span> 和 <span class="math inline">\(\operatorname{Exp}_{f(p)}\)</span> 分别在 <span class="math inline">\(V\subset T_pM\)</span> 和 <span class="math inline">\(U\subset T_{f(p)}M'\)</span> 有定义, 则有交换图 <span class="math display">\[
@@ -638,7 +638,7 @@ V \ar[r]^{f_{*,p}} \ar[d]_{\operatorname{Exp}_p} &amp; U \ar[d]^{\operatorname{E
 M \ar[r]_{f} &amp; M'.
 }
 \]</span></p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设从 <span class="math inline">\(p\)</span> 开始的极大测地线 <span class="math inline">\(\gamma_v(t)\)</span>. 因为 <span class="math inline">\(f\)</span> 保持测地线, 所以 <span class="math inline">\((f\circ\gamma_v)(t)\)</span> 是从 <span class="math inline">\(f(p)\)</span>​ 开始的极大测地线. 因为切映射保持曲线的切向量, <span class="math display">\[
 (f\circ\gamma_v)(t) = \gamma_{f_*v}(t),
 \]</span> 令 <span class="math inline">\(t=1\)</span> 得到 <span class="math display">\[
@@ -647,7 +647,7 @@ M \ar[r]_{f} &amp; M'.
 </div>
 <p>指数映射 <span class="math inline">\(\operatorname{Exp}_p:T_pM\supset V\to M\)</span> 在零元处的微分是映射 <span class="math inline">\((\operatorname{Exp}_p)_{*,0}:T_0(T_pM)\to T_pM\)</span>. 因为 <span class="math inline">\(T_pM\)</span> 是线性空间, 和自身的切空间认同, 所以 <span class="math inline">\((\operatorname{Exp}_p)_{*,0}\)</span> 可以看作 <span class="math inline">\(T_pM\)</span> 上的线性映射.</p>
 <p><u>Claim 12.3</u> (指数映射的微分) 指数映射在零元的微分为恒等映射, <span class="math inline">\((\operatorname{Exp}_p)_{*,0}={\rm id}_{T_pM}\)</span>​.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 利用曲线求微分. 任给 <span class="math inline">\(v\in T_pM\)</span>, 设 <span class="math inline">\(c:I\to T_pM\)</span> 满足 <span class="math inline">\(c(0)=0\)</span>, <span class="math inline">\(c'(0)=v\)</span>, 可以取 <span class="math inline">\(c(t)=tv\)</span>. <span class="math display">\[
 \Align{
 (\operatorname{Exp}_p)_{*,0}(v)
@@ -673,7 +673,7 @@ x^i := r^i \circ \operatorname{Exp}_p^{-1},
 <li>正规坐标系下, 通过 <span class="math inline">\(p\)</span> 的测地线的参数式为直线.</li>
 <li>正规坐标系下, 等距同构为正交线性变换.</li>
 </ol>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 第一条. 设 <span class="math inline">\(\gamma:I\to M\)</span> 为过 <span class="math inline">\(p\)</span> 的测地线, 且 <span class="math inline">\(\gamma'(0)=v=\sum v^ie_i\)</span>, 则 <span class="math inline">\(\gamma(t)=\operatorname{Exp}_p(tv)\)</span>, <span class="math display">\[
 x^i(\gamma(t))
 = r^i(\operatorname{Exp}_p^{-1}(\gamma(t)))
@@ -693,7 +693,7 @@ y^j\circ f\circ(x^i)^{-1}
 \]</span> 即等距变换 <span class="math inline">\(f_{*,p}\)</span> 在正交归一基底下的矩阵, 为正交阵.</p>
 </div>
 <p><u>Claim 12.5</u> 正规坐标下, <span class="math inline">\(p\)</span> 处的克氏符 <span class="math inline">\(\Gamma^k_{ij}\)</span>​ 为零, 度量分量的各偏导数 <span class="math inline">\(\partial_kg_{ij}\)</span> 也为零.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设过 <span class="math inline">\(p\)</span> 的测地线 <span class="math inline">\(\gamma^i(t)=v^it\)</span>, 于是 <span class="math inline">\(T^i(t)=v^i\)</span>, 带入测地线方程得到 <span class="math display">\[
 \sum_{i,j}\Gamma^k_{ij}v^iv^j = 0.
 \]</span> 由于 <span class="math inline">\(v\)</span> 是任意的, 令 <span class="math inline">\(v^i=v^j=1\)</span>, 其余分量为零, 得到 <span class="math display">\[
@@ -714,7 +714,7 @@ y^j\circ f\circ(x^i)^{-1}
 </ul>
 <p>在 <span class="math inline">\(T_pM\)</span> 中, 从 <span class="math inline">\(0\)</span> 出发的直线 <span class="math inline">\(tv\)</span> 与球面 <span class="math inline">\(S_r(0)\)</span> 是正交的 (即交点处的切向量正交). 在指数映射下, <span class="math inline">\(tv\)</span> 映到测地线 <span class="math inline">\(\gamma_v(t)\)</span>, <span class="math inline">\(S_r(0)\)</span> 映到 <span class="math inline">\(S_r(p)\)</span>. 下面的定理则断言此两者也正交. 换言之, 指数映射是一个局部的<strong>径向等距同构(radial isometry)</strong>.</p>
 <p><u>Claim 12.6</u> (高斯引理) 测地球面 <span class="math inline">\(S_r(p)\)</span> 正交于所有过 <span class="math inline">\(p\)</span> 的极大测地线.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(\operatorname{Exp}_p:B_\varepsilon(0)\to M\)</span>, 记 <span class="math inline">\(S^{n-1}\)</span> 为 <span class="math inline">\(T_pM\)</span> 中的单位球面, <span class="math display">\[
 \Align{
 \sigma:S^{n-1}\times(0,\varepsilon) &amp;\to B_\varepsilon(p)-\{p\}, \\

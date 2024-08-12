@@ -289,15 +289,15 @@
 <ul>
 <li>非空的离散空间, 非空集的不交并空间都是非连通的. 平凡空间是连通的.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> <span class="math inline">\(X\)</span> 非连通 <span class="math inline">\(\iff\)</span> 存在开集 <span class="math inline">\(A,B\neq\emptyset\)</span> 使得 <span class="math inline">\(B=A^C\iff\)</span> 存在既开又闭的 <span class="math inline">\(A\neq X,\emptyset\)</span>.</p>
 </div></li>
 <li><p>(连通与离散空间) 连通空间到离散空间的连续映射是常值的.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 若 <span class="math inline">\(X\)</span> 连通, <span class="math inline">\(Y\)</span> 离散, 且 <span class="math inline">\(f:X\to Y\)</span> 连续. 取 <span class="math inline">\(x\in X\)</span>, 记 <span class="math inline">\(f(x)=c\)</span>. 由于 <span class="math inline">\(\{c\}\subset Y\)</span> 既开又闭, 所以原象 <span class="math inline">\(f^{-1}(c)\)</span> 既开又闭, 因为 <span class="math inline">\(X\)</span> 连通, <span class="math inline">\(f^{-1}(c)\)</span> 又不等于 <span class="math inline">\(\emptyset\)</span>, 则只能等于 <span class="math inline">\(X\)</span>. 即 <span class="math inline">\(f\equiv c\)</span>.</p>
 </div></li>
 <li><p>(连续不变性) <span class="math inline">\(f:X\to Y\)</span> 连续, 若 <span class="math inline">\(X\)</span> 连通, 则 <span class="math inline">\(f(X)\)</span> 连通.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 限制陪域为 <span class="math inline">\(f(X)\)</span>, 进而 <span class="math inline">\(f:X\to f(X)\)</span> 是连续的满射.</p>
 <p>考虑逆否. 设 <span class="math inline">\(f(X)\)</span> 非连通, 则存在 <span class="math inline">\(f(X)\)</span> 的开子集 <span class="math inline">\(U,V\)</span> 间断 <span class="math inline">\(f(X)\)</span>. 由连续性, <span class="math inline">\(f^{-1}(U),f^{-1}(V)\)</span> 是开集, 且间断 <span class="math inline">\(X\)</span>, <span class="math inline">\(X\)</span> 非连通.</p>
 </div></li>
@@ -314,7 +314,7 @@
 <li>(积) 连通空间的有限积连通.</li>
 <li>(商) 连通空间的商空间连通.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1, 若 <span class="math inline">\(A\)</span> 同时具有 <span class="math inline">\(U,V\)</span> 中的点, 则 <span class="math inline">\(A\cap U,A\cap V\)</span> 间断 <span class="math inline">\(A\)</span>.</p>
 <p>2, 设稠密子集 <span class="math inline">\(A\)</span> 连通. 反证, 假设 <span class="math inline">\(U,V\)</span> 间断 <span class="math inline">\(X\)</span>, 则 1 告诉我们 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(U,V\)</span> 其一中, 不妨设 <span class="math inline">\(A\subset U\)</span>. 则 <span class="math inline">\(X=\overline{A}\subset\overline{U}=U\)</span>, 于是 <span class="math inline">\(V=\emptyset\)</span>, 矛盾.</p>
 <p>3, 设 <span class="math inline">\(A\)</span> 连通, <span class="math inline">\(A\subset B\subset\overline{A}\)</span>. 因为 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(\overline{A}\)</span> 中稠密, 则 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中稠密, 利用 2, <span class="math inline">\(B\)</span> 连通.</p>
@@ -327,7 +327,7 @@
 <ul>
 <li>特别地, <span class="math inline">\(L=(-\infty,+\infty)\)</span>是连通的.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 独点集显然连通, 所以假设子集 <span class="math inline">\(J\subset L\)</span> 至少有两个元素.</p>
 <p>若 <span class="math inline">\(J\)</span> 是区间, 假设非连通, 则存在开集 <span class="math inline">\(U,V\subset L\)</span> 使得 <span class="math inline">\(U\cap J,V\cap J\)</span> 间断 <span class="math inline">\(J\)</span>. 取 <span class="math inline">\(a\in U\cap J\)</span>, <span class="math inline">\(b\in V\cap J\)</span>, 不妨设 <span class="math inline">\(a&lt;b\)</span>. 因为 <span class="math inline">\(J\)</span> 是区间, 所以 <span class="math inline">\([a,b]\subset J\)</span>. 由 <span class="math inline">\(U\cap J\)</span> 和 <span class="math inline">\(V\cap J\)</span> 的开性, 存在 <span class="math inline">\(\varepsilon&gt;0\)</span>, 使得 <span class="math inline">\([a,a+\varepsilon)\subset U\cap J\)</span> 以及 <span class="math inline">\((b-\varepsilon,b]\subset V\cap J\)</span> (<span class="math inline">\(\varepsilon\)</span> 的存在性依赖序关系的稠密性).</p>
 <p>(由 <span class="math inline">\(L\)</span> 的 Dedekind 完备性) 取 <span class="math inline">\(c=\sup(U\cap[a,b])\)</span>, 则 <span class="math inline">\(a+\varepsilon\leq c\leq b-\varepsilon\)</span>, 所以 <span class="math inline">\(c\)</span> 在 <span class="math inline">\(a,b\)</span> 之间, 有 <span class="math inline">\(c\in J\subset U\cup V\)</span>. 如果 <span class="math inline">\(c\in U\)</span>, 则 (由 <span class="math inline">\(U\)</span> 的开性), 某 <span class="math inline">\((c-\delta,c+\delta)\subset U\)</span>, 与 <span class="math inline">\(c\)</span> 是上界矛盾. 如果 <span class="math inline">\(c\in V\)</span>, 则某 <span class="math inline">\((c-\delta,c+\delta)\subset V\)</span>, 与 <span class="math inline">\(U\)</span> 不交, 与 <span class="math inline">\(c\)</span> 是确界矛盾. 总之, <span class="math inline">\(J\)</span> 是连通的.</p>
@@ -337,7 +337,7 @@
 X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 \]</span> 我们只需说明 (1) <span class="math inline">\(X\neq\emptyset\)</span>, (2) <span class="math inline">\(X\)</span> 是开子集, (3) <span class="math inline">\(X\)</span> 是闭子集, 再由 <span class="math inline">\(I\)</span> 的连通性, 有 <span class="math inline">\(X=I\)</span>.</p></li>
 <li><p>(介值定理) <span class="math inline">\(X\)</span> 连通, <span class="math inline">\(f:X\to\R\)</span> 连续. 任给 <span class="math inline">\(p,q\in X\)</span>, <span class="math inline">\(f\)</span> 取到 <span class="math inline">\(f(p),f(q)\)</span> 间所有值.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 连续映射保持连通性, 所以 <span class="math inline">\(f(X)\subset\R\)</span> 连通, 所以 <span class="math inline">\(f(X)\)</span> 只能是独点集或区间.</p>
 </div></li>
 </ul>
@@ -345,19 +345,19 @@ X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 <ul>
 <li><p><strong>子集生成的子群</strong>: 子集 <span class="math inline">\(S\subset G\)</span> 生成的子群 <span class="math inline">\(\lr{S}=\bigcup_{n=1}^\infty(S\cup S^{-1})^n\)</span>, 是包含 <span class="math inline">\(S\)</span> 的最小子群.</p></li>
 <li><p>(开子群) 拓扑群的开子群也是闭的.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设开子群 <span class="math inline">\(H\subset G\)</span>. 任给 <span class="math inline">\(g\in G\setminus H\)</span>, 考虑 <span class="math inline">\(gH=l_g(H)\)</span> 作为开集 <span class="math inline">\(H\)</span> 的同胚像, 也是开集. 并且由子群的定义知 <span class="math inline">\(gH\cap H=\emptyset\)</span>, 因此 <span class="math inline">\(H\)</span> 闭.</p>
 </div></li>
 <li><p>(邻域生成既开又闭子群) <span class="math inline">\(e\)</span> 的邻域 <span class="math inline">\(U\)</span> 生成的子群 <span class="math inline">\(\lr{U}\)</span> 既开又闭.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 只需证明 <span class="math inline">\(\lr{U}\)</span> 开. 任给 <span class="math inline">\(g\in\lr{U}\)</span>, 则 <span class="math inline">\(gU\)</span> 是 <span class="math inline">\(g\)</span> 的包含于 <span class="math inline">\(\lr{U}\)</span> 的邻域.</p>
 </div></li>
 <li><p>(连通子集生成连通子群) 包含 <span class="math inline">\(e\)</span> 的连通子集 <span class="math inline">\(U\)</span> 生成的子群 <span class="math inline">\(\lr{U}\)</span> 是连通的.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 由定义, <span class="math inline">\(\lr{U}=\bigcup_{n=1}^\infty(U\cup U^{-1})^n\)</span>, 其中所有并项连通, 且有公共点 <span class="math inline">\(e\)</span>, 因此并集是连通的.</p>
 </div></li>
 <li><p>(连通群) 若 <span class="math inline">\(G\)</span> 连通, 则 <span class="math inline">\(e\)</span> 的任意邻域生成 <span class="math inline">\(G\)</span>.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设连通邻域 <span class="math inline">\(U\)</span>, 则非空子集 <span class="math inline">\(\lr{U}\)</span> 既开又闭, 因为 <span class="math inline">\(G\)</span> 连通, 只能有 <span class="math inline">\(\lr{U}=G\)</span>.</p>
 </div></li>
 </ul>
@@ -370,7 +370,7 @@ X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 <li>道路 <span class="math inline">\(f_1:[0,1]\to X\)</span> 和 <span class="math inline">\(f_2:[1,2]\to Y\)</span> 的<strong>拼接</strong> <span class="math inline">\(f:[1,2]\to X\)</span> 也是道路.</li>
 </ul></li>
 <li><p>(道路连通更强) 道路连通的空间是连通的.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 给定 <span class="math inline">\(p\in X\)</span>. 对任意 <span class="math inline">\(q\in X\)</span>, 设 <span class="math inline">\(B_q\)</span> 是连接 <span class="math inline">\(p,q\)</span> 的道路的像. 由连通的连续不变性, <span class="math inline">\(B_q\)</span> 是连通的. 因此, <span class="math inline">\(X=\bigcup_{q\in X}B_q\)</span> 是连通的.</p>
 </div></li>
 <li><p>(性质)</p>
@@ -380,7 +380,7 @@ X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 <li>(积) 道路连通空间的有限积道路连通.</li>
 <li>(商) 道路连通空间的商空间道路连通.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1, 设 <span class="math inline">\(X\)</span> 道路连通, <span class="math inline">\(f:X\to Y\)</span> 连续, 不妨 <span class="math inline">\(Y=f(X)\)</span>. 对于任意 <span class="math inline">\(p,q\in f(X)\)</span>, 取 <span class="math inline">\(p_0\in f^{-1}(p)\)</span>, <span class="math inline">\(q_0\in f^{-1}(q)\)</span>, 则有道路 <span class="math inline">\(\gamma:I\to X\)</span> 连接 <span class="math inline">\(p_0,q_0\)</span>. 容易看出 <span class="math inline">\(f\circ\gamma\)</span> 是连接 <span class="math inline">\(p,q\)</span> 的连续道路.</p>
 <p>2, 设公共点 <span class="math inline">\(p\)</span>. 任给 <span class="math inline">\(a\in B_\alpha\)</span> 和 <span class="math inline">\(b\in B_\beta\)</span>, 存在分别连接 <span class="math inline">\(a,p\)</span> 和 <span class="math inline">\(p,b\)</span> 的路径 <span class="math inline">\(f_1:[0,1]\to B_\alpha\)</span> 和 <span class="math inline">\(f_2:[1,2]\to B_\beta\)</span>. 将两条路首尾相接, 得到的 <span class="math inline">\(f:[0,2]\to\bigcup B_\alpha\)</span> 是连接 <span class="math inline">\(a,b\)</span> 的道路.</p>
 <p>3, 同样只考虑两个空间的积. 设 <span class="math inline">\(X,Y\)</span> 道路连通. 任给 <span class="math inline">\((x,y),(x',y')\in X\times Y\)</span>, 存在连接 <span class="math inline">\(x,x'\)</span> 的路径 <span class="math inline">\(f_1:I\to X\)</span> 和连接 <span class="math inline">\(y,y'\)</span> 的路径 <span class="math inline">\(f_2:I\to Y\)</span>, 则 <span class="math inline">\(f=(f_1,f_2)\)</span> (连续映射的积是连续的) 是连接 <span class="math inline">\((x,y),(x',y')\)</span> 的路径.</p>
@@ -404,7 +404,7 @@ X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 <li>分量是闭子集.</li>
 <li>非空连通子集包含于单个分量内.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1, 要证明分量两两不交, 且并成 <span class="math inline">\(X\)</span>. 两两不交: 假设分量 <span class="math inline">\(U,V\)</span> 有公共点, 则它们的并也是连通的, 与 <span class="math inline">\(U,V\)</span> 的极大性矛盾. 并成 <span class="math inline">\(X\)</span>: 任取 <span class="math inline">\(x\in X\)</span>, 则独点集 <span class="math inline">\(\{x\}\)</span> 是连通的. 设 <span class="math inline">\(U\)</span> 是所有包含了 <span class="math inline">\(x\)</span> 的连通子集之并, 则 <span class="math inline">\(U\)</span> 也是连通的, 并且也是极大的, 进而是包含 <span class="math inline">\(x\)</span> 的分量.</p>
 <p>2, 设 <span class="math inline">\(A\)</span> 是分量, 则 <span class="math inline">\(\overline{A}\)</span> 也是连通的, 由极大性, <span class="math inline">\(A=\overline{A}\)</span>.</p>
 <p>3, 设 <span class="math inline">\(A\)</span> 是非空连通子集, 因为分量构成 <span class="math inline">\(X\)</span> 的划分, 所以 <span class="math inline">\(A\)</span> 与某个分量 <span class="math inline">\(B\)</span> 有公共点. 因此 <span class="math inline">\(A\cup B\)</span> 也连通. 由极大性, <span class="math inline">\(A\cup B\subset B\)</span>, 换言之, <span class="math inline">\(A\subset B\)</span>.</p>
@@ -418,7 +418,7 @@ X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 <li>(与连通分量) 道路分量包含于某一个分量内. 分量是道路分量的不交并.</li>
 <li>非空道路连通子集包含于单个道路分量内.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1, 3 和分量的性质 1, 3 证法相同.</p>
 <p>2 的第一句, 道路分量 <span class="math inline">\(A\)</span> 也是连通的, 所以包含于某分量内.</p>
 <p>2 的第二句, 和分量的性质 1 证法相同.</p>
@@ -427,12 +427,12 @@ X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 <p>利用连通性, 可以证明 <span class="math inline">\(1\)</span> 维情形的维数不变性与边界不变性.</p>
 <ul>
 <li><p>(维数不变性, 一维情形) 非空拓扑空间 <span class="math inline">\(X\)</span> 不能既是 <span class="math inline">\(1\)</span> 维流形, 又是 <span class="math inline">\(n\)</span> (<span class="math inline">\(n&gt;1\)</span>) 维流形.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 假设 <span class="math inline">\(X\)</span> 既是 <span class="math inline">\(1\)</span> 维流形, 又是 <span class="math inline">\(n\)</span> (<span class="math inline">\(n&gt;1\)</span>) 维流形. 取 <span class="math inline">\(p\in X\)</span> 的 <span class="math inline">\(1\)</span> 维欧氏邻域 <span class="math inline">\(U\cong\R\)</span>. 因为 <span class="math inline">\(X\)</span> 存在由 <span class="math inline">\(n\)</span> 维坐标开球组成的拓扑基, <span class="math inline">\(p\)</span> 在 <span class="math inline">\(U\)</span> 中的某邻域 <span class="math inline">\(V\cong\mathbb{B}^n\)</span>. 而 <span class="math inline">\(V\)</span> 作为 <span class="math inline">\(U\)</span> 的开子集, 也同胚于 <span class="math inline">\(\R\)</span> 的开子集 <span class="math inline">\(A\)</span> (同胚在开集上的限制是同胚). 于是 <span class="math inline">\(A\cong\mathbb{B}^n\)</span>, 然而这是不可能的.</p>
 <p>证明 <span class="math inline">\(\R\)</span> 的开子集 <span class="math inline">\(A\)</span> 不同胚于 <span class="math inline">\(\mathbb{B}^n\)</span>. 假设有同胚 <span class="math inline">\(\psi:A\to\mathbb{B}^n\)</span>, 取 <span class="math inline">\(p\in A\)</span>, 则开子集 <span class="math inline">\(A\setminus\{p\}\)</span> 同胚于 <span class="math inline">\(\mathbb{B}^n\setminus\{\psi(p)\}\)</span>. 然而前者非连通, 后者连通, 导致矛盾.</p>
 </div></li>
 <li><p>(边界不变性, 一维情形) 设 <span class="math inline">\(1\)</span> 维带边流形 <span class="math inline">\(M\)</span>, 则 <span class="math inline">\(M\)</span> 中的点不能既是边界点, 也是内部点.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 假设 <span class="math inline">\(p\in M\)</span> 既是边界点, 也是内部点, 则包含 <span class="math inline">\(p\)</span> 的内部坐标系 <span class="math inline">\((U,\varphi)\)</span> 和边界坐标系 <span class="math inline">\((V,\psi)\)</span> 满足 <span class="math inline">\(\psi(p)=0\in\partial\H^1\)</span>.</p>
 <p>记 <span class="math inline">\(U\cap V\)</span> 的包含 <span class="math inline">\(p\)</span> 的连通分量为 <span class="math inline">\(A\)</span>, 则 <span class="math inline">\(\varphi(A)\)</span> 是 <span class="math inline">\(\R\)</span> 中包含 <span class="math inline">\(\varphi(p)\)</span> 的开区间, 而 <span class="math inline">\(\psi(A)\)</span> 是 <span class="math inline">\(\partial\H^1=[0,+\infty)\)</span> 中包含 <span class="math inline">\(\psi(p)=0\)</span> 的左开右闭区间. 注意到 <span class="math inline">\((\psi\circ\varphi^{-1})|_{\varphi(A)}\)</span> 给出了两个区间的同胚; 而 <span class="math inline">\((\psi\circ\varphi^{-1})|_{\varphi(A)\setminus\{\varphi(p)\}}\)</span> 给出了 <span class="math inline">\(\varphi(A)\setminus\{\varphi(p)\}\)</span> 与 <span class="math inline">\(\psi(A)\setminus\{\psi(p)\}\)</span> 的同胚. 然而前者不连通, 后者连通, 矛盾.</p>
 </div></li>
@@ -446,7 +446,7 @@ X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 <li>(继承) 任意开子集局部连通.</li>
 <li>分量是开子集.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1, 设 <span class="math inline">\(X\)</span> 的拓扑基 <span class="math inline">\({\cal B}\)</span> 由连通开集组成. 开子集 <span class="math inline">\(U\)</span> 的拓扑基由 <span class="math inline">\({\cal B}\)</span> 中包含 <span class="math inline">\(U\)</span> 的元素组成.</p>
 <p>2, 设分量 <span class="math inline">\(A\)</span>. 任给 <span class="math inline">\(p\in A\)</span>, 由局部连通性, 存在连通邻域 <span class="math inline">\(U\)</span>. 由于连通邻域必须包含于单个分量, 所以 <span class="math inline">\(U\subset A\)</span>, 证明了 <span class="math inline">\(A\)</span> 是开集.</p>
 </div></li>
@@ -458,7 +458,7 @@ X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 <li>分量 = 道路分量.</li>
 <li>若 <span class="math inline">\(X\)</span> 连通, 则道路连通.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 1 因为道路连通强于连通. 2-3 和局部连通的 1-2 的证法一样.</p>
 <p>4, 任给 <span class="math inline">\(p\in X\)</span>, 设 <span class="math inline">\(A,B\)</span> 分别为包含 <span class="math inline">\(p\)</span> 的分量和道路分量, 于是 <span class="math inline">\(B\subset A\)</span>, 并且 <span class="math inline">\(A\)</span> 可以写作若干道路分量之并, 这些道路分量在 <span class="math inline">\(X\)</span> 中开 (由 3), 进而也在 <span class="math inline">\(A\)</span> 中开 (因为 <span class="math inline">\(A\)</span> 开). 如果 <span class="math inline">\(B\)</span> 不是唯一的道路连通分量, 则 <span class="math inline">\(B\)</span> 和 <span class="math inline">\(A\setminus B\)</span> 间断 <span class="math inline">\(A\)</span>, 与 <span class="math inline">\(A\)</span> 是连通分量矛盾. 因此 <span class="math inline">\(A=B\)</span>.</p>
 <p>5, 若 <span class="math inline">\(X\)</span> 连通, 则 <span class="math inline">\(X\)</span> 只有一个分量, 就是 <span class="math inline">\(X\)</span>. 由 4, 这也是道路连通的.</p>
@@ -467,11 +467,11 @@ X=\{x\in I\mid p(x)\textsf{ 成立}\}\subset I,
 <ul>
 <li>因此, 流形的连通性等价于道路连通性.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 流形具有由坐标开球组成的拓扑基, 而坐标开球是道路连通的.</p>
 </div></li>
 <li><p>(锥) 拓扑空间 <span class="math inline">\(X\)</span> 的锥 <span class="math inline">\(CX\)</span> 是道路连通的. <span class="math inline">\(CX\)</span> 局部(道路)连通当且仅当 <span class="math inline">\(X\)</span> 局部(道路)连通.</p>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 设商映射 <span class="math inline">\(q:X\times[0,1]\to CX\)</span>.</p>
 <p>1, 道路连通性. 任给 <span class="math inline">\(a,a'\in CX\)</span>, 设原象 <span class="math inline">\(q^{-1}(a)=(x,t)\)</span>, <span class="math inline">\(q^{-1}(a')=(x',t')\)</span>. 考虑 <span class="math display">\[
 f:[t,1]\to X\times[0,1],\quad

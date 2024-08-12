@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/homotopy-equivalent-examples.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/induced-homomorphisms-of-homotopy-maps.png">
 <meta property="article:published_time" content="2024-08-07T10:30:00.000Z">
-<meta property="article:modified_time" content="2024-08-10T10:22:14.602Z">
+<meta property="article:modified_time" content="2024-08-12T03:02:48.016Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -291,19 +291,23 @@
 <ul>
 <li>若 <span class="math inline">\(f\sim g\)</span>, 则 <span class="math inline">\(\varphi\circ f\sim\varphi\circ g\)</span>, 说明这个映射是良定义的.</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 29.1</u> (诱导同态) 对 <span class="math inline">\(\varphi\in C(X,Y)\)</span>, <span class="math inline">\(\varphi_*\)</span> 是群同态, 称为 <strong><span class="math inline">\(\varphi\)</span> 诱导的同态</strong>.</p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 有 <span class="math display">\[
 \varphi_*([f]*[g])=\varphi_*[f*g]=[\varphi\circ(f*g)],
 \]</span> 只需证明 <span class="math inline">\(\varphi\circ(f*g)=(\varphi\circ f)*(\varphi\circ g)\)</span> (连续映射保持道路乘积), 用乘积定义直接展开即可.</p>
 </div>
 <h3 id="functoriality-of-pi_1">29.2  Functoriality of <span class="math inline">\(\pi_1\)</span></h3>
+<div class="note note-success">
 <p><u>Claim 29.2</u> (诱导同态的函子性)</p>
 <ol type="1">
 <li>设 <span class="math inline">\(\varphi\in C(X,Y)\)</span>, <span class="math inline">\(\psi\in C(Y,Z)\)</span>, 则 <span class="math inline">\((\psi\circ\varphi)_*=\psi_*\circ\varphi_*\)</span>.</li>
 <li>恒等映射 <span class="math inline">\({\rm id}_X\)</span> 诱导出的同态 <span class="math inline">\(({\rm id}_X)_*\)</span> 是 <span class="math inline">\(\pi_1(X,p)\)</span> 的恒等映射.</li>
 </ol>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 计算: <span class="math display">\[
 \Align{
 \psi_*(\varphi_*[f])
@@ -316,7 +320,9 @@
 <p>为了进一步阐明函子性, 我们引入带点拓扑空间范畴. <strong>带点拓扑空间 (pointed space)</strong> 指的是二元组 <span class="math inline">\((X,p)\)</span>, 其中 <span class="math inline">\(X\)</span> 是拓扑空间, 点 <span class="math inline">\(p\in X\)</span>. 带点拓扑空间 <span class="math inline">\((X,p),(Y,q)\)</span> 之间的态射是连续映射 <span class="math inline">\(f\in C(X,Y)\)</span> 满足 <span class="math inline">\(f(p)=q\)</span>. <strong>带点拓扑空间范畴 (pointed topological category)</strong> 是由带点拓扑空间和态射组成的范畴, 记作 <span class="math inline">\({\sf Top}_*\)</span>.</p>
 <p><strong>基本群函子 (fundamental group functor)</strong> <span class="math inline">\(\pi_1:{\sf Top}_*\to{\sf Grp}\)</span> 是带点拓扑空间范畴到群范畴的函子, 将 <span class="math inline">\((X,p)\)</span> 映到基本群 <span class="math inline">\(\pi_1(X,p)\)</span>, 将态射 <span class="math inline">\(\varphi:(X,p)\to(Y,q)\)</span> 映到诱导同态 <span class="math inline">\(\varphi_*:\pi_1(X,p)\to\pi_1(Y,q)\)</span>. 根据上面的定理, <span class="math inline">\(\pi_1\)</span> 满足函子的条件, 是一个协变函子.</p>
 <p>函子性的标准应用是拓扑不变性 (函子将同构映到同构).</p>
+<div class="note note-success">
 <p><u>Claim 29.3</u> (基本群的拓扑不变性) 若 <span class="math inline">\(\varphi:X\to Y\)</span> 是同胚, 则有同构 <span class="math inline">\(\varphi_*:\pi_1(X,p)\to\pi_1(Y,\varphi(p))\)</span>.</p>
+</div>
 <p>基本群函子将 <span class="math inline">\({\sf Top}_*\)</span> 的积 (积空间) 映到 <span class="math inline">\({\sf Grp}\)</span> 的积 (直积群). 设拓扑空间 <span class="math inline">\(X_1,\dots,X_n\)</span>, 自然投射 <span class="math inline">\(p_i:X_1\times\dots\times X_n\to X_i\)</span>. 取定基点 <span class="math inline">\(x_i\in X_i\)</span>, 有诱导同态 <span class="math display">\[
 (p_i)_*:\pi_1(X_1\times\dots\times X_n,(x_1,\dots,x_n))
 \to \pi_1(X_i,x_i).
@@ -326,8 +332,11 @@ P:\pi_1(X_1\times\dots\times X_n,(x_1,\dots,x_n)) &amp;\to
 \pi_1(X_1,x_1)\times\dots\times\pi_1(X_n,x_n), \\
 [f] &amp;\mapsto ((p_1)_*[f],\dots,(p_n)_*[f]).
 }
-\]</span> <u>Claim 29.4</u> (乘积的基本群) 如上定义的 <span class="math inline">\(P\)</span> 是群同构.</p>
-<div class="note note-secondary">
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 29.4</u> (乘积的基本群) 如上定义的 <span class="math inline">\(P\)</span> 是群同构.</p>
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 同态的积是同态, 只需验证双射.</p>
 <p>满: 任取 <span class="math inline">\([f_i]\in\pi_1(X_i,x_i)\)</span>, 定义积空间的环路 <span class="math inline">\(f(s)=(f_1(s),\dots,f_n(s))\)</span>, 则 <span class="math display">\[
 P[f]
@@ -342,31 +351,39 @@ H(s,t)=(H_1(s,t),\dots,H_n(s,t)).
 </div>
 <p>实际上, 基本群函子还将 <span class="math inline">\({\sf Top}_*\)</span> 的余积 (一点并) 映到 <span class="math inline">\({\sf Grp}\)</span> 的余积 (自由积), 我们在后面进一步讨论.</p>
 <p>补充一个简单的例子. 回顾拓扑齐性空间: 拓扑齐性空间 <span class="math inline">\(X\)</span> 中, 任意两点可以由同胚联系起来. 因此任意基点的基本群 <span class="math inline">\(\pi_1(X,p)\)</span> 都是同构的. 特别地, 拓扑群是齐性的, 因此拓扑群的基本群处处同构.</p>
-<p><u>Claim 29.4</u> (拓扑群的基本群) 拓扑群的基本群是交换群.</p>
-<div class="note note-secondary">
+<div class="note note-success">
+<p><u>Claim 29.5</u> (拓扑群的基本群) 拓扑群的基本群是交换群.</p>
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 因为拓扑群是齐性的, 只需考虑 <span class="math inline">\(e\in G\)</span> 处的基本群. 任给环路 <span class="math inline">\(f,g\in\Omega(G,e)\)</span>, 考虑连续映射 <span class="math inline">\(F:I\times I\to G\)</span>, <span class="math inline">\(F(s,t)=f(s)g(t)\)</span>, 应用正方形引理, 立刻得到 <span class="math inline">\(f*g\sim g*f\)</span>.</p>
 </div>
 <h3 id="retraction">29.3  Retraction</h3>
 <p>需要注意的是, 连续映射 <span class="math inline">\(\varphi\in C(X,Y)\)</span> 的单射性/满射性不意味着诱导同态 <span class="math inline">\(\varphi_*\)</span> 的单射性/满射性. 例如, <span class="math inline">\(\iota:\mathbb{S}^1\hookrightarrow\R^2\)</span> 是单射, 然而 <span class="math inline">\(\pi_1(\mathbb{S}^1)\)</span> 是无穷循环群, <span class="math inline">\(\pi_1(\R^2)\)</span> 平凡, <span class="math inline">\(i_*\)</span> 是平凡同态.</p>
 <p>利用函子性, 要保证诱导同态的单射/满射性, 需要为连续映射找到单侧逆. 设子空间 <span class="math inline">\(A\subset X\)</span>, 包含映射 <span class="math inline">\(\iota_A:A\hookrightarrow X\)</span>. 连续映射 <span class="math inline">\(r:X\to A\)</span> 称为<strong>收缩 (retraction)</strong>, 若它是 <span class="math inline">\(\iota\)</span> 的左逆: <span class="math inline">\(r\circ\iota_A={\rm id}_A\)</span>. 等价的说法是 <span class="math inline">\(r\)</span> 在 <span class="math inline">\(A\)</span> 上的限制是恒等映射. 此时称 <strong><span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的一个收缩</strong>.</p>
+<div class="note note-success">
 <p><u>Claim 29.6</u> (收缩的性质)</p>
 <ol type="1">
 <li>(道路) 连通空间的收缩是 (道路) 连通的.</li>
 <li>紧空间的收缩是紧的.</li>
 <li>(传递) <span class="math inline">\(A\subset B\subset X\)</span>, 若 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(B\)</span> 的收缩, <span class="math inline">\(B\)</span> 是 <span class="math inline">\(X\)</span> 的收缩, 则 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的收缩.</li>
 </ol>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 收缩是连续的满射, 因此 1, 2 是显然的. 3, 设收缩 <span class="math inline">\(r_1:B\to A\)</span>, <span class="math inline">\(r_2:X\to B\)</span>, 容易验证, 复合映射 <span class="math inline">\(r_1\circ r_2:X\to A\)</span> 给出了 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(A\)</span> 的收缩.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 29.7</u> (收缩的诱导同态) 设收缩 <span class="math inline">\(r:X\to A\)</span>, 则对任意一点 <span class="math inline">\(p\in A\)</span>, <span class="math inline">\((\iota_A)_*:\pi_1(A,p)\to\pi_1(X,p)\)</span> 是单射, <span class="math inline">\(r_*:\pi_1(X,p)\to\pi_1(A,p)\)</span> 是满射.</p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 因为 <span class="math inline">\(r\circ\iota_A={\rm id}_A\)</span>, 利用函子性有 <span class="math inline">\(r_*\circ(\iota_A)_*={\rm id}\)</span>, 两者互为单侧逆, 即 <span class="math inline">\(r_*\)</span> 满, <span class="math inline">\((\iota_A)_*\)</span> 单.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 29.8</u> (收缩保持单连通) 单连通空间的收缩是单连通的.</p>
+</div>
 <ul>
 <li>(逆否命题) 若收缩不单连通, 则原空间不单连通.</li>
 </ul>
-<div class="note note-secondary">
+<div class="note note-light">
 <p><u>Pf</u> 因为 <span class="math inline">\((\iota_A)_*:\pi_1(A,p)\to\pi_1(X,p)\)</span> 是单射, 如果 <span class="math inline">\(\pi_1(X,p)\)</span> 平凡, 则 <span class="math inline">\(\pi_1(A,p)\)</span> 平凡.</p>
 </div>
 <p>一些收缩的例子:</p>
@@ -399,13 +416,16 @@ H(a,1) &amp;= a, &amp;\forall a\in A.
 \]</span> 强形变收缩则进一步要求 <span class="math inline">\(H(a,t)=a\)</span>, <span class="math inline">\(\forall a\in A,t\in I\)</span>. 有时, 我们也将同伦 <span class="math inline">\(H\)</span> 称作形变收缩.</p></li>
 <li><p>直观上讲, <span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的形变收缩, 若 <span class="math inline">\(X\)</span> 能够连续地形变成 <span class="math inline">\(A\)</span>, 同时 <span class="math inline">\(A\)</span> 中的点最终回到原位. <span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的强形变收缩, 若 <span class="math inline">\(X\)</span> 能够连续地形变成 <span class="math inline">\(A\)</span>, 同时 <span class="math inline">\(A\)</span> 中的点自始至终保持不动.</p></li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 30.1</u> (球面是强形变收缩) 对 <span class="math inline">\(n\geq1\)</span>, <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 是 <span class="math inline">\(\R^n\setminus\{0\}\)</span> 以及 <span class="math inline">\(\overline{\mathbb{B}^n}\setminus\{0\}\)</span> 的强形变收缩.</p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 定义同伦 <span class="math inline">\(H:(\R^n\setminus\{0\})\times I\to\R^n\setminus\{0\}\)</span>, <span class="math display">\[
 H(x,t)=(1-t)x + t\frac{x}{\|x\|},
 \]</span> 是恒等映射 <span class="math inline">\({\rm id}_{\R^n\setminus\{0\}}\)</span> 与收缩映射 <span class="math inline">\(r:\R^n\setminus\{0\}\to\mathbb{S}^{n-1}\)</span> 间的直线同伦, 并且保持 <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 不变, 因此是强形变收缩. 上式也应用于 <span class="math inline">\(\overline{\mathbb{B}^n}\setminus\{0\}\)</span>.</p>
 </div>
 <p>形变收缩最极端的情况是 <span class="math inline">\(X\)</span> 形变收缩到一个点. 拓扑空间 <span class="math inline">\(X\)</span> 称为<strong>可缩的 (contractible)</strong>, 如果恒等映射 <span class="math inline">\({\rm id}_X\)</span> 是零伦的 (同伦于一个常映射).</p>
+<div class="note note-success">
 <p><u>Claim 30.2</u> (可缩空间的刻画) 设空间 <span class="math inline">\(X\)</span>, TFAE:</p>
 <ol type="1">
 <li><span class="math inline">\(X\)</span> 可缩.</li>
@@ -413,7 +433,8 @@ H(x,t)=(1-t)x + t\frac{x}{\|x\|},
 <li><span class="math inline">\(X\)</span> 中任意一点是 <span class="math inline">\(X\)</span> 的形变收缩.</li>
 <li>任意连续映射 <span class="math inline">\(\varphi\in C(Y,X)\)</span> 是零伦的.</li>
 </ol>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 我们证明 1 <span class="math inline">\(\Rightarrow\)</span> 2 <span class="math inline">\(\Rightarrow\)</span> 3 <span class="math inline">\(\Rightarrow\)</span> 4 <span class="math inline">\(\Rightarrow\)</span> 1, 其中 4 <span class="math inline">\(\Rightarrow\)</span> 1 是显然的.</p>
 <p>1 <span class="math inline">\(\Rightarrow\)</span> 2, 设 <span class="math inline">\({\rm id}_X\sim f_p\)</span>, 其中 <span class="math inline">\(f_p(x)\equiv p\in X\)</span> 是常映射. 记同伦为 <span class="math inline">\(H:X\times I\to X\)</span>, 有 <span class="math display">\[
 \Align{
@@ -433,6 +454,7 @@ H(x,1) &amp;= p, &amp;\forall x\in X.
 <h3 id="homotopy-invariance-of-pi_1">30.3  Homotopy invariance of <span class="math inline">\(\pi_1\)</span></h3>
 <p>基本群不光被同胚关系保持, 还被同伦等价保持.</p>
 <p>在此之前, 我们先证明同伦的映射 <span class="math inline">\(\varphi,\psi\)</span> 诱导出相同的基本群同态 <span class="math inline">\(\varphi_*,\psi_*\)</span> (在相差一个同构的意义下).</p>
+<div class="note note-success">
 <p><u>Claim 30.3</u> (诱导同态的 "同伦不变性") 设 <span class="math inline">\(\varphi,\psi\in C(X,Y)\)</span>, 同伦 <span class="math inline">\(H:\varphi\sim\psi\)</span>. 对于 <span class="math inline">\(p\in X\)</span>, 记 <span class="math inline">\(h\)</span> 是 <span class="math inline">\(Y\)</span> 中连接 <span class="math inline">\(\varphi(p),\psi(p)\)</span> 的道路, 定义为 <span class="math inline">\(h(t)=H(p,t)\)</span>. 令 <span class="math display">\[
 \Phi_h:\pi_1(Y,\varphi(p))\to\pi_1(Y,\psi(p))
 \]</span> 表示基点变换导出的群同构. 则下图交换: <span class="math display">\[
@@ -442,7 +464,8 @@ H(x,1) &amp;= p, &amp;\forall x\in X.
 &amp; \pi_1(Y,\psi(p)).
 }
 \]</span></p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 任取以 <span class="math inline">\(p\)</span> 为基点的环路 <span class="math inline">\(f\)</span>. 我们要证明 <span class="math display">\[
 \Align{
 \psi_*[f] &amp;= \Phi_h(\varphi_*[f]) \\
@@ -452,8 +475,10 @@ H(x,1) &amp;= p, &amp;\forall x\in X.
 \]</span> 对连续映射 <span class="math inline">\(F:I\times I\to Y\)</span>, <span class="math inline">\(F(s,t)=H(f(s),t)\)</span> 应用正方形引理即得 (如下图).</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/induced-homomorphisms-of-homotopy-maps.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
 </div>
+<div class="note note-success">
 <p><u>Claim 30.4</u> (基本群的同伦不变性) 若 <span class="math inline">\(\varphi\in C(X,Y)\)</span> 是同伦等价, 则 <span class="math inline">\(\varphi_*:\pi_1(X,p)\to\pi_1(Y,\varphi(p))\)</span> 是同构.</p>
-<div class="note note-secondary">
+</div>
+<div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(\varphi:X\to Y\)</span> 的一个同伦逆是 <span class="math inline">\(\psi:Y\to X\)</span>, 它们满足 <span class="math inline">\(\psi\circ\varphi\sim{\rm id}_X\)</span> 和 <span class="math inline">\(\varphi\circ\psi\sim{\rm id}_Y\)</span>. 对这两对同伦分别应用上面的定理, 得到两个交换图: <span class="math display">\[
 \xymatrix@C=0em{
 &amp; \pi_1(X,\psi(\varphi(p))) \ar[dd]_{\sim}^{\Phi_h} \\
