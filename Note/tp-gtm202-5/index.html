@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/paracompactness-theorem.png">
 <meta property="article:published_time" content="2024-07-28T05:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-05T08:05:19.577Z">
+<meta property="article:modified_time" content="2024-08-12T10:19:17.229Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -288,29 +288,39 @@
 <ul>
 <li><p><strong>局部有限</strong>: 对任意 <span class="math inline">\(x\in X\)</span>, 存在邻域 <span class="math inline">\(U_x\)</span>, 使得 <span class="math inline">\(U_x\)</span> 只和 <span class="math inline">\({\cal A}\)</span> 中有限个元素相交.</p></li>
 <li><p><strong>加细</strong>: 对任意 <span class="math inline">\(B\in{\cal B}\)</span>, 存在 <span class="math inline">\(A\in{\cal A}\)</span>, 满足 <span class="math inline">\(B\subset A\)</span>.</p></li>
-<li><p>(闭包局部有限) <span class="math inline">\(X\)</span> 的子集族 <span class="math inline">\({\cal A}\)</span> 局部有限, 当且仅当 <span class="math inline">\(\overline{\cal A}=\{\overline{A}\mid A\in{\cal A}\}\)</span> 局部有限.</p>
+</ul>
+<div class="note note-success">
+<p><u>Claim 15.1</u> (局部有限的闭包刻画) <span class="math inline">\(X\)</span> 的子集族 <span class="math inline">\({\cal A}\)</span> 局部有限, 当且仅当 <span class="math inline">\(\overline{\cal A}=\{\overline{A}\mid A\in{\cal A}\}\)</span> 局部有限.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 因为 <span class="math inline">\(A\subset\overline{A}\)</span>, 所以当 <span class="math inline">\(\overline{\cal A}\)</span> 局部有限, <span class="math inline">\(\cal A\)</span> 也局部有限. 若 <span class="math inline">\({\cal A}\)</span> 局部有限, 任给 <span class="math inline">\(x\in X\)</span>, 设邻域 <span class="math inline">\(W\)</span> 只与 <span class="math inline">\({\cal A}\)</span> 中有限个集合 <span class="math inline">\(A_1,\dots,A_n\)</span> 相交. 因为 <span class="math inline">\(W\cap\overline{A}\)</span> 非空蕴含 <span class="math inline">\(W\cap A\)</span> 非空 (对任意 <span class="math inline">\(A\in{\cal A}\)</span>), 因此满足 <span class="math inline">\(W\cap\overline{A}\)</span> 的 <span class="math inline">\(A\)</span> 一定在 <span class="math inline">\(A_1,\dots,A_n\)</span> 中, 所以 <span class="math inline">\(W\)</span> 只与 <span class="math inline">\(\overline{\cal A}\)</span> 中有限个元素相交.</p>
-</div></li>
-<li><p>(局部有限集族的性质) 若 <span class="math inline">\({\cal A}\)</span> 局部有限, 则 <span class="math inline">\(\overline{\bigcup_{A\in{\cal A}}A}=\bigcup_{A\in{\cal A}}\overline{A}\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 15.2</u> (局部有限集族的性质) 若 <span class="math inline">\({\cal A}\)</span> 局部有限, 则 <span class="math inline">\(\overline{\bigcup_{A\in{\cal A}}A}=\bigcup_{A\in{\cal A}}\overline{A}\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 注意 <span class="math inline">\(\overline{\bigcup_{A\in{\cal A}}A}\supset\bigcup_{A\in{\cal A}}\overline{A}\)</span> 是平凡的, 所以只证反向包含. 考虑逆否命题, 即任给 <span class="math inline">\(x\notin\bigcup_{A\in{\cal A}}\overline{A}\)</span>, 要证明 <span class="math inline">\(x\notin\overline{\bigcup_{A\in{\cal A}}A}\)</span>. 因为 <span class="math inline">\({\cal A}\)</span> 局部有限, 所以 <span class="math inline">\(\overline{\cal A}\)</span> 局部有限, 存在 <span class="math inline">\(x\)</span> 的邻域 <span class="math inline">\(U\)</span> 只与有限个 <span class="math inline">\(\overline{A}\)</span> 相交, 记为 <span class="math inline">\(\overline{A_1},\dots,\overline{A_n}\)</span>. 则 <span class="math inline">\(U\setminus(\overline{A_1}\cup\cdots\cup\overline{A_n})\)</span> 是 <span class="math inline">\(x\)</span> 的邻域, 且与 <span class="math inline">\({\cal A}\)</span> 中任意集合不交, 故 <span class="math inline">\(x\notin\overline{\bigcup_{A\in{\cal A}}A}\)</span>.</p>
-</div></li>
-<li><p><strong>紧穷竭</strong>: 紧集列 <span class="math inline">\((K_i)_{i=1}^\infty\)</span>, 满足 <span class="math inline">\(X=\bigcup_iX_i\)</span> 且 <span class="math inline">\(K_i\subset{\rm Int}K_{i+1}\)</span>.</p></li>
-<li><p>(紧穷竭存在性) 第二可数, 局部紧的 Hausdorff 空间存在紧穷竭.</p>
+</div>
+<ul>
+<li><strong>紧穷竭</strong>: 紧集列 <span class="math inline">\((K_i)_{i=1}^\infty\)</span>, 满足 <span class="math inline">\(X=\bigcup_iX_i\)</span> 且 <span class="math inline">\(K_i\subset{\rm Int}K_{i+1}\)</span>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 15.3</u> (紧穷竭存在性) 第二可数, 局部紧的 Hausdorff 空间存在紧穷竭.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 因为 <span class="math inline">\(X\)</span> 是局部紧的 Hausdorff 空间, 存在预紧开集组成的拓扑基. 又由第二可数性, <span class="math inline">\(X\)</span> 可以被可数多个这样的开集覆盖, 记为 <span class="math inline">\(\{U_i\}_{i=1}^\infty\)</span>.</p>
 <p>我们只需要构造紧集列 <span class="math inline">\((K_i)_{i=1}^\infty\)</span> 满足 <span class="math inline">\(U_j\subset K_j\)</span> 且 <span class="math inline">\(K_j\subset{\rm Int}K_{j+1}\)</span>. 用归纳法.</p>
 <p>令 <span class="math inline">\(K_1=\overline{U}_1\)</span>. 假设我们构造了 <span class="math inline">\(K_1,\dots,K_n\)</span> 满足条件. 因为 <span class="math inline">\(K_n\)</span> 紧, (能被有限个 <span class="math inline">\(U_i\)</span> 覆盖) 所以存在正整数 <span class="math inline">\(k_n\)</span>, 使得 <span class="math inline">\(K_n\subset U_1\cup\cdots\cup U_{k_n}\)</span>. 令 <span class="math inline">\(K_{n+1}=\overline{U_1}\cup\cdots\cup \overline{U_{k_n}}\)</span>, 则 <span class="math inline">\(K_{n+1}\)</span> 紧, 且根据 "局部有限集族的性质", <span class="math inline">\(K_{n+1}=\overline{U_1\cup\cdots\cup U_{k_n}}\)</span>, 于是 <span class="math inline">\({\rm Int}K_{n+1}=U_1\cup\cdots\cup U_{k_n}\supset K_n\)</span>. 如果我们进一步要求 <span class="math inline">\(k_n&gt;n+1\)</span>, 则有 <span class="math inline">\(U_{n+1}\subset K_{n+1}\)</span>, 完成了归纳.</p>
-</div></li>
-<li><p>(仿紧性定理) 第二可数, 局部紧的 Hausdorff 空间是仿紧的.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 15.4</u> (仿紧性定理) 第二可数, 局部紧的 Hausdorff 空间是仿紧的.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(X\)</span> 是局部紧的 Hausdorff 空间, <span class="math inline">\((K_i)_{i=1}^\infty\)</span> 是其紧穷竭. 任给开覆盖 <span class="math inline">\({\cal U}\)</span>.</p>
 <p>对 <span class="math inline">\(j\in\N^+\)</span>, 令 <span class="math inline">\(A_j=K_{j+1}\setminus{\rm Int}K_k\)</span> 以及 <span class="math inline">\(W_j={\rm Int}K_{j+2}\setminus K_{j-1}\)</span> (规定 <span class="math inline">\(K_0=\emptyset\)</span>). 则 <span class="math inline">\(A_j\)</span> 作为紧集 <span class="math inline">\(K_{j+1}\)</span> 的闭子集, 是紧集; <span class="math inline">\(W_j\)</span> 是开集, 且 <span class="math inline">\(A_j\subset W_j\)</span>.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/paracompactness-theorem.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
 <p>对任意 <span class="math inline">\(x\in A_j\)</span>, 取 <span class="math inline">\({\cal U}\)</span> 中包含 <span class="math inline">\(x\)</span> 的开集 <span class="math inline">\(U_x\)</span>, 令 <span class="math inline">\(V_x=U_x\cap W_j\)</span>. 当 <span class="math inline">\(x\)</span> 取遍 <span class="math inline">\(A_j\)</span>, 开集 <span class="math inline">\(V_x\)</span> 组成 <span class="math inline">\(A_j\)</span> 的开覆盖. 因为 <span class="math inline">\(A_j\)</span> 紧, 它有有限子覆盖 <span class="math inline">\({\cal A}_j\)</span>. 当 <span class="math inline">\(j\)</span> 取遍 <span class="math inline">\(\N^+\)</span>, 所有 <span class="math inline">\({\cal A}_j\)</span> 之并组成 <span class="math inline">\(M\)</span> 的开覆盖, 且构成 <span class="math inline">\({\cal U}\)</span> 的加细. 因为 <span class="math inline">\(W_j\)</span> 与 <span class="math inline">\(W_{j'}\)</span> 相交当且仅当 <span class="math inline">\(j-2\leq j'\leq j+2\)</span>, 因此上述开覆盖是局部有限的.</p>
-</div></li>
-</ul>
+</div>
 <h3 id="normal-spaces">15.2  Normal spaces</h3>
 <p><strong>正则空间</strong>: Hausdorff, 且闭集和其外一点可被开集分离.</p>
 <p><strong>正规空间</strong>: Hausdorff, 且不交的闭集可被开集分离.</p>
@@ -320,12 +330,17 @@
 <li>紧 + Hausdorff <span class="math inline">\(\Rightarrow\)</span> 正规. (Hausdorff 空间中, 紧子集可被开集分离的直接推论.)</li>
 <li>(继承) 正规空间的闭子集正规.</li>
 </ul></li>
-<li><p>(正规条件) Hausdorff 空间 <span class="math inline">\(X\)</span> 正规, 当且仅当对任意闭集 <span class="math inline">\(A\subset X\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在 <span class="math inline">\(A\)</span> 的邻域 <span class="math inline">\(V\)</span> 满足 <span class="math inline">\(\overline{V}\subset U\)</span>.</p>
+</ul>
+<div class="note note-success">
+<p><u>Claim 15.5</u> (正规条件) Hausdorff 空间 <span class="math inline">\(X\)</span> 正规, 当且仅当对任意闭集 <span class="math inline">\(A\subset X\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在 <span class="math inline">\(A\)</span> 的邻域 <span class="math inline">\(V\)</span> 满足 <span class="math inline">\(\overline{V}\subset U\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 若 <span class="math inline">\(X\)</span> 正规, 则闭集 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B=X\setminus U\)</span> 可被开集 <span class="math inline">\(V,W\)</span> 分离, 则 <span class="math inline">\(V\)</span> 真包含于闭集 <span class="math inline">\(X\setminus W\)</span>, 后者包含于 <span class="math inline">\(U\)</span>, 进而 <span class="math inline">\(\overline{V}\subset U\)</span>.</p>
 <p>反之, 若满足右侧的条件, 任给不交闭集 <span class="math inline">\(A,B\)</span>, 则 <span class="math inline">\(U=X\setminus B\)</span> 是 <span class="math inline">\(A\)</span> 的邻域. 存在 <span class="math inline">\(A\)</span> 的邻域 <span class="math inline">\(V\)</span> 满足 <span class="math inline">\(V\subset\overline{V}\subset U\)</span>, 则 <span class="math inline">\(V\)</span> 和 <span class="math inline">\({\rm Ext}V\)</span> 分离 <span class="math inline">\(A,B\)</span>.</p>
-</div></li>
-<li><p>(正规性定理) 仿紧的 Hausdorff 空间是正规的.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 15.6</u> (正规性定理) 仿紧的 Hausdorff 空间是正规的.</p>
+</div>
 <ul>
 <li>证明和之前的 "分离性引理" (不交紧集被开集分离) 很像.</li>
 </ul>
@@ -333,8 +348,10 @@
 <p><u>Pf</u> 第一步, 证明 <span class="math inline">\(X\)</span> 是正则的. 任给不交闭集 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B=\{q\}\)</span>. 由 Hausdorff, 任给 <span class="math inline">\(p\in A\)</span>, 存在不交邻域 <span class="math inline">\(U_p\ni p\)</span>, <span class="math inline">\(V_p\ni q\)</span>. 当 <span class="math inline">\(p\)</span> 取遍 <span class="math inline">\(A\)</span>, 所有 <span class="math inline">\(U_p\)</span> 连同 <span class="math inline">\(X\setminus A\)</span> 一起构成了 <span class="math inline">\(X\)</span> 的开覆盖. 由仿紧性, 它有局部有限的开加细 <span class="math inline">\({\cal W}\)</span>. <span class="math inline">\({\cal W}\)</span> 中的任意元素或者是某 <span class="math inline">\(U_p\)</span> 的子集, 或者是 <span class="math inline">\(X\setminus A\)</span> 的子集, 令 <span class="math inline">\({\cal U}\)</span> 是所有前者的全体. 则 <span class="math inline">\({\cal U}\)</span> 是 <span class="math inline">\(A\)</span> 的局部有限开覆盖, 并且, 任给 <span class="math inline">\(U\in{\cal U}\)</span>, 存在 <span class="math inline">\(q\)</span> 的邻域 <span class="math inline">\(V\)</span> 与 <span class="math inline">\(U\)</span> 不交, 因此 <span class="math inline">\(\overline{U}\)</span> 不包含 <span class="math inline">\(q\)</span>.</p>
 <p>令 <span class="math inline">\(\mathbb{U}=\bigcup_{U\in\cal U}U\)</span>, <span class="math inline">\(\mathbb{V}=X\setminus\overline{\mathbb{U}}\)</span>. 因为 <span class="math inline">\({\cal U}\)</span> 局部有限, 所以 <span class="math inline">\(\overline{\mathbb{U}}=\bigcup_{U\in\cal U}\overline{U}\)</span>, 进而 <span class="math inline">\(\overline{\mathbb{U}}\)</span> 不包含 <span class="math inline">\(q\)</span>. 因此, <span class="math inline">\(\mathbb{U},\mathbb{V}\)</span> 分别是 <span class="math inline">\(A,B\)</span> 的不交邻域.</p>
 <p>第二步, 证明 <span class="math inline">\(X\)</span> 是正规的. 和第一步一样, 只不过将 Hausdorff 性换成正则性.</p>
-</div></li>
-<li><p>(Urysohn 引理) <span class="math inline">\(X\)</span> 正规. 若 <span class="math inline">\(A,B\)</span> 为不交闭子集, 存在连续函数 <span class="math inline">\(f:X\to[0,1]\)</span> 满足 <span class="math inline">\(f|_A\equiv0\)</span>, <span class="math inline">\(f|_B\equiv1\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 15.7</u> (Urysohn 引理) <span class="math inline">\(X\)</span> 正规. 若 <span class="math inline">\(A,B\)</span> 为不交闭子集, 存在连续函数 <span class="math inline">\(f:X\to[0,1]\)</span> 满足 <span class="math inline">\(f|_A\equiv0\)</span>, <span class="math inline">\(f|_B\equiv1\)</span>.</p>
+</div>
 <ul>
 <li>正规空间中, 不交闭集可被连续函数分离. 这实际上是正规的充要条件.</li>
 <li>这意味着正规空间中的函数的 "等高线" 可以足够密集. 证明中, 我们通过构造一系列密集的下水平集, 来确定一个函数 <span class="math inline">\(f\)</span>.</li>
@@ -374,14 +391,17 @@ f^{-1}((-\infty,a)) &amp;=\bigcup_{r\in\Q_{&lt;a}} U_r, &amp;
 f^{-1}((a,+\infty)) &amp;=X\setminus \bigcap_{r\in\Q_{&gt;a}}\overline{U_r},
 }
 \]</span> (开集的任意并开; 闭集的任意交闭) 是开集.</p>
-</div></li>
+</div>
+<ul>
 <li><p><strong>支集</strong>: 连续函数 <span class="math inline">\(f:X\to\R\)</span> 的支集指的是 <span class="math inline">\(\supp f=\overline{\{x\in X\mid f(x)\neq0\}}\)</span>.</p></li>
 <li><p><strong>鼓包函数</strong>: 设闭子集 <span class="math inline">\(A\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 满足 <span class="math inline">\(f|_A\equiv1\)</span> 且 <span class="math inline">\(\supp f\subset U\)</span> 的连续函数 <span class="math inline">\(f:X\to[0,1]\)</span> 称为 <span class="math inline">\(A\)</span> 的支在 <span class="math inline">\(U\)</span> 上的鼓包函数.</p></li>
-<li><p>(鼓包函数存在性) <span class="math inline">\(X\)</span> 正规. 任给闭子集 <span class="math inline">\(A\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在 <span class="math inline">\(A\)</span> 的支在 <span class="math inline">\(U\)</span> 上的鼓包函数.</p>
+</ul>
+<div class="note note-success">
+<p><u>Claim 15.8</u> (鼓包函数存在性) <span class="math inline">\(X\)</span> 正规. 任给闭子集 <span class="math inline">\(A\)</span> 及其邻域 <span class="math inline">\(U\)</span>, 存在 <span class="math inline">\(A\)</span> 的支在 <span class="math inline">\(U\)</span> 上的鼓包函数.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 对 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B=X\setminus U\)</span> 应用 Urysohn 引理.</p>
-</div></li>
-</ul>
+</div>
 <h3 id="partitions-of-unity">15.3  Partitions of unity</h3>
 <p><strong>单位分解</strong>: <span class="math inline">\(X\)</span> 的开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>. 一个从属于 <span class="math inline">\({\cal U}\)</span> 的单位分解指的是一族连续函数 <span class="math inline">\(\psi_\alpha:X\to\R\)</span>, 满足</p>
 <ol type="1">
@@ -390,21 +410,24 @@ f^{-1}((a,+\infty)) &amp;=X\setminus \bigcap_{r\in\Q_{&gt;a}}\overline{U_r},
 <li>支集族 <span class="math inline">\((\supp\psi_\alpha)_{\alpha\in A}\)</span> 局部有限.</li>
 <li><span class="math inline">\(\sum_\alpha\psi_\alpha(p)=1\)</span>, 对任意 <span class="math inline">\(p\in X\)</span>.</li>
 </ol>
-<ul>
-<li><p>(引理) <span class="math inline">\(X\)</span> 是仿紧 Hausdorff 空间. 设开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>, 则 <span class="math inline">\({\cal U}\)</span> 存在局部有限加细 <span class="math inline">\((V_\alpha)_{\alpha\in A}\)</span> 且 <span class="math inline">\(\overline{V_\alpha}\subset U_\alpha\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 15.9</u> (引理) <span class="math inline">\(X\)</span> 是仿紧 Hausdorff 空间. 设开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>, 则 <span class="math inline">\({\cal U}\)</span> 存在局部有限加细 <span class="math inline">\((V_\alpha)_{\alpha\in A}\)</span> 且 <span class="math inline">\(\overline{V_\alpha}\subset U_\alpha\)</span>.</p>
+</div>
 <ul>
 <li>一个比仿紧性更强的性质.</li>
-</ul></li>
-<li><p>(单位分解存在性) <span class="math inline">\(X\)</span> 是仿紧 Hausdorff 空间. 任给开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>, 存在从属于其的单位分解.</p>
+</ul>
+<div class="note note-success">
+<p><u>Claim 15.10</u> (单位分解存在性) <span class="math inline">\(X\)</span> 是仿紧 Hausdorff 空间. 任给开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>, 存在从属于其的单位分解.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 应用两次引理, 我们得到了局部有限开覆盖 <span class="math inline">\({\cal V}=(V_\alpha)\)</span> 和 <span class="math inline">\({\cal W}=(W_\alpha)\)</span> 满足 <span class="math inline">\(\overline{W_\alpha}\subset V_\alpha\)</span> 且 <span class="math inline">\(\overline{V_\alpha}\subset U_\alpha\)</span>. 仿紧的 Hausdorff 空间是正规的, 故存在 <span class="math inline">\(\overline{W_\alpha}\)</span> 的支在 <span class="math inline">\(V_\alpha\)</span> 的鼓包函数 <span class="math inline">\(f_\alpha:X\to[0,1]\)</span>.</p>
 <p>为了得到归一化的函数, 令 <span class="math inline">\(f:X\to\R\)</span>, <span class="math inline">\(f(p)=\sum_\alpha f_\alpha(p)\)</span>. 因为 <span class="math inline">\(\supp{f}\subset V_\alpha\)</span>, <span class="math inline">\((V_\alpha)\)</span> 局部有限, 所以 <span class="math inline">\((\supp f_\alpha)\)</span> 局部有限, 因此每一点 <span class="math inline">\(p\in X\)</span> 存在其邻域, 使得 <span class="math inline">\(\sum_\alpha f_\alpha(p)\)</span> 是有限和. 因此 <span class="math inline">\(f\)</span> 是良定义的, 且连续. 因为 <span class="math inline">\(W_\alpha\)</span> 覆盖 <span class="math inline">\(X\)</span>, 每一点 <span class="math inline">\(p\in X\)</span> 都属于某 <span class="math inline">\(W_\alpha\)</span>, 进而 <span class="math inline">\(f_\alpha(p)=1\)</span>, 因此 <span class="math inline">\(f\)</span> 严格正.</p>
 <p>因此, 定义 <span class="math inline">\(\psi_\alpha(p)=f_\alpha(p)/f(p)\)</span>, 则 <span class="math inline">\((\psi_\alpha)\)</span> 是满足单位分解条件 1-4 的连续函数族.</p>
-</div></li>
-</ul>
+</div>
 <p>单位分解的应用.</p>
-<ul>
-<li><p>(紧流形可嵌入 <span class="math inline">\(\R^n\)</span>) 紧带边/无边流形同胚于欧氏空间的子集.</p>
+<div class="note note-success">
+<p><u>Claim 15.11</u> (紧流形可嵌入 <span class="math inline">\(\R^n\)</span>) 紧带边/无边流形同胚于欧氏空间的子集.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 先考虑紧无边流形 <span class="math inline">\(M\)</span>. 由紧性, 有限个坐标邻域 <span class="math inline">\(U_1,\dots,U_k\)</span> 覆盖 <span class="math inline">\(M\)</span>, 坐标函数 <span class="math inline">\(\phi_i:U_i\overset\sim\to\R^n\)</span>. 设 <span class="math inline">\((\psi_i)\)</span> 是从属于开覆盖 <span class="math inline">\((U_i)\)</span> 的单位分解, 定义 <span class="math display">\[
 F_i(x) = \Cases{
@@ -416,8 +439,10 @@ F(x)=(F_1(x),\dots,F_k(x),\psi_1(x),\dots,\psi_k(x)).
 \]</span> <span class="math inline">\(F\)</span> 是连续的, 如果还能证明它是单射, 则根据闭映射引理, <span class="math inline">\(F\)</span> 是拓扑嵌入.</p>
 <p>设 <span class="math inline">\(F(x)=F(y)\)</span>. 因为 <span class="math inline">\(\sum\psi_i(x)\equiv1\)</span>, 所以某 <span class="math inline">\(\psi_i(x)\neq0\)</span>, 进而 <span class="math inline">\(x\in U_i\)</span>. 注意 <span class="math inline">\(F(x)=F(y)\)</span> 蕴含 <span class="math inline">\(\psi_i(y)=\psi_i(x)&gt;0\)</span>, 所以 <span class="math inline">\(y\in U_i\)</span>. 进而由 <span class="math inline">\(F_i(x)=F_i(y)\)</span> 有 <span class="math inline">\(\phi_i(x)=\phi_i(y)\)</span>. 因为 <span class="math inline">\(\phi_i\)</span> 单, 所以 <span class="math inline">\(x=y\)</span>.</p>
 <p>对于紧带边流形 <span class="math inline">\(M\)</span>, 双倍 <span class="math inline">\(D(M)\)</span> 是紧无边流形, 有嵌入 <span class="math inline">\(i:D(M)\hookrightarrow\R^N\)</span>, 而 <span class="math inline">\(M\)</span> 嵌入到 <span class="math inline">\(D(M)\)</span> 中 (黏着空间的性质): <span class="math inline">\(i_M:M\hookrightarrow D(M)\)</span>, 两者的复合 <span class="math inline">\(i\circ i_M\)</span> 给出了 <span class="math inline">\(M\)</span> 到 <span class="math inline">\(\R^N\)</span> 的嵌入.</p>
-</div></li>
-<li><p>(连续函数的零点集) 设流形 <span class="math inline">\(M\)</span> 的闭子集 <span class="math inline">\(B\)</span>, 则存在连续函数 <span class="math inline">\(f:M\to[0,+\infty)\)</span>, 其零点集恰为 <span class="math inline">\(B\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 15.12</u> (连续函数的零点集) 设流形 <span class="math inline">\(M\)</span> 的闭子集 <span class="math inline">\(B\)</span>, 则存在连续函数 <span class="math inline">\(f:M\to[0,+\infty)\)</span>, 其零点集恰为 <span class="math inline">\(B\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 先考虑 <span class="math inline">\(M=\R^n\)</span>, 闭子集 <span class="math inline">\(B\subset\R^n\)</span>. 定义 <span class="math display">\[
 u(x) = \inf\{\|x-y\|\mid y\in B \},
@@ -425,16 +450,23 @@ u(x) = \inf\{\|x-y\|\mid y\in B \},
 <p>一般的情况, <span class="math inline">\(B\)</span> 是流形 <span class="math inline">\(M\)</span> 的闭子集. 设 <span class="math inline">\(M\)</span> 的欧氏开覆盖 <span class="math inline">\({\cal U}=(U_\alpha)_{\alpha\in A}\)</span>, 其中每个开集同胚于 <span class="math inline">\(\R^n\)</span>, 设 <span class="math inline">\((\psi_\alpha)\)</span> 是从属于 <span class="math inline">\({\cal U}\)</span> 的单位分解. 令 <span class="math inline">\(u_\alpha\)</span> 是到 <span class="math inline">\(B\cap U_\alpha\)</span> 的距离函数. 定义 <span class="math display">\[
 f(x)=\sum_{\alpha\in A} \psi_\alpha(x)u_\alpha(x),
 \]</span> (当 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(\supp{\psi_\alpha}\)</span> 之外时, <span class="math inline">\(\psi_\alpha(x)u_\alpha(x)\equiv0\)</span>) 由 <span class="math inline">\((\supp{\psi_\alpha})\)</span> 的局部有限性, 上式在每一点都是有限和, 进而定义了一个非负连续函数. 容易验证, 这个函数的零点集恰为 <span class="math inline">\(B\)</span>: 令 <span class="math inline">\(f(x)=0\)</span>, 因为某 <span class="math inline">\(\psi_\alpha(x)\neq0\)</span>, 则 <span class="math inline">\(u_\alpha(x)=0\)</span>, 意味着 <span class="math inline">\(x\in B\cap U_\alpha\)</span>.</p>
-</div></li>
-<li><p>(推论: 强 Urysohn 引理) 流形 <span class="math inline">\(M\)</span> 的不交闭子集 <span class="math inline">\(A,B\)</span>, 则存在连续函数 <span class="math inline">\(f:M\to[0,1]\)</span> 使得 <span class="math inline">\(f^{-1}(1)=A\)</span>, <span class="math inline">\(f^{-1}(0)=B\)</span>.</p>
+</div>
+<p>一个推论:</p>
+<div class="note note-success">
+<p><u>Claim 15.13</u> (强 Urysohn 引理) 流形 <span class="math inline">\(M\)</span> 的不交闭子集 <span class="math inline">\(A,B\)</span>, 则存在连续函数 <span class="math inline">\(f:M\to[0,1]\)</span> 使得 <span class="math inline">\(f^{-1}(1)=A\)</span>, <span class="math inline">\(f^{-1}(0)=B\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 根据上一个定理, 可以构造 <span class="math inline">\(u,v:M\to[0,+\infty)\)</span>, 其零点集分别为 <span class="math inline">\(A,B\)</span>. 因为 <span class="math inline">\(A,B\)</span> 不交, 所以 <span class="math inline">\(u(x)+v(x)\)</span> 恒正, 而函数 <span class="math inline">\(f(x)=v(x)/(u(x)+v(x))\)</span> 就是我们想要的.</p>
-</div></li>
+</div>
+<ul>
 <li><p><strong>穷竭函数</strong>: 连续函数 <span class="math inline">\(f:X\to\R\)</span>, 满足任意下水平集 <span class="math inline">\(f^{-1}((-\infty,c])\)</span> 是紧致的.</p>
 <ul>
 <li>此时, <span class="math inline">\(f^{-1}((-\infty,k])\)</span> (<span class="math inline">\(k\in\N\)</span>) 构成 <span class="math inline">\(M\)</span> 的紧穷竭.</li>
 </ul></li>
-<li><p>(穷竭函数存在性) 流形上存在正的穷竭函数.</p>
+</ul>
+<div class="note note-success">
+<p><u>Claim 15.14</u> (穷竭函数存在性) 流形上存在正的穷竭函数.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> <span class="math inline">\(M\)</span> 是局部紧的 Hausdorff 空间, 则存在预紧开集组成的拓扑基; 又由第二可数性, 存在可数的预紧开集覆盖 <span class="math inline">\(\{U_i\}\)</span>. 设从属于其的单位分解 <span class="math inline">\(\{\psi_i\}\)</span>. 定义 <span class="math inline">\(f:M\to\R\)</span>, <span class="math display">\[
 f(x)=\sum_{k=1}^\infty k\psi_k(x),
@@ -446,22 +478,27 @@ f(x)
 = m.
 \]</span> 因此, <span class="math inline">\(f(x)\leq m\)</span> 蕴含 <span class="math inline">\(x\in\bigcup_{k=1}^m\overline{U_k}\)</span>.</p>
 <p>任给 <span class="math inline">\(c\in\R\)</span>, 设 <span class="math inline">\(m\)</span> 是任意大于 <span class="math inline">\(c\)</span> 的正整数, 则 <span class="math inline">\(f^{-1}((-\infty,c])\)</span> 是紧集 <span class="math inline">\(\bigcup_{k=1}^m\overline{U_k}\)</span> 的闭子集, 故紧.</p>
-</div></li>
-</ul>
+</div>
 <h2 id="proper-maps">16  Proper Maps</h2>
 <p><strong>逆紧映射</strong>: 紧集的原像是紧集.</p>
 <ul>
-<li><p><strong>序列发散到无穷</strong>: 序列 <span class="math inline">\((x_i)\subset X\)</span> 发散到无穷, 若对任意紧集 <span class="math inline">\(K\subset X\)</span>, 只有有限个 <span class="math inline">\(x_i\)</span> 在 <span class="math inline">\(K\)</span> 中.</p></li>
-<li><p>(发散到无穷的条件) <span class="math inline">\(X\)</span> Hausdorff 且第一可数. 序列 <span class="math inline">\((x_i)\)</span> 发散到无穷, 当且仅当它不存在收敛子列.</p>
+<li><strong>序列发散到无穷</strong>: 序列 <span class="math inline">\((x_i)\subset X\)</span> 发散到无穷, 若对任意紧集 <span class="math inline">\(K\subset X\)</span>, 只有有限个 <span class="math inline">\(x_i\)</span> 在 <span class="math inline">\(K\)</span> 中.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 16.1</u> (发散到无穷的条件) <span class="math inline">\(X\)</span> Hausdorff 且第一可数. 序列 <span class="math inline">\((x_i)\)</span> 发散到无穷, 当且仅当它不存在收敛子列.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\((x_i)\)</span> 发散到无穷, 假设存在子列 <span class="math inline">\((x_{i_j})\)</span> 收敛到 <span class="math inline">\(x\)</span>, 则 <span class="math inline">\(\{x_{i_j}\mid j\in\N\}\cup\{x\}\)</span> 是紧的, 且含有无穷多项 <span class="math inline">\(x_i\)</span>, 与发散到无穷矛盾. (并没有用到 Hausdorff 与第一可数性.)</p>
 <p>设 <span class="math inline">\((x_i)\)</span> 没有收敛子列, 假设紧集 <span class="math inline">\(K\subset X\)</span> 含有无穷多项 <span class="math inline">\(x_i\)</span>, 则存在子列 <span class="math inline">\((x_{i_j})\subset K\)</span>. 因为第一可数的紧 Hausdorff 空间 <span class="math inline">\(K\)</span> 是列紧的, 所以 <span class="math inline">\((x_{i_j})\)</span> 有收敛子列, 与 <span class="math inline">\((x_i)\)</span> 无收敛子列矛盾.</p>
-</div></li>
-<li><p>(逆紧映射保持发散到无穷大) <span class="math inline">\(F:X\to Y\)</span> 逆紧, 则 <span class="math inline">\(F\)</span> 将 <span class="math inline">\(X\)</span> 中发散到无穷大的序列映到 <span class="math inline">\(Y\)</span> 中发散到无穷大的序列.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.2</u> (逆紧映射保持发散到无穷大) <span class="math inline">\(F:X\to Y\)</span> 逆紧, 则 <span class="math inline">\(F\)</span> 将 <span class="math inline">\(X\)</span> 中发散到无穷大的序列映到 <span class="math inline">\(Y\)</span> 中发散到无穷大的序列.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\((x_i)\subset X\)</span> 发散到无穷, 假设 <span class="math inline">\((F(x_i))\)</span> 不发散到无穷, 则存在紧集 <span class="math inline">\(K\subset Y\)</span> 含有无穷多项 <span class="math inline">\(F(x_i)\)</span>, 则紧集 <span class="math inline">\(F^{-1}(K)\)</span> 也包含了无穷多项 <span class="math inline">\(x_i\)</span>, 与 <span class="math inline">\((x_i)\)</span> 发散到无穷矛盾.</p>
-</div></li>
-<li><p>(逆紧判断) 连续映射 <span class="math inline">\(F:X\to Y\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.3</u> (逆紧判断) 连续映射 <span class="math inline">\(F:X\to Y\)</span>.</p>
 <ul>
 <li>若 <span class="math inline">\(X\)</span> 紧, <span class="math inline">\(Y\)</span> Hausdorff, 则 <span class="math inline">\(F\)</span> 逆紧.</li>
 <li>若 <span class="math inline">\(X\)</span> 是第二可数的 Hausdorff 空间, 且 <span class="math inline">\(F\)</span> 将 <span class="math inline">\(X\)</span> 中发散到无穷大的序列映到 <span class="math inline">\(Y\)</span> 中发散到无穷大的序列, 则 <span class="math inline">\(F\)</span> 逆紧.</li>
@@ -470,42 +507,54 @@ f(x)
 <li>若 <span class="math inline">\(Y\)</span> Hausdorff 且 <span class="math inline">\(F\)</span> 有连续的左逆, 则 <span class="math inline">\(F\)</span> 逆紧.</li>
 <li>若 <span class="math inline">\(F\)</span> 逆紧, 则任给 <span class="math inline">\(F\)</span> 的饱和集 <span class="math inline">\(A\subset X\)</span>, <span class="math inline">\(F|_A:A\to F(A)\)</span> 逆紧.</li>
 </ul>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 1, 设 <span class="math inline">\(K\subset Y\)</span> 紧, 它作为 Hausdorff 空间的紧子集, 也是闭的; 由连续性, <span class="math inline">\(F^{-1}(K)\)</span> 闭, 它作为紧空间的闭子集, 也是紧的.</p>
 <p>4, 拓扑嵌入是闭映射, 且纤维是独点集, 当然紧. 根据 3, <span class="math inline">\(F\)</span> 逆紧.</p>
 <p>6, 设 <span class="math inline">\(K\subset F(A)\)</span> 紧. <span class="math inline">\(A\)</span> 饱和意味着 <span class="math inline">\((F|_A)^{-1}(K)=F^{-1}(K)\)</span>, 根据 <span class="math inline">\(F\)</span> 的逆紧性, 这是紧的.</p>
-</div></li>
-<li><p><strong>紧生成空间</strong>: 空间 <span class="math inline">\(X\)</span> 紧生成, 若对任意子集 <span class="math inline">\(A\subset X\)</span>, 只要 <span class="math inline">\(A\)</span> 与任意紧子集 <span class="math inline">\(K\subset X\)</span> 的交在 <span class="math inline">\(K\)</span> 中闭, 则 <span class="math inline">\(A\)</span> 是闭集.</p></li>
-<li><p>(紧生成判断) 第一可数空间与局部紧空间是紧生成的.</p></li>
-<li><p>(连续的逆紧映射是闭的) 设空间 <span class="math inline">\(X\)</span>, 紧生成的 Hausdorff 空间 <span class="math inline">\(Y\)</span>, 连续的逆紧映射 <span class="math inline">\(F:X\to Y\)</span>, 则 <span class="math inline">\(F\)</span> 闭.</p>
+</div>
+<ul>
+<li><strong>紧生成空间</strong>: 空间 <span class="math inline">\(X\)</span> 紧生成, 若对任意子集 <span class="math inline">\(A\subset X\)</span>, 只要 <span class="math inline">\(A\)</span> 与任意紧子集 <span class="math inline">\(K\subset X\)</span> 的交在 <span class="math inline">\(K\)</span> 中闭, 则 <span class="math inline">\(A\)</span> 是闭集.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 16.4</u> (紧生成判断) 第一可数空间与局部紧空间是紧生成的.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.5</u> (连续的逆紧映射是闭的) 设空间 <span class="math inline">\(X\)</span>, 紧生成的 Hausdorff 空间 <span class="math inline">\(Y\)</span>, 连续的逆紧映射 <span class="math inline">\(F:X\to Y\)</span>, 则 <span class="math inline">\(F\)</span> 闭.</p>
+</div>
 <ul>
 <li>(推论) 若 <span class="math inline">\(F\)</span> 单, 则是拓扑嵌入; 若满, 则是商映射; 若双, 则是同胚.</li>
 </ul>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(A\subset X\)</span> 闭. 要证明 <span class="math inline">\(F(A)\subset Y\)</span> 闭, 只需证明它与任意紧集的交是闭的. 设 <span class="math inline">\(K\subset Y\)</span> 紧, 则 <span class="math inline">\(F^{-1}(K)\)</span> 紧, 并且 <span class="math inline">\(A\cap F^{-1}(K)\)</span> 作为紧集的闭子集, 也是紧的. 根据紧的连续不变性, <span class="math inline">\(F(A\cap F^{-1}(K))=F(A)\cap K\)</span> 是紧的. 又因为 <span class="math inline">\(K\)</span> Hausdorff, <span class="math inline">\(F(A)\cap K\)</span> 在 <span class="math inline">\(K\)</span> 中闭.</p>
-</div></li>
-</ul>
+</div>
 <p><strong>单点紧化</strong>: 设 <span class="math inline">\(X\)</span> 是局部紧的 Hausdorff 空间. 定义 <span class="math inline">\(X^*=X\amalg\{\infty\}\)</span> 并赋予拓扑: <span class="math display">\[
 {\cal T}={\cal T}_X \cup
 \{U\subset X^*\mid X^*\setminus U \textsf{ 是 $X$ 的紧子集}\}.
 \]</span></p>
 <ul>
-<li><p>(子空间) <span class="math inline">\(X\)</span> 具有子空间拓扑, 且在 <span class="math inline">\(X^*\)</span> 中开.</p></li>
-<li><p>(紧) <span class="math inline">\(X^*\)</span> 是紧 Hausdorff 空间.</p>
+<li>容易验证, <span class="math inline">\(X\)</span> 具有子空间拓扑, 且在 <span class="math inline">\(X^*\)</span> 中开.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 16.6</u> (单点紧化的紧性) <span class="math inline">\(X^*\)</span> 是紧 Hausdorff 空间.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 任给 <span class="math inline">\(X^*\)</span> 的开覆盖 <span class="math inline">\(\cal U\)</span>, 则存在开集 <span class="math inline">\(U\in{\cal U}\)</span> 使得 <span class="math inline">\(\infty\in U\)</span>. 根据 <span class="math inline">\(X^*\)</span> 拓扑的定义, <span class="math inline">\(X^*\setminus U\)</span> 是 <span class="math inline">\(X\)</span> 的紧子集. 因为 <span class="math inline">\({\cal U}\setminus\{U\}\)</span> 覆盖 <span class="math inline">\(X^*\setminus U\)</span>, 它有有限子覆盖 <span class="math inline">\({\cal U}'\)</span> (子空间紧性判断). <span class="math inline">\(\cal U'\)</span> 与 <span class="math inline">\(U\)</span> 合起来构成 <span class="math inline">\(X^*\)</span> 的有限子覆盖.</p>
 <p>对于 <span class="math inline">\(X^*\)</span> 的 Hausdorff 性, 只需验证 <span class="math inline">\(\infty\)</span> 和 <span class="math inline">\(p\in X\)</span> 可分离. 因为 <span class="math inline">\(X\)</span> 是局部紧的 Hausdorff 空间, 存在 <span class="math inline">\(p\)</span> 的预紧邻域 <span class="math inline">\(U\)</span>, 满足 <span class="math inline">\(\overline{U}\)</span> 紧. 进而 <span class="math inline">\(X^*\setminus\overline{U}\)</span> 是 <span class="math inline">\(\infty\)</span> 的邻域, 且与 <span class="math inline">\(U\)</span> 不交.</p>
-</div></li>
-<li><p>(发散到无穷的序列) <span class="math inline">\(X\)</span> 的某序列发散到无穷, 当且仅当它在 <span class="math inline">\(X^*\)</span> 中收敛到 <span class="math inline">\(\infty\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.7</u> (发散到无穷的序列) <span class="math inline">\(X\)</span> 的某序列发散到无穷, 当且仅当它在 <span class="math inline">\(X^*\)</span> 中收敛到 <span class="math inline">\(\infty\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\((x_i)\)</span> 发散到无穷. 任给 <span class="math inline">\(\infty\)</span> 的邻域 <span class="math inline">\(U\)</span>, 则 <span class="math inline">\(X^*\setminus U\)</span> 是 <span class="math inline">\(X\)</span> 的紧子集. 根据发散到无穷的定义, 只有有限项 <span class="math inline">\(x_i\)</span> 在 <span class="math inline">\(X^*\setminus U\)</span> 中, 因此只要 <span class="math inline">\(i\)</span> 充分大, <span class="math inline">\(x_i\in U\)</span>, 即 <span class="math inline">\(x_i\to\infty\)</span>. 反之略.</p>
-</div></li>
-<li><p>(稠密性与紧性) <span class="math inline">\(X\)</span> 在 <span class="math inline">\(X^*\)</span> 中稠密, 当且仅当 <span class="math inline">\(X\)</span> 非紧.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.8</u> (稠密性与紧性) <span class="math inline">\(X\)</span> 在 <span class="math inline">\(X^*\)</span> 中稠密, 当且仅当 <span class="math inline">\(X\)</span> 非紧.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 我们证明, <span class="math inline">\(X\)</span> 在 <span class="math inline">\(X^*\)</span> 中非稠密, 当且仅当 <span class="math inline">\(X\)</span> 紧.</p>
 <p>设 <span class="math inline">\(X\)</span> 在 <span class="math inline">\(X^*\)</span> 中非稠密, 则存在非空开集与 <span class="math inline">\(X\)</span> 不交. 这非空开集只能是 <span class="math inline">\(\{\infty\}\)</span>, 因此 <span class="math inline">\(X^*\setminus\{\infty\}\)</span> 是 <span class="math inline">\(X\)</span> 的紧子集, 即 <span class="math inline">\(X\)</span> 紧. 反之是类似的.</p>
-</div></li>
-</ul>
+</div>
 <p>单点紧化的例子.</p>
 <ul>
 <li><p><strong><span class="math inline">\(\R^n\)</span> 的单点紧化</strong>. 记 <span class="math inline">\((\R^n)^*\)</span> 是 <span class="math inline">\(\R^n\)</span> 的单点紧化. 设 <span class="math inline">\(\sigma:\mathbb{S}^n\setminus\{N\}\to\R^n\)</span> 是球极投影, 则 <span class="math inline">\(\sigma\)</span> 可扩张到同胚 <span class="math display">\[

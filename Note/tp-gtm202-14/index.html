@@ -23,12 +23,16 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="定理的内容, 应用及其证明.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-generators.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-pf-init.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-pf-induction.png">
 <meta property="article:published_time" content="2024-08-12T03:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-12T03:04:33.780Z">
+<meta property="article:modified_time" content="2024-08-12T09:11:24.502Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="代数拓扑">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-generators.png">
   
   
   
@@ -314,9 +318,10 @@ C=\{(i_*\gamma)(j_*\gamma)^{-1}\mid \gamma\in\pi_1(U\cap V,p)\}.
 \]</span> 特别地, <span class="math inline">\(\pi_1(X,p)\)</span> 由 <span class="math inline">\(\pi_1(U,p)\)</span> 和 <span class="math inline">\(\pi_1(V,p)\)</span> 在 <span class="math inline">\(\Phi\)</span> 下的像生成.</p>
 </div>
 <ul>
-<li>利用融合自由积的语言, <span class="math inline">\(\pi_1(X,p)\)</span> 同构于 <span class="math inline">\(\pi_1(U,p)\)</span> 和 <span class="math inline">\(\pi_1(V,p)\)</span> 沿着 <span class="math inline">\(\pi_1(U\cap V,p)\)</span> 的融合自由积: <span class="math display">\[
+<li><p>利用融合自由积的语言, <span class="math inline">\(\pi_1(X,p)\)</span> 同构于 <span class="math inline">\(\pi_1(U,p)\)</span> 和 <span class="math inline">\(\pi_1(V,p)\)</span> 沿着 <span class="math inline">\(\pi_1(U\cap V,p)\)</span> 的融合自由积: <span class="math display">\[
 \pi_1(X,p) \cong \pi_1(U,p) *_{\pi_1(U\cap V,p)} \pi_1(V,p),
-\]</span> 其中, 融合自由积定义中的群同态由 <span class="math inline">\(i_*\)</span> 和 <span class="math inline">\(j_*\)</span> 给出.</li>
+\]</span> 其中, 融合自由积定义中的群同态由 <span class="math inline">\(i_*\)</span> 和 <span class="math inline">\(j_*\)</span> 给出.</p></li>
+<li><p>Seifert–Van Kampen 定理的证明在本章最后给出. 实际上, 该定理能推广到任意开覆盖 <span class="math inline">\(\{U_\alpha\}\)</span> 的情形.</p></li>
 </ul>
 <p>在后面几节的大多数应用中, 我们只需要考虑定理的特殊情况.</p>
 <div class="note note-success">
@@ -332,6 +337,11 @@ C=\{(i_*\gamma)(j_*\gamma)^{-1}\mid \gamma\in\pi_1(U\cap V,p)\}.
 }.
 \]</span></p>
 </div>
+<p>另一种特殊情况是其中一个开集 (比如 <span class="math inline">\(U\)</span>) 单连通的情况. 此时, <span class="math inline">\(\pi_1(U,p)\)</span> 平凡, <span class="math inline">\(i_*,k_*\)</span> 都是平凡同态, 交换图中央的 <span class="math inline">\(\pi_1(U,p)*\pi_1(V,p)\)</span> 变成了 <span class="math inline">\(\pi_1(V,p)\)</span>. 因此整个交换图化简为 <span class="math display">\[
+\pi_1(U\cap V,p) \overset{j_*}\longrightarrow
+\pi_1(V,p) \overset{l_*}\longrightarrow
+\pi_1(X,p).
+\]</span></p>
 <div class="note note-success">
 <p><u>Claim 35.3</u> (Seifert–Van Kampen, 一个开集单连通) 假设同 Seifert–Van Kampen, 若还有 <span class="math inline">\(U\)</span> 单连通, 则包含映射 <span class="math inline">\(l:V\hookrightarrow X\)</span> 诱导群同构 <span class="math display">\[
 \pi_1(X,p)\cong\pi_1(V,p)\Big/\overline{j_*\pi_1(U\cap V,p)},
@@ -348,8 +358,119 @@ C=\{(i_*\gamma)(j_*\gamma)^{-1}\mid \gamma\in\pi_1(U\cap V,p)\}.
 \]</span> 其中 <span class="math inline">\(v_a\)</span> 是 <span class="math inline">\(j_*\gamma_a\in\pi_1(V,p)\)</span> 关于生成元 <span class="math inline">\(\{\beta_i\}\)</span> 的表达式.</p>
 </div>
 <h3 id="applications">35.2  Applications</h3>
-<h3 id="fundamental-groups-of-compact-surfaces">35.3  Fundamental groups of compact surfaces</h3>
-<h3 id="proof-of-the-theorem">35.4  Proof of the theorem</h3>
+<h4 id="wedge-sums">35.2.1  Wedge sums</h4>
+<p>回忆拓扑空间的楔和/一点并: 设带基点的拓扑空间 <span class="math inline">\((X_j,p_j)\)</span>, <span class="math inline">\(j=1,\dots,n\)</span>, 其楔和 <span class="math inline">\(X_1\vee\dots\vee X_n\)</span> 定义为 <span class="math inline">\(\coprod_iX_i\)</span> 商去等价关系 <span class="math inline">\(p_1\sim\dots\sim p_n\)</span>. 楔和的基点 <span class="math inline">\(*\)</span> 是 <span class="math inline">\(p_j\)</span> 所在的等价类. 记商映射 <span class="math inline">\(q:\coprod_jX_j\to\bigvee_jX_j\)</span>.</p>
+<p>空间 <span class="math inline">\(X_j\)</span> 可以视作 <span class="math inline">\(\bigvee_iX_i\)</span> 的子空间. 考虑复合映射 <span class="math inline">\(\iota_j:X_j\hookrightarrow\coprod_iX_i\overset{q}\to\bigvee_iX_i\)</span>, 这是一个连续的单射, 容易验证它还是开映射, 因此 <span class="math inline">\(\iota_j\)</span> 是拓扑嵌入, <span class="math inline">\(X_j\)</span> 可以和 <span class="math inline">\(\bigvee_iX_i\)</span> 的子空间 <span class="math inline">\(\iota_j(X_j)\)</span> 认同.</p>
+<p>为了利用 Seifert–Van Kampen 定理计算楔和的基本群, 我们需要对基点提出一个要求. 点 <span class="math inline">\(p\in X\)</span> 称为<strong>非退化基点 (nondegenerate base point)</strong>, 若 <span class="math inline">\(p\)</span> 的某邻域 <span class="math inline">\(U\)</span> 能够强形变收缩到 <span class="math inline">\(\{p\}\)</span>.</p>
+<ul>
+<li>流形的所有点都是非退化基点, 因为坐标开球可以强形变收缩到其中任意一点.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 35.4</u> (楔和的非退化基点) 若 <span class="math inline">\(p_j\in X_j\)</span> 是非退化基点, 则 <span class="math inline">\(*\)</span> 是 <span class="math inline">\(\bigvee_jX_j\)</span> 的非退化基点.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 对于 <span class="math inline">\(p_i\)</span>, 有强形变收缩 <span class="math inline">\(r_i:W_i\to\{p_i\}\)</span>, 设同伦 <span class="math inline">\({\rm id}_{W_i}\sim\iota_{\{p_i\}}\circ r_i\)</span> 由 <span class="math inline">\(H_i:W_i\times I\to W_i\)</span> 给出. 定义不交并空间上的同伦 <span class="math inline">\(H:(\coprod_iW_i)\times I\to\coprod_iW_i\)</span>, 定义为 <span class="math inline">\(H|_{W_i\times I}:=H_i\)</span> (根据不交并的特征性质, 这是连续映射).</p>
+<p>商映射 <span class="math inline">\(q\)</span> 在饱和开集 <span class="math inline">\(\coprod_iW_i\)</span> 上的限制是 <span class="math inline">\(\coprod_iW_i\)</span> 到 <span class="math inline">\(W:=q(\coprod_iW_i)\)</span> 的商映射, 其中 <span class="math inline">\(W\)</span> 是基点 <span class="math inline">\(*\)</span> 的一个邻域. 因为 <span class="math inline">\(I\)</span> 局部紧, 乘积 <span class="math inline">\(q\times{\rm id}_I:(\coprod_iW_i)\times I\to W\times I\)</span> 是商映射. 因为 <span class="math inline">\(q\circ H\)</span> 在 <span class="math inline">\(q\times{\rm id}_I\)</span> 的纤维上常值, 它下降到连续映射 <span class="math inline">\(\tilde{H}:W\times I\to W\)</span>, 这给出了 <span class="math inline">\(W\)</span> 到 <span class="math inline">\(\{*\}\)</span> 的强形变收缩.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 35.5</u> (楔和的基本群) 设带有非退化基点的拓扑空间 <span class="math inline">\((X_j,p_j)\)</span>, <span class="math inline">\(j=1,\dots,n\)</span>, 则 <span class="math display">\[
+(\iota_j)_*:\pi_1(X_j,p_j) \to \pi_1(X_1\vee\dots\vee X_n,*)
+\]</span> 诱导出的群同态 <span class="math display">\[
+\Phi: \pi_1(X_1,p_1)*\dots*\pi_1(X_n,p_n) \to
+\pi_1(X_1\vee\dots\vee X_n,*)
+\]</span> 是群同构.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 用归纳法. 下面我们证明 <span class="math inline">\(X_1\vee X_2\)</span> 的情形. 对于 <span class="math inline">\(n&gt;2\)</span>, 对 <span class="math inline">\(X_1\)</span> 和 <span class="math inline">\(X_2\vee\dots\vee X_n\)</span> 应用下面的证明 (上面的引理保证这两个空间都有非退化基点).</p>
+<p>考虑 <span class="math inline">\(X_1\vee X_2\)</span>. 需要注意, 直接对 <span class="math inline">\(U=X_1,V=X_2\)</span> 应用 SVK 定理是不对的, 因为它们不是开集.</p>
+<p>取邻域 <span class="math inline">\(W_i\subset X_i\)</span> 使得它能强形变收缩到 <span class="math inline">\(\{p_i\}\)</span>, 令 <span class="math inline">\(U=q(X_1\amalg W_2)\)</span>, <span class="math inline">\(V=q(X_2\amalg W_1)\)</span>, 其中 <span class="math inline">\(q:X_1\amalg X_2\to X_1\vee X_2\)</span> 是商映射. 因为 <span class="math inline">\(X_1\amalg W_2\)</span> 和 <span class="math inline">\(X_2\amalg W_1\)</span> 都是饱和开集, <span class="math inline">\(q\)</span> 将它们映到开集, 所以 <span class="math inline">\(U,V,U\cap V\)</span> 是 <span class="math inline">\(X_1\vee X_2\)</span> 中的开集.</p>
+<p>一个关键的观察是: 由基点的非退化性, 有三组同伦等价 <span class="math display">\[
+\Align{
+\{*\} &amp;\hookrightarrow U\cap V, \\
+X_1 &amp;\hookrightarrow U, \\
+X_2 &amp;\hookrightarrow V, \\
+}
+\]</span> 其中每一组的左边是右边的强形变收缩.</p>
+<p>因为 <span class="math inline">\(U\cap V\)</span> 可缩, 进而单连通, 应用 Claim 35.2, 有群同构 <span class="math display">\[
+\Phi: \pi_1(U,*)*\pi_1(V,*) \overset\sim\to \pi_1(X,*),
+\]</span> 另外, 单射 <span class="math inline">\(\iota_1:X_1\hookrightarrow U\)</span> 和 <span class="math inline">\(\iota_2:X_2\hookrightarrow V\)</span> 是同伦等价, 因此有基本群同构 <span class="math display">\[
+\Align{
+(\iota_1)_*:\pi_1(X_1,*)&amp;\overset\sim\to\pi_1(U,*), &amp;
+(\iota_2)_*:\pi_1(X_2,*)&amp;\overset\sim\to\pi_1(V,*),
+}
+\]</span> 将它们复合便得到想要的结果. 具体的过程见交换图: <span class="math display">\[
+\xymatrix@!@C=1em{
+\pi_1(X_1,*)
+  \ar@[tomato][r]^{(\iota_1)_*}_{\sim} &amp;
+\pi_1(U,*)
+  \ar[rd]^{k_*}
+  \ar@{^{(}-&gt;}@[tomato][d] \\ &amp;
+\pi_1(U,*)*\pi_1(V,*)
+  \ar@[tomato][r]^(.58)\Phi_(.58){\sim} &amp;
+\pi_1(X,*) \\
+\pi_1(X_2,*)
+  \ar@[tomato][r]^{(\iota_2)_*}_{\sim} &amp;
+\pi_1(V,*)
+  \ar[ru]_{l_*}
+  \ar@{_{(}-&gt;}@[tomato][u]
+}
+\]</span></p>
+</div>
+<ul>
+<li><p>(圆束) <span class="math inline">\(\mathbb{S}^1\vee\dots\vee\mathbb{S}^1\)</span> 的基本群同构于 <span class="math inline">\(\Z*\dots*\Z\)</span>. 如果记 <span class="math inline">\([\omega_i]\)</span> 是第 <span class="math inline">\(i\)</span> 个 <span class="math inline">\(\mathbb{S}^1\)</span> 的基本群的生成元, 则圆束的基本群是 <span class="math inline">\([\omega_1],\dots,[\omega_n]\)</span> 生成的自由群 <span class="math inline">\(\lr{[\omega_1],\dots,[\omega_n]}\)</span>.</p>
+<ul>
+<li>特别地, 8 字形空间 <span class="math inline">\(\mathbb{S}^1\vee\mathbb{S}^1\)</span> 的基本群是由两个基本环路 <span class="math inline">\([\omega_1],[\omega_2]\)</span> 生成的自由群, 一个群元形如 <span class="math display">\[
+[\omega_1]^{i_1}[\omega_2]^{j_1}\cdots
+[\omega_1]^{i_m}[\omega_2]^{j_m}.
+\]</span></li>
+</ul></li>
+<li><p>(去掉 <span class="math inline">\(n\)</span> 个点的平面) 设 <span class="math inline">\(\R^2\setminus\{p_1,\dots,p_n\}\)</span> 是去掉 <span class="math inline">\(n\)</span> 的点的平面, 它可以强形变收缩到 <span class="math inline">\(\mathbb{S}^1\vee\dots\vee\mathbb{S}^1\)</span> (每个 <span class="math inline">\(\mathbb{S}^1\)</span> 包住一个 <span class="math inline">\(p_i\)</span>). 因此 <span class="math inline">\(\R^2\setminus\{p_1,\dots,p_n\}\)</span> 的基本群同构于 <span class="math inline">\(\Z*\dots*\Z\)</span>.</p></li>
+</ul>
+<h4 id="graphs">35.2.2  Graphs</h4>
+<p>在 CW 复形一章中, 我们介绍了图的概念. 一个<strong>图 (graphi)</strong> 是 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(1\)</span> 维的 CW 复形. 其 <span class="math inline">\(0\)</span> 维胞腔称为<strong>顶点 (vertices)</strong>, <span class="math inline">\(1\)</span> 维胞腔称为<strong>边 (edges)</strong>. 根据定义, 对于任意一条边 <span class="math inline">\(e\)</span>, <span class="math inline">\(\overline{e}\setminus e\)</span> 包含 <span class="math inline">\(1\)</span> 或 <span class="math inline">\(2\)</span> 个顶点. 对于包含于 <span class="math inline">\(\overline{e}\)</span> 的顶点 <span class="math inline">\(v\)</span>, 我们称 <span class="math inline">\(v\)</span> 和 <span class="math inline">\(e\)</span> 是<strong>关联的 (incident)</strong>. 一个<strong>子图 (subgraph)</strong> 是图的子复形. 因此, 若一个子图包含一条边, 则它必须包含与之关联的顶点.</p>
+<p>只与一个顶点关联的边称为<strong>自环 (self-loop)</strong>. 若顶点 <span class="math inline">\(v_1,v_2\)</span> (可以相同) 同时与多条边关联, 则称这些边为<strong>重边 (multiple edges)</strong>. 没有自环, 也没有多重边的图称为<strong>简单图 (simple graph)</strong>. (有的图论文献以 "图" 代指简单图, 以 "重图" 代指这里一般意义上的图.)</p>
+<p>一条<strong>路径 (edge path)</strong> 指的是有限序列 <span class="math inline">\((v_0,e_1,v_1,\dots,v_{k-1},e_k,v_k)\)</span>, 其中顶点和边交替出现, 以点起止, 并且满足对任意 <span class="math inline">\(i=1,\dots,k\)</span>, <span class="math inline">\(\{v_{i-1},v_i\}\)</span> 恰好是与边 <span class="math inline">\(e_i\)</span> 关联的顶点 (<span class="math inline">\(v_{i-1}=v_i\)</span> 当且仅达 <span class="math inline">\(e_i\)</span> 是自环). 顶点 <span class="math inline">\(v_0,v_k\)</span> 分别称为<strong>起点 (initial vertex)</strong> 和<strong>终点 (terminal vertex)</strong>. <strong>平凡路径 (trivial edge path)</strong> 是单顶点的路径 <span class="math inline">\((v_0)\)</span>. 一条路径称为<strong>闭的 (closed)</strong>, 若 <span class="math inline">\(v_0=v_k\)</span>; 称为<strong>简单的 (simple)</strong>, 若其中的顶点 (除了 <span class="math inline">\(v_0,v_k\)</span>) 和边都只出现一次.</p>
+<ul>
+<li>图 <span class="math inline">\(\Gamma\)</span> 是连通的, 当且仅当任给 <span class="math inline">\(v,v'\in\Gamma\)</span>, 存在连接 <span class="math inline">\(v,v'\)</span> 的路径. 在连通图中, 任意两点可以由简单路径相连.</li>
+</ul>
+<p>一个<strong>环 (cycle)</strong> 是非平凡的简单闭路径. 一棵<strong>树 (tree)</strong> 是不含有环的连通图.</p>
+<ul>
+<li>一棵树中不能含有重边或自环. 若 <span class="math inline">\(e\)</span> 是与顶点 <span class="math inline">\(v\)</span> 关联的自环, 则 <span class="math inline">\((v,e,v)\)</span> 是一个环. 若 <span class="math inline">\(e,e'\)</span> 是与顶点 <span class="math inline">\(v,v'\)</span> 关联的重边, 则 <span class="math inline">\((v,e,v',e',v)\)</span> 是一个环. 因此, 树是一个简单图.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 35.6</u> 任意有限树都是可缩的, 因此是单连通的.</p>
+</div>
+<p>图 <span class="math inline">\(\Gamma\)</span> 的一棵<strong>生成树 (spanning tree)</strong> 是包含了 <span class="math inline">\(\Gamma\)</span> 的所有顶点的一棵子树. 图 <span class="math inline">\(\Gamma\)</span> 的一棵<strong>极大子树 (maximal tree)</strong> 是不真包含于其他子树的子树.</p>
+<div class="note note-success">
+<p><u>Claim 35.7</u> 任意有限连通图都包含一棵生成树.</p>
+</div>
+<p>设 <span class="math inline">\(\Gamma\)</span> 是一个有限连通图, 下面我们尝试构造其基本群的一组生成元. 取顶点 <span class="math inline">\(v\)</span> 为基点, 令 <span class="math inline">\(T\subset\Gamma\)</span> 为一棵生成树. 设 <span class="math inline">\(e_1,\dots,e_n\)</span> 是不在 <span class="math inline">\(T\)</span> 中的边, 对于 <span class="math inline">\(e_i\)</span>, 记与之关联的顶点为 <span class="math inline">\(\{w_i,w_i'\}\)</span>. 我们这样构造一条以 <span class="math inline">\(v\)</span> 为基点的环路 (如下图): ① 在 <span class="math inline">\(T\)</span> 中选择一条从 <span class="math inline">\(v\)</span> 到 <span class="math inline">\(w_i\)</span> 的道路 <span class="math inline">\(g_i\)</span>, ② 沿着 <span class="math inline">\(e_i\)</span> 从 <span class="math inline">\(w_i\)</span> 走到 <span class="math inline">\(w_i'\)</span>, ③ 在 <span class="math inline">\(T\)</span> 中选择一条从 <span class="math inline">\(w_i'\)</span> 到 <span class="math inline">\(v\)</span> 的道路 <span class="math inline">\(h_i\)</span>. 记这条环路为 <span class="math inline">\(f_i\)</span>. 注意 <span class="math inline">\([f_i]\)</span> 与 <span class="math inline">\(g_i,h_i\)</span> 的选取无关: 因为 <span class="math inline">\(T\)</span> 是单连通的, 所以任意起点与终点相同的道路是道路同伦的.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-generators.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
+<div class="note note-success">
+<p><u>Claim 35.8</u> (有限图的基本群) 有限连通图 <span class="math inline">\(\Gamma\)</span> 的基本群 <span class="math inline">\(\pi_1(\Gamma,v)\)</span> 是以上 <span class="math inline">\([f_1],\dots,[f_n]\)</span> 生成的自由群.</p>
+</div>
+<ul>
+<li>记 <span class="math inline">\(E,V\)</span> 分别为 <span class="math inline">\(\Gamma\)</span> 的边数, 顶点数, 则其生成树的边数为 <span class="math inline">\((V-1)\)</span>, 因此 <span class="math inline">\(n=E-V+1\)</span>, 于是 <span class="math display">\[
+\pi_1(\Gamma,v) \cong \underbrace{\Z*\dots*\Z}_{n=E-V+1}.
+\]</span></li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 对 <span class="math inline">\(n\)</span> (即 <span class="math inline">\(\Gamma\setminus T\)</span> 的边数) 进行归纳. 当 <span class="math inline">\(n=0\)</span>, <span class="math inline">\(\Gamma=T\)</span> 是单连通的, 基本群平凡.</p>
+<p>当 <span class="math inline">\(n=1\)</span>, 我们要证明 <span class="math inline">\(\pi_1(\Gamma,v)\)</span> 是 <span class="math inline">\([f_1]\)</span> 生成的无穷循环群. 根据假设 <span class="math inline">\(\Gamma\)</span> 中有环 <span class="math inline">\((v_0,e_1,\dots,e_m,v_m)\)</span>, 并且 <span class="math inline">\(\Gamma\setminus{T}\)</span> 中的唯一一条边 <span class="math inline">\(e\)</span> 在这个环中 (否则 <span class="math inline">\(T\)</span> 中有环). 包含 <span class="math inline">\(\{v_0,e_1,\dots,e_m,v_m\}\)</span> 的子图 <span class="math inline">\(C\subset\Gamma\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>. 我们下面证明包含映射 <span class="math inline">\(C\hookrightarrow\Gamma\)</span> 是同伦等价.</p>
+<p>设 <span class="math inline">\(K\)</span> 是 <span class="math inline">\(\Gamma\setminus{T}\)</span> 中的所有边及其顶点构成的子图. <span class="math inline">\(K\)</span> 的任一分量 <span class="math inline">\(K_i\)</span> 是 <span class="math inline">\(\Gamma\)</span> 的连通子图, 且包含于 <span class="math inline">\(T\)</span>, 进而是一棵树 (下图). 还需注意到 <span class="math inline">\(K_i\)</span> 与 <span class="math inline">\(C\)</span> 有公共顶点 <span class="math inline">\(y_i\)</span> (因为 <span class="math inline">\(\Gamma\)</span> 连通), 并且该 <span class="math inline">\(y_i\)</span> 是唯一的: 假如 <span class="math inline">\(K_i\cap C\)</span> 有两个点 <span class="math inline">\(y_i,y_i'\)</span>, 我们就能找到 <span class="math inline">\(T\)</span> 中的一个环 (在 <span class="math inline">\(K_i\)</span> 中从 <span class="math inline">\(y_i\)</span> 走到 <span class="math inline">\(y_i'\)</span>, 再在 <span class="math inline">\(C\)</span> 中从 <span class="math inline">\(y_i'\)</span> 走到 <span class="math inline">\(y_i\)</span>, 且不穿过 <span class="math inline">\(e\)</span>), 这是不可能的.</p>
+<p>现在可以定义 <span class="math inline">\(\Gamma\to C\)</span> 的强形变收缩了: 在每个 <span class="math inline">\(K_i\)</span> 上, 令 <span class="math inline">\(K_i\)</span> 强形变收缩到 <span class="math inline">\(y_i\)</span>; 在 <span class="math inline">\(C\)</span> 上取恒等映射. 根据 gluing lemma, 这是强形变收缩, 进而 <span class="math inline">\(\Gamma\sim\mathbb{S}^1\)</span>.</p>
+<p>最后我们证明 <span class="math inline">\([f_1]\)</span> 生成 <span class="math inline">\(\pi_1(\Gamma,v)\)</span>. 取顶点 <span class="math inline">\(z\in C\)</span>, 从 <span class="math inline">\(z\)</span> 出发, 依次遍历 <span class="math inline">\(C\)</span> 的边的一条道路 <span class="math inline">\(a\)</span> 显然道路同伦于 <span class="math inline">\(\mathbb{S}^1\)</span> 的标准环路 (或其逆), 可作为 <span class="math inline">\(\pi_1(\Gamma,z)\)</span> 的生成元. 一条从 <span class="math inline">\(v\)</span> 到 <span class="math inline">\(z\)</span> 的道路 <span class="math inline">\(b\)</span> 给出了基点变换 <span class="math inline">\(\Phi_b:\pi_1(\Gamma,z)\overset\sim\to\pi_1(\Gamma,v)\)</span>, 因此 <span class="math inline">\(\pi_1(\Gamma,v)\)</span> 的一个生成元是 <span class="math inline">\(\Phi_b[a]=[\bar{b}*a*b]\)</span>, 这是一条 ① 从 <span class="math inline">\(v\)</span> 到 <span class="math inline">\(w_1\)</span>, ② 走过 <span class="math inline">\(e\)</span>, ③ 从 <span class="math inline">\(w_1'\)</span> 回到 <span class="math inline">\(v\)</span> 的环路, 所以道路同伦于 <span class="math inline">\(f_1\)</span> (因为 <span class="math inline">\(f_1\)</span> 的道路类不依赖于 ① 和 ③ 道路的选取). 因此我们完成了对 <span class="math inline">\(n=1\)</span> 情形的证明.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-pf-init.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>假设命题当 <span class="math inline">\(n\geq1\)</span> 时正确, 下面考虑 <span class="math inline">\(n+1\)</span> 的情形. 对于不在 <span class="math inline">\(T\)</span> 中的边 <span class="math inline">\(e_1,\dots,e_{n+1}\)</span>, 取 <span class="math inline">\(x_i\in e_i\)</span>, 令 <span class="math inline">\(U=\Gamma\setminus\{x_1,\dots,x_n\}\)</span>, <span class="math inline">\(V=\Gamma\setminus\{x_{n+1}\}\)</span> 为 <span class="math inline">\(\Gamma\)</span> 中的开集. 容易构造强形变收缩 (如下图) <span class="math display">\[
+U\cap V\sim T,\quad
+U\sim T\cup e_{n+1},\quad
+V\sim\Gamma\setminus e_{n+1}.
+\]</span> 根据 <span class="math inline">\(n=1\)</span> 的情形, <span class="math inline">\(\pi_1(U,v)=\lr{[f_{n+1}]}\)</span>; 根据归纳假设, <span class="math inline">\(\pi_1(V,v)=\lr{[f_1],\dots,[f_n]}\)</span>. 因为 <span class="math inline">\(U\cap V\)</span> 单连通, 由 SVK 的特殊情形, <span class="math inline">\(\pi_1(\Gamma,v)\)</span> 同构于这两个自由群的自由积, 进而同构于 <span class="math inline">\([f_1],\dots,[f_{n+1}]\)</span> 生成的自由群.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-pf-induction.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+</div>
+<h4 id="cw-complexes">35.2.3  CW complexes</h4>
+<h4 id="compact-surfaces">35.2.4  Compact surfaces</h4>
+<h3 id="proof-of-the-theorem">35.3  Proof of the theorem</h3>
 </body></html>
                 
               </div>
