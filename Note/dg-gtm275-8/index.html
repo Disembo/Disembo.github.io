@@ -24,7 +24,7 @@
 <meta property="og:description" content="张量场的协变导数, 向量丛的示性类.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-13T04:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-19T12:20:50.695Z">
+<meta property="article:modified_time" content="2024-08-12T03:32:49.911Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -297,12 +297,15 @@
 \]</span> 为了和上式适配, 我们将 Leibniz 律中的函数 <span class="math inline">\(f\)</span> 写作右乘: <span class="math display">\[
 \nabla(sf)
 = s\dd{f} + (\nabla s)f.
-\]</span> <u>Claim 20.1</u> (联络与曲率矩阵的变换律) 设开集 <span class="math inline">\(U\)</span> 上的两个标架满足 <span class="math inline">\(\bar{e}=ea\)</span>, <span class="math inline">\(a\in\Omega^0(U,{\rm GL}(r,\R))\)</span>, 则联络 <span class="math inline">\(\nabla\)</span> 在这两个标架下的联络与曲率矩阵满足 <span class="math display">\[
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 20.1</u> (联络与曲率矩阵的变换律) 设开集 <span class="math inline">\(U\)</span> 上的两个标架满足 <span class="math inline">\(\bar{e}=ea\)</span>, <span class="math inline">\(a\in\Omega^0(U,{\rm GL}(r,\R))\)</span>, 则联络 <span class="math inline">\(\nabla\)</span> 在这两个标架下的联络与曲率矩阵满足 <span class="math display">\[
 \Align{
 \bar\omega &amp;= a^{-1}\omega a + a^{-1}\dd{a}, \\
 \bar\Omega &amp;= a^{-1}\Omega a.
 }
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 由定义, <span class="math display">\[
 \Align{
@@ -326,7 +329,9 @@ R(\bar{e})
 \omega_{\bar{e}} = a^{-1}\omega_ea+a^{-1}\dd{a}
 \]</span> 对任意 <span class="math inline">\((U,e)\)</span> 和 <span class="math inline">\((U',\bar{e})\)</span>, 其中在 <span class="math inline">\(U\cap U'\neq\emptyset\)</span> 上有 <span class="math inline">\(\bar{e}=ea\)</span>.</p>
 <p>下面我们用这种方法定义拉回丛上的联络.</p>
+<div class="note note-success">
 <p><u>Claim 20.2</u> (拉回丛上的联络) 设 <span class="math inline">\(E\to M\)</span> 上的联络 <span class="math inline">\(\nabla\)</span>, 光滑映射 <span class="math inline">\(f:N\to M\)</span>. 设 <span class="math inline">\(E\)</span> 的平凡化开覆盖 <span class="math inline">\(\{(U,e)\}\)</span>, 对应的联络矩阵为 <span class="math inline">\(\omega_e\)</span>, 则存在唯一 <span class="math inline">\(f^*E\)</span> 上的联络, 其在标架开集 <span class="math inline">\((f^{-1}(U),f^*e)\)</span> 上的联络矩阵是 <span class="math inline">\(f^*(\omega_e)\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 只需验证任意两个联络矩阵是相容的: 取 <span class="math inline">\(f^*(\omega_e)\)</span> 和 <span class="math inline">\(f^*(\omega_{\bar{e}})\)</span> (<span class="math inline">\(\bar{e}=ea\)</span>), 因为拉回和乘积, 外微分都可交换, <span class="math display">\[
 f^*(\omega_{\bar{e}})=(f^*a)^{-1}f^*(\omega_e)f^*a
@@ -353,10 +358,13 @@ T^{*,*}(M) = \bigoplus_{r,s=0}^\infty T^{r,s}(M)
 \]</span> 为 <span class="math inline">\(M\)</span> 上的张量代数, 则依据关于 <span class="math inline">\(T\)</span> 的可加性, 协变导数可以推广到 <span class="math display">\[
 \nabla_X:\Gamma(T^{*,*}(M))\to\Gamma(T^{*,*}(M)).
 \]</span> 协变导数定义看上去很突然, 但这实际上保证了 Leibniz 律, 而且是 Leibniz 律的必然结果.</p>
+<div class="note note-success">
 <p><u>Claim 20.3</u> (协变导数是导子) 任给张量场 <span class="math inline">\(T_1,T_2\in\Gamma(T^{*,*}(M))\)</span> 和向量场 <span class="math inline">\(X\in\Gamma(TM)\)</span>, <span class="math display">\[
 \nabla_X(T_1\otimes T_2) =
 (\nabla_XT_1)\otimes T_2 + T_1\otimes(\nabla_XT_2).
-\]</span> <strong>曲率, 二阶协变导数, Laplace 算子</strong>.</p>
+\]</span></p>
+</div>
+<p><strong>曲率, 二阶协变导数, Laplace 算子</strong>.</p>
 <p>曲率可以直接推广到张量场上: 对 <span class="math inline">\(X,Y\in\Gamma(TM)\)</span>, 曲率 <span class="math inline">\(R(X,Y):\Gamma(T^{*,*}(M))\to\Gamma(T^{*,*}(M))\)</span>, <span class="math display">\[
 R(X,Y)T := \nabla_X\nabla_YT-\nabla_Y\nabla_XT-\nabla_{[X,Y]}T.
 \]</span> 挠率则没有什么新的东西: <span class="math inline">\(T(X,Y)=\nabla_XY-\nabla_YX-[X,Y]\)</span>.</p>
@@ -378,9 +386,11 @@ X^aX^b\nabla_a\nabla_b \quad\textsf{和}\quad X^a\nabla_aY^b\nabla_b.
 \]</span></p></li>
 </ul>
 <p>对于一般的张量场, 黎曼联络的二阶协变导数不是对称的, 其非对称性由曲率刻画.</p>
+<div class="note note-success">
 <p><u>Claim 20.3</u> (Ricci 恒等式) 设 <span class="math inline">\(M\)</span> 上的黎曼联络 <span class="math inline">\(\nabla\)</span>. 对 <span class="math inline">\(X,Y\in\Gamma(TM)\)</span>, <span class="math inline">\(T\in\Gamma(T^{r,s}(M))\)</span>, <span class="math display">\[
 \nabla^2_{X,Y}T-\nabla^2_{Y,X}T = R(X,Y)T
 \]</span></p>
+</div>
 <p><strong>Laplace-Beltrami 算子</strong> (简称 Laplace 算子) 是欧氏空间的 Laplace 算子的推广. 由黎曼度量 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 的非退化性, 存在唯一的线性映射 <span class="math inline">\(\eta:T_pM\to T_pM\)</span>, 满足 <span class="math inline">\(\nabla^2_{X,Y}f=\lr{\eta(X),Y}\)</span>. Laplace 算子定义为 <span class="math inline">\(\eta\)</span> 的迹: <span class="math display">\[
 \Delta{f} := \tr{\eta}
 = \sum_{i=1}^n\lr{\eta(e_i),e_i}
@@ -390,12 +400,14 @@ X^aX^b\nabla_a\nabla_b \quad\textsf{和}\quad X^a\nabla_aY^b\nabla_b.
 <p>联络 <span class="math inline">\(\nabla\)</span> 的<strong>黎曼曲率张量(Riemann curvature tensor)</strong>定义为 <span class="math display">\[
 \operatorname{Rm}(X,Y,Z,W) := \lr{R(X,Y)Z,W},\quad X,Y,Z,W\in\Gamma(TM),
 \]</span> 黎曼联络的曲率张量有一些对称性, 它们由 Bianchi 恒等式描述.</p>
+<div class="note note-success">
 <p><u>Claim 20.4</u> (Bianchi 恒等式, 微分形式版本) 设 <span class="math inline">\(M\)</span> 上的联络 <span class="math inline">\(\nabla\)</span>, 标架 <span class="math inline">\(e=[e_1,\dots,e_n]\)</span> 下的联络矩阵 <span class="math inline">\(\omega\)</span>, 曲率矩阵 <span class="math inline">\(\Omega\)</span>, 对偶标架 <span class="math inline">\(\theta=[\theta^1,\dots,\theta^n]\T\)</span>, 挠率矩阵 <span class="math inline">\(\tau=[\tau^1,\dots,\tau^n]\T\)</span>, 则</p>
 <ol type="1">
 <li>(第一 Bianchi 恒等式) <span class="math inline">\(\dd\tau=\Omega\wedge\theta-\omega\wedge\tau\)</span>.</li>
 <li>(第二 Bianchi 恒等式) <span class="math inline">\(\dd\Omega=\Omega\wedge\omega-\omega\wedge\Omega\)</span>.</li>
 <li>(推广的第二 Bianchi 恒等式) <span class="math inline">\(\dd(\Omega^k)=\Omega^k\wedge\omega-\omega\wedge\Omega^k\)</span>, 其中 <span class="math inline">\(\Omega^k:=\Omega\wedge\cdots\wedge\Omega\)</span> 共 <span class="math inline">\(k\)</span> 个.</li>
 </ol>
+</div>
 <ul>
 <li>推广的第二 Bianchi 恒等式也适用于向量丛 <span class="math inline">\(E\to M\)</span> 上的联络. 根据 Claim 19.5, 推广的第二 Bianchi 恒等式还可以写作 <span class="math display">\[
 \dd(\Omega^k) = [\Omega^k,\omega].
@@ -428,11 +440,13 @@ X^aX^b\nabla_a\nabla_b \quad\textsf{和}\quad X^a\nabla_aY^b\nabla_b.
 }
 \]</span></p>
 </div>
+<div class="note note-success">
 <p><u>Claim 20.5</u> (Bianchi 恒等式, 向量场版本) 设 <span class="math inline">\(M\)</span> 上的黎曼联络 <span class="math inline">\(\nabla\)</span>, 向量场 <span class="math inline">\(X,Y,Z\in\Gamma(TM)\)</span>,</p>
 <ol type="1">
 <li>(第一 Bianchi 恒等式) <span class="math inline">\(R(X,Y)Z+R(Y,Z)X+R(Z,X)Y=0\)</span>.</li>
 <li>(第二 Bianchi 恒等式) <span class="math inline">\((\nabla_X\operatorname{Rm})(Y,Z,-)+(\nabla_Y\operatorname{Rm})(Z,X,-)+(\nabla_Z\operatorname{Rm})(X,Y,-)=0\)</span>.</li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 1, 取标架开集 <span class="math inline">\(U,e_1,\dots,e_n\)</span>, 对偶标架 <span class="math inline">\(\theta^1,\dots,\theta^n\)</span>, 则 <span class="math inline">\(Z=\sum\theta^j(Z)e_j\)</span>. 由 <span class="math inline">\(R\)</span> 的 <span class="math inline">\({\cal F}\)</span>-线性性, <span class="math display">\[
 R(X,Y)Z
@@ -465,6 +479,7 @@ R(X,Y)Z
 }
 \]</span> (其中第四个等号根据 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 与 <span class="math inline">\(\nabla\)</span> 相容.) 循环 <span class="math inline">\(X,Y,Z\)</span> 并相加给出第二 Bianchi 恒等式.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 20.6</u> 黎曼曲率张量的对称性:</p>
 <ol type="1">
 <li><span class="math inline">\(\operatorname{Rm}(X,Y,Z,W)=-\operatorname{Rm}(Y,X,Z,W)\)</span>.</li>
@@ -473,6 +488,7 @@ R(X,Y)Z
 <li>(Bianchi) <span class="math inline">\(\sum_{\textsf{cyclic in }X,Y,Z}\nabla_X\operatorname{Rm}(Y,Z,V,W)=0\)</span>.</li>
 <li><span class="math inline">\(\operatorname{Rm}(X,Y,Z,W)=\operatorname{Rm}(Z,W,X,Y)\)</span>.</li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 1 由曲率的定义得; 2 是 Claim 8.4; 3 和 4 是 Bianchi 恒等式. 5 是第一 Bianchi 恒等式的推论.</p>
 </div>
@@ -510,11 +526,13 @@ S
 \]</span> 所以对于 <span class="math inline">\(r^2\)</span> 个变量的多项式 <span class="math inline">\(P(X)=P(x^i_j)\in\R[x^i_j]\)</span>, 若 <span class="math inline">\(P(X)\)</span> 在 <span class="math inline">\({\rm GL}(r,\R)\)</span> 的共轭作用下不变: <span class="math display">\[
 P(X) = P(A^{-1}XA),\quad\forall A\in{\rm GL}(r,\R),
 \]</span> 则 <span class="math inline">\(P(\Omega)\)</span> 给出了一个不依赖于标架的整体微分形式. 我们称这样的多项式是<strong>不变多项式(invariant polynomial)</strong>. 若 <span class="math inline">\(P\)</span> 是 <span class="math inline">\(k\)</span> 次齐次的, 则整体形式 <span class="math inline">\(P(\Omega)\in\Omega^{2k}(M,{\frak gl}(r,\R))\)</span>, 称为<strong>示性形式(characteristic form)</strong>. 下面我们要证明, <span class="math inline">\(P(\Omega)\)</span> 是闭形式. 于是其上同调类 <span class="math inline">\([P(\Omega)]\in H^{2k}(M)\)</span> 是良定义的, 我们还证明其不依赖 <span class="math inline">\(\nabla\)</span> 的选取, 称为<strong>示性类(characteristic class)</strong>.</p>
+<div class="note note-success">
 <p><u>Claim 21.1</u> 设秩 <span class="math inline">\(r\)</span> 的向量丛 <span class="math inline">\(E\to M\)</span>, 联络 <span class="math inline">\(\nabla\)</span> 给出整体曲率形式 <span class="math inline">\(\Omega\)</span>. 任给不变多项式 <span class="math inline">\(P(X)\)</span>,</p>
 <ol type="1">
 <li><span class="math inline">\(P(\Omega)\)</span> 是闭形式.</li>
 <li><span class="math inline">\([P(\Omega)]\)</span> 不依赖 <span class="math inline">\(\nabla\)</span> 的选取.</li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 证明过程使用了一些结论, 包括不变多项式和<strong>单参数微分形式族</strong> <span class="math inline">\(\{\omega_t\}_{t\in J}\)</span> 的一些定理. 这些结论附在本节末尾.</p>
 <p>1, 因为不变多项式由迹多项式 <span class="math inline">\(\tr{X^k}\)</span> (<span class="math inline">\(k=1,\dots,r\)</span>) 生成, 所以只需对 <span class="math inline">\(\tr\Omega^k\)</span> 证明: <span class="math display">\[
@@ -588,28 +606,40 @@ N \ar[u]^{f} &amp;
 \varepsilon:R[x_1,\dots,x_n] &amp;\to {\rm Fun}(R^n,R) \\
 P &amp;\mapsto \hat{P}.
 }
-\]</span> <u>Claim</u> 若 <span class="math inline">\(R=F\)</span> 是无限域, 则 <span class="math inline">\(\varepsilon:R[x_i]\to{\rm Fun}(R^n,R)\)</span> 是单射.</p>
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim</u> 若 <span class="math inline">\(R=F\)</span> 是无限域, 则 <span class="math inline">\(\varepsilon:R[x_i]\to{\rm Fun}(R^n,R)\)</span> 是单射.</p>
+</div>
 <p>因此, 多项式 <span class="math inline">\(P\in F[x_i]\)</span> 可以与多项式函数认同.</p>
+<div class="note note-success">
 <p><u>Claim</u> 若整系数多项式 <span class="math inline">\(P\in\Z[x_i]\)</span> 在某特征为零的域上取值恒为零, 则 <span class="math inline">\(P\)</span> 在任意含幺交换环上取值恒为零.</p>
+</div>
 <p>设域 <span class="math inline">\(F\)</span>. 矩阵代数 <span class="math inline">\({\rm gl}(r,F)\)</span> 上的<strong>多项式</strong>指的是 <span class="math inline">\(r^2\)</span> 个变量的多项式 <span class="math inline">\(P\in F[x^i_j]\)</span>. 矩阵群 <span class="math inline">\({\rm GL}(r,F)\)</span> 可以作用在多项式上: <span class="math display">\[
 (AP)(X) = P(A^{-1}XA),\quad A\in{\rm GL}(r,F).
 \]</span> 多项式 <span class="math inline">\(P\in F[x^i_j]\)</span> 称为 <span class="math inline">\({\rm Ad}_{{\rm GL}(r,F)}\)</span>-不变多项式, 简称<strong>不变多项式</strong>, 若 <span class="math inline">\(AP=A\)</span> 对任意 <span class="math inline">\(A\in{\rm GL}(r,F)\)</span>. 所有 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式组成的 <span class="math inline">\(F\)</span>-代数记作 <span class="math inline">\({\rm Inv}({\frak gl}(r,F))\)</span>.</p>
+<div class="note note-success">
 <p><u>Claim</u> 若 <span class="math inline">\(P\)</span> 是 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式, 则对任意 <span class="math inline">\(F\)</span>-含幺代数 <span class="math inline">\(R\)</span> 和矩阵 <span class="math inline">\(X\in R^{r\times r}\)</span>, <span class="math display">\[
 P(A^{-1}XA)=P(X),\quad A\in{\rm GL}(r,F).
-\]</span> <u>Claim</u> 设特征为零的域 <span class="math inline">\(F\)</span>, 则特征多项式 <span class="math display">\[
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim</u> 设特征为零的域 <span class="math inline">\(F\)</span>, 则特征多项式 <span class="math display">\[
 \det(\lambda I+X) =
 \lambda^r+f_1(X)\lambda^{r-1}+\dots+f_{r-1}(X)\lambda+f_r(X)
 \]</span> 的系数 <span class="math inline">\(f_k(X)\in\Z[x^i_j]\)</span> 是 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式.</p>
+</div>
 <ul>
 <li>推论: <strong>迹多项式</strong> <span class="math inline">\(\Sigma_k(X):=\tr(X^k)\in\Z[x^i_j]\)</span> 也是 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式.</li>
 </ul>
 <p>特别地, 对角矩阵 <span class="math inline">\(X=\diag(t_1,\dots,t_r)\)</span> 的 <span class="math inline">\(f_k(X)\)</span> 和 <span class="math inline">\(\Sigma_k(X)\)</span> 是关于 <span class="math inline">\(t_i\)</span> 的对称多项式. 关于 <span class="math inline">\(t_1,\dots,t_r\)</span> 的所有对称多项式组成的 <span class="math inline">\(F\)</span>-代数记作 <span class="math inline">\(F[t_1,\dots,t_r]^{S_r}\)</span>. 下面的定理表明, 不变多项式与对称多项式一一对应.</p>
+<div class="note note-success">
 <p><u>Claim</u> 设 <span class="math inline">\(F=\R\)</span> 或 <span class="math inline">\(\C\)</span>. 下列映射是一个 <span class="math inline">\(F\)</span>-代数同构: <span class="math display">\[
 \Align{
 \varphi:{\rm Inv}({\frak gl}(r,F)) &amp;\to F[t_1,\dots,t_r]^{S_r} \\
 P(X) &amp;\mapsto \tilde{P}(t_1,\dots,t_r) := P(\diag(t_1,\dots,t_r)).
 }
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> <em>复数情形</em>. 证明用到两个事实: 1. 可对角化矩阵在 <span class="math inline">\({\frak gl}(r,\C)\)</span> 中稠密; 2. (对称多项式基本定理) 对称多项式由<strong>初等对称多项式</strong> <span class="math inline">\(\sigma_1,\dots,\sigma_r\)</span> 生成, 其中: <span class="math display">\[
 \sigma_k(t_1,\dots,t_k) :=
@@ -639,11 +669,13 @@ Q(\sigma_1,\dots,\sigma_r)
 = \tr(\diag(t_1^k,\dots,t_r^k))
 = \sum t_i^k.
 \]</span> 根据 Newton 恒等式, 幂和多项式都能也生成 <span class="math inline">\(F[t_1,\dots,t_k]^{S_r}\)</span>, 所以 <span class="math inline">\(\Sigma_k\)</span> 也可以生成所有不变多项式.</p>
+<div class="note note-success">
 <p><u>Claim</u> 设 <span class="math inline">\(F=\R\)</span> 或 <span class="math inline">\(\C\)</span>. 矩阵代数 <span class="math inline">\({\frak gl}(r,F)\)</span> 上的不变多项式由特征多项式的系数 <span class="math inline">\(f_k(X)\)</span> 或者迹多项式 <span class="math inline">\(\Sigma_k(X)\)</span> 生成: <span class="math display">\[
 {\rm Inv}({\frak gl}(r,F))
 =F[ f_1(X),\dots,f_r(X) ]
 =F[ \Sigma_1(X),\dots,\Sigma_k(X) ].
 \]</span></p>
+</div>
 <h3 id="forms-depending-on-a-real-parameter">21.4  *Forms depending on a real parameter</h3>
 <p>设<strong>单参数微分形式族</strong> <span class="math inline">\(\{\omega_t\}_{t\in J}\)</span>, 开区间 <span class="math inline">\(J\subset\R\)</span>. 在坐标系 <span class="math inline">\(U,x^1,\dots,x^n\)</span> 下, <span class="math display">\[
 \omega_t=\sum_I a_I(x,t)\dd{x^I}.
@@ -658,6 +690,7 @@ Q(\sigma_1,\dots,\sigma_r)
 \int_a^b\omega_t &amp;= \sum_I\pqty{ \int_a^b a_I(x,t)\dd{t} } \dd{x^I}.
 }
 \]</span> 为了简便, 可以记 <span class="math inline">\(\dd\omega_t/\dd{t}=\dot{\omega}_t\)</span>.</p>
+<div class="note note-success">
 <p><u>Claim</u> 设 <span class="math inline">\(\omega,\tau\)</span> 是光滑地依赖于参数 <span class="math inline">\(t\in J\)</span> 的矩阵值微分形式, 且 <span class="math inline">\(\omega\wedge\tau\)</span> 有意义 (即 <span class="math inline">\(\omega\)</span> 的列数等于 <span class="math inline">\(\tau\)</span> 的行数).</p>
 <ol type="1">
 <li><p>若 <span class="math inline">\(\omega\)</span> 是方阵, <span class="math display">\[
@@ -675,6 +708,7 @@ Q(\sigma_1,\dots,\sigma_r)
 ).
 \]</span></p></li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 1, 2, 3 都是很直接的, 下面证明 4. 在坐标系 <span class="math inline">\(U,x^1,\dots,x^n\)</span> 下, <span class="math display">\[
 \Align{

@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/associate-bundle-sketch.png">
 <meta property="article:published_time" content="2024-07-19T10:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-19T15:42:00.372Z">
+<meta property="article:modified_time" content="2024-08-12T03:31:08.661Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -293,7 +293,9 @@
 \]</span> 配丛 <span class="math inline">\(\beta:E\to M\)</span> 上的线性结构定义为 <span class="math display">\[
 [p,v_1]+\lambda[p,v_2]=[p,v_1+\lambda v_2].
 \]</span> 因为 <span class="math inline">\(G\)</span> 在 <span class="math inline">\(V\)</span> 上的作用是线性的 (即 <span class="math inline">\(g\cdot(v_1+\lambda v_2)=g\cdot v_1+\lambda g\cdot v_2\)</span>), 显然上式是良定义的. 在这个线性结构下, 配丛成为了一个向量丛.</p>
+<div class="note note-success">
 <p><u>Claim 31.1</u> 设 <span class="math inline">\(G\)</span>-主丛 <span class="math inline">\(\pi:P\to M\)</span> 与有限维表示 <span class="math inline">\(\rho:G\to{\rm GL}(V)\)</span>, 则配丛 <span class="math inline">\(\beta:E\to M\)</span> 是向量丛.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(P\)</span> 局部同构于 <span class="math inline">\(U\times G\)</span>, 考虑映射 <span class="math display">\[
 \Align{
@@ -314,7 +316,9 @@ f_p : V &amp;\to E_x, \\
 v &amp;\mapsto [p,v].
 }
 \]</span> (证明中的同构是由 <span class="math inline">\((x,e)\)</span> 给出的.)</p>
+<div class="note note-success">
 <p><u>Claim 31.2</u> 记号承上. 则 <span class="math inline">\(f_p:V\to E_x\)</span> 是线性同构. 此外, 若 <span class="math inline">\(g\in G\)</span>, 则 <span class="math inline">\(f_{pg}=f_p\circ\rho(g)\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 单射性. 若 <span class="math inline">\([p,v]=[p,w]\)</span>, 则 <span class="math inline">\((p,v)=(pg,g^{-1}\cdot w)\)</span> 对于某 <span class="math inline">\(g\in G\)</span>. 因为 <span class="math inline">\(G\)</span> 自由地作用于 <span class="math inline">\(P\)</span>, <span class="math inline">\(p=pg\)</span> 导致 <span class="math inline">\(g=e\)</span>, 于是也有 <span class="math inline">\(v=w\)</span>.</p>
 <p>满射性. 任给 <span class="math inline">\([q,w]\in E_x\)</span>, 则 <span class="math inline">\(q\in P_x\)</span>, 于是 <span class="math inline">\(q=pg\)</span> 对于某 <span class="math inline">\(g\in G\)</span>. 进而 <span class="math display">\[
@@ -329,7 +333,9 @@ P\times_\rho V\to M\times V,\quad [p,v]\mapsto(\pi(p),v).
 \]</span> 此时, <span class="math inline">\(f_p:V\to E_x=V\)</span>, <span class="math inline">\(v\mapsto[p,v]\)</span> 是恒等映射.</p>
 <p>伴丛是一种特殊的配丛. 若 <span class="math inline">\(G\)</span> 的表示取为伴随表示 <span class="math inline">\(\operatorname{Ad}:G\to{\rm GL}({\frak g})\)</span>, 则配丛 <span class="math inline">\({\rm Ad}P:=P\times_{\rm Ad}{\frak g}\)</span> 称为 <span class="math inline">\(P\)</span> 的<strong>伴丛(adjoint bundle)</strong>.</p>
 <p>补充:</p>
+<div class="note note-success">
 <p><u>Claim 31.3</u> (配丛的转移函数) 设主丛 <span class="math inline">\(P\)</span> 的平凡化开覆盖 <span class="math inline">\(\{(U_\alpha,\phi_\alpha)\}\)</span> 具有转移函数 <span class="math inline">\(g_{\alpha\beta}:U_{\alpha\beta}\to G\)</span>, 则存在配丛的开覆盖 <span class="math inline">\(\{(U_\alpha,\psi_\alpha)\}\)</span> 具有转移函数 <span class="math inline">\(\rho\circ g_{\alpha\beta}:U_{\alpha\beta}\to{\rm GL}(V)\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 主丛的平凡化 <span class="math inline">\(\phi_\alpha:P|_{U_\alpha}\to U_\alpha\times G\)</span>, <span class="math inline">\(p\mapsto(x,\bar{\phi}_{\alpha,x}(p))\)</span> 诱导出配丛的平凡化 <span class="math display">\[
 \Align{
@@ -383,9 +389,12 @@ r_g^*\varphi = \rho(g^{-1})\cdot\varphi,\quad\forall g\in G.
 <p>反过来, 给定 <span class="math inline">\(\psi\in\Omega^k(M,E)\)</span>, 能够定义 <span class="math inline">\(\psi^\sharp\in\Omega^k_\rho(P,V)\)</span>. 设 <span class="math inline">\(p\in P\)</span>, <span class="math inline">\(u_1,\dots,u_k\in T_pP\)</span>, 令 <span class="math inline">\(x=\pi(p)\)</span>, <span class="math display">\[
 \psi^\sharp_p(u_1,\dots,u_k) :=
 f^{-1}_p(\psi(\pi_*u_1,\dots,\pi_*u_k)) \in V.
-\]</span> <u>Claim 31.4</u> 映射 <span class="math display">\[
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 31.4</u> 映射 <span class="math display">\[
 \Omega^k_\rho(P,V) \to \Omega^k(M,E),\quad \varphi\mapsto\varphi^\flat
 \]</span> 是线性同构, 逆映射为 <span class="math inline">\(\psi\mapsto\psi^\sharp\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> (一) 我们要证明 <span class="math inline">\(\phi^\flat\)</span> 良定义, 就要说明如上定义不依赖于 ① <span class="math inline">\(p\in P_x\)</span> 的选择, ② 提升 <span class="math inline">\(u_i\in T_pP\)</span> 的选择. 先证明 ②. 设 <span class="math inline">\(u_1',\dots,u_k'\in T_pP\)</span> 是另一组提升 <span class="math inline">\(v_i\)</span> 的向量, 则 <span class="math inline">\(\pi_*(u_i-u_i')=0\)</span>, 即 <span class="math inline">\(u_i-u_i'\)</span> 是竖直向量, 利用 <span class="math inline">\(\varphi\)</span> 的水平性和 <span class="math inline">\(\R\)</span>-线性性, <span class="math display">\[
 \Align{
@@ -426,14 +435,19 @@ f_{pg}\big(\varphi_{pg}(r_{g*}u_1\dots)\big)
 \]</span> 左边是所有 <span class="math inline">\(\rho\)</span>-右等变的光滑函数 <span class="math inline">\(f:P\to V\)</span>, 这等价于 <span class="math inline">\(G\)</span>-等变性: <span class="math display">\[
 f(pg) = (r_g^*f)(p) = \rho(g^{-1})f(p) = g^{-1}\cdot f(p).
 \]</span> 右边是 <span class="math inline">\(E\)</span> 的所有光滑截面的全体. 因此有推论:</p>
+<div class="note note-success">
 <p><u>Claim 31.5</u> 存在一一对应关系 <span class="math display">\[
 \{ G\textsf{-等变映射 } f:P\to V \} \longleftrightarrow
 \{ \textsf{配丛 }P\times_\rho V\to M \textsf{ 的截面} \}.
-\]</span> 主丛 <span class="math inline">\(\pi:P\to M\)</span> 的投射 <span class="math inline">\(\pi\)</span> 是淹没, 因此拉回映射 <span class="math inline">\(\pi^*:\Omega^*(M)\to\Omega^*(P)\)</span> 是单射. 主丛 <span class="math inline">\(P\)</span> 上的微分形式 <span class="math inline">\(\varphi\)</span> 称为<strong>基本的(basic)</strong>, 如果它是 <span class="math inline">\(M\)</span> 上微分形式 <span class="math inline">\(\psi\)</span> 的拉回 <span class="math inline">\(\pi^*\psi\)</span>; <span class="math inline">\(\varphi\)</span> 称为 <strong><span class="math inline">\(G\)</span>-不变的 (<span class="math inline">\(G\)</span>-invariant)</strong>, 如果 <span class="math inline">\(r_g^*\varphi=\varphi\)</span> 对任意 <span class="math inline">\(g\in G\)</span>.</p>
+\]</span></p>
+</div>
+<p>主丛 <span class="math inline">\(\pi:P\to M\)</span> 的投射 <span class="math inline">\(\pi\)</span> 是淹没, 因此拉回映射 <span class="math inline">\(\pi^*:\Omega^*(M)\to\Omega^*(P)\)</span> 是单射. 主丛 <span class="math inline">\(P\)</span> 上的微分形式 <span class="math inline">\(\varphi\)</span> 称为<strong>基本的(basic)</strong>, 如果它是 <span class="math inline">\(M\)</span> 上微分形式 <span class="math inline">\(\psi\)</span> 的拉回 <span class="math inline">\(\pi^*\psi\)</span>; <span class="math inline">\(\varphi\)</span> 称为 <strong><span class="math inline">\(G\)</span>-不变的 (<span class="math inline">\(G\)</span>-invariant)</strong>, 如果 <span class="math inline">\(r_g^*\varphi=\varphi\)</span> 对任意 <span class="math inline">\(g\in G\)</span>.</p>
 <ul>
 <li>注意区分右等变性 <span class="math inline">\(r_g^*\varphi=\rho(g^{-1})\cdot\varphi\)</span> 和不变性 <span class="math inline">\(r_g^*\varphi=\varphi\)</span>. 特别地, 如果 <span class="math inline">\(\rho:G\to{\rm GL}(V)\)</span> 是平凡表示, 即 <span class="math inline">\(\rho(g)\equiv{\rm id}\)</span>, 则等变性和不变性是等价的.</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 31.6</u> 主丛 <span class="math inline">\(P\)</span> 上的 <span class="math inline">\(V\)</span> 值形式是基本的, 当且仅当它是 <span class="math inline">\(G\)</span>-不变的水平形式.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 取平凡表示 <span class="math inline">\(\rho\)</span>, 则所有的 <span class="math inline">\(G\)</span>-不变水平形式就是 <span class="math inline">\(G\)</span>-等变水平形式 <span class="math inline">\(\Omega^k_\rho(P,V)\)</span>. 因此我们只需证明 <span class="math inline">\(\Omega^k_\rho(P,V)\)</span> 中的形式都形如 <span class="math inline">\(\pi^*\psi\)</span> (<span class="math inline">\(\psi\in\Omega^k(M,V)\)</span>).</p>
 <p>平凡表示对应的 <span class="math inline">\(E=P\times_\rho V\)</span> 是平凡丛 <span class="math inline">\(M\times V\)</span>, <span class="math inline">\(f_p:V\to E_x=V\)</span> 是恒等映射. 此时, 同构映射 <span class="math display">\[
@@ -454,7 +468,9 @@ f(pg) = (r_g^*f)(p) = \rho(g^{-1})f(p) = g^{-1}\cdot f(p).
 \alpha^h_p(v_1,\dots,v_k) = \alpha_p(hv_1,\dots,hv_k),
 \quad\forall v_i\in T_pP,
 \]</span> 这显然是一个水平形式.</p>
+<div class="note note-success">
 <p><u>Claim 31.7</u> 设 <span class="math inline">\(\varphi\in\Omega^k(P,V)\)</span> 是 <span class="math inline">\(\rho\)</span>-右等变的, 则 <span class="math inline">\(\dd\varphi\)</span> 和 <span class="math inline">\(\varphi^h\)</span> 都是 <span class="math inline">\(\rho\)</span>-右等变的.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 给定 <span class="math inline">\(g\in G\)</span>. 因为 <span class="math inline">\(r_{g*}\varphi=\rho(g^{-1})\cdot\varphi\)</span>, 有 <span class="math display">\[
 \Align{
@@ -475,9 +491,11 @@ r_{g*}\dd\varphi
 \]</span> 其中第三个等号根据 Claim 28.3.</p>
 </div>
 <p>由 Claim 31.7, 若 <span class="math inline">\(\varphi\in\Omega^k(P,V)\)</span> 是 <span class="math inline">\(\rho\)</span>-右等变的形式, 则 <span class="math inline">\((\dd\varphi)^h\in\Omega^{k+1}(P,V)\)</span> 是 <span class="math inline">\(\rho\)</span>-右等变的水平形式, 即张量性形式, 称它为 <span class="math inline">\(\varphi\)</span> 的<strong>协变导数(covariant derivative)</strong>. 记作 <span class="math inline">\(D\varphi=(\dd\varphi)^h\)</span>.</p>
+<div class="note note-success">
 <p><u>Claim 31.8</u> (协变导数是反导子) 协变导数作用于张量性形式 <span class="math inline">\(D:\Omega^k_\rho(P,V)\to\Omega^{k+1}_\rho(P,V)\)</span> 满足 <span class="math display">\[
 D(\omega\wedge\tau)=D\omega\wedge\tau+(-1)^{\deg\omega}\omega\wedge D\tau.
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 因为 <span class="math inline">\(\omega,\tau\)</span> 是张量性形式, 所以 <span class="math inline">\(\omega^h=\omega\)</span>, <span class="math inline">\(\tau^h=\tau\)</span>. <span class="math display">\[
 \Align{
@@ -489,7 +507,9 @@ D(\omega\wedge\tau)
 }
 \]</span></p>
 </div>
+<div class="note note-success">
 <p><u>Claim 31.9</u> 对于 <span class="math inline">\(P\)</span> 上的基本形式 <span class="math inline">\(\varphi\)</span>, <span class="math inline">\(\dd\varphi=D\varphi\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 因为投射 <span class="math inline">\(\pi:T_pP\to T_xM\)</span> 将竖直向量映到零, 所以 <span class="math inline">\(\pi_*h=\pi_*\)</span>.</p>
 <p>设 <span class="math inline">\(\varphi=\pi^*\tau\)</span> 对于 <span class="math inline">\(\tau\in\Omega^k(M,E)\)</span>, 则 <span class="math display">\[
@@ -522,9 +542,11 @@ D\varphi(\cdots)
   \varphi_p(v_{\sigma(k+1)},\dots,v_{\sigma(k+l)})
 \Big],
 \]</span> 此时将 <span class="math inline">\(\tau\cdot\varphi\)</span> 记作 <span class="math inline">\([\tau,\varphi]\)</span>.</p>
+<div class="note note-success">
 <p><u>Claim 31.10</u> (协变导数公式) 设主丛 <span class="math inline">\(P\to M\)</span> 上有联络 <span class="math inline">\(\omega\)</span>. 张量性形式 <span class="math inline">\(\varphi\in\Omega^k_\rho(P,V)\)</span> 的协变导数 <span class="math display">\[
 D\varphi = \dd\varphi + \omega\cdot\varphi.
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 见书 p. 283.</p>
 </div>
@@ -560,10 +582,12 @@ f(v) = \sum a_I\alpha^{i_1}(v)\cdots\alpha^{i_k}(v),
 <ul>
 <li>多项式函数的定义不依赖基底. 若 <span class="math inline">\(f\)</span> 在对偶基底 <span class="math inline">\(\{\alpha^i\}\)</span> 下是多项式函数, 则在对偶基底 <span class="math inline">\(\{\beta^i\}\)</span> 下也是多项式函数.</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 32.1</u> (多项式 <span class="math inline">\(=\)</span> 多项式函数) 有分次代数同构 <span class="math display">\[
 \phi: S(V) \to P(V), \quad
 \phi(\alpha)(v) := \alpha(v,\dots,v).
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 显然 <span class="math inline">\(\phi\)</span> 是分次代数同态. 可以验证, 其逆映射为 <span class="math display">\[
 \psi(f)(v_1,\dots,v_k) = \frac1{k!}
@@ -584,7 +608,9 @@ f({\rm Ad}_gX) = f(X),\quad\forall X\in{\frak g},g\in G.
 \]</span> 其中 <span class="math inline">\(\Omega^i\in\Omega^2(P,\R)\)</span>. 设 <span class="math inline">\(k\)</span> 次多项式 <span class="math inline">\(f:{\frak g}\to\R\)</span>, <span class="math inline">\(f=\sum a_I\alpha^{i_i}\cdots\alpha^{i_k}\)</span>, 则 <span class="math display">\[
 f(\Omega) = \sum a_I\Omega^{i_1}\wedge\cdots\wedge\Omega^{i_k},
 \]</span> 这是 <span class="math inline">\(P\)</span> 上的一个 <span class="math inline">\({\frak g}\)</span> 值 <span class="math inline">\(2k\)</span> 次形式, 称为 <strong>Chern-Weil 形式</strong>.</p>
+<div class="note note-success">
 <p><u>Claim 32.2</u> 如上定义的 <span class="math inline">\(f(\Omega)\)</span> 不依赖 <span class="math inline">\(\frak g\)</span> 的基底的选取.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\({\frak g}\)</span> 的另一个基底 <span class="math inline">\(u_j\)</span> 和对偶基底 <span class="math inline">\(\beta^j\)</span>, 与原基底的变换关系 <span class="math display">\[
 u_j = e_iA^i_j,\quad \beta^i=(A^{-1})^i_j\alpha^j.
@@ -603,12 +629,14 @@ b_I = A^{j_1}_{i_1}\cdots A^{j_k}_{i_k} a_J
 }
 \]</span></p>
 </div>
+<div class="note note-success">
 <p><u>Claim 32.3</u> 设 <span class="math inline">\(G\)</span>-主丛 <span class="math inline">\(\pi:P\to M\)</span> 上的联络 <span class="math inline">\(\omega\)</span> 与曲率 <span class="math inline">\(\Omega\)</span>, 以及 <span class="math inline">\(\frak g\)</span> 上的 <span class="math inline">\(k\)</span> 次 <span class="math inline">\({\rm Ad}_G\)</span>-不变多项式 <span class="math inline">\(f\)</span>, 则</p>
 <ol type="1">
 <li><span class="math inline">\(f(\Omega)\)</span> 是基本形式, 即存在 <span class="math inline">\(\Lambda\in\Omega^{2k}(M,{\frak g})\)</span>, 使得 <span class="math inline">\(f(\Omega)=\pi^*\Lambda\)</span>.</li>
 <li><span class="math inline">\(\Lambda\)</span> 是闭形式.</li>
 <li>de Rham 上同调类 <span class="math inline">\([\Lambda]\)</span> 不依赖联络的选取.</li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 1 的证明见书 p. 288. 书上 2, 3 的证明是错的, 可参考 S. Kobayashi and K. Nomizu, <em>Foundations of Differential Geometry</em>, John Wiley and Sons, 1963 的 vol. 2, p. 295.</p>
 </div>
@@ -618,7 +646,9 @@ w_P(-):{\rm Inv}({\frak g}) &amp;\to H^*(M) \\
 f &amp;\mapsto [\Lambda],\quad f(\Omega)=\pi^*\Lambda,
 }
 \]</span> 是一个代数同态, 称为 <strong>Chern-Weil 同态</strong>.</p>
+<div class="note note-success">
 <p><u>Claim 32.4</u> 映射 <span class="math inline">\(w\)</span> 是代数同态.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(f,g\in{\rm Inv}({\frak g})\)</span>, <span class="math inline">\(w(f)=[\Lambda_1]\)</span>, <span class="math inline">\(w(g)=[\Lambda_2]\)</span>, 则 <span class="math display">\[
 f(\Omega) = \pi^*\Lambda_1,\quad
@@ -649,6 +679,7 @@ f(\Omega')
 \]</span> 即 <span class="math inline">\(f(\Omega')\)</span> 对应的 <span class="math inline">\(M\)</span> 上的闭形式是 <span class="math inline">\(\underline\phi^*\Lambda\)</span>. 因此 <span class="math display">\[
 w_{P'}(f) = \underline{\phi}^* w_P(f),
 \]</span> 这称为示性类的<strong>自然性</strong>. 总结为如下定理.</p>
+<div class="note note-success">
 <p><u>Claim 32.5</u> (自然性) 记 <span class="math inline">\({\rm PBund}_G(M)\)</span> 为 <span class="math inline">\(M\)</span> 上的 <span class="math inline">\(G\)</span>-主丛组成的范畴. 给定 <span class="math inline">\(f\in{\rm Inv}({\frak g})\)</span>, 定义 <span class="math display">\[
 \Align{
 c_M:{\rm PBund}_G(M) &amp;\to H^*(M) \\
@@ -663,6 +694,7 @@ N \ar[u]^{\underline\phi} &amp;
 {{\rm PBund}_k(N)} \ar[r]_(.55){c_N} &amp; H^*(N),
 }
 \]</span> 其中 <span class="math inline">\(\phi\)</span> 是任意覆盖 <span class="math inline">\(\underline\phi\)</span> 的映射.</p>
+</div>
 <div class="note note-info">
 <p><u>Example</u> 主丛上的示性类.</p>
 <p>若 <span class="math inline">\(G={\rm GL}(r,\C)\)</span>, 则 <span class="math inline">\({\rm Inv}({\frak g})\)</span> 由所有的特征多项式系数 <span class="math inline">\(f_k(X)\)</span> 生成. 由 <span class="math inline">\(f_k(X)\)</span> 确定的示性类称为 <strong>Chern 类</strong>.</p>

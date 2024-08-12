@@ -24,7 +24,7 @@
 <meta property="og:description" content="向量丛上的联络, 联络形式, 高斯绝妙定理与截面曲率.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-07T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-19T12:20:33.212Z">
+<meta property="article:modified_time" content="2024-08-12T03:36:23.218Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -308,7 +308,9 @@ s=\sum h^ie_i, \quad h^i\in{\cal F}.
 \]</span> 容易验证这确实是一个联络. 将其称为平凡化 <span class="math inline">\(\phi\)</span> 诱导的联络.</p></li>
 <li><p>(联络的仿射组合) 两个向量丛 <span class="math inline">\(E\)</span> 上的联络 <span class="math inline">\(\nabla^1,\nabla^2\)</span>, 其线性组合 <span class="math inline">\(t_1\nabla^1+t_2\nabla^2\)</span> 未必是一个联络. 但是如果 <span class="math inline">\(t_1+t_2=1\)</span>, 则其线性组合也是一个联络. 更一般地, 设 <span class="math inline">\(\sum t_i=1\)</span>, 则联络的线性组合 <span class="math inline">\(\sum t_i\nabla^i\)</span> 也是一个联络. 称这样的线性组合 (系数和为 <span class="math inline">\(1\)</span>​) 为仿射组合(affine combination). 更一般地, 若 <span class="math inline">\(\qty{t_i}\)</span> 是 <span class="math inline">\(M\)</span> 上的光滑函数, 并且满足 <span class="math inline">\(\sum t_i=1\)</span>, 则 <span class="math inline">\(\sum t_i\nabla^i\)</span> 也是一个联络.</p></li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 7.1</u> 任意流形 <span class="math inline">\(M\)</span> 上的光滑向量丛 <span class="math inline">\(E\)</span>​ 上存在联络.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 给定 <span class="math inline">\(E\)</span> 的一个平凡化开覆盖 <span class="math inline">\(\qty{U_\alpha}\)</span> 以及从属于 <span class="math inline">\(\qty{U_\alpha}\)</span> 的单位分解 <span class="math inline">\(\qty{\rho_\alpha}\)</span>. 向量丛 <span class="math inline">\(E\)</span> 在平凡化开集 <span class="math inline">\(U_\alpha\)</span> 上的限制 <span class="math inline">\(E|_{U_\alpha}\)</span> 是平凡丛, 于是上面存在联络 <span class="math inline">\(\nabla^\alpha\)</span>. 任给 <span class="math inline">\(X\in{\frak X}(M),s\in\Gamma(E)\)</span>, 设 <span class="math inline">\(s_\alpha\)</span> 为 <span class="math inline">\(s\)</span> 在 <span class="math inline">\(U_\alpha\)</span> 上的限制, 并定义 <span class="math display">\[
 \nabla_Xs=\sum\rho_\alpha\nabla_X^\alpha s_\alpha.
@@ -330,10 +332,16 @@ X\lr{s,t} = \lr{\nabla_Xs,t}+\lr{s,\nabla_Xt},
 <ul>
 <li>(平凡丛上的黎曼度量)</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 7.2</u> 设平凡丛 <span class="math inline">\(E\)</span>, 则平凡化 <span class="math inline">\(\phi:E\overset\sim\to M\times\R^r\)</span> 诱导的联络 <span class="math inline">\(\nabla\)</span> 与诱导的黎曼度量 <span class="math inline">\(\lr{\cdot,\cdot}\)</span>​ 相容.</p>
+</div>
 <p>下面将这两个局部的构造 (黎曼度量与联络) 推广到向量丛整体上.</p>
+<div class="note note-success">
 <p><u>Claim 7.3</u> 任意向量丛 <span class="math inline">\(E\to M\)</span> 上存在黎曼度量.</p>
+</div>
+<div class="note note-success">
 <p><u>Claim 7.4</u> 任意黎曼丛 <span class="math inline">\(E\to M\)</span> 上存在度量联络.</p>
+</div>
 <h3 id="local-and-point-connections">7.3  Local and point connections</h3>
 <p>向量丛 <span class="math inline">\(E\)</span> 上的联络 <span class="math inline">\(\nabla_Xs\)</span> 关于 <span class="math inline">\(X\)</span> 是 <span class="math inline">\({\cal F}\)</span>-线性的, 关于 <span class="math inline">\(s\)</span> 满足 Leibniz 律. 根据之前的理论, <span class="math inline">\(\nabla\)</span> 关于 <span class="math inline">\(X\)</span> 是逐点的 (可以限制到一点), 关于 <span class="math inline">\(s\)</span> 是局部的 (可以限制到开子集).</p>
 <p>任给开集 <span class="math inline">\(U\subset M\)</span>, 定义联络 <span class="math display">\[
@@ -347,7 +355,9 @@ X\lr{s,t} = \lr{\nabla_Xs,t}+\lr{s,\nabla_Xt},
 \nabla_{X_p}s=(\nabla_Xs)_p.
 \]</span> 即联络 (关于 <span class="math inline">\(X\)</span>) 在点 <span class="math inline">\(p\)</span> 的限制. 联络关于 <span class="math inline">\(X\)</span>​ 能够逐点定义, 很像一个对偶向量场.</p>
 <p>下面的定理表明, <span class="math inline">\(\nabla_{X_p}s\)</span> 关于 <span class="math inline">\(s\)</span> 虽然不是点算子, 但是它只依赖于 <span class="math inline">\(s\)</span> 在以 <span class="math inline">\(X_p\)</span> 为切向量的某条光滑曲线上的取值. 这是一个比局部性更强的性质.</p>
+<div class="note note-success">
 <p><u>Claim 7.5</u> 设向量丛 <span class="math inline">\(E\to M\)</span>, 截面 <span class="math inline">\(s\in\Gamma(E)\)</span>. 点 <span class="math inline">\(p\in M\)</span>, 曲线 <span class="math inline">\(c\)</span> 满足 <span class="math inline">\(c(0)=p\)</span>, <span class="math inline">\(c'(0)=X_p\)</span>. 若 <span class="math inline">\(s\)</span> 在 <span class="math inline">\(c\)</span> 上恒为零, 那么 <span class="math inline">\(\nabla_{X_p}s=0\)</span>​.</p>
+</div>
 <ul>
 <li>联络 <span class="math inline">\(\nabla\)</span> 可以限制在一条曲线上, 就是后面所谓"沿曲线的协变导数".</li>
 </ul>
@@ -373,9 +383,11 @@ X_p(a^i)
 \]</span> 其中系数 <span class="math inline">\(\omega^i_j(X)\)</span> 与 <span class="math inline">\(X\)</span> 有关. 实际上, <span class="math inline">\(\nabla_Xe_j\)</span> 关于 <span class="math inline">\(X\)</span> 的 <span class="math inline">\({\cal F}\)</span>-线性性导致 <span class="math inline">\(\omega^i_j(X)\)</span> 关于 <span class="math inline">\(X\)</span> 的 <span class="math inline">\({\cal F}\)</span>-线性性, 进而 <span class="math inline">\(\omega^i_j\)</span> 是 <span class="math inline">\(U\)</span> 上的一个 <span class="math inline">\(1\)</span>-形式. 这 <span class="math inline">\(r^2\)</span> 个 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\omega^i_j\)</span> 称为<strong>联络形式(connection forms)</strong>, 矩阵 <span class="math inline">\([\omega^i_j]\)</span> 称为<strong>联络矩阵(connection matrix)</strong>. 同样, 曲率 <span class="math inline">\(R(X,Y)e_j\)</span> 可以用 <span class="math inline">\(e_i\)</span> 线性表出, <span class="math display">\[
 R(X,Y)e_j = \sum_i \Omega^i_j(X,Y) e_i,
 \]</span> 并且 <span class="math inline">\(\Omega^i_j(X,Y)\)</span> 关于 <span class="math inline">\(X,Y\)</span> 反对称且 <span class="math inline">\({\cal F}\)</span>-双线性, 所以是 <span class="math inline">\(U\)</span> 上的 <span class="math inline">\(2\)</span>-形式. 这 <span class="math inline">\(r^2\)</span> 个 <span class="math inline">\(2\)</span>-形式 <span class="math inline">\(\Omega^i_j\)</span> 称为<strong>曲率形式(curvature forms)</strong>, 矩阵 <span class="math inline">\([\Omega^i_j]\)</span> 称为<strong>曲率矩阵(curvature matrix)</strong>.</p>
+<div class="note note-success">
 <p><u>Claim 8.1</u> (Cartan 第二结构方程) 设 <span class="math inline">\(\nabla\)</span> 为秩 <span class="math inline">\(r\)</span> 向量丛 <span class="math inline">\(E\to M\)</span> 上的联络. 平凡化开子集 <span class="math inline">\(U\)</span> 上的标架 <span class="math inline">\(e_1,\dots,e_r\)</span>. 联络 <span class="math inline">\(\nabla\)</span> 相对于 <span class="math inline">\(e_1,\dots,e_r\)</span> 的联络形式和曲率形式分别为 <span class="math inline">\(\omega^i_j,\Omega^i_j\)</span>, 则 <span class="math display">\[
 \Omega^i_j = \dd{\omega^i_j} + \sum_k \omega^i_k\wedge\omega^k_j.
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 先给出两个等式, 这在之后证明中会用到: 设 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\alpha,\beta\)</span> 以及向量场 <span class="math inline">\(X,Y\)</span>, <span class="math display">\[
 \Align{
@@ -424,11 +436,13 @@ R(X,Y)e_j
 = h^i(\tilde\omega^j_i(X)-\omega^j_i(X))e_j.
 \]</span></p>
 <h3 id="metric-connection-relative-to-a-orthonormal-frame">8.2  Metric connection relative to a orthonormal frame</h3>
+<div class="note note-success">
 <p><u>Claim 8.2</u> 设黎曼丛 <span class="math inline">\(E\to M\)</span> 上的联络 <span class="math inline">\(\nabla\)</span>.</p>
 <ol type="1">
 <li>若 <span class="math inline">\(\nabla\)</span> 与度量适配, 那么在任何平凡化开集的正交归一标架上, 联络矩阵 <span class="math inline">\([\omega^i_j]\)</span>​ 都是反对称的.</li>
 <li>若任意一点 <span class="math inline">\(p\in M\)</span> 存在平凡化邻域 <span class="math inline">\(U\)</span>, 在 <span class="math inline">\(U\)</span> 上的某正交归一标架下, 联络矩阵 <span class="math inline">\([\omega^i_j]\)</span> 是反对称的, 那么 <span class="math inline">\(\nabla\)</span>​​ 与度量适配.</li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 第一条. 设度量联络 <span class="math inline">\(\nabla\)</span>, 向量场 <span class="math inline">\(X\in{\frak X}(U)\)</span>, 在 <span class="math inline">\(U\)</span> 的正交归一标架 <span class="math inline">\(e_1,\dots,e_r\)</span> 下 <span class="math display">\[
 \Align{
@@ -453,7 +467,9 @@ X\lr{s,t}&amp;=X\pqty{\sum a^ib^i}=\sum(Xa^i)b^i+a^iXb^i, \\
 =X\lr{s,t}.
 \]</span></p>
 </div>
+<div class="note note-success">
 <p><u>Claim 8.3</u> 若在某标架下, 联络矩阵 <span class="math inline">\([\omega^i_j]\)</span> 是反对称的, 那么曲率矩阵 <span class="math inline">\([\Omega^i_j]\)</span>​​ 也是反对称的.</p>
+</div>
 <ul>
 <li>于是在正交归一标架下, 度量联络的曲率矩阵是反对称的.</li>
 </ul>
@@ -474,7 +490,9 @@ X\lr{s,t}&amp;=X\pqty{\sum a^ib^i}=\sum(Xa^i)b^i+a^iXb^i, \\
 (X,Y,s,t)&amp;\mapsto\lr{R(X,Y)s,t},
 }
 \]</span> 因而是点算子, 称为<strong>曲率张量</strong>. 黎曼联络的曲率张量称为<strong>黎曼曲率张量</strong>.</p>
+<div class="note note-success">
 <p><u>Claim 8.4</u> 黎曼丛 <span class="math inline">\(E\to M\)</span> 上度量联络 <span class="math inline">\(\nabla\)</span> 的曲率张量 <span class="math inline">\(\lr{R(X,Y)s,t}\)</span> 关于 <span class="math inline">\(s,t\)</span> 反对称.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 只需在局部验证反对称性. 设在平凡化开集上有正交归一标架 <span class="math inline">\(\qty{e_1,\dots,e_n}\)</span>, 由 <span class="math inline">\({\cal F}-\)</span>线性性, 只需验证对标架的反对称性: <span class="math display">\[
 \Align{
@@ -494,11 +512,14 @@ T(X,Y)=\sum_i\tau^i(X,Y)e_i,
 \]</span> 其中, <span class="math inline">\(T(X,Y)\)</span> 关于 <span class="math inline">\(X,Y\)</span> 的 <span class="math inline">\({\cal F}\)</span>-双线性性和反对称性导致了 <span class="math inline">\(\tau^i(X,Y)\)</span> 同样的性质, 于是 <span class="math inline">\(\tau^i\)</span> 是一个 <span class="math inline">\(2\)</span>-形式. 这 <span class="math inline">\(r\)</span> 个 <span class="math inline">\(2\)</span>-形式称为<strong>挠率形式(torsion forms)</strong>, 矩阵 <span class="math inline">\([\tau^i]\)</span> 称为挠率矩阵.</p>
 <p>设开集 <span class="math inline">\(U\)</span> 上有光滑标架 <span class="math inline">\(\qty{e_1,\dots,e_r}\)</span> 和对偶标架 <span class="math inline">\(\qty{\theta^1,\dots,\theta^r}\)</span> (满足 <span class="math inline">\(\theta^i(e_j)=\delta^i_j\)</span>). 对偶截面 <span class="math inline">\(\theta^i\)</span> 在截面 <span class="math inline">\(X\in{\frak X}(U)\)</span> 的作用是"取第 <span class="math inline">\(i\)</span> 个坐标分量", 换言之, <span class="math display">\[
 X=\sum \theta^i(X)e_i.
-\]</span> <u>Claim 8.5</u> 设 <span class="math inline">\(M\)</span> 的切丛的平凡化开集上有标架 <span class="math inline">\(\qty{e_1,\dots,e_r}\)</span>, 对偶标架 <span class="math inline">\(\qty{\theta^1,\dots,\theta^r}\)</span>, 则联络形式, 挠率形式, 曲率形式满足</p>
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 8.5</u> 设 <span class="math inline">\(M\)</span> 的切丛的平凡化开集上有标架 <span class="math inline">\(\qty{e_1,\dots,e_r}\)</span>, 对偶标架 <span class="math inline">\(\qty{\theta^1,\dots,\theta^r}\)</span>, 则联络形式, 挠率形式, 曲率形式满足</p>
 <ol type="1">
 <li>(Cartan 第一结构方程) <span class="math inline">\(\tau^i=\dd\theta^i+\sum_j\omega^i_j\wedge\theta^j\)</span>.</li>
 <li>(Cartan 第二结构方程) <span class="math inline">\(\Omega^i_j=\dd\omega^i_j+\sum_k\omega^i_k\wedge\omega^k_j\)</span>​.</li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 第二条是之前的第二结构方程的在 <span class="math inline">\(TM\)</span> 的特例. 对于第一条, 设 <span class="math inline">\(Y=\sum\theta^j(Y)e_j\)</span>, <span class="math display">\[
 \Align{
@@ -520,9 +541,12 @@ T(X,Y)
 \]</span> 即 <span class="math inline">\(\tau^i=\dd\theta^i+\sum_j\omega^i_j\wedge\theta^j\)</span>.</p>
 </div>
 <p>下面的定理是黎曼几何基本定理 (黎曼流形上的黎曼联络唯一存在) 的微分形式版本.</p>
+<div class="note note-success">
 <p><u>Claim 8.6</u> 设黎曼流形 <span class="math inline">\(M\)</span>, 开集 <span class="math inline">\(U\)</span> 上有正交归一标架 <span class="math inline">\(\qty{e_1,\dots,e_n}\)</span>, 对偶标架 <span class="math inline">\(\qty{\theta^1,\dots,\theta^n}\)</span>. 则存在唯一的反对称 <span class="math inline">\(1\)</span>-形式矩阵 <span class="math inline">\([\omega^i_j]\)</span>, 使得 (联络无挠) <span class="math display">\[
 \dd\theta^i+\sum\omega^i_j\wedge\theta^j=0\quad(i=0,\dots,n).
-\]</span> 下面给两个例子, 看看联络和曲率形式具体怎么算. 这两个例子分别给出了二维双曲几何的两个模型.</p>
+\]</span></p>
+</div>
+<p>下面给两个例子, 看看联络和曲率形式具体怎么算. 这两个例子分别给出了二维双曲几何的两个模型.</p>
 <div class="note note-info">
 <p><u>Example 1</u> Poincaré 圆盘. 设复平面中的开圆盘 <span class="math display">\[
 \mathbb{D} = \qty{z=x+\i y\in\C:|z|&lt;1}
@@ -628,9 +652,11 @@ D_Xe_3 &amp;= \omega^1_3(X)e_1 +\omega^2_3(X)e_2, \\
 L(X) = -D_XN = D_Xe_3 = \omega^1_3(X)e_1+\omega^2_3(X)e_2,\quad
 X\in{\frak X}(U)
 \]</span> 高斯曲率方程给出了曲率和形状算子的关系.</p>
+<div class="note note-success">
 <p><u>Claim 9.1</u> (高斯曲率方程) 设 <span class="math inline">\(\R^3\)</span> 中光滑曲面 <span class="math inline">\(M\)</span> 的开子集 <span class="math inline">\(U\)</span> 上有正交归一标架 <span class="math inline">\(e_1,e_2\)</span>, 又 <span class="math inline">\(e_3\)</span> 为 <span class="math inline">\(U\)</span> 上的单位法向量场. 曲面 <span class="math inline">\(M\)</span> 上的黎曼联络的曲率形式 <span class="math inline">\(\Omega^1_2\)</span> 以及方向导数 <span class="math inline">\(D\)</span> 的联络形式 <span class="math inline">\(\omega^1_3,\omega^2_3\)</span> 满足 <span class="math display">\[
 \Omega^1_2 = \omega^1_3\wedge\omega^2_3.
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 方向导数 <span class="math inline">\(D\)</span> 的曲率形式为零, 即 <span class="math display">\[
 \Align{
@@ -641,11 +667,13 @@ X\in{\frak X}(U)
 \]</span> 根据之前的推导, <span class="math inline">\(\Omega^1_2=\dd\omega^1_2\)</span>, 并且注意到 <span class="math inline">\(\omega^3_2=-\omega^2_3\)</span>, 上式即化为高斯曲率方程.</p>
 </div>
 <h3 id="the-theorema-egregium">9.2  The Theorema Egregium</h3>
+<div class="note note-success">
 <p><u>Claim 9.2</u> (高斯绝妙定理) 设 <span class="math inline">\(\R^3\)</span> 中可定向的光滑曲面 <span class="math inline">\(M\)</span>, 开集 <span class="math inline">\(U\subset M\)</span> 上有正交归一标架 <span class="math inline">\(e_1,e_2\)</span> 以及对偶标架 <span class="math inline">\(\theta^1,\theta^2\)</span>, 则 <span class="math inline">\(M\)</span> 的高斯曲率 <span class="math display">\[
 K=\Omega^1_2(e_1,e_2),
 \]</span> 或者 <span class="math display">\[
 \Omega^1_2=K\theta^1\wedge\theta^2.
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 高斯曲率定义为形状算子的行列式, <span class="math display">\[
 \Align{
@@ -722,9 +750,11 @@ K=\Omega^1_2(e_1,e_2)=-\frac1{\phi\psi}
 \]</span> 为了实际操作的方便, 一般将 <span class="math inline">\(N\)</span> 上的度量通过等距同构拉回到 <span class="math inline">\(M\)</span> 上, 于是 <span class="math inline">\(M\)</span> 上拥有了两个黎曼度量 <span class="math display">\[
 \lr{\cdot,\cdot}'_p = a(p)\lr{\cdot,\cdot}_p,
 \]</span> 称这两个度量是共形等价的(conformal equivalent), 研究 <span class="math inline">\(M,N\)</span> 的曲率的关系就是研究 <span class="math inline">\(M\)</span> 上这两个度量的曲率的关系.</p>
+<div class="note note-success">
 <p><u>Claim 9.3</u> 设二维流形 <span class="math inline">\(M\)</span> 上有共形等价的度量 <span class="math inline">\(\lr{\cdot,\cdot}'=\e^{2\rho}\lr{\cdot,\cdot}\)</span>, 则它们的高斯曲率 <span class="math inline">\(\tilde K,K\)</span> 满足 <span class="math display">\[
 \tilde K=\e^{-2\rho}(K-\Delta\rho).
 \]</span></p>
+</div>
 <ul>
 <li><p>其中 <span class="math inline">\(\Delta\)</span> 为 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 的 Laplace-Beltrami 算子, 是 <span class="math inline">\(\R^n\)</span> 中 Laplace 算子的推广, 定义为 <span class="math display">\[
 \Delta f:=\tr\nabla^2f\equiv\sum_i \nabla^2_{e_i,e_i}f ,

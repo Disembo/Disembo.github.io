@@ -24,7 +24,7 @@
 <meta property="og:description" content="向量丛的光滑函子, 向量值微分形式.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-19T12:20:47.907Z">
+<meta property="article:modified_time" content="2024-08-12T03:25:41.417Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -287,7 +287,9 @@
 <li>包含映射 <span class="math inline">\(i:F\to E\)</span> 是丛同态.</li>
 </ol>
 <p>设向量丛 <span class="math inline">\(E\to M\)</span>. 开集 <span class="math inline">\(U\subset M\)</span> 上的一个 <strong><span class="math inline">\(k\)</span>-标架(<span class="math inline">\(k\)</span>-frame)</strong> 指的是 <span class="math inline">\(k\)</span> 个截面 <span class="math inline">\(s_1,\dots,s_k\in\Gamma(U,E)\)</span>, 满足对于任意一点 <span class="math inline">\(p\in U\)</span>, 向量 <span class="math inline">\(s_1(p),\dots,s_k(p)\in E_p\)</span> 线性无关. 若 <span class="math inline">\(E\)</span> 的秩为 <span class="math inline">\(r\)</span>, 我们说 <span class="math inline">\(E\)</span> 的标架, 指的都是秩为 <span class="math inline">\(r\)</span> 的标架.</p>
+<div class="note note-success">
 <p><u>Claim 18.1</u> 设秩 <span class="math inline">\(r\)</span> 的向量丛 <span class="math inline">\(E\to M\)</span>, <span class="math inline">\(p\in M\)</span>, <span class="math inline">\(U\)</span> 为 <span class="math inline">\(p\)</span> 的邻域, 则 <span class="math inline">\(U\)</span> 上的 <span class="math inline">\(k\)</span>-标架可以拓展为 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(V\)</span> (可能比 <span class="math inline">\(U\)</span> 更小) 上一个 <span class="math inline">\(r\)</span>-标架.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(V\)</span> (<span class="math inline">\(V\subset U\)</span>) 上有标架 <span class="math inline">\(e_1,\dots,e_r\)</span>, 于是 <span class="math inline">\(s_j=\sum a^i_je_i\)</span>, 其中 <span class="math inline">\(a^i_j\in C^\infty(V)\)</span>. 用矩阵乘法写出来就是 <span class="math display">\[
 (s_1,\dots,s_k) = (e_1,\dots,e_r)(a^i_j),
@@ -298,9 +300,11 @@ b = \pmqty{ a' &amp; 0 \\ * &amp; I }.
 \]</span> 所以 <span class="math inline">\(s_1,\dots,s_k,e_{k+1},\dots,e_r\)</span> 作为光滑标架 <span class="math inline">\(e_1,\dots,e_r\)</span> 的线性函数, 是 <span class="math inline">\(V\)</span> 上的光滑标架.</p>
 </div>
 <p>一个向量丛一族线性空间 <span class="math inline">\(\{E_p\}_{p\in M}\)</span>, 并且满足局部平凡的条件. 下面的定理告诉我们, 这样的 <span class="math inline">\(\{E_p\}_{p\in M}\)</span> 何时是局部平凡的.</p>
+<div class="note note-success">
 <p><u>Claim 18.2</u> 设秩 <span class="math inline">\(r\)</span> 的向量丛 <span class="math inline">\(E\to M\)</span>, 一族线性空间 <span class="math inline">\(\{F_p\}_{p\in M}\)</span> 满足 <span class="math inline">\(F_p\)</span> 是 <span class="math inline">\(E_p\)</span> 的 <span class="math inline">\(k\)</span> 维子空间. 若对任意 <span class="math inline">\(p\in M\)</span>, 在 <span class="math inline">\(p\)</span> 的某邻域 <span class="math inline">\(U\)</span> 上存在 <span class="math inline">\(m\geq k\)</span> 个光滑截面 <span class="math inline">\(s_1,\dots,s_m\in\Gamma(U,E)\)</span>, 使得 <span class="math display">\[
 F_q = \operatorname{span}(s_1(q),\dots,s_m(q)),\quad\forall q\in U,
 \]</span> 则 <span class="math inline">\(F:=\coprod_{p\in M} F_p\)</span> 是 <span class="math inline">\(E\)</span> 的光滑子丛.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 回顾正则子流形的定义: <span class="math inline">\(E\)</span> 的子集 <span class="math inline">\(F\)</span> 称为正则子流形, 若对任意 <span class="math inline">\(p\in F\)</span>, 存在 <span class="math inline">\(E\)</span> 的坐标系 (称为适配坐标系) <span class="math inline">\((U,x^1,\dots,x^r)\)</span>, 使得 <span class="math inline">\(F\cap U\)</span> 由坐标函数的零点集 <span class="math inline">\(x^{k+1}=\cdots=x^r=0\)</span> 给出. 要证明 <span class="math inline">\(F\)</span> 是一个子丛, 我们就要从 <span class="math inline">\(s_1,\dots,s_m\)</span> 构造出 <span class="math inline">\(F\)</span> 的平凡化映射和 <span class="math inline">\(E\)</span> 的适配坐标系.</p>
 <p>首先找到 <span class="math inline">\(s_1,\dots,s_m\)</span> 的一个 "极大线性无关组". 设在邻域 <span class="math inline">\(V\)</span> (<span class="math inline">\(p\in V\subset U\)</span>) 有标架 <span class="math inline">\(e_1,\dots,e_r\)</span>, 则 <span class="math display">\[
@@ -423,6 +427,7 @@ e &amp;\mapsto (\pi(e),\bar\phi_\alpha(e)),
 = (f^*g_{\alpha\beta})(n).
 \]</span></li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 18.3</u> (拉回丛的泛性质) 设向量丛 <span class="math inline">\(\pi_E:F\to N\)</span>, <span class="math inline">\(\pi_F:E\to M\)</span>, 光滑映射 <span class="math inline">\(f:N\to M\)</span>. 若丛映射 <span class="math inline">\(\varphi:F\to E\)</span> 覆盖 <span class="math inline">\(f\)</span>, 即有交换图 <span class="math display">\[
 \xymatrix{
 F \ar[d]_{\pi_F} \ar[r]^{\varphi} &amp; E \ar[d]^{\pi_E} \\
@@ -435,6 +440,7 @@ F \ar[rrd]^{\varphi} \ar[rdd]_{\pi_F} \ar@{.&gt;}[rd]|{\tilde\varphi} \\
 &amp; N \ar[r]_{f} &amp; M.
 }
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 交换图保证了 <span class="math inline">\(\tilde\varphi(q)=(\pi_F(q),\varphi(q))\)</span> 对任意 <span class="math inline">\(q\in F\)</span>, 这说明 <span class="math inline">\(\varphi\)</span> 的唯一性. 因为 <span class="math inline">\(\varphi\)</span> 覆盖 <span class="math inline">\(f\)</span>, 所以 <span class="math inline">\(\pi_E(\varphi(q))=f(\pi_F(q))\)</span>, 所以 (根据拉回丛的定义) <span class="math inline">\((\pi_F(q),\varphi(q))\in f^*E\)</span>, 所以这样的 <span class="math inline">\(\tilde\varphi\)</span> 是存在的. 这 <span class="math inline">\(\tilde\varphi\)</span> 在纤维上是线性的, 因为 <span class="math inline">\(\varphi\)</span> 在纤维上是线性的; <span class="math inline">\(\tilde\varphi\)</span> 的连续性由 <span class="math inline">\(\pi_F,\varphi\)</span> 的连续性保证.</p>
 </div>
@@ -470,6 +476,7 @@ s(t) = (t,X_{c(t)}) \in (c^*TM)_t.
 }
 \]</span> 是光滑的. 一些常见的操作, 如直和, 张量积, 楔积, 都是光滑协变函子.</p>
 <p>我们将要证明, 光滑向量丛 <span class="math inline">\(E_1,\dots,E_k\)</span> 的光滑函子能够给出光滑向量丛 <span class="math inline">\(\mathcal{T}(E_1,\dots,E_k)\)</span>. 先给出一个引理.</p>
+<div class="note note-success">
 <p><u>Claim 18.4</u> 设集合 <span class="math inline">\(S\)</span> 的子集族 <span class="math inline">\(\mathcal{C}=\{S_\alpha\}_{\alpha\in A}\)</span> 满足</p>
 <ol type="1">
 <li><p><span class="math inline">\(\mathcal{C}\)</span> 中所有集合之并为 <span class="math inline">\(S\)</span>.</p></li>
@@ -481,6 +488,7 @@ s(t) = (t,X_{c(t)}) \in (c^*TM)_t.
 \]</span></p></li>
 </ol>
 <p>则存在唯一的 <span class="math inline">\(S\)</span> 上的拓扑, 使得 <span class="math inline">\(S_\alpha\)</span> 为开集, 且 <span class="math inline">\(\phi_\alpha\)</span> 为同胚.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 同胚 <span class="math inline">\(\phi_\alpha\)</span> 将 <span class="math inline">\(Y_\alpha\)</span> 的拓扑搬到了 <span class="math inline">\(S_\alpha\)</span> 上. 这实际上已经确定了 <span class="math inline">\(S\)</span> 的拓扑. 应当说明, 任意两个 <span class="math inline">\(\phi_\alpha,\phi_\beta\)</span> 所确定的拓扑是一致的. 若 <span class="math inline">\(U\subset S_{\alpha\beta}\)</span>, 并且 <span class="math inline">\(\phi_\beta(U)\)</span> 是开集, 因为 <span class="math display">\[
 (\phi_\alpha\circ\phi_\beta^{-1})( \phi_\beta(U) )
@@ -489,7 +497,9 @@ s(t) = (t,X_{c(t)}) \in (c^*TM)_t.
 <p>设 <span class="math inline">\(\mathcal{T}\)</span> 为所有 <span class="math inline">\(S_\alpha\)</span> (<span class="math inline">\(\forall\alpha\in A\)</span>) 中的开集生成的拓扑, 即 <span class="math inline">\(\mathcal{T}\)</span> 是包含了所有这些开集的最小的拓扑. 若 <span class="math inline">\(U_\alpha\subset S_\alpha\)</span>, <span class="math inline">\(U_\beta\subset U_\beta\)</span> 为开集 (均在 <span class="math inline">\(\mathcal{T}\)</span> 中), 则 <span class="math inline">\(U_{\alpha\beta}=U_\alpha\cap U_\beta\in\mathcal{T}\)</span>. 我们需要证明 <span class="math inline">\(U_{\alpha\beta}\)</span> 原先就是 <span class="math inline">\(S_\alpha\)</span> 中的开集, 这样才能保证生成拓扑 <span class="math inline">\(\mathcal{T}\)</span> 时不会造出一些额外的开集.</p>
 <p>由 2, <span class="math inline">\(S_{\alpha\beta}=S_\alpha\cap S_\beta\)</span> 在 <span class="math inline">\(\mathcal{C}\)</span> 中, 根据 <span class="math inline">\(\phi_{\alpha\beta}:S_{\alpha\beta}\to Y_{\alpha\beta}\)</span>, 它是开集. 根据一致性, <span class="math inline">\(S_{\alpha\beta}\)</span> 在 <span class="math inline">\(S_\alpha\)</span> 中也是开集. 因为 <span class="math inline">\(U_\alpha\)</span> 在 <span class="math inline">\(S_\alpha\)</span> 中是开集, <span class="math inline">\(U_\alpha\cap S_{\alpha\beta}=U_\alpha\cap S_\beta\)</span> 也是 <span class="math inline">\(S_\alpha\)</span> 中的开集, 进而也是 <span class="math inline">\(S_\beta\)</span> 中的开集. 因此 <span class="math inline">\((U_\alpha\cap S_\beta)\cap U_\beta=U_{\alpha\beta}\)</span> 是 <span class="math inline">\(S_\beta\)</span> 中的开集, 进而也是 <span class="math inline">\(S_\alpha\)</span> 中的开集.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 18.5</u> 若 <span class="math inline">\(\mathcal{T}:\mathcal{V}^k\to\mathcal{V}\)</span> 为光滑的协变函子, 则任给 <span class="math inline">\(M\)</span> 上的光滑向量丛 <span class="math inline">\(E_1,\dots,E_k\)</span>, 存在 <span class="math inline">\(M\)</span> 上的光滑向量丛 <span class="math inline">\(\mathcal{T}(E_1,\dots,E_k)\)</span>, 其在 <span class="math inline">\(p\in M\)</span> 点的纤维是 <span class="math inline">\(\mathcal{T}((E_1)_p,\dots,(E_k)_p)\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 我们对 <span class="math inline">\(k=2\)</span> 证明, 其余情况是相似的. 设光滑向量丛 <span class="math inline">\(\pi:E\to M\)</span>, <span class="math inline">\(\pi':E'\to M\)</span>, 定义 <span class="math display">\[
 F
@@ -613,6 +623,7 @@ A_k(T,V) \times A_l(T,W) \to A_{k+l}(T,Z),
 <p>逐点的乘积诱导出了微分形式的乘积 <span class="math inline">\(\Omega^k(M,E)\times\Omega^l(M,F)\to\Omega^{k+l}(M,G)\)</span>, <span class="math display">\[
 (\alpha\cdot\beta)_p := \alpha_p\cdot\beta_p
 \]</span> 其中的向量乘法是光滑截面 <span class="math inline">\(\mu\in\Gamma(E^*\otimes F^*\otimes G)\)</span>.</p>
+<div class="note note-success">
 <p><u>Claim 19.1</u> (乘法公式) 设 <span class="math inline">\(\alpha\in\Omega^k(M,E)\)</span>, <span class="math inline">\(\beta\in\Omega^l(M,F)\)</span>, 乘法 <span class="math inline">\(\mu\in\Gamma(E^*\otimes F^*\otimes G)\)</span>, 若 <span class="math display">\[
 \Align{
 \alpha&amp;=\sum_i\alpha^i\otimes v_i, &amp;
@@ -622,6 +633,7 @@ A_k(T,V) \times A_l(T,W) \to A_{k+l}(T,Z),
 \alpha\cdot\beta = \sum_{i,j}
 (\alpha^i\wedge\beta^j)\otimes\mu(v_i,w_j) \in\Omega^{k+l}(M,G).
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 乘法逐点地定义为 <span class="math display">\[
 \Align{
@@ -671,20 +683,27 @@ A_k(T,V) \times A_l(T,W) \to A_{k+l}(T,Z),
 <ul>
 <li><span class="math inline">\(E\)</span> 值微分形式 <span class="math inline">\(\alpha\in\Omega^k(M,E)\)</span> 的外微分不能这样定义, 因为上式依赖于局部标架的选取.</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 19.2</u> (外微分是反导子) 设 <span class="math inline">\(\alpha\in\Omega^k(M,V)\)</span>, <span class="math inline">\(\beta\in\Omega^l(M,W)\)</span>, 乘法 <span class="math inline">\(\mu:V\times W\to Z\)</span>, 则 <span class="math display">\[
 \dd(\alpha\cdot\beta) =
 (\dd\alpha)\cdot\beta + (-1)^{\deg\alpha}\alpha\cdot(\dd\beta).
-\]</span> <strong>微分形式的拉回</strong>.</p>
+\]</span></p>
+</div>
+<p><strong>微分形式的拉回</strong>.</p>
 <p>和标量值微分形式一样, 向量值微分形式 <span class="math inline">\(\alpha\in\Omega^k(M,E)\)</span> 也能被光滑映射 <span class="math inline">\(f:N\to M\)</span> 拉回. 定义 <span class="math inline">\(f^*\alpha\in\Omega^k(N,E)\)</span> 为 <span class="math display">\[
 (f^*\alpha)_p(u_1,\dots,u_k) := \alpha_{f(p)}(f_*u_1,\dots,f_*u_k).
-\]</span> <u>Claim 19.3</u> (拉回的性质) 设 <span class="math inline">\(\alpha\in\Omega^k(M,V)\)</span>, <span class="math inline">\(\beta\in\Omega^l(M,W)\)</span>, 乘法 <span class="math inline">\(\mu:V\times W\to Z\)</span>, 光滑映射 <span class="math inline">\(f:N\to M\)</span>, 则</p>
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 19.3</u> (拉回的性质) 设 <span class="math inline">\(\alpha\in\Omega^k(M,V)\)</span>, <span class="math inline">\(\beta\in\Omega^l(M,W)\)</span>, 乘法 <span class="math inline">\(\mu:V\times W\to Z\)</span>, 光滑映射 <span class="math inline">\(f:N\to M\)</span>, 则</p>
 <ol type="1">
 <li>若 <span class="math inline">\(\alpha_p=\sum\alpha^i_p\otimes v_i\)</span>, 则 <span class="math inline">\(f^*\alpha=\sum(f^*\alpha^i_p)\otimes v_i\)</span>.</li>
 <li>拉回与乘积可交换: <span class="math inline">\(f^*(\alpha\cdot\beta)=f^*(\alpha)\cdot f^*(\beta)\)</span>.</li>
 <li>拉回与外微分可交换: <span class="math inline">\(f^*\dd\alpha=\dd{f^*\alpha}\)</span>.</li>
 </ol>
+</div>
 <h3 id="lie-algebra-valued-forms">19.3  Lie algebra-valued forms</h3>
 <p>对于 <span class="math inline">\(V\)</span> 值微分形式 <span class="math inline">\(\Omega^k(M,V)\)</span>, 一个特别的情况是 <span class="math inline">\(V\)</span> 是李代数 <span class="math inline">\(\frak g\)</span>. 此时乘法是李括号 <span class="math inline">\([\cdot,\cdot]:{\frak g}\times{\frak g}\to{\frak g}\)</span>. 直接套用之前的结论得到:</p>
+<div class="note note-success">
 <p><u>Claim 19.4</u> 设 <span class="math inline">\(\alpha\in\Omega^k(M,{\frak g})\)</span>, <span class="math inline">\(\beta\in\Omega^l(M,{\frak g})\)</span>,</p>
 <ol type="1">
 <li><p>设 <span class="math inline">\(A_i\in{\frak g}\)</span>. 若 <span class="math inline">\(\alpha=\sum\alpha^i\otimes A_i\)</span>, <span class="math inline">\(\beta=\sum\beta^j\otimes A_j\)</span>, 则 <span class="math display">\[
@@ -699,6 +718,7 @@ A_k(T,V) \times A_l(T,W) \to A_{k+l}(T,Z),
 = [\dd\alpha,\beta] + (-1)^{\deg\alpha}[\alpha,\dd\beta].
 \]</span></p></li>
 </ol>
+</div>
 <ul>
 <li>注意区分李括号 <span class="math inline">\([A,B]\in{\frak g}\)</span> 和微分形式的乘积 <span class="math inline">\([\alpha,\beta]\in\Omega^{k+l}(M,{\frak g})\)</span>.</li>
 <li>特别地, 对于 <span class="math inline">\({\frak g}\)</span> 值 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\alpha\)</span>, <span class="math inline">\([\alpha,[\alpha,\alpha]]=0\)</span>.</li>
@@ -723,10 +743,12 @@ e_{ij}e_{kl} = \delta_{jk}e_{il}.
 &amp;=\sum_{i,j,k,l} \alpha^{ij}\wedge\beta^{kl}\otimes[e_{ij},e_{kl}].
 }
 \]</span> 此外, <span class="math inline">\(\dd\alpha=\sum_{i,j}\dd\alpha^{ij}\otimes e_{ij}\)</span> 其实就是逐个分量求外微分.</p>
+<div class="note note-success">
 <p><u>Claim 19.5</u> (楔积和李括号的关系) 设 <span class="math inline">\(\alpha\in\Omega^k(M,{\frak gl}(n,\R))\)</span>, <span class="math inline">\(\beta\in\Omega^l(M,{\frak gl}(n,\R))\)</span>, 则 <span class="math display">\[
 [\alpha,\beta] =
 \alpha\wedge\beta - (-1)^{\deg\alpha\deg\beta}\beta\wedge\alpha.
 \]</span></p>
+</div>
 <ul>
 <li>立刻有推论 <span class="math display">\[
 [\alpha,\alpha] = \Cases{
@@ -764,9 +786,11 @@ T(X,Y)  &amp;= e\tau(X,Y).
 <li>李群 <span class="math inline">\(G\)</span> 上的左不变形式 <span class="math inline">\(\alpha\in\Omega^k(G,V)\)</span> 由它在 <span class="math inline">\(e\)</span> 的取值唯一确定.</li>
 <li>左不变形式在右作用下的行为: <span class="math inline">\(r_g^*\alpha=\operatorname{Ad}_{g^{-1}}\alpha\)</span>.</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 19.6</u> 李群 <span class="math inline">\(G\)</span> 上的 Maurer-Cartan 形式 <span class="math inline">\(\theta\)</span> 满足下列 <strong>Maurer-Cartan 方程</strong>: <span class="math display">\[
 \dd\theta+\frac12[\theta,\theta]=0.
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 方程是 <span class="math inline">\({\cal F}\)</span>-线性的, 所以只需要对左不变向量场证明. 取 <span class="math inline">\({\frak g}\)</span> 的基底 <span class="math inline">\(A_1,\dots,A_n\)</span>, 它们生成的左不变向量场仍然记作 <span class="math inline">\(A_1,\dots,A_n\)</span>. 设 <span class="math inline">\(\theta=\sum\theta^i\otimes A_i\)</span>, 则 <span class="math inline">\(\theta^i(A_j)=\delta^i_j\)</span>. 一方面, <span class="math display">\[
 \Align{

@@ -24,11 +24,11 @@
 <meta property="og:description" content="模的张量代数与外代数.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-02T05:30:00.000Z">
-<meta property="article:modified_time" content="2024-07-19T12:20:45.018Z">
+<meta property="article:modified_time" content="2024-08-12T03:39:14.276Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
-<meta property="article:tag" content="线性代数">
 <meta property="article:tag" content="微分几何">
+<meta property="article:tag" content="线性代数">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -304,6 +304,7 @@ v\otimes (w_1+w_2)=v\otimes w_1+v\otimes w_2, \\
 \sum r_i(v_i\otimes w_i)
 = \sum (r_iv_i)\otimes w_i = \sum v_i\otimes(r_iw_i),
 \]</span> 注意到这种分解方式不唯一.</p>
+<div class="note note-success">
 <p><u>Claim 16.1</u> (张量积的泛性质) 设 <span class="math inline">\(V,W\)</span> 是含幺交换环 <span class="math inline">\(R\)</span> 上的左模.</p>
 <ol type="1">
 <li><p>任给 <span class="math inline">\(R\)</span>-双线性映射 <span class="math inline">\(f:V\times W\to Z\)</span>, 存在唯一的 <span class="math inline">\(R\)</span>-线性映射 <span class="math inline">\(\tilde{f}:V\otimes W\to Z\)</span>, 使得下图交换: <span class="math display">\[
@@ -315,6 +316,7 @@ V\times W \ar[rd]_{f} \ar[r]^{\otimes}
 \]</span> 此性质称为张量积 <span class="math inline">\(\otimes\)</span> 的<strong>泛性质(universal mapping property)</strong>.</p></li>
 <li><p>若 <span class="math inline">\(R\)</span>-双线性映射 <span class="math inline">\(\phi:V\times W\to T\)</span> 满足张量积的泛性质, 则有同构 <span class="math inline">\(\tilde\otimes:T\to V\otimes W\)</span>.</p></li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 第一条. 上图交换意味着 <span class="math inline">\(\tilde{f}(v\otimes w)=f(v,w)\)</span> 对任意 <span class="math inline">\(v\in V,w\in W\)</span>.</p>
 <p>定义 <span class="math inline">\(F:\operatorname{Free}(V\times W)\to Z\)</span>, 满足 <span class="math inline">\(F(v,w)=f(v,w)\)</span>. 根据 <span class="math inline">\(R\)</span>-线性性将 <span class="math inline">\(F\)</span> 延拓到整个 <span class="math inline">\(\operatorname{Free}\)</span>: <span class="math display">\[
@@ -348,7 +350,9 @@ V\times W \ar[r]^{\otimes} \ar[dr]_{\otimes}
 \tilde\phi\circ\tilde\otimes = {\rm id}_{T},
 \]</span> 所以 <span class="math inline">\(\tilde\otimes:T\to V\otimes W\)</span> 为线性同构.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 16.2</u> 左 <span class="math inline">\(R\)</span>-模上的数量乘法 <span class="math inline">\(f:R\times V\to V\)</span>, <span class="math inline">\((r,v)\mapsto rv\)</span> 作为 <span class="math inline">\(R\)</span>-双线性映射, 诱导出一个 <span class="math inline">\(R\)</span>-线性同构 <span class="math inline">\(\tilde{f}:R\otimes_R V\to V\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 由泛性质, 双线性映射 <span class="math inline">\(f:R\times V\to V\)</span> 导出线性映射 <span class="math inline">\(\tilde{f}:R\otimes V\to V\)</span>. 定义线性映射 <span class="math inline">\(g:V\to R\otimes V\)</span>, <span class="math inline">\(g(v)=1\otimes v\)</span>. 可以验证, <span class="math display">\[
 \Align{
@@ -357,9 +361,11 @@ g\circ\tilde{f}  &amp;= {\rm id}_{R\otimes V}, &amp;
 }
 \]</span> 所以 <span class="math inline">\(\tilde{f}\)</span> 是同构.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 16.3</u> 设 <span class="math inline">\(R\)</span>-左模 <span class="math inline">\(V,W\)</span>, 则存在唯一的 <span class="math inline">\(R\)</span>-线性同构 <span class="math inline">\(\tilde{f}:V\otimes W\to W\otimes V\)</span>, 使得 <span class="math display">\[
 \tilde{f}(v\otimes w)=w\otimes v,\quad v\in V,w\in W.
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 定义双线性映射 <span class="math inline">\(f:V\times W\to W\otimes V\)</span>, <span class="math inline">\(f(v,w)=w\otimes v\)</span>. 根据张量积的泛性质, 存在唯一的线性映射 <span class="math inline">\(\tilde{f}:V\otimes W\to W\otimes V\)</span>, 使得 <span class="math display">\[
 \tilde{f}(v\otimes w) = w\otimes v.
@@ -367,9 +373,11 @@ g\circ\tilde{f}  &amp;= {\rm id}_{R\otimes V}, &amp;
 \tilde{g}(w\otimes v) = v\otimes w.
 \]</span> 因此 <span class="math inline">\(\tilde{f},\tilde{g}\)</span> 在可分解元素上互逆. 而 <span class="math inline">\(V\otimes W\)</span> 由可分解元素生成, 所以 <span class="math inline">\(\tilde{f},\tilde{g}\)</span> 在 <span class="math inline">\(V\otimes W\)</span>, <span class="math inline">\(W\otimes V\)</span> 上互逆.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 16.4</u> (张量积的基底) 设 <span class="math inline">\(B_V=\{v_i\}_{i\in I}\)</span>, <span class="math inline">\(B_W=\{w_j\}_{j\in J}\)</span> 分别为有限秩自由 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(V,W\)</span> 的基底, 则 <span class="math display">\[
 B_V\otimes B_W := \{ v_i\otimes w_j \}_{i\in I,j\in J}
 \]</span> 为 <span class="math inline">\(V\otimes W\)</span> 的基底. 进而 <span class="math inline">\(\rank(V\otimes W)=(\rank V)(\rank W)\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 可分解元素 <span class="math inline">\(v\otimes w\)</span> 可以写作 <span class="math inline">\(v_i\otimes w_j\)</span> 的线性组合: 设 <span class="math inline">\(v=\sum a^iv_i\)</span>, <span class="math inline">\(w=\sum b^jw_j\)</span>, 则 <span class="math display">\[
 v\otimes w=\sum a^ib^jv_i\otimes w_j,
@@ -394,39 +402,47 @@ f^{kl}(v_i\otimes w_j) = \delta^{k,l}_{i,j} := \delta^k_i\delta^l_j,
 </div>
 <h3 id="the-dual-module">16.2  The dual module</h3>
 <p>记 <span class="math inline">\(\operatorname{Hom}_R(V,W)\)</span> 是所有 <span class="math inline">\(V\to W\)</span> 的 <span class="math inline">\(R\)</span>-线性映射的集合. 在线性映射的加法和数乘之下, <span class="math inline">\(\operatorname{Hom}_R(V,W)\)</span> 构成了一个左 <span class="math inline">\(R\)</span>-模. 若底环明确, <span class="math inline">\(\operatorname{Hom}_R(V,W)\)</span> 中的 <span class="math inline">\(R\)</span> 可以省略. 模 <span class="math inline">\(V\)</span> 的<strong>对偶模(dual module)</strong>定义为 <span class="math inline">\(\operatorname{Hom}_R(V,R)\)</span>, 记作 <span class="math inline">\(V^\vee\)</span>.</p>
+<div class="note note-success">
 <p><u>Claim 16.5</u> 设 <span class="math inline">\(\{e_i\}_{i\in I}\)</span> 是有限秩自由模 <span class="math inline">\(V\)</span> 的基底, 定义 <span class="math inline">\(\alpha^i:V\to R\)</span>, <span class="math display">\[
 \alpha^i(e_j) = \delta^i_j,
 \]</span> 则 <span class="math inline">\(\{\alpha^i\}_{i\in I}\)</span> 是 <span class="math inline">\(V^\vee\)</span> 的基底. 于是 <span class="math inline">\(\rank{V}=\rank{V^\vee}\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 任给 <span class="math inline">\(\beta\in V^\vee\)</span>, 设 <span class="math inline">\(c_i=\beta(e_i)\)</span>, 则断言 <span class="math inline">\(\beta = \sum c_i\alpha^i\)</span>, 两边作用于 <span class="math inline">\(v=\sum v^ie_i\)</span> 即可验证.</p>
 <p>线性无关性, 设 <span class="math inline">\(\sum c_i\alpha^i = 0\)</span>, 两边作用于 <span class="math inline">\(e_j\)</span>, 得到 <span class="math inline">\(c_j=0\)</span>.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 16.6</u> 设 <span class="math inline">\(V,W\)</span> 是有限秩的左 <span class="math inline">\(R\)</span>-模, 则存在唯一的 <span class="math inline">\(R\)</span>-线性同构 <span class="math display">\[
 \Align{
 \tilde{f}:V^\vee\otimes W &amp;\to \operatorname{Hom}_R(V,W), \\
 \alpha\otimes w &amp;\mapsto \alpha(\cdot)w.
 }
 \]</span> 于是, <span class="math inline">\(\operatorname{Hom}_R(V,W)\)</span> 是秩为 <span class="math inline">\((\rank{V})(\rank{W})\)</span> 的自由模.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 定义双线性映射 <span class="math inline">\(f:V^\vee\times W\to\operatorname{Hom}(V,W)\)</span>, <span class="math inline">\(f(\alpha,w)=\alpha(\cdot)w\)</span>. 存在唯一线性映射 <span class="math inline">\(\tilde{f}:V^\vee\otimes W\to\operatorname{Hom}(V,W)\)</span>, 使得 <span class="math display">\[
 \tilde{f}(\alpha\otimes w)=\alpha(\cdot)w.
 \]</span> 设 <span class="math inline">\(V^\vee,W\)</span> 的基底 <span class="math inline">\(\{\alpha^i\},\{w_j\}\)</span>. 则 <span class="math inline">\(V^\vee\otimes W\)</span> 的基底 <span class="math inline">\(\{\alpha^i\otimes w_j\}\)</span>, <span class="math inline">\(\operatorname{Hom}(V,W)\)</span> 的基底 <span class="math inline">\(\{\alpha^i(\cdot)w_j\}\)</span>, 因此 <span class="math inline">\(\tilde{f}\)</span> 将基底映成基底, 是一个同构.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 16.7</u> 设 <span class="math inline">\(V,W\)</span> 是有限秩的左 <span class="math inline">\(R\)</span>-模, 则存在唯一的 <span class="math inline">\(R\)</span>-线性同构 <span class="math display">\[
 \Align{
 \tilde{f}:V^\vee\otimes W^\vee &amp;\to(V\otimes W)^\vee, \\
 \alpha\otimes\beta &amp;\mapsto((v\otimes w)\mapsto\alpha(v)\beta(w)).
 }
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 定义双线性映射 <span class="math inline">\(f:V^\vee\times W^\vee\to(V\otimes W)^\vee\)</span>, <span class="math inline">\(f(\alpha,\beta)=((v\otimes w)\mapsto\alpha(v)\beta(w))\)</span>. 存在唯一的线性映射 <span class="math inline">\(\tilde{f}:V^\vee\otimes W^\vee\to(V\otimes W)^\vee\)</span>, 使得 <span class="math display">\[
 \tilde f(\alpha\otimes\beta)=((v\otimes w)\mapsto\alpha(v)\beta(w)).
 \]</span> 设 <span class="math inline">\(V^\vee,W^\vee\)</span> 的基底 <span class="math inline">\(\{\alpha^i\},\{\beta^j\}\)</span>, 则 <span class="math inline">\(V^\vee\otimes W^\vee\)</span> 的基底 <span class="math inline">\(\{\alpha^i\otimes\beta^j\}\)</span>, <span class="math inline">\((V\otimes W)^\vee\)</span> 的基底 <span class="math inline">\(\{\alpha^i(\cdot)\beta^j(\cdot)\}\)</span>, <span class="math inline">\(\tilde{f}\)</span> 将基底映成基底, 是一个同构.</p>
 </div>
 <h3 id="functoriality-and-associativity">16.3  Functoriality and associativity</h3>
+<div class="note note-success">
 <p><u>Claim 16.8</u> 设 <span class="math inline">\(R\)</span>-线性映射 <span class="math inline">\(f:V\to V'\)</span>, <span class="math inline">\(g:W\to W'\)</span>, 则存在唯一 <span class="math inline">\(R\)</span>-线性映射 <span class="math display">\[
 f\otimes g:V\otimes W\to V'\otimes W',
 \]</span> 使得 <span class="math inline">\((f\otimes g)(v\otimes w)=f(v)\otimes g(w)\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 定义双线性映射 <span class="math inline">\(h:V\times W\to V'\otimes W'\)</span>, <span class="math inline">\(h(v,w)=f(v)\otimes g(w)\)</span>, 存在唯一线性映射 <span class="math inline">\(\tilde{h}:V\otimes W\to V'\otimes W'\)</span>, 使得 <span class="math display">\[
 \tilde{h}(v\otimes w)=f(v)\otimes g(w),
@@ -451,10 +467,12 @@ f\otimes g:V\otimes W\to V'\otimes W',
 (v_1,\dots,v_m) &amp;\mapsto v_1\otimes\cdots\otimes v_m
 }
 \]</span> 是一个 <span class="math inline">\(m\)</span> 重线性映射, 满足 <span class="math inline">\(m\)</span> 重线性映射的泛性质: 任意 <span class="math inline">\(m\)</span> 重线性映射 <span class="math inline">\(f:\prod V_i\to Z\)</span> 唯一地诱导出一个线性映射 <span class="math inline">\(\tilde{f}:\bigotimes V_i\to Z\)</span>, 满足 <span class="math inline">\(\tilde{f}\circ\otimes=f\)</span>. 此外, 满足 <span class="math inline">\(m\)</span> 重线性映射泛性质的映射在同构意义下唯一.</p>
+<div class="note note-success">
 <p><u>Claim 16.9</u> 设左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(\{V_i\}_{i=1}^m\)</span>, 则存在唯一的线性同构 <span class="math display">\[
 V_1\otimes\cdots\otimes(V_{i}\otimes V_{i+1})\otimes\cdots\otimes V_m
 \to \bigotimes_{i=1}^m V_i
 \]</span> 将 <span class="math inline">\(v_1\otimes\cdots\otimes(v_{i}\otimes v_{i+1})\otimes\cdots\otimes v_m\)</span> 映到 <span class="math inline">\(v_1\otimes\cdots\otimes v_m\)</span> (<span class="math inline">\(v_k\in V_k\)</span>).</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 因为满足泛性质的线性映射有唯一同构, 我们只需要证明 <span class="math display">\[
 \Align{
@@ -498,10 +516,12 @@ V_1\otimes\cdots\otimes(V_i\otimes V_{i+1})\otimes\cdots\otimes V_m
 \]</span> 交换图外圈的矩形路径说明 <span class="math inline">\(\phi\)</span> 满足泛性质.</p>
 </div>
 <p>立刻有推论:</p>
+<div class="note note-success">
 <p><u>Claim 16.10</u> (张量积的结合性) 设左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(\{V_i\}_{i=1}^m\)</span>, 则存在唯一的线性同构 <span class="math display">\[
 \cdots\otimes(V_i\otimes V_{i+1})\otimes\cdots \to
 \cdots\otimes(V_j\otimes V_{j+1})\otimes\cdots
 \]</span> 将 <span class="math inline">\(\cdots\otimes(v_i\otimes v_{i+1})\otimes\cdots\)</span> 映到 <span class="math inline">\(\cdots\otimes(v_j\otimes v_{j+1})\otimes\cdots\)</span> (<span class="math inline">\(v_k\in V_k\)</span>).</p>
+</div>
 <h3 id="the-tensor-algebra">16.4  The tensor algebra</h3>
 <p>对于左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(V\)</span>, 定义 <span class="math inline">\(T^0(V)=R\)</span>, <span class="math inline">\(T^k(V)=V\otimes\cdots\otimes V\)</span> (<span class="math inline">\(k\)</span> 个 <span class="math inline">\(V\)</span> 张量积), 记 <span class="math display">\[
 T(V) = \bigoplus_{k=0}^\infty T^k(V),
@@ -525,6 +545,7 @@ v_1\wedge\cdots\wedge v_k,
 \cong \frac{T^k(V)}{T^k(V)\cap I(V)}
 = \frac{T^k(V)}{I^k(V)},
 \]</span> 其中 <span class="math inline">\(I^k(V):=I(V)\cap T^k(V)\)</span> 包含了 <span class="math inline">\(I(V)\)</span> 中所有 <span class="math inline">\(k\)</span> 次齐次元素. 于是 <span class="math inline">\(\bigwedge(V)\)</span> 继承了 <span class="math inline">\(T(V)\)</span> 的分次结构, 成为一个分次代数. 一般记 <span class="math inline">\(\bigwedge^k(V)\)</span> 为 <span class="math inline">\(\bigwedge^kV\)</span>.</p>
+<div class="note note-success">
 <p><u>Claim 17.1</u> (楔积的分次反对称性)</p>
 <ol type="1">
 <li><p>设 <span class="math inline">\(u\in\bigwedge^kV\)</span>, <span class="math inline">\(v\in\bigwedge^lV\)</span>, 则 <span class="math display">\[
@@ -535,6 +556,7 @@ v_{\pi(1)}\wedge\cdots\wedge v_{\pi(k)} = (\sgn\pi)
 v_1\wedge\cdots\wedge v_k.
 \]</span></p></li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 第一条. 先证明最简单的情形: <span class="math inline">\(u,v\in\bigwedge^1V=V\)</span>. 因为 <span class="math inline">\(w\otimes w\in I(V)\)</span> (<span class="math inline">\(w\in V\)</span>), 所以 <span class="math inline">\(w\wedge w=0\)</span>, 因此 <span class="math display">\[
 \Align{
@@ -562,6 +584,7 @@ u\wedge v
 \cdots\wedge v_j\wedge\cdots\wedge v_i\wedge\cdots,
 \]</span> 设 <span class="math inline">\(v_1\wedge\cdots\wedge v_k\)</span> 通过 <span class="math inline">\(l\)</span> 次对换达到 <span class="math inline">\(v_{\pi(1)}\wedge\cdots\wedge v_{\pi(k)}\)</span>, 则两者相差 <span class="math inline">\((-1)^l\)</span>, 即 <span class="math inline">\(\sgn\pi\)</span>.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 17.2</u> (楔积的泛性质) 任给交错的 <span class="math inline">\(k\)</span> 重线性映射 <span class="math inline">\(f:V^k\to Z\)</span>, 存在唯一的线性映射 <span class="math inline">\(\tilde{f}:\bigwedge^kV\to Z\)</span>, 使下图交换 <span class="math display">\[
 \xymatrix{
 V^k \ar[r]^(.45)\wedge \ar[rd]_f
@@ -569,6 +592,7 @@ V^k \ar[r]^(.45)\wedge \ar[rd]_f
 &amp; Z
 }
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 因为 <span class="math inline">\(f\)</span> 是 <span class="math inline">\(k\)</span> 重线性的, 根据张量积的泛性质, 存在唯一线性映射 <span class="math inline">\(h:T^kV\to Z\)</span>, 满足 <span class="math display">\[
 h(v_1\otimes\cdots\otimes v_k) = f(v_1,\dots,v_k).
@@ -586,9 +610,11 @@ h(\cdots\otimes v\otimes v\otimes \cdots)
 <p>引入多重指标(multi-index)的记号. 设 <span class="math inline">\(I=(1\leq i_1&lt;\cdots&lt;i_k\leq n)\)</span> 为 <span class="math inline">\(k\)</span> 重指标, <span class="math inline">\(|I|=k\)</span>, 记 <span class="math display">\[
 e_I := e_{i_1}\wedge\cdots\wedge e_{i_k},
 \]</span> 补指标 <span class="math inline">\(I':=\{1,\dots,n\}-I\)</span>.</p>
+<div class="note note-success">
 <p><u>Claim 17.3</u> (楔积的基底) 设有限秩 <span class="math inline">\(V\)</span> 的基底 <span class="math inline">\(\{e_i\}_{i=1}^n\)</span>, 则 <span class="math inline">\(\bigwedge^kV\)</span> 的一个基底是 <span class="math display">\[
 S:=\{ e_I \mid I=(1\leq i_1&lt;\cdots&lt;i_k\leq n) \}.
 \]</span> 于是 <span class="math inline">\(\bigwedge^kV\)</span> 的秩为 <span class="math inline">\(n\choose k\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 先考虑一个引理: 若 <span class="math inline">\(B=\{e_i\}_{i=1}^n\)</span> 为 <span class="math inline">\(V\)</span> 的基底, 则 <span class="math inline">\(e_1\wedge\cdots\wedge e_n\neq0\)</span>. 为了证明引理, 只需找到一个线性映射 <span class="math inline">\(\bigwedge^kV\to V\)</span> 将 <span class="math inline">\(e_1\wedge\cdots\wedge e_n\)</span> 映成非零元. 定义交错函数 <span class="math inline">\(f:B^n\to R\)</span>, <span class="math display">\[
 f(e_{\pi(1)},\dots,e_{\pi(n)}) = \sgn\pi,\quad\pi\in S_n,
@@ -613,14 +639,18 @@ S_0=\{ e_{i_1}\otimes\cdots\otimes e_{i_k}\mid
 <p>两个 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(V,W\)</span> 的<strong>配对(pairing)</strong>指的是双线性映射 <span class="math inline">\(\lr{\cdot,\cdot}:V\times W\to R\)</span>. 固定 <span class="math inline">\(v\)</span>, 可以得到一个线性映射 <span class="math display">\[
 \lr{v,\cdot}:W\to R,\quad w\mapsto\lr{v,w},
 \]</span> 这诱导出一个线性映射 <span class="math inline">\(V\to W^\vee\)</span>, <span class="math inline">\(v\mapsto\lr{v,\cdot}\)</span>. 相似地, 还有线性映射 <span class="math inline">\(W\to V^\vee\)</span>, <span class="math inline">\(w\mapsto\lr{\cdot,w}\)</span>. 配对 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 称为<strong>非退化的(nondegenerate)</strong>, 若 <span class="math inline">\(V\to W^\vee\)</span> 和 <span class="math inline">\(W\to V^\vee\)</span> 都是单射.</p>
+<div class="note note-success">
 <p><u>Claim 17.4</u> 若 <span class="math inline">\(V,W\)</span> 秩有限, <span class="math inline">\(\lr{\cdot,\cdot}:V\times W\to R\)</span> 为非退化配对, 则导出映射 <span class="math inline">\(V\to W^\vee\)</span> 和 <span class="math inline">\(W\to V^\vee\)</span> 为同构.</p>
+</div>
 <p>一个 <span class="math inline">\(V\)</span> 上的非退化配对 <span class="math inline">\(V\times V\to R\)</span> 导出了 <span class="math inline">\(V\to V^\vee\)</span> 的一个标准同构.</p>
+<div class="note note-success">
 <p><u>Claim 17.5</u> 配对 <span class="math display">\[
 \Align{
 f:(V^\vee)^k\times V^k &amp;\to R, \\
 ((\beta^1,\dots,\beta^n),(v_1,\dots,v_k)) &amp;\mapsto \det[\beta^i(v_j)].
 }
 \]</span> 诱导出了外幂的配对 <span class="math inline">\(\bigwedge^k(V^\vee)\times\bigwedge^kV\to R\)</span>.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 应用两次泛性质可以诱导出一个双线性的配对. 固定 <span class="math inline">\((\beta^1,\dots,\beta^n)\)</span>, 函数 <span class="math display">\[
 (v_1,\dots,v_k)\mapsto\det[\beta^i(v_j)]
@@ -636,6 +666,7 @@ h(\beta_1,\dots,\beta^k)(v_1\wedge\cdots\wedge v_k)=\det[\beta^i(v_j)].
 (v_1\wedge\cdots\wedge v_k))\mapsto\det[\beta^i(v_j)].
 \]</span></p>
 </div>
+<div class="note note-success">
 <p><u>Claim 17.6</u> 设秩 <span class="math inline">\(n\)</span> 的自由 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(V\)</span>. 对 <span class="math inline">\(k\leq n\)</span>, Claim 17.5 证明过程中的 <span class="math display">\[
 \Align{
 \tilde{h}:\bigwedge\nolimits^k(V^\vee) &amp;\to
@@ -643,8 +674,8 @@ h(\beta_1,\dots,\beta^k)(v_1\wedge\cdots\wedge v_k)=\det[\beta^i(v_j)].
 (\beta^1\wedge\cdots\wedge\beta^k) &amp;\mapsto
 (v_1\wedge\cdots\wedge v_k\mapsto\det[\beta^i(v_j)]).
 }
-\]</span></p>
-<p>是同构映射.</p>
+\]</span> 是同构映射.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 记 <span class="math inline">\(f=\tilde{h}\)</span>, 只需证明 <span class="math inline">\(f\)</span> 将基底映成基底. 设 <span class="math inline">\(V\)</span> 的基底 <span class="math inline">\(\{e_i\}\)</span>, 对偶基底 <span class="math inline">\(\{\alpha^i\}\)</span>, 则 <span class="math inline">\(\bigwedge^k(V^\vee)\)</span> 的基底 <span class="math display">\[
 \{ \alpha^I \mid I=(1\leq i_1&lt;\cdots&lt;i_k\leq n) \},
@@ -687,6 +718,7 @@ A_k(V) &amp;\cong\pqty{\bigwedge\nolimits^kV}^\vee \cong
 \]</span> 同样地, 将 <span class="math inline">\(\bigwedge^k(V^\vee)\)</span> 中的元素 <span class="math inline">\(\beta^1\wedge\cdots\wedge\beta^k\)</span> 可以看作一个交错的 <span class="math inline">\(k\)</span> 重线性映射 <span class="math inline">\(V^k\to R\)</span>. 对于 <span class="math inline">\(\alpha\in\bigwedge^k(V^\vee)\)</span>, <span class="math inline">\(\beta\in\bigwedge^l(V^\vee)\)</span>, <span class="math display">\[
 \alpha\wedge\beta\in\bigwedge\nolimits^{k+l}(V^\vee)\cong A_{k+l}(V)
 \]</span> 是一个 <span class="math inline">\(k+l\)</span> 重交错线性映射 <span class="math inline">\(V^{k+l}\to R\)</span>.</p>
+<div class="note note-success">
 <p><u>Claim 17.7</u> 设 <span class="math inline">\(\alpha\in\bigwedge^k(V^\vee)\)</span>, <span class="math inline">\(\beta\in\bigwedge^l(V^\vee)\)</span>, <span class="math inline">\(v_i\in V\)</span>, <span class="math display">\[
 (\alpha\wedge\beta)(v_1,\dots,v_{k+l}) = \sum_\pi (\sgn\pi)
 \alpha(v_{\pi(1)},\dots,v_{\pi(k)})
@@ -694,6 +726,7 @@ A_k(V) &amp;\cong\pqty{\bigwedge\nolimits^kV}^\vee \cong
 \]</span> 右边对满足如下条件的置换 <span class="math inline">\(\pi\in S_{k+l}\)</span> 求和: <span class="math display">\[
 \pi(1)&lt;\cdots&lt;\pi(k),\quad \pi(k+1)&lt;\cdots&lt;\pi(k+l).
 \]</span> 称这样的置换是一个 <span class="math inline">\((k,l)\)</span>-洗牌(shuffle).</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 因为线性性, 只需要对可分解的元素证明. 设 <span class="math inline">\(\alpha=\alpha^1\wedge\cdots\wedge\alpha^k\)</span>, <span class="math inline">\(\beta=\beta^1\wedge\cdots\wedge\beta^k\)</span>.</p>
 <p>任给置换 <span class="math inline">\(\rho\in S_{k+l}\)</span>, 对前面的 <span class="math inline">\(\rho(1),\dots,\rho(k)\)</span> 使用某 <span class="math inline">\(\sigma\in S_k\)</span> 重排后可以使得 <span class="math display">\[
@@ -759,9 +792,9 @@ A_k(V) &amp;\cong\pqty{\bigwedge\nolimits^kV}^\vee \cong
       
         <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
       
-        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#线性代数</a>
-      
         <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#线性代数</a>
       
     </div>
   

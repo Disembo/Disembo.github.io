@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/5-3-local-operators-F-linearity.png">
 <meta property="article:published_time" content="2023-10-23T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-19T12:20:30.567Z">
+<meta property="article:modified_time" content="2024-08-12T03:15:41.238Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="微分几何">
@@ -294,7 +294,10 @@
 T(X,Y) := \nabla_XY-\nabla_YX-[X,Y],
 \]</span> 曲率<span class="math inline">\(R:{\frak X}(M)\times{\frak X}(M)\times{\frak X}(M)\to{\frak X}(M)\)</span>, <span class="math display">\[
 R(X,Y)Z := [\nabla_X,\nabla_Y]Z - \nabla_{[X,Y]}Z.
-\]</span> <u>Claim 3.1</u> 挠率<span class="math inline">\(T\)</span>和曲率<span class="math inline">\(R\)</span>关于其每个变量都是<span class="math inline">\(\cal F\)</span>-线性的.</p>
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 3.1</u> 挠率<span class="math inline">\(T\)</span>和曲率<span class="math inline">\(R\)</span>关于其每个变量都是<span class="math inline">\(\cal F\)</span>-线性的.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 挠率<span class="math inline">\(T\)</span>和曲率<span class="math inline">\(R\)</span>关于<span class="math inline">\(X,Y\)</span>均为反对称, 因此只需验证<span class="math inline">\(T\)</span>关于<span class="math inline">\(X\)</span>, <span class="math inline">\(R\)</span>关于<span class="math inline">\(X,Z\)</span>是<span class="math inline">\(\cal F\)</span>-线性的. 具体证明略, 按照联络的性质展开即可, 需要用到引理<span class="math inline">\([fX,gY]=fg[X,Y]+f(Xg)Y-g(Yf)X\)</span>.</p>
 </div>
@@ -305,7 +308,9 @@ R(X,Y)Z := [\nabla_X,\nabla_Y]Z - \nabla_{[X,Y]}Z.
 <li>(无挠性) <span class="math inline">\(T(X,Y)=0\)</span>.</li>
 <li>(与度量适配) <span class="math inline">\(X\lr{Y,Z}=\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}\)</span>.</li>
 </ol>
+<div class="note note-success">
 <p><u>Claim 3.2</u> 黎曼流形上的黎曼联络存在且唯一.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 与度量适配条件<span class="math inline">\(X\lr{Y,Z}=\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}\)</span>, 循环<span class="math inline">\(X,Y,Z\)</span>, 可以写出三个恒等式: <span class="math display">\[
 \Cases{
@@ -338,9 +343,11 @@ X\lr{Y,Z}+Y\lr{Z,X}-Z\lr{X,Y}
 <li>(<span class="math inline">\({\cal F}\)</span>-线性性) <span class="math inline">\({\rm pr}(fX)=f\,{\rm pr}(X)\)</span>.</li>
 <li>(自伴性) <span class="math inline">\(\lr{{\rm pr}(X),Y}=\lr{X,{\rm pr}(Y)}\)</span>.</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 3.3</u> 设黎曼流形<span class="math inline">\(M\)</span>的黎曼联络<span class="math inline">\(\nabla\)</span>, 则嵌入子流形<span class="math inline">\(S\subset M\)</span>的黎曼联络(在诱导度量下)为 <span class="math display">\[
 \nabla'_XY = {\rm pr}(\nabla_XY).
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 根据黎曼联络的唯一性知, 只需验证<span class="math inline">\(\nabla'\)</span>确实是黎曼联络即可.</p>
 <ol type="1">
@@ -378,9 +385,11 @@ X\lr{Y,Z}
 </ol>
 </div>
 <h3 id="connections-under-a-diffeomorphism">3.3  Connections under a diffeomorphism</h3>
+<div class="note note-success">
 <p><u>Claim 3.4</u> 设微分同胚<span class="math inline">\(\phi:M\to\tilde M\)</span>, <span class="math inline">\(\tilde\nabla\)</span>是<span class="math inline">\(\tilde{M}\)</span>上的一个仿射联络, 则下式定义了<span class="math inline">\(M\)</span>上的一个仿射联络<span class="math inline">\(\nabla:{\frak X}(M)\times{\frak X}(M)\to{\frak X}(M)\)</span>: <span class="math display">\[
 \phi_*( \nabla_XY ) = \tilde\nabla_{\phi_*X}(\phi_*Y).
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 首先应注意到, 因为<span class="math inline">\(\phi\)</span>是微分同胚, 所以<span class="math inline">\(\phi_*\)</span>是线性同构映射, 意味着<span class="math inline">\(\phi_*(A)=\phi_*(B)\)</span>可推出<span class="math inline">\(A=B\)</span>. 这将在这几个命题的证明中频繁使用.</p>
 <p>只需验证<span class="math inline">\(\nabla_XY\)</span>关于<span class="math inline">\(X\)</span>的<span class="math inline">\(\cal F\)</span>-线性性和关于<span class="math inline">\(Y\)</span>的Leibniz律即可. 一方面, <span class="math display">\[
@@ -404,7 +413,9 @@ X\lr{Y,Z}
 }
 \]</span> (其中第三步用到了<span class="math inline">\(\tilde\nabla\)</span>关于<span class="math inline">\(Y\)</span>的Leibniz律.) 即<span class="math inline">\(\nabla_X(fY)=(Xf)Y+f\nabla_XY\)</span>.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 3.5</u> 设等距同构<span class="math inline">\(\phi:M\to\tilde M\)</span>, <span class="math inline">\(\tilde\nabla\)</span>是<span class="math inline">\(\tilde{M}\)</span>上的黎曼联络, 则Claim 4中定义的<span class="math inline">\(\nabla\)</span>是<span class="math inline">\(M\)</span>上的黎曼联络.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 由等距同构的定义, 有<span class="math inline">\(\lr{X_p,Y_p}=\lr{\phi_*X_p,\phi_*Y_p}'\)</span>对任意<span class="math inline">\(X_p,Y_p\in T_pM\)</span>, <span class="math inline">\(p\in M\)</span>成立, 即 <span class="math display">\[
 \phi_*\lr{X,Y} = \lr{\phi_*X,\phi_*Y},\quad\forall X,Y\in{\frak X}(M).
@@ -427,9 +438,11 @@ X\lr{Y,Z}
 }
 \]</span> (其中第三步用了<span class="math inline">\(\tilde\nabla\)</span>的适配性) 即<span class="math inline">\(\lr{\nabla_XY,Z}+\lr{Y,\nabla_XZ}=X\lr{Y,Z}\)</span>.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 3.6</u> 设<span class="math inline">\(R,\tilde{R}\)</span>分别是Claim 3.5中<span class="math inline">\(\nabla,\tilde\nabla\)</span>的曲率, 则 <span class="math display">\[
 \phi_*(R(X,Y)Z) = \tilde{R}(\phi_*X,\phi_*Y)\phi_*Z.
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> <span class="math display">\[
 \Align{
@@ -492,7 +505,9 @@ f_*(p,v) := (f(p), f_*v).
 <li><p>设流形<span class="math inline">\(\tilde{M}\)</span>, 则"子流形<span class="math inline">\(M\)</span>上的向量场"和"沿着子流形<span class="math inline">\(M\)</span>的向量场", 它们指的无非就是<span class="math inline">\(\Gamma(TM)\)</span>和<span class="math inline">\(\Gamma(T\tilde{M}|_M)\)</span>中的元素.</p></li>
 </ul>
 <p>开集<span class="math inline">\(U\)</span>上的向量丛<span class="math inline">\(E\)</span>的一个<strong>标架(frame)</strong>指的是一组<span class="math inline">\(U\)</span>上的截面<span class="math inline">\(\qty{e_1,\dots,e_r}\)</span>, 使得对任意<span class="math inline">\(p\in U\)</span>, 向量组<span class="math inline">\(\qty{e_1(p),\dots,e_r(p)}\)</span>都构成<span class="math inline">\(E_p\)</span>的基底.</p>
+<div class="note note-success">
 <p><u>Claim 4.1</u> 光滑向量丛<span class="math inline">\(\pi:E\to M\)</span>是平凡的, 当且仅当它存在一个光滑标架.</p>
+</div>
 <ul>
 <li>向量丛必定局部平凡, 也就是说必定存在局部标架(即每个平凡化开子集<span class="math inline">\(U\)</span>上都存在标架).</li>
 </ul>
@@ -510,7 +525,9 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 \phi_\#(s) := \phi\circ s.
 \]</span> 可以证明, 截面映射<span class="math inline">\(\phi_\#\)</span>是<span class="math inline">\({\cal F}\)</span>-线性的, 而接下来两节的任务就是证明任意一个<span class="math inline">\({\cal F}\)</span>-线性映射<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>都是由某个丛映射诱导出来的, 即<span class="math inline">\(\alpha=\phi_\#\)</span>.</p>
 <p>在此之前, 先给出一个有用的命题.</p>
+<div class="note note-success">
 <p><u>Claim 4.2</u> (光滑截面的延拓) 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E\)</span>, <span class="math inline">\(s\)</span>是定义在开集<span class="math inline">\(U\)</span>上的光滑截面, 点<span class="math inline">\(p\in U\)</span>, 则存在<span class="math inline">\(M\)</span>上的光滑截面<span class="math inline">\(\bar{s}\)</span>, 使得在<span class="math inline">\(p\)</span>的某邻域<span class="math inline">\(N\)</span>上, <span class="math inline">\(s|_N=\bar{s}|_N\)</span>.</p>
+</div>
 <h3 id="local-and-point-operators">4.3  Local and point operators</h3>
 <div class="note note-secondary">
 <p>我们说<span class="math inline">\(\R^n\)</span>上的方向导数<span class="math inline">\(D_X\)</span>具有"局部性": 若两个光滑函数<span class="math inline">\(f,g\)</span>在某开集<span class="math inline">\(U\)</span>上相等, 则两者的方向导数<span class="math inline">\(D_Xf\)</span>和<span class="math inline">\(D_Xg\)</span>在<span class="math inline">\(U\)</span>上也相等. 也就是说, 方向导数<span class="math inline">\(D_X\)</span>不关心函数在<span class="math inline">\(\R^n\)</span>上的整体行为, 而只关心函数在某一点附近(邻域内)的行为.</p>
@@ -521,7 +538,9 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 <li>局部算子只关心截面<span class="math inline">\(s\)</span>在某个邻域内的取值; 点算子只关心<span class="math inline">\(s\)</span>在某点的取值.</li>
 <li>联络<span class="math inline">\(\nabla_X\)</span>是<span class="math inline">\(\Gamma(TM)\)</span>上的局部算子; 与函数相乘的算子<span class="math inline">\(s\mapsto fs\)</span>是<span class="math inline">\(\Gamma(TM)\)</span>上的点算子.</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 4.3</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 映射<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>, 若<span class="math inline">\(\alpha\)</span>是<span class="math inline">\(\cal F\)</span>-线性的, 则<span class="math inline">\(\alpha\)</span>是局部算子.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设<span class="math inline">\(s\in\Gamma(E)\)</span>在开集<span class="math inline">\(U\)</span>上恒为零, 任取<span class="math inline">\(p\in U\)</span>, 设光滑函数<span class="math inline">\(f_p:M\to\R\)</span>满足: ①<span class="math inline">\(f(p)=1\)</span>, ②<span class="math inline">\({\rm supp}\,f\subset U\)</span>, 如下图.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/5-3-local-operators-F-linearity.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
@@ -531,9 +550,11 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 </div>
 <p><span class="math inline">\({\cal F}\)</span>-线性性是<span class="math inline">\(\alpha\)</span>局部的一个充分不必要条件. 联络<span class="math inline">\(\nabla_X:{\frak X}(M)\to{\frak X}(M)\)</span>不具有<span class="math inline">\({\cal F}\)</span>-线性性, 而满足Leibniz律, 可以证明它也是局部的.</p>
 <p>局部算子的一个好处是它可以被(唯一地)限制到任意开集上.</p>
+<div class="note note-success">
 <p><u>Claim 4.4</u> 设流形<span class="math inline">\(M\)</span>上的向量丛<span class="math inline">\(E,F\)</span>, 局部算子<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>, 则对任意开集<span class="math inline">\(U\subset M\)</span>, 唯一存在一个线性算子<span class="math inline">\(\alpha_U:\Gamma(U,E)\to\Gamma(U,F)\)</span>, 满足 <span class="math display">\[
 \alpha_U(t|_U) = \alpha(t)|_U, \quad\forall t\in\Gamma(E),
 \]</span> 称为<span class="math inline">\(\alpha\)</span>在<span class="math inline">\(U\)</span>上的<strong>限制(restriction)</strong>. 而且, 如果<span class="math inline">\(\alpha\)</span>是<span class="math inline">\({\cal F}\)</span>-线性的, 则<span class="math inline">\(\alpha_U\)</span>是<span class="math inline">\({\cal F}(U)\)</span>-线性的.</p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设截面<span class="math inline">\(s\in\Gamma(U,E)\)</span>, 点<span class="math inline">\(p\in U\)</span>. 根据Claim 4.2, 存在截面<span class="math inline">\(\bar{s}\in\Gamma(M,E)\)</span>, 且<span class="math inline">\(s,\bar{s}\)</span>在<span class="math inline">\(p\)</span>的某邻域<span class="math inline">\(W\)</span>取值相同. 定义 <span class="math display">\[
 \alpha_U(s)(p) := \alpha(\bar{s})(p).
@@ -541,9 +562,11 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 <p>设全局截面<span class="math inline">\(t\in\Gamma(M,E)\)</span>, 有<span class="math inline">\(\alpha_U(t|_U)(p)=\alpha(t)(p)\)</span>对任意<span class="math inline">\(p\in U\)</span>, 则<span class="math inline">\(\alpha_U(t|_U)=\alpha(t)|_U\)</span>, 即证.</p>
 </div>
 <p>下面的命题告诉我们: 一个<span class="math inline">\({\cal F}\)</span>-线性的截面映射不光是局部的, 而且还是逐点的. 我们知道(Claim 4.4), 局部算子可以唯一地限制到任意开集上, 而逐点算子则可以唯一地"限制"到任意一点, 即唯一地诱导出纤维<span class="math inline">\(E_p\to F_p\)</span>的线性映射.</p>
+<div class="note note-success">
 <p><u>Claim 4.5</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 映射<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>, 若<span class="math inline">\(\alpha\)</span>是<span class="math inline">\(\cal F\)</span>-线性的, 则<span class="math inline">\(\alpha\)</span>是点算子. 此时, 对每个点<span class="math inline">\(p\in M\)</span>都唯一存在线性映射<span class="math inline">\(\phi_p:E_p\to F_p\)</span>, 满足 <span class="math display">\[
 \phi_p(s(p)) = \alpha(s)(p), \quad\forall s\in\Gamma(E).
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 任给<span class="math inline">\(p\)</span>, 设<span class="math inline">\(p\)</span>的邻域<span class="math inline">\(U\)</span>上有标架<span class="math inline">\(\qty{e_1,\dots,e_r}\)</span>. 截面<span class="math inline">\(s\)</span>在<span class="math inline">\(U\)</span>上展开为<span class="math inline">\(s|_U=a^\mu e_\mu\)</span>(其中<span class="math inline">\(a^\mu\in{\cal F}(U)\)</span>). 设<span class="math inline">\(s(p)=0\)</span>, 则<span class="math inline">\(a^\mu(p)=0\)</span>. 由Claim 4.4, <span class="math inline">\(\alpha\)</span>可以被限制到<span class="math inline">\(U\)</span>上, 且 <span class="math display">\[
 \Align{
@@ -563,10 +586,12 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 </div>
 <h3 id="cal-f-linear-section-maps-and-bundle-maps">4.4  <span class="math inline">\(\cal F\)</span>-linear section maps and bundle maps</h3>
 <p>Claim 4.5告诉我们, 一个光滑的<span class="math inline">\({\cal F}\)</span>-线性的截面映射<span class="math inline">\(\alpha\)</span>可以诱导出一族纤维映射<span class="math inline">\(\qty{\phi_p}_{p\in M}\)</span>, 而一个丛映射<span class="math inline">\(\psi:E\to F\)</span>无非就是一族纤维映射<span class="math inline">\(\qty{\psi_p}_{p\in M}\)</span>以一种"光滑"的方式组合起来, 所以说距离我们最终的目标(以截面映射<span class="math inline">\(\alpha\)</span>构造出丛映射<span class="math inline">\(\phi\)</span>)只差"光滑"这一步. 这恰恰是下面Claim 4.6要解决的.</p>
+<div class="note note-success">
 <p><u>Claim 4.6</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 映射<span class="math inline">\(\phi:E\to F\)</span>保纤维(<span class="math inline">\(\phi(E_p)\subset F_p\)</span>), 且在每个纤维上都是线性映射, 则 <span class="math display">\[
 \phi\,\textsf{是光滑的}
 \iff\phi_\#\,\textsf{将光滑截面映到光滑截面.}
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> (<span class="math inline">\(\Rightarrow\)</span>) 若<span class="math inline">\(\phi\)</span>是光滑的, <span class="math inline">\(s\in\Gamma(E)\)</span>是光滑的, 那么<span class="math inline">\(\phi_\#(s)=\phi\circ s\)</span>也是光滑的.</p>
 <p>(<span class="math inline">\(\Leftarrow\)</span>) 任给定<span class="math inline">\(p\in M\)</span>, 设<span class="math inline">\(p\)</span>的邻域<span class="math inline">\(U\)</span>上有<span class="math inline">\(E,F\)</span>的标架<span class="math inline">\(\qty{e_1,\dots,e_r},\qty{f_1,\dots,f_m}\)</span>. 设 <span class="math display">\[
@@ -579,6 +604,7 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 \]</span> 是<span class="math inline">\(E|_U\to F\)</span>的光滑映射.</p>
 </div>
 <p>至此, 我们终于可以得到想要的结论.</p>
+<div class="note note-success">
 <p><u>Claim 4.7</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E,F\)</span>, 则存在一一对应关系: <span class="math display">\[
 \Align{
 \{ \textsf{丛映射}\, E\to F \} &amp;\longleftrightarrow
@@ -586,6 +612,7 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 \phi &amp;{}\,\longmapsto\, \phi_\#.
 }
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 先证明满射. 设<span class="math inline">\(\cal{F}\)</span>-线性的截面映射<span class="math inline">\(\alpha:\Gamma(E)\to\Gamma(F)\)</span>, 根据Claim 4.5, 对任意<span class="math inline">\(p\in M\)</span>存在<span class="math inline">\(\phi_p:E_p\to F_p\)</span>, 满足<span class="math inline">\(\phi_p(s(p))=\alpha(s)(p)\)</span>. 定义<span class="math inline">\(\phi:E\to F\)</span>, <span class="math inline">\(\phi(e):=\phi_p(e)\)</span>, 其中<span class="math inline">\(e\in E_p\)</span>. 对任意<span class="math inline">\(s\in\Gamma(E)\)</span>, <span class="math inline">\(p\in M\)</span>, <span class="math display">\[
 \phi_\# (s)(p) = \phi(s(p)) = \phi_p(s(p)) = \alpha(s)(p),
@@ -599,6 +626,7 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 </div>
 <h3 id="generalization-to-calf-multilinear-section-maps">4.5  Generalization to <span class="math inline">\(\cal{F}\)</span>-multilinear section maps</h3>
 <p>很容易将Claim 4.5推广到多线性映射, 证明是相似的.</p>
+<div class="note note-success">
 <p><u>Claim 4.8</u> 设流形<span class="math inline">\(M\)</span>上的光滑向量丛<span class="math inline">\(E_1,\dots,E_n,F\)</span>, 若 <span class="math display">\[
 \alpha:\Gamma(E_1)\times\cdots\times\Gamma(E_n)\to\Gamma(F)
 \]</span> 关于每个变量都是<span class="math inline">\(\cal F\)</span>-线性的, 则对任意<span class="math inline">\(p\in M\)</span>, 存在唯一<span class="math inline">\(\R\)</span>-多线性映射 <span class="math display">\[
@@ -606,6 +634,7 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 \]</span> 满足: 对任意<span class="math inline">\(s_1\in\Gamma(E_1),\dots,s_n\in\Gamma(E_n)\)</span>, 有 <span class="math display">\[
 \phi_p(s_1(p),\dots,s_n(p)) = \alpha(s_1,\dots,s_n)(p).
 \]</span></p>
+</div>
 <h2 id="gausss-theorema-egregium">5  Gauss's Theorema Egregium</h2>
 <p>现在我们尝试证明高斯绝妙定理, 即证明曲面的高斯曲率是一个等距不变量, 或者说是一个内禀属性(intrinsic property). 我们已经知道, 一个黎曼流形的度量, 黎曼联络以及由此派生的黎曼曲率都是内禀属性. 于是一个自然的想法就是研究高斯曲率和黎曼曲率的联系(毕竟它们都叫"曲率").</p>
 <ul>
@@ -613,6 +642,7 @@ e_i(p) := \phi^{-1}(p,v_i), \quad i=1,\dots,r
 f_M(p) = f_{\tilde{M}}(\varphi(p)),\quad\forall p\in M
 \]</span> 则称<span class="math inline">\(f_M\)</span>是等距不变量.</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 5.1</u> 设<span class="math inline">\(\R^3\)</span>的定向曲面<span class="math inline">\(M\)</span>, <span class="math inline">\(M\)</span>的形状算子<span class="math inline">\(L\)</span>, 黎曼联络<span class="math inline">\(\nabla\)</span>以及黎曼曲率<span class="math inline">\(R\)</span>, 则对<span class="math inline">\(X,Y,Z\in{\frak X}(M)\)</span>有</p>
 <ul>
 <li><p>(高斯曲率方程) <span class="math display">\[
@@ -622,6 +652,7 @@ R(X,Y)Z=\lr{L(Y),Z}L(X)-\lr{L(X),Z}L(Y);
 \nabla_XL(Y)-\nabla_YL(X)-L([X,Y])=0.
 \]</span></p></li>
 </ul>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 子流形<span class="math inline">\(M\)</span>的黎曼联络<span class="math inline">\(\nabla\)</span>是<span class="math inline">\(\R^3\)</span>的黎曼联络<span class="math inline">\(D\)</span>的正交投影, 也即 <span class="math display">\[
 D_YZ = \nabla_YZ + \lr{D_YZ,N}N = \nabla_YZ+\lr{L(Y),Z}N. \tag{a}
@@ -665,6 +696,7 @@ D_{[X,Y]}Z = \nabla_{[X,Y]}Z + \lr{L([X,Y]),Z}N. \tag{d}
 R_p(X_p,Y_p)Z_p := (R(X,Y)Z)_p,
 \]</span> 其中<span class="math inline">\(X,Y,Z\)</span>分别延拓<span class="math inline">\(X_p,Y_p,Z_p\)</span>. 所以高斯曲率方程对于每一点<span class="math inline">\(p\)</span>都成立.</li>
 </ul>
+<div class="note note-success">
 <p><u>Claim 5.2</u> (高斯绝妙定理, Theorema Egregium) 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, 点<span class="math inline">\(p\in M\)</span>.</p>
 <ol type="1">
 <li><p>若<span class="math inline">\(\qty{e_1,e_2}\)</span>是<span class="math inline">\(T_pM\)</span>的正交归一基底, 则<span class="math inline">\(p\)</span>点的高斯曲率 <span class="math display">\[
@@ -672,6 +704,7 @@ K_p = \lr{R_p(e_1,e_2)e_2,e_1}.
 \]</span></p></li>
 <li><p>高斯曲率是<span class="math inline">\(\R^3\)</span>中光滑曲面的等距不变量.</p></li>
 </ol>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 第一部分. 设<span class="math inline">\(L(e_1)=ae_1+be_2\)</span>, <span class="math inline">\(L(e_2)=be_1+ce_2\)</span>, 则(两边取内积) <span class="math display">\[
 \Align{
@@ -695,9 +728,11 @@ R_p(e_1,e_2)e_2 = \lr{L(e_2),e_2}L(e_1)-\lr{L(e_1),e_2}L(e_2),
 }
 \]</span> (其中第二步根据Claim 3.6; 第三步根据等距同构的定义) 这说明高斯曲率<span class="math inline">\(K\)</span>是等距不变量.</p>
 </div>
+<div class="note note-success">
 <p><u>Claim 5.3</u> (任意基底下的高斯曲率) 设<span class="math inline">\(\R^3\)</span>的光滑曲面<span class="math inline">\(M\)</span>, 点<span class="math inline">\(p\in M\)</span>, <span class="math inline">\(\qty{u,v}\)</span>是<span class="math inline">\(T_pM\)</span>的基底, 则高斯曲率 <span class="math display">\[
 K_p = \frac{ \lr{R_p(u,v)v,u} }{ \lr{u,u}\lr{v,v}-\lr{u,v}^2 }.
 \]</span></p>
+</div>
 <div class="note note-light">
 <p><u>Pf</u> 设<span class="math inline">\(\qty{e_1,e_2}\)</span>是<span class="math inline">\(T_pM\)</span>的正交归一基底, <span class="math inline">\(u=ae_1+be_2\)</span>, <span class="math inline">\(v=ce_1+de_2\)</span>, 根据黎曼曲率的线性性和反对称性, 有<span class="math inline">\(R_p(u,v) = (ad-bc)R_p(e_1,e_2)\)</span>, 进而 <span class="math display">\[
 \lr{R_p(u,v)v,u} = (ad-bc)^2\lr{R_p(e_1,e_2)e_2,e_1}.
@@ -714,11 +749,14 @@ K_p = \frac{ \lr{R_p(u,v)v,u} }{ \lr{u,u}\lr{v,v}-\lr{u,v}^2 }.
 0=X_p\lr{N,N}=2\lr{D_{X_p}N,N},
 \]</span> 所以<span class="math inline">\(D_{X_p}N\in T_pM\)</span>. 定义<strong>形状算子</strong><span class="math inline">\(L_p:T_pM\to T_pM\)</span>, <span class="math inline">\(L_p(X_p):=-D_{X_p}N\)</span>. 当<span class="math inline">\(p\)</span>取遍<span class="math inline">\(M\)</span>, 就得到了全局的形状算子<span class="math inline">\(L:{\frak X}(M)\to{\frak X}(M)\)</span>, <span class="math inline">\(L(X)_p:=L_p(X_p)\)</span>. 形状算子是高斯映射 <span class="math inline">\(\nu:M\to S^n\)</span>, <span class="math inline">\(p\to N_p\)</span> 的微分加一个负号: <span class="math display">\[
 L(X) = -\nu_*(X).
-\]</span> <u>Claim 6.1</u> 设<span class="math inline">\(\R^{n+1}\)</span>的定向超曲面<span class="math inline">\(M\)</span>, <span class="math inline">\(M\)</span>的形状算子<span class="math inline">\(L\)</span>, 则对于<span class="math inline">\(X,Y\in{\frak X}(M)\)</span>, 有</p>
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 6.1</u> 设<span class="math inline">\(\R^{n+1}\)</span>的定向超曲面<span class="math inline">\(M\)</span>, <span class="math inline">\(M\)</span>的形状算子<span class="math inline">\(L\)</span>, 则对于<span class="math inline">\(X,Y\in{\frak X}(M)\)</span>, 有</p>
 <ol type="1">
 <li>(形状算子给出方向导数的法向部分) <span class="math inline">\(\lr{L(X),Y}=\lr{D_XY,N}\)</span>.</li>
 <li>(形状算子的自伴性) <span class="math inline">\(\lr{L(X),Y}=\lr{X,L(Y)}\)</span>.</li>
 </ol>
+</div>
 <p>由于自伴性, <span class="math inline">\(L_p:T_pM\to T_pM\)</span>具有<span class="math inline">\(n\)</span>个实特征值<span class="math inline">\(\lambda_i\)</span>(<span class="math inline">\(i=1,\dots,n\)</span>), 称为<span class="math inline">\(p\)</span>点的<strong>主曲率</strong>. 定义<strong>平均曲率</strong><span class="math inline">\(H(p)\)</span>和<strong>高斯曲率</strong><span class="math inline">\(K(p)\)</span>为 <span class="math display">\[
 \Align{
 H(p) &amp;= \frac1n\sum_{i=1}^n\lambda_i = \frac1n\tr{L_p}, \\
@@ -745,6 +783,7 @@ D_XY
 \]</span> 切向分量是超曲面的黎曼联络, 法向分量是第二基本形式.</p>
 <h3 id="gauss-and-codazzi-equations">6.3  Gauss and Codazzi equations</h3>
 <p>欧氏空间<span class="math inline">\(\R^{n+1}\)</span>的方向导数<span class="math inline">\(D\)</span>与超曲面的黎曼联络<span class="math inline">\(\nabla\)</span>的关系导致了曲率<span class="math inline">\(R_D\)</span>和<span class="math inline">\(R\)</span>的关系. 切向分量为零给出了高斯曲率方程, 法向分量为零给出了Codazzi-Mainardi方程.</p>
+<div class="note note-success">
 <p><u>Claim 6.2</u> 设<span class="math inline">\(\R^{n+1}\)</span>的定向超曲面<span class="math inline">\(M\)</span>, <span class="math inline">\(M\)</span>的形状算子<span class="math inline">\(L\)</span>, 黎曼联络<span class="math inline">\(\nabla\)</span>以及黎曼曲率<span class="math inline">\(R\)</span>, 则对<span class="math inline">\(X,Y,Z\in{\frak X}(M)\)</span>有</p>
 <ul>
 <li><p>(高斯曲率方程) <span class="math display">\[
@@ -754,9 +793,12 @@ R(X,Y)Z=\lr{L(Y),Z}L(X)-\lr{L(X),Z}L(Y);
 \nabla_XL(Y)-\nabla_YL(X)-L([X,Y])=0.
 \]</span></p></li>
 </ul>
+</div>
+<div class="note note-success">
 <p><u>Claim 6.3</u> 设<span class="math inline">\(\R^{n+1}\)</span>的定向超曲面<span class="math inline">\(M\)</span>, <span class="math inline">\(M\)</span>的曲率<span class="math inline">\(R\)</span>, 则 <span class="math display">\[
 \lr{R(X,Y)Y,X} = {\rm II}(X,X)\,{\rm II}(Y,Y) - {\rm II}(X,Y)^2.
 \]</span></p>
+</div>
 <ul>
 <li>当<span class="math inline">\(M\)</span>是<span class="math inline">\(\R^3\)</span>中的曲面, 且<span class="math inline">\(\qty{X_p,Y_p}\)</span>构成正交归一基底时, 上式给出了<span class="math inline">\(M\)</span>在<span class="math inline">\(p\)</span>点的高斯曲率.</li>
 </ul>
