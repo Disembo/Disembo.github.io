@@ -23,12 +23,16 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="一维流形的分类, 单纯复形.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/simplicial-complex-examples.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Torus-triang.png/1280px-Torus-triang.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Dolphin_triangle_mesh.svg/1280px-Dolphin_triangle_mesh.svg.png">
 <meta property="article:published_time" content="2024-08-12T14:49:29.728Z">
-<meta property="article:modified_time" content="2024-08-12T14:34:26.391Z">
+<meta property="article:modified_time" content="2024-08-13T07:08:30.014Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/simplicial-complex-examples.png">
   
   
   
@@ -352,6 +356,7 @@ F:\Delta_k &amp;\overset\sim\to \sigma, \\
 <li><span class="math inline">\(K\)</span> 中两个单形的交或者为空, 或者为它们的公共面.</li>
 <li><span class="math inline">\(K\)</span> 是局部有限的.</li>
 </ol>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/simplicial-complex-examples.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
 <p>局部有限性蕴含 <span class="math inline">\(K\)</span> 的可数性. 因为对于 <span class="math inline">\(\R^n\)</span> 中任意一点 <span class="math inline">\(p\)</span>, 存在邻域 <span class="math inline">\(U_p\)</span> 与有限个单形相交; 所有 <span class="math inline">\(U_p\)</span> 组成 <span class="math inline">\(\R^n\)</span> 的开覆盖, 它有可数子覆盖, 意味着 <span class="math inline">\(K\)</span> 是可数的. 我们感兴趣的主要是<strong>有限单纯复形</strong>, 即只包含有限个单形的单纯复形. 此时条件 3 是多余的.</p>
 <p>对于 <span class="math inline">\(\R^n\)</span> 中的单纯复形 <span class="math inline">\(K\)</span>, 其<strong>维数</strong>定义为其中单形的最大维数, 这显然不超过 <span class="math inline">\(n\)</span>. 复形 <span class="math inline">\(K\)</span> 的一个<strong>子复形</strong>指的是满足条件 1 的子集 <span class="math inline">\(S\subset K\)</span> (它自动满足 2, 3). 对于 <span class="math inline">\(k\leq n\)</span>, <span class="math inline">\(K\)</span> 的所有不超过 <span class="math inline">\(k\)</span> 维的单形组成的子复形称为 <span class="math inline">\(K\)</span> 的 <strong><span class="math inline">\(k\)</span> 维骨架</strong>.</p>
 <p>对于 <span class="math inline">\(\R^n\)</span> 中的单纯复形 <span class="math inline">\(K\)</span>, 它的<strong>承载空间 (underlying space)</strong> 定义为 <span class="math inline">\(|K|:=\bigcup_{\sigma\in K}\sigma\)</span>.</p>
@@ -374,20 +379,98 @@ F:\Delta_k &amp;\overset\sim\to \sigma, \\
 <div class="note note-success">
 <p><u>Claim 20.4</u> (二维流形的三角剖分) 二维流形上存在三角剖分.</p>
 </div>
+<p>该定理的证明技术性很强. 其思想大致与 Claim 19.1 的证明相同, 即用正则坐标球覆盖流形 <span class="math inline">\(M\)</span>, 归纳地说明每个坐标球上存在三角剖分, 且与已经定义的三角剖分相容. 然而找到这样一种相容的剖分十分困难, 因为坐标球的边界可能与 (已经定义好的) 单形的边界相交无穷多次. 证明的过程需要用一些精妙的拓扑定理, 这超出了本书范围, 故略去.</p>
 <p>根据定义, 可以得到二维流形的三角剖分 <span class="math inline">\(\varphi:M\overset\sim\to|K|\)</span> 的一些性质:</p>
 <ul>
 <li><span class="math inline">\(K\)</span> 由一些 <span class="math inline">\(2\)</span> 维单形 (三角形) 及其所有面 (边和顶点) 组成.</li>
 <li><span class="math inline">\(K\)</span> 中任两个 <span class="math inline">\(2\)</span> 维单形的交集或者为空, 或者为其公共面 (边或顶点).</li>
 <li><span class="math inline">\(K\)</span> 中任意 <span class="math inline">\(1\)</span> 维单形恰好是两个 <span class="math inline">\(2\)</span> 维单形的公共面.</li>
 </ul>
-<p>实际上, 任意三维流形也能被三角剖分 (如下定理由 Edwin Moise 在 1950 年代证明).</p>
+<p>空间中的正多面体都能看成球面 <span class="math inline">\(\mathbb{S}^2\)</span> 的三角剖分, 其他三角剖分的例子:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Torus-triang.png/1280px-Torus-triang.png" srcset="/img/loading.gif" lazyload style="zoom:20%;"></th>
+<th style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Dolphin_triangle_mesh.svg/1280px-Dolphin_triangle_mesh.svg.png" srcset="/img/loading.gif" lazyload style="zoom:20%;"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>实际上, 任意三维流形也能被三角剖分 (由 Edwin Moise 在 1950 年代证明).</p>
 <div class="note note-success">
 <p><u>Claim 20.5</u> (三维流形的三角剖分) 三维流形上存在三角剖分.</p>
 </div>
-<p>然而, 当 <span class="math inline">\(n\geq3\)</span> 时, 情况变得复杂. 在二十世纪末, 人们发现了不存在三角剖分的四维流形; 更高维流形上三角剖分的存在性仍是未知的.</p>
-<p>单纯复形的拓扑信息完全地以组合的方式呈现, 因此能将拓扑问题简化为组合问题. 单纯复形和三角剖分是<strong>组合拓扑 (combinatorial topology)</strong> 的重要研究对象.</p>
+<p>然而, 当 <span class="math inline">\(n\geq3\)</span> 时, 情况变得复杂. 在二十世纪末, 人们发现了不存在三角剖分的四维流形; 更高维流形上三角剖分的存在性仍是未知的. 单纯复形的拓扑信息完全地以组合的方式呈现, 因此能将拓扑问题 (对流形的研究) 简化为组合问题 (对单纯复形的研究). 单纯复形和三角剖分是<strong>组合拓扑 (combinatorial topology)</strong> 的重要研究对象.</p>
+<p>一个流形上可能有许多三角剖分, 我们想要知道哪些剖分是 "等价" 的, 于是引入下面的概念.</p>
+<p>设单纯复形 <span class="math inline">\(K\)</span>, 它的一个<strong>细分 (subdivision)</strong> 指的是满足如下条件的单纯复形 <span class="math inline">\(K'\)</span>:</p>
+<ol type="1">
+<li><span class="math inline">\(|K'|=|K|\)</span>,</li>
+<li>对于任意 <span class="math inline">\(\sigma'\in K'\)</span>, 存在 <span class="math inline">\(\sigma\in K\)</span>, 使得 <span class="math inline">\(\sigma'\subset\sigma\)</span>.</li>
+</ol>
+<p>此时, <span class="math inline">\(K\)</span> 中的每个单形都是 <span class="math inline">\(K'\)</span> 中的一些单形之并. 如果两个单纯复形有相同的细分, 则称它们是<strong>组合等价的 (combinatorially equivalent)</strong>. Ernst Steinitz 和 Heinrich Tietze 在 1908 年提出猜想:</p>
+<ul>
+<li>若两个单纯复形的承载空间是同胚的, 则它们是组合等价的.</li>
+</ul>
+<p>它的等价表述是:</p>
+<ul>
+<li>任意可被三角剖分的空间，其不同的三角剖分是等价的.</li>
+</ul>
+<p>这个猜想称为 "组合拓扑的主猜想 (Hauptvermugung)". 这个猜想的二维和三维情形是成立的, 但是对于任意更高的维数都不成立.</p>
 <h3 id="simplicial-maps">20.2  Simplicial maps</h3>
+<p>一个<strong>仿射映射</strong> <span class="math inline">\(F:\R^n\to\R^m\)</span> 是形如 <span class="math inline">\(F(x)=c+A(x)\)</span> 的映射, 其中 <span class="math inline">\(c\in\R^m\)</span>, <span class="math inline">\(A:\R^n\to\R^m\)</span> 为线性映射. 仿射映射是连续的.</p>
+<ul>
+<li>仿射映射保持<strong>仿射组合</strong>: 若 <span class="math inline">\(\sum_{i=1}^kt_i=1\)</span>, 则 <span class="math inline">\(f(\sum_{i=1}^k t_iv_i)=\sum_{i=1}^kt_iF(v_i)\)</span>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 20.6</u> (顶点映射确定的仿射映射) 设 <span class="math inline">\(k\)</span> 维单形 <span class="math inline">\(\sigma=[v_0,\dots,v_k]\subset\R^n\)</span>, 任给 <span class="math inline">\((k+1)\)</span> 个点 <span class="math inline">\(w_0,\dots,w_k\in\R^m\)</span>, 对于任意仿射映射 <span class="math inline">\(F:\R^n\to\R^m\)</span> 将 <span class="math inline">\(v_i\)</span> 映到 <span class="math inline">\(w_i\)</span>, <span class="math inline">\(F|_\sigma\)</span> 无关 <span class="math inline">\(F\)</span> 的选取.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 注意仿射映射 <span class="math inline">\(F\)</span> 在 <span class="math inline">\(\sigma\)</span> 上的限制 <span class="math inline">\(F|_\sigma\)</span> 保持仿射组合: <span class="math display">\[
+F|_\sigma\pqty{\sum_{i=1}^k t_i v_i}
+=\sum_{i=1}^k t_i F|_\sigma(v_i)
+=\sum_{i=1}^k t_i w_i
+\]</span> 这唯一确定了 <span class="math inline">\(F|_\sigma\)</span>.</p>
+</div>
+<p>我们称 <span class="math inline">\(f:=F|_\sigma:\sigma\to\R^m\)</span> 是<strong>顶点映射 <span class="math inline">\(v_i\mapsto w_i\)</span> 确定的仿射映射</strong>.</p>
+<p>设单纯复形 <span class="math inline">\(K,L\)</span>, <span class="math inline">\(K_0,L_0\)</span> 分别是其 <span class="math inline">\(0\)</span> 维骨架 (顶点集). 一个从 <span class="math inline">\(K\)</span> 到 <span class="math inline">\(L\)</span> 的<strong>单纯映射 (simplicial map)</strong> 指的是连续映射 <span class="math inline">\(f:|K|\to|L|\)</span>, 满足 <span class="math inline">\(f\)</span> 在任意单形 <span class="math inline">\(\sigma\in K\)</span> 上的限制与某个将 <span class="math inline">\(\sigma\)</span> 映到 <span class="math inline">\(\tau\in L\)</span> 的仿射映射相同. (根据上面的定理, 这个 <span class="math inline">\(f|_\sigma\)</span> 由单形 <span class="math inline">\(\sigma,\tau\)</span> 唯一确定.) <span class="math inline">\(f\)</span> 在 <span class="math inline">\(K_0\)</span> 的限制 <span class="math inline">\(f_0:K_0\to L_0\)</span> 称为 <span class="math inline">\(f\)</span> 的<strong>顶点映射 (vertex map)</strong>. 构成同胚的单纯映射称为<strong>单纯同构 (simplicial isomorphism)</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 20.7</u> (单纯映射由顶点映射唯一确定) 设单纯复形 <span class="math inline">\(K,L\)</span>, 映射 <span class="math inline">\(f_0:K_0\to L_0\)</span> 满足:</p>
+<ul>
+<li>若 <span class="math inline">\(\{v_0,\dots,v_k\}\)</span> 是 <span class="math inline">\(K\)</span> 中某单形的顶点, 则 <span class="math inline">\(\{f_0(v_0),\dots,f_0(v_k)\}\)</span> 是 <span class="math inline">\(L\)</span> 中某单形的顶点 (可重复).</li>
+</ul>
+<p>则存在唯一以 <span class="math inline">\(f_0\)</span> 为顶点映射的单纯映射 <span class="math inline">\(f:|K|\to|L|\)</span>. 此外, <span class="math inline">\(f\)</span> 是单纯同构当且仅当 <span class="math inline">\(f_0\)</span> 满足:</p>
+<ul>
+<li><span class="math inline">\(\{v_0,\dots,v_k\}\)</span> 是 <span class="math inline">\(K\)</span> 中某单形的顶点, 当且仅当 <span class="math inline">\(\{f_0(v_0),\dots,f_0(v_k)\}\)</span> 是 <span class="math inline">\(L\)</span> 中某单形的顶点.</li>
+</ul>
+</div>
 <h3 id="abstract-simplicial-complexes">20.3  Abstract simplicial complexes</h3>
+<p>下面简单地介绍抽象单形, 它将一个欧氏单形的拓扑信息完全以组合方式呈现出来.</p>
+<p>Claim 20.7 表明, 要 (在同构意义下) 确定一个单纯复形, 只需要给出两个信息: 其所有顶点以及哪些顶点张成单形. 受此启发, 我们给出如下定义.</p>
+<p>一个<strong>抽象单纯复形 (abstract simplicial complex)</strong> 指的是非空有限集的集族 <span class="math inline">\({\cal K}\)</span>, 满足: 若 <span class="math inline">\(s\in{\cal K}\)</span>, 则 <span class="math inline">\(s\)</span> 的任意非空子集也在 <span class="math inline">\({\cal K}\)</span> 中. <span class="math inline">\({\cal K}\)</span> 中的集合 <span class="math inline">\(s\)</span> 称为<strong>抽象单形</strong>, <span class="math inline">\(s\)</span> 中的元素称为 <span class="math inline">\(s\)</span> 的<strong>顶点</strong>, <span class="math inline">\(s\)</span> 的非空子集称为其<strong>面</strong>. <span class="math inline">\(s\)</span> 的<strong>维数</strong>定义为 <span class="math inline">\(|s|-1\)</span>. 如果 <span class="math inline">\({\cal K}\)</span> 中抽象单形的维数有上界, 则称 <span class="math inline">\({\cal K}\)</span> 是<strong>有限维的</strong>, 其维数是 <span class="math inline">\(s\in{\cal K}\)</span> 维数的最大值.</p>
+<p>若 <span class="math inline">\({\cal K}\)</span> 是有限集, 则称之为<strong>有限复形</strong>; 若每个顶点只属于有限个抽象单形, 则称 <span class="math inline">\({\cal K}\)</span> 为<strong>局部有限复形</strong>.</p>
+<p>抽象单形 <span class="math inline">\({\cal K}\)</span> 的<strong>顶点集</strong>定义为 <span class="math display">\[
+{\cal K}_0 = \bigcup_{s\in{\cal K}} s.
+\]</span> 设 <span class="math inline">\({\cal K},{\cal L}\)</span> 是抽象单纯复形. 映射 <span class="math inline">\(f:{\cal K}\to{\cal L}\)</span> 称为<strong>抽象单纯映射 (abstract simplicial map)</strong>, 若存在映射 <span class="math inline">\(f_0:{\cal K}_0\to{\cal L}_0\)</span>, 使得 <span class="math display">\[
+f(\{v_0,\dots,v_k\}) = \{f_0(v_0),\dots,f_0(v_k)\}
+\]</span> 其中 <span class="math inline">\(f_0\)</span> 称为 <span class="math inline">\(f\)</span> 的<strong>顶点映射</strong>, 需满足: 只要 <span class="math inline">\(\{v_0,\dots,v_k\}\in{\cal K}\)</span>, 则 <span class="math inline">\(\{f_0(v_0),\dots,f_0(v_k)\}\in{\cal L}\)</span>. 若 <span class="math inline">\(f_0,f\)</span> 都是双射, 则称 <span class="math inline">\(f\)</span> 是<strong>同构</strong>. 此时, <span class="math inline">\(f^{-1}\)</span> 也是抽象单纯映射.</p>
+<p>欧氏单纯复形 <span class="math inline">\(\rightarrow\)</span> 抽象单纯复形. 给定欧氏单纯复形 <span class="math inline">\(K\)</span>, 记 <span class="math inline">\({\cal K}\)</span> 是 <span class="math inline">\(K\)</span> 中所有单形的顶点集组成的集族, 则 <span class="math inline">\({\cal K}\)</span> 构成抽象单纯复形, 称为 <span class="math inline">\(K\)</span> 的<strong>顶点概形 (vertex scheme)</strong>. 根据 Claim 20.7, 两个欧氏单纯复形同构, 当且仅当其顶点概形同构.</p>
+<p>欧氏单纯复形 <span class="math inline">\(\leftarrow\)</span> 抽象单纯复形. 给定抽象单纯复形 <span class="math inline">\({\cal K}\)</span>, 如果某欧氏单纯复形 <span class="math inline">\(K\)</span> 的顶点概形同构于 <span class="math inline">\({\cal K}\)</span>, 则称 <span class="math inline">\(K\)</span> 是 <span class="math inline">\({\cal K}\)</span> 的一个<strong>几何实现 (geometric realization)</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 20.8</u> 有限的抽线单纯复形存在几何实现.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 将 <span class="math inline">\({\cal K}\)</span> 中的顶点一一列出: <span class="math inline">\(v_1,\dots,v_m\)</span>, 令 <span class="math inline">\(K\subset\R^m\)</span> 是以 <span class="math inline">\(\{e_1,\dots,e_m\}\)</span> 为顶点的欧氏单纯复形, 且 <span class="math inline">\([e_{i_1},\dots,e_{i_k}]\in K\)</span> 当且仅当 <span class="math inline">\(\{e_{i_1},\dots,e_{i_k}\}\in{\cal K}\)</span>. 容易验证 <span class="math inline">\(K\)</span> 满足欧氏单纯复形的定义, 且其顶点概形同构于 <span class="math inline">\({\cal K}\)</span>.</p>
+</div>
+<p>一些例子:</p>
+<ul>
+<li><p><span class="math inline">\(\{0,1,2,\dots,n\}\)</span> 的所有非空子集构成抽象单纯复形, 其几何实现同胚于 <span class="math inline">\(\overline{\mathbb{B}^n}\)</span>.</p></li>
+<li><p><span class="math inline">\(\{0,1,2,\dots,n\}\)</span> 的所有非空<em>真</em>子集构成抽象单纯复形, 其几何实现同胚于 <span class="math inline">\(\mathbb{S}^{n-1}\)</span>.</p></li>
+<li><p>(抽象正多边形) 对 <span class="math inline">\(n\geq3\)</span>, 记 <span class="math inline">\({\cal K}_m\)</span> 是以 <span class="math inline">\(\{\{1\},\{2\},\dots,\{m\}\}\)</span> 为 <span class="math inline">\(0\)</span> 维抽象单形, 以 <span class="math display">\[
+\{\{1,2\},\{2,3\},\dots,\{m-1,m\},\{m,1\}\}
+\]</span> 为 <span class="math inline">\(1\)</span> 维抽象单形的抽象单纯复形. <span class="math inline">\({\cal K}_m\)</span> 的几何实现同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</p></li>
+<li><p>(抽象实数轴) 记 <span class="math inline">\({\cal R}\)</span> 是所有 <span class="math inline">\(\{n\}\)</span> 和 <span class="math inline">\(\{n,n+1\}\)</span> (<span class="math inline">\(n\in\Z\)</span>) 组成的集族, 它的几何实现同胚于 <span class="math inline">\(\R\)</span>.</p></li>
+</ul>
 </body></html>
                 
               </div>
@@ -479,6 +562,12 @@ F:\Delta_k &amp;\overset\sim\to \sigma, \\
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Note/tp-gtm202-8/" title="GTM202 | 8 紧曲面">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM202 | 8 紧曲面</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
