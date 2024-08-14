@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/indices-of-vector-fields.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/sum-of-indices.png">
 <meta property="article:published_time" content="2024-08-10T12:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-12T03:03:33.467Z">
+<meta property="article:modified_time" content="2024-08-14T13:02:31.737Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -282,8 +282,8 @@
 <div class="note note-secondary">
 <p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 8 的笔记.</p>
 </div>
-<h2 id="the-fundamental-group-of-the-circle">32  The Fundamental Group of The Circle</h2>
-<h3 id="lifting-properties">32.1  Lifting properties</h3>
+<h2 id="the-fundamental-group-of-the-circle">29  The Fundamental Group of The Circle</h2>
+<h3 id="lifting-properties">29.1  Lifting properties</h3>
 <p>我们仍然将 <span class="math inline">\(\mathbb{S}^1\)</span> 视作 <span class="math inline">\(\C\)</span> 的子集, 取 <span class="math inline">\(1\in\C\)</span> 作为基点. 设指数商映射 <span class="math inline">\(\varepsilon:\R\to\mathbb{S}^1\)</span>, <span class="math inline">\(\varepsilon(r)=\e^{2\pi\i r}\)</span>.</p>
 <p>任给拓扑空间 <span class="math inline">\(B\)</span> 和连续映射 <span class="math inline">\(\varphi:B\to\mathbb{S}^1\)</span>, <span class="math inline">\(\varphi\)</span> 的一个<strong>提升 (lift)</strong> 指的是连续映射 <span class="math inline">\(\tilde{\varphi}:B\to\R\)</span>, 满足交换图 <span class="math display">\[
 \xymatrix{
@@ -292,7 +292,7 @@ B \ar[r]_{\varphi} \ar@{.&gt;}[ur]^{\tilde{\varphi}} &amp; \mathbb{S}^1.
 }
 \]</span></p>
 <div class="note note-success">
-<p><u>Claim 32.1</u> (指数商映射的性质) 任意一点 <span class="math inline">\(z\in\mathbb{S}^1\)</span> 存在邻域 <span class="math inline">\(U\)</span>, 满足:</p>
+<p><u>Claim 29.1</u> (指数商映射的性质) 任意一点 <span class="math inline">\(z\in\mathbb{S}^1\)</span> 存在邻域 <span class="math inline">\(U\)</span>, 满足:</p>
 <ul>
 <li><span class="math inline">\(\varepsilon^{-1}(U)\)</span> 是可数个不交的开区间 <span class="math inline">\(\tilde{U}_n\)</span> (<span class="math inline">\(n\in\Z\)</span>) 之并, 并且 <span class="math inline">\(\varepsilon\)</span> 将每个 <span class="math inline">\(\tilde{U}_n\)</span> 同胚地映到 <span class="math inline">\(U\)</span>.</li>
 </ul>
@@ -322,13 +322,13 @@ x+\i y &amp;\mapsto n+\frac1{2\pi}\sin^{-1}y
 </ul>
 <p>下面的定理表明, 圆的任意均匀覆叠的开子集上都存在很多截面.</p>
 <div class="note note-success">
-<p><u>Claim 32.2</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的局部截面) 设均匀覆叠的开子集 <span class="math inline">\(U\subset\mathbb{S}^1\)</span>. 任给 <span class="math inline">\(z\in U\)</span>, <span class="math inline">\(r\in\varepsilon^{-1}(z)\)</span>, 存在 <span class="math inline">\(\varepsilon\)</span> 在 <span class="math inline">\(U\)</span> 上的局部截面 <span class="math inline">\(\sigma:U\to\R\)</span>, 满足 <span class="math inline">\(\sigma(z)=r\)</span>.</p>
+<p><u>Claim 29.2</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的局部截面) 设均匀覆叠的开子集 <span class="math inline">\(U\subset\mathbb{S}^1\)</span>. 任给 <span class="math inline">\(z\in U\)</span>, <span class="math inline">\(r\in\varepsilon^{-1}(z)\)</span>, 存在 <span class="math inline">\(\varepsilon\)</span> 在 <span class="math inline">\(U\)</span> 上的局部截面 <span class="math inline">\(\sigma:U\to\R\)</span>, 满足 <span class="math inline">\(\sigma(z)=r\)</span>.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 令 <span class="math inline">\(\tilde{U}\subset\R\)</span> 是 <span class="math inline">\(\varepsilon^{-1}(U)\)</span> 的包含 <span class="math inline">\(r\)</span> 的分量. 根据均匀覆叠的定义, <span class="math inline">\(\varepsilon:\tilde{U}\to U\)</span> 是同胚, <span class="math inline">\(\sigma=(\varepsilon|_{\tilde{U}})^{-1}\)</span> 即为所求.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 32.3</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的唯一提升性质) 设 <span class="math inline">\(B\)</span> 连通, 连续映射 <span class="math inline">\(\varphi:B\to\mathbb{S}^1\)</span> 的两个提升 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi}_2:B\to\R\)</span>. 若 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi_2}\)</span> 在 <span class="math inline">\(B\)</span> 中某点取值相同, 则它们恒相等.</p>
+<p><u>Claim 29.3</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的唯一提升性质) 设 <span class="math inline">\(B\)</span> 连通, 连续映射 <span class="math inline">\(\varphi:B\to\mathbb{S}^1\)</span> 的两个提升 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi}_2:B\to\R\)</span>. 若 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi_2}\)</span> 在 <span class="math inline">\(B\)</span> 中某点取值相同, 则它们恒相等.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 我们使用 "连通性论证". 令 <span class="math inline">\({\cal A}=\{b\in B\mid\tilde{\varphi}_1(b)=\tilde{\varphi}_2(b)\}\)</span>. 根据假设, <span class="math inline">\({\cal A}\)</span> 非空. 我们只需证明 <span class="math inline">\({\cal A}\)</span> 既开又闭, 则由 <span class="math inline">\(B\)</span> 的连通性, <span class="math inline">\({\cal A}=B\)</span>.</p>
@@ -336,10 +336,10 @@ x+\i y &amp;\mapsto n+\frac1{2\pi}\sin^{-1}y
 <p>闭性: 我们证明 <span class="math inline">\({\cal A}^C\)</span> 开. 设 <span class="math inline">\(b\notin{\cal A}\)</span>, 记 <span class="math inline">\(r_1=\tilde{\varphi}_1(b)\)</span>, <span class="math inline">\(r_2=\tilde{\varphi}_2(b)\)</span>, 有 <span class="math inline">\(r_1\neq r_2\)</span>. 令 <span class="math inline">\(z=\varepsilon(r_1)=\varphi(b)\)</span>, 取 <span class="math inline">\(z\)</span> 的一个均匀覆叠邻域 <span class="math inline">\(U\)</span>. 若 <span class="math inline">\(\tilde{U}_1\)</span> 和 <span class="math inline">\(\tilde{U}_2\)</span> 分别是 <span class="math inline">\(\varepsilon^{-1}(U)\)</span> 的包含 <span class="math inline">\(r_1\)</span> 和 <span class="math inline">\(r_2\)</span> 的分量, 则 <span class="math inline">\(\tilde{U}_1\cap\tilde{U}_2=\emptyset\)</span>, 并且 <span class="math inline">\(\varepsilon\)</span> 在 <span class="math inline">\(\tilde{U}_1\)</span> 和 <span class="math inline">\(\tilde{U}_2\)</span> 上的限制都是同胚. 若令 <span class="math inline">\(V=\tilde{\varphi}_1^{-1}(\tilde{U})\cap\tilde{\varphi}_2^{-1}(\tilde{U})\)</span>, 则 <span class="math inline">\(\tilde{\varphi}_1(V)\subset\tilde{U}_1\)</span> 且 <span class="math inline">\(\tilde{\varphi}_2(V)\subset\tilde{U}_2\)</span>, 因此在 <span class="math inline">\(V\)</span> 上 <span class="math inline">\(\tilde{\varphi}_1\neq\tilde{\varphi}_2\)</span>, 故 <span class="math inline">\(V\subset{\cal A}^C\)</span>, 证明了 <span class="math inline">\({\cal A}^C\)</span> 的开性.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 32.4</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的同伦提升性质) 设 <span class="math inline">\(B\)</span> 局部连通, 连续映射 <span class="math inline">\(\varphi_0,\varphi_1:B\to\mathbb{S}^1\)</span> 间有同伦 <span class="math inline">\(H:B\times I\to\mathbb{S}^1\)</span>. 若 <span class="math inline">\(\tilde{\varphi}_0:B\to\R\)</span> 是 <span class="math inline">\(\varphi_0\)</span> 的一个提升, 则 <span class="math inline">\(H\)</span> 有唯一提升 <span class="math inline">\(\tilde{H}:B\times I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{H}_0=\tilde\varphi_0\)</span>. 若 <span class="math inline">\(H\)</span> 保持子集 <span class="math inline">\(A\subset B\)</span> 不动, 则 <span class="math inline">\(\tilde{H}\)</span> 也保持 <span class="math inline">\(A\)</span> 不动.</p>
+<p><u>Claim 29.4</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的同伦提升性质) 设 <span class="math inline">\(B\)</span> 局部连通, 连续映射 <span class="math inline">\(\varphi_0,\varphi_1:B\to\mathbb{S}^1\)</span> 间有同伦 <span class="math inline">\(H:B\times I\to\mathbb{S}^1\)</span>. 若 <span class="math inline">\(\tilde{\varphi}_0:B\to\R\)</span> 是 <span class="math inline">\(\varphi_0\)</span> 的一个提升, 则 <span class="math inline">\(H\)</span> 有唯一提升 <span class="math inline">\(\tilde{H}:B\times I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{H}_0=\tilde\varphi_0\)</span>. 若 <span class="math inline">\(H\)</span> 保持子集 <span class="math inline">\(A\subset B\)</span> 不动, 则 <span class="math inline">\(\tilde{H}\)</span> 也保持 <span class="math inline">\(A\)</span> 不动.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 32.5</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的道路提升性质) 设道路 <span class="math inline">\(f:I\to\mathbb{S}^1\)</span>, 实数 <span class="math inline">\(r_0\in\varepsilon^{-1}(f(0))\)</span>, 则存在唯一提升 <span class="math inline">\(\tilde{f}:I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{f}(0)=r_0\)</span>, 并且任意给定的另一提升与 <span class="math inline">\(\tilde{f}\)</span> 相差一个常整数.</p>
+<p><u>Claim 29.5</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的道路提升性质) 设道路 <span class="math inline">\(f:I\to\mathbb{S}^1\)</span>, 实数 <span class="math inline">\(r_0\in\varepsilon^{-1}(f(0))\)</span>, 则存在唯一提升 <span class="math inline">\(\tilde{f}:I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{f}(0)=r_0\)</span>, 并且任意给定的另一提升与 <span class="math inline">\(\tilde{f}\)</span> 相差一个常整数.</p>
 </div>
 <ul>
 <li>即任给两个提升 <span class="math inline">\(\tilde{f},\tilde{f}'\)</span>, 则 <span class="math inline">\(\tilde{f}-\tilde{f}'\)</span> 是常数.</li>
@@ -349,13 +349,13 @@ x+\i y &amp;\mapsto n+\frac1{2\pi}\sin^{-1}y
 <p>设 <span class="math inline">\(\tilde{f}'\)</span> 是 <span class="math inline">\(f\)</span> 的另一个提升, 即 <span class="math inline">\(\varepsilon(\tilde{f}(s))=f(s)=\varepsilon(\tilde{f}'(s))\)</span>, 因此对任意 <span class="math inline">\(s\)</span>, <span class="math inline">\(\tilde{f}(s)-\tilde{f}'(s)\)</span> 都是整数. 又因为 <span class="math inline">\(\tilde{f}-\tilde{f}'\)</span> 是从连通空间 <span class="math inline">\(I\)</span> 到离散空间 <span class="math inline">\(\Z\)</span> 的连续映射, 其只能是常映射.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 32.6</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 上的道路同伦条件) 设 <span class="math inline">\(f_0,f_1\)</span> 是 <span class="math inline">\(\mathbb{S}^1\)</span> 上拥有相同起点与终点的道路, <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 分别是两条道路的提升, 且 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 起点相同. 则 <span class="math inline">\(f_0\sim f_1\)</span> 当且仅当 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 终点相同.</p>
+<p><u>Claim 29.6</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 上的道路同伦条件) 设 <span class="math inline">\(f_0,f_1\)</span> 是 <span class="math inline">\(\mathbb{S}^1\)</span> 上拥有相同起点与终点的道路, <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 分别是两条道路的提升, 且 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 起点相同. 则 <span class="math inline">\(f_0\sim f_1\)</span> 当且仅当 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 终点相同.</p>
 </div>
 <div class="note note-light">
-<p><u>Pf</u> 若 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 终点相同 (根据假设, 它们起点也相同). 注意 <span class="math inline">\(\R\)</span> 单连通, 由单连通性的等价刻画 (Claim 28.2), <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 道路同伦, 因此 <span class="math inline">\(f_0=\varepsilon\circ\tilde{f}_0\)</span> 和 <span class="math inline">\(f_1=\varepsilon\circ\tilde{f}_1\)</span> 道路同伦.</p>
+<p><u>Pf</u> 若 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 终点相同 (根据假设, 它们起点也相同). 注意 <span class="math inline">\(\R\)</span> 单连通, 由单连通性的等价刻画 (Claim 25.2), <span class="math inline">\(\tilde{f}_0,\tilde{f}_1\)</span> 道路同伦, 因此 <span class="math inline">\(f_0=\varepsilon\circ\tilde{f}_0\)</span> 和 <span class="math inline">\(f_1=\varepsilon\circ\tilde{f}_1\)</span> 道路同伦.</p>
 <p>若 <span class="math inline">\(f_0\sim f_1\)</span>, 设 <span class="math inline">\(H:I\times I\to\mathbb{S}^1\)</span> 是 <span class="math inline">\(f_0,f_1\)</span> 间的道路同伦. 根据 <span class="math inline">\(\mathbb{S}^1\)</span> 的同伦提升性质, <span class="math inline">\(H\)</span> 提升到同伦 <span class="math inline">\(\tilde{H}:I\times I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{H}_0=\tilde{f}_0\)</span>. 因为 <span class="math inline">\(H\)</span> 保持 <span class="math inline">\(\{0,1\}\)</span> 不变, <span class="math inline">\(\tilde{H}\)</span> 亦然, 意味着 <span class="math inline">\(\tilde{H}\)</span> 是一个道路同伦. 道路 <span class="math inline">\(\tilde{H}_1:I\to\R\)</span> 是 <span class="math inline">\(f_1\)</span> 的一个提升, 且它和 <span class="math inline">\(\tilde{f}_1\)</span> 有相同的起点. 根据唯一性, <span class="math inline">\(\tilde{H}_1=\tilde{f}_1\)</span>. 因此 <span class="math inline">\(\tilde{f}_0\)</span> 与 <span class="math inline">\(\tilde{f}_1\)</span> 道路同伦. 特别地, 它们终点相同.</p>
 </div>
-<h3 id="the-fundamental-group">32.2  The fundamental group</h3>
+<h3 id="the-fundamental-group">29.2  The fundamental group</h3>
 <p>现在我们将提升理论应用到 <span class="math inline">\(\mathbb{S}^1\)</span> 的环路上.</p>
 <p>设 <span class="math inline">\(f:I\to\mathbb{S}^1\)</span> 是以 <span class="math inline">\(z_0\in\mathbb{S}^1\)</span> 为基点的环路. 任给提升 <span class="math inline">\(\tilde{f}:I\to\R\)</span>, 因为 <span class="math inline">\(\tilde{f}(0)\)</span> 和 <span class="math inline">\(\tilde{f}(1)\)</span> 都在纤维 <span class="math inline">\(\varepsilon^{-1}(z_0)\)</span> 中, 所以它们相差一个整数. 注意到 <span class="math inline">\(f\)</span> 的任意两个提升的差值是常数, 所以 <span class="math inline">\(\tilde{f}(1)-\tilde{f}(0)\)</span> 是一个只与 <span class="math inline">\(f\)</span> 有关, 而与提升的选择无关的整数. 这个整数称为 <span class="math inline">\(f\)</span> 的<strong>卷绕数 (winding number)</strong>, 记作 <span class="math inline">\(N(f)\)</span>.</p>
 <ul>
@@ -367,13 +367,13 @@ N(f)=N(\rho\circ f).
 \]</span></p></li>
 </ul>
 <div class="note note-success">
-<p><u>Claim 32.7</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的环路的同伦分类) <span class="math inline">\(\mathbb{S}^1\)</span> 中基点相同的环路道路同伦, 当且仅当它们具有相同卷绕数.</p>
+<p><u>Claim 29.7</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的环路的同伦分类) <span class="math inline">\(\mathbb{S}^1\)</span> 中基点相同的环路道路同伦, 当且仅当它们具有相同卷绕数.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 设相同基点处的环路 <span class="math inline">\(f_0,f_1\)</span>. 根据道路提升性质, 存在提升 <span class="math inline">\(\tilde{f}_0,\tilde{f}_1:I\to\R\)</span>, 满足 <span class="math inline">\(\tilde{f}_0(0)=\tilde{f}_1(0)\)</span>. 根据道路同伦的充要条件, <span class="math inline">\(f_0\sim f_1\)</span> 当且仅当 <span class="math inline">\(\tilde{f}_0\)</span> 和 <span class="math inline">\(\tilde{f}_1\)</span> 终点相同, 即 <span class="math inline">\(f_0,f_1\)</span> 的卷绕数相同.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 32.8</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的基本群) <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 是由 <span class="math inline">\([\omega]\)</span> 生成的无穷循环群.</p>
+<p><u>Claim 29.8</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 的基本群) <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 是由 <span class="math inline">\([\omega]\)</span> 生成的无穷循环群.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 定义映射 <span class="math inline">\(J:\Z\to\pi_1(\mathbb{S}^1,1)\)</span> 和 <span class="math inline">\(K:\pi_1(\mathbb{S}^1,1)\to\Z\)</span>, <span class="math display">\[
@@ -385,7 +385,7 @@ J(n)&amp;=[\omega]^n,&amp; K([f])&amp;=N(f).
 <p>要证明 <span class="math inline">\(K\circ J={\rm id}_\Z\)</span>, 任给 <span class="math inline">\(n\in\Z\)</span>, 有 <span class="math inline">\(K(J(n))=K([\omega]^n)=K([\alpha_n])=N(\alpha_n)=n\)</span>.</p>
 <p>要证明 <span class="math inline">\(J\circ K={\rm id}_{\pi_1(\mathbb{S}^1,1)}\)</span>, 任给 <span class="math inline">\([f]\in\pi_1(\mathbb{S}^1,1)\)</span>, 记 <span class="math inline">\(n=N(f)\)</span>, 则 <span class="math inline">\(f\)</span> 与 <span class="math inline">\(\alpha_n\)</span> 具有相同的卷绕数 (且基点相同), 进而道路同伦. 因此 <span class="math inline">\(J(K(f))=J(n)=[\omega]^n=[\alpha_n]=[f]\)</span>.</p>
 </div>
-<h3 id="some-applications">32.3  Some applications</h3>
+<h3 id="some-applications">29.3  Some applications</h3>
 <p><span class="math inline">\(\mathbb{S}^1\)</span> 的结论可以应用到相关的空间:</p>
 <ul>
 <li><p>(去掉一点的平面) 因为 <span class="math inline">\(\mathbb{S}^1\)</span> 是 <span class="math inline">\(\C\setminus\{0\}\cong\R^2\setminus\{0\}\)</span> 的强形变收缩, 两者同伦等价, 故具有相同的基本群: <span class="math inline">\(\pi_1(\C\setminus\{0\},1)\)</span> 也是 <span class="math inline">\([\omega]\)</span> 生成的无穷循环群.</p>
@@ -405,7 +405,7 @@ J(n)&amp;=[\omega]^n,&amp; K([f])&amp;=N(f).
 </ul></li>
 </ul>
 <div class="note note-success">
-<p><u>Claim 32.9</u> (维数不变性 &amp; 边界不变性, 二维情形)</p>
+<p><u>Claim 29.9</u> (维数不变性 &amp; 边界不变性, 二维情形)</p>
 <ol type="1">
 <li>非空拓扑空间 <span class="math inline">\(X\)</span> 不可以既是 <span class="math inline">\(2\)</span> 维流形, 也是 <span class="math inline">\(n\)</span> (<span class="math inline">\(n&gt;2\)</span>) 维流形.</li>
 <li>设 <span class="math inline">\(2\)</span> 维带边流形 <span class="math inline">\(M\)</span>, 则 <span class="math inline">\(M\)</span> 中的点不能既是内部点也是边界点.</li>
@@ -423,7 +423,7 @@ x&amp;\mapsto p+r\frac{x-p}{|x-p|}.
 <p>边界不变性. 假设 <span class="math inline">\(p\)</span> 有内部坐标邻域 <span class="math inline">\((U,\varphi)\)</span> 和边界坐标邻域 <span class="math inline">\((V,\psi)\)</span> 满足 <span class="math inline">\(\psi(p)\in\partial\H^2\)</span>. 取 <span class="math inline">\(U\cap V\)</span> 的包含 <span class="math inline">\(p\)</span> 的连通分量 <span class="math inline">\(A\)</span>, 则 <span class="math inline">\(A\)</span> 同胚于 <span class="math inline">\(\R^2\)</span> 的开子集 <span class="math inline">\(\varphi(A)\)</span> 和 <span class="math inline">\(\H^2\)</span> 的开子集 <span class="math inline">\(\psi(A)\)</span>. 然而在去掉 <span class="math inline">\(p\)</span> 的像点后, <span class="math inline">\(\varphi(A)\setminus\{\varphi(p)\}\)</span> 不是单连通的, 但 <span class="math inline">\(\psi(A)\setminus\{\psi(p)\}\)</span> 是单连通的 (因为 <span class="math inline">\(\psi(p)\in\partial\H^2\)</span>), 导致矛盾.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 32.10</u> (卷绕数的复积分公式) 设 <span class="math inline">\(f:I\to\C\setminus\{0\}\)</span> 是连续可微环路, 则 <span class="math display">\[
+<p><u>Claim 29.10</u> (卷绕数的复积分公式) 设 <span class="math inline">\(f:I\to\C\setminus\{0\}\)</span> 是连续可微环路, 则 <span class="math display">\[
 N(f) = \frac1{2\pi\i}\int_0^1\frac{f'(s)}{f(s)}\dd{s}.
 \]</span></p>
 </div>
@@ -450,8 +450,8 @@ N(f) = H(1)-H(0) = h(1)-h(0) =
 \frac1{2\pi\i}\int_0^1\frac{f'(s)}{f(s)}\dd{s}.
 \]</span></p>
 </div>
-<h2 id="degree-theory-for-the-circle">33  Degree Theory for the Circle</h2>
-<h3 id="the-degree-of-a-map">33.1  The degree of a map</h3>
+<h2 id="degree-theory-for-the-circle">30  Degree Theory for the Circle</h2>
+<h3 id="the-degree-of-a-map">30.1  The degree of a map</h3>
 <p>基本群 <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 的信息可以用来研究 <span class="math inline">\(\mathbb{S}^1\)</span> 上连续映射的同伦分类.</p>
 <p>设连续映射 <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span>, 我们定义其<strong>映射度 (degree)</strong> 为环路 <span class="math inline">\(\varphi\circ\omega\)</span> 的卷绕数, 记作 <span class="math inline">\(\deg\varphi\)</span>.</p>
 <ul>
@@ -465,7 +465,7 @@ N(f) = H(1)-H(0) = h(1)-h(0) =
 <p>因为 <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 是无穷循环群, 所以可以考虑其自同态的映射度: 若映射 <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span> 满足 <span class="math inline">\(\varphi(1)=1\)</span>, 则 <span class="math inline">\(\varphi_*\)</span> 是 <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 的自同态, 我们将证明 <span class="math inline">\(\deg\varphi_*=\deg\varphi\)</span>.</p>
 <p>若 <span class="math inline">\(\varphi\)</span> 不保持基点, 则 <span class="math inline">\(\varphi_*\)</span> 不再是 <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 的自同态. 一个补救措施是让 <span class="math inline">\(\varphi\)</span> 复合一个旋转 <span class="math inline">\(\rho_\varphi\)</span>, 使得 <span class="math inline">\(\rho_\varphi\circ\varphi\)</span> 保持基点 <span class="math inline">\(1\)</span>. 这样的旋转当然存在, 即 <span class="math inline">\(\rho_\varphi(z)=z/\varphi(1)\)</span>.</p>
 <div class="note note-success">
-<p><u>Claim 33.1</u> (映射度的刻画) 若 <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span>, 则 <span class="math inline">\(\varphi\)</span> 的映射度等于下面自同态的映射度: <span class="math display">\[
+<p><u>Claim 30.1</u> (映射度的刻画) 若 <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span>, 则 <span class="math inline">\(\varphi\)</span> 的映射度等于下面自同态的映射度: <span class="math display">\[
 (\rho_\varphi\circ\varphi)_*:\pi_1(\mathbb{S}^1,1)\to\pi_1(\mathbb{S}^1,1).
 \]</span> 特别地, 若 <span class="math inline">\(\varphi(1)=1\)</span>, 则 <span class="math inline">\(\deg\varphi_*=\deg\varphi\)</span>.</p>
 </div>
@@ -478,7 +478,7 @@ N(f) = H(1)-H(0) = h(1)-h(0) =
 \]</span> 即 <span class="math inline">\((\rho_\varphi\circ\varphi)_*\)</span> 的映射度为 <span class="math inline">\(n\)</span>.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 33.2</u> (映射度的性质)</p>
+<p><u>Claim 30.2</u> (映射度的性质)</p>
 <ol type="1">
 <li>(同伦不变性) 同伦的连续映射具有相同的映射度.</li>
 <li>(复合) 若 <span class="math inline">\(\varphi,\psi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span>, 则 <span class="math inline">\(\deg(\psi\circ\varphi)=(\deg\psi)(\deg\varphi)\)</span>.</li>
@@ -490,9 +490,9 @@ N(f) = H(1)-H(0) = h(1)-h(0) =
 \deg\varphi &amp;= \deg(\rho_\varphi\circ\varphi)_*, \\
 \deg\psi &amp;= \deg(\rho_\psi\circ\psi)_*. \\
 } \tag{$\#$}
-\]</span> 因为旋转同伦于恒等映射 (一个同伦由 <span class="math inline">\(H(z,t)=\e^{\i t\theta}z\)</span> 给出), 复合保持同伦, 所以 <span class="math inline">\(\rho_\varphi\circ\varphi\sim\rho_\psi\circ\psi\)</span>. 这两侧都是保持基点 <span class="math inline">\(1\)</span> 不变的映射, 根据 Claim 30.3, 有 <span class="math display">\[
+\]</span> 因为旋转同伦于恒等映射 (一个同伦由 <span class="math inline">\(H(z,t)=\e^{\i t\theta}z\)</span> 给出), 复合保持同伦, 所以 <span class="math inline">\(\rho_\varphi\circ\varphi\sim\rho_\psi\circ\psi\)</span>. 这两侧都是保持基点 <span class="math inline">\(1\)</span> 不变的映射, 根据 Claim 27.3, 有 <span class="math display">\[
 \rho_\psi\circ\psi = \Phi_h \circ (\rho_\varphi\circ\varphi),
-\]</span> 其中 <span class="math inline">\(h\)</span> 是某条以 <span class="math inline">\(1\)</span> 为基点的环路. 因为 <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 是交换群, Claim 28.4 告诉我们 <span class="math inline">\(\Phi_h\)</span> 不依赖 <span class="math inline">\(h\)</span> 的选取. 不妨取 <span class="math inline">\(h=c_1\)</span> 为常环路, 则 <span class="math inline">\(\Phi_h\)</span> 是恒等映射, 有 <span class="math inline">\(\rho_\psi\circ\psi=\rho_\varphi\circ\varphi\)</span>, 进而 <span class="math inline">\((\rho_\psi\circ\psi)_*=(\rho_\varphi\circ\varphi)_*\)</span>, 结合 <span class="math inline">\((\#)\)</span> 式有 <span class="math inline">\(\deg\varphi=\deg\psi\)</span>.</p>
+\]</span> 其中 <span class="math inline">\(h\)</span> 是某条以 <span class="math inline">\(1\)</span> 为基点的环路. 因为 <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 是交换群, Claim 25.4 告诉我们 <span class="math inline">\(\Phi_h\)</span> 不依赖 <span class="math inline">\(h\)</span> 的选取. 不妨取 <span class="math inline">\(h=c_1\)</span> 为常环路, 则 <span class="math inline">\(\Phi_h\)</span> 是恒等映射, 有 <span class="math inline">\(\rho_\psi\circ\psi=\rho_\varphi\circ\varphi\)</span>, 进而 <span class="math inline">\((\rho_\psi\circ\psi)_*=(\rho_\varphi\circ\varphi)_*\)</span>, 结合 <span class="math inline">\((\#)\)</span> 式有 <span class="math inline">\(\deg\varphi=\deg\psi\)</span>.</p>
 <p>2, 设 <span class="math inline">\(\varphi,\psi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span>, 计算 <span class="math display">\[
 \Align{
 \deg(\psi\circ\varphi)
@@ -520,7 +520,7 @@ N(f) = H(1)-H(0) = h(1)-h(0) =
 <li><strong>对径映射 (antipodal map)</strong> <span class="math inline">\(\alpha(z)=-z\)</span> 的映射度为 <span class="math inline">\(1\)</span>, 因为它等于按 <span class="math inline">\(\e^{\i\pi}\)</span> 的旋转.</li>
 </ul>
 <div class="note note-success">
-<p><u>Claim 33.3</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 上连续映射的同伦分类) <span class="math inline">\(\mathbb{S}^1\)</span> 上的两个连续映射同伦, 当且仅当其映射度相同.</p>
+<p><u>Claim 30.3</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 上连续映射的同伦分类) <span class="math inline">\(\mathbb{S}^1\)</span> 上的两个连续映射同伦, 当且仅当其映射度相同.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 同伦的映射具有相同映射度. 反之, 设 <span class="math inline">\(\varphi,\psi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span> 具有相同的映射度.</p>
@@ -528,7 +528,7 @@ N(f) = H(1)-H(0) = h(1)-h(0) =
 <p>对于一般的情形, 则有 <span class="math inline">\(\deg(\rho_\varphi\circ\varphi)=\deg(\rho_\psi\circ\psi)\)</span> (复合同一个映射不改变映射度), 由于两侧的映射都保持 <span class="math inline">\(1\)</span> 不变, 应用上面的论证, 有 <span class="math inline">\(\rho_\varphi\circ\varphi\sim\rho_\psi\circ\psi\)</span>. 因为旋转同伦于恒等映射 (因而彼此同伦), 两边分别复合旋转 <span class="math inline">\((\rho_\varphi)^{-1}\)</span> 和 <span class="math inline">\((\rho_\psi)^{-1}\)</span> 得到 <span class="math inline">\(\varphi\sim\psi\)</span>.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 33.4</u> (映射度决定映射的性质) 设 <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span>.</p>
+<p><u>Claim 30.4</u> (映射度决定映射的性质) 设 <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span>.</p>
 <ol type="1">
 <li>若 <span class="math inline">\(\deg\varphi\neq0\)</span>, 则 <span class="math inline">\(\varphi\)</span> 是满射.</li>
 <li>若 <span class="math inline">\(\deg\varphi\neq1\)</span>, 则 <span class="math inline">\(\varphi\)</span> 有不动点.</li>
@@ -542,17 +542,17 @@ H(z,t) = \frac{(1-t)\varphi(z)-tz}{|(1-t)\varphi(z)-tz|}.
 \]</span> 对径映射的映射度为 <span class="math inline">\(1\)</span>, 故 <span class="math inline">\(\deg\varphi=1\)</span>.</p>
 <p>3, TODO</p>
 </div>
-<h3 id="some-applications-1">33.2  Some applications</h3>
+<h3 id="some-applications-1">30.2  Some applications</h3>
 <p>先证明一个引理.</p>
 <div class="note note-success">
-<p><u>Claim 33.5</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 上连续映射的扩张) <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span> 可以扩张到 <span class="math inline">\(\Phi\in C(\overline{\mathbb{B}^2},\mathbb{S}^1)\)</span>, 当且仅当 <span class="math inline">\(\deg\varphi=0\)</span>.</p>
+<p><u>Claim 30.5</u> (<span class="math inline">\(\mathbb{S}^1\)</span> 上连续映射的扩张) <span class="math inline">\(\varphi\in C(\mathbb{S}^1,\mathbb{S}^1)\)</span> 可以扩张到 <span class="math inline">\(\Phi\in C(\overline{\mathbb{B}^2},\mathbb{S}^1)\)</span>, 当且仅当 <span class="math inline">\(\deg\varphi=0\)</span>.</p>
 </div>
 <div class="note note-light">
-<p><u>Pf</u> 回顾圆代表元的定义, 连续映射 <span class="math inline">\(\varphi:\mathbb{S}^1\to\mathbb{S}^1\)</span> 可以看作道路 <span class="math inline">\(f=\varphi\circ\varepsilon\)</span> 的圆代表元. 根据 Claim 28.5 (零伦环路的圆代表元刻画), <span class="math inline">\(\varphi\)</span> 零伦当且仅当 <span class="math inline">\(\varphi\)</span> 可扩张到连续映射 <span class="math inline">\(\overline{\mathbb{B}^2}\to\mathbb{S}^1\)</span>. 而根据 <span class="math inline">\(\mathbb{S}^1\)</span> 上映射的同伦分类, <span class="math inline">\(\varphi\)</span> 零伦当且仅当 <span class="math inline">\(\deg\varphi=0\)</span>.</p>
+<p><u>Pf</u> 回顾圆代表元的定义, 连续映射 <span class="math inline">\(\varphi:\mathbb{S}^1\to\mathbb{S}^1\)</span> 可以看作道路 <span class="math inline">\(f=\varphi\circ\varepsilon\)</span> 的圆代表元. 根据 Claim 25.5 (零伦环路的圆代表元刻画), <span class="math inline">\(\varphi\)</span> 零伦当且仅当 <span class="math inline">\(\varphi\)</span> 可扩张到连续映射 <span class="math inline">\(\overline{\mathbb{B}^2}\to\mathbb{S}^1\)</span>. 而根据 <span class="math inline">\(\mathbb{S}^1\)</span> 上映射的同伦分类, <span class="math inline">\(\varphi\)</span> 零伦当且仅当 <span class="math inline">\(\deg\varphi=0\)</span>.</p>
 </div>
 <p>下面是著名的 Brouwer 不动点定理的二维情形. 我们之后还会证明一般的 <span class="math inline">\(n\)</span> 维情形.</p>
 <div class="note note-success">
-<p><u>Claim 33.6</u> (二维 Brouwer 不动点定理) 连续映射 <span class="math inline">\(f\in C(\overline{\mathbb{B}^2},\overline{\mathbb{B}^2})\)</span> 存在不动点.</p>
+<p><u>Claim 30.6</u> (二维 Brouwer 不动点定理) 连续映射 <span class="math inline">\(f\in C(\overline{\mathbb{B}^2},\overline{\mathbb{B}^2})\)</span> 存在不动点.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 假设 <span class="math inline">\(f\)</span> 不存在不动点, 则有连续映射 <span class="math inline">\(\varphi:\overline{\mathbb{B}^2}\to\mathbb{S}^1\)</span>, <span class="math inline">\(\varphi(x)=(x-f(x))/|x-f(x)|\)</span>. 注意到当 <span class="math inline">\(z\in\mathbb{S}^1\)</span> 时, <span class="math inline">\(\varphi(z)\)</span> 与 <span class="math inline">\(z\)</span> 永远不为对径点, 由此可以定义 <span class="math inline">\(\varphi|_{\mathbb{S}^1}\)</span> 与 <span class="math inline">\({\rm id}_{\mathbb{S}^1}\)</span> 间的同伦 <span class="math inline">\(H:\mathbb{S}^1\times I\to\mathbb{S}^1\)</span>, <span class="math display">\[
@@ -560,7 +560,7 @@ H(z,t) = \frac{(1-t)\varphi(z)+tz}{|(1-t)\varphi(z)+tz|}.
 \]</span> 故 <span class="math inline">\(\deg\varphi|_{\mathbb{S}^1}=\deg{\rm id}|_{\mathbb{S}^1}=1\)</span>. 然而 <span class="math inline">\(\varphi|_{\mathbb{S}^1}\)</span> 扩张到连续映射 <span class="math inline">\(\varphi\)</span>, 上面的引理表明其映射度为 <span class="math inline">\(0\)</span>, 矛盾.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 33.7</u> (代数基本定理) <span class="math inline">\(\C\)</span> 上的非常数多项式存在零点.</p>
+<p><u>Claim 30.7</u> (代数基本定理) <span class="math inline">\(\C\)</span> 上的非常数多项式存在零点.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 设非常数多项式 <span class="math inline">\(p(z)=z^n+a_{n-1}z^{n-1}+\dots+a_0\)</span>.</p>
@@ -595,7 +595,7 @@ N(V,f)
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/indices-of-vector-fields.png" style="zoom:60%;" cloud-img="" lazyload="true"></p></li>
 </ul>
 <div class="note note-success">
-<p><u>Claim 33.9</u> (指标和等于边界的卷绕数) 设向量场 <span class="math inline">\(V\)</span> 在 <span class="math inline">\(\overline{\mathbb{B}^2}\)</span> 内只有有限个奇点, 且都在其内部, 则 <span class="math inline">\(V\)</span> 这些奇点的指标之和等于 <span class="math inline">\(N(V,\omega)\)</span>.</p>
+<p><u>Claim 30.8</u> (指标和等于边界的卷绕数) 设向量场 <span class="math inline">\(V\)</span> 在 <span class="math inline">\(\overline{\mathbb{B}^2}\)</span> 内只有有限个奇点, 且都在其内部, 则 <span class="math inline">\(V\)</span> 这些奇点的指标之和等于 <span class="math inline">\(N(V,\omega)\)</span>.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 如下图, 根据同伦不变性, <span class="math inline">\(N(V,\omega)=N(V,f)\)</span>. 因为道路乘积对应卷绕数加和, 所以 <span class="math inline">\(N(V,f)\)</span> 是所有 <span class="math inline">\(N(V,f_i)\)</span> 之和, 即 <span class="math inline">\({\rm Ind}(V,p_i)\)</span> 之和.</p>
@@ -622,7 +622,7 @@ D(\varphi) = \pmqty{m &amp; n \\ k &amp; l}.
 \]</span></p></li>
 </ul>
 <div class="note note-success">
-<p><u>Claim 33.10</u> (<span class="math inline">\(\mathbb{T}^2\)</span> 上连续映射的同伦分类) 设 <span class="math inline">\(\varphi,\psi\in C(\mathbb{T}^2,\mathbb{T}^2)\)</span>.</p>
+<p><u>Claim 30.9</u> (<span class="math inline">\(\mathbb{T}^2\)</span> 上连续映射的同伦分类) 设 <span class="math inline">\(\varphi,\psi\in C(\mathbb{T}^2,\mathbb{T}^2)\)</span>.</p>
 <ol type="1">
 <li>(分类) <span class="math inline">\(\varphi\sim\psi\)</span> 当且仅当 <span class="math inline">\(D(\varphi)=D(\psi)\)</span>.</li>
 <li>(函子性) <span class="math inline">\(D(\psi\circ\varphi)=D(\psi)D(\varphi)\)</span>.</li>

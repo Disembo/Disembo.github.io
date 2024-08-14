@@ -16,24 +16,23 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Introduction to Topological Manifolds (John M. Lee) 的笔记合集">
+    <meta name="description" content="紧曲面的分类, 欧拉示性数与可定向性.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM202 | 拓扑流形笔记">
-<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-index/index.html">
+<meta property="og:title" content="GTM202 | 9 紧曲面">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-9/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="Introduction to Topological Manifolds (John M. Lee) 的笔记合集">
+<meta property="og:description" content="紧曲面的分类, 欧拉示性数与可定向性.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-22T14:10:00.000Z">
-<meta property="article:modified_time" content="2024-08-14T12:54:59.676Z">
+<meta property="article:published_time" content="2024-08-14T13:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-14T12:53:46.940Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
-<meta property="article:tag" content="代数拓扑">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>GTM202 | 拓扑流形笔记 | Jin&#39;s Blog</title>
+  <title>GTM202 | 9 紧曲面 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM202 | 拓扑流形笔记"></span>
+            <span id="subtitle" data-typed-text="GTM202 | 9 紧曲面"></span>
           
         </div>
 
@@ -227,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-22 22:10" pubdate>
-          2024年7月22日 晚上
+        <time datetime="2024-08-14 21:00" pubdate>
+          2024年8月14日 晚上
         </time>
       </span>
     
@@ -271,46 +270,49 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GTM202 | 拓扑流形笔记</h1>
+            <h1 id="seo-header">GTM202 | 9 紧曲面</h1>
             
             
               <div class="markdown-body">
                 
                 <html><head></head><body>
 <div class="note note-secondary">
-<p><em>Introduction to Topological Manifolds</em> (GTM202) by John M. Lee.</p>
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 6 的笔记.</p>
 </div>
-<p><strong>第一部分: 拓扑空间与拓扑流形的基本性质.</strong></p>
-<ol type="1">
-<li><a href="/Note/tp-gtm202-1">拓扑空间</a>: 拓扑空间, 连续性, Hausdorff 与可数性, 拓扑流形.</li>
-<li><a href="/Note/tp-gtm202-2">构造新的拓扑空间</a>: 拓扑空间的构造 (子空间, 积, 不交并, 商, 黏着), 拓扑群与群作用.</li>
-<li><a href="/Note/tp-gtm202-3">连通性</a>: 连通和道路连通, 分量, 局部的连通性.</li>
-<li><a href="/Note/tp-gtm202-4">紧致性</a>: 紧致性, 局部紧性.</li>
-<li><a href="/Note/tp-gtm202-5">紧致性</a>: 仿紧性与单位分解, 逆紧映射.</li>
-</ol>
-<p><strong>第二部分: 胞腔复形与低维流形的分类.</strong></p>
-<ol start="6" type="1">
-<li><a href="/Note/tp-gtm202-6">胞腔复形</a>: 胞腔复形与 CW 复形, CW 复形的拓扑性质.</li>
-<li><a href="/Note/tp-gtm202-7">胞腔复形</a>: 一维流形的分类, 单纯复形.</li>
-<li><a href="/Note/tp-gtm202-8">紧曲面</a>: 紧曲面的连通和 &amp; 多边形表示.</li>
-<li><a href="/Note/tp-gtm202-9">紧曲面</a>: 紧曲面的分类定理, 欧拉示性数与可定向性.</li>
-</ol>
-<p><strong>第三部分: 同伦与基本群.</strong></p>
-<ol start="10" type="1">
-<li><a href="/Note/tp-gtm202-10">同伦与基本群</a>: 同伦与道路同伦; 基本群的定义, 高维球面与流形的基本群.</li>
-<li><a href="/Note/tp-gtm202-11">同伦与基本群</a>: 基本群的函子性 &amp; 拓扑不变性; 同伦等价, 基本群的同伦不变性; 高阶同伦群简介.</li>
-<li><a href="/Note/tp-gtm202-12">圆</a>: 圆的提升性质, 基本群, 映射度理论及其应用.</li>
-<li><a href="/Note/tp-gtm202-13">一些群论</a>: 自由积, 自由群, 群的表现, 自由 Abel 群.</li>
-<li><a href="/Note/tp-gtm202-14">Siefert-Van Kampen 定理</a>: 定理的内容与应用 (楔和, 图, CW 复形, 紧曲面).
+<h2 id="classification-of-compact-surfaces">23  Classification of Compact Surfaces</h2>
+<h3 id="the-classification-theorem">23.1  The classification theorem</h3>
+<p>现在我们终于可以给出紧曲面的分类定理了. 在 1907 年, Max Dehn 和 Poul Heegaard 对<em>存在多边形表示的曲面</em>证明了分类定理. 下面的命题表明这总是成立的.</p>
+<div class="note note-success">
+<p><u>Claim 23.1</u> 紧曲面存在多边形表示.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 23.2</u> (紧连通曲面分类定理) 任意非空的紧连通曲面 <span class="math inline">\(M\)</span> <em>同胚且仅同胚</em>于下列之一:</p>
 <ul>
-<li>附: Siefert-Van Kampen 定理的证明.</li>
-</ul></li>
-<li>覆叠映射</li>
-<li>覆叠映射</li>
-<li>群作用与覆叠映射</li>
-<li>群作用与覆叠映射</li>
-</ol>
-<p><strong>第四部分: 同调群.</strong></p>
+<li>球面 <span class="math inline">\(\mathbb{S}^2\)</span>.</li>
+<li><span class="math inline">\(k\geq1\)</span> 个 <span class="math inline">\(\mathbb{T}^2\)</span> 的连通和 <span class="math inline">\(\Sigma_k\)</span>.</li>
+<li><span class="math inline">\(k\geq1\)</span> 个 <span class="math inline">\(\mathbb{RP}^2\)</span> 的连通和 <span class="math inline">\(\tilde\Sigma_k\)</span>.</li>
+</ul>
+</div>
+<p>其中的 "同胚且仅同胚" 指的是: 列表中有且仅有 1 个曲面与 <span class="math inline">\(M\)</span> 同胚. 利用多边形表示的工具, 我们能证明存在 <span class="math inline">\(\mathbb{S}^2,\Sigma_k,\tilde\Sigma_k\)</span> 中的某曲面与 <span class="math inline">\(M\)</span> 同胚; 然而, 唯一性需要等到学完基本群后才能证明 (在第 15 篇笔记的 35.2 节, 我们将证明这三者互不同胚).</p>
+<p>利用紧连通曲面的分类, 我们能给出紧连通<em>带边</em>曲面的分类:</p>
+<div class="note note-success">
+<p><u>Claim 23.3</u> (紧连通带边曲面分类定理) 任意非空的紧连通带边曲面 <span class="math inline">\(M\)</span> <em>同胚且仅同胚</em>于下列之一:</p>
+<ul>
+<li>挖去 <span class="math inline">\(m\)</span> 个开胞腔的 <span class="math inline">\(\mathbb{S}^2\)</span>.</li>
+<li>挖去 <span class="math inline">\(m\)</span> 个开胞腔的 <span class="math inline">\(\Sigma_k\)</span>.</li>
+<li>挖去 <span class="math inline">\(m\)</span> 个开胞腔的 <span class="math inline">\(\tilde\Sigma_k\)</span>.</li>
+</ul>
+<p>其中 <span class="math inline">\(m\)</span> 是 <span class="math inline">\(\partial{M}\)</span> 连通分量的个数.</p>
+</div>
+<h3 id="proof-of-the-theorem">23.2  Proof of the theorem</h3>
+<h3 id="the-euler-characteristic">23.3  The Euler characteristic</h3>
+<p>多面体的<strong>欧拉公式</strong>是曲面理论最经典的结果之一: 设 <span class="math inline">\(P\)</span> 是 <span class="math inline">\(\R^3\)</span> 中的紧凸多面体, 其面数, 边数和顶点数分别记作 <span class="math inline">\(F,E,V\)</span>, 则 <span class="math display">\[
+V-E+F=2.
+\]</span> 这个量很容易推广到 CW 复形上. 对于 <span class="math inline">\(n\)</span> 维的有限 CW 复形 <span class="math inline">\(X\)</span>, 记其 <span class="math inline">\(k\)</span> 维胞腔数目为 <span class="math inline">\(n_k\)</span>, 则 <span class="math inline">\(X\)</span> 的<strong>欧拉示性数 (Euler characteristic)</strong> 定义为 <span class="math display">\[
+\chi(X) := \sum_{k=1}^n (-1)^kn_k.
+\]</span> 欧拉公式表明, 欧拉示性数是紧凸多面体的某种不变量. 实际上, 欧拉示性数是有限 CW 复形的<em>拓扑不变量</em>, 若两个 CW 复形 <span class="math inline">\(X,Y\)</span> 的拓扑空间同胚, 则 <span class="math inline">\(\chi(X)=\chi(Y)\)</span>. 当我们学完同伦群后会给出证明.</p>
+<p>尽管我们还不能证明 <span class="math inline">\(\chi\)</span> 的拓扑不变性, 我们可以 <span class="math inline">\(\chi\)</span> 的某种组合不变性.</p>
+<h3 id="orientability">23.4  Orientability</h3>
 </body></html>
                 
               </div>
@@ -348,8 +350,6 @@
       
         <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
       
-        <a href="/tags/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/" class="print-no-link">#代数拓扑</a>
-      
     </div>
   
 </div>
@@ -360,8 +360,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM202 | 拓扑流形笔记</div>
-      <div>https://disembo.github.io/Note/tp-gtm202-index/</div>
+      <div>GTM202 | 9 紧曲面</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-9/</div>
     </div>
     <div class="license-meta">
       
@@ -373,7 +373,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月22日</div>
+          <div>2024年8月14日</div>
         </div>
       
       
@@ -405,18 +405,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-2/" title="GTM202 | 2 构造新的拓扑空间">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM202 | 2 构造新的拓扑空间</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-1/" title="GTM202 | 1 拓扑空间">
-                        <span class="hidden-mobile">GTM202 | 1 拓扑空间</span>
+                      <a href="/Note/tp-gtm202-8/" title="GTM202 | 8 紧曲面">
+                        <span class="hidden-mobile">GTM202 | 8 紧曲面</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -23,12 +23,14 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="构造新的拓扑空间, 群作用.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/attach-manifolds-along-boundaries.png">
 <meta property="article:published_time" content="2024-07-23T13:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-12T09:58:00.931Z">
+<meta property="article:modified_time" content="2024-08-14T03:28:04.325Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/attach-manifolds-along-boundaries.png">
   
   
   
@@ -640,10 +642,27 @@ e(M)\cap f(N)&amp;=e(\partial M)=f(\partial N).
 }
 \]</span></p>
 </div>
-<ul>
-<li><p><strong>流形的双倍</strong>: 设带边流形 <span class="math inline">\(M\)</span>, 恒等映射 <span class="math inline">\(h={\rm id}_{\partial M}\)</span>, 则 <span class="math inline">\(D(M):=M\cup_hM\)</span> 称为 <span class="math inline">\(M\)</span> 的双倍. 若 <span class="math inline">\(\partial M\)</span> 为空, 则 <span class="math inline">\(D(M)=M\amalg M\)</span>.</p></li>
-<li><p>(带边流形 = 闭子集) 任意带边 <span class="math inline">\(n\)</span>-流形都与 <span class="math inline">\(n\)</span>-流形 (比如 <span class="math inline">\(D(M)\)</span>) 的闭子集同胚.</p></li>
-</ul>
+<div class="note note-light">
+<p><u>Pf</u> 因为 <span class="math inline">\(h\)</span> 是同胚, 有 <span class="math inline">\(M\cup_hN=N\cup_{h^{-1}}M\)</span>. 根据黏着空间的性质, 取 <span class="math inline">\(e=q|_M\)</span>, <span class="math inline">\(f=q|_N\)</span> 即可满足上面的条件. 下面证明 <span class="math inline">\(M\cup_h N\)</span> 是 <span class="math inline">\(n\)</span> 维无边流形. 根据 Claim 9.1, 只用证明局部欧氏与 Hausdorff.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/attach-manifolds-along-boundaries.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>局部欧氏. 对于 <span class="math inline">\(M,N\)</span> 的内部点, 因为内部是开子集, 故其充分小坐标球仍在内部, 可以作为 <span class="math inline">\(M\cup_h N\)</span> 的坐标球. 对于 <span class="math inline">\(M,N\)</span> 的一对边界点 <span class="math inline">\(x,y\)</span> (有 <span class="math inline">\(h(x)=y\)</span>), 记 <span class="math inline">\(s=q(x)=q(y)\)</span>, 我们的想法是将两者的边界坐标系 "拼和" 成 <span class="math inline">\(s\)</span> 的一个内部坐系.</p>
+<p>取 <span class="math inline">\(x,y\)</span> 的坐标系 <span class="math inline">\(U,V\)</span>, 设 <span class="math inline">\(\varphi\)</span> 将 <span class="math inline">\(U\)</span> 映到 <span class="math inline">\(\H^n\)</span> (作为上半平面) 的矩形, <span class="math inline">\(\psi\)</span> 将 <span class="math inline">\(V\)</span> 映到 <span class="math inline">\(\H^n\)</span> (作为下半平面) 的矩形 (如图). 适当缩小 <span class="math inline">\(U,V\)</span>, 我们设 <span class="math inline">\(U\cap\partial{M}\)</span> 与 <span class="math inline">\(V\cap\partial{N}\)</span> 中的点通过 <span class="math inline">\(h\)</span> 一一对应.</p>
+<p>此时 <span class="math inline">\(U_0=\varphi(U)\cap\partial\H^n\)</span> 和 <span class="math inline">\(V_0=\psi(V)\cap\partial\H^n\)</span> 的对应点可能不在对应位置上. 因此 <span class="math inline">\(\varphi(U)\)</span> 和 <span class="math inline">\(\psi(V)\)</span> 不能直接拼合, 需要对 <span class="math inline">\(\psi(V)\)</span> 进行一个变换 <span class="math inline">\(F\)</span>. 这 <span class="math inline">\(F\)</span> 应当满足 <span class="math display">\[
+(F\circ\psi)(p) = (\varphi\circ h)(p),\quad\forall p\in V\cap\partial{N}.
+\]</span> 即 <span class="math inline">\(F|_{V_0}\)</span> 的取值是确定的, 将其延拓到 <span class="math inline">\(\psi(V)\)</span> (取 <span class="math inline">\(F|_{V_0}\)</span> 与恒等映射的积即可). 定义 <span class="math inline">\(\Phi:U\amalg V\to\R^n\)</span>, <span class="math display">\[
+\Phi|_U:=\varphi,\quad \Phi|_V:=F\circ\psi.
+\]</span> 因为 <span class="math inline">\(U\amalg V\)</span> 是饱和开子集, <span class="math inline">\(q\)</span> 在其上的限制是商映射, 且 <span class="math inline">\(q(U\amalg V)\)</span> 是 <span class="math inline">\(M\cup_hN\)</span> 的开集. 根据 <span class="math inline">\(F\)</span> 的取法, <span class="math inline">\(\Phi\)</span> 可以下降到商空间 <span class="math inline">\(\tilde{\Phi}:q(U\amalg V)\to\R^n\)</span>, 它的一个逆映射是 <span class="math display">\[
+\tilde\Phi^{-1}(p) = \Cases{
+(q\circ\varphi^{-1})(p), &amp; p^n\geq0, \\
+(q\circ\psi^{-1}\circ F^{-1})(p), &amp; p^n\leq0,
+}
+\]</span> 根据 gluing lemma, <span class="math inline">\(\tilde\Phi^{-1}\)</span> 连续, 故 <span class="math inline">\(\tilde\Phi\)</span> 是同胚, 即 <span class="math inline">\(s\)</span> 的一个坐标映射.</p>
+<p>Hausdorff. 即证明 <span class="math inline">\(q\)</span> 的纤维可被饱和开集分离.</p>
+</div>
+<p><strong>流形的双倍</strong>: 设带边流形 <span class="math inline">\(M\)</span>, 恒等映射 <span class="math inline">\(h={\rm id}_{\partial M}\)</span>, 则 <span class="math inline">\(D(M):=M\cup_hM\)</span> 称为 <span class="math inline">\(M\)</span> 的双倍. 若 <span class="math inline">\(\partial M\)</span> 为空, 则 <span class="math inline">\(D(M)=M\amalg M\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 10.3</u> (带边流形 <span class="math inline">\(\cong\)</span> 闭子集) 任意带边 <span class="math inline">\(n\)</span> 维流形都与 <span class="math inline">\(n\)</span> 维流形 (比如 <span class="math inline">\(D(M)\)</span>) 的闭子集同胚.</p>
+</div>
 <h2 id="group-actions">11  Group actions</h2>
 <h3 id="topological-groups">11.1  Topological groups</h3>
 <p><strong>拓扑群</strong>: 群 <span class="math inline">\(G\)</span> 有拓扑结构, 且 <span class="math inline">\(\mu:G\times G\to G\)</span>, <span class="math inline">\(\mu(g,h)=gh\)</span> 和 <span class="math inline">\(\iota:G\to G\)</span>, <span class="math inline">\(\iota(g)=g^{-1}\)</span> 都连续.</p>

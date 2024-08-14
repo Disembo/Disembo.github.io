@@ -23,14 +23,15 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="胞腔复形与 CW 复形, CW 复形的拓扑性质.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/cell-boundary-map-extension.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/cw-complexes-counterexamples.png">
 <meta property="article:published_time" content="2024-08-05T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-12T14:41:34.221Z">
+<meta property="article:modified_time" content="2024-08-14T12:49:36.260Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/cw-complexes-counterexamples.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/cell-boundary-map-extension.png">
   
   
   
@@ -283,8 +284,8 @@
 </div>
 <h2 id="cell-complexes-cw-complexes">17  Cell Complexes &amp; CW Complexes</h2>
 <p>胞腔复形是一类很重要也具有一般性的拓扑空间, 可以看作不断地将 <span class="math inline">\(n\)</span> 维闭球 (更一般地, <span class="math inline">\(n\)</span> 维胞腔) 沿着其边界粘贴到一个拓扑空间上所得. 我们最关心的一类胞腔复形是 CW 复形, 即向胞腔复形附加两个额外条件所得, 使得其拓扑性质与胞腔的拓扑性质关系更紧密.</p>
-<h3 id="cell-complexes">17.1  Cell complexes</h3>
-<p>一个同胚于 <span class="math inline">\(\mathbb{B}^n\)</span> 的拓扑空间称为 <strong><span class="math inline">\(n\)</span> 维开胞腔</strong>; 同胚于 <span class="math inline">\(\overline{\mathbb{B}^n}\)</span> 的拓扑空间称为 <strong><span class="math inline">\(n\)</span> 维闭胞腔</strong>.</p>
+<h3 id="cells">17.1  Cells</h3>
+<p>一个同胚于 <span class="math inline">\(\mathbb{B}^n\)</span> 的拓扑空间称为 <strong><span class="math inline">\(n\)</span> 维开胞腔 (open <span class="math inline">\(n\)</span>-cell)</strong>; 同胚于 <span class="math inline">\(\overline{\mathbb{B}^n}\)</span> 的拓扑空间称为 <strong><span class="math inline">\(n\)</span> 维闭胞腔 (closed <span class="math inline">\(n\)</span>-cell)</strong>.</p>
 <div class="note note-success">
 <p><u>Claim 17.1</u> (凸紧子集是胞腔) 设内部非空的凸紧子集 <span class="math inline">\(D\subset\R^n\)</span>, 则 <span class="math inline">\(D\)</span> 是一个 <span class="math inline">\(n\)</span> 维闭胞腔, <span class="math inline">\({\rm Int}D\)</span> 是一个 <span class="math inline">\(n\)</span> 维开胞腔. 实际上, 任给 <span class="math inline">\(p\in{\rm Int}D\)</span>, 存在同胚 <span class="math inline">\(F:\overline{\mathbb{B}^n}\to D\)</span> 将 <span class="math inline">\(0\)</span> 映到 <span class="math inline">\(p\)</span>, 将 <span class="math inline">\(\mathbb{B}^n\)</span> 映到 <span class="math inline">\({\rm Int}D\)</span>, 将 <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 映到 <span class="math inline">\(\partial{D}\)</span>.</p>
 </div>
@@ -301,6 +302,24 @@ F(x)=\Cases{
 }
 \]</span> <span class="math inline">\(f\)</span> 的连续性保证 <span class="math inline">\(F\)</span> 在原点以外的连续性; 又因为 <span class="math inline">\(f^{-1}\)</span> 有界, 所以当 <span class="math inline">\(x\to0\)</span>, <span class="math inline">\(F(x)\to0\)</span>, 即在原点连续. 从几何上看, <span class="math inline">\(F\)</span> 将连接 <span class="math inline">\(0\)</span> 与 <span class="math inline">\(\omega\in\mathbb{S}^{n-1}\)</span> 的线段线性地映到连接 <span class="math inline">\(0\)</span> 与 <span class="math inline">\(f^{-1}(\omega)\in\partial{D}\)</span> 的线段, 根据凸性, <span class="math inline">\(F\)</span> 的值域在 <span class="math inline">\(D\)</span> 中. 易见 <span class="math inline">\(F\)</span> 是双射. 根据闭映射引理, <span class="math inline">\(F\)</span> 是同胚.</p>
 </div>
+<p>设 <span class="math inline">\(D\)</span> 是 <span class="math inline">\(n\)</span> 维闭胞腔, 则 <span class="math inline">\(D\cong\overline{\mathbb{B}^n}\)</span> 是带边流形. 以 <span class="math inline">\(\partial{D},{\rm Int}D\)</span> 分别表示 <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 和 <span class="math inline">\(\mathbb{B}^n\)</span> 在同胚 <span class="math inline">\(F:D\overset\sim\to\overline{\mathbb{B}^n}\)</span> 下的像. 于是 <span class="math inline">\({\rm Int}D\cong\mathbb{B}^n\)</span> 是 <span class="math inline">\(n\)</span> 维开胞腔, <span class="math inline">\(\partial{D}\cong\mathbb{S}^{n-1}\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 17.2</u> (边界映射扩张到胞腔映射) 设闭胞腔 <span class="math inline">\(D,D'\)</span>, 取定 <span class="math inline">\(p\in{\rm Int}D,p'\in{\rm Int}D'\)</span>, 连续映射 <span class="math inline">\(f:\partial{D}\to\partial{D'}\)</span>. 则 <span class="math inline">\(f\)</span> 扩张到连续映射 <span class="math inline">\(F:D\to D'\)</span> 满足 <span class="math inline">\(F({\rm Int}D)\subset{\rm Int}D'\)</span> 且 <span class="math inline">\(F(p)=p'\)</span>. 如果 <span class="math inline">\(f\)</span> 是同胚, 则 <span class="math inline">\(F\)</span> 可以取为同胚.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设同胚 <span class="math inline">\(G:D\overset\sim\to\overline{\mathbb{B}^m}\)</span>, <span class="math inline">\(G':D'\overset\sim\to\overline{\mathbb{B}^n}\)</span>. 我们的想法是通过构造 <span class="math inline">\(\overline{\mathbb{B}^m},\overline{\mathbb{B}^n}\)</span> 间的映射来给出 <span class="math inline">\(F\)</span>.</p>
+<p>因为 <span class="math inline">\(\partial{D},\partial{D}'\)</span> 分别同胚于 <span class="math inline">\(\mathbb{S}^{m-1},\mathbb{S}^{n-1}\)</span>, 所以 <span class="math inline">\(f\)</span> 唯一确定了连续映射 <span class="math inline">\(\beta:\mathbb{S}^{m-1}\to\mathbb{S}^{n-1}\)</span>, 满足 <span class="math inline">\(\alpha\circ G = G'\circ f\)</span>. 将 <span class="math inline">\(\beta\)</span> 拓展到连续映射 <span class="math inline">\(B:\overline{\mathbb{B}^m}\to\overline{\mathbb{B}^n}\)</span>, 定义为 <span class="math display">\[
+B(x)=\Cases{
+\|x\|\beta\pqty{ \dfrac{x}{\|x\|} }, &amp;x\neq0, \\
+0, &amp; x=0.
+}
+\]</span> 当 <span class="math inline">\(x\to0\)</span> 时, <span class="math inline">\(B(x)\to0\)</span>, 因此 <span class="math inline">\(B\)</span> 是连续的.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/cell-boundary-map-extension.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>为了让 <span class="math inline">\(p,p'\)</span> 对应, 利用 Claim 17.1, 存在 (保持边界与内部的) 同胚 <span class="math inline">\(H:\overline{\mathbb{B}^n}\overset\sim\to\overline{\mathbb{B}^n}\)</span> 将 <span class="math inline">\(B(G(p))\)</span> 映到 <span class="math inline">\(G'(p')\)</span> (这两个点都在球的内部, 满足定理的假设). 复合映射 <span class="math display">\[
+F:=G' \circ H \circ B \circ G : D\to D'
+\]</span> 即为所求. 如果 <span class="math inline">\(f\)</span> 是同胚, 则 <span class="math inline">\(\beta\)</span> 是同胚, 容易看出 <span class="math inline">\(B\)</span> 也是同胚, 所以 <span class="math inline">\(F\)</span> 是同胚.</p>
+</div>
+<h3 id="cell-complexes">17.2  Cell complexes</h3>
 <p>设 <span class="math inline">\(X\)</span> 是非空拓扑空间, <span class="math inline">\(X\)</span> 的一个<strong>胞腔分解 (cell decomposition)</strong> 指的是 <span class="math inline">\(X\)</span> 的划分 <span class="math inline">\(\cal E\)</span>, 满足</p>
 <ol type="1">
 <li><span class="math inline">\(\cal E\)</span> 由开胞腔组成.</li>
@@ -318,7 +337,7 @@ F(x)=\Cases{
 <li>特征映射的行为: <span class="math inline">\({\rm Int}D\overset\sim\rightarrow e\)</span> 以及 <span class="math inline">\(\partial{D}\to\overline{e}\setminus e\)</span> (由若干低维胞腔覆盖).</li>
 <li>注意 <span class="math inline">\(\Phi\)</span> 在 <span class="math inline">\(\partial{D}\)</span> 上不一定单, 所以 <span class="math inline">\(\overline{e}\)</span> 不一定是闭胞腔 (不一定同胚于 <span class="math inline">\(D\)</span>).</li>
 </ul>
-<h3 id="cw-complexes">17.2  CW complexes</h3>
+<h3 id="cw-complexes">17.3  CW complexes</h3>
 <p>回顾不交并拓扑: 设拓扑空间族 <span class="math inline">\((X_\alpha)\)</span> 的不交并 <span class="math inline">\(\coprod X_\alpha\)</span>. 子集 <span class="math inline">\(U\subset\coprod X_\alpha\)</span> 开, 当且仅当所有 <span class="math inline">\(U\cap X_\alpha\)</span> 是 <span class="math inline">\(X_\alpha\)</span> 的开子集. 不交并拓扑是满足包含映射 <span class="math inline">\(X_\alpha\hookrightarrow\coprod X_\alpha\)</span> 连续的最强拓扑. 下面的定义可以看作不交并拓扑的推广.</p>
 <p>设拓扑空间 <span class="math inline">\(X\)</span>, 子空间族 <span class="math inline">\({\cal B}\)</span> 构成 <span class="math inline">\(X\)</span> 的覆盖. 我们说 <strong><span class="math inline">\(X\)</span> 的拓扑与 <span class="math inline">\({\cal B}\)</span> 连贯 (coherent)</strong>, 若对任意子集 <span class="math inline">\(U\subset X\)</span>, <span class="math inline">\(U\)</span> 是开集当且仅当对任意 <span class="math inline">\(B\in{\cal B}\)</span>, <span class="math inline">\(U\cap B\)</span> 是 <span class="math inline">\(B\)</span> 的开子集.</p>
 <ul>
@@ -327,7 +346,7 @@ F(x)=\Cases{
 <li>拓扑空间 <span class="math inline">\(X\)</span> 与其任意开覆盖, 或任意<em>局部有限</em>闭覆盖连贯. Gluing lemma 可以推广到任意与 <span class="math inline">\(X\)</span> 连贯的覆盖.</li>
 </ul>
 <div class="note note-success">
-<p><u>Claim 17.2</u> (连贯拓扑的性质) 空间 <span class="math inline">\(X\)</span> 的拓扑与子空间族 <span class="math inline">\({\cal B}\)</span> 连贯.</p>
+<p><u>Claim 17.3</u> (连贯拓扑的性质) 空间 <span class="math inline">\(X\)</span> 的拓扑与子空间族 <span class="math inline">\({\cal B}\)</span> 连贯.</p>
 <ol type="1">
 <li>映射 <span class="math inline">\(f:X\to Y\)</span> 连续, 当且仅当对任意 <span class="math inline">\(B\in\cal B\)</span>, <span class="math inline">\(f|_B\)</span> 连续.</li>
 <li>包含映射 <span class="math inline">\(B\hookrightarrow X\)</span> 的不交并 <span class="math inline">\(\coprod_{B\in\cal B}B\to X\)</span> 是商映射.</li>
@@ -343,7 +362,7 @@ F(x)=\Cases{
 </ul></li>
 </ul>
 <div class="note note-success">
-<p><u>Claim 17.3</u> (局部有限复形是 CW 复形) 局部有限胞腔复形 <span class="math inline">\((X,{\cal E})\)</span> 是 CW 复形.</p>
+<p><u>Claim 17.4</u> (局部有限复形是 CW 复形) 局部有限胞腔复形 <span class="math inline">\((X,{\cal E})\)</span> 是 CW 复形.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> (C), 任给 <span class="math inline">\(e\in\cal E\)</span>, 闭包 <span class="math inline">\(\overline{e}\)</span> 中的每一点 <span class="math inline">\(p\)</span> 都有一个邻域 <span class="math inline">\(U_p\)</span>, 使得 <span class="math inline">\(U_p\)</span> 只与有限个胞腔相交. 因为 <span class="math inline">\(\overline{e}\)</span> 是紧的, 所以 <span class="math inline">\(\overline{e}\)</span> 可以被有限个这样的 <span class="math inline">\(U_p\)</span> 覆盖.</p>
@@ -355,7 +374,7 @@ W\setminus A=W\setminus\big(
 </div>
 <p>若存在整数 <span class="math inline">\(n\)</span>, 使得 <span class="math inline">\(X\)</span> 的任意胞腔的维数不超过 <span class="math inline">\(n\)</span>, 则称 <span class="math inline">\(X\)</span> 是<strong>有限维的</strong>; 否则称 <span class="math inline">\(X\)</span> 是无限维的. 对有限维的 <span class="math inline">\(X\)</span>, 它的维数定义为其胞腔的维数的最大值.</p>
 <div class="note note-success">
-<p><u>Claim 17.4</u> (最高维开胞腔是开集) 设 <span class="math inline">\(n\)</span> 维 CW 复形 <span class="math inline">\(X\)</span>, 则所有 <span class="math inline">\(n\)</span> 维胞腔都是开集.</p>
+<p><u>Claim 17.5</u> (最高维开胞腔是开集) 设 <span class="math inline">\(n\)</span> 维 CW 复形 <span class="math inline">\(X\)</span>, 则所有 <span class="math inline">\(n\)</span> 维胞腔都是开集.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 设 <span class="math inline">\(e_0\in{\cal E}\)</span> 是 <span class="math inline">\(n\)</span> 为胞腔. 我们利用条件 (w) 来证明它是开集, 即证明 <span class="math inline">\(e_0\)</span> 与任意胞腔的闭包交为开集.</p>
@@ -364,7 +383,7 @@ W\setminus A=W\setminus\big(
 </div>
 <p>胞腔复形 <span class="math inline">\((X,{\cal E})\)</span> 的<strong>子复形</strong>是一些胞腔之并 <span class="math inline">\(Y\subset X\)</span>, 满足 <span class="math inline">\(Y\)</span> 中胞腔的闭包仍在 <span class="math inline">\(Y\)</span> 中 (因此特征映射是有意义的). 子复形的任意交和任意并仍是子复形. 对自然数 <span class="math inline">\(n\)</span>, 定义 <span class="math inline">\(X\)</span> 的 <strong><span class="math inline">\(n\)</span> 维骨架 (<span class="math inline">\(n\)</span>-skeleton)</strong> <span class="math inline">\(X_n\)</span> 是所有维数小于等于 <span class="math inline">\(n\)</span> 的胞腔组成的子复形.</p>
 <div class="note note-success">
-<p><u>Claim 17.5</u> (子 CW 复形) 设 CW 复形 <span class="math inline">\(X\)</span>, 若 <span class="math inline">\(Y\)</span> 是 <span class="math inline">\(X\)</span> 的子复形, 则 <span class="math inline">\(Y\)</span> 是闭子集, 且在子空间拓扑与继承自 <span class="math inline">\(X\)</span> 的胞腔分解下, <span class="math inline">\(Y\)</span> 构成 CW 复形.</p>
+<p><u>Claim 17.6</u> (子 CW 复形) 设 CW 复形 <span class="math inline">\(X\)</span>, 若 <span class="math inline">\(Y\)</span> 是 <span class="math inline">\(X\)</span> 的子复形, 则 <span class="math inline">\(Y\)</span> 是闭子集, 且在子空间拓扑与继承自 <span class="math inline">\(X\)</span> 的胞腔分解下, <span class="math inline">\(Y\)</span> 构成 CW 复形.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 作为子空间, <span class="math inline">\(Y\)</span> Hausdorff; 由定义, <span class="math inline">\(Y\)</span> 是其胞腔的无交并. 因为对任意胞腔 <span class="math inline">\(e\subset Y\)</span>, 有 <span class="math inline">\(\overline{e}\subset Y\)</span>, 所以 <span class="math inline">\(e\)</span> 在 <span class="math inline">\(X\)</span> 中的特征映射 <span class="math inline">\(\Phi\)</span> 可以作为 <span class="math inline">\(e\)</span> 在 <span class="math inline">\(Y\)</span> 中的特征映射. 所以 <span class="math inline">\(Y\)</span> 构成胞腔.</p>
@@ -378,7 +397,7 @@ S\cap\overline{e}
 <p>最后, 要说明 <span class="math inline">\(Y\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集, 对 <span class="math inline">\(S=Y\)</span> 应用前一段论证即可.</p>
 </div>
 <div class="note note-success">
-<p><u>Claim 17.6</u> (骨架族) 设 CW 复形 <span class="math inline">\(X\)</span>, 则 <span class="math inline">\(X\)</span> 与骨架族 <span class="math inline">\(\{X_n\mid n\in\N\}\)</span> 连贯.</p>
+<p><u>Claim 17.7</u> (骨架族) 设 CW 复形 <span class="math inline">\(X\)</span>, 则 <span class="math inline">\(X\)</span> 与骨架族 <span class="math inline">\(\{X_n\mid n\in\N\}\)</span> 连贯.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 任给 <span class="math inline">\(S\subset X\)</span> 满足 <span class="math inline">\(S\cap X_n\)</span> 是 <span class="math inline">\(X_n\)</span> 的闭子集. 任给 <span class="math inline">\(n\)</span> 维胞腔 <span class="math inline">\(e\subset X_n\)</span>, 因为 <span class="math inline">\(\overline{e}\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集, 所以也是 <span class="math inline">\(X_n\)</span> 的闭子集, 因此 <span class="math display">\[

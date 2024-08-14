@@ -24,10 +24,13 @@
 <meta property="og:description" content="紧曲面的连通和 &amp; 多边形表示.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/surfaces-as-quotients.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/euclidean-neighborhood-of-a-vertex.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/klein-bottle.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/manifold-minus-a-regular-coordinate-ball.png">
-<meta property="article:published_time" content="2024-08-13T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-13T14:36:12.283Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/elementary-transformations.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/presentation-of-connected-sum-pf.png">
+<meta property="article:published_time" content="2024-08-14T11:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-14T12:54:32.459Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -230,8 +233,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-13 22:00" pubdate>
-          2024年8月13日 晚上
+        <time datetime="2024-08-14 19:00" pubdate>
+          2024年8月14日 晚上
         </time>
       </span>
     
@@ -333,6 +336,14 @@
 <li>如果对于 <span class="math inline">\(P_i\)</span> 中的每条边, 有且仅有另一条边 (可以在 <span class="math inline">\(P_i\)</span> 或其他 <span class="math inline">\(P_j\)</span> 中) 与之认同, 则 <span class="math inline">\(M\)</span> 是紧曲面.</li>
 </ol>
 </div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 记 <span class="math inline">\(M_0,M_1,M_2=M\)</span> 分别是顶点, 所有边, 多边形区域在 <span class="math inline">\(\pi\)</span> 下的像. 根据定义, <span class="math inline">\(M_0\)</span> 是离散空间, 且对于 <span class="math inline">\(k=1,2\)</span>, <span class="math inline">\(M_k\)</span> 是向 <span class="math inline">\(M_{k-1}\)</span> 粘贴有限多个 <span class="math inline">\(k\)</span> 胞腔所得. 根据 CW 复形构造定理, <span class="math inline">\(M\)</span> 是 <span class="math inline">\(2\)</span> 维 CW 复形.</p>
+<p>2, 因为 <span class="math inline">\(M\)</span> 是有限复形, 故紧. 根据 CW 复形的流形判定, 只需证明 <span class="math inline">\(M\)</span> 局部欧氏.</p>
+<p>因为 <span class="math inline">\(2\)</span> 维胞腔是开的, 其可以作为其内部点的欧氏邻域.</p>
+<p>对于 <span class="math inline">\(1\)</span> 维胞腔中的点 <span class="math inline">\(p\)</span>, 它恰有两个原像 <span class="math inline">\(p_1,p_2\)</span>, 各处于一条边的内部. 将 <span class="math inline">\(p_1,p_2\)</span> 的两个边界坐标系 "拼合" 得到 <span class="math inline">\(p\)</span> 的内部坐标系, 具体过程和 Claim 10.2 是一样的.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/euclidean-neighborhood-of-a-vertex.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>对于 <span class="math inline">\(0\)</span> 维胞腔 <span class="math inline">\(v\)</span>, 它的原像是有限多个顶点 <span class="math inline">\(\{v_1,\dots,v_k\}\in P\)</span>. 对于每个原像点 <span class="math inline">\(v_i\)</span>, 取小开圆盘 <span class="math inline">\(B_\varepsilon(v_i)\)</span> 只包含 <span class="math inline">\(v_i\)</span> 一个顶点, 且只与 <span class="math inline">\(v_i\)</span> 的两条临边相交. 因为 <span class="math inline">\(P_j\)</span> (<span class="math inline">\(v_i\in P_j\)</span>) 的内部都是正则坐标球, 其位于边界的一侧, 所以 <span class="math inline">\(B_\varepsilon(v_i)\cap P_j\)</span> 是一个小扇形, 其同胚于圆心角为 <span class="math inline">\(2\pi/k\)</span> 的扇形. 通过适当的缩放, 这些 <span class="math inline">\(2\pi/k\)</span> 的小扇形可以拼成一个圆盘, 认同的边拼合在一起, 且认同的点重合. 由此得出 <span class="math inline">\(v\)</span> 的邻域到圆盘的坐标映射.</p>
+</div>
 <p>一个有趣的例子是 <strong>Klein 瓶 (Klein bottle)</strong> <span class="math inline">\(K\)</span>, 即正方形 <span class="math inline">\(I\times I\)</span> 模去 <span class="math inline">\((0,y)\sim(1,y),(x,0)\sim(1-x,1)\)</span> 得到的商空间. 它的几何图像见下图, 它在 <span class="math inline">\(\R^3\)</span> 中呈现为一个自交的 "曲面" (不构成流形). 实际上, <span class="math inline">\(K\)</span> 不同胚于 <span class="math inline">\(\R^3\)</span> 的任何子集, 即不能被嵌入到 <span class="math inline">\(\R^3\)</span> 中, 但其自身却是一个 <span class="math inline">\(2\)</span> 维流形.</p>
 <ul>
 <li>这是一个不能作为 <span class="math inline">\(\R^n\)</span> 子集的 <span class="math inline">\(n\)</span> 维流形的例子.</li>
@@ -342,7 +353,7 @@
 <h3 id="connected-sums">21.2  Connected sums</h3>
 <p>流形的连通和是将两个流形粘合起来的一种操作, 是由简单曲面构造一般曲面的工具.</p>
 <div class="note note-success">
-<p><u>Claim 22.1</u> (流形挖去正则坐标球) 设 <span class="math inline">\(n\geq1\)</span> 维流形 <span class="math inline">\(M\)</span>, 正则坐标球 <span class="math inline">\(B\subset M\)</span>, 则 <span class="math inline">\(M\setminus B\)</span> 是 <span class="math inline">\(n\)</span> 维带边流形, 且流形边界 <span class="math inline">\(\partial{M}\cong\mathbb{S}^{n-1}\)</span>. 如果 <span class="math inline">\(n&gt;1\)</span> 且 <span class="math inline">\(M\)</span> 连通, 则 <span class="math inline">\(M\setminus{B}\)</span> 连通.</p>
+<p><u>Claim 21.3</u> (流形挖去正则坐标球) 设 <span class="math inline">\(n\geq1\)</span> 维流形 <span class="math inline">\(M\)</span>, 正则坐标球 <span class="math inline">\(B\subset M\)</span>, 则 <span class="math inline">\(M\setminus B\)</span> 是 <span class="math inline">\(n\)</span> 维带边流形, 且流形边界 <span class="math inline">\(\partial{M}\cong\mathbb{S}^{n-1}\)</span>. 如果 <span class="math inline">\(n&gt;1\)</span> 且 <span class="math inline">\(M\)</span> 连通, 则 <span class="math inline">\(M\setminus{B}\)</span> 连通.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 子空间 <span class="math inline">\(M\setminus{B}\)</span> 的第二可数性与 Hausdorff 性继承 <span class="math inline">\(M\)</span>. 由正则坐标球的定义, <span class="math inline">\(\overline{B}\)</span> 包含于某坐标球 <span class="math inline">\(B'\)</span>, 坐标映射 <span class="math inline">\(\varphi:B'\overset\sim\to B_{r'}(0)\subset\R^n\)</span> 将 <span class="math inline">\(B\)</span> 映到 <span class="math inline">\(B_r(0)\)</span>, 将 <span class="math inline">\(\overline{B}\)</span> 映到 <span class="math inline">\(\overline{B_r(0)}\)</span> (<span class="math inline">\(r&lt;r'\)</span>).</p>
@@ -353,7 +364,7 @@
 </div>
 <p>设 <span class="math inline">\(n\)</span> 维流形 <span class="math inline">\(M_1,M_2\)</span>, 取正则坐标球 <span class="math inline">\(B_i\subset M_i\)</span>, 令 <span class="math inline">\(M_i'=M_i\setminus B_i\)</span>. 取同胚 <span class="math inline">\(f:\partial{M_2'}\overset\sim\to\partial{M_1'}\)</span>. 这两个流形的<strong>连通和 (connected sum)</strong> <span class="math inline">\(M_1\mathbin{\#}M_2\)</span> 定义为黏着空间 <span class="math inline">\(M_1'\cup_fM_2'\)</span>. 简单地说, 就是两个流形分别挖掉正则坐标球, 再沿着边界贴合. 根据 Claim 10.2, <span class="math inline">\(M_1\mathbin{\#}M_2\)</span> 是一个 <span class="math inline">\(n\)</span> 维 (无边) 流形.</p>
 <div class="note note-success">
-<p><u>Claim 22.2</u> (连通和的性质) 设 <span class="math inline">\(n\)</span> 维流形 <span class="math inline">\(M_1,M_2\)</span>.</p>
+<p><u>Claim 21.4</u> (连通和的性质) 设 <span class="math inline">\(n\)</span> 维流形 <span class="math inline">\(M_1,M_2\)</span>.</p>
 <ol type="1">
 <li>若 <span class="math inline">\(M_1,M_2\)</span> 连通且 <span class="math inline">\(n&gt;1\)</span>, 则 <span class="math inline">\(M_1\mathbin{\#}M_2\)</span> 连通.</li>
 <li>若 <span class="math inline">\(M_1,M_2\)</span> 紧, 则 <span class="math inline">\(M_1\mathbin{\#}M_2\)</span> 紧.</li>
@@ -390,8 +401,11 @@ f_1(M_1)\cap f_2(M_2)=\partial{M_1}\neq\emptyset.
 </ul>
 <p>多边形表示 <span class="math inline">\({\cal P}\)</span> 确定了一个拓扑空间 <span class="math inline">\(|{\cal P}|\)</span>, 构造过程为</p>
 <ol type="1">
-<li>对于每个字 <span class="math inline">\(W_i\)</span>, 记其字长为 <span class="math inline">\(m\)</span>, 令 <span class="math inline">\(P_i\)</span> 是 <span class="math inline">\(\R^2\)</span> 中边长为 <span class="math inline">\(1\)</span> 的正 <span class="math inline">\(m\)</span> 边形区域, 且中心在原点, 一个顶点在 <span class="math inline">\(y\)</span> 轴正半轴上.</li>
-<li>从 <span class="math inline">\(y\)</span> 轴正半轴上的顶点开始, 逆时针方向走过每一条边, 将 <span class="math inline">\(W_i\)</span> 中的符号与 <span class="math inline">\(P_i\)</span> 中的边一一对应. 给每条边标上箭头, 如果其符号是 <span class="math inline">\(a\)</span>, 则箭头指向前方 (逆时针方向); 如果是 <span class="math inline">\(a^{-1}\)</span>, 则指向后方.</li>
+<li>对于每个字 <span class="math inline">\(W_i\)</span>, 记其字长为 <span class="math inline">\(m\)</span>, 令 <span class="math inline">\(P_i\)</span> 是 <span class="math inline">\(\R^2\)</span> 中边长为 <span class="math inline">\(1\)</span> 的正 <span class="math inline">\(m\)</span> 边形区域, 且中心在原点, 一个顶点在 <span class="math inline">\(y\)</span> 轴正半轴上.
+<ul>
+<li>特别地, 如果 <span class="math inline">\(k=1\)</span>, 则规定 <span class="math inline">\(P_i\)</span> 为单位圆, 其两条 "边" 分别是左半圆与右半圆, 以 <span class="math inline">\(y\)</span> 轴分界.</li>
+</ul></li>
+<li>从 <span class="math inline">\(y\)</span> 轴正半轴上的顶点开始, 逆时针方向走过每一条边, 将 <span class="math inline">\(W_i\)</span> 中的符号与 <span class="math inline">\(P_i\)</span> 中的边一一对应. 给每条边标上箭头: 如果其对应符号是 <span class="math inline">\(a\)</span>, 则箭头指向前方 (逆时针方向); 如果是 <span class="math inline">\(a^{-1}\)</span>, 则指向后方.</li>
 <li>定义 <span class="math inline">\(\coprod_iP_i\)</span> 上的等价关系: 将符号相同的边 (通过仿射同胚) 认同, 保证拼接时箭头朝向相同. 商空间记作 <span class="math inline">\(|{\cal P}|\)</span>.</li>
 </ol>
 <p>拓扑空间 <span class="math inline">\(|{\cal P}|\)</span> 称为 <span class="math inline">\({\cal P}\)</span> 的<strong>几何实现 (geometric realization)</strong>. 多边形区域 <span class="math inline">\(P_i\)</span> 的面, 边, 顶点边分别叫做 <span class="math inline">\({\cal P}\)</span> 的<strong>面, 边, 顶点</strong>. 面数等于字的个数 <span class="math inline">\(k\)</span>, 边数等于所有字的长度之和. 边的两个顶点分别称为<strong>起点</strong>和<strong>终点</strong>, 保证箭头从起点指向终点.</p>
@@ -409,7 +423,7 @@ f_1(M_1)\cap f_2(M_2)=\partial{M_1}\neq\emptyset.
 <ul>
 <li><p>符号替换 (relabelling): 将所有 <span class="math inline">\(a\)</span> 都换成一个未出现的新符号; 交换两个已有符号; 交换 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(a^{-1}\)</span>.</p></li>
 <li><p>细分 (subdivision): 将所有 <span class="math inline">\(a\)</span> 都换成 <span class="math inline">\(ae\)</span>, 且所有 <span class="math inline">\(a^{-1}\)</span> 都换成 <span class="math inline">\(e^{-1}a^{-1}\)</span>, 其中 <span class="math inline">\(e\)</span> 是未出现的新符号.</p></li>
-<li><p>合并 (consolidating): 若符号 <span class="math inline">\(a,b\)</span> 总是相邻地出现, 且以 <span class="math inline">\(ab\)</span> 或 <span class="math inline">\(b^{-1}a^{-1}\)</span> 形式, 则将所有 <span class="math inline">\(ab\)</span> 换成 <span class="math inline">\(a\)</span>, 所有 <span class="math inline">\(b^{-1}a^{-1}\)</span> 换成 <span class="math inline">\(a^{-1}\)</span> (需保证每个字长 <span class="math inline">\(\geq3\)</span>).</p></li>
+<li><p>合并 (consolidating): 若符号 <span class="math inline">\(a,b\)</span> 总是相邻地出现, 且以 <span class="math inline">\(ab\)</span> 或 <span class="math inline">\(b^{-1}a^{-1}\)</span> 形式, 则将所有 <span class="math inline">\(ab\)</span> 换成 <span class="math inline">\(a\)</span>, 所有 <span class="math inline">\(b^{-1}a^{-1}\)</span> 换成 <span class="math inline">\(a^{-1}\)</span> (需保证每个字长 <span class="math inline">\(\geq3\)</span>; 若 <span class="math inline">\(k=1\)</span>, 允许字长为 <span class="math inline">\(2\)</span>).</p></li>
 <li><p>反射 (reflecting): <span class="math display">\[
 \lr{S\mid a_1\dots a_m,W_2,\dots,W_k} \mapsto
 \lr{S\mid a_m^{-1}\dots a_1^{-1},W_2,\dots,W_k}.
@@ -435,16 +449,40 @@ f_1(M_1)\cap f_2(M_2)=\partial{M_1}\neq\emptyset.
 \lr{S\mid W_1ee^{-1},W_2,\dots,W_k}.
 \]</span></p></li>
 </ul>
-<p>显然, 细分与合并, 剪切粘合, 折叠与展开是 3 对互逆的变换.</p>
+<p>显然, 细分与合并, 剪切与粘合, 折叠与展开是 3 对互逆的变换.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/elementary-transformations.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
 <div class="note note-success">
-<p><u>Claim 22.3</u> 初等变换前后的多边形表示拓扑等价.</p>
+<p><u>Claim 22.1</u> 初等变换前后的多边形表示拓扑等价.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 显然 "符号替换" 不改变多边形表示的几何实现. 对于互逆的一对变换, 我们只需证明其一.</p>
+<p>(反射) 反射前后的 <span class="math inline">\(W_1\)</span> 通过仿射同胚 <span class="math inline">\((x,y)\mapsto(-x,y)\)</span> (关于 <span class="math inline">\(y\)</span> 轴反射) 认同.</p>
+<p>(旋转) 旋转前后的 <span class="math inline">\(W_1\)</span> 通过仿射同胚 <span class="math inline">\((r,\theta)\mapsto(r,\theta-2\pi/k)\)</span> (绕原点逆时针旋转 <span class="math inline">\(2\pi/m\)</span>) 认同.</p>
+<p>(剪切) 设 <span class="math inline">\(W_1e\)</span>, <span class="math inline">\(e^{-1}W_2\)</span> 和 <span class="math inline">\(W_1W_2\)</span> 分别对应的多边形 <span class="math inline">\(P_1,P_2,P'\)</span>. 先不考虑 <span class="math inline">\(W_3,\dots,W_k\)</span>, 记商映射 <span class="math inline">\(\pi:P_1\amalg P_2\to M\)</span> 和 <span class="math inline">\(\pi':P'\to M'\)</span>.</p>
+<p>记 <span class="math inline">\(e\)</span> 为 <span class="math inline">\(P'\)</span> 中连接 <span class="math inline">\(W_1\)</span> 终点与 <span class="math inline">\(W_1\)</span> 起点的线段 (根据凸性, <span class="math inline">\(e\)</span> 一定在 <span class="math inline">\(P'\)</span> 中). 如上图, 利用 Claim 17.2, <span class="math inline">\(P_1,P_2\)</span> 能同胚地映到 <span class="math inline">\(P_1',P_2'\)</span> 且保持符号相同的边重合. 将两个同胚拼合为 <span class="math inline">\(f:P_1\amalg P_2\to P'\)</span>. 显然 <span class="math inline">\(\pi\)</span> 和 <span class="math inline">\(\pi'\circ f\)</span> 给出相同的 identification, 其中后者 (由闭映射引理) 是商映射, 由商空间的唯一性, <span class="math inline">\(M\cong M'\)</span>.</p>
+<p>如果还有 <span class="math inline">\(W_3,\dots,W_k\)</span>, 将 <span class="math inline">\(f\)</span> 用恒等映射扩张到其上即可.</p>
+<p>(细分) 记操作前后的多边形全体 <span class="math inline">\(P,P'\)</span>, 商映射 <span class="math inline">\(\pi:P\to M\)</span>, <span class="math inline">\(\pi:P'\to M'\)</span>. 利用 Claim 17.2, 存在连续映射 <span class="math inline">\(f:P\to P'\)</span> 将每个多边形同胚地映到操作后的多边形, 保持符号相同的边重合 (如果遇到边 <span class="math inline">\(a\)</span>, 则将其等分成两端后映到边 <span class="math inline">\(a,e\)</span>; <span class="math inline">\(a^{-1}\)</span> 同理). 同上, 商映射 <span class="math inline">\(\pi\)</span> 和 <span class="math inline">\(\pi'\circ f\)</span> 给出相同的 identification. 由商空间的唯一性, <span class="math inline">\(M\cong M'\)</span>.</p>
+<p>(折叠) 同剪切, 我们可以忽略 <span class="math inline">\(W_2,\dots,W_k\)</span>. 如果 <span class="math inline">\(W_1\)</span> 字长为 <span class="math inline">\(2\)</span>, 可先将其细分, 再折叠, 再合并. 因此我们只需考虑长度 <span class="math inline">\(\geq3\)</span> 的字.</p>
+<p>若 <span class="math inline">\(W_1=abc\)</span> 长度为 <span class="math inline">\(3\)</span>, 记 <span class="math inline">\(P,P'\)</span> 分别为 <span class="math inline">\(abcee^{-1}\)</span> 和 <span class="math inline">\(abc\)</span> 的多边形, 商映射 <span class="math inline">\(\pi:P\to M\)</span>, <span class="math inline">\(\pi':P'\to M'\)</span>. 如上图, 将 <span class="math inline">\(P,P'\)</span> 各划分为三个小三角形, 利用 Claim 17.2, <span class="math inline">\(P'\)</span> 的三个小三角可以同胚地映到 <span class="math inline">\(P\)</span> 的三个小三角形, 保证符号相同的边重合. 同上, 由商空间的唯一性, <span class="math inline">\(M\cong M'\)</span>.</p>
+<p>若 <span class="math inline">\(W_1\)</span> 长度 <span class="math inline">\(\geq4\)</span>, 记 <span class="math inline">\(W_1=Xbc\)</span>, 其中字 <span class="math inline">\(X\)</span> 长度 <span class="math inline">\(\geq2\)</span>. 剪出一条新边 <span class="math inline">\(a\)</span>, <span class="math display">\[
+\lr{S,b,c,e\mid Xbcee^{-1}} \cong
+\lr{S,a,b,c,e\mid Xa^{-1},abcee^{-1}},
+\]</span> 折叠第二个字, 再将两个字粘合即可.</p>
 </div>
 <h3 id="connected-sums-1">22.3  Connected sums</h3>
 <div class="note note-success">
-<p><u>Claim 22.4</u> (连通和的表示) 若 <span class="math inline">\(\lr{S_1\mid W_1},\lr{S_2\mid W_2}\)</span> 分别是曲面 <span class="math inline">\(M_1,M_2\)</span> 的面数为 <span class="math inline">\(1\)</span> 的表示, 且 <span class="math inline">\(S_1,S_2\)</span> 不交, 则 <span class="math inline">\(\lr{S_1,S_2\mid W_1W_2}\)</span> 是连通和 <span class="math inline">\(M_1\mathbin{\#}M_2\)</span> 的一个表示.</p>
+<p><u>Claim 22.2</u> (连通和的表示) 若 <span class="math inline">\(\lr{S_1\mid W_1},\lr{S_2\mid W_2}\)</span> 分别是曲面 <span class="math inline">\(M_1,M_2\)</span> 的面数为 <span class="math inline">\(1\)</span> 的表示, 且 <span class="math inline">\(S_1,S_2\)</span> 不交, 则 <span class="math inline">\(\lr{S_1,S_2\mid W_1W_2}\)</span> 是连通和 <span class="math inline">\(M_1\mathbin{\#}M_2\)</span> 的一个表示.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/presentation-of-connected-sum-pf.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>设新符号 <span class="math inline">\(a,b,c\)</span>. 考虑 <span class="math inline">\(\lr{S_1,a,b,c\mid W_1c^{-1}b^{-1}a^{-1},abc}\)</span>, 如图, 沿着 <span class="math inline">\(a\)</span> 粘合之后再折叠两次, 这个表示等价于 <span class="math inline">\(\lr{S_1\mid W_1}\)</span>, 因此是 <span class="math inline">\(M_1\)</span> 的表示. 记三角形 <span class="math inline">\(abc\)</span> 的内部在 <span class="math inline">\(M_1\)</span> 中的像为 <span class="math inline">\(B_1\)</span>, 我们能够证明 <span class="math inline">\(B_1\)</span> 是一个正则坐标球. 进而, <span class="math inline">\(M_1':=M_1\setminus B_1\)</span> 的一个几何实现是 <span class="math display">\[
+\lr{S_1,a,b,c\mid W_1c^{-1}b^{-1}a^{-1}},
+\]</span> 其边界是边 <span class="math inline">\(c^{-1}b^{-1}a^{-1}\)</span> 的像. 同样地, <span class="math display">\[
+\lr{S_2,a,b,c\mid abcW_2},
+\]</span> 是 <span class="math inline">\(M_2\)</span> 挖去正则坐标球 <span class="math inline">\(B_2\)</span> 所得 <span class="math inline">\(M_2':=M_2\setminus B_2\)</span> 的表示, 其边界是边 <span class="math inline">\(abc\)</span> 的像. 因此, <span class="math inline">\(M_1\mathbin{\#}M_2\)</span> (即取 <span class="math inline">\(M_1', M_2'\)</span> 的不交并, 再将边界认同) 的一个表示是 <span class="math display">\[
+\lr{S_1,S_2,a,b,c\mid W_1c^{-1}b^{-1}a^{-1},abcW_2}.
+\]</span> 沿着 <span class="math inline">\(a\)</span> 贴上并折叠两次, 得到 <span class="math inline">\(\lr{S_1,S_2\mid W_1W_2}\)</span>.</p>
 </div>
 <p>由此可以得到一些曲面的连通和的表示:</p>
 <ul>
@@ -521,7 +559,7 @@ a_1b_1a_1^{-1}b_1^{-1} \dots a_nb_na_n^{-1}b_n^{-1}
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月13日</div>
+          <div>2024年8月14日</div>
         </div>
       
       
@@ -552,6 +590,12 @@ a_1b_1a_1^{-1}b_1^{-1} \dots a_nb_na_n^{-1}b_n^{-1}
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Note/tp-gtm202-9/" title="GTM202 | 9 紧曲面">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM202 | 9 紧曲面</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
