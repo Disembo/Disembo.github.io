@@ -23,12 +23,20 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="紧曲面的分类, 欧拉示性数与可定向性.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-14T13:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-14T12:53:46.940Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/transforming-klein-bottle.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/transforming-RP2RP2RP2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/classification-thm-pf-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/classification-thm-pf-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/classification-thm-pf-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/euler-char-of-three-surfaces.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/mobius-band.png">
+<meta property="article:published_time" content="2024-08-15T15:30:00.000Z">
+<meta property="article:modified_time" content="2024-08-15T15:42:09.161Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/transforming-klein-bottle.png">
   
   
   
@@ -121,7 +129,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -133,7 +141,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -145,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+                <span>分类</span>
               </a>
             </li>
           
@@ -157,7 +165,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -169,7 +177,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -181,7 +189,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
+                <span>友链</span>
               </a>
             </li>
           
@@ -226,8 +234,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-14 21:00" pubdate>
-          2024年8月14日 晚上
+        <time datetime="2024-08-15 23:30" pubdate>
+          2024年8月15日 晚上
         </time>
       </span>
     
@@ -280,10 +288,31 @@
 <p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 6 的笔记.</p>
 </div>
 <h2 id="classification-of-compact-surfaces">23  Classification of Compact Surfaces</h2>
-<h3 id="the-classification-theorem">23.1  The classification theorem</h3>
+<h3 id="classification-theorems">23.1  Classification theorems</h3>
 <p>现在我们终于可以给出紧曲面的分类定理了. 在 1907 年, Max Dehn 和 Poul Heegaard 对<em>存在多边形表示的曲面</em>证明了分类定理. 下面的命题表明这总是成立的.</p>
 <div class="note note-success">
-<p><u>Claim 23.1</u> 紧曲面存在多边形表示.</p>
+<p><u>Claim 23.1</u> 紧曲面 <span class="math inline">\(M\)</span> 存在多边形表示.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 由 Claim 20.4, 存在 <span class="math inline">\(2\)</span> 维单纯复形 <span class="math inline">\(K\)</span>, 使得 <span class="math inline">\(M\cong|K|\)</span>. 因为 <span class="math inline">\(M\)</span> 紧, 所以 <span class="math inline">\(K\)</span> 是有限单纯复形.</p>
+<p>我们这样构造一个面表示 <span class="math inline">\({\cal P}\)</span>: 令 <span class="math inline">\(K\)</span> 中的每个单形对应一个长度 <span class="math inline">\(3\)</span> 的字, 且 <span class="math inline">\({\cal P}\)</span> 的两条边符号相同当且仅当它们对应同一个 <span class="math inline">\(1\)</span> 维单形. 容易验证, <span class="math inline">\({\cal P}\)</span> 确实构成面表示:</p>
+<ul>
+<li>由 <span class="math inline">\(K\)</span> 的有限性, <span class="math inline">\({\cal P}\)</span> 的字的个数是有限的.</li>
+<li>由三角剖分的性质, 每个 <span class="math inline">\(1\)</span> 维单形恰好是两个 <span class="math inline">\(2\)</span> 维单形的公共面, 即每个符号恰好出现两次.</li>
+</ul>
+<p>下面证明 <span class="math inline">\({\cal P}\)</span> 是 <span class="math inline">\(M\)</span> 的表示, 即证明 <span class="math inline">\(|{\cal P}|\cong|K|\)</span>. 设 <span class="math inline">\(K\)</span> 中所有 <span class="math inline">\(2\)</span> 维单形的不交并为 <span class="math inline">\(P\)</span>, 则有两个商映射 <span class="math inline">\(\pi_K:P\to|K|\)</span> 和 <span class="math inline">\(\pi_{\cal P}:P\to|{\cal P}|\)</span>. 我们只需证明它们给出相同的 identification.</p>
+<p>根据 <span class="math inline">\({\cal P}\)</span> 的定义, <span class="math inline">\(\pi_{\cal P}\)</span> 和 <span class="math inline">\(\pi_K\)</span> 在 <span class="math inline">\(2\)</span> 维单形的内部都是单射, 且它们对 <span class="math inline">\(1\)</span> 维单形给出相同的 identification. 剩下的工作是证明它们在 <span class="math inline">\(0\)</span> 维单形 (顶点) 上也给出相同的 identification. 设顶点 <span class="math inline">\(v,w\in K\)</span>.</p>
+<ul>
+<li><p>如果 <span class="math inline">\(\pi_{\cal P}(v)=\pi_{\cal P}(w)\)</span>, 则说明 <span class="math inline">\(v\)</span> 的某条邻边与 <span class="math inline">\(w\)</span> 的某条邻边认同, 自然有 <span class="math inline">\(\pi_K(v)=\pi_K(w)\)</span>.</p></li>
+<li><p>如果 <span class="math inline">\(\pi_K(v)=\pi_K(w)\)</span>, 只要证明 <span class="math inline">\(v\)</span> 的某条邻边与 <span class="math inline">\(w\)</span> 的某条邻边认同即可. 记 <span class="math inline">\(p=\pi_K(v)\)</span>.</p>
+<p>我们考虑这样一种等价关系: 两个以 <span class="math inline">\(p\)</span> 为顶点的 <span class="math inline">\(2\)</span> 维单形 <span class="math inline">\(\sigma,\sigma'\)</span> 称为<strong>边连通的 (edge-connected)</strong>, 若存在 <span class="math inline">\(2\)</span> 维单形序列 <span class="math inline">\(\sigma=\sigma_1,\sigma_2,\dots,\sigma_k=\sigma'\)</span>, 其中相邻两个 <span class="math inline">\(2\)</span> 单形有公共边 (认同的边). 要证明 <span class="math inline">\(v\)</span> 的某条边与 <span class="math inline">\(w\)</span> 的某条边认同, 就是证明这个等价关系只有一个等价类.</p>
+<p>假设不然, 则存在以 <span class="math inline">\(p\)</span> 为顶点的 <span class="math inline">\(2\)</span> 维单形族 <span class="math inline">\(\{\sigma_1,\dots,\sigma_k\}\)</span> 和 <span class="math inline">\(\{\tau_1,\dots,\tau_m\}\)</span>, 其中任意 <span class="math inline">\(\sigma_i,\sigma_j\)</span> 边连通, 而任意 <span class="math inline">\(\sigma_i,\tau_j\)</span> 不边连通. 取足够小的 <span class="math inline">\(\varepsilon\)</span> 使得 <span class="math inline">\(B_\varepsilon(p)\)</span> 只与 <span class="math inline">\(p\)</span> 的邻边相交. 则 <span class="math inline">\(B_\varepsilon(p)\cap|K|\)</span> 是 <span class="math inline">\(|K|\)</span> 的开子集, 进而是 <span class="math inline">\(2\)</span> 维流形, 因此存在 <span class="math inline">\(p\)</span> 邻域 <span class="math inline">\(W\subset B_\varepsilon(p)\cap|K|\)</span>, 满足 <span class="math inline">\(K\cong\R^2\)</span>. 我们有 <span class="math inline">\(W\setminus\{p\}\)</span> 连通. 若令 <span class="math display">\[
+U=W\cap(\sigma_1\cup\dots\cup\sigma_k)\setminus\{p\},\quad
+V=W\cap(\tau_1\cup\dots\cup\tau_m)\setminus\{p\},
+\]</span> 则 <span class="math inline">\(U,V\)</span> 是 <span class="math inline">\(|K|\)</span> 的开集 (它们与每个单形的交集在单形中开). 根据假设, <span class="math inline">\(U,V\)</span> 不交, 因此 <span class="math display">\[
+W\setminus\{p\} = U\cup V
+\]</span> 间断 <span class="math inline">\(W\setminus\{p\}\)</span>, 与连通性矛盾.</p></li>
+</ul>
 </div>
 <div class="note note-success">
 <p><u>Claim 23.2</u> (紧连通曲面分类定理) 任意非空的紧连通曲面 <span class="math inline">\(M\)</span> <em>同胚且仅同胚</em>于下列之一:</p>
@@ -293,26 +322,167 @@
 <li><span class="math inline">\(k\geq1\)</span> 个 <span class="math inline">\(\mathbb{RP}^2\)</span> 的连通和 <span class="math inline">\(\tilde\Sigma_k\)</span>.</li>
 </ul>
 </div>
-<p>其中的 "同胚且仅同胚" 指的是: 列表中有且仅有 1 个曲面与 <span class="math inline">\(M\)</span> 同胚. 利用多边形表示的工具, 我们能证明存在 <span class="math inline">\(\mathbb{S}^2,\Sigma_k,\tilde\Sigma_k\)</span> 中的某曲面与 <span class="math inline">\(M\)</span> 同胚; 然而, 唯一性需要等到学完基本群后才能证明 (在第 15 篇笔记的 35.2 节, 我们将证明这三者互不同胚).</p>
+<p>其中的 "同胚且仅同胚" 指的是: 列表中有且仅有 1 个曲面与 <span class="math inline">\(M\)</span> 同胚. 利用多边形表示的工具, 我们能证明存在 <span class="math inline">\(\mathbb{S}^2,\Sigma_k,\tilde\Sigma_k\)</span> 中的某曲面与 <span class="math inline">\(M\)</span> 同胚; 然而, 唯一性需要等到学完基本群后才能证明.</p>
 <p>利用紧连通曲面的分类, 我们能给出紧连通<em>带边</em>曲面的分类:</p>
 <div class="note note-success">
-<p><u>Claim 23.3</u> (紧连通带边曲面分类定理) 任意非空的紧连通带边曲面 <span class="math inline">\(M\)</span> <em>同胚且仅同胚</em>于下列之一:</p>
+<p><u>Claim 23.3</u> (紧连通带边曲面分类定理) 任意非空, 带边的紧连通曲面 <span class="math inline">\(M\)</span> <em>同胚且仅同胚</em>于下列之一:</p>
 <ul>
-<li>挖去 <span class="math inline">\(m\)</span> 个开胞腔的 <span class="math inline">\(\mathbb{S}^2\)</span>.</li>
-<li>挖去 <span class="math inline">\(m\)</span> 个开胞腔的 <span class="math inline">\(\Sigma_k\)</span>.</li>
-<li>挖去 <span class="math inline">\(m\)</span> 个开胞腔的 <span class="math inline">\(\tilde\Sigma_k\)</span>.</li>
+<li>挖去 <span class="math inline">\(m\)</span> 个开胞腔的 <span class="math inline">\(\mathbb{S}^2\)</span>, 记作 <span class="math inline">\(\mathbb{S}^2_m\)</span>.</li>
+<li>挖去 <span class="math inline">\(m\)</span> 个开胞腔的 <span class="math inline">\(\Sigma_k\)</span>, 记作 <span class="math inline">\(\Sigma_{k,m}\)</span>.</li>
+<li>挖去 <span class="math inline">\(m\)</span> 个开胞腔的 <span class="math inline">\(\tilde\Sigma_k\)</span>, 记作 <span class="math inline">\(\tilde\Sigma_{k,m}\)</span>.</li>
 </ul>
 <p>其中 <span class="math inline">\(m\)</span> 是 <span class="math inline">\(\partial{M}\)</span> 连通分量的个数.</p>
 </div>
-<h3 id="proof-of-the-theorem">23.2  Proof of the theorem</h3>
+<p>证明完分类定理后, 我们将研究紧曲面的两个重要拓扑不变量: Euler 示性数和可定向性.</p>
+<h3 id="proofs-of-the-theorems">23.2  Proofs of the theorems</h3>
+<p>下面我们证明分类定理. 基本思路是将曲面的多边形表示, 通过初等变换, 化简为标准表示. 先给出两个引理:</p>
+<div class="note note-success">
+<p><u>Claim 23.4</u> Klein 瓶 <span class="math inline">\(K\cong\mathbb{RP}^2\mathbin{\#}\mathbb{RP}^2\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 只需将 <span class="math inline">\(\lr{a,b\mid abab^{-1}}\)</span> 初等变换为 <span class="math inline">\(\lr{b,c\mid bcbc}\)</span>, 如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/transforming-klein-bottle.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 23.5</u> <span class="math inline">\(\mathbb{T}^2\mathbin{\#}\mathbb{RP}^2\cong\mathbb{RP}^2\mathbin{\#}\mathbb{RP}^2\mathbin{\#}\mathbb{RP}^2\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 根据上一个引理, 我们只需将 <span class="math inline">\(K\mathbin{\#}\mathbb{RP}^2\cong\lr{a,b,c\mid abab^{-1}cc}\)</span> 初等变换为 <span class="math inline">\(\mathbb{RP}^2\mathbin{\#}\mathbb{RP}^2\mathbin{\#}\mathbb{RP}^2\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/transforming-RP2RP2RP2.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+</div>
+<div class="note note-light">
+<p><u>Pf (紧连通曲面分类定理, 部分证明)</u> 根据 Claim 23.1, 曲面 <span class="math inline">\(M\)</span> 存在多边形表示. 一对认同的边称为<strong>互补的 (complementary)</strong>, 如果它们的符号分别为 <span class="math inline">\(a,a^{-1}\)</span>; 称为<strong>扭曲的 (twisted)</strong>, 如果它们的符号同时为 <span class="math inline">\(a\)</span> 或者同时为 <span class="math inline">\(a^{-1}\)</span>. (例如, Klein 瓶 <span class="math inline">\(\lr{a,b\mid abab^{-1}}\)</span> 的对边 <span class="math inline">\(b\)</span> 是互补的, 对边 <span class="math inline">\(a\)</span> 是扭曲的.)</p>
+<p><u>步骤 1</u>: <span class="math inline">\(M\)</span> 存在只有一个面的表示.</p>
+<ul>
+<li>对于两个有公共边的面 <span class="math inline">\(P_1,P_2\)</span> (即 <span class="math inline">\(P_1\)</span> 的某条边与 <span class="math inline">\(P_2\)</span> 的某条边认同), 将其粘合成一个. 如果某两个面没有公共边, 则它们在商映射下的像不交的, 既开又闭的集合, 与 <span class="math inline">\(M\)</span> 连通矛盾.</li>
+</ul>
+<p><u>步骤 2</u>: 或者 <span class="math inline">\(M\)</span> 同胚于球面; 或者存在 <span class="math inline">\(M\)</span> 的一个表示, 其中没有互补的邻边.</p>
+<ul>
+<li>互补邻边通过折叠消去, 直到不存在互补邻边, 或者得到球面 <span class="math inline">\(\lr{a\mid aa^{-1}}\)</span>.</li>
+</ul>
+<p>自此假设 <span class="math inline">\(M\)</span> 不同胚于球面.</p>
+<p><u>步骤 3</u>: 存在 <span class="math inline">\(M\)</span> 的一个表示, 其任意一对扭曲的边都是邻边.</p>
+<ul>
+<li><p>通过适当旋转和反射, 假设一对 "扭曲的非邻边" 形如 <span class="math inline">\(VaWa\)</span>, 通过下图将其化为 <span class="math inline">\(VW^{-1}bb\)</span>. 同时并未产生新的 "扭曲的非邻边", 因此 "扭曲的非邻边" 数量至少减少 <span class="math inline">\(1\)</span>. 通过有限步操作, 能够让 "扭曲的非邻边" 数量降为 <span class="math inline">\(0\)</span>. (在此过程中, 新产生的 "互补邻边" 用步骤 2 消去.)</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/classification-thm-pf-1.png" style="zoom:50%;" cloud-img="" lazyload="true"></p></li>
+</ul>
+<p><u>步骤 4</u>: 存在 <span class="math inline">\(M\)</span> 的一个表示, 其所有顶点都认同.</p>
+<ul>
+<li><p>假设并非所有顶点都认同, 则存在边 <span class="math inline">\(a\)</span> 连接两个不认同的顶点 <span class="math inline">\(v,w\)</span>. 我们首先说明, <span class="math inline">\(v\)</span> 的其他边不能与 <span class="math inline">\(a\)</span> 认同:</p>
+<ul>
+<li>如果有以 <span class="math inline">\(v\)</span> 为顶点的互补邻边, 则通过步骤 2 已经消去.</li>
+<li>如果有以 <span class="math inline">\(v\)</span> 为顶点的扭曲邻边, 则它们将 <span class="math inline">\(v,w\)</span> 认同起来, 矛盾.</li>
+</ul>
+<p>取 <span class="math inline">\(v\)</span> 的另一条边 <span class="math inline">\(b\)</span>, 记 <span class="math inline">\(b\)</span> 的另一个顶点是 <span class="math inline">\(x\)</span>.</p></li>
+<li><p>(<span class="math inline">\(\clubsuit\)</span>) 在多边形中, 一定存在另一条边 <span class="math inline">\(b\)</span> 或 <span class="math inline">\(b^{-1}\)</span>, 不妨设其为 <span class="math inline">\(b\)</span>. 则该表示形如 <span class="math inline">\(baXb^{-1}Y\)</span>, 其中 <span class="math inline">\(X,Y\)</span> 不同时为空 (如图; 我们将与 <span class="math inline">\(v,x\)</span> 认同的顶点也记作 <span class="math inline">\(v,x\)</span>). 沿 <span class="math inline">\(c\)</span> 剪切再沿 <span class="math inline">\(b\)</span> 拼合, 与 <span class="math inline">\(v\)</span> 认同的顶点数减少 <span class="math inline">\(1\)</span>. (过程中新产生的 "互补邻边" 用步骤 2 消去, 这不会增加与 <span class="math inline">\(v\)</span> 认同的顶点数.)</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/classification-thm-pf-2.png" style="zoom:50%;" cloud-img="" lazyload="true"></p></li>
+<li><p>重复操作 <span class="math inline">\((\clubsuit)\)</span> 有限次, 可以将与 <span class="math inline">\(v\)</span> 认同的顶点数降至 <span class="math inline">\(0\)</span>. 对于所有不与 <span class="math inline">\(w\)</span> 认同的顶点进行这个过程即可.</p></li>
+</ul>
+<p><u>步骤 5</u>: 若表示中有互补边 <span class="math inline">\(a,a^{-1}\)</span>, 则存在互补边 <span class="math inline">\(b,b^{-1}\)</span> 与之交错出现: <span class="math inline">\(a,\dots,b,\dots,a^{-1},\dots,b^{-1}\)</span>.</p>
+<ul>
+<li>若不然, 则多边形表示形如 <span class="math inline">\(aXa^{-1}Y\)</span>, 其中 <span class="math inline">\(X\)</span> 中的边或者是一对互补边, 或者是扭曲邻边. 于是 <span class="math inline">\(X\)</span> 中的边只会与 <span class="math inline">\(X\)</span> 中的边认同, 不会与 <span class="math inline">\(Y\)</span> 中的边认同. 由于, <span class="math inline">\(a\)</span> 与 <span class="math inline">\(a^{-1}\)</span> 的起点都与 <span class="math inline">\(X\)</span> 接触, 终点都与 <span class="math inline">\(Y\)</span> 接触, 故商映射下, 起点与终点不重合, 与步骤 4 矛盾.</li>
+</ul>
+<p><u>步骤 6</u>: 一对交错的互补边相邻地出现: <span class="math inline">\(aba^{-1}b^{-1}\)</span>.</p>
+<ul>
+<li><p>假设一对交错互补边形如 <span class="math inline">\(WaXbYa^{-1}Zb^{-1}\)</span>, 通过下图将其化为 <span class="math inline">\(cdc^{-1}d^{-1}WZYX\)</span>. 这个过程不会将其他邻边分离. 重复这个步骤有限次即可. (注意这一步没有用到反射.)</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/classification-thm-pf-3.png" style="zoom:50%;" cloud-img="" lazyload="true"></p></li>
+</ul>
+<p><u>步骤 7</u>: <span class="math inline">\(M\)</span> 同胚于若干 <span class="math inline">\(\mathbb{T}^2\)</span> 的连通和或者若干 <span class="math inline">\(\mathbb{RP}^2\)</span> 的连通和.</p>
+<ul>
+<li>根据步骤 3, 所有扭曲边形以 <span class="math inline">\(aa\)</span> 形式出现; 根据步骤 6, 所有互补边以 <span class="math inline">\(aba^{-1}b^{-1}\)</span> 形式出现. 因此, <span class="math inline">\(M\)</span> 是若干 <span class="math inline">\(\mathbb{T}^2\)</span> 与 <span class="math inline">\(\mathbb{RP}^2\)</span> 的连通和.
+<ul>
+<li>如果连通和中只有 <span class="math inline">\(\mathbb{T}^2\)</span>, 则 <span class="math inline">\(M\cong\Sigma_k\)</span>.</li>
+<li>如果连通和中存在 <span class="math inline">\(\mathbb{RP}^2\)</span>, 根据 Claim 23.5, 可以将所有 <span class="math inline">\(\mathbb{T}^2\)</span> 都化为 <span class="math inline">\(\mathbb{RP}^2\)</span>, 有 <span class="math inline">\(M\cong\tilde\Sigma_k\)</span>.</li>
+</ul></li>
+</ul>
+<p>至此, 我们证明了 <span class="math inline">\(M\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^2,\Sigma_k,\tilde\Sigma_k\)</span> 中的某曲面.</p>
+</div>
+<p>带边版本的证明:</p>
+<div class="note note-light">
+<p><u>Pf (紧连通带边曲面分类定理, 部分证明)</u> 设 <span class="math inline">\(\partial M\)</span> 有 <span class="math inline">\(m\)</span> 个连通分量.</p>
+<p>步骤 1: <span class="math inline">\(\partial{M}\)</span> 同胚于 <span class="math inline">\(m\)</span> 个 <span class="math inline">\(\mathbb{S}^1\)</span> 的不交并.</p>
+<ul>
+<li>因为 <span class="math inline">\(\partial{M}\)</span> 是 <span class="math inline">\(M\)</span> 的闭子集, 故 <span class="math inline">\(\partial{M}\)</span> 紧, 其每个分量也紧. 又 <span class="math inline">\(\partial{M}\)</span> 是 <span class="math inline">\(1\)</span> 维流形, 其每个分量是 <span class="math inline">\(1\)</span> 维紧连通流形, 根据一维分类定理, 每个分量同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</li>
+</ul>
+<p>步骤 2: 把洞补上.</p>
+<ul>
+<li><p>记 <span class="math inline">\(m\)</span> 个闭圆盘的不交并 <span class="math inline">\(N:=\coprod_m\overline{\mathbb{B}^2}\)</span>. 取同胚 <span class="math inline">\(h:\partial{N}=\coprod_m\mathbb{S}^1\overset\sim\to\partial{M}\)</span>, 考虑 <span class="math inline">\(M,N\)</span> 沿着边界贴合 <span class="math inline">\(M'=M\cup_hN\)</span>. 根据 Claim 10.2, <span class="math inline">\(M'\)</span> 是 <span class="math inline">\(2\)</span> 维连通的无边流形, 且 <span class="math inline">\(M,N\)</span> 分别通过 <span class="math inline">\(e,f\)</span> 嵌入到 <span class="math inline">\(M'\)</span>, 满足 <span class="math display">\[
+\textstyle
+e(M)\cup f(N)=M',\quad e(M)\cap f(N)=f(\coprod_m\mathbb{S}^1).
+\]</span> 作为连通流形 <span class="math inline">\(e(M)\)</span>, <span class="math inline">\(f(N)\)</span> 有公共点的并, <span class="math inline">\(M'\)</span> 连通; <span class="math inline">\(M'\)</span> 作为紧空间 <span class="math inline">\(M\amalg N\)</span> 的商空间, 也是紧的. 对 <span class="math inline">\(M'\)</span> 应用 "紧连通曲面分类定理", <span class="math inline">\(M'\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^2,\Sigma_k,\tilde\Sigma_k\)</span> 中的某曲面.</p></li>
+<li><p>因为 <span class="math inline">\(M\cong e(M)\)</span>, 而 <span class="math inline">\(e(M)\)</span> 恰好是 <span class="math inline">\(M'\)</span> 挖去 <span class="math inline">\(m\)</span> 个开胞腔 <span class="math inline">\(\coprod_mf(\mathbb{B}^2)\)</span> 得到的带边曲面.</p></li>
+</ul>
+<p>至此, 我们证明了 <span class="math inline">\(M\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^2_m,\Sigma_{k,m},\tilde\Sigma_{k,m}\)</span> 中的某曲面.</p>
+</div>
+<p>在第 14 篇笔记的 32.2 节, 我们将证明 <span class="math inline">\(\mathbb{S}^2_m,\Sigma_{k,m},\tilde\Sigma_{k,m}\)</span> 互不同胚, 进而完成 (带边与无边) 分类定理的证明.</p>
 <h3 id="the-euler-characteristic">23.3  The Euler characteristic</h3>
-<p>多面体的<strong>欧拉公式</strong>是曲面理论最经典的结果之一: 设 <span class="math inline">\(P\)</span> 是 <span class="math inline">\(\R^3\)</span> 中的紧凸多面体, 其面数, 边数和顶点数分别记作 <span class="math inline">\(F,E,V\)</span>, 则 <span class="math display">\[
+<p>多面体的 <strong>Euler 公式</strong>是曲面理论最经典的结果之一: 设 <span class="math inline">\(P\)</span> 是 <span class="math inline">\(\R^3\)</span> 中的紧凸多面体, 其面数, 边数和顶点数分别记作 <span class="math inline">\(F,E,V\)</span>, 则 <span class="math display">\[
 V-E+F=2.
-\]</span> 这个量很容易推广到 CW 复形上. 对于 <span class="math inline">\(n\)</span> 维的有限 CW 复形 <span class="math inline">\(X\)</span>, 记其 <span class="math inline">\(k\)</span> 维胞腔数目为 <span class="math inline">\(n_k\)</span>, 则 <span class="math inline">\(X\)</span> 的<strong>欧拉示性数 (Euler characteristic)</strong> 定义为 <span class="math display">\[
+\]</span> 这个量很容易推广到 CW 复形上. 对于 <span class="math inline">\(n\)</span> 维的有限 CW 复形 <span class="math inline">\(X\)</span>, 记其 <span class="math inline">\(k\)</span> 维胞腔数目为 <span class="math inline">\(n_k\)</span>, 则 <span class="math inline">\(X\)</span> 的 <strong>Euler 示性数 (Euler characteristic)</strong> 定义为交错和 <span class="math display">\[
 \chi(X) := \sum_{k=1}^n (-1)^kn_k.
-\]</span> 欧拉公式表明, 欧拉示性数是紧凸多面体的某种不变量. 实际上, 欧拉示性数是有限 CW 复形的<em>拓扑不变量</em>, 若两个 CW 复形 <span class="math inline">\(X,Y\)</span> 的拓扑空间同胚, 则 <span class="math inline">\(\chi(X)=\chi(Y)\)</span>. 当我们学完同伦群后会给出证明.</p>
-<p>尽管我们还不能证明 <span class="math inline">\(\chi\)</span> 的拓扑不变性, 我们可以 <span class="math inline">\(\chi\)</span> 的某种组合不变性.</p>
+\]</span> 欧拉公式表明, Euler 示性数是紧凸多面体的某种不变量. 实际上, Euler 示性数是有限 CW 复形的<em>拓扑不变量</em>, 若两个 CW 复形 <span class="math inline">\(X,Y\)</span> 的拓扑空间同胚, 则 <span class="math inline">\(\chi(X)=\chi(Y)\)</span>. 当我们学完同伦群后会给出证明.</p>
+<p>然而, 我们可以证明 Euler 示性数是紧曲面的拓扑不变量 (如果我们承认分类定理中的 "唯一性").</p>
+<div class="note note-success">
+<p><u>Claim 23.6</u> 多边形表示的 Euler 示性数 (即它确定的单纯复形的 Euler 示性数) 在初等变换下不变.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 符号替换, 反射, 旋转不该变 <span class="math inline">\(0,1,2\)</span> 维单形的数目, 因此不改变 Euler 示性数. 对于互逆的变换, 我们只需证明其一:</p>
+<p>细分: 假设 <span class="math inline">\(a\mapsto ae\)</span>, <span class="math inline">\(a^{-1}\mapsto e^{-1}a^{-1}\)</span>, 且 <span class="math inline">\(a,a^{-1}\)</span> 总共有 <span class="math inline">\(k\)</span> 个, 则细分后增加 <span class="math inline">\(k\)</span> 个零维胞腔, 增加 <span class="math inline">\(k\)</span> 个一维胞腔, 不改变二维胞腔的数目. 注意 <span class="math inline">\(0,1\)</span> 维增加的 <span class="math inline">\(k\)</span> 在交错和中相互抵消.</p>
+<p>剪切: 不改变零维胞腔的数目, 增加 <span class="math inline">\(1\)</span> 个一维胞腔, 增加 <span class="math inline">\(1\)</span> 个二维胞腔. 相互抵消.</p>
+<p>折叠: 减少 <span class="math inline">\(2\)</span> 个零维胞腔, 减少 <span class="math inline">\(2\)</span> 个一维胞腔, 不改变二维胞腔的数目. 相互抵消.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 23.7</u> (连通和的 Euler 示性数) 若 <span class="math inline">\(M_1,M_2\)</span> 是紧曲面, 则 <span class="math display">\[
+\chi(M_1\mathbin{\#}M_2)=\chi(M_1)+\chi(M_2)-2.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 分别取 <span class="math inline">\(M_1,M_2\)</span> 的多边形表示, 充分细分, 剪切, 不妨假设所有的多边形都是三角形, 且任意三角形的顶点不与其自身顶点认同. 根据 Claim 22.2, 三角形内部的像同胚于正则坐标球.</p>
+<p>做连通和时, 在 <span class="math inline">\(M_1,M_2\)</span> 各取一个三角形, 去掉三角形内部, 再将对应边认同, 便得 <span class="math inline">\(M_1\mathbin{\#}M_2\)</span>. 与之前相比, 少了 <span class="math inline">\(3\)</span> 个零维胞腔, 少了 <span class="math inline">\(3\)</span> 个一维胞腔, 少了 <span class="math inline">\(2\)</span> 个二维胞腔, <span class="math inline">\(\chi(M_1\mathbin{\#}M_2)\)</span> 与 <span class="math inline">\(\chi(M_1)+\chi(M_2)\)</span> 相比减少 <span class="math inline">\(2\)</span>.</p>
+</div>
+<p>计算 <span class="math inline">\(\mathbb{S}^2,\mathbb{T}^2,\mathbb{RP}^2\)</span> 标准表示的 Euler 示性数:</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/euler-char-of-three-surfaces.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>借助连通和的 Euler 示性数公式, 可以得到:</p>
+<div class="note note-success">
+<p><u>Claim 23.7</u> (紧连通带边曲面的 Euler 示性数)</p>
+<ol type="1">
+<li><span class="math inline">\(\chi(\mathbb{S}^2_m)=2-m\)</span>.</li>
+<li><span class="math inline">\(\chi(\Sigma_{k,m})=2-2k-m\)</span>.</li>
+<li><span class="math inline">\(\chi(\tilde\Sigma_{k,m})=2-k-m\)</span>.</li>
+</ol>
+</div>
+<p>上面三种曲面彼此不同胚, 因此 Euler 示性数是紧连通曲面的拓扑不变量. 实际上, <span class="math inline">\(\Sigma_{k,m}\)</span> 和 <span class="math inline">\(\tilde{\Sigma}_{k,m}\)</span> 的下标 <span class="math inline">\(k\)</span> 有一定的几何含义, 即曲面上 "通透的洞的数量". 这个整数 <span class="math inline">\(k\)</span> 称为曲面的<strong>亏格 (genus)</strong> (球面的亏格为 <span class="math inline">\(0\)</span>).</p>
 <h3 id="orientability">23.4  Orientability</h3>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/mobius-band.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>神奇的 <strong>Möbius 带 (Möbius band)</strong> 是将正方形的一对对边扭曲认同得到的曲面 <span class="math inline">\(\lr{a,b,c\mid abcb}\)</span> (其中一对 <span class="math inline">\(b\)</span> 是扭曲的), 它是一个 <span class="math inline">\(2\)</span> 维带边流形, 其边界只有 <span class="math inline">\(1\)</span> 个连通分量. 它的 Euler 示性数是 <span class="math inline">\(0\)</span>, 因此它同胚于 <span class="math inline">\(\tilde\Sigma_{1,1}\)</span>.</p>
+<p>Möbius 带的一个有趣特性是, 它只有一个面, 不存在 "正反面" 一说. 受此启发, 我们称面表示 <span class="math inline">\({\cal P}\)</span> 是<strong>定向的 (oriented)</strong>, 若 <span class="math inline">\(\cal P\)</span> 中不存在扭曲的边. 称紧曲面 <span class="math inline">\(M\)</span> 是<strong>可定向的 (orientable)</strong>, 若它存在一个定向的表示.</p>
+<div class="note note-success">
+<p><u>Claim 23.8</u> (可定向性) 紧连通曲面 <span class="math inline">\(M\)</span> 可定向, 当且仅当 <span class="math inline">\(M\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^2\)</span> 或 <span class="math inline">\(\Sigma_k\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 注意 <span class="math inline">\(\mathbb{S}^2\)</span> 与 <span class="math inline">\(\Sigma_k\)</span> 的标准表示是定向的, 因此这两种曲面可定向, 同胚于这两种曲面的曲面 <span class="math inline">\(M\)</span> 也可定向 (<span class="math inline">\(\mathbb{S}^2\)</span> 或 <span class="math inline">\(\Sigma_k\)</span> 的标准表示也是 <span class="math inline">\(M\)</span> 的表示).</p>
+<p>反之, 设 <span class="math inline">\(M\)</span> 可定向, 取它的一个定向表示 <span class="math inline">\({\cal P}\)</span>, 经过分类定理证明过程中的 7 个步骤, 注意只有反射会引入一对扭曲边, 而只有步骤 1, 3, 4, 7 用到了反射. 容易验证, 如果 <span class="math inline">\({\cal P}\)</span> 没有扭曲边, 则相应步骤过后的 <span class="math inline">\({\cal P}\)</span> 也没有扭曲边. 因此 <span class="math inline">\({\cal P}\)</span> 的化简结果没有扭曲边, 即 <span class="math inline">\(M\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^2\)</span> 或 <span class="math inline">\(\Sigma_k\)</span>.</p>
+</div>
+<p>对于紧连通带边曲面 <span class="math inline">\(M\)</span>, 它同胚于某个无边曲面 <span class="math inline">\(M'\)</span> (具有充分细分的多边形表示) 挖去若干 <span class="math inline">\(2\)</span> 维单形的内部得到的曲面. 细分, 剪切与删去三角形的操作都不改变扭曲边, 因此, 我们定义 <span class="math inline">\(M\)</span> 是<strong>可定向的</strong>, 当且仅当 <span class="math inline">\(M'\)</span> 是可定向的. 这样的定义与无边的版本是相容的.</p>
+<p>同胚于 <span class="math inline">\(\mathbb{S}^2_m\)</span> 与 <span class="math inline">\(\Sigma_{k,m}\)</span> 的曲面可定向, 同胚于 <span class="math inline">\(\tilde{\Sigma}_{k,m}\)</span> 的曲面不可定向. 这三者互不同胚, 故可定向性是连通紧曲面的拓扑不变性.</p>
+<ul>
+<li>实际上, "可定向性" 可以推广到任意可三角剖分的流形上. 我们给出的定义是一个 <span class="math inline">\(2\)</span> 维的等价版本.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 23.9</u> (不可定向性的 Möbius 带刻画) 紧连通带边曲面 <span class="math inline">\(M\)</span> 不可定向, 当且仅当存在 Möbius 带到 <span class="math inline">\(M\)</span> 的嵌入.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u></p>
+</div>
+<p>利用 Euler 示性数与可定向性, 我们能给出分类定理的另一种表述:</p>
+<div class="note note-success">
+<p><u>Claim 23.10</u> (紧连通带边曲面分类定理, 另一种表述) 在同胚意义下, 紧连通带边曲面 <span class="math inline">\(M\)</span> 由以下三个量唯一确定:</p>
+<ol type="1">
+<li>Euler 示性数.</li>
+<li>可定向性.</li>
+<li><span class="math inline">\(\partial{M}\)</span> 连通分量的个数.</li>
+</ol>
+</div>
 </body></html>
                 
               </div>
@@ -373,7 +543,7 @@ V-E+F=2.
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月14日</div>
+          <div>2024年8月15日</div>
         </div>
       
       

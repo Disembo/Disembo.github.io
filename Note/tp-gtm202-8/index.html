@@ -28,9 +28,10 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/klein-bottle.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/manifold-minus-a-regular-coordinate-ball.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/elementary-transformations.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/polygons-coordinate-neighborhood.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/presentation-of-connected-sum-pf.png">
 <meta property="article:published_time" content="2024-08-14T11:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-14T12:54:32.459Z">
+<meta property="article:modified_time" content="2024-08-15T15:27:44.094Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -128,7 +129,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -140,7 +141,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -152,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+                <span>分类</span>
               </a>
             </li>
           
@@ -164,7 +165,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -176,7 +177,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -188,7 +189,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
+                <span>友链</span>
               </a>
             </li>
           
@@ -470,13 +471,23 @@ f_1(M_1)\cap f_2(M_2)=\partial{M_1}\neq\emptyset.
 \]</span> 折叠第二个字, 再将两个字粘合即可.</p>
 </div>
 <h3 id="connected-sums-1">22.3  Connected sums</h3>
+<p>在证明连通和的表示之前, 先考虑一个引理:</p>
 <div class="note note-success">
-<p><u>Claim 22.2</u> (连通和的表示) 若 <span class="math inline">\(\lr{S_1\mid W_1},\lr{S_2\mid W_2}\)</span> 分别是曲面 <span class="math inline">\(M_1,M_2\)</span> 的面数为 <span class="math inline">\(1\)</span> 的表示, 且 <span class="math inline">\(S_1,S_2\)</span> 不交, 则 <span class="math inline">\(\lr{S_1,S_2\mid W_1W_2}\)</span> 是连通和 <span class="math inline">\(M_1\mathbin{\#}M_2\)</span> 的一个表示.</p>
+<p><u>Claim 22.2</u> 设曲面 <span class="math inline">\(M\)</span> 的表示 <span class="math inline">\({\cal P}\)</span>, 其中一个多边形区域为 <span class="math inline">\(P\)</span>. 若 <span class="math inline">\(P\)</span> 的顶点互不认同, 则 <span class="math inline">\(P\)</span> 的内部在商映射下的像是正则坐标球.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> <span class="math inline">\(P\)</span> 的顶点互不认同蕴含 <span class="math inline">\(P\)</span> 的边互不认同, 进而商映射 <span class="math inline">\(\pi\)</span> 将 <span class="math inline">\(P\)</span> 单射入 <span class="math inline">\(M\)</span>, 进而 <span class="math inline">\(P\)</span> 同胚于 <span class="math inline">\(\pi(P)\)</span>.</p>
+<p>对于 <span class="math inline">\(\pi(P)\)</span> 的每个顶点 <span class="math inline">\(v\)</span>, 从 <span class="math inline">\(v\)</span> 出发的边 (非 <span class="math inline">\(\pi(P)\)</span> 中 <span class="math inline">\(v\)</span> 的邻边) 一定不是 <span class="math inline">\(\pi(P)\)</span> 中的边, 否则与假设矛盾. 因此, <span class="math inline">\(\pi(P)\)</span> 形如下图, 可以找到比 <span class="math inline">\(\pi(P)\)</span> 稍大的坐标球 (橙色).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/polygons-coordinate-neighborhood.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>使用与 Claim 21.2 相同的技巧, 将相邻的多边形中, 绿色的小扇形与黄色的细长四边形拼起来即可.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 22.3</u> (连通和的表示) 若 <span class="math inline">\(\lr{S_1\mid W_1},\lr{S_2\mid W_2}\)</span> 分别是曲面 <span class="math inline">\(M_1,M_2\)</span> 的面数为 <span class="math inline">\(1\)</span> 的表示, 且 <span class="math inline">\(S_1,S_2\)</span> 不交, 则 <span class="math inline">\(\lr{S_1,S_2\mid W_1W_2}\)</span> 是连通和 <span class="math inline">\(M_1\mathbin{\#}M_2\)</span> 的一个表示.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u></p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/presentation-of-connected-sum-pf.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
-<p>设新符号 <span class="math inline">\(a,b,c\)</span>. 考虑 <span class="math inline">\(\lr{S_1,a,b,c\mid W_1c^{-1}b^{-1}a^{-1},abc}\)</span>, 如图, 沿着 <span class="math inline">\(a\)</span> 粘合之后再折叠两次, 这个表示等价于 <span class="math inline">\(\lr{S_1\mid W_1}\)</span>, 因此是 <span class="math inline">\(M_1\)</span> 的表示. 记三角形 <span class="math inline">\(abc\)</span> 的内部在 <span class="math inline">\(M_1\)</span> 中的像为 <span class="math inline">\(B_1\)</span>, 我们能够证明 <span class="math inline">\(B_1\)</span> 是一个正则坐标球. 进而, <span class="math inline">\(M_1':=M_1\setminus B_1\)</span> 的一个几何实现是 <span class="math display">\[
+<p>设新符号 <span class="math inline">\(a,b,c\)</span>. 考虑 <span class="math inline">\(\lr{S_1,a,b,c\mid W_1c^{-1}b^{-1}a^{-1},abc}\)</span>, 如图, 沿着 <span class="math inline">\(a\)</span> 粘合之后再折叠两次, 这个表示等价于 <span class="math inline">\(\lr{S_1\mid W_1}\)</span>, 因此是 <span class="math inline">\(M_1\)</span> 的表示. 记三角形 <span class="math inline">\(abc\)</span> 的内部在 <span class="math inline">\(M_1\)</span> 中的像为 <span class="math inline">\(B_1\)</span>, 由引理, <span class="math inline">\(B_1\)</span> 是一个正则坐标球. 进而, <span class="math inline">\(M_1':=M_1\setminus B_1\)</span> 的一个表示是 <span class="math display">\[
 \lr{S_1,a,b,c\mid W_1c^{-1}b^{-1}a^{-1}},
 \]</span> 其边界是边 <span class="math inline">\(c^{-1}b^{-1}a^{-1}\)</span> 的像. 同样地, <span class="math display">\[
 \lr{S_2,a,b,c\mid abcW_2},

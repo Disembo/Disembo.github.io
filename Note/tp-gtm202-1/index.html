@@ -24,7 +24,7 @@
 <meta property="og:description" content="拓扑空间与拓扑流形.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-22T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-14T13:09:47.976Z">
+<meta property="article:modified_time" content="2024-08-15T03:46:34.128Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -121,7 +121,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -133,7 +133,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -145,7 +145,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+                <span>分类</span>
               </a>
             </li>
           
@@ -157,7 +157,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -169,7 +169,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -181,7 +181,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
+                <span>友链</span>
               </a>
             </li>
           
@@ -290,6 +290,10 @@
 </ul>
 <p><strong>度量拓扑</strong>: 子集 <span class="math inline">\(S\subset X\)</span> 称为开集, 若其中每一点 <span class="math inline">\(p\)</span> 有某 <span class="math inline">\(B_r(p)\subset S\)</span>.</p>
 <ul>
+<li><span class="math inline">\(B_r(p)\)</span> 表示中心为 <span class="math inline">\(p\)</span>, 半径为 <span class="math inline">\(r\)</span> 的开球; <span class="math inline">\(S_r(p)\)</span> 表示球面.
+<ul>
+<li>特别地, <span class="math inline">\(\R^n\)</span> 中的单位开球记作 <span class="math inline">\(\mathbb{B}^n:=B_1(0)\)</span>, 单位球面 <span class="math inline">\(\mathbb{S}^{n-1}:=S_1(0)\)</span>.</li>
+</ul></li>
 <li>离散度量 <span class="math inline">\(d(x,y)=\Cases{0,&amp;x=y,\\1,&amp;x\neq y}\)</span> 给出离散拓扑.</li>
 </ul>
 <div class="note note-success">
@@ -360,6 +364,7 @@ B_{r_2}(x)\subset B'_r(x).
 </ul>
 <p><strong>连续</strong>: 开集的原象是开集. (闭集的原象是闭集.)</p>
 <ul>
+<li><p>与度量空间中 <span class="math inline">\(\varepsilon-\delta\)</span> 语言定义的连续性等价.</p></li>
 <li><p>(逆的好性质) <span class="math inline">\(f^{-1}(\bigcap U_\alpha)=\bigcap f^{-1}(U_\alpha)\)</span>, <span class="math inline">\(f^{-1}(Y\setminus A)=X\setminus f^{-1}(A)\)</span> 等.</p></li>
 <li><p><strong>开映射</strong>: 开集映到开集.</p></li>
 <li><p><strong>闭映射</strong>: 闭集映到闭集.</p></li>
@@ -383,8 +388,9 @@ f^{-1}(A)
 <li>连续映射在开集上的限制连续.</li>
 </ol>
 </div>
-<p><strong>同胚</strong>: 双射, 双向连续.</p>
+<p><strong>同胚映射</strong>: 双射, 双向连续.</p>
 <ul>
+<li><p>若有同胚映射 <span class="math inline">\(f:X\to Y\)</span>, 则称 <span class="math inline">\(X,Y\)</span> <strong>同胚</strong>, 记作 <span class="math inline">\(X\cong Y\)</span>.</p></li>
 <li><p>(完全保持拓扑) <span class="math inline">\(f:(X_1,{\cal T}_1)\to(X_2,{\cal T}_2)\)</span> 同胚 <span class="math inline">\(\iff f({\cal T}_1)={\cal T}_2\)</span>.</p></li>
 <li><p>(限制) 同胚在开集上的限制是同胚.</p></li>
 <li><p>(同胚判断) 若 <span class="math inline">\(f\)</span> 连续且双射, 则 同胚 <span class="math inline">\(\iff\)</span> 开映射 <span class="math inline">\(\iff\)</span> 闭映射.</p></li>
