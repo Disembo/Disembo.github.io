@@ -30,8 +30,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/classification-thm-pf-3.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/euler-char-of-three-surfaces.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/mobius-band.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/embedded-mobius-band.png">
 <meta property="article:published_time" content="2024-08-15T15:30:00.000Z">
-<meta property="article:modified_time" content="2024-08-15T15:42:09.161Z">
+<meta property="article:modified_time" content="2024-08-16T10:44:19.116Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -400,11 +401,11 @@ W\setminus\{p\} = U\cup V
 <p>带边版本的证明:</p>
 <div class="note note-light">
 <p><u>Pf (紧连通带边曲面分类定理, 部分证明)</u> 设 <span class="math inline">\(\partial M\)</span> 有 <span class="math inline">\(m\)</span> 个连通分量.</p>
-<p>步骤 1: <span class="math inline">\(\partial{M}\)</span> 同胚于 <span class="math inline">\(m\)</span> 个 <span class="math inline">\(\mathbb{S}^1\)</span> 的不交并.</p>
+<p><u>步骤 1</u>: <span class="math inline">\(\partial{M}\)</span> 同胚于 <span class="math inline">\(m\)</span> 个 <span class="math inline">\(\mathbb{S}^1\)</span> 的不交并.</p>
 <ul>
-<li>因为 <span class="math inline">\(\partial{M}\)</span> 是 <span class="math inline">\(M\)</span> 的闭子集, 故 <span class="math inline">\(\partial{M}\)</span> 紧, 其每个分量也紧. 又 <span class="math inline">\(\partial{M}\)</span> 是 <span class="math inline">\(1\)</span> 维流形, 其每个分量是 <span class="math inline">\(1\)</span> 维紧连通流形, 根据一维分类定理, 每个分量同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</li>
+<li>因为 <span class="math inline">\(\partial{M}\)</span> 是 <span class="math inline">\(M\)</span> 的闭子集, 故 <span class="math inline">\(\partial{M}\)</span> 紧, 其每个分量也紧, 且只有有限个分量. 又 <span class="math inline">\(\partial{M}\)</span> 是 <span class="math inline">\(1\)</span> 维流形, 其每个分量是 <span class="math inline">\(1\)</span> 维紧连通流形, 根据一维分类定理, 每个分量同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</li>
 </ul>
-<p>步骤 2: 把洞补上.</p>
+<p><u>步骤 2</u>: 把洞补上.</p>
 <ul>
 <li><p>记 <span class="math inline">\(m\)</span> 个闭圆盘的不交并 <span class="math inline">\(N:=\coprod_m\overline{\mathbb{B}^2}\)</span>. 取同胚 <span class="math inline">\(h:\partial{N}=\coprod_m\mathbb{S}^1\overset\sim\to\partial{M}\)</span>, 考虑 <span class="math inline">\(M,N\)</span> 沿着边界贴合 <span class="math inline">\(M'=M\cup_hN\)</span>. 根据 Claim 10.2, <span class="math inline">\(M'\)</span> 是 <span class="math inline">\(2\)</span> 维连通的无边流形, 且 <span class="math inline">\(M,N\)</span> 分别通过 <span class="math inline">\(e,f\)</span> 嵌入到 <span class="math inline">\(M'\)</span>, 满足 <span class="math display">\[
 \textstyle
@@ -421,7 +422,7 @@ V-E+F=2.
 \]</span> 这个量很容易推广到 CW 复形上. 对于 <span class="math inline">\(n\)</span> 维的有限 CW 复形 <span class="math inline">\(X\)</span>, 记其 <span class="math inline">\(k\)</span> 维胞腔数目为 <span class="math inline">\(n_k\)</span>, 则 <span class="math inline">\(X\)</span> 的 <strong>Euler 示性数 (Euler characteristic)</strong> 定义为交错和 <span class="math display">\[
 \chi(X) := \sum_{k=1}^n (-1)^kn_k.
 \]</span> 欧拉公式表明, Euler 示性数是紧凸多面体的某种不变量. 实际上, Euler 示性数是有限 CW 复形的<em>拓扑不变量</em>, 若两个 CW 复形 <span class="math inline">\(X,Y\)</span> 的拓扑空间同胚, 则 <span class="math inline">\(\chi(X)=\chi(Y)\)</span>. 当我们学完同伦群后会给出证明.</p>
-<p>然而, 我们可以证明 Euler 示性数是紧曲面的拓扑不变量 (如果我们承认分类定理中的 "唯一性").</p>
+<p>然而, 我们可以证明 Euler 示性数的某种 "组合不变性".</p>
 <div class="note note-success">
 <p><u>Claim 23.6</u> 多边形表示的 Euler 示性数 (即它确定的单纯复形的 Euler 示性数) 在初等变换下不变.</p>
 </div>
@@ -431,6 +432,7 @@ V-E+F=2.
 <p>剪切: 不改变零维胞腔的数目, 增加 <span class="math inline">\(1\)</span> 个一维胞腔, 增加 <span class="math inline">\(1\)</span> 个二维胞腔. 相互抵消.</p>
 <p>折叠: 减少 <span class="math inline">\(2\)</span> 个零维胞腔, 减少 <span class="math inline">\(2\)</span> 个一维胞腔, 不改变二维胞腔的数目. 相互抵消.</p>
 </div>
+<p>因为曲面的任意三角剖分都是组合等价的 (组合拓扑主猜想的二维情形), 即有公共的细分. 而三角剖分的 "细分" 相当于对相应的多边形表示作 "剪切" "细分" 等初等变换. 我们已经证明了初等变换不改变 Euler 示性数, 因此两个组合等价的三角剖分具有相同 Euler 示性数. 因此, 我们可以定义紧曲面 <span class="math inline">\(M\)</span> 的 <strong>Euler 示性数</strong> <span class="math inline">\(\chi(M)\)</span> 为它的三角剖分的 Euler 示性数.</p>
 <div class="note note-success">
 <p><u>Claim 23.7</u> (连通和的 Euler 示性数) 若 <span class="math inline">\(M_1,M_2\)</span> 是紧曲面, 则 <span class="math display">\[
 \chi(M_1\mathbin{\#}M_2)=\chi(M_1)+\chi(M_2)-2.
@@ -440,49 +442,62 @@ V-E+F=2.
 <p><u>Pf</u> 分别取 <span class="math inline">\(M_1,M_2\)</span> 的多边形表示, 充分细分, 剪切, 不妨假设所有的多边形都是三角形, 且任意三角形的顶点不与其自身顶点认同. 根据 Claim 22.2, 三角形内部的像同胚于正则坐标球.</p>
 <p>做连通和时, 在 <span class="math inline">\(M_1,M_2\)</span> 各取一个三角形, 去掉三角形内部, 再将对应边认同, 便得 <span class="math inline">\(M_1\mathbin{\#}M_2\)</span>. 与之前相比, 少了 <span class="math inline">\(3\)</span> 个零维胞腔, 少了 <span class="math inline">\(3\)</span> 个一维胞腔, 少了 <span class="math inline">\(2\)</span> 个二维胞腔, <span class="math inline">\(\chi(M_1\mathbin{\#}M_2)\)</span> 与 <span class="math inline">\(\chi(M_1)+\chi(M_2)\)</span> 相比减少 <span class="math inline">\(2\)</span>.</p>
 </div>
-<p>计算 <span class="math inline">\(\mathbb{S}^2,\mathbb{T}^2,\mathbb{RP}^2\)</span> 标准表示的 Euler 示性数:</p>
+<p>计算 <span class="math inline">\(\mathbb{S}^2,\mathbb{T}^2,\mathbb{RP}^2\)</span> 的 Euler 示性数:</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/euler-char-of-three-surfaces.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
 <p>借助连通和的 Euler 示性数公式, 可以得到:</p>
 <div class="note note-success">
-<p><u>Claim 23.7</u> (紧连通带边曲面的 Euler 示性数)</p>
+<p><u>Claim 23.8</u> (紧连通带边曲面的 Euler 示性数)</p>
 <ol type="1">
 <li><span class="math inline">\(\chi(\mathbb{S}^2_m)=2-m\)</span>.</li>
 <li><span class="math inline">\(\chi(\Sigma_{k,m})=2-2k-m\)</span>.</li>
 <li><span class="math inline">\(\chi(\tilde\Sigma_{k,m})=2-k-m\)</span>.</li>
 </ol>
 </div>
-<p>上面三种曲面彼此不同胚, 因此 Euler 示性数是紧连通曲面的拓扑不变量. 实际上, <span class="math inline">\(\Sigma_{k,m}\)</span> 和 <span class="math inline">\(\tilde{\Sigma}_{k,m}\)</span> 的下标 <span class="math inline">\(k\)</span> 有一定的几何含义, 即曲面上 "通透的洞的数量". 这个整数 <span class="math inline">\(k\)</span> 称为曲面的<strong>亏格 (genus)</strong> (球面的亏格为 <span class="math inline">\(0\)</span>).</p>
+<p>如果我们承认上面的曲面互不同胚, 则 Euler 示性数构成紧连通曲面的拓扑不变量. 实际上, <span class="math inline">\(\Sigma_{k,m}\)</span> 和 <span class="math inline">\(\tilde{\Sigma}_{k,m}\)</span> 的下标 <span class="math inline">\(k\)</span> 有一定的几何含义, 即曲面上 "通透的洞的数量". 这个整数 <span class="math inline">\(k\)</span> 称为曲面的<strong>亏格 (genus)</strong> (球面的亏格为 <span class="math inline">\(0\)</span>).</p>
 <h3 id="orientability">23.4  Orientability</h3>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/mobius-band.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
 <p>神奇的 <strong>Möbius 带 (Möbius band)</strong> 是将正方形的一对对边扭曲认同得到的曲面 <span class="math inline">\(\lr{a,b,c\mid abcb}\)</span> (其中一对 <span class="math inline">\(b\)</span> 是扭曲的), 它是一个 <span class="math inline">\(2\)</span> 维带边流形, 其边界只有 <span class="math inline">\(1\)</span> 个连通分量. 它的 Euler 示性数是 <span class="math inline">\(0\)</span>, 因此它同胚于 <span class="math inline">\(\tilde\Sigma_{1,1}\)</span>.</p>
 <p>Möbius 带的一个有趣特性是, 它只有一个面, 不存在 "正反面" 一说. 受此启发, 我们称面表示 <span class="math inline">\({\cal P}\)</span> 是<strong>定向的 (oriented)</strong>, 若 <span class="math inline">\(\cal P\)</span> 中不存在扭曲的边. 称紧曲面 <span class="math inline">\(M\)</span> 是<strong>可定向的 (orientable)</strong>, 若它存在一个定向的表示.</p>
 <div class="note note-success">
-<p><u>Claim 23.8</u> (可定向性) 紧连通曲面 <span class="math inline">\(M\)</span> 可定向, 当且仅当 <span class="math inline">\(M\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^2\)</span> 或 <span class="math inline">\(\Sigma_k\)</span>.</p>
+<p><u>Claim 23.9</u> (可定向性) 紧连通曲面 <span class="math inline">\(M\)</span> 可定向, 当且仅当 <span class="math inline">\(M\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^2\)</span> 或 <span class="math inline">\(\Sigma_k\)</span>.</p>
 </div>
 <div class="note note-light">
 <p><u>Pf</u> 注意 <span class="math inline">\(\mathbb{S}^2\)</span> 与 <span class="math inline">\(\Sigma_k\)</span> 的标准表示是定向的, 因此这两种曲面可定向, 同胚于这两种曲面的曲面 <span class="math inline">\(M\)</span> 也可定向 (<span class="math inline">\(\mathbb{S}^2\)</span> 或 <span class="math inline">\(\Sigma_k\)</span> 的标准表示也是 <span class="math inline">\(M\)</span> 的表示).</p>
 <p>反之, 设 <span class="math inline">\(M\)</span> 可定向, 取它的一个定向表示 <span class="math inline">\({\cal P}\)</span>, 经过分类定理证明过程中的 7 个步骤, 注意只有反射会引入一对扭曲边, 而只有步骤 1, 3, 4, 7 用到了反射. 容易验证, 如果 <span class="math inline">\({\cal P}\)</span> 没有扭曲边, 则相应步骤过后的 <span class="math inline">\({\cal P}\)</span> 也没有扭曲边. 因此 <span class="math inline">\({\cal P}\)</span> 的化简结果没有扭曲边, 即 <span class="math inline">\(M\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^2\)</span> 或 <span class="math inline">\(\Sigma_k\)</span>.</p>
 </div>
 <p>对于紧连通带边曲面 <span class="math inline">\(M\)</span>, 它同胚于某个无边曲面 <span class="math inline">\(M'\)</span> (具有充分细分的多边形表示) 挖去若干 <span class="math inline">\(2\)</span> 维单形的内部得到的曲面. 细分, 剪切与删去三角形的操作都不改变扭曲边, 因此, 我们定义 <span class="math inline">\(M\)</span> 是<strong>可定向的</strong>, 当且仅当 <span class="math inline">\(M'\)</span> 是可定向的. 这样的定义与无边的版本是相容的.</p>
-<p>同胚于 <span class="math inline">\(\mathbb{S}^2_m\)</span> 与 <span class="math inline">\(\Sigma_{k,m}\)</span> 的曲面可定向, 同胚于 <span class="math inline">\(\tilde{\Sigma}_{k,m}\)</span> 的曲面不可定向. 这三者互不同胚, 故可定向性是连通紧曲面的拓扑不变性.</p>
 <ul>
+<li>同胚于 <span class="math inline">\(\mathbb{S}^2_m\)</span> 与 <span class="math inline">\(\Sigma_{k,m}\)</span> 的曲面可定向, 同胚于 <span class="math inline">\(\tilde{\Sigma}_{k,m}\)</span> 的曲面不可定向.</li>
 <li>实际上, "可定向性" 可以推广到任意可三角剖分的流形上. 我们给出的定义是一个 <span class="math inline">\(2\)</span> 维的等价版本.</li>
+<li>有的书也将如下刻画作为不可定向的定义.</li>
 </ul>
 <div class="note note-success">
-<p><u>Claim 23.9</u> (不可定向性的 Möbius 带刻画) 紧连通带边曲面 <span class="math inline">\(M\)</span> 不可定向, 当且仅当存在 Möbius 带到 <span class="math inline">\(M\)</span> 的嵌入.</p>
+<p><u>Claim 23.10</u> (不可定向性的 Möbius 带刻画) 紧连通带边曲面 <span class="math inline">\(M\)</span> 不可定向, 当且仅当存在 Möbius 带到 <span class="math inline">\(M\)</span> 的嵌入.</p>
 </div>
 <div class="note note-light">
-<p><u>Pf</u></p>
+<p><u>Pf</u> 先考虑无边曲面. 设 <span class="math inline">\(M\)</span> 不可定向. 我们已经知道 Möbius 带是 <span class="math inline">\(\mathbb{RP}^2\)</span> 挖掉一个开胞腔得到的, 而后者嵌入到 <span class="math inline">\(\tilde\Sigma_k\cong M\)</span>. 因此, Möbius 带嵌入到 <span class="math inline">\(M\)</span>.</p>
+<p>反之, 设 Möbius 带嵌入到 <span class="math inline">\(M\)</span> 的子空间 <span class="math inline">\(B\)</span>. 我们的想法是找到一个紧子曲面 <span class="math inline">\(M'\subset M\)</span>, 使得 <span class="math inline">\(M\cong M'\mathbin{\#}\mathbb{RP}^2\)</span>, 进而 <span class="math inline">\(M\)</span> 的一个多边形表示中有扭曲边, 是不可定向的.</p>
+<p>取 Möbius 带 <span class="math inline">\(B\)</span> 的 "中间部分" 开集 <span class="math inline">\(B_0\)</span> (如图), 则 <span class="math inline">\(\overline{B_0}\)</span> 也是 Möbius 带的嵌入, 且 <span class="math inline">\(M\setminus B_0\)</span> 是一个 <span class="math inline">\(2\)</span> 维紧带边流形 (对于 <span class="math inline">\(M\setminus\overline{B_0}\)</span> 中的点, 其欧氏邻域就是原本 <span class="math inline">\(M\)</span> 中的欧氏邻域; 对于 <span class="math inline">\(\partial\overline{B}_0\)</span> 中的点, 其欧氏邻域可以取图中的小矩形), 其边界只有一个连通分量, 故同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/embedded-mobius-band.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<p>令 <span class="math inline">\(M'\)</span> 是 <span class="math inline">\(M\setminus B_0\)</span> 与单位圆盘 <span class="math inline">\(\overline{\mathbb{B}^2}\)</span> 沿边界贴合所得紧曲面. 则 <span class="math inline">\(M'\)</span> 挖去正则坐标球后与 <span class="math inline">\(M\setminus B_0\)</span> 同胚, 而 <span class="math inline">\(\mathbb{RP}^2\)</span> 挖去正则坐标球后与 Möbius 带 <span class="math inline">\(\overline{B_0}\)</span> 同胚, 两者的连通和 <span class="math inline">\(M'\mathbin{\#}\mathbb{RP}^2\)</span> 同胚于 <span class="math inline">\(M\)</span>.</p>
+<p>对于带边曲面 <span class="math inline">\(M\)</span>, 若 Möbius 带嵌入 <span class="math inline">\(M\)</span>, 将 <span class="math inline">\(M\)</span> 的 "洞" 补上 (详见带边分类定理证明) 得到无边曲面 <span class="math inline">\(M'\)</span>, 则 Möbius 带也嵌入到 <span class="math inline">\(M'\)</span>, 于是 <span class="math inline">\(M'\)</span> 不可定向. 根据定义, <span class="math inline">\(M\)</span> 也不可定向.</p>
+<p>反之, 若带边曲面 <span class="math inline">\(M\)</span> 不可定向, 它对应的无边曲面 <span class="math inline">\(M'\)</span> 也不可定向, 存在嵌入到 <span class="math inline">\(M'\)</span> 的 Möbius 带 <span class="math inline">\(B\)</span>. 我们的想法是将 <span class="math inline">\(B\)</span> "还原到 <span class="math inline">\(M\)</span>" 上. 假设 <span class="math inline">\(M'\)</span> 挖去若干开圆盘 <span class="math inline">\(D_1,\dots,D_m\)</span> 得到 <span class="math inline">\(M\)</span>, 适当缩小这些圆盘, 可以使得它们与 Möbius 带 <span class="math inline">\(B\)</span> 的 "中线" (上图点线) 不交, 进而存在 "带状区域" (如上图黄色部分) <span class="math inline">\(\overline{B_0}\)</span> 与 <span class="math inline">\(D_1,\dots,D_m\)</span> 不交. <span class="math inline">\(\overline{B_0}\)</span> 是一个嵌入 <span class="math inline">\(M'\)</span> 的 Möbius 带, 也是一个嵌入 <span class="math inline">\(M\)</span> 的 Möbius 带.</p>
 </div>
+<p>实际上, Claim 23.10 保证了, 可定向性是 (带边/无边) 紧连通曲面的拓扑不变性. (注意我们并未借助分类定理中的唯一性.)</p>
+<p>根据 Claim 23.4, Klein 瓶同胚于两个 <span class="math inline">\(\mathbb{RP}^2\)</span> 的连通和, 即将两个 <span class="math inline">\(\mathbb{RP}^2\)</span> 分别去掉 <span class="math inline">\(2\)</span> 维开胞腔后, 沿着边界粘合. 而 <span class="math inline">\(\mathbb{RP}^2\)</span> 去掉 <span class="math inline">\(2\)</span> 维开胞腔, 得到的恰好是 Möbius 带. 因此, Klein 瓶同胚于两个 Möbius 带沿着边界粘合! 实际上, Klein 瓶作为不可定向曲面, 也没有 "正反" 或 "内外" 之分.</p>
 <p>利用 Euler 示性数与可定向性, 我们能给出分类定理的另一种表述:</p>
 <div class="note note-success">
-<p><u>Claim 23.10</u> (紧连通带边曲面分类定理, 另一种表述) 在同胚意义下, 紧连通带边曲面 <span class="math inline">\(M\)</span> 由以下三个量唯一确定:</p>
+<p><u>Claim 23.11</u> (紧连通带边曲面分类定理, 另一种表述) 在同胚意义下, 紧连通带边曲面 <span class="math inline">\(M\)</span> 由以下三个量唯一确定:</p>
 <ol type="1">
 <li>Euler 示性数.</li>
 <li>可定向性.</li>
 <li><span class="math inline">\(\partial{M}\)</span> 连通分量的个数.</li>
 </ol>
 </div>
+<div class="note note-light">
+<p><u>Pf</u> 如果 <span class="math inline">\(M\)</span> 可定向, 则它同胚于 <span class="math inline">\(\mathbb{S}^2_m\)</span> 或 <span class="math inline">\(\Sigma_{k,m}\)</span>; 否则同胚于 <span class="math inline">\(\tilde\Sigma_{k,m}\)</span>. Euler 示性数和 <span class="math inline">\(\partial{M}\)</span> 连通分量的个数可以进一步确定 <span class="math inline">\(k,m\)</span> 的值.</p>
+</div>
+<p>至此, 我们利用组合拓扑的方法, (几乎) 完成了一维流形以及二维紧流形的分类. 实际上, 三维流形也是可三角剖分的 (Claim 20.5), 所以一个自然的想法是将组合学的方法应用于三维流形的分类. 不幸的是, 三维三角剖分的组合化简问题至今没有得到解决. 而对于 <span class="math inline">\(n\geq4\)</span> 维, 甚至并非所有流形都是可三角剖分的. 因此, 为了理解更高维流形 (以及区分三种标准曲面), 我们需要更强大的代数工具和拓扑不变量. 这也是本书后半部分的主题.</p>
 </body></html>
                 
               </div>
@@ -574,6 +589,12 @@ V-E+F=2.
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Note/tp-gtm202-14/" title="GTM202 | 14 Seifert–Van Kampen 定理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM202 | 14 Seifert–Van Kampen 定理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
