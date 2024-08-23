@@ -248,33 +248,6 @@
   
   <entry>
     <title>GTM218 | 光滑流形笔记</title>
-    <link href="/Note/dg-gtm218-index/"/>
-    <url>/Note/dg-gtm218-index/</url>
-    
-    <content type="html"><![CDATA[<html><head></head><body><div class="note note-secondary"><p>计划中的笔记, 主要参考:</p><ul><li><em>Introduction to Smooth Manifolds</em> (GTM218) by John M. Lee.</li><li><em>An Introduction to Manifolds</em> by Loring W. Tu.</li><li>王作勤老师的<a href="http://staff.ustc.edu.cn/~wangzuoq/Courses/23F-Manifolds/index.html">微分流形讲义</a>.</li></ul></div><p><strong>第一部分: 光滑流形与光滑映射.</strong></p><ol type="1"><li>光滑流形</li><li>光滑映射与单位分解</li><li>切空间与切映射</li><li>光滑映射的局部行为<!--常秩映射, 浸入 & 淹没, 嵌入, 光滑覆叠--></li><li>子流形<!--正则/常秩水平集定理, 嵌入子流形 (嵌入=同胚浸入) & 浸入子流形 (单射浸入)--></li><li>Sard 定理<!--Sard 定理, Whitney 嵌入 & 逼近定理, 横截相交--></li></ol><p><strong>第二部分: 流形上的张量场.</strong></p><ol start="7" type="1"><li>向量场</li><li>积分曲线与流</li><li>向量丛</li><li>张量场</li><li>微分形式</li><li>分布与可积性</li></ol><p><strong>第三部分: 李群.</strong></p><ol start="13" type="1"><li>李群</li><li>李群作用</li><li>商流形</li></ol><p><strong>第四部分: 微分形式的积分.</strong></p><ol start="16" type="1"><li>流形的定向</li><li>流形上的积分</li></ol><p><strong>第五部分: de Rham 上同调.</strong></p><ol start="18" type="1"><li>de Rham 上同调</li><li>de Rham 定理</li></ol></body></html>]]></content>
-    
-    
-    <categories>
-      
-      <category>Note</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>数学</tag>
-      
-      <tag>微分几何</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>GTM218 | 光滑流形笔记</title>
     <link href="/Note/tp-gtm218-index/"/>
     <url>/Note/tp-gtm218-index/</url>
     
@@ -597,9 +570,9 @@
       
       <tag>微分几何</tag>
       
-      <tag>示性类</tag>
-      
       <tag>黎曼几何</tag>
+      
+      <tag>示性类</tag>
       
     </tags>
     
@@ -715,9 +688,9 @@
       
       <tag>微分几何</tag>
       
-      <tag>示性类</tag>
-      
       <tag>黎曼几何</tag>
+      
+      <tag>示性类</tag>
       
     </tags>
     
@@ -746,9 +719,9 @@
       
       <tag>微分几何</tag>
       
-      <tag>示性类</tag>
-      
       <tag>黎曼几何</tag>
+      
+      <tag>示性类</tag>
       
     </tags>
     
