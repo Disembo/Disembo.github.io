@@ -23,12 +23,14 @@
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="切空间与切映射, 切映射的坐标形式, 曲线的切向量.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/velocity-of-a-curve.png">
 <meta property="article:published_time" content="2024-08-23T14:04:02.493Z">
-<meta property="article:modified_time" content="2024-08-23T13:58:02.608Z">
+<meta property="article:modified_time" content="2024-08-24T10:22:57.767Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/velocity-of-a-curve.png">
   
   
   
@@ -372,7 +374,7 @@ F_{*,p}:T_pM \to T_{F(p)}N
 <p><u>Proposition 4.3</u> (切映射的性质) 设 (带边) 光滑流形 <span class="math inline">\(M,N,P\)</span>, 光滑映射 <span class="math inline">\(F:M\to N\)</span>, <span class="math inline">\(G:N\to P\)</span>, 点 <span class="math inline">\(p\in M\)</span>.</p>
 <ol type="1">
 <li><span class="math inline">\(F_{*,p}:T_pM\to T_{F(p)}N\)</span> 是 <span class="math inline">\(\R\)</span>-线性映射.</li>
-<li>(函子性之一) <span class="math inline">\((G\circ F)_{*,p}=G_{*,F(p)}\circ F_{*,p}\)</span>.</li>
+<li>(函子性之一) <span class="math inline">\((G\circ F)_{*,p}=G_{*,F(p)}\circ F_{*,p}\)</span>. (也称为 "链式法则".)</li>
 <li>(函子性之二) <span class="math inline">\(({\rm id}_M)_{*,p}={\rm id}_{T_pM}\)</span>.</li>
 <li>(同构映到同构) 若 <span class="math inline">\(F\)</span> 是微分同胚, 则 <span class="math inline">\(F_{*,p}\)</span> 是同构, 且 <span class="math inline">\((F_{*,p})^{-1}=(F^{-1})_{*,F(p)}\)</span>.</li>
 </ol>
@@ -472,7 +474,163 @@ v &amp;\mapsto ((\pi_1)_{*,p}v,\dots,(\pi_k)_{*,p}v)
 \]</span> 是线性同构. 此外, 若 <span class="math inline">\(M_i\)</span> 中有一个是带边流形, 则命题也成立.</p>
 </div>
 <h3 id="computations-in-coordinates">4.4  Computations in coordinates</h3>
+<p><strong>切空间的基底.</strong></p>
+<p>设 <span class="math inline">\((U,\varphi)\)</span> 是包含 <span class="math inline">\(p\)</span> 的坐标卡. 因为 <span class="math inline">\(\varphi_{*,p}\)</span> 是同构, <span class="math inline">\(T_{\varphi(p)}\R^n\)</span> 的标准基底 <span class="math inline">\(\{\partial/\partial x^i|_{\varphi(p)}\}\)</span> 在同构下的原像构成了 <span class="math inline">\(T_pM\)</span> 的一个基底, 记作 <span class="math display">\[
+\eval{\pdv{x^i}}_p
+:= (\varphi_{*,p})^{-1} \eval{\pdv{x^i}}_{\varphi(p)}
+= (\varphi^{-1})_{*,\varphi(p)} \eval{\pdv{x^i}}_{\varphi(p)}.
+\]</span> 该基底 <span class="math inline">\(\{\partial/\partial x^i|_p\}\)</span> 称为 <span class="math inline">\(T_pM\)</span> 的<strong>坐标基底 (coordinate basis)</strong>, 即坐标系 <span class="math inline">\((U,(x^i))\)</span> 诱导出的基底. 坐标基向量作用于 <span class="math inline">\(f\in C^\infty(U)\)</span> 给出 <span class="math display">\[
+\eval{\pdv{x^i}}_pf
+= \eval{\pdv{x^i}}_{\varphi(p)} (f\circ\varphi^{-1})
+= \eval{\pdv{\hat{f}}{x^i}}_{\hat{p}},
+\]</span> 无非是求 <span class="math inline">\(f\)</span> 关于第 <span class="math inline">\(i\)</span> 个坐标的偏导数. 特别地, 坐标向量作用于坐标函数 <span class="math inline">\(x^j\)</span> 给出 <span class="math display">\[
+\eval{\pdv{x^j}{x^i}}_p
+= \eval{\pdv{x^i}}_{\varphi(p)}(x^j\circ\varphi^{-1})
+= \delta^j_i.
+\]</span></p>
+<ul>
+<li>对于带边流形边界点处的切向量, 坐标基底应当是求取 "单侧偏导数".</li>
+</ul>
+<p>切向量 <span class="math inline">\(v\in T_pM\)</span> 在坐标基底下展开为 <span class="math display">\[
+v = v^i \eval{\pdv{x^i}}_p,
+\]</span> 其中 <span class="math inline">\(v^i=v(x^i)\)</span>, 即作用于第 <span class="math inline">\(i\)</span> 个坐标函数得到的实数. 我们将上面的讨论总结为如下定理:</p>
+<div class="note note-success">
+<p><u>Proposition 4.10</u> (切空间的基底) 设 (带边) 光滑流形 <span class="math inline">\(M\)</span>, 点 <span class="math inline">\(p\in M\)</span> 附近有坐标系 <span class="math inline">\((U,(x^i))\)</span>, 则 <span class="math inline">\(T_pM\)</span> 的一个基底是 <span class="math inline">\(\{\partial/\partial x^i|_p\}\)</span>. 切向量 <span class="math inline">\(v=T_pM\)</span> 在该基底下的分量 <span class="math inline">\(v^i=v(x^i)\)</span>.</p>
+</div>
+<p><strong>切映射在坐标基底下的矩阵.</strong></p>
+<p>设光滑映射 <span class="math inline">\(F:M\to N\)</span>, 其中 <span class="math inline">\(M,N\)</span> 分别为 <span class="math inline">\(m,n\)</span> 维光滑流形. 取 <span class="math inline">\(p\in M\)</span> 附近的坐标系 <span class="math inline">\((U,(x^i))\)</span> 和 <span class="math inline">\(F(p)\)</span> 附近的坐标系 <span class="math inline">\((V,(y^j))\)</span>. 设切映射 <span class="math inline">\(F_{*,p}\)</span> 在坐标基底 <span class="math inline">\(\{\partial/\partial x^i|_p\}\)</span> 和 <span class="math inline">\(\{\partial/\partial y^j|_{F(p)}\}\)</span> 下的矩阵为 <span class="math inline">\((a^j_i)\)</span>, 则 <span class="math display">\[
+F_{*,p}\pqty{\eval{\pdv{x^i}}_p} = a^j_i \eval{\pdv{y^j}}_{F(p)}.
+\]</span> 两边作用于 <span class="math inline">\(y^k\)</span>, 右边得到 <span class="math inline">\(a^k_i\)</span>, 左边得到 <span class="math display">\[
+\Align{
+\eval{\pdv{x^i}}_p(y^k\circ F)
+&amp;= \eval{\pdv{x^i}}_{\hat{p}}(y^k\circ F\circ\varphi^{-1}) \\
+&amp;= \eval{\pdv{\hat{F}^k}{x^i}}_{\hat{p}},
+}
+\]</span> 其中 <span class="math inline">\(\hat{F}^k=y^k\circ F\circ\varphi^{-1}:\hat{U}\to\R\)</span> 是 <span class="math inline">\(F\)</span> 在坐标系下的第 <span class="math inline">\(k\)</span> 个分量. 因此, 切映射的矩阵 <span class="math display">\[
+(a^j_i)
+= \pqty{\eval{\pdv{\hat{F}^j}{x^i}}_{\hat{p}}}
+= \pmqty{
+    \displaystyle\eval{\pdv{\hat{F}^1}{x^1}}_{\hat{p}} &amp;
+    \cdots &amp;
+    \displaystyle\eval{\pdv{\hat{F}^1}{x^n}}_{\hat{p}} \\
+    \vdots &amp; \ddots &amp; \vdots \\
+    \displaystyle\eval{\pdv{\hat{F}^m}{x^1}}_{\hat{p}} &amp;
+    \cdots &amp;
+    \displaystyle\eval{\pdv{\hat{F}^m}{x^n}}_{\hat{p}} \\
+}
+\]</span> 即坐标式 <span class="math inline">\(\hat{F}\)</span> 的 Jacobi 矩阵.</p>
+<div class="note note-success">
+<p><u>Proposition 4.11</u> (切映射的矩阵) 设光滑映射 <span class="math inline">\(F:M\to N\)</span>, 点 <span class="math inline">\(p\in M\)</span> 附近有坐标系 <span class="math inline">\((U,(x^i))\)</span>, <span class="math inline">\(F(p)\)</span> 附近有坐标系 <span class="math inline">\((V,(y^j))\)</span>, 则切映射 <span class="math inline">\(F_{*,p}\)</span> 在 <span class="math inline">\(T_pM\)</span> 和 <span class="math inline">\(T_{F(p)}N\)</span> 的坐标基底下的矩阵为坐标式 <span class="math inline">\(\hat{F}\)</span> 的 Jacobi 矩阵 <span class="math inline">\((\partial\hat{F}^j/\partial x^i|_{\varphi(p)})\)</span>.</p>
+</div>
+<p>实际上, 切映射的概念正是为了给出 Jacobi 矩阵的一个无关坐标的定义, 可以看作 <span class="math inline">\(\R^n\)</span> 中光滑映射的 "导数" 概念的推广. 在微分几何中, 切映射的名字很多, 比如<strong>微分</strong>, <strong>导数</strong>, <strong>推前</strong>, 记号也五花八门, 比如 <span class="math display">\[
+F'(p),\quad DF(p),\quad \dd{F_p},\quad T_pF,\quad F_{*,p}.
+\]</span> 我们只使用 <span class="math inline">\(F_{*,p}\)</span> 记号. 在没有歧义的情况下 (比如点 <span class="math inline">\(p\)</span> 明确), 可以简写作 <span class="math inline">\(F_*\)</span>.</p>
+<p><strong>坐标变换.</strong></p>
+<p>设 <span class="math inline">\(p\in M\)</span> 附近有两个坐标卡 <span class="math inline">\((U,\varphi)\)</span>, <span class="math inline">\((V,\psi)\)</span>. 切向量在这两个坐标系下的分量有何关联?</p>
+<p>记 <span class="math inline">\(\varphi\)</span> 的坐标函数为 <span class="math inline">\((x^i)\)</span>, <span class="math inline">\(\psi\)</span> 的坐标函数为 <span class="math inline">\((\tilde{x}^i)\)</span>, 将转移映射 <span class="math inline">\(\psi\circ\varphi^{-1}\)</span> 记作 <span class="math display">\[
+(\psi\circ\varphi^{-1})(x)=(\tilde{x}^1(x),\dots,\tilde{x}^n(x)).
+\]</span> (其中 <span class="math inline">\(x\)</span> 理解为 <span class="math inline">\(\varphi(U\cap V)\)</span> 中的点.) 转移映射的微分 <span class="math display">\[
+(\psi\circ\varphi^{-1})_{*,\varphi(p)}\pqty{\eval{\pdv{x^i}}_{\varphi(p)}}
+= \eval{\pdv{\tilde{x}^j}{x^i}}_{\varphi(p)}
+\eval{\pdv{\tilde{x}^j}}_{\psi(p)}.
+\]</span> 坐标基底的变换律 <span class="math display">\[
+\Align{
+\eval{\pdv{x^i}}_p
+&amp;= (\varphi^{-1})_{*,\varphi(p)} \eval{\pdv{x^i}}_{\varphi(p)} \\
+&amp;= (\psi^{-1})_{*,\psi(p)}
+    (\psi\circ\varphi^{-1})_{*,\varphi(p)}
+    \eval{\pdv{x^i}}_{\varphi(p)} \\
+&amp;= (\psi^{-1})_{*,\psi(p)}
+    \eval{\pdv{\tilde{x}^j}{x^i}}_{\varphi(p)}
+    \eval{\pdv{\tilde{x}^j}}_{\psi(p)} \\
+&amp;= \eval{\pdv{\tilde{x}^j}{x^i}}_{\varphi(p)}
+    \eval{\pdv{\tilde{x}^j}}_p.
+}
+\]</span> 于是切向量 <span class="math inline">\(v=v^i\partial/\partial x^i|_p=\tilde{v}^j\partial/\partial\tilde{x}^j|_p\)</span> 的分量的变换律 <span class="math display">\[
+\tilde{v}^j = \eval{\pdv{\tilde{x}^j}{x^i}}_{\varphi(p)}v^i.
+\]</span> 从形式上看, 坐标变换律和链式法则几乎一样, 看起来是很直接的.</p>
+<div class="note note-success">
+<p><u>Proposition 4.12</u> (切向量的坐标变换律) 设 (带边) 光滑流形 <span class="math inline">\(M\)</span>, 点 <span class="math inline">\(p\in M\)</span> 附近有两个坐标卡 <span class="math inline">\((U,\varphi)\)</span>, <span class="math inline">\((V,\psi)\)</span>, 若 <span class="math inline">\(v\in T_pM\)</span> 在两个坐标卡下的分量分别为 <span class="math inline">\(v^i\)</span>, <span class="math inline">\(\tilde{v}^j\)</span>, 则 <span class="math display">\[
+\tilde{v}^j = \eval{\pdv{\tilde{x}^j}{x^i}}_{\varphi(p)}v^i,
+\]</span> 其中 <span class="math inline">\(\tilde{x}^i:\varphi(U\cap V)\to\R\)</span> 是 <span class="math inline">\(\psi\circ\varphi^{-1}\)</span> 的分量.</p>
+</div>
+<div class="note note-info">
+<p><u>Example</u> <span class="math inline">\(\R^3\)</span> 中的球坐标变换.</p>
+<p>记 <span class="math inline">\(U=\R^3\setminus\{(0,0,x^3)\mid x^3\in\R\}\)</span>, 在 <span class="math inline">\(U\)</span> 上可以定义球坐标系 <span class="math display">\[
+\Cases{
+x^1 = r\sin\theta\cos\phi, \\
+x^2 = r\sin\theta\sin\phi, \\
+x^3 = r\cos\theta,
+}
+\]</span> 其中 <span class="math inline">\(\theta\in(0,\pi)\)</span> 为向量与 <span class="math inline">\(z\)</span> 轴正半轴的夹角, <span class="math inline">\(\theta\in[0,2\pi)\)</span> 为经度角, <span class="math inline">\(r&gt;0\)</span> 为半径. 记 <span class="math inline">\(\{\partial/\partial x^i|_p\}\)</span> 为标准坐标基底, <span class="math inline">\(\{\partial/\partial y^j|_p\}=\{\partial/\partial r|_p,\partial/\partial\theta|_p,\partial/\partial\phi|_p\}\)</span> 为球坐标基底, 则 <span class="math display">\[
+\pqty{\eval{\pdv{y^j}}_p} = \pqty{\eval{\pdv{x^i}}_p} \pmqty{
+  \sin\theta\cos\phi &amp; r\cos\theta\cos\phi &amp; -r\sin\theta\sin\phi \\
+  \sin\theta\sin\phi &amp; r\cos\theta\sin\phi &amp; r\sin\theta\cos\phi \\
+  \cos\theta &amp; -r\sin\theta &amp; 0
+}.
+\]</span> 具体来说, 若有 <span class="math inline">\(p=(r,\theta,\phi)=(\sqrt2,\pi/4,\pi/2)\)</span> 处的切向量 <span class="math display">\[
+v = 3 \eval{\pdv{r}}_p - \eval{\pdv\theta}_p + 2 \eval{\pdv\phi}_p,
+\]</span> 计算得到 <span class="math display">\[
+\Align{
+\eval{\pdv{r}}_p &amp;=
+\frac1{\sqrt2}\eval{\pdv{x^2}}_p + \frac1{\sqrt2}\eval{\pdv{x^3}}_p, \\
+\eval{\pdv\theta}_p &amp;= \eval{\pdv{x^2}}_p - \eval{\pdv{x^3}}_p, \\
+\eval{\pdv\phi}_p &amp;= -\eval{\pdv{x^1}}_p,
+}
+\]</span> 于是 <span class="math display">\[
+v =
+- 2\eval{\pdv{x^1}}_p
++ \pqty{\frac3{\sqrt2}-1}\eval{\pdv{x^2}}_p
++ \pqty{\frac3{\sqrt2}+1}\eval{\pdv{x^2}}_p.
+\]</span></p>
+</div>
 <h3 id="curves">4.5  Curves</h3>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/velocity-of-a-curve.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>(带边) 光滑流形 <span class="math inline">\(M\)</span> 中的一条光滑<strong>曲线 (curve)</strong> 指的是光滑映射 <span class="math inline">\(\gamma:J\to M\)</span>, 其中 <span class="math inline">\(J\subset\R\)</span> 是区间. 曲线 <span class="math inline">\(\gamma\)</span> 在 <span class="math inline">\(t_0\in J\)</span> 处的<strong>切向量 / 速度 (velocity)</strong> 定义为 <span class="math display">\[
+\gamma'(t_0) := \gamma_{*}\pqty{\eval{\dv{t}}_{t_0}} \in T_{\gamma(t_0)}M,
+\]</span> 其中 <span class="math inline">\(\dd/\dd t|_{t_0}\)</span> 是 <span class="math inline">\(T_{t_0}\R\)</span> 的标准基底. 切向量的其他记号有 <span class="math display">\[
+\dot\gamma(t_0),\quad \eval{\dv{\gamma}{t}}_{t_0}.
+\]</span> 曲线的切向量对 <span class="math inline">\(f\in C^\infty(M)\)</span> 的作用是通常的求导: <span class="math display">\[
+\gamma'(t_0)f
+= \gamma_{*}\pqty{\eval{\dv{t}}_{t_0}}f
+= \eval{\dv{t}}_{t_0}(f\circ\gamma)
+\equiv (f\circ\gamma)'(t_0).
+\]</span> 若取 <span class="math inline">\(\gamma(t_0)\)</span> 附近的坐标系 <span class="math inline">\((U,(x^i))\)</span>, 曲线 <span class="math inline">\(\gamma\)</span> 有局部<strong>坐标表示 / 参数式</strong> <span class="math display">\[
+\gamma(t) \approx
+(\varphi\circ\gamma)(t) = (\gamma^1(t),\dots,\gamma^n(t)),
+\]</span> 此时 <span class="math inline">\(\gamma'(t_0)\)</span> 的坐标分量就是 <span class="math inline">\(\gamma\)</span> 参数式的导数: <span class="math display">\[
+\gamma'(t_0) = \eval{\dv{\gamma^i}{t}}_{t_0} \eval{\pdv{x^i}}_{\gamma(t_0)}.
+\]</span> 这与欧氏空间中 "参数曲线" 的 "速度向量" 的定义是一致的. 利用参数式, 也可以在 <span class="math inline">\(U\)</span> 上局部地定义一条曲线, 我们只需给出分量 <span class="math inline">\(\gamma^1(t),\dots,\gamma^n(t)\)</span>, 并定义 <span class="math inline">\(\gamma(t):=\varphi^{-1}(\gamma^1(t),\dots,\gamma^n(t))\)</span> 即可.</p>
+<p>若光滑曲线 <span class="math inline">\(\gamma:J\to M\)</span> 满足 <span class="math inline">\(0\in J\)</span>, 我们称它是<strong>从 <span class="math inline">\(\gamma(0)\)</span> 开始, 以 <span class="math inline">\(\gamma'(0)\)</span> 为初速度</strong>的曲线.</p>
+<div class="note note-success">
+<p><u>Proposition 4.13</u> (切向量是都曲线的速度) 设 (带边) 光滑流形 <span class="math inline">\(M\)</span>, <span class="math inline">\(p\in M\)</span>, 则任意 <span class="math inline">\(v\in T_pM\)</span> 都是某条光滑曲线的切向量.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 先考虑内部点 <span class="math inline">\(p\in{\rm Int}M\)</span>. 取以 <span class="math inline">\(p\)</span> 为中心的坐标卡 <span class="math inline">\((U,\varphi)\)</span>, 设 <span class="math inline">\(v\)</span> 展开为 <span class="math inline">\(v=v^i\partial/\partial x^i|_p\)</span>, 设曲线 <span class="math inline">\(\gamma\)</span> 在 <span class="math inline">\(U\)</span> 下的参数式为 <span class="math display">\[
+\gamma(t) = (tv^1,\dots,tv^n),\quad-\varepsilon&lt;t&lt;\varepsilon,
+\]</span> 对于足够小的 <span class="math inline">\(\varepsilon&gt;0\)</span>. 显然 <span class="math inline">\(\gamma\)</span> 是从 <span class="math inline">\(p\)</span> 开始的, 以 <span class="math inline">\(v\)</span> 为初速度的曲线.</p>
+<p>对于边界点 <span class="math inline">\(p\in\partial{M}\)</span>, 同样设 <span class="math inline">\(v\)</span> 在坐标卡下展开为 <span class="math inline">\(v=v^i\partial/\partial x^i|_p\)</span>. 完全可以仿照上式定义曲线 <span class="math inline">\(\gamma\)</span>, 唯一的问题是因为 <span class="math inline">\(U\)</span> 只有 "一半", 所以 <span class="math inline">\(\gamma\)</span> 可能跑出 <span class="math inline">\(U\)</span>. 如果 <span class="math inline">\(v\)</span> "朝外", 即 <span class="math inline">\(v^n&lt;0\)</span>, 则限制曲线的定义域为 <span class="math inline">\((-\varepsilon,0]\)</span>; 若 <span class="math inline">\(v\)</span> "朝里", 即 <span class="math inline">\(v^n&gt;0\)</span>, 则限制曲线的定义域为 <span class="math inline">\([0,\varepsilon)\)</span>; 如果 <span class="math inline">\(v^n=0\)</span>, 则无需限制定义域.</p>
+</div>
+<p>下面的定理表明, 曲线 "像的切向量" 等于 "切向量的像".</p>
+<div class="note note-success">
+<p><u>Proposition 4.14</u> (曲线的像的切向量) 设光滑映射 <span class="math inline">\(F:M\to N\)</span>, 光滑曲线 <span class="math inline">\(\gamma:J\to M\)</span>. 则对任意 <span class="math inline">\(t_0\in J\)</span>, 曲线 <span class="math inline">\(F\circ\gamma:J\to N\)</span> 的切向量 <span class="math display">\[
+(F\circ\gamma)'(t_0) = F_*(\gamma'(t_0)).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 直接应用定义与链式法则即可: <span class="math display">\[
+(F\circ\gamma)'(t_0)
+= (F\circ\gamma)_*\pqty{\eval{\dv{t}}_{t_0}}
+= F_* \gamma_*\pqty{\eval{\dv{t}}_{t_0}}
+= F_* \gamma'(t_0).
+\]</span></p>
+</div>
+<p>这给了我们一种计算 <span class="math inline">\(F_*\)</span> 的方法, 通常要比用坐标基底计算微分好用:</p>
+<div class="note note-success">
+<p><u>Corollary 4.15</u> (用曲线计算微分) 设光滑映射 <span class="math inline">\(F:M\to N\)</span>, <span class="math inline">\(p\in M\)</span>, <span class="math inline">\(v\in T_pM\)</span>, 则 <span class="math display">\[
+F_{*,p}(v) = (F\circ\gamma)'(0),
+\]</span> 对任意以 <span class="math inline">\(p\)</span> 开始, 以 <span class="math inline">\(v\)</span> 为初速度的曲线 <span class="math inline">\(\gamma:J\to M\)</span>.</p>
+</div>
 </body></html>
                 
               </div>
@@ -564,6 +722,12 @@ v &amp;\mapsto ((\pi_1)_{*,p}v,\dots,(\pi_k)_{*,p}v)
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Note/tp-gtm218-4/" title="GTM218 | 4 切空间">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM218 | 4 切空间</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

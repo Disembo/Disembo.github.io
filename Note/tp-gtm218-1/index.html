@@ -24,7 +24,7 @@
 <meta property="og:description" content="光滑流形的定义与例子.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-22T05:30:00.000Z">
-<meta property="article:modified_time" content="2024-08-22T05:33:52.361Z">
+<meta property="article:modified_time" content="2024-08-24T09:40:29.192Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -402,6 +402,7 @@ x^i := r^i\circ\varphi : U\to\R
 <p>光滑流形的更多例子:</p>
 <ul>
 <li><p>(一般线性群) <strong>一般线性群 (general linear group)</strong> <span class="math inline">\({\rm GL}(n,\R)\)</span> 为 <span class="math inline">\(n\)</span> 阶可逆实方阵乘法群. 作为行列式函数的原像集 <span class="math inline">\(\det^{-1}((-\infty,0)\cup(0,+\infty))\)</span>, <span class="math inline">\({\rm GL}(n,\R)\)</span> 是 <span class="math inline">\(M_{n}(\R)\)</span> 的开子流形.</p></li>
+<li><p>(满秩矩阵空间) 作为前例的推广, 考虑 <span class="math inline">\(M_{m,n}(\R)\)</span> 中满秩矩阵组成的集合. 对于 <span class="math inline">\(m&gt;n\)</span>, 记 <span class="math inline">\(M_{m,n}^m(\R)\)</span> 是秩为 <span class="math inline">\(m\)</span> 的满秩矩阵组成的集合. 若 <span class="math inline">\(A\in M^m_{m,n}(\R)\)</span>, 则 <span class="math inline">\(A\)</span> 有一个可逆的 <span class="math inline">\(m\times m\)</span> 子矩阵. 根据 <span class="math inline">\(\det\)</span> 的连续性, 存在 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(M_{m,n}(\R)\)</span> 中的邻域 <span class="math inline">\(U\)</span>, 使得对 <span class="math inline">\(U\)</span> 中的矩阵 <span class="math inline">\(B\)</span>, 其相同位置上的子矩阵是可逆的. 因此 <span class="math inline">\(A\in U\subset M^m_{m,n}(\R)\)</span>, 说明 <span class="math inline">\(M^m_{m,n}(\R)\)</span> 是开集, 进而是 <span class="math inline">\(M_{m,n}(\R)\)</span> 的开子流形. 类似地, 对于 <span class="math inline">\(m&lt;n\)</span>, <span class="math inline">\(M^n_{m,n}(\R)\)</span> 也是开子流形.</p></li>
 <li><p>(光滑映射的图像) 设开集 <span class="math inline">\(U\subset\R^n\)</span>, 光滑函数 <span class="math inline">\(f:U\to\R^k\)</span> 的<strong>图像 (graph)</strong> 定义为 <span class="math display">\[
 \Gamma(f)=\{(x,y)\in U\times\R^k\mid y=f(x)\}.
 \]</span> 在 <span class="math inline">\(\R^{n+k}\)</span> 的子空间拓扑下, <span class="math inline">\(\Gamma(f)\)</span> 是一个 <span class="math inline">\(n\)</span> 维拓扑流形. 它可以被单一坐标卡 <span class="math inline">\((\Gamma(f),\pi_1)\)</span> 覆盖, 这使得 <span class="math inline">\(\Gamma(f)\)</span> 成为一个光滑流形.</p></li>
@@ -453,7 +454,7 @@ x^i = f(x^1,\dots,\widehat{x^i},\dots,x^n).
 <li>至多可数个 <span class="math inline">\(U_\alpha\)</span> 覆盖 <span class="math inline">\(M\)</span>.</li>
 <li>若 <span class="math inline">\(p,q\in M\)</span> 是不同的点, 则它们或者包含于同一个 <span class="math inline">\(U_\alpha\)</span> 中, 或者被不交的 <span class="math inline">\(U_\alpha,U_\beta\)</span> 分离.</li>
 </ol>
-<p>则 <span class="math inline">\(M\)</span> 上存在唯一光滑结构使得 <span class="math inline">\((U_\alpha,\varphi_\alpha)\)</span> 是光滑图册.</p>
+<p>则 <span class="math inline">\(M\)</span> 上存在唯一光滑结构使得 <span class="math inline">\(\{(U_\alpha,\varphi_\alpha)\}\)</span> 是光滑图册.</p>
 </div>
 <ul>
 <li>将引理中的 <span class="math inline">\(\R^n\)</span> 换成 <span class="math inline">\(\H^n\)</span>, 就得到了光滑带边流形 <span class="math inline">\(M\)</span>.</li>
