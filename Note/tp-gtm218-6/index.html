@@ -16,25 +16,25 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Introduction to Smooth Manifolds (John M. Lee) 的笔记合集.">
+    <meta name="description" content="三种特殊的常秩映射 (光滑嵌入, 光滑淹没, 光滑覆叠映射).">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM218 | 光滑流形笔记">
-<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm218-index/index.html">
+<meta property="og:title" content="GTM218 | 6 光滑映射的局部性态">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm218-6/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="Introduction to Smooth Manifolds (John M. Lee) 的笔记合集.">
+<meta property="og:description" content="三种特殊的常秩映射 (光滑嵌入, 光滑淹没, 光滑覆叠映射).">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-11T07:30:00.000Z">
-<meta property="article:modified_time" content="2024-08-25T06:50:14.869Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/figure-8-space.png">
+<meta property="article:published_time" content="2024-08-25T09:19:43.821Z">
+<meta property="article:modified_time" content="2024-08-25T09:18:42.254Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
-<meta property="article:tag" content="微分几何">
 <meta property="article:tag" content="拓扑">
-<meta property="article:tag" content="微分拓扑">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/figure-8-space.png">
   
   
   
-  <title>GTM218 | 光滑流形笔记 | Jin&#39;s Blog</title>
+  <title>GTM218 | 6 光滑映射的局部性态 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM218 | 光滑流形笔记"></span>
+            <span id="subtitle" data-typed-text="GTM218 | 6 光滑映射的局部性态"></span>
           
         </div>
 
@@ -228,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-11 15:30" pubdate>
-          2024年8月11日 下午
+        <time datetime="2024-08-25 17:19" pubdate>
+          2024年8月25日 下午
         </time>
       </span>
     
@@ -272,56 +272,75 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GTM218 | 光滑流形笔记</h1>
+            <h1 id="seo-header">GTM218 | 6 光滑映射的局部性态</h1>
             
             
               <div class="markdown-body">
                 
                 <html><head></head><body>
 <div class="note note-secondary">
-<p>主要参考:</p>
-<ul>
-<li><em>Introduction to Smooth Manifolds</em> (GTM218) by John M. Lee.</li>
-<li><em>An Introduction to Manifolds</em> by Loring W. Tu.</li>
-<li>王作勤老师的<a target="_blank" rel="noopener" href="http://staff.ustc.edu.cn/~wangzuoq/Courses/23F-Manifolds/index.html">微分流形讲义</a>.</li>
-</ul>
+<p>GTM218 (<em>Introduction to Smooth Manifolds</em>) Chapter 4 的笔记.</p>
 </div>
-<p><strong>第一部分: 光滑流形与光滑映射.</strong></p>
+<h2 id="embeddings-submersions-smooth-covering-maps">8  Embeddings, Submersions &amp; Smooth Covering Maps</h2>
+<p>本节中, 我们研究三种特殊的满秩映射: 光滑嵌入, 光滑淹没, 光滑覆叠映射.</p>
+<h3 id="embeddings">8.1  Embeddings</h3>
+<p>嵌入是一种特殊的光滑浸入. 若 <span class="math inline">\(M,N\)</span> 为 (带边) 光滑流形, <strong>光滑嵌入 (smooth embedding)</strong> 指的是同时为拓扑嵌入的光滑浸入 <span class="math inline">\(F:M\to N\)</span> (即 <span class="math inline">\(F\)</span> 应当是 <span class="math inline">\(M\to F(M)\)</span> 的同胚).</p>
+<ul>
+<li>应当注意, 光滑嵌入不等于 "光滑的拓扑嵌入", 而是 "光滑浸入的拓扑嵌入". 两者不相同. 例如, 映射 <span class="math inline">\(\gamma:\R\to\R^2\)</span>, <span class="math inline">\(\gamma(t)=(t^3,0)\)</span> 是光滑的拓扑嵌入, 但它不是光滑嵌入, 因为 <span class="math inline">\(\gamma'(0)=0\)</span>.</li>
+<li>复合保持光滑浸入与拓扑嵌入, 因此光滑嵌入的复合是光滑嵌入.</li>
+</ul>
+<p>光滑嵌入的例子:</p>
+<ul>
+<li><p>(开子流形) 开子流形 <span class="math inline">\(U\hookrightarrow M\)</span> 是光滑嵌入.</p></li>
+<li><p>(积) 设光滑流形 <span class="math inline">\(M_1,\dots,M_k\)</span>, 取定 <span class="math inline">\(p_i\in M_i\)</span>, 则 <span class="math inline">\(\iota_j:M_j\to\prod M_i\)</span>, <span class="math display">\[
+\iota_j(q) = (p_1,\dots,p_{j-1},q,p_{j+1},\dots,p_k)
+\]</span> 是光滑嵌入. 特别地, <span class="math inline">\(\R^n\hookrightarrow\R^{n+k}\)</span> 是光滑嵌入.</p></li>
+</ul>
+<p>反例:</p>
+<ul>
+<li><p>拓扑嵌入要求 <span class="math inline">\(f:M\to f(M)\)</span> 是同胚, 也就是说: ① <span class="math inline">\(f\)</span> 是单射, ② <span class="math inline">\(f\)</span> 是保持拓扑. 因此, 光滑嵌入要比单射浸入更强.</p></li>
+<li><p>(<span class="math inline">\(8\)</span> 字形空间) 曲线 <span class="math inline">\(\beta:(-\pi,\pi)\to\R^2\)</span>, <span class="math display">\[
+\beta(t)=(\sin{2t},\sin{t})
+\]</span> 是一个单射浸入 (如下图). 然而它不是拓扑嵌入, 因为 <span class="math inline">\(\beta\)</span> 的像在子空间拓扑下是紧的, 但 <span class="math inline">\((-\pi,\pi)\)</span> 非紧.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/figure-8-space.png" style="zoom:50%;" cloud-img="" lazyload="true"></p></li>
+<li><p>(环面上的稠密曲线) 设环面 <span class="math inline">\(\mathbb{T}^2=\mathbb{S}^1\times\mathbb{S}^1\in\C^2\)</span>, 无理数 <span class="math inline">\(\alpha\)</span>, 曲线 <span class="math inline">\(\gamma:\R\to\mathbb{T}^2\)</span>, <span class="math display">\[
+\gamma(t) = (\e^{2\pi\i t},\e^{2\pi\i\alpha t})
+\]</span> 是一个单射浸入. 然而它也不是拓扑嵌入. 可以证明, 像集 <span class="math inline">\(\gamma(\R)\)</span> 在 <span class="math inline">\(\mathbb{T}^2\)</span> 中稠密.</p></li>
+</ul>
+<div class="note note-success">
+<p><u>Proposition 8.1</u> (光滑嵌入判断) 设 (带边) 光滑流形 <span class="math inline">\(M,N\)</span>, 单射光滑浸入 <span class="math inline">\(F:M\to N\)</span>. 若 <span class="math inline">\(F\)</span> 满足下列条件之一, 则 <span class="math inline">\(F\)</span> 是光滑嵌入.</p>
 <ol type="1">
-<li><a href="/Note/tp-gtm218-1">光滑流形</a>: 光滑流形的定义与例子.</li>
-<li><a href="/Note/tp-gtm218-2">光滑映射与单位分解</a>: 光滑映射, 单位分解及其应用.</li>
-<li><a href="/Note/tp-gtm218-3">切空间</a>: 切空间与切映射, 切映射的坐标形式, 曲线的切向量.</li>
-<li><a href="/Note/tp-gtm218-4">切空间</a>: 切丛; 切空间的其他定义.</li>
-<li><a href="/Note/tp-gtm218-5">光滑映射的局部行为</a>: 常秩映射 &amp; 满秩映射, 局部微分同胚, 秩定理.</li>
-<li>光滑映射的局部行为: 三种特殊的常秩映射 (光滑嵌入, 光滑淹没, 光滑覆叠映射).</li>
-<li>子流形<!--正则/常秩水平集定理, 嵌入子流形 (嵌入=同胚浸入) & 浸入子流形 (单射浸入)--></li>
-<li>Sard 定理<!--Sard 定理, Whitney 嵌入 & 逼近定理, 横截相交--></li>
+<li><span class="math inline">\(F\)</span> 是开映射或闭映射.</li>
+<li><span class="math inline">\(F\)</span> 是逆紧映射.</li>
+<li><span class="math inline">\(M\)</span> 紧.</li>
+<li><span class="math inline">\(M\)</span> 无边, 且 <span class="math inline">\(\dim{M}=\dim{N}\)</span>.</li>
 </ol>
-<p><strong>第二部分: 流形上的张量场.</strong></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 因为开/闭的连续单射是拓扑嵌入, 因此 <span class="math inline">\(F\)</span> 是拓扑嵌入, 进而是光滑嵌入. 2, (拓扑流形上) 连续的逆紧映射是闭映射. 3, 由闭映射引理, <span class="math inline">\(F\)</span> 是闭映射. 4, 此时 <span class="math inline">\(F_{*,p}\)</span> 处处可逆, Theorem 7.3 后的讨论表明 <span class="math inline">\(F(M)\subset{\rm Int}N\)</span>; Corollary 7.4 表明 <span class="math inline">\(F:M\to{\rm Int}N\)</span> 是局部微分同胚, 进而是开映射. 因此, <span class="math inline">\(F\)</span> 作为开映射 <span class="math inline">\(M\to{\rm Int}N\)</span> 与 <span class="math inline">\({\rm Int}N\hookrightarrow N\)</span> 的复合, 是开的.</p>
+</div>
 <ul>
-<li>向量场</li>
-<li>积分曲线与流</li>
-<li>向量丛</li>
-<li>张量场</li>
+<li>(球面) 球面的包含映射 <span class="math inline">\(\iota:\mathbb{S}^n\to\R^{n+1}\)</span> 是光滑的 (可以计算其局部坐标表示), 并且在每一点都是单射, 因此是单射浸入. 因为 <span class="math inline">\(\mathbb{S}^n\)</span> 紧, 所以 <span class="math inline">\(\iota\)</span> 是嵌入.</li>
+<li>光滑嵌入可以既不开又不闭, 比如曲线 <span class="math inline">\(\gamma:(0,1)\to\R^2\)</span>, <span class="math inline">\(\gamma(t)=(t,0)\)</span>.</li>
 </ul>
-<p><strong>第三部分: 微分形式与积分.</strong></p>
+<div class="note note-success">
+<p><u>Theorem 8.2</u> (浸入 <span class="math inline">\(=\)</span> 局部嵌入) 设 (带边) 光滑流形 <span class="math inline">\(M,N\)</span>, 光滑映射 <span class="math inline">\(F:M\to N\)</span>. TFAE:</p>
+<ol type="1">
+<li><span class="math inline">\(F\)</span> 是光滑浸入.</li>
+<li>对任意 <span class="math inline">\(p\in M\)</span>, 存在邻域 <span class="math inline">\(U\)</span> 使得 <span class="math inline">\(F|_U:U\to N\)</span> 是光滑嵌入.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 2 <span class="math inline">\(\Rightarrow\)</span> 1 比较简单: 此时 <span class="math inline">\(F\)</span> 在每一点的邻域满秩, 故为满秩映射.</p>
+<p>1 <span class="math inline">\(\Rightarrow\)</span> 2. 我们先证明 <span class="math inline">\(F\)</span> 在某邻域 <span class="math inline">\(U_1\)</span> 上是单射.</p>
 <ul>
-<li>微分形式</li>
-<li>分布与可积性</li>
-<li>流形的定向</li>
-<li>流形上的积分</li>
+<li>若 <span class="math inline">\(F(p)\)</span> 不是边界点, 则秩定理与 "带边流形的浸入标准型" (Theorem 7.9) 都表明 <span class="math inline">\(F\)</span> 在 <span class="math inline">\(p\)</span> 的某邻域 <span class="math inline">\(U_1\)</span> 上有浸入标准形式, 因此 <span class="math inline">\(F|_{U_1}\)</span> 是单射.</li>
+<li>若 <span class="math inline">\(F(p)\)</span> 是边界点, 设 <span class="math inline">\((W,\psi)\)</span> 是以 <span class="math inline">\(F(p)\)</span> 为中心的边界坐标卡, 此时 <span class="math inline">\(U_0=F^{-1}(W)\)</span> 是 <span class="math inline">\(p\)</span> 的邻域. 记包含映射 <span class="math inline">\(\iota:\H^n\hookrightarrow\R^n\)</span>, 则复合映射 <span class="math inline">\(\iota\circ\psi\circ F|_{U_0}:U_0\to\R^n\)</span> 是到无边流形的光滑浸入, 根据上面一种情况, 存在邻域 <span class="math inline">\(U_1\subset U_0\)</span> 使得 <span class="math inline">\(\iota\circ\psi\circ F|_{U_1}\)</span> 单, 于是 <span class="math inline">\(F|_{U_1}\)</span> 单.</li>
 </ul>
-<p><strong>第四部分: 李群.</strong></p>
-<ul>
-<li>李群</li>
-<li>李群作用</li>
-<li>商流形</li>
-</ul>
-<p><strong>第五部分: de Rham 上同调.</strong></p>
-<ul>
-<li>de Rham 上同调</li>
-<li>de Rham 定理</li>
-</ul>
+<p><span class="math inline">\(M\)</span> 局部紧, 因此存在 <span class="math inline">\(p\)</span> 的预紧邻域 <span class="math inline">\(U\)</span> 满足 <span class="math inline">\(\overline{U}\subset U_1\)</span>. 则 <span class="math inline">\(F|_{\overline U}\)</span> 连续的单射, 根据闭映射引理, <span class="math inline">\(F|_{\overline{U}}\)</span> 是拓扑嵌入. 其进一步限制 <span class="math inline">\(F|_U\)</span> 也是拓扑嵌入; 光滑浸入 <span class="math inline">\(F\)</span> 在开集 <span class="math inline">\(U\)</span> 上的限制也是光滑浸入. 因此 <span class="math inline">\(F|_U\)</span> 是光滑嵌入.</p>
+</div>
+<h3 id="submersions">8.2  Submersions</h3>
+<h3 id="smooth-covering-maps">8.3  Smooth covering maps</h3>
 </body></html>
                 
               </div>
@@ -357,11 +376,7 @@
       
         <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
       
-        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
-      
         <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
-      
-        <a href="/tags/%E5%BE%AE%E5%88%86%E6%8B%93%E6%89%91/" class="print-no-link">#微分拓扑</a>
       
     </div>
   
@@ -373,8 +388,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM218 | 光滑流形笔记</div>
-      <div>https://disembo.github.io/Note/tp-gtm218-index/</div>
+      <div>GTM218 | 6 光滑映射的局部性态</div>
+      <div>https://disembo.github.io/Note/tp-gtm218-6/</div>
     </div>
     <div class="license-meta">
       
@@ -386,7 +401,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月11日</div>
+          <div>2024年8月25日</div>
         </div>
       
       
@@ -418,18 +433,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-13/" title="GTM202 | 13 一些群论">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM202 | 13 一些群论</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-12/" title="GTM202 | 12 圆的基本群">
-                        <span class="hidden-mobile">GTM202 | 12 圆的基本群</span>
+                      <a href="/Note/tp-gtm218-5/" title="GTM218 | 5 光滑映射的局部性态">
+                        <span class="hidden-mobile">GTM218 | 5 光滑映射的局部性态</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
