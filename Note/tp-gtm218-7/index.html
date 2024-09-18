@@ -24,8 +24,9 @@
 <meta property="og:description" content="嵌入子流形与浸入子流形.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/slice-charts-compatibility.png">
-<meta property="article:published_time" content="2024-09-08T12:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-08T13:01:32.212Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/regular-level-set-counterexamples.png">
+<meta property="article:published_time" content="2024-09-18T06:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-18T06:04:39.316Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -228,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-08 20:00" pubdate>
-          2024年9月8日 晚上
+        <time datetime="2024-09-18 14:00" pubdate>
+          2024年9月18日 下午
         </time>
       </span>
     
@@ -388,7 +389,55 @@ V&amp;=U\cap S, &amp;
 <h3 id="level-sets">9.3  Level sets</h3>
 <p>嵌入子流形可以由光滑映射的水平集给出. 在第一节的例子中, 我们看到光滑函数 <span class="math inline">\(\Phi:\R^n\supset U\to\R\)</span> 的水平集 (满足某些条件) 构成光滑流形. 下面的定理是这个例子的强化版本.</p>
 <div class="note note-success">
-<p><u>Theorem 9.9</u> (常秩水平集定理) 设光滑流形 <span class="math inline">\(M,N\)</span>, 光滑映射 <span class="math inline">\(\Phi:M\to N\)</span> 有常秩 <span class="math inline">\(r\)</span>. 则任意水平集 <span class="math inline">\(\Phi^{-1}(q)\)</span> 都是 <span class="math inline">\(M\)</span> 的逆紧嵌入子流形, 其余维数为 <span class="math inline">\(r\)</span>.</p>
+<p><u>Theorem 9.9</u> (常秩水平集定理) 设光滑流形 <span class="math inline">\(M,N\)</span>, 光滑映射 <span class="math inline">\(\Phi:M\to N\)</span> 有常秩 <span class="math inline">\(r\)</span>. 则任意水平集 <span class="math inline">\(\Phi^{-1}(c)\)</span> 都是 <span class="math inline">\(M\)</span> 的逆紧嵌入子流形, 其余维数为 <span class="math inline">\(r\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(\dim{M}=m\)</span>, <span class="math inline">\(\dim N=n\)</span>. 任取 <span class="math inline">\(p\in\Phi^{-1}(c)\)</span>, 根据秩定理, 存在以 <span class="math inline">\(p\)</span> 为中心的坐标卡 <span class="math inline">\((U,\varphi)\)</span> 和以 <span class="math inline">\(c\)</span> 为中心的坐标卡 <span class="math inline">\((V,\psi)\)</span>, 使得 <span class="math inline">\(\Phi\)</span> 有局部标准型. 于是 <span class="math inline">\(\Phi^{-1}(c)\cap U\)</span> 是切片 <span class="math display">\[
+\{
+(x^1,\dots,x^r,x^{r+1},\dots,x^m)\in U\mid
+x^1=0,\dots,x^r=0
+\},
+\]</span> 因此 <span class="math inline">\(\Phi^{-1}(c)\)</span> 是余维数 <span class="math inline">\(r\)</span> 的嵌入子流形. 因为 <span class="math inline">\(\{c\}\subset N\)</span> 是闭子集, <span class="math inline">\(\Phi\)</span> 连续, 因此 <span class="math inline">\(\Phi^{-1}(c)\)</span> 是闭子集. 由逆紧嵌入的充要条件, <span class="math inline">\(\Phi^{-1}(c)\)</span> 是逆紧嵌入的.</p>
+</div>
+<p>常秩水平集定理可以看作线性映射 "秩-零化度定理" 的推广. 设线性映射 <span class="math inline">\(L:\R^m\to\R^n\)</span> 的秩为 <span class="math inline">\(r\)</span>, 则零空间 <span class="math inline">\(\ker{L}=L^{-1}(0)\)</span> 是 <span class="math inline">\(\R^m\)</span> 的线性子空间, 其余维数为 <span class="math inline">\(r\)</span>. 从解方程的角度看, 线性方程组 <span class="math inline">\(Lx=0\)</span> 一共有 <span class="math inline">\(r\)</span> 个线性无关的方程, 每个方程使 <span class="math inline">\(x\in\R^m\)</span> 的自由度减少 <span class="math inline">\(1\)</span>, 因此总共减少了 <span class="math inline">\(r\)</span> 自由度, 即 <span class="math inline">\(\ker{L}\)</span> 的余维数为 <span class="math inline">\(r\)</span>. 对于常秩光滑映射 <span class="math inline">\(\Phi:M\to N\)</span>, 在局部上看, 方程 <span class="math inline">\(\Phi(x)=c\)</span> 一共有 <span class="math inline">\(r\)</span> 个线性无关的坐标分量, 在 <span class="math inline">\(\dim{M}\)</span> 的基础上减少了 <span class="math inline">\(r\)</span> 自由度.</p>
+<p>常秩映射的两个特殊情况是光滑浸入和光滑淹没.</p>
+<ul>
+<li>对于光滑浸入, <span class="math inline">\(r=\dim{M}\)</span>, 因此水平集是 <span class="math inline">\(M\)</span> 的 <span class="math inline">\(0\)</span> 维子流形, 即一些离散的点, 这当然没什么好研究的.</li>
+<li>对于光滑淹没, <span class="math inline">\(r=\dim{N}\)</span>, 因此水平集是 <span class="math inline">\(M\)</span> 的余维数等于 <span class="math inline">\(\dim{N}\)</span> 的逆紧嵌入子流形.</li>
+</ul>
+<p>实际上, 光滑淹没的条件是可以放松的. 因为我们只关心水平集 <span class="math inline">\(\Phi^{-1}(c)\)</span> 上的 "淹没性", 因此 <span class="math inline">\(\Phi\)</span> 不必是整体上的光滑淹没, 而只需在 <span class="math inline">\(\Phi^{-1}(c)\)</span> 上是光滑淹没即可. 先引入几个概念. 对于光滑映射 <span class="math inline">\(\Phi:M\to N\)</span>, 点 <span class="math inline">\(p\in M\)</span> 称为 <span class="math inline">\(\Phi\)</span> 的<strong>正则点 (regular point)</strong>, 若 <span class="math inline">\(\Phi_{*,p}:T_pM\to T_{\Phi(p)}N\)</span> 是满射; 否则称为<strong>临界点 (critical point)</strong>.</p>
+<ul>
+<li>根据 Proposition 7.1, 正则点集是 <span class="math inline">\(M\)</span> 的开子集.</li>
+<li>若 <span class="math inline">\(\dim{M}&lt;\dim{N}\)</span>, 则 <span class="math inline">\(M\)</span> 的每个点都是临界点.</li>
+<li><span class="math inline">\(M\)</span> 的每个点都是正则点, 当且仅当 <span class="math inline">\(\Phi\)</span> 是光滑淹没.</li>
+</ul>
+<p>点 <span class="math inline">\(c\in N\)</span> 称为<strong>正则值 (regular value)</strong>, 若 <span class="math inline">\(\Phi^{-1}(c)\)</span> 只包含正则点 (此时称 <span class="math inline">\(\Phi^{-1}(c)\)</span> 为<strong>正则水平集</strong>); 否则称 <span class="math inline">\(c\)</span> 为<strong>临界值 (critical value)</strong>. 特别地, 若 <span class="math inline">\(\Phi^{-1}(c)=\emptyset\)</span>, 则 <span class="math inline">\(c\)</span> 也是正则值.</p>
+<div class="note note-success">
+<p><u>Corollary 9.10</u> (正则水平集定理) 设光滑流形 <span class="math inline">\(M,N\)</span>, 光滑映射 <span class="math inline">\(\Phi:M\to N\)</span>. 若 <span class="math inline">\(c\in N\)</span> 是 <span class="math inline">\(\Phi\)</span> 的正则值, 则 <span class="math inline">\(\Phi^{-1}(c)\)</span> 是 <span class="math inline">\(M\)</span> 的逆紧嵌入子流形, 其余维数为 <span class="math inline">\(\dim{N}\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 由 Proposition 7.1, 满足 <span class="math inline">\(\rank{F_{*,p}}=\dim{N}\)</span> 的点 <span class="math inline">\(p\)</span> 组成的集合 <span class="math inline">\(U\)</span> 是 <span class="math inline">\(M\)</span> 的开子集. 根据假设, <span class="math inline">\(\Phi^{-1}(c)\subset U\)</span>. 因为 <span class="math inline">\(\Phi|_U:U\to N\)</span> 是光滑淹没, 所以水平集 <span class="math inline">\(\Phi^{-1}(c)\)</span> 是 <span class="math inline">\(U\)</span> 的嵌入子流形. 又因为光滑嵌入的复合 <span class="math inline">\(\Phi^{-1}(c)\hookrightarrow U\hookrightarrow M\)</span> 仍是光滑嵌入, 因此 <span class="math inline">\(\Phi^{-1}(c)\)</span> 是 <span class="math inline">\(M\)</span> 的嵌入子流形. <span class="math inline">\(\Phi^{-1}(c)\)</span> 的闭性由 <span class="math inline">\(\Phi\)</span> 的连续性保证.</p>
+</div>
+<p>正则水平集定理的应用:</p>
+<ul>
+<li><p>(球面) <span class="math inline">\(\mathbb{S}^n\)</span> 是 <span class="math inline">\(\R^{n+1}\)</span> 上的函数 <span class="math inline">\(f:\R^{n+1}\to\R\)</span>, <span class="math inline">\(f(x)=\|x\|^2\)</span> 的水平集 <span class="math inline">\(f^{-1}(1)\)</span>. 计算 <span class="math inline">\(f\)</span> 的切映射 <span class="math display">\[
+f_{*,x}(v) = 2\sum_i x^iv^i,
+\]</span> 可见只要 <span class="math inline">\(x\neq0\)</span>, <span class="math inline">\(f_{*,x}\)</span> 便是满射, 故对于任意 <span class="math inline">\(r&gt;0\)</span>, 球面 <span class="math inline">\(S_r(0)=f^{-1}(r)\)</span> 是 <span class="math inline">\(\R^{n+1}\)</span> 的逆紧嵌入子流形.</p></li>
+<li><p>(嵌入超曲面) 设光滑流形 <span class="math inline">\(M\)</span> 上的光滑函数 <span class="math inline">\(f:M\to\R\)</span>, 则 <span class="math inline">\(0\in\R\)</span> 是 <span class="math inline">\(f\)</span> 的正则值, 当且仅当 <span class="math inline">\(f\)</span> 的 Jacobi 矩阵在 <span class="math inline">\(f^{-1}(0)\)</span> 上处处秩为 <span class="math inline">\(1\)</span>, 也即 <span class="math inline">\(f_{*,p}\neq0\)</span>. 此时 <span class="math inline">\(f^{-1}(0)\)</span> 是 <span class="math inline">\(M\)</span> 的余维数 <span class="math inline">\(1\)</span> 的逆紧嵌入子流形.</p></li>
+</ul>
+<p>还有一些反例:</p>
+<ul>
+<li>(X 形曲线) 方程 <span class="math inline">\(x^2-y^2=0\)</span> 的图像是 <span class="math inline">\(\R^2\)</span> 中的两条相交直线, 它可以视作 <span class="math inline">\(f(x,y)=x^2-y^2\)</span> 的水平集 <span class="math inline">\(f^{-1}(0)\)</span>. 计算 Jacobi 矩阵: <span class="math inline">\(DF|_{(x,y)}=(2x,-2y)\)</span>, 因此 <span class="math inline">\(DF\)</span> 在 <span class="math inline">\((0,0)\)</span> 处为零, 故原点是不是正则点, <span class="math inline">\(f^{-1}(0)\)</span> 不是正则水平集.</li>
+<li>(尖曲线) 方程 <span class="math inline">\(x^2-y^3=0\)</span> 的图像是 <span class="math inline">\(\R^2\)</span> 中的一个带 "尖" 曲线. 计算表明 <span class="math inline">\(f(x,y)=x^2-y^3\)</span> 在原点处的秩为零, 故 <span class="math inline">\(f^{-1}(0)\)</span> 不是正则水平集.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/regular-level-set-counterexamples.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<p>光滑淹没的水平集是嵌入子流形. 反之, 嵌入子流形在局部上是光滑淹没的水平集.</p>
+<div class="note note-success">
+<p><u>Proposition 9.11</u> (嵌入子流形局部为水平集) 设 <span class="math inline">\(m\)</span> 维光滑流形 <span class="math inline">\(M\)</span> 的子集 <span class="math inline">\(S\)</span>, 则 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(k\)</span> 维嵌入子流形, 当且仅当对 <span class="math inline">\(S\)</span> 中任意一点 <span class="math inline">\(p\)</span>, 存在 <span class="math inline">\(p\)</span> 在 <span class="math inline">\(M\)</span> 中的邻域 <span class="math inline">\(U\)</span>, 使得 <span class="math inline">\(U\cap S\)</span> 是某光滑淹没 <span class="math inline">\(\Phi:U\to\R^{m-k}\)</span> 的水平集.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(k\)</span> 维嵌入子流形, 则 <span class="math inline">\(p\in S\)</span> 的 <span class="math inline">\(M\)</span>-邻域 <span class="math inline">\(U\)</span> 上有切片坐标 <span class="math inline">\((x^1,\dots,x^m)\)</span>. 若定义光滑淹没 <span class="math inline">\(\Phi:U\to\R^{m-k}\)</span>, <span class="math inline">\(\Phi(x)=(x^{k+1},\dots,x^m)\)</span>, 则 <span class="math inline">\(U\cap S\)</span> 由 <span class="math inline">\(\Phi^{-1}(0)\)</span> 给出.</p>
+<p>反之, 设 <span class="math inline">\(S\cap U\)</span> 是光滑淹没 <span class="math inline">\(\Phi:U\to\R^{m-k}\)</span> 的水平集, 根据常秩水平集定理, <span class="math inline">\(S\cap U\)</span> 是 <span class="math inline">\(U\)</span> 的 <span class="math inline">\(k\)</span> 维嵌入子流形, 因而满足局部 <span class="math inline">\(k\)</span>-切片条件, 进而也在 <span class="math inline">\(M\)</span> 中满足局部 <span class="math inline">\(k\)</span>-切片条件 (关键, <span class="math inline">\(U\)</span> 是 <span class="math inline">\(M\)</span> 的开子集).</p>
 </div>
 <h2 id="immersed-submanifolds">10  Immersed Submanifolds</h2>
 </body></html>
@@ -451,7 +500,7 @@ V&amp;=U\cap S, &amp;
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月8日</div>
+          <div>2024年9月18日</div>
         </div>
       
       
