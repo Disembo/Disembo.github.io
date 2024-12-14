@@ -1,0 +1,1394 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="主丛上联络的两种定义, 标架丛上的联络, 联络的曲率.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM275 | 11 主丛与示性类">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-11/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="主丛上联络的两种定义, 标架丛上的联络, 联络的曲率.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/frame-bundle-horizontal-vector.png">
+<meta property="article:published_time" content="2024-07-18T07:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.702Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分几何">
+<meta property="article:tag" content="示性类">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/frame-bundle-horizontal-vector.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM275 | 11 主丛与示性类 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM275 | 11 主丛与示性类"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-18 15:00" pubdate>
+          2024年7月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM275 | 11 主丛与示性类</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and
+Characteristic Classes</em>) 第 28-30 节的笔记.</p>
+</div>
+<h2 id="connections-on-a-principal-bundle">28  Connections on a Principal
+Bundle</h2>
+<p>主丛 <span class="math inline">\(G\to P\to M\)</span>
+上的联络有两种等价的定义方式:</p>
+<ol type="1">
+<li><span class="math inline">\(P\)</span> 上的一个光滑右不变水平分布
+<span class="math inline">\({\cal H}\)</span>.
+<ul>
+<li>分布 <span class="math inline">\({\cal H}\)</span> 称为右不变的, 若
+<span class="math inline">\(r_{g*}(\mathcal{H}_p)=\mathcal{H}_{pg}\)</span>.</li>
+</ul></li>
+<li><span class="math inline">\(P\)</span> 上的一个光滑等变 <span class="math inline">\({\frak g}\)</span> 值 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\omega\)</span>, 满足 <span class="math inline">\(\omega(\underline{A})=A\)</span>.
+<ul>
+<li>由于 <span class="math inline">\({\frak g}\)</span>
+与竖直子空间认同, 所以这实际上是在说 <span class="math inline">\(\omega\)</span> 在竖直子空间上为恒等映射.</li>
+</ul></li>
+</ol>
+<p>两种方式的等价性不难说明.</p>
+<ul>
+<li>给一个右不变水平分布 <span class="math inline">\({\cal H}\)</span>,
+定义一个 <span class="math inline">\({\frak g}\)</span> 值 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\omega\)</span>, 使得任意一点处的 <span class="math inline">\(\omega_p\)</span> 是从 <span class="math inline">\(T_pP\)</span> 到 <span class="math inline">\({\cal
+V}_p\)</span> 的投射, 且以 <span class="math inline">\({\cal
+H}_p\)</span> 为核 (即取竖直分量的投射 <span class="math inline">\(v:T_pP\to{\cal V}_p\)</span>).</li>
+<li>给一个等变 <span class="math inline">\({\frak g}\)</span> 值 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\omega\)</span>, 定义水平子空间 <span class="math inline">\({\cal H}_p\)</span> 为 <span class="math inline">\(\ker{\omega_p}\)</span>.</li>
+</ul>
+<p>换言之, 有交换图 <span class="math display">\[
+\xymatrix{
+T_pP \ar[d]_{v} \ar[dr]^{\omega_p} \\
+\mathcal{V}_p &amp; \mathfrak{g}. \ar[l]^{j_{p*}}_{\sim}
+}
+\]</span> 第一小节, 我们通过水平分布构造联络 <span class="math inline">\(\omega\)</span>. 第二小节, 我们通过联络 <span class="math inline">\(\omega\)</span> 构造水平分布.</p>
+<h3 id="ehresmann-connections">28.1  Ehresmann connections</h3>
+<p>设 <span class="math inline">\(G\)</span>-主丛 <span class="math inline">\(\pi:P\to M\)</span>. 给一水平分布 <span class="math inline">\({\cal H}\)</span>, 满足 <span class="math inline">\(TP={\cal V}\oplus{\cal H}\)</span>. 此时投射 <span class="math inline">\(v:T_pP\to{\cal V}_p\)</span> 给出切向量的竖直分量.
+因为 <span class="math inline">\({\cal V}_p\)</span> 通过 <span class="math inline">\(j_{p*}\)</span> 与 <span class="math inline">\({\frak g}\)</span> 认同, 考虑复合映射 <span class="math display">\[
+\omega_p := j_{p*}^{-1}\circ v:\quad
+T_pP \overset{v}\longrightarrow
+{\cal V}_p \overset{j_{p*}^{-1}}\longrightarrow {\frak g},
+\]</span> 这是一个 <span class="math inline">\(P\)</span> 上的 <span class="math inline">\({\frak g}\)</span> 值 <span class="math inline">\(1\)</span>-形式.</p>
+<div class="note note-success">
+<p><u>Claim 28.1</u> (<span class="math inline">\({\cal
+H}\Rightarrow\omega\)</span>) 若 <span class="math inline">\({\cal
+H}\)</span> 是 <span class="math inline">\(P\)</span>
+上的光滑右不变水平分布, 则如上定义的 <span class="math inline">\({\frak
+g}\)</span> 值 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\omega\)</span> 满足</p>
+<ol type="1">
+<li>(恒等映射) <span class="math inline">\(\omega_p(\underline{A}_p)=A\)</span> 对任意 <span class="math inline">\(A\in{\frak g},p\in P\)</span>.</li>
+<li>(<span class="math inline">\(G\)</span>-等变性) <span class="math inline">\(r_g^*\omega=(\operatorname{Ad}_{g^{-1}})\omega\)</span>.</li>
+<li><span class="math inline">\(\omega\)</span> 光滑.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 因为 <span class="math inline">\(\underline{A}_p\)</span> 是竖直向量, 所以 <span class="math inline">\(v(\underline{A}_p)=\underline{A}_p\)</span>, 根据
+<span class="math inline">\(j_{p*}\)</span> 的定义, <span class="math display">\[
+\omega_p(\underline{A}_p)=j_{p*}^{-1}(\underline{A}_p)=A.
+\]</span> 2, 即证 <span class="math display">\[
+\omega_{pg}(r_{g*}Y_p) = (\operatorname{Ad}_{g^{-1}})\omega_p(Y_p).
+\]</span> 因为两边都是 <span class="math inline">\(\R\)</span>-线性的,
+所以可以对 <span class="math inline">\(Y_p\)</span>
+为竖直向量和水平向量分别证明. 设 <span class="math inline">\(Y_p\)</span> 为竖直向量, 则 <span class="math inline">\(Y_p=\underline{A}_p\)</span> 对某 <span class="math inline">\(A\in{\frak g}\)</span>, 有 <span class="math display">\[
+\Align{
+\omega_{pg}(r_{g*}Y_p)
+= \omega_{pg}(r_{g*}\underline{A}_p)
+&amp;= \omega_{pg}\pqty{ \underline{\operatorname{Ad}_{g^{-1}}A}_{pg} }
+\\
+&amp;= \operatorname{Ad}_{g^{-1}}A \\
+&amp;= (\operatorname{Ad}_{g^{-1}})\omega_p(A_p).
+}
+\]</span> 其中第二个等号由 Claim 26.5, 第三个和第四个等号由 1. 设 <span class="math inline">\(Y_p\)</span> 为水平向量, 因为 <span class="math inline">\({\cal H}\)</span> 右不变, <span class="math inline">\(r_{g*}Y_p\)</span> 也是水平向量, 于是 <span class="math display">\[
+\omega_{pg}(r_{g*}Y_p) = 0 = (\operatorname{Ad}_{g^{-1}})\omega_p(Y_p).
+\]</span> 3, 由定义, <span class="math inline">\(\omega_p(Y_p)=j_{p*}^{-1}(v(Y_p))\)</span>. 因为
+<span class="math inline">\({\cal H}\)</span> 光滑, 由 Claim 27.5, <span class="math inline">\(v(Y_p)\)</span> 光滑. 只要证明对于光滑向量场 <span class="math inline">\(Z\in\Gamma({\cal V})\)</span>, <span class="math inline">\(j_{p*}^{-1}(Z_p)\)</span> 也光滑依赖于 <span class="math inline">\(p\)</span>.</p>
+<p>取 <span class="math inline">\({\cal V}\)</span> 的光滑标架 <span class="math inline">\(\underline{B_1},\dots,\underline{B_l}\)</span>, 则
+<span class="math inline">\(Z = \sum a^i\underline{B_i}\)</span>
+对于光滑函数 <span class="math inline">\(a^i\)</span>. 于是 <span class="math display">\[
+j_{p*}^{-1}(Z_p) = \sum a^i(p) B_i
+\]</span> 是光滑的.</p>
+</div>
+<p>注意 <span class="math inline">\(\omega\)</span> 的光滑性不依赖 <span class="math inline">\({\cal H}\)</span> 的右不变性.</p>
+<p>主丛 <span class="math inline">\(P\to M\)</span> 上的
+<strong>Ehresmann 联络</strong>, 简称联络, 指的是满足上面三个条件的
+<span class="math inline">\(\omega\in\Omega^1(P,{\frak g})\)</span>.</p>
+<p>微分形式 <span class="math inline">\(\alpha:TP\to{\frak g}\)</span>
+的 <span class="math inline">\(G\)</span>-等变性具体解释如下. 注意到
+<span class="math inline">\(TP\)</span> 和 <span class="math inline">\({\frak g}\)</span> 都是 <span class="math inline">\(G\)</span>-流形: <span class="math inline">\(G\)</span> 通过右作用的微分 <span class="math inline">\(r_{g*}\)</span> 右作用于 <span class="math inline">\(TP\)</span>, 通过伴随表示 <span class="math inline">\(\operatorname{Ad}_{g^{-1}}\)</span> 左作用于 <span class="math inline">\({\frak g}\)</span>. 根据等变性的定义, <span class="math display">\[
+\alpha(X_p\cdot g) = g^{-1}\cdot\alpha(X_p),
+\]</span> 即 <span class="math display">\[
+\alpha(r_{g*}X_p) = (\operatorname{Ad}_{g^{-1}})\alpha(X_p)
+\]</span> 换言之, <span class="math inline">\(r_g^*\alpha =
+(\operatorname{Ad}_{g^{-1}})\alpha\)</span>.</p>
+<h3 id="the-horizontal-distribution-of-a-ehresmann-connection">28.2  The
+horizontal distribution of a Ehresmann connection</h3>
+<div class="note note-success">
+<p><u>Claim 28.2</u> (<span class="math inline">\(\omega\Rightarrow{\cal
+H}\)</span>) 设 <span class="math inline">\(G\)</span>-主丛 <span class="math inline">\(\pi:P\to M\)</span> 上的 Ehresmann 联络 <span class="math inline">\(\omega\)</span>, 则 <span class="math inline">\({\cal H}_p:=\ker\omega_p\)</span> (<span class="math inline">\(p\in P\)</span>) 给出了 <span class="math inline">\(P\)</span> 上的一个光滑右不变水平分布.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 我们要验证三个性质:</p>
+<ol type="1">
+<li><span class="math inline">\(T_pP={\cal V}_p\oplus{\cal
+H}_p\)</span>.</li>
+<li><span class="math inline">\(r_{g*}({\cal H}_p)\subset{\cal
+H}_{pg}\)</span>. (因为 <span class="math inline">\(r_{g*}\)</span>
+是可逆的, 这一条蕴含 <span class="math inline">\(r_{g*}({\cal
+H}_p)={\cal H}_{pg}\)</span>.)</li>
+<li><span class="math inline">\({\cal H}\)</span> 是 <span class="math inline">\(TP\)</span> 的光滑子丛.</li>
+</ol>
+<p>1, 因为 <span class="math inline">\(\mathcal{H}_p=\ker\omega_p\)</span>, 有短正合列
+<span class="math display">\[
+0\longrightarrow \mathcal{H}_p\longrightarrow T_PP
+\overset{\omega_p}\longrightarrow \mathfrak{g}
+\longrightarrow 0.
+\]</span> 映射 <span class="math inline">\(j_{p*}:{\frak
+g}\to\mathcal{V}_p\subset T_pP\)</span> 提供了一个右分裂, 根据 Claim
+27.6, 有同构 <span class="math display">\[
+T_pP \cong \mathfrak{g}\oplus\mathcal{H}_p \cong
+\mathcal{V}_p\oplus\mathcal{H}_p.
+\]</span> 2, 设 <span class="math inline">\(Y_p\in{\cal
+H}_p=\ker\omega_p\)</span>, 需要证明 <span class="math inline">\(r_{g*}(Y_p)\in\ker\omega_{pg}\)</span>. 利用 <span class="math inline">\(\omega\)</span> 的等变性, <span class="math display">\[
+\omega_{pg}(r_{g*}Y_p)
+= (r_g^*\omega)_p(Y_p)
+= (\operatorname{Ad}_{g^{-1}})\omega_p(Y_p)
+= 0.
+\]</span> 3, 设 <span class="math inline">\({\frak g}\)</span> 的基底
+<span class="math inline">\(B_1,\dots,B_l\)</span>, 则 <span class="math inline">\(\omega=\sum\omega^iB_i\)</span>, 其中 <span class="math inline">\(\omega^i\in\Omega^1(P,\R)\)</span>, 因为 <span class="math inline">\(\omega_p:T_pP\to{\frak g}\)</span> 是满射, 所以
+<span class="math inline">\(\omega^1,\dots,\omega^l\)</span> 线性无关.
+根据定义, <span class="math inline">\({\cal
+H}_p=\bigcap_{i=1}^l\ker\omega^i_p\)</span>.</p>
+<p>设 <span class="math inline">\(p\in P\)</span> 的附近的坐标 <span class="math inline">\(U,x^1,\dots,x^m\)</span>, <span class="math display">\[
+\omega^i = \sum_{j=1}^l f^i_j \dd{x^j},
+\]</span> 对 <span class="math inline">\(q\in U\)</span>, 切向量 <span class="math inline">\(v_q\in T_qP\)</span> 展开为 <span class="math display">\[
+v_q = \sum_{i=1}^m v^i \eval{\pdv{x^i}}_q.
+\]</span> 于是 <span class="math display">\[
+\Align{
+{\cal H}_q
+&amp;= \bigcap_{i=1}^l\ker\omega^i_q \\
+&amp;= \{ v_q\in T_qP \mid \omega^i_q(v_q)=0, \forall i \} \\
+&amp;= \{ (v^1,\dots,v^m)\in\R^m \mid
+   \textstyle\sum_{j=1}^l f^i_j(q)v^j=0, \forall i \}. \\
+}
+\]</span> 下面我们来求解 <span class="math inline">\((v^1,\dots,v^m)\)</span>. 令 <span class="math inline">\(F^i(q,v):=\sum_{j=1}^m f^i_j(q)v^j\)</span>, 因为
+<span class="math inline">\(\omega^1,\dots,\omega^l\)</span> 在 <span class="math inline">\(p\)</span> 线性无关, 所以 Jacobi 矩阵 <span class="math display">\[
+\pqty{ \pdv{F^i}{v^j} }_{l\times m} = (f^i_j)_{l\times m}
+\]</span> 有秩 <span class="math inline">\(l\)</span>. 不妨设左边 <span class="math inline">\(l\times l\)</span> 的子矩阵满秩.
+因为满秩性是开性质, 存在 <span class="math inline">\(p\)</span> 的开邻域
+<span class="math inline">\(W\)</span>, 使 <span class="math inline">\(l\times l\)</span> 子矩阵满秩. 由隐函数定理, 当
+<span class="math inline">\(q\in W\)</span> 时 <span class="math inline">\(v^1,\dots,v^l\)</span> 是 <span class="math inline">\(v^{l+1},\dots,v^m\)</span> 的光滑函数: <span class="math display">\[
+\Align{
+v^1 &amp;= v^1(v^{l+1},\dots,v^m), \\
+&amp;\hspace{0.5em}\vdots \\
+v^l &amp;= v^l(v^{l+1},\dots,v^m).
+}
+\]</span> 令 <span class="math display">\[
+\Align{
+X_1 &amp;= \sum_{j=1}^l v^j(1,0,\dots,0)\pdv{x^j} + \pdv{x^{l+1}}, \\
+X_2 &amp;= \sum_{j=1}^l v^j(0,1,\dots,0)\pdv{x^j} + \pdv{x^{l+2}}, \\
+&amp;\hspace{.5em}\vdots \\
+X_{m-l} &amp;= \sum_{j=1}^l v^j(0,0,\dots,1)\pdv{x^j} + \pdv{x^m},
+}
+\]</span> 为 <span class="math inline">\(W\)</span> 上的光滑向量场,
+且在每一点 <span class="math inline">\(q\in W\)</span> 张成 <span class="math inline">\({\cal H}_q\)</span>, 根据 Claim 18.2, <span class="math inline">\({\cal H}\)</span> 是光滑子丛.</p>
+</div>
+<p>在主丛 <span class="math inline">\(\pi:P\to M\)</span> 上, 因为 <span class="math inline">\(\pi\circ r_g=\pi\)</span>, 故 <span class="math inline">\(\pi_*\circ r_{g*}=\pi_*\)</span>, 所以右平移 <span class="math inline">\(r_{g*}\)</span> 将竖直向量映到竖直向量.
+对于右不变的水平分布 <span class="math inline">\({\cal H}\)</span>,
+<span class="math inline">\(r_{g*}\)</span> 将水平向量映到水平向量.
+立刻有如下推论.</p>
+<div class="note note-success">
+<p><u>Claim 28.3</u> 设光滑水平分布 <span class="math inline">\({\cal
+H}\)</span> 是右不变的, 则投射 <span class="math inline">\(v,h\)</span>
+与右平移 <span class="math inline">\(r_{g*}\)</span> 可交换.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 28.4</u> 设主丛 <span class="math inline">\(P\)</span>
+上有联络 (进而有水平分布的概念), <span class="math inline">\(\underline{A}\)</span> 是 <span class="math inline">\(A\in{\frak g}\)</span> 生成的基本向量场.</p>
+<ol type="1">
+<li>若 <span class="math inline">\(Y\)</span> 是 <span class="math inline">\(P\)</span> 上的水平向量场, 则 <span class="math inline">\([\underline{A},Y]\)</span> 是水平的.</li>
+<li>若 <span class="math inline">\(Y\)</span> 是 <span class="math inline">\(P\)</span> 上的右不变向量场, 则 <span class="math inline">\([\underline{A},Y]=0\)</span>.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 基本向量场 <span class="math inline">\(\underline{A}\)</span> 的流是 <span class="math inline">\(\phi_t(p)=p\exp(tA)=r_{\exp(tA)}(p)\)</span>, 所以
+<span class="math display">\[
+[\underline{A},Y]_p
+= ({\cal L}_{\underline{A}}Y)_p
+= \lim_{t\to 0}\frac{
+    (r_{\exp(-tA)})_* Y_{p\exp(tA)} - Y_p
+  }{t}
+=: \lim_{t\to 0} d(t).
+\]</span> 因为右平移不改变水平性, <span class="math inline">\((r_{\exp(-tA)})_* Y_{p\exp(tA)}\)</span> 和 <span class="math inline">\(Y_p\)</span> 都是水平向量, 因此差商 <span class="math inline">\(d(t)\)</span> (<span class="math inline">\(t\neq0\)</span>) 也是水平向量, 由连续性, <span class="math inline">\(\lim_{t\to 0}d(t)\)</span> 也是水平向量.</p>
+<p>2, 右不变性有 <span class="math display">\[
+(r_{\exp(-tA)})_* Y_{p\exp(tA)} = Y_p,
+\]</span> 于是 <span class="math inline">\([\underline{A},Y]_p=({\cal
+L}_{\underline{A}}Y)_p=0\)</span>.</p>
+</div>
+<h3 id="horizontal-lifts">28.3  Horizontal lifts</h3>
+<p>设 <span class="math inline">\(P\)</span> 水平分布 <span class="math inline">\({\cal H}\)</span>. 因为 <span class="math inline">\({\cal V}_p\)</span> 定义为满射 <span class="math inline">\(\pi_*:T_pP\to T_{\pi(p)}M\)</span> 的核,
+所以有同构 <span class="math display">\[
+{\cal H}_p \cong \frac{T_pP}{{\cal V}_p}
+\overset{\sim}\longrightarrow T_{\pi(p)}M.
+\]</span> 因此, 给一向量场 <span class="math inline">\(X\in\Gamma(TM)\)</span>, 存在唯一的水平向量 <span class="math inline">\(\tilde{X}_p\in{\cal H}_p\)</span>, 使得 <span class="math display">\[
+\pi_*(\tilde{X}_p)=X_{\pi(p)}.
+\]</span> 向量场 <span class="math inline">\(\tilde{X}:P\to{\cal
+H}\)</span> 称为 <span class="math inline">\(X\)</span>
+的<strong>水平提升(horizontal lift)</strong>, 它满足交换图 <span class="math display">\[
+\xymatrix{
+M \ar[d]_{X} &amp; P \ar@{.&gt;}[d]^{\tilde{X}} \ar[l]_{\pi} \\
+TM &amp; \mathcal{H}. \ar[l]^(.4){\pi_*}
+}
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 28.5</u> 设 <span class="math inline">\({\cal H}\)</span> 是
+<span class="math inline">\(P\)</span> 上的光滑右不变水平分布, <span class="math inline">\(X\in\Gamma(TM)\)</span>, 则 <span class="math inline">\(\tilde{X}\)</span> 是 <span class="math inline">\(P\)</span> 上的光滑右不变向量场.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 右不变性. 因为 <span class="math inline">\(\pi\circ
+r_g=\pi\)</span>, 有 <span class="math display">\[
+\pi_*(r_{g*}\tilde{X}_p) = \pi_*(\tilde{X}_p) = X_{\pi(p)},
+\]</span> 然而 <span class="math inline">\(\pi_*(\tilde{X}_{pg})\)</span> 也等于 <span class="math inline">\(X_{\pi(pg)}=X_{\pi(p)}\)</span>,
+根据水平提升的唯一性, <span class="math inline">\(r_{g*}\tilde{X}_p=\tilde{X}_p\)</span>.</p>
+<p>光滑性. 只需在局部验证. 设局部平凡化 <span class="math inline">\(\phi_U:P|_U\to U\times G\)</span>, 定义 <span class="math display">\[
+Z_{(x,g)} = (X_x,0) \in T_{(x,g)}(U\times G).
+\]</span> 令 <span class="math inline">\(\eta:U\times G\to U\)</span>
+为自然投射. 则 <span class="math inline">\(Z\)</span> 是 <span class="math inline">\(U\times G\)</span> 上的光滑向量场, 且满足 <span class="math inline">\(\eta_*Z_{(x,g)}=X_x\)</span>. 定义 <span class="math inline">\(Y:=(\phi_{U*})^{-1}Z\)</span> 是 <span class="math inline">\(P|_U\)</span> 上的光滑向量场, 则 <span class="math display">\[
+\pi_*(Y_p)
+= (\pi\circ\phi_U^{-1})_*Z_{(\pi(p),g)}
+= \eta_*Z_{(\pi(p),g)}
+= X_{\pi(p)}.
+\]</span> 容易验证, <span class="math inline">\(hY\)</span> 是 <span class="math inline">\(X\)</span> 的水平提升: <span class="math display">\[
+\pi_*(hY_p) \equiv \pi_*(Y_p) = X_{\pi(p)}.
+\]</span> 根据水平提升的唯一性, <span class="math inline">\(\tilde{X}=hY\)</span> 在 <span class="math inline">\(U\)</span> 上光滑.</p>
+</div>
+<div class="note note-warning">
+<p><u>Note</u> 更一般地, 可以在光滑纤维丛 <span class="math inline">\(\pi:E\to M\)</span> 上定义联络的概念,
+两种等价的方式是:</p>
+<ol type="1">
+<li>光滑的水平分布 <span class="math inline">\({\cal H}\)</span> 满足
+<span class="math inline">\({\cal H}\oplus{\cal V}=TE\)</span> (竖直子丛
+<span class="math inline">\({\cal V}\)</span> 同样定义为 <span class="math inline">\(\ker{\pi_*}\)</span>).</li>
+<li><span class="math inline">\(TE\)</span> 值光滑 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\omega:TE\to TE\)</span>, 满足 <span class="math inline">\(\omega^2=\omega\)</span>, <span class="math inline">\(\omega|_{\cal V}={\rm id}_{\cal V}\)</span>.
+<ul>
+<li><span class="math inline">\(\omega\)</span> 可以看作 <span class="math inline">\(TE\)</span> 沿着 <span class="math inline">\({\cal
+H}\)</span> 到 <span class="math inline">\({\cal V}\)</span>
+上的投射.</li>
+</ul></li>
+</ol>
+</div>
+<h2 id="horizontal-distributions-on-a-frame-bundle">29  Horizontal
+Distributions on a Frame Bundle</h2>
+<p>向量丛 <span class="math inline">\(E\to M\)</span> 上的联络 <span class="math inline">\(\nabla\)</span> 可以诱导出标架丛 <span class="math inline">\({\rm Fr}(E)\)</span> 上的联络, 即给出 <span class="math inline">\({\rm Fr}(E)\)</span> 的一个水平分布 <span class="math inline">\({\cal H}\)</span>.</p>
+<h3 id="parallel-translation">29.1  Parallel translation</h3>
+<p>设光滑向量丛 <span class="math inline">\(\eta:E\to M\)</span>.</p>
+<p>根据 "拉回丛" 一节最后的讨论, 光滑曲线 <span class="math inline">\(c:I\to M\)</span> 诱导出拉回丛 <span class="math inline">\(c^*E\)</span>,
+即<strong>沿着曲线的向量丛</strong>, 则 <span class="math inline">\(\Gamma(c^*E)\)</span> 表示所有沿着 <span class="math inline">\(c\)</span> 的光滑截面. 容易证明, <span class="math inline">\(E\)</span> 上的联络 <span class="math inline">\(\nabla\)</span> 唯一诱导出<strong>沿着 <span class="math inline">\(c\)</span> 的协变导数</strong>: <span class="math display">\[
+\frac{{\rm D}}{\dd{t}}: \Gamma(c^*E) \to \Gamma(c^*E),
+\]</span> 满足</p>
+<ol type="1">
+<li><span class="math inline">\(\R\)</span> 线性性.</li>
+<li>(Leibniz 律) <span class="math inline">\({\rm
+D}(fs)/\dd{t}=s\dd{f}/\dd{t}{}+f{{\rm D}s}/\dd{t}\)</span>.</li>
+<li>(适配性) 对于 <span class="math inline">\(\tilde{s}\in\Gamma(M,E)\)</span> 延拓 <span class="math inline">\(s\)</span>, 即 <span class="math inline">\(\tilde{s}(c(t))=s(t)\)</span>, 有 <span class="math inline">\({\rm
+D}s(t)/\dd{t}=\nabla_{c'(t)}\tilde{s}\)</span>.</li>
+</ol>
+<p>截面 <span class="math inline">\(s\in\Gamma(c^*E)\)</span>
+称为沿着曲线<strong>平行</strong>的, 若 <span class="math inline">\({\rm
+D}s/\dd{t}\equiv0\)</span>.</p>
+<p>和切丛 <span class="math inline">\(TM\)</span>
+的联络诱导出的协变导数一样, <span class="math inline">\(E\)</span>
+的联络 <span class="math inline">\(\nabla\)</span>
+诱导出的协变导数在局部标架下展开为 <span class="math display">\[
+\frac{{\rm D}s}{\dd{t}}
+= \sum_i\pqty{ \dv{s^i}{t} + \sum_js^j\omega^i_j(c'(t)) }
+e_{i,c(t)}.
+\]</span> 同样可以得到平行移动的存在唯一性, 以及平移诱导出的线性同构
+<span class="math display">\[
+\varphi_{a,b}: E_{c(a)} \overset\sim\to E_{c(b)}.
+\]</span> 因此, 若光滑截面 <span class="math inline">\(e_1,\dots,e_r\in\Gamma(c^*E)\)</span> 在 <span class="math inline">\(c(t_0)\)</span> 处构成 <span class="math inline">\(E_{c(t_0)}\)</span> 的一个基底, 则对任意 <span class="math inline">\(t\in I\)</span>, <span class="math inline">\(e_1,\dots,e_r\)</span> 都构成基底, 称 <span class="math inline">\(s_1,\dots,s_r\)</span> 为 <span class="math inline">\(c\)</span> 上的一个<strong>平行标架(parallel
+frame)</strong>.</p>
+<p>设 <span class="math inline">\(E\)</span> 的标架丛 <span class="math inline">\(\pi:{\rm Fr}(E)\to M\)</span>. 曲线 <span class="math inline">\(\tilde{c}:I\to{\rm Fr}(E)\)</span> 称为曲线 <span class="math inline">\(c:I\to M\)</span> 的<strong>提升(lift)</strong>,
+若 <span class="math display">\[
+c(t)=\pi(\tilde{c}(t)).
+\]</span> 如果 <span class="math inline">\(\tilde{c}(t)\)</span> 是沿着
+<span class="math inline">\(c\)</span> 平行的标架, 则 <span class="math inline">\(\tilde{c}(t)\)</span>
+称为<strong>水平提升</strong>.</p>
+<p>给定 <span class="math inline">\(x=c(t_0)\in M\)</span> 处的标架
+<span class="math inline">\(e_x\)</span> 后, 存在唯一的沿着 <span class="math inline">\(c(t)\)</span> 的平行的标架,
+说明给定初值的水平提升的存在唯一性.</p>
+<h3 id="horizontal-vectors">29.2  Horizontal vectors</h3>
+<p>设向量丛 <span class="math inline">\(E\to M\)</span> 配以联络 <span class="math inline">\(\nabla\)</span>, <span class="math inline">\(x\in
+M\)</span> 处的标架 <span class="math inline">\(e_x\in{\rm
+Fr}(E_x)\)</span>. 切向量 <span class="math inline">\(v\in T_{e_x}{\rm
+Fr}(E)\)</span> 称为<strong>水平的</strong>, 若存在曲线 <span class="math inline">\(c:I\to M\)</span>, <span class="math inline">\(c(0)=x\)</span>, 使得 <span class="math inline">\(v\)</span> 是那个唯一水平提升 <span class="math display">\[
+\tilde{c}: I\to{\rm Fr}(E),\quad\tilde{c}(0)=e_x
+\]</span> 的切向量 <span class="math inline">\(\tilde{c}'(0)\)</span>.</p>
+<div class="note note-secondary">
+<p>图示: 设 <span class="math inline">\(x\in M\)</span>, 标架 <span class="math inline">\(e_x\in{\rm Fr}(E_x)\)</span>. 则任给从 <span class="math inline">\(x\)</span> 开始的曲线 <span class="math inline">\(c:I\to M\)</span>, 都存在唯一的从 <span class="math inline">\(e_x\)</span> 开始的水平提升 <span class="math inline">\(\tilde{c}:I\to{\rm Fr}(E)\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/frame-bundle-horizontal-vector.png" style="zoom:55%;" cloud-img="" lazyload="true"></p>
+<p>这曲线 <span class="math inline">\(\tilde{c}\)</span> 的初始速度
+<span class="math inline">\(\tilde c'(0)\in T_{e_x}{\rm
+Fr}(E)\)</span> 定义为水平向量.</p>
+</div>
+<p>我们的目标是证明 <span class="math inline">\(e_x\)</span>
+处的所有水平向量的集合 <span class="math inline">\({\cal
+H}_{e_x}\)</span> 是 <span class="math inline">\(T_{e_x}{\rm
+Fr}(E)\)</span> 的一个线性子空间. 为此,
+我们借助一个局部标架来计算水平向量 <span class="math inline">\(\tilde{c}'(0)\)</span>.</p>
+<p>设 <span class="math inline">\(E|_U\)</span> 的光滑标架 <span class="math inline">\(s\)</span> (即 <span class="math inline">\({\rm
+Fr}(E)\)</span> 的光滑局部截面) 满足 <span class="math inline">\(s(x)=e_x\)</span>. 显然 <span class="math inline">\(s(c(t))\)</span> 将 <span class="math inline">\(c(t)\)</span> 提升到 <span class="math inline">\({\rm Fr}(E)\)</span>, 当然这不一定是水平提升.
+对任意 <span class="math inline">\(t\in I\)</span>, <span class="math inline">\(E_{c(t)}\)</span> 有两个标架 <span class="math inline">\(s(c(t))\)</span> 和 <span class="math inline">\(\tilde{c}(t)\)</span>, 设它们满足变换关系 <span class="math display">\[
+s(c(t)) = \tilde{c}(t) \cdot a(t),
+\]</span> 其中光滑矩阵值函数 <span class="math inline">\(a:I\to{\rm
+GL}(r,\R)\)</span>. 当 <span class="math inline">\(t=0\)</span>, <span class="math inline">\(s(c(0))=e_x=\tilde{c}(0)\)</span>, 所以 <span class="math inline">\(a(0)\)</span> 是单位阵 <span class="math inline">\(I\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 29.1</u> 记号承上. 设 <span class="math inline">\(s_*:T_xM\to T_{e_x}{\rm Fr}(E)\)</span> 为 <span class="math inline">\(s\)</span> 的微分, <span class="math inline">\(\underline{a'(0)}\)</span> 表示 <span class="math inline">\(a'(0)\in{\rm gl}(r,\R)\)</span> 对应的 <span class="math inline">\({\rm Fr}(E)\)</span> 上的基本向量场, 则 <span class="math display">\[
+s_*\big(c'(0)\big) = \tilde{c}'(0) +
+\underline{a'(0)}_{e_x}.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 记 <span class="math inline">\(P={\rm Fr}(E)\)</span>,
+<span class="math inline">\(G={\rm GL}(r,\R)\)</span>, 右作用 <span class="math inline">\(\mu:P\times G\to P\)</span>, 则 <span class="math display">\[
+s(c(t)) = \mu( \tilde{c}(t), a(t) ).
+\]</span> 利用微分公式 Claim 26.8, 取上式在 <span class="math inline">\(t=0\)</span> 处的微分 (此时公式中 <span class="math inline">\(p=e_x\)</span>, <span class="math inline">\(g=I\)</span>), <span class="math display">\[
+\Align{
+s_*( c'(0) )
+&amp;= \mu_{*,(\tilde{c}(0),a(0))}(\tilde{c}'(0),a'(0)) \\
+&amp;= \mu_{*(e_x,I)}(\tilde{c}'(0),a'(0)) \\
+&amp;= \tilde{c}'(0) + \underline{a'(0)}_{e_x}.
+}
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 29.2</u> 记号承上. 设 <span class="math inline">\(\nabla\)</span> 在标架 <span class="math inline">\(s=[s_1,\dots,s_r]\)</span> 下的联络矩阵为 <span class="math inline">\(\omega_s=[\omega^i_j]\)</span>, 则 <span class="math display">\[
+a'(0) = \omega_s(c'(0)).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 记 <span class="math inline">\(\tilde{c}_i(0)=s_i(c(0))=e_{i,x}\)</span>, 曲线
+<span class="math inline">\(\tilde{c}_i:I\to E\)</span> 是向量 <span class="math inline">\(e_{i,x}\)</span> 生成的沿着 <span class="math inline">\(c(t)\)</span> 平行的向量场.</p>
+<p>根据联络矩阵的定义, <span class="math display">\[
+\nabla_{c'(0)}s_j
+= \sum \omega^i_j(c'(0)) s_i(c(0))
+= \sum \omega^i_j(c'(0)) e_{i,x}. \tag{$*$}
+\]</span> 另一方面, 由沿曲线协变导数的性质 3, <span class="math display">\[
+\Align{
+\nabla_{c'(t)}s_j = \frac{{\rm D}(s_j\circ c)}{\dd{t}}(t)
+&amp;= \frac{\rm D}{\dd{t}}\sum\tilde{c}_i(t)a^i_j(t) \\
+&amp;= \sum (a^i_j)'(t)\tilde{c}_i(t) +
+   \sum a^i_j(t) \frac{{\rm D}\tilde{c}_i}{\dd{t}}(t) \\
+&amp;= \sum (a^i_j)'(t)\tilde{c}_i(t).
+}
+\]</span> 令 <span class="math inline">\(t=0\)</span> 得到 <span class="math display">\[
+\nabla_{c'(0)}s_j = \sum (a^i_j)'(0)e_{i,x},
+\]</span> 结合 <span class="math inline">\((*)\)</span> 式有 <span class="math inline">\((a^i_j)'(0)=\omega^i_j(c'(0))\)</span>.</p>
+</div>
+<p>结合以上两个引理, 我们得到了水平向量 <span class="math inline">\(\tilde{c}'(0)\)</span> 的公式: <span class="math display">\[
+\tilde{c}'(0)
+= s_*\big(c'(0)\big) -
+\underline{\omega_s\big(c'(0)\big)}_{e_x}.
+\tag{$\#$}
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 29.3</u> 设 <span class="math inline">\(n\)</span> 为流形
+<span class="math inline">\(M\)</span> 上的光滑向量丛 <span class="math inline">\(\pi:E\to M\)</span> 配以联络 <span class="math inline">\(\nabla\)</span>. 任给 <span class="math inline">\(x\in M\)</span>, <span class="math inline">\(e_x\in{\rm Fr}(E_x)\)</span>, 水平向量组成的集合
+<span class="math inline">\({\cal H}_{e_x}\)</span> 是 <span class="math inline">\(T_{e_x}{\rm Fr}(E)\)</span> 的 <span class="math inline">\(n\)</span> 维子空间, 且 <span class="math inline">\(\pi_*:{\cal H}_{e_x}\to T_xM\)</span> 是线性同构
+(<span class="math inline">\(\pi\)</span> 是标架丛的投影).</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> <span class="math inline">\((\#)\)</span> 式中, <span class="math inline">\(s_*\)</span> 和 <span class="math inline">\(\omega_s\)</span> 显然是 <span class="math inline">\(\R\)</span>-线性的; 操作 <span class="math inline">\(A\mapsto\underline{A}_{e_x}\)</span> 也是 <span class="math inline">\(\R\)</span>-线性的, 因此映射 <span class="math display">\[
+\Align{
+\phi: T_xM &amp;\to T_{e_x}{\rm Fr}(E), \\
+c'(0) &amp;\mapsto \tilde{c}'(0)
+}
+\]</span> 是 <span class="math inline">\(\R\)</span>-线性的.
+作为线性映射 <span class="math inline">\(\phi\)</span> 的像空间, <span class="math inline">\({\cal H}_{e_x}\)</span> 是 <span class="math inline">\(T_{e_x}{\rm Fr}(E)\)</span> 的线性子空间.</p>
+<p>由提升的定义, <span class="math inline">\(\pi(\tilde{c}(t))=c(t)\)</span>, 两边微分得到
+<span class="math inline">\(\pi_*(\tilde{c}'(0))=c'(0)\)</span>,
+因此 <span class="math inline">\(\pi_*\)</span> 是 <span class="math inline">\(\phi\)</span> 的左逆, 这说明 <span class="math inline">\(\phi\)</span> 是单射, 那么 <span class="math inline">\(\phi\)</span> 就是到其像空间上的同构 <span class="math inline">\(\phi:T_xM\overset\sim\to{\cal H}_{e_x}\)</span>,
+逆映射为 <span class="math inline">\(\pi_*:{\cal H}_{e_x}\overset\sim\to
+T_{e_x}M\)</span>.</p>
+</div>
+<h3 id="induced-horizontal-distribution">29.3  Induced horizontal
+distribution</h3>
+<p>我们已经证明了, 向量丛 <span class="math inline">\(E\to M\)</span>
+上的联络 <span class="math inline">\(\nabla\)</span> 给出了 <span class="math inline">\(T_pP\)</span> (<span class="math inline">\(P={\rm
+Fr}(E)\)</span>) 的水平子空间 <span class="math inline">\({\cal
+H}_p\)</span>, 且 <span class="math inline">\(\dim{\cal
+H}_p=\dim{M}\)</span>. 竖直子空间 <span class="math inline">\({\cal
+V}_p\)</span> 定义为投射 <span class="math inline">\(\pi_*:T_pP\to
+T_{\pi(p)}M\)</span> 的核空间, 因此 <span class="math inline">\({\cal
+V}_p\)</span> 和 <span class="math inline">\({\cal H}_p\)</span>
+的维数在 <span class="math inline">\(T_pP\)</span> 中互补. 又因为 <span class="math inline">\(\pi_*({\cal V}_p)=0\)</span>, 而 <span class="math inline">\(\pi_*:{\cal H}_p\to T_{\pi(p)}M\)</span> 是同构,
+有 <span class="math inline">\({\cal V}_p\cap{\cal H}_p=\{0\}\)</span>.
+立刻得到 <span class="math display">\[
+T_p{\rm Fr}(E) = {\cal V}_p\oplus{\cal H}_p.
+\]</span> 所以我们只需要再证明 <span class="math inline">\({\cal
+H}:=\bigcup_{p\in P}{\cal H}_p\)</span> 的光滑性和右不变性.</p>
+<p>因为有同构 <span class="math inline">\(\pi_*:{\cal H}_p\to
+T_{\pi(p)}M\)</span>, 所以 <span class="math inline">\(M\)</span>
+上的向量场 <span class="math inline">\(X\)</span> 可以唯一地提升到 <span class="math inline">\(P\)</span> 上去, 使得 <span class="math display">\[
+\pi_{*,p}(\tilde{X}_p) = X_{\pi(p)}.
+\]</span> 称这提升为<strong>水平提升</strong>. 上一小节的 <span class="math inline">\((\#)\)</span> 式给出了水平提升的公式: <span class="math display">\[
+\tilde{X}_p = s_{*,x}(X_x) - \underline{\omega_s(X_x)}_p,
+\quad p=s(x). \tag{$\clubsuit$}
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 29.4</u> 若 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(M\)</span> 上光滑向量场, 则 <span class="math inline">\(\tilde{X}\)</span> 是 <span class="math inline">\({\rm Fr}(E)\)</span> 上光滑向量场.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为光滑性是局部性质, 所以可以在假设 <span class="math inline">\(P\)</span> 是平凡丛 <span class="math inline">\(M\times G\)</span> (<span class="math inline">\(G={\rm GL}(r,\R)\)</span>). 根据水平分布的右不变性
+(这是 <span class="math inline">\(\pi\circ r_a=\pi\)</span> 的直接推论)
+<span class="math display">\[
+\tilde{X}_{(x,a)}=r_{a*}\tilde{X}_{(x,e)}.
+\]</span> 设截面 <span class="math inline">\(s:M\to P\)</span>, <span class="math inline">\(s(x)=(x,e)\)</span>, 根据 <span class="math inline">\((\clubsuit)\)</span> 式, <span class="math display">\[
+\tilde{X}_{(x,e)} = s_{*,x}(X_x) - \underline{\omega_s(X_x)}_{(x,e)}.
+\]</span> 任给点 <span class="math inline">\(p=(x,a)\in P\)</span>
+和光滑函数 <span class="math inline">\(f\in C^\infty(P)\)</span>,
+我们只需证明 <span class="math inline">\(\tilde{X}_pf\)</span> 是光滑的.
+结合以上两式, <span class="math display">\[
+\tilde{X}_pf =
+r_{a*}s_{*,x}(X_x)f - r_{a*}\underline{\omega_s(X_x)}_{(x,1)}f.
+\]</span> 两项分开考虑. 第一项: <span class="math display">\[
+\Align{
+r_{a*}s_{*,x}(X_x)f
+&amp;= X_x(f\circ r_a\circ s) \\
+&amp;= X(f\circ r_a\circ s)(\pi(x)) \\
+&amp;= X\mu\Big( s(\pi(p)), \pi_2(p) \Big),
+}
+\]</span> 其中 <span class="math inline">\(\pi_2(p)=\pi_2(x,a)=a\)</span>.
+上面都是光滑函数的复合, 所以第一项是 <span class="math inline">\(P\)</span> 上的光滑函数.</p>
+<p>第二项: 根据 <span class="math inline">\(\omega_s\)</span>
+的右等变性, <span class="math display">\[
+\Align{
+r_{a*}\underline{\omega_s(X_x)}_{(x,1)}f
+&amp;= \underline{ (\operatorname{Ad}_{a^{-1}})\omega_s(X_x) }_{(x,a)}f
+\\
+&amp;= \underline{
+      (\operatorname{Ad}_{\pi_2(p)^{-1}})\omega_s(X_{\pi(p)})
+   }_pf, \\
+}
+\]</span> 其中 <span class="math inline">\(A(p):=(\operatorname{Ad}_{\pi_2(p)^{-1}})\omega_s(X_{\pi(p)})\)</span>
+显然是 <span class="math inline">\(P\to{\frak gl}(r,\R)\)</span>
+的光滑函数, 而 (根据基本向量场的定义) <span class="math inline">\(p\mapsto\underline{A(p)}_pf\)</span>
+显然也是光滑函数, 所以第二项光滑.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 29.5</u> (<span class="math inline">\(\nabla\Rightarrow{\cal
+H}\)</span>) 向量丛 <span class="math inline">\(E\to M\)</span> 的联络
+<span class="math inline">\(\nabla\)</span> 诱导出的 <span class="math inline">\({\cal H}\)</span> 是 <span class="math inline">\(\pi:P={\rm Fr}(E)\to M\)</span>
+上的光滑右不变水平分布.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 要验证三条性质 ① <span class="math inline">\(TP={\cal
+V}\oplus{\cal H}\)</span>, ② <span class="math inline">\(r_{g*}({\cal
+H}_p)\subset{\cal H}_{pg}\)</span>, ③ 光滑性, 其中 ①
+已在本小节开头验证.</p>
+<p>③, 设 <span class="math inline">\(TM\)</span> 在开集 <span class="math inline">\(U\)</span> 上的标架 <span class="math inline">\(s_1,\dots,s_n\)</span>. 由 Claim 29.4, 水平提升
+<span class="math inline">\(\tilde{s}_1,\dots,\tilde{s}_n\)</span> 是
+<span class="math inline">\(P|_U\)</span> 上的光滑向量场. 因为 <span class="math inline">\(\pi_{*}:{\cal H}_p\to T_{\pi(p)}M\)</span> 是同构,
+<span class="math inline">\(\tilde{s}_1,\dots,\tilde{s}_n\)</span>
+在每一点都 <span class="math inline">\(p\in P|_U\)</span> 都张成 <span class="math inline">\({\cal H}_p\)</span>. 因此 <span class="math inline">\({\cal H}\)</span> 是一个光滑子丛.</p>
+<p>②, 设 <span class="math inline">\(\tilde{c}(t)=[v_1(t),\dots,v_r(t)]\)</span> 是
+<span class="math inline">\(c(t)\)</span> 过 <span class="math inline">\(\tilde{c}(0)=p\)</span> 的水平提升, 则 <span class="math inline">\(c'(0)\in{\cal H}_p\)</span>. 我们只需要证明
+<span class="math inline">\(r_{g*}\tilde c'(0)\in{\cal
+H}_{pg}\)</span>. 设 <span class="math inline">\(g=[g^i_j]\in{\rm
+GL}(r,\R)\)</span>, <span class="math display">\[
+\tilde{c}(t)g = \bqty{ \sum g^i_1v_i(t),\dots,\sum g^i_rv_i(t)  },
+\]</span> 水平性得出 <span class="math inline">\({\rm
+D}v_i/\dd{t}=0\)</span>, 而 <span class="math inline">\(g^i_j\)</span>
+是常数, 所以 <span class="math inline">\({\rm D}(\sum
+g^i_jv_i)/\dd{t}=0\)</span>. 因此, <span class="math inline">\(\tilde{c}(t)g\)</span> 是沿着 <span class="math inline">\(c(t)\)</span> 的以 <span class="math inline">\(\tilde{c}(0)g=pg\)</span> 为初始点的水平提升,
+初始速度 <span class="math display">\[
+{\cal H}_{pg} \ni \eval{\dv{t}}_0 \tilde{c}(t)g =
+r_{g*}\tilde{c}'(0).
+\]</span></p>
+</div>
+<h3 id="induced-ehresmann-connection">29.4  Induced Ehresmann connection</h3>
+<p>向量丛上的联络 <span class="math inline">\(\nabla\)</span>
+诱导出标架丛的水平分布, 进而给出了一个 Ehresmann 联络 <span class="math inline">\(\omega\)</span>. 我们要证明, 局部标架下 <span class="math inline">\(\nabla\)</span> 的联络矩阵正是 <span class="math inline">\(\omega\)</span> 在标架下的拉回. 进而,
+主丛的联络可以诱导出向量丛的联络.</p>
+<div class="note note-success">
+<p><u>Claim 29.6</u> 设向量丛 <span class="math inline">\(E\to
+M\)</span> 的联络 <span class="math inline">\(\nabla\)</span>
+诱导出标架丛 <span class="math inline">\({\rm Fr}(E)\to M\)</span> 上的
+Ehresmann 联络 <span class="math inline">\(\omega\)</span>. 若 <span class="math inline">\(E|_U\)</span> 有局部标架 <span class="math inline">\(e\in\Gamma(U,{\rm Fr}(E))\)</span>, 则 <span class="math inline">\(\nabla\)</span> 在 <span class="math inline">\(e\)</span> 下的联络矩阵 <span class="math display">\[
+\omega_e = e^*\omega.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(e(x)=p\)</span>, 直接应用
+<span class="math inline">\((\clubsuit)\)</span> 式, <span class="math display">\[
+\tilde{X}_p = e_*(X_x) - \underline{\omega_e(X_x)}_p,
+\]</span> 其中 <span class="math inline">\(\tilde{X}\)</span>
+是水平向量场, 两边作用于 Ehresmann 联络消去 <span class="math inline">\(\tilde{X}\)</span>: <span class="math display">\[
+\Align{0
+&amp;= \omega(e_*X_x) - \omega\pqty{ \underline{\omega_e(X_x)}_p } \\
+&amp;= (e^*\omega)_xX_x - \omega_e(X_x),
+}
+\]</span> 即 <span class="math inline">\(e^*\omega=\omega_e\)</span>.</p>
+</div>
+<h2 id="curvature-on-a-principal-bundle">30  Curvature on a Principal
+Bundle</h2>
+<h3 id="the-curvature-form">30.1  The curvature form</h3>
+<p>Bianchi 恒等式给了我们一种定义曲率的方法. 设主丛 <span class="math inline">\(G\to P\to M\)</span>, Ehresmann 联络 <span class="math inline">\(\omega\in\Omega^1(P,{\frak g})\)</span>,
+它的<strong>曲率</strong>定义为 <span class="math inline">\(\Omega\in\Omega^2(P,{\frak g})\)</span>, <span class="math display">\[
+\Omega := \dd\omega + \frac12[\omega,\omega].
+\]</span> 其中 <span class="math inline">\([\cdot,\cdot]\)</span>
+是李括号诱导的矩阵值微分形式的乘积.</p>
+<div class="note note-success">
+<p><u>Claim 30.1</u> 设向量丛 <span class="math inline">\(E\to
+M\)</span> 的联络 <span class="math inline">\(\nabla\)</span>
+诱导出标架丛 <span class="math inline">\({\rm Fr}(E)\to M\)</span> 上的
+Ehresmann 联络 <span class="math inline">\(\omega\)</span>. 若 <span class="math inline">\(E|_U\)</span> 有局部标架 <span class="math inline">\(e\in\Gamma(U,{\rm Fr}(E))\)</span>, 则 <span class="math inline">\(\nabla\)</span> 在 <span class="math inline">\(e\)</span> 下的曲率矩阵 <span class="math display">\[
+\Omega_e = e^*\Omega.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> (下面第二个等号利用 Claim 19.3; 第三个等号利用 Claim 29.6)
+<span class="math display">\[
+\Align{
+e^*\Omega
+&amp;= e^*\dd\omega + \frac12e^*[\omega,\omega] \\
+&amp;= \dd e^*\omega + \frac12[e^*\omega,e^*\omega] \\
+&amp;= \dd\omega_e + \frac12[\omega_e,\omega_e] \\
+&amp;= \Omega_e.
+}
+\]</span></p>
+</div>
+<div class="note note-info">
+<p><u>Example</u> Maurer-Cartan 联络.</p>
+<p>在 19.3 节, 我们知道李群 <span class="math inline">\(G\)</span>
+上有一个标准的左不变 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\theta\in\Omega^1(G,{\frak g})\)</span>, 称为
+Maurer-Cartan 形式, 满足 ① (等变性) <span class="math inline">\(r_g^*\theta=(\operatorname{Ad}_{g^{-1}})\theta\)</span>,
+② 对于 <span class="math inline">\(A\in{\frak g}\)</span>, 有 <span class="math inline">\(\theta_e(A)=A\)</span>.</p>
+<p>Maurer-Cartan 形式可以看作积丛 <span class="math inline">\(\pi:P=M\times G\to G\)</span> 上的联络.</p>
+<p>设自然投射 <span class="math inline">\(\eta:P\to G\)</span>, 则 (18.5
+节末 Example) <span class="math display">\[
+TP = \pi^* TM \oplus \eta^* TG
+\]</span> 其中 <span class="math inline">\(\eta^*TG\)</span> 是 <span class="math inline">\(\pi_*:TP\to TM\)</span> 的核, 即竖直子丛. 因此
+<span class="math inline">\(P\)</span> 上有典范的水平分布 <span class="math inline">\({\cal H}=\pi^*TM\)</span>. 定义 <span class="math inline">\(P\)</span> 上的联络 <span class="math display">\[
+\omega(X) := (\eta^*\theta)(X) = \theta(\eta_*X),
+\]</span></p>
+<p>不难验证, 这就是 <span class="math inline">\({\cal H}\)</span>
+所确定的那个 Ehresmann 联络:</p>
+<ol type="1">
+<li><p>恒等映射: <span class="math display">\[
+\Align{
+\omega_{(x,g)}(\underline{A}_{(x,g)})
+&amp;= \theta_g(\eta_*\circ j_{(x,g)*})A \\
+&amp;= \theta_g(l_{g*}A)
+= \theta_e(A) = A.
+}
+\]</span></p></li>
+<li><p>等变性: (注意 <span class="math inline">\(\eta\circ r_g=\)</span>
+李群 <span class="math inline">\(G\)</span> 上的 <span class="math inline">\(r_g\)</span>) <span class="math display">\[
+\Align{
+r_g^*\omega
+&amp;= r_g^*(\eta^*\theta) \\
+&amp;= (\eta\circ r_g)^*\theta
+= r_g^*\theta
+= (\operatorname{Ad}_{g^{-1}})\theta
+= (\operatorname{Ad}_{g^{-1}})\omega.
+}
+\]</span></p></li>
+<li><p>与 <span class="math inline">\({\cal H}\)</span> 适配: <span class="math inline">\(\omega(X)=0\)</span> 只要 <span class="math inline">\(X\in\Gamma({\cal H})\)</span>.</p></li>
+</ol>
+<p>该联络的曲率 <span class="math display">\[
+\Align{
+\Omega
+= \dd\omega + \frac12[\omega,\omega]
+= \eta^*\pqty{\dd\theta + \frac12[\theta,\theta]} = 0.
+}
+\]</span></p>
+</div>
+<h3 id="properties-of-the-curvature-form">30.2  Properties of the curvature
+form</h3>
+<p>和 <span class="math inline">\(\omega\)</span> 一样, <span class="math inline">\(\Omega\)</span> 也具有 <span class="math inline">\(G\)</span>-等变性. 不同的是, <span class="math inline">\(\omega\)</span> 将水平向量映到 <span class="math inline">\(0\)</span>, 而 <span class="math inline">\(\Omega\)</span> 将竖直向量映到 <span class="math inline">\(0\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 30.2</u> 设 <span class="math inline">\(G\)</span>-主丛
+<span class="math inline">\(\pi:P\to M\)</span> 上的联络 <span class="math inline">\(\omega\)</span>, 点 <span class="math inline">\(p\in P\)</span>.</p>
+<ol type="1">
+<li>任意竖直向量 <span class="math inline">\(X_p\in T_pP\)</span>
+可以延拓到某 <span class="math inline">\(A\in{\frak g}\)</span>
+的基本向量场 <span class="math inline">\(\underline{A}\)</span>.</li>
+<li>任意水平向量 <span class="math inline">\(Y_p\in T_pP\)</span>
+可以延拓到某 <span class="math inline">\(B\in\Gamma(TM)\)</span>
+的水平提升 <span class="math inline">\(\tilde{B}\)</span>.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 因为 <span class="math inline">\(j_{p*}:{\frak
+g}\to{\cal V}_p\)</span> 是满射, 所以存在 <span class="math inline">\(A\in{\frak g}\)</span>, 使 <span class="math inline">\(X_p=j_{p*}(A)=\underline{A}_p\)</span>.</p>
+<p>2, 设 <span class="math inline">\(\pi_*(Y_p)=B_{\pi(x)}\in
+T_{\pi(p)}M\)</span>, 将 <span class="math inline">\(B_{\pi(x)}\)</span>
+延拓到 <span class="math inline">\(M\)</span> 上的光滑向量场 <span class="math inline">\(B\)</span>, 则水平提升 <span class="math inline">\(\tilde{B}\)</span> 延拓 <span class="math inline">\(Y_p\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 30.3</u> (曲率的性质) 设 <span class="math inline">\(G\)</span>-主丛上的联络 <span class="math inline">\(\omega\)</span> 和曲率 <span class="math inline">\(\Omega\)</span>.</p>
+<ol type="1">
+<li>(水平性) <span class="math inline">\(\Omega(X,Y)=(\dd\omega)(hX,hY)\)</span> 对任意
+<span class="math inline">\(X,Y\in\Gamma(TP)\)</span>.</li>
+<li>(<span class="math inline">\(G\)</span>-等变性) <span class="math inline">\(r_g^*\Omega=(\operatorname{Ad}_{g^{-1}})\Omega\)</span>
+对任意 <span class="math inline">\(g\in G\)</span>.</li>
+<li>(第二 Bianchi 恒等式) <span class="math inline">\(\dd\Omega=[\Omega,\omega]\)</span>.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 我们逐点地证明. 因为 <span class="math inline">\(X_p,Y_p\)</span> 都能分解为水平分量和竖直分量,
+所以只需对水平和竖直向量证明. 分为 3 种情况.</p>
+<p>情形 A. <span class="math inline">\(X_p,Y_p\)</span> 都水平, 此时
+<span class="math inline">\([\omega_p,\omega_p](X_p,Y_p)=0\)</span>,
+<span class="math display">\[
+\Omega_p(X_p,Y_p) = (\dd\omega)_p(X_p,Y_p) = (\dd\omega)_p(hX_p,hY_p).
+\]</span> 情形 B. <span class="math inline">\(X_p\)</span> 竖直, <span class="math inline">\(Y_p\)</span> 水平, 此时也有 <span class="math inline">\([\omega_p,\omega_p](X_p,Y_p)=0\)</span>. 根据
+Claim 30.2, <span class="math inline">\(X_p\)</span> 延拓到基本向量场
+<span class="math inline">\(\underline{A}\)</span>, <span class="math inline">\(Y_p\)</span> 延拓到右不变水平向量场 <span class="math inline">\(\tilde{B}\)</span>. 因此待证等式左边 <span class="math display">\[
+\Omega(\underline{A},\tilde{B})
+= \dd\omega(\underline{A},\tilde{B})
+= \underline{A}\omega(\tilde{B})-
+  \tilde{B}\omega(\underline{A})-
+  \omega([\underline{A},\tilde{B}]).
+\]</span> 其中 <span class="math inline">\(\omega(\tilde{B})\)</span>
+为零, 因为 <span class="math inline">\(\tilde{B}\)</span> 水平; <span class="math inline">\(\tilde{B}\omega(\underline{A})=\tilde{B}A=0\)</span>,
+因为 <span class="math inline">\(A\)</span> 为常数; <span class="math inline">\([\underline{A},\tilde{B}]=0\)</span> 根据 Claim
+28.4. 因此上式为零. 另一方面, 因为 <span class="math inline">\(X_p\)</span> 竖直, 所以待证等式右边 <span class="math inline">\((\dd\omega)_p(hX_p,hY_p)\)</span> 也为零.</p>
+<p>情形 C. <span class="math inline">\(X_p,Y_p\)</span> 都竖直. 取延拓
+<span class="math inline">\(X_p=\underline{A}_p\)</span>, <span class="math inline">\(Y_p=\underline{B}_p\)</span>, <span class="math display">\[
+\Align{
+\Omega(\underline{A},\underline{B})
+&amp;= \dd\omega(\underline{A},\underline{B}) +
+\frac12\Big(
+  [\omega(\underline{A}),\omega(\underline{B})] -
+  [\omega(\underline{B}),\omega(\underline{A})]
+\Big) \\
+&amp;= \dd\omega(\underline{A},\underline{B}) + [A,B].
+}
+\]</span> 其中第一项 <span class="math display">\[
+\Align{
+\dd\omega(\underline{A},\underline{B})
+&amp;= \underline{A}\omega(\underline{B})-
+\underline{B}\omega(\underline{A})-
+\omega([\underline{A},\underline{B}]) \\
+&amp;= \underline{A}(B)-\underline{B}(A) - \omega(\underline{[A,B]}) \\
+&amp;= 0 - 0 - [A,B],
+}
+\]</span> 因此 <span class="math inline">\(\Omega(\underline{A},\underline{B})=-[A,B]+[A,B]=0\)</span>.
+而另一方面, <span class="math inline">\((\dd\omega)_p(hX_p,hY_p)=(\dd\omega)_p(0,0)\)</span>
+也为零.</p>
+<p>2, 由 <span class="math inline">\(\omega\)</span> 的等变性, <span class="math display">\[
+\Align{
+r_g^*\Omega
+&amp;= r_g^*\dd\omega + r_g^*\frac12[\omega,\omega] \\
+&amp;= \dd{r_g^*\omega} + \frac12[r_g^*\omega,r_g^*\omega] \\
+&amp;= \dd(\operatorname{Ad}_{g^{-1}})\omega +
+\frac12[(\operatorname{Ad}_{g^{-1}})\omega,
+(\operatorname{Ad}_{g^{-1}})\omega] \\
+&amp;=
+(\operatorname{Ad}_{g^{-1}})\pqty{\dd\omega+\frac12[\omega,\omega]} \\
+&amp;= (\operatorname{Ad}_{g^{-1}})\Omega.
+}
+\]</span> 其中倒数第二个等号: <span class="math inline">\(\operatorname{Ad}_{g^{-1}}=(c_{g^{-1}})_*\)</span>
+作为李群同态的微分, 是李代数同态.</p>
+<p>3, 反复利用 Claim 19.4 及其推论, <span class="math display">\[
+\Align{
+\dd\Omega
+&amp;= \frac12\dd{[\omega,\omega]} \\
+&amp;= \frac12([\dd\omega,\omega]-[\omega,\dd\omega]) \\
+&amp;= [\dd\omega,\omega] \\
+&amp;= \bqty{\Omega-\frac12[\omega,\omega],\omega} \\
+&amp;= [\Omega,\omega] - \frac12[[\omega,\omega],\omega] \\
+&amp;= [\Omega,\omega].
+}
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 30.4</u> (标架丛上推广的 Bianchi 恒等式) 标架丛上联络 <span class="math inline">\(\omega\)</span> 的曲率 <span class="math inline">\(\Omega\)</span> 满足 <span class="math display">\[
+\dd\Omega^k = [\Omega^k,\omega].
+\]</span> 其中 <span class="math inline">\(\Omega^k=\Omega\wedge\cdots\wedge\Omega\)</span>,
+<span class="math inline">\(\wedge\)</span> 是矩阵乘法诱导出的楔积.
+(在一般的 <span class="math inline">\(G\)</span>-主丛上, <span class="math inline">\({\frak g}\)</span> 不一定是矩阵代数, 所以可能没有
+<span class="math inline">\(\wedge\)</span> 的概念.)</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 和向量丛的情形 (Claim 20.4) 完全一样.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 30.5</u> 设 <span class="math inline">\(G\)</span>-主丛上的联络 <span class="math inline">\(\omega\)</span> 和曲率 <span class="math inline">\(\Omega\)</span>. 若 <span class="math inline">\(X,Y\)</span> 为水平向量场, 则</p>
+<ol type="1">
+<li><span class="math inline">\(\Omega(X,Y)=-\omega([X,Y])\)</span>.</li>
+<li><span class="math inline">\([X,Y]\)</span> 水平当且仅当 <span class="math inline">\(\Omega(X,Y)=0\)</span>.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 利用 Claim 30.3 之 1 和 <span class="math inline">\(\omega\)</span> 的竖直性, <span class="math display">\[
+\Omega(X,Y)
+= \dd\omega(X,Y)
+= X\omega(Y)-Y\omega(X)-\omega([X,Y])
+= -\omega([X,Y]).
+\]</span> 2, 因为 <span class="math inline">\(\ker{\omega_p}={\cal
+H}_p\)</span>, 所以 <span class="math inline">\(\omega(Z)=0\)</span>
+当且仅当 <span class="math inline">\(Z\)</span> 是水平向量场. 利用 1
+即得.</p>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+        <a href="/tags/%E7%A4%BA%E6%80%A7%E7%B1%BB/" class="print-no-link">#示性类</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM275 | 11 主丛与示性类</div>
+      <div>https://disembo.github.io/Note/dg-gtm275-11/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-12/" title="GTM275 | 12 主丛与示性类">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 12 主丛与示性类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-10/" title="GTM275 | 10 主丛与示性类">
+                        <span class="hidden-mobile">GTM275 | 10 主丛与示性类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

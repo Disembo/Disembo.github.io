@@ -1,0 +1,882 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="站在更高的视角看Taylor展开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Taylor展开(二)">
+<meta property="og:url" content="https://disembo.github.io/Visualizing/taylor-series-2/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="站在更高的视角看Taylor展开">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/real-part-sin-taylor.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/real-part-(z%5E2+1)%5E(-1).png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/pendulum-theta-t.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/pendulum-T-theta0.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/exp(x%5E2)-integration.png">
+<meta property="article:published_time" content="2021-10-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.706Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="复变函数">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/real-part-sin-taylor.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Taylor展开(二) | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/articles/taylor-series-2.banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Taylor展开(二)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-18 00:00" pubdate>
+          2021年10月18日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Taylor展开(二)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body><h2 id="复变函数的taylor级数">3 复变函数的Taylor级数</h2>
+<h3 id="收敛半径的问题">3.1 收敛半径的问题</h3>
+<p>令<span class="math inline">\(F(x)=\dfrac{1}{1-x^2}\)</span>，<span class="math inline">\(G(x)=\dfrac{1}{1+x^2}\)</span>，我们考虑<span class="math inline">\(F(x),G(x)\)</span>在点<span class="math inline">\(x_0\)</span>处的幂级数展开.</p>
+<div class="note note-secondary">
+<p>预备：<span class="math inline">\(f(x)=\dfrac{1}{x+a}\)</span>（<span class="math inline">\(a\in\R\)</span>）在<span class="math inline">\(x_0\)</span>（<span class="math inline">\(x_0\ne-a\)</span>）处的幂级数展开：</p>
+<p>因为<span class="math inline">\(f'(x)=(-1)\dfrac{1}{(x+a)^2}\)</span>，<span class="math inline">\(f''(x)=(-1)(-2)\dfrac{1}{(x+a)^3}\)</span>，可得<span class="math inline">\(f^{(n)}(x)=\dfrac{(-1)^nn!}{(x+a)^{n+1}}\)</span>，所以
+<span class="math display">\[
+\Align{
+f(x)
+&amp;=\sum_{k=0}^\infty
+  \dfrac1{k!} \cdot \dfrac{(-1)^kk!}{(x_0+a)^{k+1}} \cdot (x-x_0)^k \\
+&amp;=\sum_{k=0}^\infty
+  \dfrac{(-1)^k}{(x_0+a)^{k+1}}(x-x_0)^k
+  &amp;(x\in I)
+}
+\]</span> 由比值法：<span class="math inline">\(\lim\limits_{k\to\infty}\abs{\dfrac{(-1)^{k+1}/(x_0+a)^{k+2}}{(-1)^k/(x_0+a)^{k+1}}}=\abs{\dfrac1{x_0+a}}\)</span>，所以收敛半径<span class="math inline">\(|x_0+a|\)</span>. 注意到<span class="math inline">\(f(x)\)</span>的奇点为<span class="math inline">\(x=-a\)</span>，而<span class="math inline">\(|x_0+a|\)</span>是展开点<span class="math inline">\(x_0\)</span>到奇点<span class="math inline">\(a\)</span>的距离，所以<span class="math inline">\(f(x)\)</span>某一点展开的收敛半径是这点到奇点的距离.</p>
+</div>
+<p>因为<span class="math inline">\(F(x)=\dfrac{1}{1-x^2}=\dfrac12\pqty{\dfrac{1}{x+1}-\dfrac{1}{x-1}}\)</span>，而<span class="math inline">\(\dfrac{1}{x+1}\)</span>和<span class="math inline">\(\dfrac{1}{x-1}\)</span>均可以在<span class="math inline">\(x_0\ne\pm1\)</span>处幂级数展开，它们的收敛半径分别为<span class="math inline">\(|x_0+1|\)</span>和<span class="math inline">\(|x_0-1|\)</span>，所以<span class="math inline">\(F(x)\)</span>在<span class="math inline">\(x_0\)</span>的幂级数展开收敛半径为 <span class="math display">\[
+R=\min\set{|x_0+1|,|x_0-1|}
+\]</span> 即<span class="math inline">\(x_0\)</span>到最近的奇点的距离（<span class="math inline">\(F(x)\)</span>有两个奇点<span class="math inline">\(-1,1\)</span>）.</p>
+<p>再看<span class="math inline">\(G(x)\)</span>，它的分母在实数域上无法因式分解，但是在复数域上可以，所以裂项得到
+<span class="math display">\[
+G(x)=\dfrac{1}{1+x^2}=\dfrac1{2\i}\pqty{\dfrac{1}{x-\i}-\dfrac{1}{x+\i}}
+\]</span> 其中<span class="math inline">\(\dfrac{1}{x-\i}\)</span>和<span class="math inline">\(\dfrac{1}{x+\i}\)</span>在任意<span class="math inline">\(x_0\in\R\)</span>处都可以幂级数展开，收敛半径为<span class="math inline">\(|x_0-\i|\)</span>和<span class="math inline">\(|x_0+\i|\)</span>，表示的就是实轴上一点<span class="math inline">\(x_0\)</span>到虚数<span class="math inline">\(\pm\i\)</span>的距离，根据勾股定理，这个距离为<span class="math inline">\(\sqrt{1+x_0^2}\)</span>，所以<span class="math inline">\(G(x)\)</span>的收敛半径 <span class="math display">\[
+R=\sqrt{1+x_0^2}
+\]</span> 代入<span class="math inline">\(x_0=0\)</span>，得到<span class="math inline">\(R=1\)</span>，这也就解释了<span class="math inline">\(\S2.3\)</span>最后留下来的问题.
+而解决这个问题的过程中，我们把视野拓展到了复数域，这启示我们，如果要了解更多关于幂级数的知识，需要在一个更高的视角——复数域上讨论.</p>
+<h3 id="复变函数的taylor级数-1">3.2 复变函数的Taylor级数</h3>
+<p>以复数为自变量和因变量的函数<span class="math inline">\(w=f(z)\)</span>称为复变函数. 和实变函数<span class="math inline">\(y=f(x)\)</span>一样，我们可以用Taylor级数逼近复变函数.
+我们仍然采用任意阶导数相等的方法，可以得到和实变函数的Taylor级数形式相同的表达式：
+<span class="math display">\[
+f(z)=\sum_{k=0}^\infty\dfrac{f^{(k)}(z_0)}{k!}(z-z_0)^k \quad (z\in D)
+\]</span> 其中<span class="math inline">\(z_0\)</span>是复平面区域<span class="math inline">\(D\)</span>中的某个点. 我们对函数<span class="math inline">\(w=f(z)\)</span>的要求是它在<span class="math inline">\(D\)</span>上任意阶可导. 如果一个函数<span class="math inline">\(w=f(z)\)</span>在区域<span class="math inline">\(D\)</span>内任意一点<span class="math inline">\(z_0\)</span>的邻域<span class="math inline">\(|z-z_0|&lt;r\)</span>内都可以表示成Taylor级数形式，那么称<span class="math inline">\(w=f(z)\)</span>在<span class="math inline">\(D\)</span>上是<strong>解析</strong>的.</p>
+<div class="note note-secondary">
+<p>解析函数的定义是：<span class="math inline">\(f\)</span>在区域<span class="math inline">\(D\)</span>内任意一点的邻域上都可以表示成自身的Taylor级数.
+<span class="math inline">\(f\)</span>可以是实变量的或者复变量的.</p>
+<p>此外，我们可以仿照实变函数定义复变函数可导：存在极限<span class="math inline">\(\lim\limits_{z\to
+z_0}\dfrac{f(z)-f(z_0)}{z-z_0}\)</span>（<span class="math inline">\(z,z_0\in D\)</span>）. 复可导要求<span class="math inline">\(z_0\)</span>以任意方式趋近<span class="math inline">\(z\)</span>时极限都存在.
+复可导是比实可导要强的条件.</p>
+<ul>
+<li><span class="math inline">\(w=f(z)\)</span>在区域<span class="math inline">\(D\)</span>上每一点都可导（称之为<strong>全纯</strong>），那么它任意阶可导，而且解析.</li>
+<li><span class="math inline">\(y=f(x)\)</span>在开区间<span class="math inline">\(I\)</span>上可导，甚至任意阶可导（光滑），但是仍然不能保证它解析.
+<ul>
+<li>例如<span class="math inline">\(f(x)=\e^{-1/x^2}\)</span>（另外规定<span class="math inline">\(f(0)=0\)</span>）在<span class="math inline">\((-\infty,+\infty)\)</span>上光滑，但在任何包含原点的区间上都不解析.</li>
+</ul></li>
+</ul>
+</div>
+<p>复变函数的Taylor级数形式上和实变函数的相同，计算起来也是相似的.</p>
+<div class="note note-secondary">
+<p>指数函数<span class="math inline">\(\displaystyle\e^z=\sum_{k=0}^\infty\frac{x^k}{k!}\)</span>（<span class="math inline">\(z\in\C\)</span>），下面展示了动画.</p>
+<video controls="" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/taylor-series/ComplexTaylor - exp.mp4" type="video/mp4">
+</video>
+<p>黄色的格线坐标系在<span class="math inline">\(w=\e^z\)</span>变换后的结果，蓝色的是Taylor展开的结果.
+随着项数的增加，蓝色的格线近乎和黄色格线重合.</p>
+</div>
+<p>对于一些解析的实变函数，我们可以利用它的Taylor展开直接将它们推广到复数域，上面的指数函数就是一个例子，其他的例如三角函数等基本初等函数也可以这样推广.</p>
+<p>下图画出例了正弦函数<span class="math inline">\(w=\sin{z}\)</span>的实部和它的Taylor多项式<span class="math inline">\(\displaystyle
+P_n(z)=\sum_{k=0}^{n}\frac{(-1)^{k}}{(2k+1)!}z^{2k+1}\)</span>的实部，三幅图中，<span class="math inline">\(n\)</span>分别等于<span class="math inline">\(1,2,3\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/real-part-sin-taylor.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<h3 id="收敛圆盘">3.3 收敛圆盘</h3>
+<p>复值的Taylor多项式<span class="math inline">\(S_n(z)=\sum_{k=0}^n
+a_kz^k\)</span>自然也有收敛或发散一说.
+实数级数的敛散性是由绝对值刻画的，复数级数的敛散性是由<u><strong>模</strong></u>刻画的：对于给定<span class="math inline">\(z=z_0\)</span>，我们说<span class="math inline">\(S_n(z_0)\)</span><strong>收敛</strong>到<span class="math inline">\(A\)</span>，如果<span class="math inline">\(S_n(z_0)\)</span>在复平面上能够任意接近<span class="math inline">\(A\)</span>. 即不论正数<span class="math inline">\(\varepsilon\)</span>有多小，总存在<span class="math inline">\(N\in\N_+\)</span>，使得<span class="math inline">\(|S_n(z_0)-A|&lt;\varepsilon\)</span>对于<span class="math inline">\(n&gt;N\)</span>恒成立.</p>
+<ul>
+<li>如果<span class="math inline">\(S_n(z_0)\)</span>收敛到<span class="math inline">\(A\)</span>，那么无穷级数<span class="math inline">\(S(z_0)=\sum_{k=0}^\infty a_kz_0^k=A\)</span>.</li>
+<li>如果<span class="math inline">\(S_n(z_0)\)</span>不收敛到任何复数，那么<span class="math inline">\(S(z_0)\)</span>发散.</li>
+</ul>
+<p>与实数幂级数的收敛区间是<span class="math inline">\(|x|&lt;R\)</span>一样，复数幂级数的收敛区域应当是<span class="math inline">\(|z|&lt;R\)</span>. 由于复数乘方的性质， <span class="math display">\[
+|z^n|=|z|^n
+\]</span> 所以幂级数在<span class="math inline">\(z_0\)</span>收敛与否是由<span class="math inline">\(|z_0|\)</span>决定的.</p>
+<p>对于以原点为中心的幂级数<span class="math inline">\(\sum
+a_kz^k\)</span>，存在圆<span class="math inline">\(|z|=R\)</span>，使得幂级数在圆内处处收敛，在圆外处处发散.
+<span class="math inline">\(R\)</span>称为收敛半径，<span class="math inline">\(|z|&lt;R\)</span>的所有点称为<strong>收敛圆盘</strong>(Disc
+of convergence)，<span class="math inline">\(|z|=R\)</span>的所有点称为<strong>收敛圆</strong>.</p>
+<ul>
+<li><span class="math inline">\(R\)</span>可能为<span class="math inline">\(0\)</span>，此时幂级数仅在<span class="math inline">\(z=0\)</span>收敛；<span class="math inline">\(R\)</span>也可能为<span class="math inline">\(+\infty\)</span>，此时幂级数在整个复平面上收敛.</li>
+</ul>
+<p>收敛半径的求法于实幂级数一样（参考Taylor展开(一)的F.2），但实际上在<span class="math inline">\(\S3.1\)</span>的讨论中我们已经看到了另外一种方法：</p>
+<p><strong>定理</strong>：<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(z_0\)</span>处幂级数展开的收敛半径是<span class="math inline">\(z_0\)</span>到最近的一个奇点的距离.</p>
+<ul>
+<li><strong>奇点</strong>(Singularity)指的是函数没有良好定义的点，例如<span class="math inline">\(w=\dfrac1{z-1}\)</span>的奇点是<span class="math inline">\(1\)</span>.</li>
+</ul>
+<div class="note note-secondary">
+<p>在之前的例子中，若将<span class="math inline">\(y=\dfrac{1}{1+x^2}\)</span>拓展到复数域，则<span class="math inline">\(w=\dfrac{1}{1+z^2}\)</span>在<span class="math inline">\(z=0\)</span>处的收敛半径是它到最近的奇点（<span class="math inline">\(\pm\i\)</span>）的距离<span class="math inline">\(1\)</span>.</p>
+<p>下图为<span class="math inline">\(w=\dfrac{1}{1+z^2}\)</span>的实部.
+可以发现在<span class="math inline">\(z=\pm\i\)</span>处图像不连续.
+黄色平面<span class="math inline">\(\Re(z)=0\)</span>和<span class="math inline">\(\Im(z)=0\)</span>和图像曲面的交线分别为<span class="math inline">\(y=\dfrac1{1+x^2}\)</span>和<span class="math inline">\(y=\dfrac{1}{1-x^2}\)</span>的图像曲线，它们在<span class="math inline">\(x=0\)</span>处Taylor展开（蓝色）收敛半径都是<span class="math inline">\(1\)</span>，收敛圆如图白色圆圈.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/real-part-(z%5E2+1)%5E(-1).png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+</div>
+<h2 id="应用">4 应用</h2>
+<p>Taylor展开应用广泛，在物理中，常用来近似较为复杂的函数.</p>
+<h3 id="小量近似">→ 小量近似</h3>
+<p><span class="math inline">\((1+x)^{\alpha}\)</span>（<span class="math inline">\(\alpha\in\R\)</span>）在<span class="math inline">\(x=0\)</span>处的Taylor展开： <span class="math display">\[
+\Align{
+(1+x)^\alpha=1
++\dfrac{\alpha(1+0)^{\alpha-1}}{1!}x
++\dfrac{\alpha(\alpha-1)(1+0)^{\alpha-2}}{2!}x^2
++\dots
+\quad (-1&lt;x&lt;1)
+}
+\]</span> 取前两项，便得到了<span class="math inline">\((1+x)^\alpha\)</span>在原点附近的二阶近似<span class="math inline">\(1+\alpha x\)</span>.</p>
+<h3 id="单摆的运动">→ 单摆的运动</h3>
+<p>设单摆的摆角为<span class="math inline">\(\theta\)</span>，摆长<span class="math inline">\(L\)</span>（轻杆），重力加速度<span class="math inline">\(g\)</span>，时间<span class="math inline">\(t\)</span>，则仅在重力作用下，有 <span class="math display">\[
+g\sin{\theta}=-L\dv{^2\theta}{t^2}
+\]</span> 注意到它是一个关于<span class="math inline">\(\theta\)</span>的非线性微分方程（有一个<span class="math inline">\(\sin{\theta}\)</span>），难解，如果取<span class="math inline">\(\sin{\theta}\)</span>的Taylor展开前一项<span class="math inline">\(\theta\)</span>近似，则有 <span class="math display">\[
+L\theta''+g\theta=0
+\Rightarrow \theta=C_1\sin\pqty{\sqrt{\frac{g}{L}}t+C_2}
+\]</span> 当初始角<span class="math inline">\(\theta_0\)</span>足够小，单摆的运动可近似为周期<span class="math inline">\(T=2\pi\sqrt{\dfrac{L}{g}}\)</span>的简谐运动.
+分别取初始角<span class="math inline">\(\theta_0=\dfrac{\pi}{10},\dfrac{\pi}{3},\dfrac{8\pi}{9}\)</span>，初始角速度为<span class="math inline">\(0\)</span>，可以画出下面的<span class="math inline">\(\theta-t\)</span>图像并和真实情况比对：</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/pendulum-theta-t.png" cloud-img="" style="zoom:40%;" lazyload="true"></p>
+<p>蓝色为精确解，黄色为近似解.</p>
+<p>关于周期<span class="math inline">\(T\)</span>，它实际上和初始角度<span class="math inline">\(\theta_0\)</span>和初始角速度<span class="math inline">\(\omega_0\)</span>都有关，取<span class="math inline">\(\omega_0=0\)</span>，画出<span class="math inline">\(T-\theta_0\)</span>图像.</p>
+<div class="note note-secondary">
+<p>单摆周期的精确公式为<span class="math inline">\(\displaystyle\sqrt{\frac{2L}g}\int_{-\theta_0}^{\theta_0}\frac{\dd\theta}{\sqrt{\cos{\theta}-\cos{\theta_0}}}\)</span>，不容易计算，如果利用<span class="math inline">\(\cos{x}\)</span>的Taylor展开式，取前两项<span class="math inline">\(\cos{x}\approx1-\dfrac12x^2\)</span>，代入分母中得到<span class="math inline">\(\cos{\theta-\cos{\theta_0}}\approx\dfrac12\pqty{\theta_0^2-\theta^2}\)</span>，这样便容易求出结果为
+<span class="math display">\[
+T\approx 2\pi\sqrt\frac{L}{g}
+\]</span> 就是近似求解微分方程组得出的结果.
+当然，Taylor展开也可以取更多的项，例如取三项后得到的结果是 <span class="math display">\[
+T\approx2\pi\sqrt\frac{L}{g}\pqty{1+\frac{\theta_0^2}{16}}
+\]</span></p>
+</div>
+<p>下图中，蓝色是周期的精确值，绿色和黄色的是取Taylor展开前几项后得到的近似结果，在<span class="math inline">\(\theta_0\)</span>很小的时候，它们的差别不大.
+也可以把绿色和黄色的函数看作蓝色函数的Taylor多项式逼近.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/pendulum-T-theta0.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<h3 id="胡克定律">→ 胡克定律</h3>
+<p>胡克定律的微观解释：一个原子在稳定状态总会位于势能最低点，设原子间作用力的势能函数为<span class="math inline">\(U(x)\)</span>，其中<span class="math inline">\(x\)</span>是位置，它的势能最低点是<span class="math inline">\(x_0\)</span>，最低势能为<span class="math inline">\(U_0\)</span>，则对<span class="math inline">\(U(x)\)</span>在<span class="math inline">\(x=x_0\)</span>进行Taylor展开得到 <span class="math display">\[
+U(x)=U_0+k_1(x-x_0)+k_2(x-x_0)^2+\dots
+\]</span> 只取前三项，<span class="math inline">\(U(x)\approx
+U_0+k_1(x-x_0)+k_2(x-x_0)^2\)</span>，极小值处一阶导数为<span class="math inline">\(0\)</span>，所以<span class="math inline">\(k_1=0\)</span>；又因为势能对位置的导数的相反数是力，所以原子间作用力
+<span class="math display">\[
+F=-\dv{U}{x}\approx-k_1-2k_2(x-x_0)=-2k_2(x-x_0)=-k\Delta x
+\]</span> 其中<span class="math inline">\(\Delta
+x=x-x_0\)</span>，有负号的原因是力和偏移量<span class="math inline">\(\Delta x\)</span>的方向相反.
+这样我们就得到了胡克定律，它实际上是一个近似的结果.</p>
+<h3 id="法则">→ 72法则</h3>
+<p>设一项投资（考虑复利）单位时间的收益率为<span class="math inline">\(r\)</span>（<span class="math inline">\(0&lt;r\ll1\)</span>），设本金为<span class="math inline">\(1\)</span>，则时间<span class="math inline">\(t\)</span>（<span class="math inline">\(t&gt;0\)</span>）后资金变为<span class="math inline">\((1+r)^t\)</span>，如果我们想要投资翻倍，那么有
+<span class="math display">\[
+\Align{
+t=\log_{1+r}2=\frac{\ln2}{\ln(1+r)}
+}
+\]</span> 因为正数<span class="math inline">\(r\)</span>远小于<span class="math inline">\(1\)</span>，所以利用<span class="math inline">\(\ln(1+r)\)</span>在<span class="math inline">\(r=0\)</span>处的Taylor展开<span class="math inline">\(\ln(1+r)\approx
+r-\dfrac{r^2}2+\dfrac{r^2}3-\dots\)</span>，只取第一项，得到<span class="math inline">\(t\approx\dfrac{\ln2}{r}\)</span>，又<span class="math inline">\(\ln{2}\approx0.693\approx0.72\)</span>（近似成<span class="math inline">\(0.72\)</span>是为了计算方便），这样可以用公式
+<span class="math display">\[
+t\approx\frac{72\%}{r}
+\]</span>
+来大致计算资金翻倍的时间，这便是金融学中的"<strong>72法则</strong>".
+例如，某项存款的年利率是<span class="math inline">\(4\%\)</span>，则本金翻倍的时间约为<span class="math inline">\(18\)</span>年.</p>
+<h3 id="其他数学领域">→ 其他数学领域</h3>
+<p>Taylor展开在求极限中也有用： <span class="math display">\[
+\Align{
+\lim_{x\to0}\frac{\sin{x}-x}{x^3}
+&amp;=\lim_{x\to0}\frac{\pqty{
+  x-\dfrac{x^3}{3!}+\dfrac{x^5}{5!}-\dots
+  }-x}{x^3} \\
+&amp;=\lim_{x\to0}\pqty{-\frac1{3!}+\frac{x^2}{5!}-\dots}
+=-\frac1{3!}=-\frac16
+}
+\]</span> 还有诸如：</p>
+<ul>
+<li><p>求解微分方程.</p></li>
+<li><p>求积分. <span class="math inline">\(\e^{x^2}\)</span>的原函数没办法用初等函数表示，但是可以利用Taylor展开求得级数解：
+<span class="math display">\[
+\Align{
+\e^x&amp;=\sum_{n=0}^\infty \frac{x^n}{n!} &amp;
+(-\infty&lt;x&lt;+\infty) \\
+\xrightarrow{x替换成x^2}
+\e^{x^2}&amp;=\sum_{n=0}^\infty \frac{x^{2n}}{n!} &amp;
+(-\infty&lt;x&lt;+\infty)
+}
+\]</span> 逐项积分得到<span class="math inline">\(\displaystyle\int\e^{x^2}\dd{x}=\sum_{n=0}^\infty\frac{x^{2n+1}}{(2n+1)n!}\)</span>.</p>
+<p>下图展示了原函数的精确解（上面的无穷级数）与上面求和式当<span class="math inline">\(n=1,2,3\)</span>时的解.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/taylor-series/exp(x%5E2)-integration.png" style="zoom:40%;" cloud-img="" lazyload="true"></p></li>
+<li><p>求级数<span class="math inline">\(1-\dfrac12+\dfrac13-\dfrac14+\dots\)</span>，直接利用<span class="math inline">\(f(x)=\ln(1+x)=x-\dfrac12x^2+\dfrac13x^2-\dots(-1&lt;x\le1)\)</span>，代入<span class="math inline">\(x=1\)</span>得到<span class="math inline">\(f(1)=\ln2=1-1/2+1/3-\dots\)</span>就是原级数的值.</p></li>
+<li><p><strong>不等式证明与放缩</strong>.</p></li>
+</ul>
+<div class="note note-secondary">
+<p>例如，证明当<span class="math inline">\(0&lt;x&lt;1\)</span>，<span class="math inline">\(\dfrac{x}{1+x}&lt;\ln(1+x)&lt;x\)</span>.</p>
+<p>Taylor展开得到 <span class="math display">\[
+\Align{
+\e^x &amp;= 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\dots \\
+\Rightarrow
+1+x &amp;&lt; \e^x &lt; 1+x+x^2+\dots=\dfrac{1}{1-x} \quad (0&lt;x&lt;1)
+}
+\]</span> 两边取对数， <span class="math display">\[
+\ln(1+x)&lt;x&lt;\ln{\frac1{1-x}}
+\]</span> 右侧用<span class="math inline">\(\dfrac{x}{1+x}\)</span>替换<span class="math inline">\(x\)</span>，得到 <span class="math display">\[
+\dfrac{x}{1+x}&lt;-\ln\pqty{1-\dfrac{x}{1+x}}=\ln(1+x)
+\]</span> 综合上面两式，有 <span class="math display">\[
+\dfrac{x}{1+x}&lt;\ln(1+x)&lt;x
+\]</span></p>
+</div>
+<hr>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Visualizing/" class="category-chain-item">Visualizing</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/" class="print-no-link">#复变函数</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Taylor展开(二)</div>
+      <div>https://disembo.github.io/Visualizing/taylor-series-2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年10月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Visualizing/rotating-frame/" title="旋转的参考系">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">旋转的参考系</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Visualizing/taylor-series-1/" title="Taylor展开(一)">
+                        <span class="hidden-mobile">Taylor展开(一)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

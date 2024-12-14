@@ -1,0 +1,1055 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="旋转参考系中的惯性力 &amp; 地球上的科里奥利力">
+<meta property="og:type" content="article">
+<meta property="og:title" content="旋转的参考系">
+<meta property="og:url" content="https://disembo.github.io/Visualizing/rotating-frame/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="旋转参考系中的惯性力 &amp; 地球上的科里奥利力">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/local-coordinates.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/local-coordinates-coriolis-force.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/foucault-pendulum-panthéon.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/air-motion-inertia.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/inertial-circles.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/air-mass-trajectory.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/wind-belts.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/cyclones.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/right-hand-rule.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/rotating-frame-basis.png">
+<meta property="article:published_time" content="2021-10-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.706Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="物理">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/local-coordinates.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>旋转的参考系 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/articles/rotating-frame.banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="旋转的参考系"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-19 00:00" pubdate>
+          2021年10月19日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">旋转的参考系</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body><h2 id="牛顿定律与惯性力">1 牛顿定律与惯性力</h2>
+<p>1687年7月5日，牛顿发表巨著《自然哲学的数学原理》，其中包括了力学三定律：</p>
+<ul>
+<li><strong>第一定律</strong>：若施加于某物体的外力为零，则该物体的运动速度不变.（惯性定律）</li>
+<li><strong>第二定律</strong>：施加于物体的外力等于物体的加速度乘以质量.（加速度定律）</li>
+<li><strong>第三定律</strong>：相互作用的两个物体之间的作用力和反作用力总是大小相等，方向相反，作用在同一条直线上.（作用力与反作用力定律）</li>
+</ul>
+<p>这三条定律是经典力学的基础.
+但是，第一和第二定律不是在每个参考系下都成立的.
+例如在汽车刹车时，虽然以汽车为参考系时，人一直静止，但是人会感到一股向前的力，此时牛一和牛二不适用了.
+我们称适用牛顿第一定律的参考系为<strong>惯性参考系</strong>(Inertial
+reference frame)，不适用的称为<strong>非惯性参考系</strong>.</p>
+<p>在非惯性系中，如果我们要描述力<span class="math inline">\(\vb{F}\)</span>与加速度<span class="math inline">\(\vb{a}\)</span>的关系，要怎么办呢？从参考系变换来看：设一个运动的质点为<span class="math inline">\(1\)</span>，非惯性系为<span class="math inline">\(2\)</span>，惯性系为<span class="math inline">\(3\)</span>，则质点<span class="math inline">\(1\)</span>相对<span class="math inline">\(3\)</span>的加速度<span class="math inline">\(=1\)</span>相对<span class="math inline">\(2\)</span>的加速度<span class="math inline">\(+2\)</span>相对<span class="math inline">\(3\)</span>的加速度，即 <span class="math display">\[
+\vb{a}_{13}=\vb{a}_{12}+\vb{a}_{23}
+\]</span> 或<span class="math inline">\(\vb{a}_{13}-\vb{a}_{23}=\vb{a}_{12}\)</span>，两边同时乘以质点的质量<span class="math inline">\(m\)</span>得到 <span class="math display">\[
+\Align{
+m\vb{a}_{13}-m\vb{a}_{23} &amp;= m\vb{a}_{12} \\
+\vb{F} - m\vb{a}_{23} &amp;= m\vb{a}_{12}
+}
+\]</span> 其中<span class="math inline">\(\vb{F}=m\vb{a}_{13}\)</span>是质点受的力（在<span class="math inline">\(3\)</span>中用牛顿第二定律可得）. 在非惯性系<span class="math inline">\(2\)</span>中，质点受力<span class="math inline">\(\vb{F}\)</span>和加速度<span class="math inline">\(\vb{a}_{12}\)</span>满足如上关系式. 我们令<span class="math inline">\(\vb{F}_{\rm
+I}=-m\vb{a}_{23}\)</span>，称之为<strong>惯性力</strong>(Inertial
+force)，它和质点质量与非惯性系的加速度有关. 现在，牛顿第二定律可以修正为
+<span class="math display">\[
+\vb{F}+\vb{F}_{\rm I}=m\vb{a}
+\]</span> 这是在任意参考系中都成立的.
+可以发现，惯性参考系就是本身的加速度为零的参考系.</p>
+<div class="note note-secondary">
+<p>对于某些状况，牛顿运动定律并不适用，这时候需要更进阶的物理理论：超高速或非常强烈重力场的状况下，我们需要相对论解释一些天体运动和现象，例如黑洞；在微观尺度，我们需要量子力学解释原子发射光谱等物理现象.
+但是现代工程学里，对于一般应用案例，像车辆或飞机的运动，牛顿运动定律已能准确地解释和计算工程师遇到的问题.（引自<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/牛顿运动定律">Wikipedia</a>）</p>
+</div>
+<h2 id="旋转参考系中的惯性力">2 旋转参考系中的惯性力</h2>
+<p>求解惯性力，关键在于求出非惯性系的加速度.
+对于平动的非惯性系，加速度就是平动加速度<span class="math inline">\(\vb{a}\)</span>，很简单；但是对于旋转的参考系，加速度可能与物体的位置和参考系的旋转状态（角速度）都有关，推导起来没那么直接了.</p>
+<h3 id="推导与结论">2.1 推导与结论</h3>
+<p>设一个惯性系为<span class="math inline">\(i\)</span>，旋转系为<span class="math inline">\(r\)</span>，旋转的角速度矢量为<span class="math inline">\(\vb*{\omega}\)</span>（方向不变，即定轴转动），质点<span class="math inline">\(m\)</span>的位矢为<span class="math inline">\(\vb{r}\)</span>（在不同的参考系下有<span class="math inline">\(\vb{r}_i\)</span>，<span class="math inline">\(\vb{r}_r\)</span>）.</p>
+<div class="note note-secondary">
+<p>质点在<span class="math inline">\(i\)</span>下的速度为位矢对时间的导数，利用<a href="#footnote-2">[F.2]</a>的结论，有
+<span class="math display">\[
+\Align{
+\vb{v}_i
+=\pqty{\dv{\vb{r}}{t}}_i
+=\bqty{\pqty{\dv{}{t}}_r+\vb*\omega\times}\vb{r}_r
+}
+\]</span>
+加速度为速度的导数，再次利用<a href="#footnote-2">[F.2]</a>的结论，有
+<span class="math display">\[
+\Align{
+\vb{a}_i = \pqty{\dv{\vb{v}}{t}}_i
+&amp;= \bqty{\pqty{\dv{}{t}}_r+\vb*\omega\times}
+   \bqty{\pqty{\dv{\vb{r}}{t}}_r+\vb*\omega\times\vb{r}_r} \\
+&amp;= \pqty{\dv{^2\vb{r}}{t^2}}_r
+  +2\vb*\omega\times\pqty{\dv{\vb{r}}{t}}_r
+  +\dv{\vb*\omega}{t}\times\vb{r}_r
+  +\vb*\omega\times(\vb*\omega\times\vb{r}_r) \\
+&amp;= \vb{a}_r
+  + 2\vb*\omega\times\vb{v}_r
+  + \vb*\beta\times\vb{r}_r
+  - \omega^2\vb{r}_r
+}
+\]</span></p>
+<p>其中<span class="math inline">\(\vb*\beta\)</span>为旋转的角加速度；<span class="math inline">\(\vb*\omega\times(\vb*\omega\times\vb{r}_r)=-\omega^2\vb{r}_r\)</span>可以由叉积的几何意义推出.
+移项、两边同时乘以<span class="math inline">\(m\)</span>有 <span class="math display">\[
+m\vb{a_r} = \vb{F}
++\pqty{\orange{-2m\vb*\omega\times\vb{v}_r}}
++\pqty{\blue{-m\vb*\beta\times\vb{r}_r}}
++\green{m\omega^2\vb{r}_r}
+\]</span></p>
+</div>
+<p><span class="math inline">\(\vb{F}=m\vb{a}_i\)</span>是质点所受外力；而惯性力一共有三项，对应了三种惯性力：</p>
+<ul>
+<li><strong>科里奥利力</strong>(Coriolis force)：<span class="math inline">\(\vb{F}_{\rm
+Coriolis}=-2m\vb*\omega\times\vb{v}_r\)</span>.</li>
+<li><strong>欧拉力</strong>(Euler force)：<span class="math inline">\(\vb{F}_{\rm
+Euler}=-m\vb*\beta\times\vb{r}_r\)</span>.</li>
+<li><strong>离心力</strong>(Centrifugal force)：<span class="math inline">\(\vb{F}_{\rm
+centrifugal}=m\omega^2\vb{r}_r\)</span>.</li>
+</ul>
+<p>此时<span class="math inline">\(\vb{F}_{\rm I}=\vb{F}_{\rm
+Coriolis}+\vb{F}_{\rm Euler}+\vb{F}_{\rm
+centrifugal}\)</span>，修正的牛顿第二定律<span class="math inline">\(m\vb{a}_r = \vb{F}+\vb{F}_{\rm
+I}\)</span>成立.</p>
+<h3 id="离心力">2.2 离心力</h3>
+<p>惯性离心力<span class="math inline">\(\vb{F}_{\rm
+centrifugal}=m\omega^2\vb{r}_r\)</span>的方向是从旋转中心指向质点的，也就是能把物体"甩出去"的一种力.
+只要物体的旋转半径不为零，就会收到惯性离心力的影响.
+在坐车的时候，转弯时你会感一股向外的力，便是惯性离心力.</p>
+<h3 id="科里奥利力">2.3 科里奥利力</h3>
+<p>科里奥利力，是法国气象学家、工程师科里奥利(Gustave Gaspard de
+Coriolis)在1835年提出的.</p>
+<p>由<span class="math inline">\(\vb{F}_{\rm
+Coriolis}=-2m\vb*\omega\times\vb{v}_r=2m\vb{v}_r\times\vb*\omega\)</span>可知，仅对旋转系中运动的物体（<span class="math inline">\(\vb{v}_r\ne\vb0\)</span>）收到科里奥利力的作用，科氏力的方向与速度方向垂直，所以不改变速度大小，仅改变方向.</p>
+<p>下面的动画形象展示了科里奥利力.
+一个黄色质点在光滑的、旋转的圆盘上匀速运动，在外部惯性参考系看来，质点不受任何力（左）；但在圆盘系看来，质点收到一个惯性力，即科里奥利力（右），力（蓝色矢量）始终与速度（红色矢量）方向垂直，只改变速度方向，所以质点相对于圆盘作<u>匀速圆周运动</u>.</p>
+<video controls="" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/rotating-frame/coriolis-example.mp4" type="video/mp4">
+</video>
+<p>由于地球本身就是一个巨大的旋转参考系，所以在上面运动的物体都会收到科里奥利力作用，所以科里奥利力的理论应用很广泛.</p>
+<h3 id="欧拉力">2.4 欧拉力</h3>
+<p>欧拉力是以欧拉(Leonhard Euler)命名的，<span class="math inline">\(\vb{F}_{\rm
+Euler}=-m\vb*\beta\times\vb{r}_r\)</span>，欧拉力只有在<u>非匀速</u>旋转的非惯性系中存在，它的方向和"旋转加速"的方向相反.
+在骑旋转木马时，当木马开始加速旋转，你会感到一股向后的力；当木马减速至停止旋转，你会感到一股向前的力，这就是欧拉力.</p>
+<h2 id="地球上的科里奥利力">3 地球上的科里奥利力</h2>
+<p>我们认为地球绕着地轴以约<span class="math inline">\(\omega=\dfrac{360^\circ}{24\,{\rm
+h}}\approx0.0042^\circ/{\rm s}\)</span>的角速度自西向东自转.
+因为匀速自转、角速度不变，所以欧拉力为零；因为角速度很小，所以<span class="math inline">\(\omega^2\)</span>可以忽略不计，所以不考虑离心力，所以只剩下科里奥利力.</p>
+<h3 id="大小和方向">3.1 大小和方向</h3>
+<p>对于在地面运动的质点<span class="math inline">\(m\)</span>（速度平行于地面），我们以正东、正北方为<span class="math inline">\(x,y\)</span>轴方向，正上方为<span class="math inline">\(z\)</span>方向，建立右手系.
+地球的角速度矢量为<span class="math inline">\(\vb*\omega\)</span>，指向北极星.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/local-coordinates.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/local-coordinates-coriolis-force.png" style="zoom:62%;" cloud-img="" lazyload="true"></p>
+<p>设<span class="math inline">\(m\)</span>的速度大小为<span class="math inline">\(v\)</span>，方向（它只在<span class="math inline">\(x-y\)</span>平面内运动）为<span class="math inline">\((\cos{\theta},\sin{\theta})\)</span>（<span class="math inline">\(\theta\in\itvLr{0,2\pi}\)</span>，是与<span class="math inline">\(x\)</span>轴夹角）方向，则速度矢量 <span class="math display">\[
+\vb{v}=(v\cos{\theta},v\sin{\theta},0)
+\]</span>
+而地球自转的角速度矢量朝向北极星方向，与地面夹角为当地纬度<span class="math inline">\(\varphi\)</span>（<span class="math inline">\(\varphi\in\bqty{-\dfrac\pi2,\dfrac{\pi}{2}}\)</span>，北半球取正，南半球取负，赤道为<span class="math inline">\(0\)</span>），所以角速度矢量 <span class="math display">\[
+\vb*\omega=(0,\omega\cos\varphi,\omega\sin\varphi)
+\]</span> 由<span class="math inline">\(\vb{F}=2m\vb{v}\times\vb*\omega\)</span>得到科里奥利力为<span class="math inline">\(2mv\omega(\sin\varphi\sin\theta,-\sin\varphi\cos\theta,\cos\varphi\cos\theta)\)</span>.
+我们只关心科里奥利力的水平方向分量，因为在竖直方向上，科里奥利力相对于重力可以忽略不计（因为<span class="math inline">\(\omega\)</span>很小）. 科氏力的水平分量为 <span class="math display">\[
+\vb{F}_{xy}=2mv\omega\sin\varphi(\sin\theta,-\cos\theta)
+\]</span> 它的大小为<span class="math inline">\(F=2mv\omega\abs{\sin\varphi}\)</span>，方向为<span class="math inline">\(\sin\varphi(\sin\theta,-\cos\theta)\)</span>的方向.
+据此有如下结论.</p>
+<p><strong>结论</strong>：科里奥利力的水平分量：</p>
+<ul>
+<li>大小只与纬度和速度大小有关，当速度大小一定时，<u>纬度越高，力越大</u>，赤道为<span class="math inline">\(0\)</span>.</li>
+<li>方向和速度方向<u>垂直</u>，
+<ul>
+<li>北半球（<span class="math inline">\(\sin\varphi&gt;0\)</span>），朝向速度<u>右边</u>.</li>
+<li>南半球（<span class="math inline">\(\sin\varphi&lt;0\)</span>），朝向速度<u>左边</u>.</li>
+</ul></li>
+</ul>
+<p>我们代入一系列具体值，求出不同纬度和速度对应的科里奥利<em>加速度</em>（水平分量）的大小<span class="math inline">\(({\rm
+m/s^2})\)</span>，来感受一下科里奥利力的影响：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">纬度</th>
+<th style="text-align: center;"><span class="math inline">\(1{\rm
+m/s}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(250{\rm
+m/s}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(7000{\rm
+m/s}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="math inline">\(0^\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">\(40^\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.000093\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.023\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.65\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">\(90^\circ\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.00015\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.036\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1.02\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>人步行的速度约为<span class="math inline">\(1{\rm
+m/s}\)</span>，科里奥利力对人走路的影响极小.</p></li>
+<li><p>民航客机的巡航速度约为<span class="math inline">\(250{\rm
+m/s}\)</span>.
+相对于重力、推力、或者扰动气流的作用等，科里奥利力对客机的作用很小，可以忽略不计.</p></li>
+<li><p>洲际导弹的飞行速度约为<span class="math inline">\(7000{\rm
+m/s}\)</span>，这时科里奥利加速度最大可达到<span class="math inline">\(1.02{\rm m/s^2}\)</span>，约为重力加速度的<span class="math inline">\(1/10\)</span>.
+而且洲际导弹大部分时间是在无动力、低阻力（约<span class="math inline">\(2000{\rm
+km}\)</span>高空）情况下飞行的，且飞行距离长（大于<span class="math inline">\(8000{\rm
+km}\)</span>），此时科里奥利力<u>不可忽视</u>，必须纳入弹道计算.</p></li>
+</ul>
+<h3 id="傅科摆">3.2 傅科摆</h3>
+<div class="note note-secondary">
+<center>
+关于地球自转
+</center>
+<p>早在古希腊时期，一些毕达哥拉斯学派的人们就认为地球在自己转动，而非"天空"在转动产生了昼夜交替.
+亚里士多德则认为地球是静止不动的，周围的恒星在围绕地球转动，托勒密的日心说也是基于此.</p>
+<p>这种思想一直延续到16世纪，直到哥白尼提出日心说的时候.
+地球自转会使得赤道略鼓，两极略平.
+牛顿在《原理》书中预测了这种变化会以<span class="math inline">\(1:230\)</span>的比例发生.
+直到18世纪，人们才通过测量证实了哥白尼和牛顿观点.</p>
+<p>由于地球自转，地球参考系中的物体会受科里奥利力的作用，这会导致北半球竖直下落的物体向右偏转.
+18世纪末19世纪初，三位欧洲物理学家令一个球从<span class="math inline">\(158.5\)</span>米高处落下，这个球向右偏转了<span class="math inline">\(27.4\)</span>毫米，与计算值基本吻合.</p>
+<p>最著名的证明地球自转的实验是由物理学家傅科（Léon Foucault）于
+1851年进行的傅科摆实验.</p>
+</div>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/foucault-pendulum-panthéon.jpg" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>傅科制作了一个<span class="math inline">\(67\)</span>米长的、挂有<span class="math inline">\(28\)</span>千克铅球的摆，即<strong>傅科摆</strong>(Foucault
+pendulum)，挂在法国巴黎先贤祠（上图）.
+在摆受重力而摆动的同时，它受到科里奥利力而向右偏.
+傅科摆的进动简单、直接地证明了地球的自转.</p>
+<div class="note note-secondary">
+<p>进动就是物体旋转轴方向的改变.</p>
+<p>摆只受重力和拉力正常摆动时，转轴是过摆的中心，且垂直于摆动平面的直线.
+当摆向右偏转时，转轴也会偏转，即进动；进动的周期为转轴旋转<span class="math inline">\(360^\circ\)</span>的时间.</p>
+</div>
+<p>下面是一个傅科摆（近似）轨迹示意图（偏转程度被极度夸大了）.</p>
+<video controls="" style="width:500px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/rotating-frame/foucault-pendulum.mp4" type="video/mp4">
+</video>
+<p>设摆长为<span class="math inline">\(L\)</span>，纬度<span class="math inline">\(\varphi\)</span>（南负北正），地球自转角速度<span class="math inline">\(\omega\)</span>，则当摆的摆角非常小的时候：</p>
+<ul>
+<li><p>摆动的周期（摆动一个来回时间）约为<span class="math inline">\(T_0=2\pi\sqrt{\dfrac{L}{g}}\)</span>.</p></li>
+<li><p>进动的周期（摆的转轴旋转<span class="math inline">\(360^\circ\)</span>的时间）约为<span class="math inline">\(T_p=\dfrac{2\pi}{\omega\abs{\sin\varphi}}\gg1{\rm
+s}\)</span>.</p>
+<p>代入<span class="math inline">\(\omega=\dfrac{2\pi}{1\,{\rm
+day}}\)</span>，得<span class="math inline">\(T_p=\dfrac{1\,{\rm
+day}}{\abs{\sin\varphi}}\)</span>.</p></li>
+</ul>
+<p>在赤道，傅科摆不会出现进动现象（或进动周期无穷大）；在<span class="math inline">\(49^\circ{\rm N}\)</span>的巴黎，周期为<span class="math inline">\(1.33\)</span>天，即每小时<span class="math inline">\(11.28^\circ\)</span>；在南北极，进动的周期最小，为<span class="math inline">\(1\)</span>天.</p>
+<p>此外，傅科摆的轨迹在水平面上的投影是一条<u>内摆线</u>，即一个小圆在大圆内滚动时，小圆上某一点的轨迹.（其中小圆与大圆半径之比<span class="math inline">\(\dfrac{r}{R}=\dfrac12\pqty{1-\dfrac{T_0}{T_p}}\)</span>）</p>
+<video controls="" style="width:600px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/rotating-frame/foucault-hypocycloid.mp4" type="video/mp4">
+</video>
+<h3 id="大气运动">3.3 大气运动</h3>
+<p>当空气或者水质点<span class="math inline">\(m\)</span>以速度<span class="math inline">\(v\)</span>水平运动时，会受到大小为<span class="math inline">\(2mv\omega\abs{\sin\varphi}\)</span>的科里奥利力，因为位移与地球半径相比较小，我们假定纬度<span class="math inline">\(\varphi\)</span>不变.</p>
+<p>如果<span class="math inline">\(m\)</span>在水平方向不受其他力（质点靠惯性运动），那么它的轨迹将会是一个圆：</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/air-motion-inertia.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>这个圆称为<strong>惯性圆</strong>(Inertial circle)，设其半径为<span class="math inline">\(R\)</span>，则有 <span class="math display">\[
+m\frac{v^2}{R}=2mv\omega\abs{\sin\varphi}
+\]</span> 解得<span class="math inline">\(R=\dfrac{v}{2\omega\abs{\sin\varphi}}\)</span>.
+在中纬度地区，<span class="math inline">\(2\omega\abs{\sin\varphi}\)</span>约为<span class="math inline">\(10^{-4}{\rm s^{-1}}\)</span>，所以对于<span class="math inline">\(10{\rm
+m/s}\)</span>的典型大气速度，惯性圆半径是<span class="math inline">\(100{\rm km}\)</span>，运动周期为<span class="math inline">\(17{\rm h}\)</span>；对于<span class="math inline">\(0.1{\rm m/s}\)</span>的典型洋流速度，半径是<span class="math inline">\(1{\rm km}\)</span>.</p>
+<p>地球上各地惯性圆如下图，北半球质点顺时针转，南半球逆时针转.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/inertial-circles.jpg" style="zoom: 40%;" cloud-img="" lazyload="true"></p>
+<p>上面的讨论是基于空气在惯性下运动这一情况的，实际上，在水平方向上，空气还会受：</p>
+<ul>
+<li><p><strong>阻力</strong><span class="math inline">\(\vb{F}_r\)</span>：近地面空气与地面（<u>下垫面</u>）摩擦产生的阻力，与空气速度方向相反，大小与速度成正比：
+<span class="math display">\[
+\vb{F}_r=-k\vb{v}
+\]</span> 空气内部不同部分相对运动产生的阻力很小，可以忽略不计.</p></li>
+<li><p><strong>水平气压梯度力</strong><span class="math inline">\(\vb{F}_{g}\)</span>：造成空气（在水平方向上）由高气压处流向低气压处的力，它总是垂直于等压面、指向气压<u>下降最快</u>的方向，且它的大小正比于气压<u>下降的速度</u>.
+<span class="math inline">\(\vb{F}_g\)</span>产生的加速度为： <span class="math display">\[
+\vb{a}_g=-\frac1\rho\nabla{P}
+\]</span> 其中<span class="math inline">\(\rho\)</span>为空气密度，约在<span class="math inline">\(1{\rm kg/m^3}\)</span>量级；<span class="math inline">\(\nabla{P}\)</span>是向量，称为"压力梯度"，它的大小为气压上升的速度，方向为气压上升最快的方向.
+<span class="math inline">\(\nabla{P}\)</span>的大小很小，约在<span class="math inline">\(10^{-4}{\rm N/m}\)</span>量级.
+梯度力的数量级和科氏力是接近的.</p></li>
+</ul>
+<p>我们假设水平方向上，等压线是直线，且等距、平行（类似于匀强电场的特点）.</p>
+<p>在对流层高空，没有阻力<span class="math inline">\(\vb{F}_r\)</span>，所以气体只受到梯度力<span class="math inline">\(\vb{F}_g\)</span>和科氏力.</p>
+<video controls="" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/rotating-frame/air-mass-motion.mp4" type="video/mp4">
+</video>
+<div class="note note-secondary">
+<p>红色矢量为速度；黑色、蓝色向量分别为梯度力、科氏力.</p>
+<p>最开始只有梯度力，空气开始运动后便有了科氏力，运动方向开始向右偏转，速度逐渐增大.
+偏转到与等压线平行时，我们理想地认为此时梯度力与科氏力平衡：<span class="math inline">\(\vb{F}_c+\vb{F}_g=\vb0\)</span>，所以空气开始沿着<u>平行</u>于等压线方向匀速运动.
+此时的运动平衡状态称为"地转平衡".</p>
+<p>但是实际上，并不会出现这种巧合的平衡：在速度与等压线平行时，科氏力大于梯度力，导致速度继续向右偏，一直回到初始的那条等压线，再重复以上运动，形成周期性震荡.
+其实空气的轨迹和带电粒子在匀强电场与磁场的复合场中的运动轨迹相似，它们的运动方程的形式是相似的：
+<span class="math display">\[
+\Align{
+m\vb{a} &amp;= 2m\vb{v}\times\vb*\omega+\vb{F}_g \\
+m\vb{a} &amp;= q\vb{v}\times\vb{B}+q\vb{E} \\
+}
+\]</span></p>
+</div>
+<p>在近地面，需要考虑阻力.</p>
+<div class="note note-secondary">
+<p>阻力减小了速度，削弱了科氏力的影响，所以运动偏转得没那么厉害.
+近似地，速度近似<u>斜交</u>于等压线.</p>
+<p>在真实情况下，需要考虑更多的影响因素，空气会形成不一样的轨迹.
+下图展示了无阻力/有阻力情况下空气的轨迹示意图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/air-mass-trajectory.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+</div>
+<div class="note note-secondary">
+<p>除了地转平衡之外，还有平衡模型如：</p>
+<ul>
+<li><p>旋转平衡：梯度力和惯性离心力的平衡.</p>
+<p>如龙卷风，水槽排水形成的漩涡，或者秋风刮起时，地上的叶子转起来的现象.</p></li>
+<li><p>梯度平衡：梯度力、科氏力与惯性离心力平衡</p>
+<p>如下面提到的气旋.</p></li>
+</ul>
+<p>参考：<a target="_blank" rel="noopener" href="http://www.atms.unca.edu/chennon/notes/atms310/balanced_flow.pdf">Balanced
+Flow</a>.</p>
+</div>
+<p>由于科里奥利力的存在，在大气环流和气旋现象中，可以明显地发现气流的偏转.
+下图为地球上的风带以及气旋（北半球、南半球）.</p>
+<table>
+
+<thead>
+<tr>
+<th><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/wind-belts.png" cloud-img="" lazyload="true"></th>
+<th><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/cyclones.jpg" cloud-img="" lazyload="true"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<hr>
+<h2 id="footnotes">Footnotes</h2>
+<h3 id="footnote-1" class="js-toc-ignore">
+F.1 关于叉乘
+</h3>
+<p>除了点积，向量还有一种<strong>叉积</strong>(Cross product)运算.
+两个三维向量的叉积是另一个三维向量： <span class="math display">\[
+\vb{a}\times\vb{b}=\vb{c}
+\]</span> 其中，<span class="math inline">\(\vb{c}\)</span><u>同时垂直</u>与<span class="math inline">\(\vb{a},\vb{b}\)</span>两个向量，它的大小是<span class="math inline">\(\vb{a},\vb{b}\)</span>确定的<u>平行四边形的面积</u>，方向由<u>右手定则</u>确定.
+当<span class="math inline">\(\vb{a}\)</span>与<span class="math inline">\(\vb{b}\)</span>平行时，它们的叉积为零向量.
+本文对叉积知识的要求不高，了解大小、方向的判定方法即可即可.</p>
+<ul>
+<li><p><span class="math inline">\(\vb{c}\)</span>的模长：<span class="math inline">\(\abs{\vb{c}}=\abs{\vb{a}}\abs{\vb{b}}\sin\lr{\vb{a},\vb{b}}\)</span>.</p></li>
+<li><p>右手定则：</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/right-hand-rule.jpg" style="zoom:40%;" cloud-img="" lazyload="true"></p></li>
+</ul>
+<p>根据右手定则可以注意到，叉乘不满足交换律. 但是它具有：</p>
+<ol type="1">
+<li>反交换律：<span class="math inline">\(\vb{a}\times\vb{b}=-\vb{b}\times\vb{a}\)</span>.</li>
+<li>线性性：<span class="math inline">\(\vb{a}\times(\lambda\vb{b}+\vb{c})=\lambda\vb{a}\times\vb{b}+\vb{a}\times\vb{c}\)</span>.</li>
+</ol>
+<p>根据叉乘的定义就可以发现，三维空间的单位正交基<span class="math inline">\(\vu{i},\vu{j},\vu{k}\)</span>满足<span class="math inline">\(\vu{i}\times\vu{j}=\vu{k}\)</span>，<span class="math inline">\(\vu{j}\times\vu{k}=\vu{i}\)</span>，<span class="math inline">\(\vu{k}\times\vu{i}=\vu{j}\)</span>（三者轮换）.
+可以利用这个关系来导出叉积的坐标公式.</p>
+<h3 id="footnote-2" class="js-toc-ignore">
+F.2 系间坐标的关系
+</h3>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/rotating-frame/rotating-frame-basis.png" style="zoom:64%;" cloud-img="" lazyload="true"></p>
+<p>不妨以旋转系<span class="math inline">\(r\)</span>的角速度<span class="math inline">\(\vb*\omega\)</span>方向为<span class="math inline">\(z\)</span>轴建立右手系，设惯性系<span class="math inline">\(i\)</span>的单位正交基底（上图虚线）为<span class="math inline">\(\vu{i},\vu{j},\vu{k}\)</span>，旋转系<span class="math inline">\(r\)</span>的基底（上图实线）为 <span class="math display">\[
+\Align{
+\vu{i}'&amp;=\pmqty{\cos\theta&amp;\sin\theta&amp;0}\T \\
+\vu{j}'&amp;=\pmqty{-\sin\theta&amp;\cos\theta&amp;0}\T \\
+\vu{k}'&amp;=\pmqty{0&amp;0&amp;1}\T
+}
+\]</span> 其中<span class="math inline">\(\theta\)</span>是旋转的角度，角速度大小<span class="math inline">\(\omega=\dv{\theta}{t}\)</span>；<span class="math inline">\(\theta,\omega\)</span>和基向量<span class="math inline">\(\vu{i}',\vu{j}',\vu{k}'\)</span>都是关于<span class="math inline">\(t\)</span>的函数.
+现在我们求出基向量的导数：利用复合函数求导法则有 <span class="math display">\[
+\Align{
+\dv{\vu{i}'}{t}&amp;=\pmqty{-\omega\sin\theta&amp;\omega\cos\theta&amp;0}\T=\omega\vu{j}'
+\\
+\dv{\vu{i}'}{t}&amp;=\pmqty{-\omega\cos\theta&amp;-\omega\sin\theta&amp;0}\T=-\omega\vu{i}'
+\\
+\dv{\vu{k}'}{t}&amp;=\vb0 \\
+}
+\]</span>
+考虑叉积的几何意义（可参考<a href="#footnote-1">[F.1]</a>），有 <span class="math display">\[
+\dv{\vu{i}'}{t}=\vb*\omega\times\vu{i}',
+\quad
+\dv{\vu{j}'}{t}=\vb*\omega\times\vu{j}',
+\quad
+\dv{\vu{k}'}{t}=\vb*\omega\times\vu{k}'
+\]</span> 所以如果<span class="math inline">\(r\)</span>中的向量值函数<span class="math inline">\(\vb*{f}(t)=P(t)\vu{i}'+Q(t)\vu{j}'+R(t)\vu{k}'\)</span>，那么利用乘积求导法则，我们可以求出它在<span class="math inline">\(i\)</span>参考系下的导数： <span class="math display">\[
+\Align{
+\pqty{\dv{\vb*{f}}{t}}_i
+&amp;= \pqty{\dv{P}{t}\vu{i}'+P\dv{\vu{i}'}{t}}
+  +\pqty{\dv{Q}{t}\vu{j}'+Q\dv{\vu{j}'}{t}}
+  +\pqty{\dv{R}{t}\vu{k}'+R\dv{\vu{k}'}{t}} \\
+&amp;=
+\pqty{\dv{P}{t}\vu{i}'+\dv{Q}{t}\vu{j}'+\dv{R}{t}\vu{k}'}
+  +\bqty{\vb*\omega\times\pqty{P(x)\vu{i}+Q(x)\vu{j}+R(x)\vu{j}}} \\
+&amp;= \pqty{\dv{\vb*{f}}{t}}_r + \vb*\omega\times\vb*{f}
+}
+\]</span> 其中<span class="math inline">\(\pqty{\dv{\vb*{f}}{t}}_r\)</span>是<span class="math inline">\(\vb*{f}\)</span>在<span class="math inline">\(r\)</span>参考系下的导数.
+上式揭露了<u>两个参考系下向量函数导数的关系</u>，如果提出公因子<span class="math inline">\(\vb*{f}\)</span>，则上式可以化简为： <span class="math display">\[
+\pqty{\dv{\vb*{f}}{t}}_i=\bqty{\pqty{\dv{}{t}}_r+\vb*\omega\times}\vb*{f}
+\]</span> 将<span class="math inline">\(\bqty{\pqty{\dv{}{t}}_r+\vb*\omega\times}\)</span>整体地看作一个算子.
+这个式子在推导旋转参考系的惯性力中会用到.</p>
+<hr>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Visualizing/" class="category-chain-item">Visualizing</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>旋转的参考系</div>
+      <div>https://disembo.github.io/Visualizing/rotating-frame/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年10月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Visualizing/ode-1/" title="ODE1 动力系统">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ODE1 动力系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Visualizing/taylor-series-2/" title="Taylor展开(二)">
+                        <span class="hidden-mobile">Taylor展开(二)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

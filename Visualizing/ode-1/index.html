@@ -1,0 +1,825 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一个关于微分方程的系列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ODE1 动力系统">
+<meta property="og:url" content="https://disembo.github.io/Visualizing/ode-1/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="一个关于微分方程的系列">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/linear-and-nonlinear-oscillations.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/logistic-chaos.png">
+<meta property="article:published_time" content="2022-05-15T01:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.705Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分方程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/linear-and-nonlinear-oscillations.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ODE1 动力系统 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/articles/ode-1.banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ODE1 动力系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-15 09:00" pubdate>
+          2022年5月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ODE1 动力系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body><div class="note note-secondary">
+<p>这是一个关于微分方程的系列，会有4篇文章：</p>
+<ul>
+<li>ODE1 动力系统：这个领域的研究对象和历史，以及一些概念.</li>
+<li>ODE2 一阶微分方程：人口模型、向量场与不动点.</li>
+<li>ODE3 二阶微分方程：简谐运动、单摆、相空间与不动点.</li>
+<li>ODE4 线性微分方程：一些关于线性微分方程的讨论.</li>
+</ul>
+<p>你需要有一些预备知识：</p>
+<ul>
+<li>高中导数.</li>
+<li>简单的线性代数（可参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E">系列视频:
+线性代数的本质</a>）.</li>
+</ul>
+</div>
+<h2 id="动力系统">1 动力系统</h2>
+<p>万物都在运动. <strong>动力系统</strong>(dynamical
+system)指的是随着时间变化的系统：振动的弹簧振子、变化的人口、四处流动的大气气团都是动力系统的例子.
+一个动力系统的状态可以由一个关于时间<span class="math inline">\(t\)</span>的函数<span class="math inline">\(y(t)\)</span>描述.</p>
+<p>动力学(dynamics)是研究动力系统的学科：具体地说，就是研究<u>系统的状态怎样演化</u>.
+这个领域的研究从17世纪的牛顿开始.
+牛顿提出了力学三定律、发明了微积分，而最简单的动力系统莫过于一个运动的质点了.
+在无阻尼弹簧振子中，把质点在某处自由释放，利用牛顿第二定律可以列出 <span class="math display">\[
+mx''(t)=-kx(t) \tag{a}
+\]</span> 其中<span class="math inline">\(x(t)\)</span>表示质点（在<span class="math inline">\(t\)</span>时刻）的位置，<span class="math inline">\(x''(t)\)</span>为加速度.
+上式是一个关于未知函数<span class="math inline">\(x\)</span>和它的（2阶）导数<span class="math inline">\(x''\)</span>的方程，称为关于<span class="math inline">\(x\)</span>的二阶<strong>微分方程</strong>(differential
+equation).
+牛顿最先对微分方程做了系统的研究，如在《原理》中建立并求解了行星运动方程，从而验证了开普勒三定律.
+解决了太阳-地球系统的运动问题（二体问题）后，牛顿又将目光转向三体问题.
+但是问题忽然变得非常复杂；几十年后，人们发现三体问题是无解的（无法求出解析式）.</p>
+<video controls="" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/ode/two-body-and-three-body.mp4" type="video/mp4">
+</video>
+<p>Poincaré（庞加莱）在1881年发表论文，提出了<u>定性</u>研究微分方程的思想，即从方程本身出发，利用几何工具来定性地分析，例如：这个系统随时间（定性的）的变化趋势如何？是趋向于平衡稳定、呈现出周期变化，或者是呈现出更复杂的模式？……</p>
+<p>二十世纪初，<u>非线性</u>的震荡（与之相对的是简谐运动这类<u>线性</u>震荡）被广泛应用于雷达、收音机等电子设备中；五十年代，随着高速计算机的发明，我们可以用数值模拟的方法，得到微分方程的数值近似解.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/linear-and-nonlinear-oscillations.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>1963年，气象学家Lorenz（洛伦兹）在计算机上模拟了一个简单的气流模型.
+他发现气流没有呈现出周期性或者趋于稳定状态，而是不停地做无规律、非周期的震荡；并且初始状态的微小改变能使得演化趋势截然不同.
+这个现象称为<strong>混沌</strong>(chaos)，这也是为什么难以预测天气的原因——大气初始状态的微小改变和误差会让模拟结果与真实情况大相径庭.</p>
+<p>之后，人们在流体流动、种群演化、化学反应、神经网络、经济学等诸多方面发现了混沌的影子.
+举一个简单的例子，一个人口演化模型：<span class="math inline">\(p_n\)</span>表示第<span class="math inline">\(n\)</span>年的人口规模（<span class="math inline">\(n\in\N\)</span>，<span class="math inline">\(p_n\)</span>在<span class="math inline">\(0\)</span>到<span class="math inline">\(1\)</span>之间），<span class="math inline">\(r\)</span>是一个正常数，方程 <span class="math display">\[
+p_{n+1}=rp_n(1-p_n) \tag{b}
+\]</span> 描述了人口的迭代规律（称为Logistic迭代）.
+上式是一个<strong>迭代映射</strong>(iterated
+map)或者<strong>差分方程</strong>(difference equation).
+和微分方程相似，差分方程也是一个关于未知函数的方程，不过它的未知函数是<u>离散</u>变化的.
+1976年，生物学家Robert
+May发现了（这个看似简单的）Logistic迭代映射背后的混沌现象.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/logistic-chaos.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>之后，数学物理学家Feigenbaum（费根鲍姆）发现了一个系统从常规转变为混沌的规律；同时，Mandelbrot（曼德博）关于<strong>分形</strong>的研究也正普及于世.
+总而言之，动力学，尤其是非线性动力学，是一个年轻而有活力的学科.</p>
+<p>下面介绍一下上面提及的几组概念.</p>
+<h2 id="差分与微分">2 差分与微分</h2>
+<p>首先来简单回顾导数的相关概念.</p>
+<p><strong>差分</strong>(difference)，顾名思义，就是函数<span class="math inline">\(y(t)\)</span>的"差别"，即"改变量"： <span class="math display">\[
+\orange{\Delta y(t)} = y(t+\blue{\Delta t}) - y(t)
+\]</span> 其中，<span class="math inline">\(\Delta t\)</span>和<span class="math inline">\(\Delta
+y\)</span>分别是自变量、因变量的差分，如下面视频中一开始的情形.（当然，这里的<span class="math inline">\(y(t)\)</span>可以是离散的：<span class="math inline">\(t\in\N\)</span>，<span class="math inline">\(\Delta
+t=1\)</span>，但是这样就没有下面"微分"的概念了.）</p>
+<video controls="" preload="metadata" style="width:700px;" cloud-vid="">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/ode/difference-and-differential.mp4" type="video/mp4">
+</video>
+<p>当<span class="math inline">\(\Delta
+t\)</span>非常非常小，趋近于<span class="math inline">\(0\)</span>的时候，上面动画中的割线趋于一条切线，这条切线能够较好拟合<span class="math inline">\(y(t)\)</span>，所以<span class="math inline">\(\Delta y\)</span>与<span class="math inline">\(\Delta t\)</span>的关系也可以用线性关系来近似：
+<span class="math display">\[
+\orange{\Delta y(t)} \approx \alpha \blue{\Delta t}
+\quad (\blue{\Delta t}\to0)
+\]</span> <span class="math inline">\(\alpha\)</span>是切线的斜率.
+当<span class="math inline">\(\Delta
+t\)</span>足够小的时候，上式的偏差是微乎其微的，所以认为<span class="math inline">\(\Delta y\)</span>就等于<span class="math inline">\(\alpha \Delta y\)</span>，写作： <span class="math display">\[
+\orange{\dd{y}(t)}=\alpha\blue{\dd{x}}
+\]</span> 其中<span class="math inline">\(\dd{x},\dd{y}\)</span>分别称为自变量、因变量的<strong>微分</strong>(differential)，即"微小"（<span class="math inline">\(\Delta t\)</span>趋近于<span class="math inline">\(0\)</span>时）的改变量，<span class="math inline">\(\alpha\)</span>就是<span class="math inline">\(y(t)\)</span>在<span class="math inline">\(t\)</span>处的<strong>导数</strong>(derivative)，也可以写作<span class="math inline">\(\displaystyle\alpha =
+\dv{y}{t}\)</span>，是因变量与自变量微分的商，所以也叫做<u>微商</u>.
+此外，自变量与因变量差分的商<span class="math inline">\(\dfrac{\Delta
+y}{\Delta t}\)</span>叫做<u>差商</u>，或者平均变化率.
+导数是平均变化率的极限，或者叫瞬时变化率： <span class="math display">\[
+\dv{y}{t}
+=\lim_{\Delta t\to0}\frac{\Delta y}{\Delta t}
+=\lim_{\Delta t\to0}\frac{y(t+\Delta t)-y(t)}{\Delta t}
+\]</span> "<span class="math inline">\(\dd{}\)</span>"是微分符号，它本身带有"改变量趋近于<span class="math inline">\(0\)</span>"的含义. 微分的本质，就是对<span class="math inline">\(y(t)\)</span>在<span class="math inline">\(t\)</span>附近的<u>线性近似</u>，以直代曲.</p>
+<p>对于每一点<span class="math inline">\(t\)</span>，都有一个对应的导数<span class="math inline">\(\alpha(t)\)</span>，记函数<span class="math inline">\(y'(t)=\alpha(t)\)</span>为<span class="math inline">\(y(t)\)</span>的导函数.</p>
+<div class="note note-secondary">
+<p>不过，<span class="math inline">\(\Delta y\approx\alpha\Delta
+t\)</span>（<span class="math inline">\(\Delta
+t\to0\)</span>）这种关系不是任何时候都存在的. 如果<span class="math inline">\(y(t)\)</span>在<span class="math inline">\(t\)</span>附近满足 <span class="math display">\[
+\orange{\Delta y}=\alpha\blue{\Delta t}+o(\blue{\Delta t})
+\]</span> 其中，</p>
+<ul>
+<li>误差项<span class="math inline">\(o(\Delta t)\)</span>表示<span class="math inline">\(\Delta t\)</span>的高阶小量，比<span class="math inline">\(\Delta t\)</span>小得多，于是可以被忽略.</li>
+<li><span class="math inline">\(\alpha\)</span>是一个只<span class="math inline">\(t\)</span>有关、与<span class="math inline">\(\Delta t\)</span>趋于<span class="math inline">\(0\)</span>的方式无关的实数.</li>
+</ul>
+<p>如果满足上面的条件，那么称<span class="math inline">\(y(t)\)</span>在<span class="math inline">\(t\)</span>可微.</p>
+</div>
+<p>顾名思义，<u>微分方程</u>就是关于未知函数<span class="math inline">\(\color{SteelBlue}y(t)\)</span>以及它的导数（微分之商）的方程，例如
+<span class="math display">\[
+{\color{SteelBlue}y''}+2{\color{SteelBlue}y'}+{\color{SteelBlue}y}^2=0
+\qquad
+x+2{\color{SteelBlue}y}=\sin{\color{SteelBlue}y'}
+\quad \dots
+\]</span> 而<u>差分方程</u>是关于未知数列<span class="math inline">\(\set{ {\color{SeaGreen}y_n}
+}\)</span>（离散的函数）以及它的差分的方程，例如 <span class="math display">\[
+{\color{SeaGreen}\Delta y_n}
++ 2{\color{SeaGreen}y_n}^2
+- {\color{SeaGreen}y_n} = 0 \qquad
+{\color{SeaGreen}\Delta y_n}
++ {\color{SeaGreen}\Delta(\Delta y_n)} = {\color{SeaGreen}y_n}
+\quad \dots
+\]</span> 不过由于数列的差分可以写成两项之差，<span class="math inline">\(\Delta
+y_n=y_{n+1}-y_n\)</span>，上面的方程一般也等价地写成 <span class="math display">\[
+{\color{SeaGreen}y_{n+1}}
+=2{\color{SeaGreen}y_n}(1-{\color{SeaGreen}y_n}) \qquad
+{\color{SeaGreen}y_{n+2}}
+={\color{SeaGreen}y_{n+1}}+{\color{SeaGreen}y_n}
+\quad \dots
+\]</span> 在这几篇文章中，我们主要研究微分方程.</p>
+<h2 id="线性与非线性">3 线性与非线性</h2>
+<p>一个微分方程是<strong>线性</strong>(linear)的，如果方程两边都是关于<span class="math inline">\(\color{SteelBlue}y,y',y'',\dots\)</span>的<u>一次多项式</u>，例如
+<span class="math display">\[
+\Align{
+{\color{SteelBlue}y''}-{\color{SteelBlue}y'}+2{\color{SteelBlue}y}=\cos{x},
+&amp;&amp;
+x^2{\color{SteelBlue}y'''}-4{\color{SteelBlue}y}=0,
+&amp;&amp; {\color{SteelBlue}y'}=3{\color{SteelBlue}y}
+}
+\]</span> 以及前面提到的<span class="math inline">\({\color{SteelBlue}x''}=-k{\color{SteelBlue}x}-\mu{\color{SteelBlue}x'}\)</span>（简谐振子）都是线性微分方程，而
+<span class="math display">\[
+\Align{
+{\color{SteelBlue}y''}+2\sin{\color{SteelBlue}y}=0, &amp;&amp;
+\pqty{{\color{SteelBlue}y'}}^2+x=0, &amp;&amp;
+\frac{x+2{\color{SteelBlue}y}}{x-{\color{SteelBlue}y}}={\color{SteelBlue}y'}
+}
+\]</span> 以及前面提到的<span class="math inline">\({\color{SteelBlue}x''}=-{\color{SteelBlue}x}-\mu({\color{SteelBlue}x}^2-1)\)</span>（Van
+de Pol非线性振子）都是非线性微分方程.</p>
+<p>微分方程的<strong>阶数</strong>(order)是方程中<span class="math inline">\(\color{SteelBlue}y\)</span>的最高阶导数的阶数.</p>
+<p>对于线性微分方程，我们已经有了比较完善的理论.
+线性方程描述了一个"理想"的世界：系统总是等于部分的总和，误差总是会被按照确定的倍率放大，不会有难以预测的混沌……
+随着讨论的深入，你对"线性"微分方程的理解会逐渐深入.</p>
+<p>不过，生活中大部分事物都是非线性的（例如，同时听两首你喜欢的歌不会给你双倍的快乐），大部分非线性微分方程我们无法求解，不过可以把它们近似成线性方程来求解，或者是从方程直接来分析动力系统的演化.
+接下来我们会探讨微分方程，首先利用直观的几何工具来分析，最后会讨论方程的求解以及解的特点等.</p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Visualizing/" class="category-chain-item">Visualizing</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" class="print-no-link">#微分方程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ODE1 动力系统</div>
+      <div>https://disembo.github.io/Visualizing/ode-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Visualizing/ode-2/" title="ODE2 一阶微分方程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ODE2 一阶微分方程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Visualizing/rotating-frame/" title="旋转的参考系">
+                        <span class="hidden-mobile">旋转的参考系</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

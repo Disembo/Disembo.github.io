@@ -1,0 +1,1221 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《微分几何入门与广义相对论》第三章的笔记.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="梁GR | 2 内禀曲率张量">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-lgr-2/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="《微分几何入门与广义相对论》第三章的笔记.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-21T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.704Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分几何">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>梁GR | 2 内禀曲率张量 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="梁GR | 2 内禀曲率张量"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-21 12:00" pubdate>
+          2023年7月21日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">梁GR | 2 内禀曲率张量</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body><div class="note note-secondary">
+<p>梁灿彬, 周彬《微分几何入门与广义相对论》第三章的笔记.</p>
+</div>
+<h2 id="intrinsic-curvature-tensors">3  Intrinsic Curvature Tensors</h2>
+<h3 id="derivative-operators">3.1  Derivative operators</h3>
+<div style="text-align: right;">
+2023.7.11
+</div>
+<p><strong>无挠导数算符(torsion free derivative operator)</strong>.
+记<span class="math inline">\(\mathcal{F}_M(k,l)\)</span>为光滑流形<span class="math inline">\(M\)</span>上的<span class="math inline">\((k,l)\)</span>型<span class="math inline">\(C^\infty\)</span>张量场的集合. 若算符<span class="math inline">\(\nabla_a:\mathcal{F}_M(k,l)\to\mathcal{F}(k,l+1)\)</span>满足如下条件:</p>
+<ol type="1">
+<li>线性性, <span class="math inline">\(\nabla_a(\alpha
+T^{\dots}{}_{\dots}+S^{\dots}{}_{\dots})=\alpha\nabla_a
+T^{\dots}{}_{\dots}+\nabla_a S^{\dots}{}_{\dots}\)</span>.</li>
+<li>Lebniz法则, <span class="math inline">\(\nabla_a(T^{\dots}{}_{\dots}S^{\dots}{}_{\dots})=T^{\dots}{}_{\dots}\nabla_aS^{\dots}{}_{\dots}+(\nabla_aT^{\dots}{}_{\dots})S^{\dots}{}_{\dots}\)</span>.</li>
+<li>与缩并可交换, <span class="math inline">\({\rm
+C}\circ\nabla=\nabla\circ{\rm C}\)</span>.</li>
+<li>规定与<span class="math inline">\((0,0)\)</span>型张量场作用的结果,
+<span class="math inline">\(v^a(\nabla_af)=v(f)\)</span>.
+<ul>
+<li>进一步有<span class="math inline">\(\nabla_af=(\dd{f})_a\)</span>.</li>
+</ul></li>
+<li>无挠性(torsion free), <span class="math inline">\(\nabla_a(\nabla_bf)=\nabla_b(\nabla_af)\)</span>.</li>
+</ol>
+<p>则称<span class="math inline">\(\nabla_a\)</span>为<span class="math inline">\(M\)</span>上的一个无挠导数算符.
+今后的导数算符默认是无挠导数算符.</p>
+<p><strong>不同导数算符差别的刻画</strong>.</p>
+<p>一个流形上的导数算子不光存在, 而且有很多. 它们作用在某个<span class="math inline">\((0,0)\)</span>型张量场的结果均相同,
+故其区别只有在作用在非<span class="math inline">\((0,0)\)</span>型张量场时才能体现出来: 设<span class="math inline">\(\omega_b,\omega_b'\)</span>为两个对偶矢量场,
+且<span class="math inline">\(\omega_b|_p=\omega'_b|_p\)</span>,
+则一般来说<span class="math inline">\(\nabla_a\omega_b|_p\)</span>和<span class="math inline">\(\nabla_a\omega'_b|_p\)</span>是不同的. 然而,
+有趣的是, 对于两个导数算符<span class="math inline">\(\nabla_a,\tilde\nabla_a\)</span>, 其"差值"<span class="math inline">\(\tilde\nabla_a-\nabla_a\)</span>分别作用于<span class="math inline">\(\omega_b,\omega'_b\)</span>后在<span class="math inline">\(p\)</span>点取值是相同的.</p>
+<p><u>Claim 1</u> 若<span class="math inline">\(\omega_b|_p=\omega'_b|_p\)</span>, 则<span class="math inline">\([(\tilde\nabla_a-\nabla_a)\omega_b]_p=[(\tilde\nabla_a-\nabla_a)\omega'_b]_p\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 即证<span class="math inline">\([\nabla_a(\omega_b-\omega'_b)]_p=[\tilde\nabla_a(\omega_b-\omega'_b)]_p\)</span>.</p>
+<p>置<span class="math inline">\(\Omega_b:=\omega_b-\omega'_b\)</span>,
+其在坐标基底下展开为<span class="math inline">\(\Omega_b=\Omega_\mu(\dd{x}^\mu)_b\)</span>, 于是
+<span class="math display">\[
+\lhs
+=[\nabla_a\Omega_\mu(\dd{x}^\mu)_b]_p
+=[(\dd{x}^\mu)_b\nabla_a\Omega_\mu]_p +
+[\orange{\Omega_\mu}\nabla_a(\dd{x}^\mu)_b]_p
+=[(\dd{x}^\mu)_b \nabla_a\Omega_\mu]_p.
+\]</span> (注意到<span class="math inline">\(\orange{\Omega_\mu|_p=0}\)</span>) 同理可得 <span class="math display">\[
+\rhs = [(\dd{x}^\mu)_b \tilde\nabla_a\Omega_\mu]_p.
+\]</span> 根据定义的第4条有<span class="math inline">\(\nabla_a\Omega_\mu=\tilde\nabla_a\Omega_\mu\)</span>,
+即<span class="math inline">\(\lhs=\rhs\)</span>.</p>
+</div>
+<p>这个定理告诉我们, 给定<span class="math inline">\((0,1)\)</span>型张量<span class="math inline">\(\mu_b\in V^*_p\)</span>, 对于所有在<span class="math inline">\(p\)</span>点取值为<span class="math inline">\(\mu_b\)</span>的矢量场<span class="math inline">\(\omega_b\)</span>(称为<span class="math inline">\(\mu_b\)</span>的延拓), <span class="math inline">\([(\tilde\nabla_a-\nabla_a)\omega_b]\)</span>是一个固定的<span class="math inline">\((0,2)\)</span>型张量. 这种对应关系<span class="math inline">\(\mu_c\mapsto[(\tilde\nabla_a-\nabla_a)\omega_b]\)</span>是一个线性映射,
+更具体地说是一个<span class="math inline">\((1,2)\)</span>型张量,
+记作<span class="math inline">\(C^c{}_{ab}\)</span>, 于是 <span class="math display">\[
+\nabla_a\omega_b = \tilde\nabla_a\omega_b - C^c{}_{ab}\omega_c.
+\]</span> <span class="math inline">\(C^c{}_{ab}\)</span>是与<span class="math inline">\(p\)</span>点有关的张量, 它构成<span class="math inline">\(M\)</span>上的一个<span class="math inline">\((1,2)\)</span>型张量场.</p>
+<p><u>Claim 2</u></p>
+<ol type="1">
+<li><p>(下指标对称) <span class="math inline">\(C^c{}_{ab}=C^c{}_{ba}\)</span>.</p></li>
+<li><p>(不同导数算符作用于矢量的差别) <span class="math inline">\(\nabla_a v^b=\tilde\nabla_av^b +
+C^b{_{ac}}v^c\)</span>.</p></li>
+<li><p>(不同导数算符作用于一般张量的差别) <span class="math display">\[
+\nabla_a T^{b_1\dots b_k}{_{c_1\dots c_l}}
+=\tilde\nabla_a T^{b_1\dots b_k}{_{c_1\dots c_l}}
++\sum_{i=1}^k C^{b_i}{_{ad}} T^{b_1\dots d\dots b_k}{_{c_1\dots c_l}}
+-\sum_{j=1}^l C^{d}{_{ac_j}} T^{b_1\dots b_k}{_{c_1\dots d\dots c_l}}.
+\]</span></p></li>
+</ol>
+<p><strong>普通导数算符与协变导数算符</strong>.</p>
+<p>给定坐标域<span class="math inline">\(O\)</span>, 取算符<span class="math inline">\(\partial_a:\mathcal{F}_O(k,l)\to\mathcal{F}_O(k,l+1)\)</span>.
+对于<span class="math inline">\(T^{b\dots}{_{c\dots}} =
+T^{\nu\dots}{_{\sigma\dots}} \pqty{\pdv{x^\nu}}^{b} \cdots
+(\dd{x^{\sigma}})_{c} \cdots\)</span>, 满足 <span class="math display">\[
+\partial_a T^{b\dots}{_{c\dots}}:=
+(\dd{x}^\mu)_a \pdv{T^{\nu\dots}{_{\sigma\dots}}}{x^\mu}
+\pqty{\pdv{x^\nu}}^{b} \cdots (\dd{x^{\sigma}})_{c} \cdots.
+\]</span> 可以验证, 这个算符是无挠导数算符,
+称之为<strong>普通导数(ordinary derivative)算符</strong>.
+上面的这个条件其实是说, 张量"导数的分量"等于"分量的偏导".</p>
+<ul>
+<li><span class="math inline">\(\partial_a\)</span>满足比无挠性更强的条件, <span class="math inline">\(\partial_a(\partial_b
+T)=\partial_b(\partial_aT)\)</span>, 对任意张量场<span class="math inline">\(T\)</span>. 即<span class="math inline">\(\partial_{(a}\partial_{b)}=\partial_a\partial_b\)</span>.</li>
+<li>坐标基矢的普通导数为零.</li>
+</ul>
+<p><span class="math inline">\(\partial_a\)</span>的定义依赖于坐标系,
+而我们称与坐标系无关的导数算符为<strong>协变导数(covariant
+derivative)算符</strong>, 记作<span class="math inline">\(\nabla_a\)</span>. 我们把刻画普通导数算符<span class="math inline">\(\partial_a\)</span>与协变导数算符<span class="math inline">\(\nabla_a\)</span>差别的<span class="math inline">\(C^c{_{ab}}\)</span>称<span class="math inline">\(\nabla_a\)</span>在该坐标系下的<strong>克氏符(Christoffel
+symbol)</strong>, 记作<span class="math inline">\(\Gamma^c{_{ab}}\)</span>. 有 <span class="math display">\[
+\nabla_a\omega_b = \partial_a\omega_b - \Gamma^c{_{ab}}\omega_c.
+\]</span></p>
+<ul>
+<li><p>克氏符的定义是依赖于坐标系的: <span class="math inline">\(\nabla_a\)</span>在不同坐标系<span class="math inline">\(\qty{x^\mu},\qty{x'^\mu}\)</span>下有不同的克氏符<span class="math inline">\(\Gamma^c{_{ab}}\)</span>和<span class="math inline">\(\bar\Gamma^c{_{ab}}\)</span>.</p>
+<p>然而<span class="math inline">\(\Gamma^c{_{ab}}\)</span>在<span class="math inline">\(\qty{x^\mu},\qty{x'^\mu}\)</span>下的分量<span class="math inline">\(\Gamma^{\sigma}{_{\mu\nu}}\)</span>和<span class="math inline">\(\Gamma'^{\sigma}{_{\mu\nu}}\)</span>确实符合张量变换律(<span class="math inline">\(\bar\Gamma^c{_{ab}}\)</span>亦然).</p></li>
+</ul>
+<p>类似地, 普通导数<span class="math inline">\(\partial_av^b\)</span>也依赖于坐标系,
+其展开为<span class="math inline">\(\displaystyle\partial_a v^b =
+(\dd{x}^\mu)_a \pqty{\pdv{x^\nu}}^b \pdv{v^\nu}{x^\mu}\)</span>. 记<span class="math inline">\(\displaystyle v^\nu{}_{,\mu}\equiv\partial_\mu
+v^\nu\equiv\pdv{v^\nu}{x^\mu}\)</span>.</p>
+<ul>
+<li><p>设坐标系<span class="math inline">\(\qty{x^\mu},\qty{x'^\mu}\)</span>下的普通导数算符分别为<span class="math inline">\(\partial_a,\partial_a'\)</span>, 则<span class="math inline">\(\partial_av^b,\partial_a'v^b\)</span>一般不同.</p>
+<p>然而, <span class="math inline">\(\partial_av^b\)</span>在<span class="math inline">\(\qty{x^\mu},\qty{x'^\mu}\)</span>下的分量是满足变换律的.</p></li>
+</ul>
+<p>协变导数<span class="math inline">\(\nabla_av^b\)</span>是不依赖于坐标系的张量场.
+记其分量为<span class="math inline">\(v^\nu{}_{;\mu}\)</span>, 于是<span class="math inline">\(\displaystyle\partial_a v^b = (\dd{x}^\mu)_a
+\pqty{\pdv{x^\nu}}^b v^\nu{_{;\mu}}\)</span>.</p>
+<p><u>Claim 3</u> <span class="math inline">\(v^\nu{_{;\mu}} =
+v^\nu{_{,\mu}} + \Gamma^\nu{_{\mu\sigma}}v^\sigma\)</span>且<span class="math inline">\(\omega_{\nu\,;\mu}=\omega_{\nu\,,\mu}-\Gamma^\sigma{_{\mu\nu}}\omega_\sigma\)</span>.</p>
+<p><u>Claim 4</u> 选定坐标场, 对于任一导数算符<span class="math inline">\(\nabla_a\)</span>, 有 <span class="math display">\[
+\pqty{\pdv{x^\tau}}^b\nabla_b\pqty{\pdv{x^\mu}}^a
+=\Gamma^\sigma{_{\mu\tau}}\pqty{\pdv{x^\sigma}}^a
+\]</span></p>
+<ul>
+<li>左边表示第<span class="math inline">\(\mu\)</span>基底场沿着第<span class="math inline">\(\tau\)</span>基底场的导数.</li>
+<li>这可作为克氏符的等价定义.</li>
+</ul>
+<p><u>Claim 5</u> 定义的条件3, 与缩并可交换顺序<span class="math inline">\({\rm C}\circ\nabla=\nabla\circ{\rm
+C}\)</span>等价于<span class="math inline">\(\nabla_a\delta^b{_c}=0\)</span>, 其中<span class="math inline">\((1,1)\)</span>型张量场<span class="math inline">\(\delta^b{_c}\)</span>定义为<span class="math inline">\(\delta^b{_c}v^c=v^b\)</span>, 对于任意<span class="math inline">\(v^c\in V_p, p\in M\)</span>.</p>
+<p><strong>矢量场的对易子</strong>.</p>
+<p>对易子的定义<span class="math inline">\([u,v](f):=u(v(f))-v(u(f))\)</span>是依赖于函数的,
+我们可以借助导数算符给出不依赖于函数的表达式.</p>
+<p><u>Claim 6</u> 对任意导数算符<span class="math inline">\(\nabla_a\)</span>, 有<span class="math inline">\([u,v]^a=u^b\nabla_bv^a-v^b\nabla_bu^a\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 一方面, <span class="math display">\[
+\Align{
+[u,v](f)
+&amp;= u(v(f))-v(u(f)) \\
+&amp;= u^b\nabla_b(v^a\nabla_af) - v^b\nabla_b(u^a\nabla_af) \\
+&amp;= u^b(\nabla_bv^a)(\nabla_af) + u^bv^a\nabla_b\nabla_af
+  -v^b(\nabla_bu^a)(\nabla^af) - v^bu^a\nabla_b\nabla_af \\
+&amp;= (u^b\nabla_bv^a-v^b\nabla_bu^a)(\nabla_af),
+}
+\]</span> 其中第二个等号利用了导数算符定义第4条,
+第三个等号利用了Lebniz律和与缩并可交换, 第四个等号利用了无挠性.</p>
+<p>另一方面, 由定义第4条, <span class="math inline">\([u,v](f) =
+[u,v]^a\nabla_af\)</span>, 即证.</p>
+</div>
+<h3 id="parallel-transport-and-derivative-along-a-curve">3.2  Parallel
+transport and derivative along a curve</h3>
+<div style="text-align: right;">
+2023.7.12
+</div>
+<p><strong>矢量场沿曲线平移(parallelly transported along a
+curve)</strong>. 设<span class="math inline">\(v^a\)</span>是沿曲线<span class="math inline">\(C(t)\)</span>的矢量场, <span class="math inline">\(T^b\)</span>为<span class="math inline">\(C(t)\)</span>的切矢, 如果<span class="math inline">\(T^b\nabla_bv^a=0\)</span>, 则称<span class="math inline">\(v^a\)</span>是沿<span class="math inline">\(C(t)\)</span>平移的. 其中, <span class="math inline">\(T^b\nabla_bv^a\)</span>可以理解为<span class="math inline">\(v^a\)</span>沿着<span class="math inline">\(T^b\)</span>方向上的导数.</p>
+<p><u>Claim 1</u> 曲线<span class="math inline">\(C(t)\)</span>以及其上一点的矢量可以唯一确定一个沿<span class="math inline">\(C(t)\)</span>平移的矢量场.</p>
+<div class="note note-light">
+<p><u>Pf</u> 我们先推导矢量场沿曲线平移方程的坐标表示. 不妨取包含<span class="math inline">\(C(t)\)</span>的坐标域<span class="math inline">\(O\)</span>, 曲线参数式<span class="math inline">\(x^\mu(t)\)</span>, 则 <span class="math display">\[
+\Align{
+T^b \nabla_b v^a
+&amp;= T^b (\partial_b v^a + \Gamma^a{_{bc}}v^c) \\
+&amp;= T^b \bqty{
+  (\dd{x^\nu})_b \pqty{\pdv{x^\mu}}^a \pdv{v^\mu}{x^\nu} +
+  (\dd{x^\nu})_b \pqty{\pdv{x^\mu}}^a \Gamma^\mu{_{\nu\sigma}}v^\sigma
+} \\
+&amp;= \pqty{
+  \pdv{v^\mu}{x^\nu}T^\nu + \Gamma^\mu{_{\nu\sigma}}T^\nu v^\sigma
+} \pqty{\pdv{x^\mu}}^a \\
+&amp;= \pqty{
+  \pdv{v^\mu}{x^\nu}\dv{x^\nu}{t} + \Gamma^\mu{_{\nu\sigma}}T^\nu
+v^\sigma
+} \pqty{\pdv{x^\mu}}^a \\
+&amp;= \pqty{
+  \dv{v^\mu}{t} + \Gamma^\mu{_{\nu\sigma}}T^\nu v^\sigma
+} \pqty{\pdv{x^\mu}}^a.
+}
+\]</span> (第五个等号使用了链式法则) 于是<span class="math inline">\(T^b\nabla_bv^a=0\)</span>的坐标方程就是 <span class="math display">\[
+\dv{v^\mu}{t} + \Gamma^\mu{_{\nu\sigma}}T^\nu v^\sigma = 0.
+\]</span> (<span class="math inline">\(\mu=1,\dots,n\)</span>)
+这是关于<span class="math inline">\(v^\mu\)</span>的一阶线性常微分方程组,
+给定初值<span class="math inline">\(v^\mu(t_0)\)</span>后有唯一解,
+即证.</p>
+</div>
+<p>有了平移的概念之后, 就可以将<span class="math inline">\(M\)</span>中两点<span class="math inline">\(p,q\)</span>上的矢量联系起来. 取一条曲线<span class="math inline">\(C(t)\)</span>过<span class="math inline">\(p,q\)</span>, 对<span class="math inline">\(V_p\)</span>中的元素<span class="math inline">\(v^a\)</span>, 它可以唯一确定一个沿<span class="math inline">\(C(t)\)</span>平移的矢量场, 这个矢量场在<span class="math inline">\(q\)</span>的值就称为<span class="math inline">\(v^a\)</span>平移到<span class="math inline">\(q\)</span>的结果. 这种平移依赖于曲线<span class="math inline">\(C(t)\)</span>的选择. 由于<span class="math inline">\(\nabla_a\)</span>将<span class="math inline">\(V_p\)</span>和<span class="math inline">\(V_q\)</span>联系了起来, 所以也称<span class="math inline">\(\nabla_a\)</span>为(无挠)<strong>联络(connection)</strong>.</p>
+<p><strong>与度规适配的导数算符</strong>.</p>
+<p>设<span class="math inline">\((M,g_{ab})\)</span>为度规流形,
+并有联络<span class="math inline">\(\nabla_a\)</span>. 曲线<span class="math inline">\(C(t)\)</span>上有两个沿其平移的矢量场<span class="math inline">\(v^a,u^b\)</span>, 我们希望平移不改变内积,
+也就是内积沿着曲线的导数为零, 即<span class="math inline">\(T^c\nabla_c(g_{ab}v^au^b) = 0\)</span>.
+利用Lebniz律展开有 <span class="math display">\[
+\Align{
+(T^c\nabla_cg_{ab})v^au^b
++ g_{ab}(T^c\nabla_cv^a)u^b
++ g_{ab}v^a(T^c\nabla_cu^b)  = 0
+}
+\]</span> 因为<span class="math inline">\(v^a,u^b\)</span>沿<span class="math inline">\(C(t)\)</span>平移, 所以<span class="math inline">\(T^c\nabla_cv^a=T^c\nabla_cu^b=0\)</span>, 上式化为
+<span class="math display">\[
+(T^c\nabla_cg_{ab})v^au^b = 0
+\]</span> 又根据<span class="math inline">\(C(t), v^a,
+u^b\)</span>的任意性, 则有 <span class="math display">\[
+\nabla_c g_{ab}=0
+\]</span> 满足这个条件的<span class="math inline">\(\nabla_c\)</span>称为与度规<span class="math inline">\(g_{ab}\)</span>适配的导数算符(也成为Levi-Civita联络,
+或黎曼联络), 它一定是一个协变的导数算符.</p>
+<p><u>Claim 2</u> 对于<span class="math inline">\((M,g_{ab})\)</span>,
+与度规<span class="math inline">\(g_{ab}\)</span>适配的导数算符存在且唯一.</p>
+<div class="note note-light">
+<p><u>Pf</u> 任取导数算符<span class="math inline">\(\tilde\nabla_a\)</span>, 现在要找到合适的<span class="math inline">\(C^c{}_{ab}\)</span>, 使得<span class="math inline">\(\nabla_a\)</span>与度规适配. 利用上一节的Claim 3,
+<span class="math display">\[
+0
+=\nabla_cg_{ab}
+=\tilde\nabla_cg_{ab} - C^d{}_{ca}g_{db} - C^d{}_{cb}g_{ad}
+=\tilde\nabla_cg_{ab} - C_{bca} - C_{acb},
+\]</span> 即<span class="math inline">\(C_{bca}+C_{acb}=\tilde\nabla_cg_{ab}\)</span>.
+交换指标可以得到另外两个方程, 组成方程组 <span class="math display">\[
+\Cases{
+C_{bca}+C_{acb}=\tilde\nabla_cg_{ab}, \\
+C_{cba}+C_{abc}=\tilde\nabla_bg_{ac}, \\
+C_{cab}+C_{bac}=\tilde\nabla_ag_{bc}. \\
+}
+\]</span> 由<span class="math inline">\(C\)</span>的对称性,
+二式加三式减一式得到 <span class="math display">\[
+C_{cab} = \frac12(
+  \tilde\nabla_bg_{ac} + \tilde\nabla_ag_{bc} - \tilde\nabla_cg_{ab}
+).
+\]</span> 升指标得到 <span class="math display">\[
+C^c{_{ab}} = \frac12 g^{cd}(
+  \tilde\nabla_bg_{ad} + \tilde\nabla_ag_{bd} - \tilde\nabla_dg_{ab}
+).
+\]</span> 这个<span class="math inline">\(C^c{_{ab}}\)</span>与<span class="math inline">\(\tilde\nabla_a\)</span>结合得到的<span class="math inline">\(\nabla_a\)</span>便是<span class="math inline">\(\nabla_a g_{bc}=0\)</span>的解. 这个解是唯一的,
+因为如果<span class="math inline">\(\nabla'_a\)</span>也满足<span class="math inline">\(\nabla_a' g_{bc}=0\)</span>,
+那么将上式中的<span class="math inline">\(\tilde\nabla_a\)</span>代成<span class="math inline">\(\nabla'_a\)</span>可以得到反映<span class="math inline">\(\nabla_a\)</span>与<span class="math inline">\(\nabla'_a\)</span>差别的<span class="math inline">\(C^c{_{ab}}=0\)</span>.</p>
+</div>
+<p>给定度规流形<span class="math inline">\((M,g_{ab})\)</span>后,
+就相当于给了一个与<span class="math inline">\(g_{ab}\)</span>相适配的导数算符. 后文中,
+度规流形上的导数算符默认是与度规适配的.</p>
+<ul>
+<li>与欧氏度规<span class="math inline">\(\delta_{ab}\)</span>(闵氏度规<span class="math inline">\(\eta_{ab}\)</span>)适配的导数算符是笛卡尔坐标系(洛伦兹坐标系)的普通导数算符<span class="math inline">\(\partial_a\)</span>.</li>
+</ul>
+<p>取坐标系及<span class="math inline">\(\partial_a\)</span>,
+则在这个坐标系下<span class="math inline">\(\Gamma^c{_{ab}}\)</span>的分量可以利用Claim 2计算:
+<span class="math display">\[
+\Align{
+\Gamma^\sigma{_{\mu\nu}}
+&amp;=\Gamma^c{_{ab}}(\dd{x^\sigma})_c\pqty{\pdv{x^\mu}}^a\pqty{\pdv{x^\nu}}^b
+\\
+&amp;=\frac12(\dd{x^\sigma})_c\pqty{\pdv{x^\mu}}^a\pqty{\pdv{x^\nu}}^b
+  g^{cd}(\partial_ag_{bd}+\partial_bg_{ad}-\partial_dg_{ab}) \\
+&amp;=\frac12 g^{\sigma\rho}(
+  g_{\nu\rho,\mu} + g_{\mu\rho,\nu} - g_{\mu\nu,\rho}
+).
+}
+\]</span></p>
+<ul>
+<li><p>四维空间中, <span class="math inline">\(\Gamma^\sigma{_{\mu\nu}}\)</span>一共有<span class="math inline">\(4^3=64\)</span>个分量, 但由于下标的对称性,
+只有<span class="math inline">\(40\)</span>个独立分量.</p>
+<p>一般地, <span class="math inline">\(n\)</span>维空间的克氏符有<span class="math inline">\(\dfrac{n^2(n+1)}2\)</span>个独立分量.</p></li>
+<li><p>记忆方法, <span class="math display">\[
+\Gamma^{\green{\sigma}}{_{\blue{\mu\nu}}}
+=\frac12 g^{ \green{\sigma} \rho }(
+  g_{\rho{\blue{\mu}},{\blue\nu}} +
+  g_{\rho{\blue{\nu}},{\blue\mu}} -
+  g_{ {\blue{\mu\nu}},\rho}
+).
+\]</span></p></li>
+</ul>
+<p><strong>沿曲线的导数</strong>. 设曲线切矢<span class="math inline">\(T^a\)</span>, 则某张量场<span class="math inline">\(S\)</span>沿曲线的导数为<span class="math inline">\(T^a\nabla_aS\)</span>, 也可以用记号<span class="math inline">\(\dfrac{ {\rm D}S}{\dd{t} }\)</span>.</p>
+<h3 id="geodesics">3.3  Geodesics</h3>
+<div style="text-align: right;">
+2023.7.14
+</div>
+<p><strong>测地线</strong>.</p>
+<p>对于流形<span class="math inline">\((M,\nabla_a)\)</span>上的一条曲线,
+若其切矢沿曲线平移, 即<span class="math inline">\(T^b\nabla_bT_a=0\)</span>,
+则称其(仅在这个参数化下)为一条<strong>测地线(geodesic)</strong>.
+取定坐标系, 参考矢量场沿曲线平移的坐标方程,
+我们可以写出测地线坐标方程(将<span class="math inline">\(v^\mu\)</span>代成<span class="math inline">\(T^\mu=\dv{x^\mu}{t}\)</span>), <span class="math display">\[
+\dv[2]{x^\mu}{t}
++ \Gamma^{\mu}{_{\nu\sigma}} \dv{x^\nu}{t} \dv{x^\sigma}{t} = 0.
+\]</span></p>
+<ul>
+<li><p>欧氏度规(或闵氏度规)的克氏符为零, 所以测地线方程的解为<span class="math inline">\(x^\mu(t)=a^\mu t+b^\mu\)</span>(<span class="math inline">\(a^\mu,b^\mu\)</span>为常数且<span class="math inline">\(a^\mu\)</span>非零.) 可见,
+测地线可以看作"直线(段)"概念的推广.</p></li>
+<li><p>由于平移不改变内积, 所以洛伦兹度规下测地线总共可分为类时, 类光,
+类空三种.</p></li>
+<li><p>二维球面的诱导度规<span class="math inline">\(g_{\theta\theta}=R^2,
+g_{\theta\phi}=g_{\phi\theta}=0,g_{\phi\phi}=R^2\sin^2\theta\)</span>,
+可算出克氏符的全部非零分量为 <span class="math display">\[
+\Gamma^\theta{_{\phi\phi}} = -\sin\theta\cos\theta, \quad
+\Gamma^\phi{_{\theta\phi}} = \Gamma^\phi{_{\phi\theta}} = \cot\theta.
+\]</span> 于是测地线方程为 <span class="math display">\[
+\left\{\Align{
+&amp;\dv[2]{\theta}{t} - \sin\theta\cos\theta\pqty{\dv{\phi}{t}}^2 = 0,
+\\
+&amp;\dv[2]{\phi}{t} + \cot\theta\dv{\theta}{t}\dv{\phi}{t} = 0.
+}\right.
+\]</span></p></li>
+</ul>
+<p><u>Claim 1</u> 一点<span class="math inline">\(p\)</span>及<span class="math inline">\(p\)</span>点的一个矢量<span class="math inline">\(v^a\)</span>唯一确定一条测地线<span class="math inline">\(\gamma(t)\)</span>, 满足<span class="math inline">\(\gamma(0)=p\)</span>且<span class="math inline">\(\gamma(t)\)</span>在<span class="math inline">\(t=0\)</span>处切矢为<span class="math inline">\(v^a\)</span>.</p>
+<p><u>Claim 2</u> 对于曲线<span class="math inline">\(C:I\to
+M\)</span>,</p>
+<ol type="1">
+<li>若其为测地线, 则其重参数化后必有<span class="math inline">\(T'^b\nabla_bT'^a = \alpha
+T'^a\)</span>(其中<span class="math inline">\(\alpha:I\to\R\)</span>).</li>
+<li>若其切矢满足<span class="math inline">\(T^b\nabla_bT^a = \alpha
+T^a\)</span>, 则其必定可以重参数化为测地线.</li>
+</ol>
+<div class="note note-light">
+<p><u>Pf</u></p>
+<ol type="1">
+<li><p>设<span class="math inline">\(T'^b\)</span>是<span class="math inline">\(C(t)\)</span>重参数化为<span class="math inline">\(C'(t')\)</span>后的切矢, 则<span class="math inline">\(T^b=(\pdv{t})^b=\dv{t'}{t}(\pdv{t'})^b=\dv{t'}{t}T'^b\)</span>,
+代入测地线方程有 <span class="math display">\[
+\Align{0
+&amp;=\dv{t'}{t}T'^b \nabla_b \pqty{ \dv{t'}{t}T'^a } \\
+&amp;=\pqty{\dv{t'}{t}}^2 T'^b \nabla_b T'^a +
+  \dv{t'}{t}T'^b T'^a \nabla_b \dv{t'}{t} \\
+&amp;=\pqty{\dv{t'}{t}}^2 T'^b \nabla_b T'^a +
+  T'^a \dv[2]{t'}{t},
+}
+\]</span> (最后一步是因为<span class="math inline">\(\dv{t'}{t}T'^b T'^a \nabla_b
+\dv{t'}{t}=T'^a\dv{t'}{t} T'(\dv{t'}{t})=T'^a
+\dv{t'}{t}
+\pdv{t'}\dv{t'}{t}=T'^a\dv[2]{t'}{t}\)</span>)</p>
+<p>设<span class="math inline">\(\alpha(t):=-\dv[2]{t'}{t} \Big/
+\pqty{\dv{t'}{t}}^2\)</span>即证.</p></li>
+<li><p>设<span class="math inline">\(T'^b\)</span>是重参数化后的切矢, 有<span class="math inline">\(T^b = \dv{t'}{t}T'^b\)</span>, 代入<span class="math inline">\(T^b\nabla_bT^a = \alpha T^a\)</span>有 <span class="math display">\[
+\Align{
+\dv{t'}{t}T'^b \nabla_b \pqty{\dv{t'}{t}T'^a}
+&amp;= \alpha \dv{t'}{t}T'^a, \\
+\dv[2]{t'}{t} T'^a + \pqty{\dv{t'}{t}}^2
+T'^b\nabla_bT'^a
+&amp;= \alpha \dv{t'}{t} T'^a.
+}
+\]</span> 测地线方程要求<span class="math inline">\(T'^b\nabla_bT'^a=0\)</span>, 于是<span class="math inline">\(\dv[2]{t'}{t}=\alpha\dv{t'}{t}\)</span>,
+解出<span class="math inline">\(t'(t)\)</span>即可.</p></li>
+</ol>
+</div>
+<p>使得曲线成为测地线的参数称为其<strong>仿射参数(affine
+parameter)</strong>. 为了区分, 将满足<span class="math inline">\(T^b\nabla_bT^a = \alpha T^a\)</span>(<span class="math inline">\(\alpha\)</span>不恒为零)的参数称为非仿射参数.</p>
+<p><u>Claim 3</u> 对于测地线<span class="math inline">\(C(t)\)</span>,
+其中<span class="math inline">\(t\)</span>为仿射参数,</p>
+<ol type="1">
+<li><span class="math inline">\(t'\)</span>为仿射参数当且仅当<span class="math inline">\(t'=at+b\)</span>(<span class="math inline">\(a,b\)</span>为常数且<span class="math inline">\(a\neq0\)</span>).</li>
+<li>其线长参数必为仿射参数.</li>
+</ol>
+<div class="note note-light">
+<p><u>Pf</u></p>
+<ol type="1">
+<li><span class="math inline">\(C(t)\)</span>重参数化后为<span class="math inline">\(C'(t')\)</span>. 若<span class="math inline">\(t'=at+b\)</span>, 则Claim 2的证明1中, <span class="math inline">\(\alpha(t)=0\)</span>, <span class="math inline">\(t'\)</span>为仿射参数; 反过来, 若<span class="math inline">\(t'\)</span>为仿射参数, 则Claim 2的证明2中,
+<span class="math inline">\(t'(t)\)</span>满足的微分方程变为<span class="math inline">\(\dv[2]{t'}{t}=0\)</span>, 通解为<span class="math inline">\(t'=at+b\)</span>.</li>
+<li>因为<span class="math inline">\(\nabla_a\)</span>与<span class="math inline">\(g_{ab}\)</span>适配, 所以<span class="math inline">\(|T|=\sqrt{g(T,T)}\)</span>沿曲线不变,
+因此线长<span class="math inline">\(l(t)=\int_{t_0}^t|T|\dd{\tau}=|T|(t-t_0)\)</span>,
+(又已知<span class="math inline">\(t\)</span>为仿射参数)根据上一个命题,
+<span class="math inline">\(l\)</span>为仿射参数.</li>
+</ol>
+</div>
+<p><u>Claim 4</u> 设流形<span class="math inline">\(M\)</span>上的洛伦兹度规场<span class="math inline">\(g_{ab}\)</span>, 两点<span class="math inline">\(p,q\)</span>, 则<span class="math inline">\(p,q\)</span>间的光滑类空(类时)曲线为测地线当且仅当其线长取极值.</p>
+<ul>
+<li>也适用于<span class="math inline">\(g_{ab}\)</span>正定(黎曼)的情况,
+此时定语"类空(类时)"略去.</li>
+<li>取极值是一个局部性质, 含义如下: 设<span class="math inline">\(c\)</span>为<span class="math inline">\(p,q\)</span>间光滑类时(类空)曲线,
+则可对它进行微小修改(变分)得到许多"无限邻近"的类时(类空)曲线, 而<span class="math inline">\(c\)</span>为测地线的充要条件是其长度<span class="math inline">\(l\)</span>在所有这些曲线的长度中取极值.
+根据变分理论, <span class="math inline">\(l\)</span>取极值当且仅当其变分<span class="math inline">\(\var{l}=0\)</span>.</li>
+</ul>
+<p><strong>指数映射与黎曼法坐标</strong>.</p>
+<p>既然点<span class="math inline">\(p\)</span>和一个切矢<span class="math inline">\(v^a\in V_p\)</span>唯一确定一条测地线<span class="math inline">\(\gamma(t)\)</span>, 那么我们就可以定义<span class="math inline">\(p\)</span>点的<strong>指数映射(exponential
+map)</strong> <span class="math display">\[
+\exp_p: V_p\,\textsf{(或其子集)}\to M,\quad
+v^a \mapsto\gamma(1)
+\]</span> 其中<span class="math inline">\(\gamma(t)\)</span>以<span class="math inline">\(p\)</span>为仿射参数的零点. 零元<span class="math inline">\(0\)</span>的像<span class="math inline">\(\exp_p=p\)</span>. 由测地线方程的线性性可知, <span class="math inline">\(\exp_p(tv)=\gamma(t)\)</span>.</p>
+<ul>
+<li>需要注意的是, <span class="math inline">\(M\)</span>中不一定存在满足测地线参数<span class="math inline">\(t=1\)</span>的点, 此时<span class="math inline">\(v^a\)</span>无像, 需要把这样的<span class="math inline">\(v^a\)</span>排除在外, 所以<span class="math inline">\(\exp_p\)</span>的定义域可能只是<span class="math inline">\(V_p\)</span>的(含有零元的)子集.</li>
+<li>定义不能保证<span class="math inline">\(\exp_p\)</span>的单射性和满射性,
+然而只需对定义域和陪域作出适当限制, 就能保证<span class="math inline">\(\exp_p\)</span>是双射, 而且是微分同胚.</li>
+</ul>
+<p><u>Claim 5</u> 对于任意<span class="math inline">\(p\in M\)</span>,
+总存在<span class="math inline">\(V_p\)</span>的含有零元的开子集<span class="math inline">\(\hat{V}_p\)</span>, <span class="math inline">\(M\)</span>的含有<span class="math inline">\(p\)</span>的开子集<span class="math inline">\(N\)</span>, 使得<span class="math inline">\(\exp_p:\hat{V}_p\to N\)</span>是微分同胚.
+(此时称<span class="math inline">\(N\)</span>为<span class="math inline">\(p\)</span>点的<strong>法邻域(normal
+neighborhood)</strong>.)</p>
+<p>利用微分同胚<span class="math inline">\(\exp_p:\hat{V}_p\to
+N\)</span>可以在<span class="math inline">\(N\)</span>上定义坐标.
+选定<span class="math inline">\(V_p\)</span>的一个正交归一基底<span class="math inline">\(\qty{(e_\mu)^a}\)</span>, 我们把<span class="math inline">\(q\in N\)</span>的原像点<span class="math inline">\(v^a=(\exp_p)^{-1}\in\hat{V}_p\)</span>在这个基底下的坐标定义为<span class="math inline">\(q\)</span>点的坐标. 这样的坐标系称为<span class="math inline">\(p\)</span>点的<strong>黎曼法坐标(Riemannian normal
+coordinates)系</strong>. 坐标函数<span class="math inline">\(x^\mu\)</span>可以写作<span class="math inline">\(x^\mu=e^\mu\circ\exp_p^{-1}\)</span>.</p>
+<ul>
+<li>在黎曼法坐标系下, 过<span class="math inline">\(p\)</span>点的测地线的表达式十分简单. 设<span class="math inline">\(N\)</span>上的测地线<span class="math inline">\(\gamma(t)\)</span>满足<span class="math inline">\(\gamma(0)=p\)</span>. 取矢量<span class="math inline">\(v^a\)</span>满足<span class="math inline">\(\exp_pv=\gamma(1)\)</span>, 则有<span class="math inline">\(\exp_p(tv)=\gamma(t)\)</span>, 则 <span class="math display">\[
+x^\mu(\gamma(t))
+= e^\mu[\exp_p^{-1}(\gamma(t))]
+= e^\mu(tv)
+= tv^\mu.
+\]</span> 所以, 测地线坐标式就是坐标系中的直线.</li>
+<li>由此可以推出, 黎曼法坐标系下克氏符为零.</li>
+</ul>
+<h3 id="riemann-curvature-tensors">3.4  Riemann curvature tensors</h3>
+<div style="text-align: right;">
+2023.7.19
+</div>
+<p><strong>黎曼曲率张量</strong>.</p>
+<p>导数算符的无挠性体现在其对易子<span class="math inline">\((\nabla_a\nabla_b-\nabla_b\nabla_a)\)</span>作用于标量场<span class="math inline">\(f\)</span>的结果为零;
+然而对易子作用于其它类型的张量场未必为零,
+黎曼曲率张量正是这种非对易性的体现.</p>
+<p><u>Claim 1</u> 设张量场<span class="math inline">\(\omega_c|_p=\omega_c'|_p\)</span>, 则<span class="math inline">\([(\nabla_a\nabla_b-\nabla_b\nabla_a)\omega_c]_p=[(\nabla_a\nabla_b-\nabla_b\nabla_a)\omega_c']_p\)</span>.</p>
+<p>这个定理表明, <span class="math inline">\((\nabla_a\nabla_b-\nabla_b\nabla_a)\)</span>是将某点的<span class="math inline">\((0,1)\)</span>型张量映为<span class="math inline">\((0,3)\)</span>型张量的线性映射: 取定<span class="math inline">\(p\)</span>点的对偶矢量, 将其延拓为对偶矢量场<span class="math inline">\(\omega_c\)</span>, 再取<span class="math inline">\([(\nabla_a\nabla_b-\nabla_b\nabla_a)\omega_c]_p\)</span>即可,
+此定理可保证这个像与延拓方式无关. 将这个线性映射记作<span class="math inline">\(R_{abc}{^d}\)</span>,
+称为<strong>黎曼曲率张量(Riemann curvature tensor)</strong>, 于是 <span class="math display">\[
+(\nabla_a\nabla_b-\nabla_b\nabla_a)\omega_c = R_{abc}{^d}\omega_d,
+\]</span> 当<span class="math inline">\(p\)</span>点变化时, <span class="math inline">\(R_{abc}{^d}\)</span>构成一个<span class="math inline">\((1,4)\)</span>型张量场.</p>
+<ul>
+<li>一个度规流形<span class="math inline">\((M,g_{ab})\)</span>的黎曼张量指的是与<span class="math inline">\(g_{ab}\)</span>适配的那个<span class="math inline">\(\nabla_a\)</span>的黎曼张量.
+黎曼张量场为零的空间称为平直空间(flat space).</li>
+</ul>
+<p><u>Claim 2</u></p>
+<ol type="1">
+<li><p>(导数对易子作用于矢量场) <span class="math inline">\((\nabla_a\nabla_b-\nabla_b\nabla_a)v^c =
+-R_{abd}{^c}v^d\)</span>.</p></li>
+<li><p>(导数对易子作用于任意张量场) <span class="math display">\[
+(\nabla_a\nabla_b-\nabla_b\nabla_a) T^{c_1\dots c_k}{_{d_1\dots d_l}}
+=
+-\sum_{i=1}^k R_{abe}{^{c_i}} T^{c_1\dots e\dots c_k}{_{d_1\dots d_l}}
++\sum_{i=1}^k R_{abd_j}{^e} T^{c_1\dots c_k}{_{d_1\dots e\dots d_l}}.
+\]</span></p></li>
+</ol>
+<p><u>Claim 3</u> 黎曼曲率张量的性质.</p>
+<ol type="1">
+<li>(前两个指标反对称) <span class="math inline">\(R_{abc}{^d} =
+-R_{bac}{^d}\)</span>.</li>
+<li>(循环恒等式) <span class="math inline">\(R_{[abc]}{^d}=0\)</span>.</li>
+<li>(Bianchi恒等式) <span class="math inline">\(\nabla_{[a}R_{bc]d}{^e}=0\)</span>.</li>
+</ol>
+<p>若有与导数算符适配的度规场<span class="math inline">\(g_{ab}\)</span>, 则可用度规降指标<span class="math inline">\(R_{abcd}=g_{de}R_{abd}{^d}\)</span>, 进一步有</p>
+<ol start="4" type="1">
+<li>(后两个指标反对称) <span class="math inline">\(R_{abcd}=-R_{abdc}\)</span>.</li>
+<li>(前后两组指标对称) <span class="math inline">\(R_{abcd}=R_{cdab}\)</span>.</li>
+</ol>
+<ul>
+<li>第1,2条的推论为<span class="math inline">\(\sum_{ {\rm
+cyc}(abc)}R_{abc}{^d}\equiv
+R_{abc}{^d}+R_{bca}{^d}+R_{cab}{^d}=0\)</span>.</li>
+<li>对于<span class="math inline">\(n\)</span>维流形, 黎曼张量<span class="math inline">\(R_{abc}{^d}\)</span>一共有<span class="math inline">\(n^4\)</span>个分量, 但是由于以上性质,
+其中只有<span class="math inline">\(\dfrac{n^2(n^2-1)}{12}\)</span>个独立分量.</li>
+</ul>
+<p>一个<span class="math inline">\((1,1)\)</span>型张量<span class="math inline">\(T^a{_b}\)</span>的迹(trace)定义为<span class="math inline">\(T^a{_a}=T^\mu{_\mu}\in\R\)</span>. 而对于<span class="math inline">\((0,2)\)</span>型张量<span class="math inline">\(T_{ab}\)</span>, 可以先将其用度规升指标<span class="math inline">\(T^a{_b}=g^{ac}T_{cb}\)</span>, 再缩并求迹<span class="math inline">\(T^a{_a}=g^{ac}T_{ca}\)</span>. 对于<span class="math inline">\((0,4)\)</span>型张量<span class="math inline">\(R_{abcd}\)</span>, 也可以类似地得到如下六个"迹":
+<span class="math display">\[
+\mqty{
+g^{ab}R_{abcd}, &amp; g^{ac}R_{abcd}, &amp; g^{ad}R_{abcd}, \\
+g^{cd}R_{abcd}, &amp; g^{bd}R_{abcd}, &amp; g^{bc}R_{abcd}.
+}
+\]</span> 利用黎曼曲率张量的性质, 可以发现每一列的上下两个迹相等,
+且第一列为零, 第二列和第三列差一个负号. 于是六个迹中只有一个独立,
+我们定义<span class="math inline">\(R_{ac}=g^{bd}R_{abcd}\)</span>为<strong>里奇张量(Ricci
+tensor)</strong>.</p>
+<ul>
+<li>需要注意的是, 因为<span class="math inline">\(g^{bd}R_{abcd}=R_{abc}{^b}\)</span>,
+所以里奇张量的定义是不依赖于度规的.</li>
+</ul>
+<p>里奇张量的迹称为<strong>标量曲率(scalar curvature)</strong>,
+定义为<span class="math inline">\(R:=g^{ac}R_{ac}\)</span>.</p>
+<p>在维数<span class="math inline">\(n\ge3\)</span>的广义黎曼空间中,
+<span class="math inline">\(R_{abcd}\)</span>的无迹部分称为<strong>外尔张量(Weyl
+tensor)</strong>, 定义为 <span class="math display">\[
+C_{abcd}:=R_{abcd}
+-\frac2{n-2} (g_{a[c}R_{d]b} - g_{b[c}R_{d]a})
++\frac2{(n-1)(n-2)}R g_{a[c}g_{d]b}.
+\]</span> <u>Claim 4</u> 外尔张量的性质.</p>
+<ol type="1">
+<li><span class="math inline">\(C_{abcd}=-C_{abdc}=-C_{bacd}=C_{cdab}\)</span>且<span class="math inline">\(C_{[abc]d}=0\)</span>.</li>
+<li>各种迹都为零, 如<span class="math inline">\(g^{ac}C_{abcd}=0\)</span>.</li>
+</ol>
+<p>广义黎曼空间的<strong>爱因斯坦张量(Einstein tensor)</strong>定义为
+<span class="math display">\[
+G_{ab}:=R_{ab}-\frac12Rg_{ab}.
+\]</span> <u>Claim 5</u> 爱因斯坦张量满足<span class="math inline">\(\nabla^aG_{ab}=0\)</span>, 其中<span class="math inline">\(\nabla^a = g^{ac}\nabla_c\)</span>.</p>
+<p><strong>由度规计算黎曼曲率张量</strong>.</p>
+<p>利用定义式<span class="math inline">\(R_{abc}{^d}\omega_d=2\nabla_{[a}\nabla_{b]}\omega_c\)</span>,
+先将右边展开来, <span class="math display">\[
+\Align{ \nabla_a (\nabla_b \omega_c)
+&amp;=\partial_a(\nabla_b\omega_c)
+  -\Gamma^d{_{ab}}\nabla_d\omega_c - \Gamma^d{_{ac}}\nabla_b\omega_d \\
+&amp;=\partial_a(\partial_b\omega_c - \Gamma^e{_{bc}}\omega_e)
+  -\Gamma^d{_{ab}}\nabla_d\omega_c - \Gamma^d{_{ac}}\nabla_b\omega_d \\
+&amp;=(\partial_a\partial_b\omega_c
+-\Gamma^e{_{bc}}\partial_a\omega_e - \omega_e\partial_a\Gamma^e{_{bc}})
+-\Gamma^d{_{ab}}\nabla_d\omega_c
+-(\Gamma^d{_{ac}}\partial_b\omega_d -
+   \Gamma^d{_{ac}}\Gamma^e{_{bd}}\omega_e),
+}
+\]</span> 一共<span class="math inline">\(6\)</span>项.
+于是(利用圆括号和方括号的性质, 以及<span class="math inline">\(\Gamma\)</span>下标的对称性) <span class="math display">\[
+\Align{
+\nabla_{[a} \nabla_{b]} \omega_c
+&amp;=(0
+-\orange{\Gamma^e{_{c[b}}\partial_{a]}\omega_e}
+-\omega_e\partial_{[a}\Gamma^e{_{b]c}})
+-0
+-(\orange{\Gamma^d{_{c[a}}\partial_{b]}\omega_d}
+-\Gamma^d{_{c[a}}\Gamma^e{_{b]d}}\omega_e) \\
+&amp;=
+-\omega_e\partial_{[a}\Gamma^e{_{b]c}}
++\Gamma^d{_{c[a}}\Gamma^e{_{b]d}}\omega_e \\
+&amp;=(-\partial_{[a}\Gamma^d{_{b]c}}+\Gamma^e{_{c[a}}\Gamma^d{_{b]e}})
+  \omega_d,
+}
+\]</span> (其中注意到橙色部分差一个负号; 第三步把指标<span class="math inline">\(d\)</span>和<span class="math inline">\(e\)</span>互换了) 因此可以写出黎曼曲率张量的表达式
+<span class="math display">\[
+\Align{
+R_{abc}{^d}
+&amp;= -\partial_{[a}\Gamma^d{_{b]c}}+\Gamma^e{_{c[a}}\Gamma^d{_{b]e}}
+\\
+&amp;= \partial_{b}\Gamma^d{_{ac}}-\partial_{a}\Gamma^d{_{bc}}+
+   \Gamma^e{_{ca}}\Gamma^d{_{be}}+\Gamma^e{_{cb}}\Gamma^d{_{ae}}.
+}
+\]</span> 选定坐标基底场, 得到分量的表达式为 <span class="math display">\[
+R_{\mu\nu\sigma}{^\rho}
+=\Gamma^\rho{_{\mu\sigma,\nu}} - \Gamma^\rho{_{\nu\sigma,\mu}}
++\Gamma^\lambda{_{\sigma\mu}}\Gamma^\rho{_{\nu\lambda}}
++\Gamma^\lambda{_{\sigma\nu}}\Gamma^\rho{_{\mu\lambda}}.
+\]</span></p>
+<ul>
+<li><p>记忆方法, <span class="math display">\[
+R_{ \blue{\mu\nu} \green\sigma}{^{ \orange\rho} }
+=\Gamma^{\orange\rho}
+{}_{ \blue\mu \green\sigma, \blue\nu }
+-\Gamma^{\orange\rho}
+{}_{ \blue\nu \green\sigma, \blue\mu }
++\Gamma^\lambda{}_{ \blue\mu \green\sigma }
+\Gamma^{\orange\rho}{_{ \blue\nu \lambda} }
++\Gamma^\lambda{}_{ \blue\nu \green\sigma }
+\Gamma^{\orange\rho}{_{ \blue\mu \lambda} }.
+\]</span></p></li>
+<li><p>对二维球面, 取定球面坐标<span class="math inline">\(\qty{\theta,\phi}\)</span>,
+根据之前算出的克氏符可以进一步算出黎曼曲率张量(只有一个独立分量) <span class="math display">\[
+R_{\phi\theta\phi\theta}
+= R_{\theta\phi\theta\phi}
+= -R_{\phi\theta\theta\phi}
+= -R_{\theta\phi\phi\theta} = R^2\sin^2\theta,
+\]</span> 里奇张量 <span class="math display">\[
+R_{\theta\theta}=1,\quad R_{\phi\phi}=\sin^2\theta,
+\]</span> 以及标量曲率<span class="math inline">\(\dfrac2{R^2}\)</span>.</p></li>
+</ul>
+<h3 id="intrinsic-and-extrinsic-curvatures">3.5  Intrinsic and extrinsic
+curvatures</h3>
+<div style="text-align: right;">
+2023.7.20
+</div>
+<p>在微分流形<span class="math inline">\(M\)</span>上选定一个度规<span class="math inline">\(g_{ab}\)</span>后,
+就自然有了一个适配的导数算符<span class="math inline">\(\nabla_a\)</span>, 进而有了黎曼曲率张量<span class="math inline">\(R_{abc}{^d}\)</span>.
+这些由度规决定的性质都称为<span class="math inline">\((M,g_{ab})\)</span>的<strong>内禀性质(intrinsic
+properties)</strong>. "内禀弯曲性"描述的是空间的以下三个等价的性质.</p>
+<ol type="1">
+<li>导数算符的非对易性. <span class="math inline">\(\nabla_a\nabla_b\neq\nabla_b\nabla_a\)</span>,
+用来定义黎曼曲率张量.</li>
+<li>矢量平移的曲线依赖性. 内禀曲率<span class="math inline">\(R_{abc}{^d}\)</span>非零的充要条件是存在闭合曲线,
+使得线上某点的矢量沿曲线平移一周后和原来不相等.</li>
+<li>存在初始平行而后来不平行的测地线. 例如球面上的两条经线.</li>
+</ol>
+<p>而外曲率指的是把<span class="math inline">\(M\)</span>镶嵌到更高维的流形后得到的曲率.</p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>梁GR | 2 内禀曲率张量</div>
+      <div>https://disembo.github.io/Note/dg-lgr-2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-lgr-3/" title="梁GR | 3 李导数, Killing场和超曲面">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">梁GR | 3 李导数, Killing场和超曲面</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-lgr-1/" title="梁GR | 1 流形与张量场">
+                        <span class="hidden-mobile">梁GR | 1 流形与张量场</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

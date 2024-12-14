@@ -1,0 +1,1483 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="黎曼流形的距离结构与完备性, 体积, Gauss-Bonnet 定理.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM275 | 5 测地线">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-5/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="黎曼流形的距离结构与完备性, 体积, Gauss-Bonnet 定理.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-simple-closed-curve.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-domain.png">
+<meta property="article:published_time" content="2024-06-28T02:30:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.703Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分几何">
+<meta property="article:tag" content="黎曼几何">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-simple-closed-curve.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM275 | 5 测地线 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM275 | 5 测地线"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-28 10:30" pubdate>
+          2024年6月28日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM275 | 5 测地线</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and
+Characteristic Classes</em>) 第 16-17 节的笔记.
+补充了一点完备性的内容.</p>
+</div>
+<h2 id="distance-and-completeness">13  Distance and Completeness</h2>
+<h3 id="distance-on-a-riemannian-manifold">13.1  Distance on a Riemannian
+manifold</h3>
+<p>在本系列的开始, 我们定义了光滑曲线 <span class="math inline">\(c:[a,b]\to M\)</span> 的弧长 <span class="math inline">\(l:=\int_{[a,b]}\|c'(t)\|\dd{t}\)</span>,
+并证明了它不依赖于曲线的参数化. 在一个连通的黎曼流形 <span class="math inline">\(M\)</span> (进而路径连通) 中, 任意两点 <span class="math inline">\(p,q\)</span> 均有分段光滑的曲线相连, 定义 <span class="math inline">\(p,q\)</span>
+间的<strong>距离(distance)</strong>为这些曲线长度的下确界: <span class="math display">\[
+d(p,q) := \inf_{c}l(c).
+\]</span> 如此定义的距离函数满足三个性质:</p>
+<ol type="1">
+<li>正定性. <span class="math inline">\(d(p,q)\geq0\)</span>,
+取等当且仅当 <span class="math inline">\(p=q\)</span>.</li>
+<li>对称性. <span class="math inline">\(d(p,q)=d(q,p)\)</span>.</li>
+<li>三角不等式. <span class="math inline">\(d(p,r)\leq
+d(p,q)+d(q,r)\)</span>.</li>
+</ol>
+<p>于是 <span class="math inline">\((M,d)\)</span> 构成一个度量空间.
+要注意的是, 距离函数 (也叫度量, metric) <span class="math inline">\(d:M\times M\to\R\)</span> 和黎曼度量 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 是两个东西,
+前者定义在流形上, 后者定义在切丛上.</p>
+<p>一条连接 <span class="math inline">\(p,q\)</span> 的分段光滑曲线
+<span class="math inline">\(c\)</span>
+称为<strong>最短曲线(length-minimizing curve)</strong>, 若它是所有连接
+<span class="math inline">\(p,q\)</span> 的分段光滑曲线中, 长度最短的.
+此时, <span class="math inline">\(d(p,q)=l(c)\)</span>.</p>
+<ul>
+<li>在去掉原点欧氏平面 <span class="math inline">\(\R^2-\{0\}\)</span>
+上, 两点 <span class="math inline">\((-1,0)\)</span> 和 <span class="math inline">\((1,0)\)</span> 的距离是 <span class="math inline">\(2\)</span>, 但是并无一条连接两点的直线段.
+这说明两点间不一定有最短线.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 13.1</u> (局部测地线是最短线) 设黎曼流形 <span class="math inline">\(M\)</span>, 测地球 <span class="math inline">\(B_\delta(p)\)</span>, <span class="math inline">\(q\in B_\delta(p)\)</span>. 则测地线 <span class="math display">\[
+\gamma:[0,1]\to B_\delta(p),\quad
+\gamma(0)=p,\quad\gamma(1)=q
+\]</span> 是连接 <span class="math inline">\(p,q\)</span> 的最短线.
+此外, 设 <span class="math inline">\(c\)</span> 是另一连接 <span class="math inline">\(p,q\)</span> 的分段光滑曲线, 且 <span class="math inline">\(l(\gamma)=l(c)\)</span>, 则 <span class="math inline">\(c\)</span> 是 <span class="math inline">\(\gamma\)</span> 的单调重参数化.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 证明的关键是将切向量 <span class="math inline">\(c'(t)\)</span> 正交分解为径向部分
+(平行于测地线的切向量) 与切向部分 (平行于测地球面的切空间),
+其中正交性由高斯引理保证.</p>
+<p>设 <span class="math inline">\(c:[a,b]\to B_\delta(p)\)</span>, <span class="math inline">\(c(a)=p\)</span>, <span class="math inline">\(c(b)=q\)</span>. 设 <span class="math inline">\(\tilde{a}\)</span> 是最大的使得 <span class="math inline">\(c(\tilde{a})=p\)</span> 的数; <span class="math inline">\(\tilde{b}\)</span> (<span class="math inline">\(\tilde{a}&lt;\tilde{b}\leq b\)</span>)
+是最小的使得 <span class="math inline">\(c(\tilde{b})\in
+S_\delta(p)\)</span> 的数 (若 <span class="math inline">\(c(t)\)</span>
+始终在 <span class="math inline">\(B_\delta(p)\)</span> 内部, 则取 <span class="math inline">\(\tilde{b}=b\)</span>). 于是 <span class="math inline">\(l(c|_{[\tilde{a},\tilde{b}]})\leq l(c)\)</span>.
+下面只考虑 <span class="math inline">\(c|_{[\tilde{a},\tilde{b}]}\)</span>.</p>
+<p>将 <span class="math inline">\(c(t)\)</span> 写作指数映射的像, <span class="math display">\[
+c(t)=\operatorname{Exp}_p(r(t)v(t)),
+\]</span> 其中 <span class="math inline">\(r(t)&gt;0\)</span>
+为光滑函数, <span class="math inline">\(v(t)\in S^{n-1}\subset
+T_pM\)</span>. 求导有 <span class="math display">\[
+\Align{
+c'(t)
+&amp;= (\operatorname{Exp}_p)_{*}( r'(t)v(t)+r(t)v'(t) ) \\
+&amp;= r'(t)(\operatorname{Exp}_p)_{*}(v(t)) +
+r(t)(\operatorname{Exp}_p)_{*}(v'(t))
+}
+\]</span> 注意到 <span class="math inline">\(v(t)\perp
+v'(t)\)</span>, 结合指数映射保持径向向量长度, 保持径向与切向的正交性
+(高斯引理), 有 <span class="math display">\[
+\Align{
+\|c'(t)\|^2
+&amp;= r'(t)^2 \|v(t)\|^2 + r(t)^2 \|v'(t)\|^2 \\
+&amp;\geq r'(t)^2\|v(t)\|^2 = r'(t)^2.
+}
+\]</span> 线长 <span class="math display">\[
+\Align{
+l(c) \geq l(c|_{[\tilde{a},\tilde{b}]})
+&amp;= \int_{[\tilde{a},\tilde{b}]}\|c'(t)\|\dd{t} \\
+&amp;\geq \int_{[\tilde{a},\tilde{b}]}|r'(t)|\dd{t} \\
+&amp;\geq \int_{[\tilde{a},\tilde{b}]}r'(t)\dd{t} \\
+&amp;= r(\tilde{b})-r(\tilde{a}) \\
+&amp;= r(\tilde{b}) \geq r(b) = l(\gamma).
+}
+\]</span> 其中最后一个等号, <span class="math inline">\(r(b)\)</span> 为
+<span class="math inline">\(q\)</span> 所在的测地球面的半径,
+因为指数映射保持径向长度, <span class="math inline">\(r(b)\)</span>
+就是测地线线长. 上式取等当且仅当 <span class="math inline">\([a,b]=[\tilde{a},\tilde{b}]\)</span>, <span class="math inline">\(v'(t)\equiv0\)</span>, <span class="math inline">\(r'(t)\geq0\)</span>, 即 <span class="math inline">\(\gamma(t)\)</span> 的单调重参数化.</p>
+</div>
+<p>正规邻域内的测地线是最短线, 但一条一般的测地线就不一定了. 球面 <span class="math inline">\(S^2\)</span> 的大圆的一段优弧显然不是最短的
+(与之相补的劣弧是最短的).</p>
+<h3 id="geodesic-completeness">13.2  Geodesic completeness</h3>
+<p>在微分拓扑中, 一条曲线 <span class="math inline">\(c:(a,b)\to
+M\)</span> 可以被光滑重参数化为 <span class="math inline">\(\bar{c}:\R\to M\)</span>, 因为 <span class="math inline">\((a,b)\)</span> 微分同胚于 <span class="math inline">\(\R\)</span>. 但是测地线只能容许线性的重参数化
+<span class="math inline">\(t=au+b\)</span>,
+于是定义在有限区间上的测地线, 与定义在 <span class="math inline">\(\R\)</span> 上的测地线无法通过重参数化互相转化.
+我们称黎曼流形 <span class="math inline">\(M\)</span>
+为<strong>测地完备的(geodesic complete)</strong>,
+若其上每一条测地线的定义域均可延拓到 <span class="math inline">\(\R\)</span>.</p>
+<ul>
+<li>点 <span class="math inline">\(p\)</span> 处的测地线 <span class="math inline">\(\gamma_v(t)=\operatorname{Exp}_p(tv)\)</span>
+的定义域可以延拓到 <span class="math inline">\(t\in\R\)</span> 意味着
+<span class="math inline">\(\operatorname{Exp}_p\)</span> 在整个 <span class="math inline">\(T_pM\)</span> 上有定义.</li>
+<li>球面和欧氏空间都是测地完备的. 去掉一点的欧氏平面 <span class="math inline">\(\R^2-\{0\}\)</span> 不是测地完备的, 测地线 <span class="math inline">\(\gamma(t)=(t,0)\)</span>, <span class="math inline">\(t&gt;0\)</span> 的定义域不能延拓到 <span class="math inline">\(\R\)</span>.</li>
+</ul>
+<p>连通的黎曼流形还有距离空间结构.
+称一个距离空间为<strong>完备(complete)</strong>的, 若任一 Cauchy
+列存在极限.</p>
+<ul>
+<li>可以证明, 距离函数 <span class="math inline">\(d\)</span>
+诱导的拓扑与 <span class="math inline">\(M\)</span>
+作为流形的拓扑是相同的.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 13.2</u> (Hopf-Rinow 定理) 设黎曼流形 <span class="math inline">\(M\)</span>, 则下列命题等价:</p>
+<ol type="1">
+<li><span class="math inline">\((M,d)\)</span> 是完备的距离空间.</li>
+<li>对任意 <span class="math inline">\(p\in M\)</span>, <span class="math inline">\(\operatorname{Exp}_p\)</span> 定义在整个 <span class="math inline">\(T_pM\)</span> 上 (<span class="math inline">\(M\)</span> 测地完备).</li>
+<li>存在 <span class="math inline">\(p\in M\)</span>, <span class="math inline">\(\operatorname{Exp}_p\)</span> 定义在整个 <span class="math inline">\(T_pM\)</span> 上.</li>
+<li><span class="math inline">\(M\)</span>
+中任意有界闭子集是紧致的.</li>
+</ol>
+<p>并且, 在完备的黎曼流形中, 任意两点可由最短测地线相连,
+于是任意一点的指数映射 <span class="math inline">\(\operatorname{Exp}_p:T_pM\to M\)</span>
+是满射.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 我们将证明 1 <span class="math inline">\(\Rightarrow\)</span> 2 <span class="math inline">\(\Rightarrow\)</span> 3 <span class="math inline">\(\Rightarrow\)</span> 4 <span class="math inline">\(\Rightarrow\)</span> 1, 其中 2 <span class="math inline">\(\Rightarrow\)</span> 3 是显然的; 4 <span class="math inline">\(\Rightarrow\)</span> 1 是拓扑学中的结论.</p>
+<p>1 <span class="math inline">\(\Rightarrow\)</span> 2.
+假设一条弧长参数的最大测地线为 <span class="math inline">\(\gamma(t)\)</span>, <span class="math inline">\(a&lt;t&lt;b\)</span>, 其中 <span class="math inline">\(b&lt;+\infty\)</span>. 距离空间的完备性保证当
+<span class="math inline">\(t\uparrow b\)</span> 时, <span class="math inline">\(\gamma(t)\)</span> 趋近于某一点 <span class="math inline">\(q\in M\)</span>. 根据 Claim 11.7, 存在 <span class="math inline">\(q\)</span> 点的邻域 <span class="math inline">\(U\)</span> 以及 <span class="math inline">\(\varepsilon&gt;0\)</span>, 使得对任意 <span class="math inline">\(x\in U\)</span>, <span class="math inline">\(\operatorname{Exp}_x\)</span> 在 <span class="math inline">\(B_\varepsilon(0)\)</span> 有定义. 取 <span class="math inline">\(\gamma(t_0)\in U\)</span> 并且 <span class="math display">\[
+d(\gamma(t_0),q)&lt;\frac\varepsilon2,
+\]</span> 定义测地线 <span class="math inline">\(\zeta:[0,\varepsilon]\to M\)</span>, <span class="math inline">\(\zeta(0)=\gamma(t_0)\)</span>, <span class="math inline">\(\zeta'(0)=\gamma'(t_0)\)</span>, 则 <span class="math inline">\(\zeta\)</span> 延伸了 <span class="math inline">\(\gamma\)</span> 并超过 <span class="math inline">\(q\)</span> 点. 这导致矛盾, 说明 <span class="math inline">\(b=+\infty\)</span>. 同样能证明 <span class="math inline">\(a=-\infty\)</span>.</p>
+<p>对于 3 <span class="math inline">\(\Rightarrow\)</span> 4,
+引入中间命题 5: <span class="math inline">\(M\)</span>
+中任意两点可由最短测地线相连. 转而证明 3 <span class="math inline">\(\Rightarrow\)</span> 5 <span class="math inline">\(\Rightarrow\)</span> 4.</p>
+<p>3 <span class="math inline">\(\Rightarrow\)</span> 5. 结合 Claim 13.1
+有 <span class="math inline">\(B_r(p)=\{ x\in M\mid d(p,x)\leq r
+\}\)</span> 对任意 <span class="math inline">\(r\geq0\)</span>. 考虑
+<span class="math display">\[
+\Sigma_r(p) = \{x\in B_r(p)\mid p,x\textsf{ 可用最短测地线相连}\},
+\]</span> 即要证明 <span class="math inline">\(B_r(p)=\Sigma_r(p)\)</span>. 当 <span class="math inline">\(r\)</span> 充分小时这件事是对的, 所以若令 <span class="math display">\[
+\mathscr{T}=\{ r\in[0,+\infty)\mid B_r(p)=\Sigma_r(p)\},
+\]</span> 则 <span class="math inline">\(\mathscr{T}\)</span>
+非空且有内点. 只要证明 <span class="math inline">\(\mathscr{T}\)</span>
+既开又闭, 再由 <span class="math inline">\([0,+\infty)\)</span>
+连通便可得 <span class="math inline">\(\mathscr{T}=[0,+\infty)\)</span>.
+闭性是测地线连续依赖于初始向量的直接推论. 下面证明开性. 先给出 Claim
+11.7 和 Claim 13.1 的推论:</p>
+<ul>
+<li>任给 <span class="math inline">\(q\in M\)</span>, 存在 <span class="math inline">\(q\)</span> 的邻域 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(\varepsilon&gt;0\)</span>, 使得 <span class="math inline">\(\operatorname{Exp}\)</span> 定义在管状区域 <span class="math inline">\(U\times B_\varepsilon(0)\)</span> 上, 于是 (推论)
+任给 <span class="math inline">\(x\in K\)</span>, <span class="math inline">\(y\in M\)</span>, 只要 <span class="math inline">\(d(x,y)\leq\varepsilon\)</span>, 那么 <span class="math inline">\(x,y\)</span> 就能由最短测地线连接.</li>
+<li>考虑 <span class="math inline">\(B_r(p)\)</span>, 任给 <span class="math inline">\(q\in B_r(p)\)</span>, 能够找到如上的 <span class="math inline">\(U_q\)</span> 和 <span class="math inline">\(\varepsilon_q\)</span>. 这 <span class="math inline">\(\{U_q\}\)</span> 构成一个开覆盖. 由 <span class="math inline">\(B_r(p)\)</span> 的紧致性, <span class="math inline">\(\{U_q\}\)</span> 存在有限子覆盖 <span class="math inline">\(\{U_q\}_{q\in I}\)</span>. 取 <span class="math inline">\(\varepsilon:=\min_{q\in I}\varepsilon_q\)</span>,
+则 <span class="math inline">\(B_r(p)\)</span> 关于 <span class="math inline">\(\varepsilon\)</span> 也满足如上推论.</li>
+</ul>
+<p>取 <span class="math inline">\(r\in\mathscr{T}\)</span>, <span class="math inline">\(\varepsilon\)</span> 为上面根据 <span class="math inline">\(B_r(p)\)</span> 构造出来的值. 下面证明, 对任意
+<span class="math inline">\(\varepsilon'&lt;\varepsilon\)</span>, 有
+<span class="math inline">\(r+\varepsilon'\in\mathscr{T}\)</span>.
+任取 <span class="math inline">\(y\in
+B_{r+\varepsilon'}(p)\)</span>. 若 <span class="math inline">\(y\in
+B_r(p)\)</span>, 则 <span class="math inline">\(y\in\Sigma_r(p)\subset\Sigma_{r+\varepsilon'}(p)\)</span>.
+若 <span class="math inline">\(y\in
+B_{r+\varepsilon'}(p)-B_r(p)\)</span>, 则存在 <span class="math inline">\(x\in\partial B_r(p)\)</span>, 且 <span class="math display">\[
+d(p,y) = d(p,x) + d(x,y).
+\]</span></p>
+<ul>
+<li>(注) 存在性是因为, 任意连接 <span class="math inline">\(p,y\)</span>
+的分段光滑曲线必定穿过 <span class="math inline">\(\partial
+B_r(p)\)</span>, 所以 <span class="math display">\[
+\Align{
+d(p,y)
+&amp;=\inf_{c\textsf{ 连接 }p,y} l(c) \\
+&amp;=\inf_{x\in\partial B_r(p)}\pqty{
+  \inf_{c_1\textsf{ 连接 }p,x}l(c_1) +
+  \inf_{c_2\textsf{ 连接 }x,y}l(c_2)
+} \\
+&amp;=\inf_{x\in\partial B_r(p)}(d(p,x)+d(x,y)),
+}
+\]</span> 由 <span class="math inline">\(\partial B_r(p)\)</span>
+的紧致性, 该下确界就等于某 <span class="math inline">\(d(p,x)+d(x,y)\)</span>.</li>
+</ul>
+<p>因为 <span class="math inline">\(x\in B_r(p)\)</span>, 所以 <span class="math inline">\(p,x\)</span> 间可以用最短测地线 <span class="math inline">\(\gamma_1\)</span> 连接. 又因为 <span class="math display">\[
+\Align{
+d(x,y)
+&amp;=d(p,y)-d(p,x) \\
+&amp;=d(p,y)-r \\
+&amp;\leq(r+\varepsilon')-r=\varepsilon',
+}
+\]</span> 所以 (根据推论) <span class="math inline">\(x,y\)</span>
+可以用最短测地线 <span class="math inline">\(\gamma_2\)</span> 连接. 将
+<span class="math inline">\(\gamma_1\)</span>, <span class="math inline">\(\gamma_2\)</span> 连起来, 就成为连接 <span class="math inline">\(p,y\)</span> 的最短曲线. 因为 <span class="math inline">\(y\)</span> 在测地球里,
+所以这最短曲线必然是最短测地线. 于是 <span class="math inline">\(y\in\Sigma_{r+\varepsilon'}(p)\)</span>.
+总之有 <span class="math inline">\(r+\varepsilon'\in\mathscr{T}\)</span>, 所以
+<span class="math inline">\(\mathscr{T}\)</span> 是开的.</p>
+<p>5 <span class="math inline">\(\Rightarrow\)</span> 4. 设 <span class="math inline">\(K\subset M\)</span> 为有界闭集. 取定 <span class="math inline">\(p\in K\)</span>, 则存在 <span class="math inline">\(A\geq0\)</span>, 使得 <span class="math display">\[
+d(p,x)\leq A,\quad x\in K.
+\]</span> 又因为任给 <span class="math inline">\(x\in K\)</span>, <span class="math inline">\(p,x\)</span> 可以用最短测地线连接, 所以 <span class="math inline">\(K\subset
+B_A(p)=\operatorname{Exp}_p(B_A(0))\)</span>. 注意到 <span class="math inline">\(B_A(0)\)</span> 是紧致的, <span class="math inline">\(\operatorname{Exp}_p\)</span> 连续, 故 <span class="math inline">\(B_A(p)\)</span> 紧致. 集合 <span class="math inline">\(K\)</span> 作为 <span class="math inline">\(B_A(p)\)</span> 的闭子集, 也紧致.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 13.3</u> 完备的黎曼流形上的有界向量场是完备的. 换言之,
+设向量场 <span class="math inline">\(X\)</span>, 若存在常数 <span class="math inline">\(c\)</span> 使得 <span class="math inline">\(\|X\|\leq c\)</span>, 则 <span class="math inline">\(X\)</span> 的每一条不可延积分曲线的定义域为 <span class="math inline">\(\R\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 反证. 假设 <span class="math inline">\(X\)</span>
+的一条积分曲线 <span class="math inline">\(\phi:[0,a)\to M\)</span>,
+且不可延伸到 <span class="math inline">\(a\)</span> (<span class="math inline">\(a&lt;+\infty\)</span>). 我们首先给出估计: 对于任意
+<span class="math inline">\(0\leq t_1&lt;t_2&lt;a\)</span>, <span class="math display">\[
+\Align{
+d(\phi(t_1),\phi(t_2))
+&amp;\leq \int_{[t_1,t_2]}\|\phi'(t)\|\dd{t} \\
+&amp;= \int_{[t_1,t_2]}\|X_{\phi(t)}\|\dd{t} \\
+&amp;\leq c(t_2-t_1).
+}
+\]</span> 取 Cauchy 列 <span class="math inline">\(t_n\uparrow
+a\)</span>, 上面的估计意味着 <span class="math inline">\(\phi(t_n)\)</span> 也为 Cauchy 列, 根据 <span class="math inline">\(M\)</span> 的完备性, <span class="math inline">\(\phi(t_n)\to q\in M\)</span>.
+上面的估计也意味着极限点 <span class="math inline">\(q\)</span>
+不依赖于数列 <span class="math inline">\(\{t_n\}\)</span> 的选取. 所以当
+<span class="math inline">\(t\uparrow a\)</span>, <span class="math inline">\(\phi(t)\to q\)</span>. 由 <span class="math inline">\(X\)</span> 的连续性, 此时 <span class="math inline">\(X_{\phi(t)}\to X_q\)</span>. 设从 <span class="math inline">\(q\)</span> 开始的积分曲线 <span class="math inline">\(\psi:[0,\varepsilon)\to M\)</span>, 则 <span class="math inline">\(\psi\)</span> 延伸了 <span class="math inline">\(\phi\)</span>, 导致矛盾, 所以 <span class="math inline">\(a=+\infty\)</span>.</p>
+<p>相似地, 可以证明 <span class="math inline">\(\phi\)</span>
+定义区间的下限为 <span class="math inline">\(-\infty\)</span>.</p>
+</div>
+<p>完备的黎曼流形有很好的性质, 在黎曼几何中起确定性作用.
+完备黎曼流形的一些重要的例子有:</p>
+<ul>
+<li>具有平坦度量的 <span class="math inline">\(\R^n\)</span>.</li>
+<li><span class="math inline">\(\R^n\)</span> 作为闭子集的子流形.</li>
+<li>紧致黎曼流形.</li>
+<li><strong>齐性(homogeneous)黎曼流形</strong>. 黎曼流形 <span class="math inline">\(M\)</span> 为齐性的, 当且仅当对任意 <span class="math inline">\(p,q\in M\)</span>, 存在等距同构 <span class="math inline">\(\varphi:M\to M\)</span>, 使得 <span class="math inline">\(\varphi(p)=q\)</span>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 13.4</u> 齐性黎曼流形是完备的.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 根据 Hopf-Rinow, 只需证明 <span class="math inline">\(M\)</span> 测地完备. 设弧长参数的测地线 <span class="math inline">\(\gamma:[0,a)\to M\)</span>, 且不可延伸到 <span class="math inline">\(a\)</span>. 我们知道, 取定一个 <span class="math inline">\(p\in M\)</span>, 存在 <span class="math inline">\(\varepsilon&gt;0\)</span>, 使得从 <span class="math inline">\(p\)</span> 点开始的测地线的线至少在 <span class="math inline">\((-\varepsilon,\varepsilon)\)</span> 有定义. 取
+<span class="math inline">\(\delta=\min\{\varepsilon,a/2\}\)</span>,
+<span class="math inline">\(q=\gamma(a-\delta)\)</span>.</p>
+<p>因为 <span class="math inline">\(M\)</span> 是齐性流形,
+所以存在等距同构 <span class="math inline">\(\varphi:M\to M\)</span>,
+使得 <span class="math inline">\(\varphi(p)=q\)</span>.
+由于等距同构保持测地线, 所以从 <span class="math inline">\(q\)</span>
+点出发的所有测地线至少在 <span class="math inline">\((-\delta,\delta)\)</span> 有定义. 特别地, <span class="math inline">\(\gamma(t)\)</span> 可以延伸到 <span class="math inline">\([0,a+\delta)\)</span>, 与假设矛盾.</p>
+</div>
+<h2 id="volume">14  Volume</h2>
+<h3 id="volume-form">14.1  Volume form</h3>
+<div class="note note-success">
+<p><u>Claim 14.1</u> (对偶标架的变换律) 设开集 <span class="math inline">\(U\)</span> 上的标架 <span class="math inline">\(\{e_i\}\)</span>, <span class="math inline">\(\{\bar{e_i}\}\)</span> 与其对偶标架 <span class="math inline">\(\{\theta^i\}\)</span>, <span class="math inline">\(\{\bar\theta^i\}\)</span> 分别满足 <span class="math display">\[
+\bar{e}_j=\sum_i a^i_je_i,\quad \bar\theta^i=\sum_j b^i_j\theta^j,
+\]</span> (其中光滑函数 <span class="math inline">\(A=[a^i_j]:U\to{\rm
+GL}(n,\R)\)</span>) 则 <span class="math inline">\(B=[b^i_j]=A^{-1}\)</span>. 此外, <span class="math display">\[
+\bar\theta^1\wedge\dots\wedge\bar\theta^n
+= (\det{B})\,\theta^1\wedge\dots\wedge\theta^n.
+\]</span></p>
+</div>
+<p>在一个可定向流形上, 有许多处处非零的连续 <span class="math inline">\(n\)</span> 形式场 (即体积形式),
+彼此相差一个非零函数. 若 <span class="math inline">\(M\)</span>
+为黎曼流形, 我们能挑出一个最特别的体积形式, "体积"
+的概念也唯一确定下来了.</p>
+<p>设黎曼流形 <span class="math inline">\(M\)</span>, 开集 <span class="math inline">\(U\)</span> 上的正交归一标架 <span class="math inline">\(\{e_i\}\)</span>, 其对偶标架 <span class="math inline">\(\{\theta^i\}\)</span>, 则 <span class="math inline">\(n\)</span> 形式 <span class="math display">\[
+\omega=\theta^1\wedge\dots\wedge\theta^n
+\]</span> 在 <span class="math inline">\(U\)</span> 处处非零. 下面说明
+<span class="math inline">\(\omega\)</span> 不依赖于正交归一标架的选取.
+设有另一个正交归一标架, <span class="math inline">\(\{\bar
+e_i\}\)</span>, <span class="math inline">\(\{\bar\theta^i\}\)</span>,
+满足变换关系 <span class="math inline">\(\bar e=eA\)</span>, <span class="math inline">\(\bar\theta=A^{-1}\theta\)</span>, 注意 <span class="math inline">\(A\)</span> 是正交阵, <span class="math inline">\(\det{A}=\det{A}^{-1}=\pm1\)</span>, 则有 <span class="math display">\[
+\bar\omega
+=\bar\theta^1\wedge\dots\wedge\bar\theta^n
+=(\det{A}^{-1})\,\theta^1\wedge\dots\wedge\theta^n
+=\pm\omega.
+\]</span> 当标架 <span class="math inline">\(\{e_i\}\)</span> 与 <span class="math inline">\(\{\bar e_i\}\)</span> 定向相同时, <span class="math inline">\(\bar\omega=\omega\)</span>. 上述 <span class="math inline">\(n\)</span> 形式 <span class="math inline">\(\omega\)</span> 称为 <span class="math inline">\(M\)</span> 的<strong>黎曼体积形式(Riemannian
+volume form)</strong>, 简称体积形式, 记作 <span class="math inline">\({\rm vol}_M\)</span>. 若 <span class="math inline">\(\int_M{\rm vol}_M\)</span> 有限, 则称 <span class="math inline">\(\int_M{\rm vol}_M\)</span> 为流形 <span class="math inline">\(M\)</span> 的<strong>体积(volume)</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 14.2</u> (坐标系下的体积形式) 在正定向的坐标系 <span class="math inline">\((U,x^1,\dots,x^n)\)</span> 下, 黎曼体积形式 <span class="math display">\[
+{\rm vol}_M = \sqrt{\det{[g_{ij}]}} \dd{x^1}\wedge\cdots\wedge\dd{x^n}.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(U\)</span>
+上的正定向正交归一标架 <span class="math inline">\(e_1,\dots,e_n\)</span>, 对偶标架 <span class="math inline">\(\theta^1,\dots,\theta^n\)</span>, 于是存在 <span class="math inline">\([a^i_j]:U\to{\rm GL}(n,\R)\)</span>, 使得 <span class="math inline">\(\partial_j=\sum a^i_je_i\)</span>, 根据变换律,
+<span class="math inline">\(\dd{x}^i=\sum b^i_j\theta^i\)</span>, <span class="math inline">\(B=[b^i_j]=[a^i_j]^{-1}=A^{-1}\)</span>, 并且 <span class="math display">\[
+\dd{x^1}\wedge\dots\wedge\dd{x^n} = (\det{B})\,
+\theta^1\wedge\dots\wedge\theta^n.
+\]</span> 所以 <span class="math display">\[
+{\rm vol}_M = \theta^1\wedge\dots\wedge\theta^n
+= (\det{A}) \dd{x^1}\wedge\dots\wedge\dd{x^n}.
+\]</span> 为了计算 <span class="math inline">\(\det{A}\)</span>, 考虑
+<span class="math display">\[
+\Align{
+g_{ij} = \lr{\partial_i,\partial_j}
+&amp;= \lr{ \sum a^k_ie_k, \sum a^l_je_l } \\
+&amp;= \sum a^k_ia^l_j \delta_{kl} \\
+&amp;= \sum a^k_i a^k_j = (A\T A)^i_j,
+}
+\]</span> 于是 <span class="math inline">\([g_{ij}]=A\T A\)</span>,
+<span class="math inline">\(\det[g_{ij}]=\det(A\T
+A)=(\det{A})^2\)</span>, 或 <span class="math inline">\(\det{A}=\sqrt{\det[g_{ij}]}\)</span>.</p>
+</div>
+<div class="note note-info">
+<p><u>Example</u> 球面的体积形式. 设 <span class="math inline">\(\R^n\)</span> 中半径为 <span class="math inline">\(r\)</span> 的球面 <span class="math inline">\(S^{n-1}(r)\)</span> 具有诱导黎曼度量.</p>
+<p>在 <span class="math inline">\(\R^n\)</span> 建立球坐标系 <span class="math display">\[
+\left\{\Align{
+x_1 &amp;= \rho\cos\theta, \\
+x_2 &amp;= \rho\sin\theta\cos\phi_1, \\
+x_3 &amp;= \rho\sin\theta\sin\phi_1\cos\phi_2, \\
+&amp;\dots \\
+x_{n-1} &amp;= \rho\sin\theta\cdots\sin\phi_{n-3}\cos\phi_{n-2}, \\
+x_n     &amp;= \rho\sin\theta\cdots\sin\phi_{n-3}\sin\phi_{n-2}, \\
+}\right.
+\]</span> 其中 <span class="math inline">\(\rho\geq0\)</span>, <span class="math inline">\(\theta,\phi_1,\dots,\phi_{n-3}\in[0,\pi]\)</span>,
+<span class="math inline">\(\phi_{n-2}\in[0,2\pi]\)</span>.
+根据坐标变换公式 <span class="math display">\[
+\pdv{y^j} = \pdv{x^i}{y^j}\pdv{x^i},
+\]</span> 一番计算可得 <span class="math display">\[
+\Align{
+\norm{\pdv{\theta}} &amp;= r, &amp;
+\norm{\pdv{\phi_1}} &amp;= r\sin\theta, &amp;\dots,&amp;&amp;
+\norm{\pdv{\phi_{n-2}}} &amp;= r\sin\theta\cdots\sin\phi_{n-3}.
+}
+\]</span> 并且 <span class="math inline">\(\partial/\partial\theta,\partial/\partial\phi_{k}\)</span>
+(<span class="math inline">\(k=1,\dots,n-2\)</span>) 两两正交,
+将其归一化便得到 <span class="math inline">\(S^{n-1}(r)\)</span>
+的正交归一标架, 其对偶标架 <span class="math display">\[
+\Align{
+\omega^1 &amp;= r\dd{\theta}, &amp;
+\omega^2 &amp;= r\sin\theta\dd{\phi_1}, &amp;\dots,&amp;&amp;
+\omega^{n-1} &amp;= r\sin\theta\cdots\sin\phi_{n-3}\dd{\phi_{n-2}}.
+}
+\]</span> 于是黎曼体积形式 <span class="math display">\[
+\Align{
+{\rm vol}_{S^{n-1}(r)}
+&amp;= \omega^1\wedge\dots\wedge\omega^n \\
+&amp;=
+r^{n-1}(\sin\theta)^{n-2}(\sin\phi_1)^{n-3}\cdots(\sin\phi_{n-3})^1
+\dd{\theta}\wedge\cdots\wedge\dd{\phi_{n-2}}.
+}
+\]</span></p>
+</div>
+<p>现在可以求球面 <span class="math inline">\(S^{n-1}(r)\)</span>
+的体积了, 不过这里的 "体积", 即体积形式在 <span class="math inline">\(S^{n-1}(r)\)</span> 上的积分,
+是我们通常所说的球的<strong>表面积(surface area)</strong>.
+取球坐标系下的体元, <span class="math display">\[
+\Align{
+\textsf{Area}
+&amp;= \int_{S^{n-1}(r)} {\rm vol}_{S^{n-1}(r)} \\
+&amp;=
+\int_0^\pi\dd\theta\int_0^\pi\dd\phi_1\cdots\int_0^\pi\dd\phi_{n-3}
+   \int_0^{2\pi}\dd{\phi_{n-2}}{} \cdot
+   r^{n-1}(\sin\theta)^{n-2}(\sin\phi_1)^{n-3}\cdots(\sin\phi_{n-3}).
+}
+\]</span> 利用 Wallis 积分公式 <span class="math inline">\(\int_0^{\pi/2}(\sin{x})^n\dd{x}=\Cases{\frac{(n-1)!!}{n!!}\frac\pi2,&amp;n\textsf{
+为偶数},\\\frac{(n-1)!!}{n!!},&amp;n\textsf{ 为奇数},}\)</span> 算得
+<span class="math display">\[
+\Align{
+\textsf{Area}
+= \Cases{
+  \dfrac{(2\pi)^{n/2}}{(n-2)!!}r^{n-1}, &amp; n\textsf{ 为偶数}, \\
+  \dfrac{2^{(n+1)/2}\pi^{(n-1)/2}}{(n-2)!!}r^{n-1}, &amp; n\textsf{
+为奇数}.
+}
+}
+\]</span> 利用 Gamma 函数可以写作 <span class="math display">\[
+\textsf{Area} = \frac{2\pi^{n/2}}{\Gamma(\frac{n}2)} r^{n-1}.
+\]</span></p>
+<h3 id="induced-volume-form">14.2  Induced volume form</h3>
+<p>回忆带边流形的诱导定向. 设定向的带边流形 <span class="math inline">\(M\)</span>, 设 <span class="math inline">\(\omega\)</span> 为 <span class="math inline">\(M\)</span> 的体积形式, <span class="math inline">\(X\)</span> 为 <span class="math inline">\(\partial
+M\)</span> 上的光滑外向向量场, 则 <span class="math inline">\(\partial
+M\)</span> 的诱导体积形式由 interior multiplication <span class="math inline">\(\iota_X\omega\)</span> 给出.</p>
+<div class="note note-success">
+<p><u>Claim 14.3</u> (诱导体积形式) 设带边黎曼流形 <span class="math inline">\(M\)</span>, <span class="math inline">\(X\)</span>
+为 <span class="math inline">\(\partial M\)</span>
+上的光滑外向单位向量场, 则 <span class="math inline">\(\partial
+M\)</span> 的诱导黎曼体积形式 <span class="math display">\[
+{\rm vol}_{\partial M} = \iota_X({\rm vol}_M).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(p\in\partial{M}\)</span>. 若
+<span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U\)</span> 内有 <span class="math inline">\(M\)</span> 的正定向的正交归一标架 <span class="math inline">\((X,e_2,\dots,e_n)\)</span>, 则 <span class="math inline">\((e_2,\dots,e_n)\)</span> 为 <span class="math inline">\(\partial{M}\)</span> 的正定向正交归一标架. 设
+<span class="math inline">\(\theta^1,\dots,\theta^n\)</span> 为 <span class="math inline">\(X,e_2,\dots,e_n\)</span> 的对偶标架, 则 <span class="math inline">\(\theta^2,\dots,\theta^n\)</span> 为 <span class="math inline">\(e_2,\dots,e_n\)</span> 的对偶标架. 所以 <span class="math display">\[
+\Align{
+{\rm vol}_M &amp;= \theta^1\wedge\dots\wedge\theta^n, &amp;
+{\rm vol}_{\partial M} &amp;= \theta^2\wedge\dots\wedge\theta^n,
+}
+\]</span> 在 <span class="math inline">\(p\)</span> 点有 <span class="math display">\[
+\Align{
+\iota_X({\rm vol}_M)
+&amp;= \sum_j (-1)^{j-1}\theta^j(X)\,
+\theta^1\wedge\dots\wedge\widehat{\theta^j}\wedge\dots\wedge\theta^n\\
+&amp;= \theta^1(X)\,\theta^2\wedge\dots\wedge\theta^n \\
+&amp;= \theta^2\wedge\dots\wedge\theta^n = {\rm vol}_{\partial M}.
+}
+\]</span></p>
+</div>
+<p>单位圆的体积形式. 单位圆盘 <span class="math inline">\(D=\qty{(x,y)\in\R^2|x^2+y^2\leq1}\)</span>
+的黎曼体积形式 <span class="math inline">\({\rm
+vol}_D=\dd{x}\wedge\dd{y}\)</span>, 边界 <span class="math inline">\(\partial D=S^1\)</span> 的外向单位向量场是 <span class="math display">\[
+X=x\pdv{x}+y\pdv{y},
+\]</span> 于是 <span class="math inline">\(S^1\)</span> 的黎曼体积形式
+<span class="math display">\[
+\Align{
+{\rm vol}_{S^1} = \iota_X({\rm vol}_D)
+&amp;= (\iota_X\dd{x})\dd{y} - \dd{x} (\iota_X\dd{y}) \\
+&amp;= (Xx)\dd{y} - \dd{x}(Xy) \\
+&amp;= x\dd{y} - y\dd{x}.
+}
+\]</span></p>
+<div class="note note-info">
+<p><u>Example</u> <span class="math inline">\(\R^n\)</span>
+中超曲面的的体积形式.</p>
+<p>设光滑函数 <span class="math inline">\(f:\R^n\to\R\)</span>, <span class="math inline">\(0\in\R\)</span> 为 <span class="math inline">\(f\)</span> 的正则值, 于是 <span class="math inline">\(Z(f):=\{x\in\R^n|f(x)=0\}\)</span> 为 <span class="math inline">\(\R^n\)</span> 的一个 <span class="math inline">\(n-1\)</span> 维子流形, 也叫做超曲面(hypersurface).
+记 <span class="math display">\[
+\operatorname{grad}f:=\sum\pdv{f}{x^i}\pdv{x^i}
+\]</span> 为 <span class="math inline">\(f\)</span> 的梯度场. 因为 <span class="math inline">\(0\)</span> 是正则值, <span class="math inline">\(\operatorname{grad}f\)</span> 在 <span class="math inline">\(Z(f)\)</span> 上处处非零. 我们还断言: <span class="math inline">\(\operatorname{grad}(f)\)</span> 是 <span class="math inline">\(Z(f)\)</span> 的法向量场. 这是因为, 任给曲线 <span class="math inline">\(c:I\to Z(f)\)</span>, 有 <span class="math inline">\(f\circ c\equiv0\)</span>, 于是 <span class="math display">\[
+0\equiv(f\circ c)_{*,t}
+= f_{*,c(t)}\cdot c'(t)
+= \eval{\pqty{ \pdv{f}{x^1},\dots,\pdv{f}{x^n} }}_{c(t)}\cdot c'(t)
+\]</span> 即 <span class="math inline">\(\operatorname{grad}f|_{c(t)}\)</span> 正交于 <span class="math inline">\(c'(t)\in T_{c(t)}Z(f)\)</span>.</p>
+<p>因此 <span class="math inline">\(X=\operatorname{grad}f/\|\operatorname{grad}f\|\)</span>
+是 <span class="math inline">\(Z(f)\)</span> 的单位法向量场.</p>
+<p>我们如此定义 <span class="math inline">\(Z(f)\)</span> 的定向: <span class="math inline">\(T_pZ(f)\)</span> 的一个正交归一基底 <span class="math inline">\((e_2,\dots,e_n)\)</span> 为正定向的, 当且仅当
+<span class="math inline">\((X,e_1,\dots,e_n)\)</span> 在 <span class="math inline">\(T_p\R^n\)</span> 中为正定向的. 因此 <span class="math inline">\(Z(f)\)</span> 的诱导体积形式 <span class="math display">\[
+\Align{
+{\rm vol}_{Z(f)}
+&amp;= \iota_X({\rm vol}_{\R^n}) \\
+&amp;= \iota_X(\dd{x^1}\wedge\cdots\wedge\dd{x^n}) \\
+&amp;= \sum_i (-1)^{i-1}\dd{x^i}(X)
+\dd{x^1}\wedge\dots\wedge \widehat{\dd{x^i}}
+\wedge\dots\wedge\dd{x^n} \\
+&amp;= \frac1{\|\operatorname{grad}f\|} \sum_i (-1)^{i-1} \pdv{f}{x^i}
+\dd{x^1}\wedge\dots\wedge \widehat{\dd{x^i}}
+\wedge\dots\wedge\dd{x^n}.
+}
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 14.4</u> (高斯映射与体积形式) 设 <span class="math inline">\(M\)</span> 为 <span class="math inline">\(\R^{n+1}\)</span> 中紧致定向超曲面, <span class="math inline">\(M\)</span> 的高斯曲率 <span class="math inline">\(K\)</span>, 高斯映射 <span class="math inline">\(\nu:M\to S^n\)</span>, 则 <span class="math display">\[
+\nu^*({\rm vol}_{S^n}) = (-1)^n K {\rm vol}_M.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(T_pM\)</span>
+的一个正交归一正定向基底 <span class="math inline">\(X_1,\dots,X_n\)</span>, 根据诱导定向的定义,
+单位法向量 <span class="math inline">\(N_p\)</span> 与此基底合起来构成
+<span class="math inline">\(T_p\R^{n+1}\)</span>
+的一个正交归一正定向基底 <span class="math inline">\(N_p,X_1,\dots,X_n\)</span>. 注意 <span class="math inline">\(N_p\)</span> 也是球面的单位法向量, 于是 <span class="math display">\[
+\Align{
+(\nu^*{\rm vol}_{S^n})(X_1,\dots,X_n)
+&amp;= {\rm vol}_{S^n}(\nu_{*,p}X_1,\dots,\nu_{*,p}X_n) \\
+&amp;= {\rm vol}_{\R^{n+1}}(N_p,\nu_{*,p}X_1,\dots,\nu_{*,p}X_n) \\
+&amp;= \det(N_p,\nu_{*,p}X_1,\dots,\nu_{*,p}X_n).
+}
+\]</span> 下面计算这个行列式. 考虑有直和分解 <span class="math display">\[
+\Align{
+T_{p}\R^{n+1} &amp;= \operatorname{span}(N_p)\oplus T_pM, \\
+T_{\nu(p)}\R^{n+1} &amp;= \operatorname{span}(N_p)\oplus T_{\nu(p)}S^n,
+}
+\]</span> 定义 <span class="math inline">\(T_{p}\R^{n+1}\to
+T_{\nu(p)}\R^{n+1}\)</span> 的线性映射 <span class="math inline">\(\varphi={\rm id}\oplus\nu_{*,p}\)</span>, 满足
+<span class="math display">\[
+\Align{
+\varphi(N_p) &amp;= N_p, &amp;
+\varphi(X_i) &amp;= \nu_{*,p}X_i\quad(i=1,\dots,n),
+}
+\]</span> 根据行列式的性质, <span class="math inline">\(\det\varphi=(\det{\rm
+id})(\det{\nu_{*,p}})=\det\nu_{*,p}\)</span>, 所以 <span class="math display">\[
+\Align{
+\det(N_p,\nu_{*,p}X_1,\dots,\nu_{*,p}X_n)
+&amp;= (\det\circ\varphi^{\times n})(N_p,X_1,\dots,X_n) \\
+&amp;= (\det\varphi)\det(N_p,X_1,\dots,X_n) \\
+&amp;= (\det\nu_{*,p})\det(N_p,X_1,\dots,X_n) \\
+&amp;= (-1)^nK_p {\rm vol}_M(X_1,\dots,X_n).
+}
+\]</span></p>
+</div>
+<h2 id="the-gauss-bonnet-theorem">15  The Gauss-Bonnet Theorem</h2>
+<h3 id="angle-function">15.1  Angle function</h3>
+<p>切空间 <span class="math inline">\(T_pM\)</span> 中任意两个向量 <span class="math inline">\(u,v\)</span> 的夹角 <span class="math inline">\(\zeta\)</span> 定义为 <span class="math display">\[
+\cos\zeta = \frac{\lr{u,v}}{\|u\|\cdot\|v\|},
+\]</span> 于是 <span class="math inline">\(\zeta\)</span> 可以在相差
+<span class="math inline">\(2\pi\)</span> 的整数倍的意义下确定.</p>
+<p>设开集 <span class="math inline">\(U\)</span> 上有正定向的标架 <span class="math inline">\(e_1,e_2\)</span>, 光滑曲线 <span class="math inline">\(c:[a,b]\to U\)</span>. 设 <span class="math inline">\(\underline\zeta(t)\)</span> 为 <span class="math inline">\(e_{1,c(t)}\)</span> 与 <span class="math inline">\(c'(t)\)</span> 的夹角, 则 <span class="math inline">\(\underline{\zeta}\)</span> 为 <span class="math inline">\([a,b]\)</span> 到 <span class="math inline">\(\R/2\pi\Z\)</span> 的函数, 并且它是光滑的,
+因为在局部上, <span class="math inline">\(\underline\zeta(t)\)</span> 为
+<span class="math inline">\(\cos^{-1}\lr{c'(t),e_{1,c(t)}}/\|c'(t)\|\)</span>
+的一个分支.</p>
+<p>下面我们将 <span class="math inline">\(\underline\zeta\)</span>
+的值域提升到 <span class="math inline">\(\R\)</span> 上. 令 <span class="math inline">\(\zeta_0\)</span> 是满足 <span class="math display">\[
+\cos\zeta_0 = \frac{\lr{c'(a),e_{1,c(a)}}}{\|c'(a)\|}
+\]</span> 的一个数. 因为 <span class="math inline">\(\R\)</span> 是
+<span class="math inline">\(\R/2\pi\Z\)</span> 的覆叠空间且 <span class="math inline">\([a,b]\)</span> 单连通, 根据覆叠空间的理论,
+存在唯一的光滑映射 <span class="math inline">\(\zeta:[a,b]\to\R\)</span>, 满足初值 <span class="math inline">\(\zeta(a)=\zeta_0\)</span> 且使下图交换: <span class="math display">\[
+\xymatrix{
+&amp; \R \ar@{-&gt;&gt;}[d] \\
+[a,b] \ar@{.&gt;}[ur]^{\zeta} \ar[r]_{\underline\zeta} &amp; \R/2\pi\Z.
+}
+\]</span> 称 <span class="math inline">\(\zeta:[a,b]\to\R\)</span> 是以
+<span class="math inline">\(\zeta_0\)</span>
+为初值的<strong>角度函数(angle function)</strong>. 标架 <span class="math inline">\(e_1,e_2\)</span> 下, 任意两个曲线 <span class="math inline">\(c\)</span> 的角度函数相差 <span class="math inline">\(2\pi\)</span> 的整数倍.</p>
+<div class="note note-info">
+<p><u>Example</u> 设单位圆 <span class="math inline">\(c:\R\to\R^2\)</span>, <span class="math inline">\(c(t)=(\cos{t},\sin{t})\)</span>, 标架 <span class="math inline">\(e_1=(1,0)\)</span>, <span class="math inline">\(e_2=(0,1)\)</span>, 则 <span class="math display">\[
+\zeta(t) = t+\frac\pi2+2k\pi,
+\]</span> 是以 <span class="math inline">\(\pi/2+2k\pi\)</span>
+为初值的角度函数, 常数 <span class="math inline">\(k\in\Z\)</span>.</p>
+</div>
+<h3 id="geodesic-curvature">15.2  Geodesic curvature</h3>
+<p>考虑黎曼流形 <span class="math inline">\(M\)</span>
+上的弧长参数化的曲线 <span class="math inline">\(\gamma:[a,b]\to
+M\)</span>, 于是 <span class="math inline">\(T(s)=\gamma'(s)\)</span> 的长度恒为 <span class="math inline">\(1\)</span>. 曲线 <span class="math inline">\(\gamma\)</span> 是一条测地线, 当且仅当协变导数
+<span class="math inline">\({\rm D}T/\dd{s}\equiv0\)</span>. 于是,
+可以用 <span class="math inline">\(\|{\rm D}T/\dd{s}\|\)</span> 来衡量
+<span class="math inline">\(\gamma\)</span> 偏离测地线的程度, 该值称为
+<span class="math inline">\(\gamma(s)\)</span>
+的<strong>测地曲率(geodesic curvature)</strong>: <span class="math display">\[
+\tilde\kappa_g := \norm{ \frac{{\rm D}T}{\dd{s}} }.
+\]</span> 对于一个可定向的二维黎曼流形 <span class="math inline">\(M\)</span>, 我们可以取沿着 <span class="math inline">\(\gamma(s)\)</span> 的法向量场 <span class="math inline">\(n(s)\)</span> (即正交于 <span class="math inline">\(T(s)\)</span>), 使得 <span class="math inline">\((T(s),n(s))\)</span> 在 <span class="math inline">\(T_{\gamma(s)}M\)</span> 中有正定向, 且正交归一.
+因为 <span class="math inline">\(\lr{T,T}\equiv1\)</span>, 必然有 <span class="math display">\[
+\lr{\frac{{\rm D}T}{\dd{s}},T} = 0,
+\]</span> 即 <span class="math inline">\({\rm D}T/\dd{s}\)</span>
+是法向量 <span class="math inline">\(n(s)\)</span> 的倍数, 将这个倍数
+<span class="math inline">\(\kappa_g\)</span> 定义为 <span class="math inline">\(\gamma\)</span> 的<strong>带符号测地曲率(signed
+geodesic curvature)</strong>, 即 <span class="math display">\[
+\frac{{\rm D}T}{\dd{s}} = \kappa_gn, \quad\textsf{或者}\quad
+\kappa_g = \lr{ \frac{{\rm D}T}{\dd{s}},n }.
+\]</span></p>
+<ul>
+<li>回顾平面曲线的无符号曲率(curvature)与有符号曲率(signed curvature),
+<span class="math display">\[
+\tilde\kappa = \norm{ \dv{T}{s} },\quad
+\kappa = \lr{ \dv{T}{s},n },
+\]</span> 可以发现, 测地曲率和有符号测地曲率分别是上面两者的推广.</li>
+<li>带符号测地曲率在 <span class="math inline">\(\gamma\)</span>
+上的积分 <span class="math inline">\(\int_a^b\kappa_g\dd{s}\)</span>
+称为 <span class="math inline">\(\gamma\)</span>
+的<strong>全测地曲率(total geodesic curvature)</strong>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 15.1</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 开集 <span class="math inline">\(U\)</span> 上有正定向的正交归一标架 <span class="math inline">\(e_1,e_2\)</span>, 该标架下黎曼联络形式为 <span class="math inline">\(\omega^1_2\)</span>, 则弧长参数曲线 <span class="math inline">\(\gamma\)</span> 的测地曲率 <span class="math display">\[
+\kappa_g = \dv{\zeta}{s} - \omega^1_2(T).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 根据几何关系, <span class="math inline">\(T\)</span> 和
+<span class="math inline">\(n\)</span> 在标架下展开为 <span class="math display">\[
+\Align{
+T &amp;= (\cos\zeta)e_1 + (\sin\zeta)e_2, \\
+n &amp;= (-\sin\zeta)e_1 + (\cos\zeta)e_2,
+}
+\]</span> 于是 <span class="math display">\[
+\Align{
+\frac{{\rm D}T}{\dd{s}}
+&amp;= (T\cos\zeta)e_1+(\cos\zeta)\frac{{\rm D}e_1}{\dd{s}}
+  +(T\sin\zeta)e_2+(\sin\zeta)\frac{{\rm D}e_2}{\dd{s}} \\
+&amp;= \dv{\cos\zeta}{s}e_1 + (\cos\zeta)\omega^2_1(T)e_2
+  +\dv{\sin\zeta}{s}e_2 + (\sin\zeta)\omega^1_2(T)e_1 \\
+&amp;=-\sin\zeta\pqty{\dv{\zeta}{s}-\omega^1_2(T)}e_1
+  +\cos\zeta\pqty{\dv{\zeta}{s}+\omega^2_1(T)}e_2 \\
+&amp;= \pqty{\dv{\zeta}{s}-\omega^1_2(T)}n.
+}
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 15.2</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 弧长参数曲线 <span class="math inline">\(\gamma:[a,b]\to M\)</span>
+的像是一个一维带边子流形 <span class="math inline">\(C\)</span>. 若
+<span class="math inline">\(C\)</span> 处在标架开集 <span class="math inline">\(U,e_1,e_2\)</span> (正定向) 内, 联络形式 <span class="math inline">\(\omega^1_2\)</span>, 则 <span class="math display">\[
+\int_a^b\kappa_g\dd{s} = \zeta(b)-\zeta(a)-\int_C\omega^1_2.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 注意 <span class="math inline">\(\gamma^{-1}:C\to[a,b]\)</span> 是 <span class="math inline">\(C\)</span> 上的坐标函数, 所以 <span class="math display">\[
+\int_C\omega^1_2 = \int_a^b\gamma^*\omega^1_2.
+\]</span> 设 <span class="math inline">\(\gamma^*\omega^1_2=f(s)\dd{s}\)</span>, 其中 <span class="math inline">\(s\)</span> 是 <span class="math inline">\([a,b]\)</span> 的坐标. 两边作用于 <span class="math inline">\(\dv{s}\)</span> 得到 <span class="math display">\[
+\Align{
+f(s)
+= f(s)\dd{s}\pqty{\dv{s}}
+= (\gamma^*\omega^1_2)\pqty{\dv{s}}
+= \omega^1_2\pqty{ \gamma_*\dv{s} }
+= \omega^1_2(T),
+}
+\]</span> 结合 Claim 15.1, <span class="math display">\[
+\Align{
+\int_a^b\kappa_g\dd{s}
+&amp;= \int_a^b\dv{\zeta}{s}\dd{s} - \int_a^b\omega^1_2(T)\dd{s} \\
+&amp;= \zeta(b)-\zeta(a)-\int_a^b\gamma^*\omega^1_2 \\
+&amp;= \zeta(b)-\zeta(a)-\int_C\omega^1_2.
+}
+\]</span></p>
+</div>
+<h3 id="gauss-bonnet-for-a-polygon">15.3  Gauss-Bonnet for a polygon</h3>
+<p>二维黎曼流形 <span class="math inline">\(M\)</span>
+中的一个<strong>多边形(polygon)</strong>指的是一个简单分段光滑闭曲线
+<span class="math inline">\(\gamma:[a,b]\to M\)</span>;
+"简单"指的是不自交, "闭"指的是 <span class="math inline">\(\gamma(a)=\gamma(b)\)</span>.
+多边形同样有弧长参数化的概念, <span class="math inline">\(\gamma\)</span> 为弧长参数化的,
+当且仅当其在每一个光滑小段上的切向量长度为 <span class="math inline">\(1\)</span>. 多边形的顶点(vertices)就是不光滑点
+<span class="math inline">\(\gamma(s_0),\gamma(s_1),\dots,\gamma(s_m)\)</span>,
+其中 <span class="math inline">\(a=s_0&lt;\cdots&lt;s_m=b\)</span>.</p>
+<p>设 <span class="math inline">\(\gamma\)</span> 为可定向二维黎曼流形
+<span class="math inline">\(M\)</span> 中的多边形, 记 <span class="math inline">\(C\)</span> 为 <span class="math inline">\(\gamma\)</span> 的像, <span class="math inline">\(R\)</span> 为 <span class="math inline">\(C\)</span> 的内部, <span class="math inline">\(K\)</span> 为 <span class="math inline">\(M\)</span> 的高斯曲率. 在顶点 <span class="math inline">\(\gamma(s_i)\)</span> 处, 令 <span class="math inline">\(\gamma'(s_i^-)\)</span> 为前一段 <span class="math inline">\(\gamma|_{[s_{i-1},s_i]}\)</span> 在 <span class="math inline">\(s_i\)</span> 处的切向量; <span class="math inline">\(\gamma'(s_i^+)\)</span> 为后一段 <span class="math inline">\(\gamma|_{[s_i,s_{i+1}]}\)</span> 在 <span class="math inline">\(s_i\)</span> 处的切向量. <span class="math inline">\(\gamma'(s_i^-)\)</span> 和 <span class="math inline">\(\gamma'(s_i^+)\)</span> 所夹的在 <span class="math inline">\((-\pi,\pi)\)</span> 间的角度 <span class="math inline">\(\varepsilon_i\)</span> 称为 <span class="math inline">\(\gamma(s_i)\)</span> 处的<strong>跳跃角(jumping
+angle)</strong>, 补角 <span class="math display">\[
+\beta_i:=\pi-\varepsilon_i
+\]</span> 称为 <span class="math inline">\(\gamma(s_i)\)</span>
+的<strong>内角(interior angle)</strong>.</p>
+<p>在每条边(edge) <span class="math inline">\(\gamma([s_{i-1},s_i])\)</span> 上, 切向量 <span class="math inline">\(T\)</span> 的角度变化为 <span class="math inline">\(\Delta\zeta_i=\zeta(s_i)-\zeta(s_{i-1})\)</span>.
+在顶点处, 切向量角度跳变 <span class="math inline">\(\varepsilon_i\)</span>. 于是,
+切向量在整个多边形上的角度变化为 <span class="math display">\[
+\sum_{i=1}^m\Delta\zeta_i + \sum_{i=1}^m\varepsilon_i.
+\]</span> 一个多边形称称为正定向的, 若切向量 <span class="math inline">\(T\)</span> 与 <span class="math inline">\(R\)</span> 在边界 <span class="math inline">\(C\)</span> 上的诱导定向相同.</p>
+<div class="note note-success">
+<p><u>Claim 15.3</u> (Hopf Umlaufsatz) 设定向二维黎曼流形 <span class="math inline">\(M\)</span> 上的标架开集 <span class="math inline">\((U,e_1,e_2)\)</span> 内有正定向的多边形 <span class="math inline">\(\gamma:[a,b]\to U\)</span>, 那么其切向量 <span class="math inline">\(T'(s)=\gamma'(s)\)</span> 的角度变化 <span class="math display">\[
+\sum_{i=1}^m\Delta\zeta_i + \sum_{i=1}^m\varepsilon_i = 2\pi.
+\]</span></p>
+</div>
+<ul>
+<li>这说明, 尽管角度函数 <span class="math inline">\(\zeta\)</span>
+和跳跃角 <span class="math inline">\(\varepsilon_i\)</span>
+都是依赖于标架的选取的, 但是整条曲线的角度变化却不依赖于标架.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 我们只证明平面曲线的情形. 要推广到 <span class="math inline">\(M\)</span> 上的曲线, 可参考 John M. Lee 黎曼流形的
+p. 272 Lemma 9.2.</p>
+<p>设 <span class="math inline">\(\R^2\)</span> 中弧长参数化的简单闭曲线
+<span class="math inline">\(\gamma:[0,l]\to\R^2\)</span>, 不妨先假设
+<span class="math inline">\(\gamma\)</span> 是光滑的. 设 <span class="math inline">\(C=\gamma([0,l])\)</span>. 因为 <span class="math inline">\(C\)</span> 紧, 故有界, 进而存在一条直线, 使 <span class="math inline">\(C\)</span> 在直线的一侧. 平移直线使得其与 <span class="math inline">\(C\)</span> 相切, 通过适当平移与旋转, 令该直线与
+<span class="math inline">\(x\)</span> 轴重合, 且切点为 <span class="math inline">\(\gamma(0)=(0,0)\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-simple-closed-curve.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
+<p>对于 <span class="math inline">\(0\leq t_1&lt;t_2\leq l\)</span>, 记
+<span class="math inline">\(\bar\alpha(t_1,t_2)\)</span> 是向量 <span class="math inline">\(\gamma(t_2)-\gamma(t_1)\)</span> 与 <span class="math inline">\(x\)</span> 轴正方向的夹角. 对于 <span class="math inline">\(t_1=t_2\)</span>,记 <span class="math inline">\(\bar\alpha(t_1,t_2)\)</span> 是切向量 <span class="math inline">\(\gamma'(t_1)\)</span> 与 <span class="math inline">\(x\)</span> 轴正方向的夹角.</p>
+<p>于是我们定义出了这样一个二元函数 <span class="math inline">\(\bar\alpha\)</span>. 设 <span class="math inline">\(O=(0,0)\)</span>, <span class="math inline">\(A=(0,l)\)</span>, <span class="math inline">\(L=(l,l)\)</span>, 记 <span class="math inline">\(T\)</span> 是 <span class="math inline">\(OAL\)</span> 围成的闭三角形区域, 则 <span class="math inline">\(\bar\alpha:T\to\R/2\pi\Z\)</span> 在闭三角形 <span class="math inline">\(T\)</span> 上连续, 在开三角形上光滑. 因为 <span class="math inline">\(T\)</span> 单连通, <span class="math inline">\(\bar\alpha\)</span> 提升为 <span class="math inline">\(T\to\R\)</span> 的连续函数 <span class="math inline">\(\alpha\)</span>, 且 <span class="math inline">\(\alpha\)</span> 在开三角形上光滑.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/hopf-umlaufsatz-domain.png" style="zoom:55%;" cloud-img="" lazyload="true"></p>
+<p>我们有 <span class="math inline">\(T\)</span> 上的 <span class="math inline">\(1\)</span>-形式 <span class="math inline">\(\dd\alpha\)</span>, 于是 <span class="math inline">\(\gamma\)</span> 的角度变化由下面的积分给出: <span class="math display">\[
+\int_{\overline{OL}} \dd\alpha
+= \alpha(L)-\alpha(O) = \zeta(l) - \zeta(0).
+\]</span> 由 Stokes 定理, <span class="math display">\[
+\int_{\partial T}\dd\alpha = \int_T\dd\dd\alpha = 0,
+\]</span> 其中 <span class="math inline">\(\partial{T}=\overline{OL}+\overline{LA}+\overline{AO}\)</span>.
+这意味着 <span class="math display">\[
+\Align{
+\int_{\overline{OL}}\dd\alpha
+&amp;= \int_{\overline{OA}}\dd\alpha + \int_{\overline{AL}}\dd\alpha \\
+&amp;= (\alpha(A)-\alpha(O)) + (\alpha(L)-\alpha(A)).
+}
+\]</span> 其中, <span class="math inline">\(\alpha(O)=\alpha(0,0)=0\)</span>, <span class="math inline">\(\alpha(A)=\alpha(0,l)=\pi\)</span>, <span class="math inline">\(\alpha(L)=\alpha(l,l)=2\pi\)</span>, 于是 <span class="math display">\[
+\zeta(l)-\zeta(0)=\int_{\overline{OL}}\dd\alpha=2\pi.
+\]</span> 最后, 对于分段光滑的曲线 <span class="math inline">\(\gamma:[0,l]\to\R^2\)</span>, 将顶点 "平滑化",
+即用一段光滑弧线代替. 所得的光滑曲线和原曲线具有相同的角度改变.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 15.4</u> (多边形的 Gauss-Bonnet 定理) 设定向二维黎曼流形
+<span class="math inline">\(M\)</span>, 正交归一且正定向的标架开集 <span class="math inline">\((U,e_1,e_2)\)</span>. 设正定向的, 弧长参数的多边形
+<span class="math inline">\(\gamma:[a,b]\to U\)</span>, 则 <span class="math display">\[
+\int_a^b\kappa_g\dd{s}
+= 2\pi - \sum_{i=1}^m\varepsilon_i - \int_R K\,{\rm vol}.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 根据上一小节 Claim 15.2 和 Hopf Umlaufsatz, <span class="math display">\[
+\Align{
+\int_a^b\kappa_g\dd{s}
+&amp;= \sum_{i=1}^m\int_{s_{i-1}}^{s_i}\kappa_g\dd{s} \\
+&amp;= \sum_{i=1}^m\Delta\zeta_i - \int_C\omega^1_2 \\
+&amp;= 2\pi - \sum_{i=1}^m \varepsilon_i - \int_C\omega^1_2.
+}
+\]</span> 回忆 "曲率与微分形式" 中, 高斯曲率的公式 <span class="math display">\[
+\Omega^1_2 = \dd\omega^1_2 = K\theta^1\wedge\theta^2,
+\]</span> 因为 <span class="math inline">\(e_1,e_2\)</span>
+正交归一且正定向, 所以 <span class="math inline">\(\theta^1\wedge\theta^2\)</span> 为 <span class="math inline">\(M\)</span> 的黎曼体积形式. 应用 Stokes 定理有
+<span class="math display">\[
+\Align{
+\int_C\omega^1_2
+&amp;= \int_{\partial R}\omega^1_2 \\
+&amp;= \int_R\dd\omega^1_2 \\
+&amp;= \int_R K\theta^1\wedge\theta^2 \\
+&amp;= \int_R K\,{\rm vol}.
+}
+\]</span> 与前式结合便证明了定理.</p>
+</div>
+<p>一类最特殊的多边形是由测地线组成的多边形,
+称为<strong>测地多边形(geodesic polygon)</strong>,
+它们相当于平面中直线段组成的多边形. 测地线的测地曲率恒为零, 由 Claim
+15.4 做出如下推论.</p>
+<div class="note note-success">
+<p><u>Claim 15.5</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 测地多边形 <span class="math inline">\(\gamma\)</span> 处于标架开集 <span class="math inline">\(U\)</span> 内, 则 <span class="math inline">\(\gamma\)</span> 的内角和 <span class="math display">\[
+\sum_{i=1}^m\beta_i = (m-2)\pi + \int_RK\,{\rm vol}.
+\]</span></p>
+</div>
+<p>于是我们能得到几个关于测地三角形的有趣结论.</p>
+<div class="note note-success">
+<p><u>Claim 15.6</u> 设定向二维黎曼流形 <span class="math inline">\(M\)</span>, 测地三角形 <span class="math inline">\(\gamma\)</span> 处于标架开集 <span class="math inline">\(U\)</span> 内.</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\gamma\)</span> 内部高斯曲率恒为零,
+则 <span class="math inline">\(\gamma\)</span> 内角和为 <span class="math inline">\(\pi\)</span>.</li>
+<li>若 <span class="math inline">\(\gamma\)</span> 内部高斯曲率恒正, 则
+<span class="math inline">\(\gamma\)</span> 内角和大于 <span class="math inline">\(\pi\)</span>.</li>
+<li>若 <span class="math inline">\(\gamma\)</span> 内部高斯曲率恒负, 则
+<span class="math inline">\(\gamma\)</span> 内角和小于 <span class="math inline">\(\pi\)</span>.</li>
+</ol>
+</div>
+<div class="note note-info">
+<p><u>Example</u> 球面三角形与双曲三角形.</p>
+<p>球面 <span class="math inline">\(S^2\)</span> 具有正曲率,
+其上测地三角形(球面三角形)内角和大于 <span class="math inline">\(\pi\)</span>. 设球面的半径为 <span class="math inline">\(r\)</span>, 球面三角形的三个内角分别为 <span class="math inline">\(\alpha,\beta,\gamma\)</span>, 因为球面有常曲率
+<span class="math inline">\(1/r^2\)</span>, 应用 Claim 15.5, <span class="math display">\[
+\Align{
+\alpha+\beta+\gamma
+&amp;= \pi+\int_R\frac{1}{r^2}{\rm vol} \\
+&amp;= \pi + \frac{1}{r^2}\textsf{Area}(R), \\
+\iff \textsf{Area}(R) &amp;= (\alpha+\beta+\gamma-\pi)r^2
+}
+\]</span> 给出了球面三角形的面积与内角和的关系.</p>
+<p>双曲空间具有负曲率, 测地三角形内角和小于 <span class="math inline">\(\pi\)</span>. 考虑 Poincaré 圆盘上 <span class="math inline">\(\mathbb{D}\)</span> 的测地三角形 <span class="math inline">\(ABC\)</span>, 让 <span class="math inline">\(A,B,C\)</span> 趋近于 <span class="math inline">\(\mathbb{D}\)</span> 的边界, 则 <span class="math inline">\(ABC\)</span> 的内角和趋近于 <span class="math inline">\(0\)</span>.</p>
+</div>
+<h3 id="gauss-bonnet-for-a-surface">15.4  Gauss-Bonnet for a surface</h3>
+<p>设紧致的二维定向黎曼空间 <span class="math inline">\(M\)</span>.
+根据紧致性, <span class="math inline">\(M\)</span>
+能够被划分为若干多边形, 每个多边形都处在一个标架开集 <span class="math inline">\(U_\alpha\)</span> 内.
+我们称这样的多边形划分是足够细致(sufficiently fine)的. 设 <span class="math inline">\(V,E,F\)</span> 分别为多边形的总定点数, 总边数,
+总面数, 定义<strong>欧拉示性数(Euler characteristic)</strong> <span class="math display">\[
+\chi(M) := V-E+F.
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 15.7</u> (Gauss-Bonnet 定理) 对于一个紧致的定向二维黎曼空间
+<span class="math inline">\(M\)</span>, <span class="math display">\[
+\int_M K\,{\rm vol} = 2\pi\chi(M).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 对多边形划分的每个多边形应用 Gauss-Bonnet, 再求和 <span class="math display">\[
+\Align{
+\int_M K\,{\rm vol}
+=  \sum\int_RK\,{\rm vol}
+&amp;= \sum 2\pi - \sum\sum_{i=1}^m\varepsilon_i
+  -\sum\int_a^b\kappa_g\dd{s} \\
+&amp;= 2\pi F - \sum\sum_{i=1}^m(\pi-\beta_i)
+  -\sum\int_a^b\kappa_g\dd{s}.
+}
+\]</span> 注意到每条边的测地曲率都被一正一反积了两次, 相互抵消,
+即上式第三项为零. 第二项展开为 <span class="math display">\[
+\sum\sum_{i=1}^m\pi - \sum\sum_{i=1}^m\beta_i
+\]</span> 第一部分, <span class="math inline">\(\pi\)</span> 被求和了
+<span class="math inline">\(2E\)</span> 次; 第二部分为内角总和,
+即每个顶点处的内角和 <span class="math inline">\(2\pi\)</span>
+乘以总顶点数 <span class="math inline">\(V\)</span>. 因此 <span class="math inline">\(\sum\sum(\pi-\beta_i)=2\pi E-2\pi V\)</span>.
+代入原式, <span class="math display">\[
+\int_MK\,{\rm vol}
+= 2\pi F - (2\pi E-2\pi V) = 2\pi\chi(M).
+\]</span></p>
+</div>
+<p>欧拉示性数 <span class="math inline">\(\chi(M)\)</span>
+是一个拓扑不变量. 紧致定向二维流形可以根据亏格(genus) <span class="math inline">\(g\)</span>, 即 "洞的个数", 来分类.
+两个曲面微分同胚, 当且仅当它们具有相同的亏格. 亏格与欧拉示性数的关系
+<span class="math display">\[
+\chi = 2-2g.
+\]</span> 高斯曲率与流形上的黎曼度量有关,
+但是曲率在流形上的积分却只与流形的拓扑有关.</p>
+<div class="note note-success">
+<p><u>Claim 15.8</u> 若定向紧致二维黎曼流形处处具有正曲率,
+则它与球面同胚.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 根据 Gauss-Bonnet, <span class="math display">\[
+2\pi\chi(M)=\int_MK\,{\rm vol} &gt; 0,
+\]</span> 于是 <span class="math inline">\(\chi(M)=2-2g&gt;0\)</span>,
+即 <span class="math inline">\(g&lt;1\)</span>, 只能有 <span class="math inline">\(g=0\)</span>, 即与球面同胚.</p>
+</div>
+<h3 id="generalizations">15.5  Generalizations</h3>
+<p>对于 <span class="math inline">\(\R^{2n+1}\)</span> 中的 <span class="math inline">\(2n\)</span> 维紧致定向超曲面 <span class="math inline">\(M\)</span>, 我们之前定义了它的高斯曲率 <span class="math inline">\(K\)</span> (为形状算子的行列式), 高维的
+Gauss-Bonnet 定理指出, <span class="math display">\[
+\int_M K\,{\rm vol}_M = \frac{{\rm vol}(S^{2n})}{2}\chi(M).
+\]</span> 其中 <span class="math inline">\({\rm vol}(S^{2n})\)</span> 是
+<span class="math inline">\(2n\)</span> 维单位球面的表面积.</p>
+<p>设 <span class="math inline">\(n\)</span> 维流形 <span class="math inline">\(M,N\)</span>. 一个光滑映射 <span class="math inline">\(f:M\to N\)</span>
+的<strong>映射度(degree)</strong>定义为 <span class="math display">\[
+\deg{f} := \int_M f^*\omega,
+\]</span> 其中 <span class="math inline">\(\omega\)</span> 是 <span class="math inline">\(N\)</span> 上的 <span class="math inline">\(n\)</span>-形式, 且满足 <span class="math inline">\(\int_N\omega=1\)</span>.</p>
+<ul>
+<li><p>设 <span class="math inline">\(\R^2\)</span> 中的光滑闭曲线 <span class="math inline">\(c:[a,b]\to\R^2\)</span>, 映射 <span class="math inline">\(\varphi:[a,b]\to S^1\)</span>
+给出每一点的单位切向量 <span class="math display">\[
+\varphi(t) = \frac{c'(t)}{\|c'(t)\|},
+\]</span> 则 <span class="math inline">\(\varphi\)</span> 的映射度为
+<span class="math display">\[
+\deg\varphi
+= \int_{[a,b]}\varphi^*\pqty{\frac{\dd\theta}{2\pi}}
+= \frac1{2\pi}\int_{[a,b]} \dd(\theta\circ\varphi)
+= \frac1{2\pi}\int_{[a,b]}\dd\zeta
+=  \frac{\zeta(b)-\zeta(a)}{2\pi}
+\]</span> 即曲线的切向量的角度改变除以 <span class="math inline">\(2\pi\)</span>, 可以看作切向量旋转的圈数,
+称为旋转指数(rotation index).</p></li>
+<li><p>设 <span class="math inline">\(\R^{2n+1}\)</span>
+中的紧致定向超曲面 <span class="math inline">\(M\)</span>, 考虑高斯映射
+<span class="math inline">\(\nu:M\to S^{2n}\)</span> 的映射度. 取 <span class="math inline">\(\omega={\rm vol}_{S^{2n}}/{\rm
+vol}(S^{2n})\)</span>, 则 <span class="math display">\[
+\Align{
+\deg\nu
+&amp;= \int_M \nu^*\pqty{\frac{{\rm vol}_{S^{2n}}}{{\rm vol}(S^{2n})}}
+\\
+&amp;= \frac1{{\rm vol}(S^{2n})} \int_M K{\rm vol}_M \\
+&amp;= \frac1{{\rm vol}(S^{2n})} \frac{{\rm vol}(S^{2n})}{2}\chi(M) \\
+&amp;= \frac{\chi(M)}2.
+}
+\]</span></p></li>
+</ul>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+        <a href="/tags/%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95/" class="print-no-link">#黎曼几何</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM275 | 5 测地线</div>
+      <div>https://disembo.github.io/Note/dg-gtm275-5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-6/" title="GTM275 | 6 代数与拓扑工具">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 6 代数与拓扑工具</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-4/" title="GTM275 | 4 测地线">
+                        <span class="hidden-mobile">GTM275 | 4 测地线</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

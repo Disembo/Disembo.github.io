@@ -1,0 +1,1045 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="张量积的构造和泛性质.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从张量积到泛性质">
+<meta property="og:url" content="https://disembo.github.io/Note/tensor-products-and-universal-properties/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="张量积的构造和泛性质.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-11T13:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.706Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="线性代数">
+<meta property="article:tag" content="范畴论">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>从张量积到泛性质 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从张量积到泛性质"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-11 21:00" pubdate>
+          2023年9月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从张量积到泛性质</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="constructions-of-the-tensor-product">1  Constructions of the Tensor
+Product</h2>
+<p>本文只考虑<span class="math inline">\(\R\)</span>-线性空间.</p>
+<p>先来回顾一下线性空间的直和(direct sum). 两个线性空间<span class="math inline">\(V,W\)</span>的直和记作<span class="math inline">\(V\oplus W\)</span>, 它本质上就是笛卡尔积<span class="math inline">\(V\times W=\qty{(v,w)\,|\,v\in V,w\in W}\)</span>,
+并且赋予如下线性结构: <span class="math display">\[
+\Align{
+(v_1,w_1)+(v_2,w_2) &amp;= (v_1+v_2,w_1+w_2), \\
+k(v,w) &amp;= (kv,kw), \quad k\in\R.
+}
+\]</span> 将<span class="math inline">\((v,w)\)</span>记作<span class="math inline">\(v\oplus w\)</span>,
+可以发现"直和"的确有加法的特征, 比如</p>
+<ul>
+<li>"分配律", <span class="math inline">\(k(v\oplus
+w)=(kv)\oplus(kw)\)</span>;</li>
+<li>"结合律"<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">不过这和一般的加法结合律不同, 因为<span class="math inline">\(\oplus\)</span>​和<span class="math inline">\(+\)</span>​是两种不同的运算,
+所以这只是形式上的结合律.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>, <span class="math inline">\((v_1\oplus w_1)+(v_2\oplus
+w_2)=(v_1+v_2)\oplus(w_1+w_2)\)</span>;</li>
+</ul>
+<p>以及维数关系<span class="math inline">\(\dim(V\oplus
+W)=\dim{V}+\dim{W}\)</span>.</p>
+<p>而张量积则是一种类似于乘法的操作. 两个向量<span class="math inline">\(v\in V,w\in W\)</span>的张量积(tensor
+product)记作<span class="math inline">\(v\otimes w\)</span>.
+依据"乘法"的特点, 我们对<span class="math inline">\(\otimes\)</span>作一些要求:</p>
+<ul>
+<li>"分配律", <span class="math inline">\((v_1+v_2)\otimes w=v_1\otimes
+w+v_2\otimes w\)</span>, <span class="math inline">\(v\otimes(w_1+w_2)=v\otimes w_1+v\otimes
+w_2\)</span>;</li>
+<li>"结合律"<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">这也是形式上的结合律.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span>, <span class="math inline">\((kv)\otimes w=k(v\otimes w)=v\otimes(kw)\)</span>,
+对任意<span class="math inline">\(k\in\R\)</span>.</li>
+</ul>
+<p>换句话说, <span class="math inline">\(\otimes\)</span>是<strong>双线性(bilinear)</strong>的.
+线性空间<span class="math inline">\(V,W\)</span>的张量积空间记作<span class="math inline">\(V\otimes W\)</span>, 我们希望它也是一个线性空间,
+而且<span class="math inline">\(\dim(V\otimes W)=\dim V\dim
+W\)</span>.</p>
+<p>下面我们先介绍几个张量积的具体实现方法(构造性定义),
+再从中提取出张量积的核心特征, 借此来给出张量积的另一种定义方法.</p>
+<h3 id="as-a-quotient-space">1.1  As a quotient space</h3>
+<p>两个线性空间的张量积<span class="math inline">\(V\otimes
+W\)</span>可以通过它们的笛卡尔积<span class="math inline">\(V\times
+W\)</span>构造出来. 对线性空间<span class="math inline">\(V,W\)</span>,
+记 <span class="math display">\[
+F(V\times W):=\left\{
+\sum\nolimits_{(v,w)\in V\times W} \alpha_{v,w}(v,w)
+\,\middle|\,
+\alpha_{v,w}\in\R,\textsf{只有有限个非零}\alpha_{v,w}
+\right\},
+\]</span> 称为<span class="math inline">\(V\times
+W\)</span>生成的自由线性空间(free vector space), 也就是把<span class="math inline">\(V\times W\)</span>当作一个基底生成的线性空间.
+然而<span class="math inline">\(F(V\times W)\)</span>不是最终结果,
+我们希望张量积是双线性的, 所以应当认同 <span class="math display">\[
+\Align{
+(v_1+v_2,w) &amp;\sim (v_1,w)+(v_2,w), \\
+(v,w_1+w_2) &amp;\sim (v,w_1)+(v,w_2), \\
+(kv,w) &amp;\sim k(v,w), \\
+(v,kw) &amp;\sim k(v,w). \\
+}\label{quotient}\tag{a}
+\]</span> 更正式地说, 设子空间 <span class="math display">\[
+\Align{S={}
+&amp;{\rm span}\qty{(v_1+v_2,w)-(v_1,w)-(v_2,w)\,|\,v_1,v_2\in V,w\in
+W}+{} \\
+&amp;{\rm span}\qty{(v,w_1+w_2)-(v,w_1)-(v,w_2)\,|\,v\in V,w_1,w_2\in
+W}+{} \\
+&amp;{\rm span}\qty{(kv,w)-k(v,w)\,|\,v\in V,w\in W,k\in\R}+{} \\
+&amp;{\rm span}\qty{(v,kw)-k(v,w)\,|\,v\in V,w\in W,k\in\R},
+}
+\]</span> 则<span class="math inline">\(V\otimes W=F(V\times
+W)/S\)</span>. 把<span class="math inline">\((v,w)\in F(V\times
+W)\)</span>所在等价类 <span class="math display">\[
+[v,w]\equiv(v,w)+S
+\]</span> 记作<span class="math inline">\(v\otimes w\)</span>. 可以证明,
+映射<span class="math inline">\((v,w)\mapsto[v,w]=v\otimes
+w\)</span>是双线性的: <span class="math display">\[
+\Align{
+[kv_1+v_2,w]
+&amp;=(kv_1+v_2,w)+S \\
+&amp;=k(v_1,w)+(v_2,w)+S \\
+&amp;=k[v_1,w]+[v_2,w].
+}
+\]</span> (其中第一, 三个等号由商空间上线性运算的定义<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">设线性空间V的线性子空间U, 则商空间为<span class="math inline">\(V/U:=\qty{v+U\,|\,v\in V}\)</span>,
+配以线性运算<span class="math inline">\((v_1+U)+(v_2+U):=(v_1+v_2)+U,
+k(v+U):=(kv)+U\)</span>. 向量<span class="math inline">\(v,w\in
+V\)</span>等价当且仅当<span class="math inline">\(v-w\in U\)</span>.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>;
+第二个等号根据等价关系.)</p>
+<h3 id="from-bases">1.2  From bases</h3>
+<p>设<span class="math inline">\(V\)</span>的基底<span class="math inline">\(B_V=\qty{e_i}_{i\in I}\)</span>, <span class="math inline">\(W\)</span>的基底<span class="math inline">\(B_W=\qty{f_j}_{j\in J}\)</span>.</p>
+<p>对于<span class="math inline">\(v=\sum v_ie_i\in V\)</span>, <span class="math inline">\(w=\sum w_je_j\in W\)</span>,
+其张量积可以借助基底定义为 <span class="math display">\[
+v\otimes w = \sum_{i,j} v_iw_j\,e_i\otimes f_j.
+\]</span> 如此定义的<span class="math inline">\(\otimes\)</span>关于<span class="math inline">\(v,w\)</span>都是线性的.</p>
+<p>张量积空间<span class="math inline">\(V\otimes W\)</span>是形如<span class="math inline">\(v\otimes w=\sum \alpha_{i,j}e_i\otimes
+f_j\)</span>的元素张成的线性空间: <span class="math display">\[
+V\otimes W =
+\left\{
+\sum_{i,j}\alpha_{i,j}e_i\otimes f_j
+\,\middle|\,
+\alpha_{i,j}\in\R
+\right\}.
+\]</span> 可以发现, <span class="math inline">\(V\otimes
+W\)</span>的一个基底是<span class="math inline">\(\qty{e_i\otimes
+f_j}_{i\in I,j\in J}\)</span>, 所以<span class="math inline">\(\dim(V\otimes W)=\dim{V}\dim{W}\)</span>.</p>
+<p><span class="math inline">\(V\otimes
+W\)</span>的加法和数乘自然地定义为 <span class="math display">\[
+\Align{
+\pqty{\sum\alpha_{i,j}e_i\otimes f_j}+
+\pqty{\sum\beta_{i,j}e_i\otimes f_j}
+&amp;:= \sum (\alpha_{i,j}+\beta_{i,j}) e_i\otimes f_j, \\
+k\pqty{\sum\alpha_{i,j}e_i\otimes f_j}
+&amp;:= \sum (k\alpha_{i,j}) e_i\otimes f_j, \quad k\in\R. \\
+}
+\]</span></p>
+<h3 id="tensors-as-multilinear-maps">1.3  *Tensors as multilinear maps</h3>
+<p>因为<span class="math inline">\(V\)</span>和<span class="math inline">\(V^{**}\)</span>自然同构, 所以<span class="math inline">\(V\)</span>中的向量可以看作是线性映射<span class="math inline">\(v:V^*\to\R\)</span>; 同样, <span class="math inline">\(W\)</span>中的向量也可看作线性映射<span class="math inline">\(w:W^*\to\R\)</span>. 进而, 我们定义<span class="math inline">\(v,w\)</span>的张量积<span class="math inline">\(v\otimes w\)</span>为双线性映射<span class="math inline">\(V^*\times W^*\to\R\)</span>, <span class="math display">\[
+(v\otimes w)(f,g) := v(f)w(g),\quad\forall f\in V^*,g\in W^*,
+\]</span> 就是将两个线性映射放在一起的结果. 将所有双线性映射<span class="math inline">\(v\otimes w\)</span>组成的集合记作<span class="math inline">\(V\otimes W\)</span>. 由上可知, <span class="math inline">\(\otimes\)</span>是双线性的: (仅列出关于<span class="math inline">\(v\)</span>的线性性, 关于<span class="math inline">\(w\)</span>的线性性同理) <span class="math display">\[
+\Align{
+(\alpha v\otimes w)(f,g) &amp;= \alpha v(f)w(g) = \alpha(v\otimes
+w)(f,g), \\
+((v_1+v_2)\otimes w)(f,g)
+&amp;= (v_1+v_2)(f)w(g) \\
+&amp;= v_1(f)w(g) + v_2(f)w(g) \\
+&amp;= (v_1\otimes w)(f,g) + (v_2\otimes w)(f,g).
+}
+\]</span></p>
+<h2 id="universal-property-of-the-tensor-product">2  Universal Property of
+the Tensor Product</h2>
+<h3 id="the-universal-property-definition">2.1  The universal property
+definition</h3>
+<p>前面我们提到过, 张量积的"乘法"特征就是其双线性性. 下面我们说明,
+在所有这些"乘法"中, 张量积是最一般的那个, 它保留了最多的线性结构.</p>
+<p>线性空间上的乘法(multiplication)指的是双线性映射<span class="math inline">\(\mu:V\times W\to Y\)</span>(其中<span class="math inline">\(V,W,Y\)</span>都是线性空间). 张量积<span class="math inline">\(\otimes:V\times W\to
+Y\)</span>除了双线性性之外并无其他要求, 因此可以看作是"最一般"的乘法,
+它保留了<span class="math inline">\(V,W\)</span>最多的线性结构,
+因而所有从<span class="math inline">\(V\times W\to
+Z\)</span>的双线性映射都可以借由<span class="math inline">\(\otimes\)</span>来表示.</p>
+<ul>
+<li>这个性质称为张量积的<strong>泛性质(universal
+property)</strong>.</li>
+</ul>
+<p>我们自然会有个问题: 张量积的泛性质是否可以用来定义张量积?
+答案是肯定的.</p>
+<ul>
+<li>如果可以找到一种通过性质定义对象的方法,
+就可以免去具体构造的繁琐细节, 使得定义变得简洁而直击本质.</li>
+<li>尽管这种定义可能会比较抽象, 难以理解, 但是定义的动机是清晰的.</li>
+</ul>
+<p>下面我们给出张量积的定义(通过泛性质). 张量积指的是一个有序对<span class="math inline">\((\varphi,Y)\)</span>, 其中<span class="math inline">\(\varphi:V\times W\to Y\)</span>是双线性映射, 满足:
+对于任意双线性映射<span class="math inline">\(h:V\times W\to Z\)</span>,
+都唯一存在线性映射<span class="math inline">\(\tilde{h}:Y\to Z\)</span>,
+使得 <span class="math display">\[
+\tilde{h}\circ\varphi = h,
+\]</span> 即有交换图 <span class="math display">\[
+\xymatrix{
+V\times W \ar[r]^-{\varphi} \ar[rd]_{h} &amp;
+Y \ar@{.&gt;}[d]^(0.4){\tilde h} \\
+&amp; Z.
+}
+\]</span></p>
+<ul>
+<li>一般将<span class="math inline">\(\varphi(v,w)\)</span>记作<span class="math inline">\(v\otimes w\)</span>, 将<span class="math inline">\(Y\)</span>记作<span class="math inline">\(V\otimes
+W\)</span>.</li>
+<li>任意一个双线性映射<span class="math inline">\(V\times W\to
+Z\)</span>都可以借助张量积变为一个线性映射.</li>
+</ul>
+<p>首先应当验证, 前几节的构造性定义确实满足上面的泛性质定义.
+这里以商空间构造(1.1)为例.</p>
+<div class="note note-light">
+<p><u>Pf</u> 商空间构造中, <span class="math inline">\(\varphi:V\times
+W\to F(V\times W)/S\)</span>. 任取双线性映射<span class="math inline">\(h:V\times W\to Z\)</span>, 定义一个映射<span class="math inline">\(\tilde{h}:F(V\times W)/S\to Z\)</span>满足<span class="math inline">\(\tilde{h}\circ\varphi=h\)</span>. 先对<span class="math inline">\([v,w]\in F(V\times W)/S\)</span>定义 <span class="math display">\[
+\tilde{h}([v,w])
+:= h(v,w),
+\]</span> 可以利用<span class="math inline">\(F(V\times
+W)/S\)</span>线性运算把上述定义拓展到整个<span class="math inline">\(F(V\times W)/S\)</span>上: <span class="math display">\[
+\tilde{h}\pqty{\bqty{\sum\alpha_{v,w}(v,w)}}
+:= \sum\alpha_{v,w}h(v,w).
+\]</span> 先证明<span class="math inline">\(\tilde{h}\)</span>是良定义的, 只需证<span class="math inline">\([v,w]\sim[v',w']\Rightarrow\tilde{h}([v,w])=\tilde{h}([v',w'])\)</span>.
+任取<span class="math inline">\([v,w]\sim[v',w']\)</span>,
+则<span class="math inline">\((v,w),(v',w')\)</span>必然满足<span class="math inline">\((\ref{quotient})\)</span>式中的任意一条等价关系,
+根据<span class="math inline">\(h\)</span>的双线性性, <span class="math inline">\(h(v,w)=h(v',w')\)</span>, 即<span class="math inline">\(\tilde{h}([v,w])=\tilde{h}([v',w'])\)</span>.</p>
+<p>其次证明<span class="math inline">\(\tilde{h}\)</span>是线性的.
+任取<span class="math inline">\([v,w],[v',w']\)</span>以及<span class="math inline">\(\lambda\in\R\)</span>, 则 <span class="math display">\[
+\tilde{h}(\lambda[v,w])
+=\tilde{h}([\lambda v,w])
+=h(\lambda v,w)
+=\lambda h(v,w)
+=\lambda\tilde{h}([v,w]),
+\]</span> (第一个等号根据<span class="math inline">\(\lambda(v,w)\sim(\lambda v,w)\)</span>;
+第三个等号根据<span class="math inline">\(h\)</span>的双线性性.) 以及
+<span class="math display">\[
+\Align{
+\tilde{h}([v,w]+[v',w'])
+&amp;=\tilde{h}([(v,w)+(v',w')]) \\
+&amp;=h(v,w)+h(v',w') \\
+&amp;=\tilde{h}([v,w])+\tilde{h}([v',w']).
+}
+\]</span> (第一个等号利用了等价类的性质; 第二个等号利用了<span class="math inline">\(\tilde{h}\)</span>在整个<span class="math inline">\(F(V\times W)/S\)</span>上的定义.)</p>
+<p>最后说明<span class="math inline">\(\tilde{h}\)</span>是唯一的.
+条件<span class="math inline">\(\tilde{h}\circ\varphi=h\)</span>使得<span class="math inline">\(\tilde{h}([v,w])\)</span>的定义是唯一的, 而<span class="math inline">\(\qty{[v,w]}_{v\in V,w\in
+W}\)</span>必定包含了<span class="math inline">\(F(V\times
+W)/S\)</span>的一个基底, 因此将<span class="math inline">\(\tilde{h}\)</span>延拓到<span class="math inline">\(F(V\times W)/S\)</span>的方式也是唯一的.</p>
+<p>综上所述, 商空间构造满足张量积的泛性质, <span class="math inline">\((\varphi,F(V\times W)/S)\)</span>构成张量积.</p>
+</div>
+<h3 id="existence-and-uniqueness">2.2  Existence and uniqueness</h3>
+<p>泛性质定义的张量积是存在的(构造性定义便是例子), 却不唯一. 但是,
+所有张量积在<strong>同构</strong>意义下唯一(unique up to an
+isomorphism).</p>
+<p>假设有两个张量积<span class="math inline">\((\varphi,Y)\)</span>和<span class="math inline">\((\varphi',Y')\)</span>. 对<span class="math inline">\(\varphi\)</span>应用泛性质定义(将<span class="math inline">\(\varphi'\)</span>视作<span class="math inline">\(h\)</span>), 存在线性映射<span class="math inline">\(\tilde{h}:Y\to Y'\)</span>, <span class="math inline">\(\tilde{h}\circ\varphi=\varphi'\)</span>. 同理,
+对<span class="math inline">\(\varphi'\)</span>应用泛性质定义,
+存在线性映射<span class="math inline">\(\tilde{h}':Y'\to
+Y\)</span>, <span class="math inline">\(\tilde{h}'\circ\varphi'=\varphi\)</span>.
+所以有交换图 <span class="math display">\[
+\xymatrix@C=30pt@R=10pt@L=0.5pt{
+&amp; Y \ar@&lt;2pt&gt;@{.&gt;}[dd]^{\tilde{h}} \\
+V\times W \ar[ru]^{\varphi} \ar[rd]_{\varphi'} \\
+&amp;Y' \ar@&lt;2pt&gt;@{.&gt;}[uu]^{\tilde{h}'}
+}
+\]</span> 因此, <span class="math inline">\(\tilde{h}\)</span>和<span class="math inline">\(\tilde{h}'\)</span>是一对互逆的线性映射,
+进而都是线性同构. 这说明作为线性空间, <span class="math inline">\(Y\cong
+Y'\)</span>, 而且由<span class="math inline">\(\tilde{h},\tilde{h}'\)</span>的唯一性知(保持张量积的)同构映射是唯一的.</p>
+<p>根据张量积在同构意义下的唯一性, 前文的几个构造都是同构的, 进而<span class="math inline">\(V\otimes W\)</span>的维数是确定的. 根据1.2有 <span class="math display">\[
+\dim(V\otimes W)=\dim{V}\dim{W}.
+\]</span></p>
+<h3 id="examples-and-counterexamples">2.3  Examples and counterexamples</h3>
+<p>先举出几个满足张量积泛性质的例子.</p>
+<p><u>张量积的非零常数倍</u>. 设<span class="math inline">\(\otimes:V\times W\to Y\)</span>构成张量积, 则<span class="math inline">\(\varphi:V\times W\to Y\)</span>, <span class="math inline">\((v,w)\mapsto kv\otimes w\)</span>(<span class="math inline">\(k\neq0\)</span>)也构成张量积.</p>
+<p><u>矩阵的Kronecker乘积</u>. 以<span class="math inline">\(2\times2\)</span>矩阵为例. 矩阵<span class="math inline">\(\vb{A}=\pmqty{a_{11}&amp;a_{12}\\a_{21}&amp;a_{22}},\vb{B}=\pmqty{b_{11}&amp;b_{12}\\b_{21}&amp;b_{22}}\)</span>的Kronecker乘积定义为
+<span class="math display">\[
+\vb{A\otimes B}
+:=\pmqty{a_{11}\vb{B}&amp;a_{12}\vb{B}\\a_{21}\vb{B}&amp;a_{22}\vb{B}}
+=\pmqty{
+a_{11}b_{11} &amp; a_{11}b_{12} &amp; a_{12}b_{11} &amp; a_{12}b_{12} \\
+a_{11}b_{21} &amp; a_{11}b_{22} &amp; a_{12}b_{21} &amp; a_{12}b_{22} \\
+a_{21}b_{11} &amp; a_{21}b_{12} &amp; a_{22}b_{11} &amp; a_{22}b_{12} \\
+a_{21}b_{21} &amp; a_{21}b_{22} &amp; a_{22}b_{21} &amp; a_{22}b_{22}
+}.
+\]</span> 可以验证, Kronecker积是双线性映射<span class="math inline">\(\R^{2\times2}\times\R^{2\times2}\to\R^{4\times4}\)</span>,
+并且满足张量积的泛性质.</p>
+<p>下面我们再举几个<strong>不构成</strong>张量积例子,
+感受一下泛性质定义是怎样排除我们不想要的东西的.</p>
+<p><u>直和</u>. 直和<span class="math inline">\(\varphi:(v,w)\mapsto
+v\oplus w\)</span>不构成张量积, 因为<span class="math inline">\(\varphi\)</span>不是双线性的.</p>
+<p><u>自由线性空间</u>. 包含映射<span class="math inline">\(\varphi:V\times W\to F(V\times
+W)\)</span>不构成张量积, 因为<span class="math inline">\(\varphi\)</span>不是双线性的. (然而, 如果将<span class="math inline">\(F(V\times W)\)</span>中的某些元素认同起来,
+就可以把<span class="math inline">\(\varphi\)</span>变成双线性的,
+如1.1节所述).</p>
+<p><u>楔积</u>. 取<span class="math inline">\(\varphi:V\times V\to
+Y\)</span>, <span class="math inline">\((v_1,v_2)\mapsto v_1\wedge
+v_2\)</span>. 任给双线性<span class="math inline">\(h:V\times V\to
+Z\)</span>, 假设存在线性映射<span class="math inline">\(\tilde{h}:Y\to
+Z\)</span>, 使得<span class="math inline">\(\tilde{h}(v\wedge
+w)=h(v,w)\)</span>, 则根据楔积的反对称性有 <span class="math display">\[
+h(v,w)
+= \tilde{h}(v\wedge w)
+= \tilde{h}(-w\wedge v)
+=-\tilde{h}(w\wedge v)
+=-h(w,v),
+\]</span> 这意味着<span class="math inline">\(h\)</span>也是反对称的,
+对于一般的<span class="math inline">\(h\)</span>显然是不成立的.</p>
+<ul>
+<li>矛盾的原因是楔积<span class="math inline">\(\wedge\)</span>附加了额外的"反对称"性质.</li>
+<li>实际上, 楔积的泛性质是"任意一个<u>反对称的</u>双线性映射<span class="math inline">\(f:V\times V\to
+Z\)</span>都可以借助楔积唯一地表示为一个线性映射<span class="math inline">\(\tilde{f}:Y\to Z\)</span>."</li>
+</ul>
+<p><u>双线性形式</u>. 取双线性函数<span class="math inline">\(\varphi:V\times
+W\to\R\)</span>(也称双线性形式).任给双线性<span class="math inline">\(h:V\times W\to Z\)</span>, 假设存在线性映射<span class="math inline">\(\tilde{h}:\R\to Z\)</span>, 使得<span class="math inline">\(\tilde{h}(\varphi(v,w))=h(v,w)\)</span>.
+实际上很快就能得出矛盾, 因为<span class="math inline">\(\tilde{h}\)</span>是从<span class="math inline">\(\R\)</span>的线性映射, 所以<span class="math inline">\(\im\tilde{h}\)</span>的维数至多是<span class="math inline">\(1\)</span>, 然而(一般来说)<span class="math inline">\(\im{h}\)</span>的维数可以是<span class="math inline">\(0\)</span>到<span class="math inline">\(\dim{V}+\dim{W}\)</span>的任意值.</p>
+<ul>
+<li>矛盾的原因是<span class="math inline">\(\varphi:V\times
+W\to\R\)</span>压缩了维数, 损失了一部分线性结构.</li>
+</ul>
+<p>综上看来, 泛性质定义的张量积是一个足够"一般"的双线性乘法,
+既保持了<span class="math inline">\(V,W\)</span>的线性结构,
+又没有引入其他结构.</p>
+<h2 id="the-universal-property">3  The Universal Property</h2>
+<div class="note note-secondary">
+<p>下面简单地介绍一下一般情况下泛性质的定义. 需要一定范畴论基础,
+可以参考Paolo Aluffi §I.3, §I.4.</p>
+</div>
+<h3 id="terminal-objects">3.1  Terminal objects</h3>
+<p>回顾张量积的泛性质: 张量积指的是一个有序对<span class="math inline">\((\varphi,Y)\)</span>, 其中<span class="math inline">\(\varphi:V\times W\to Y\)</span>是双线性映射,
+其泛性质指的是: 对于任意双线性映射<span class="math inline">\(h:V\times
+W\to Z\)</span>, 都<u>唯一存在</u>线性映射<span class="math inline">\(\tilde{h}:Y\to Z\)</span>, 使得下图交换: <span class="math display">\[
+\xymatrix{
+V\times W \ar[r]^-{\varphi} \ar[rd]_{h} &amp;
+Y \ar@{.&gt;}[d]^(.4){\tilde h} \\
+&amp; Z.
+}
+\]</span></p>
+<p>现在我们丢掉与张量积有关的信息, 只保留"泛性质"的骨架:
+称一个有序对<span class="math inline">\((\varphi:A\to
+Y,Y)\)</span>满足泛性质, 如果对任意态射<span class="math inline">\(h:A\to Z\)</span>, 都唯一存在态射<span class="math inline">\(\tilde{h}:Y\to Z\)</span>, 使得下图交换: <span class="math display">\[
+\xymatrix{
+A \ar[r]^{\varphi} \ar[rd]_{h} &amp;
+Y \ar@{.&gt;}[d]^(.4){\tilde h} \\
+&amp; Z.
+}
+\]</span> 为了进一步严格化泛性质的定义, 先给出一些概念.</p>
+<p>在范畴<span class="math inline">\(\sf{C}\)</span>中, 称一个对象<span class="math inline">\(I\)</span>为<strong>始对象(initial
+object)</strong>, 如果对任意<span class="math inline">\(\sf{C}\)</span>对象<span class="math inline">\(A\)</span>, 都唯一存在态射<span class="math inline">\(I\to A\)</span>; 称一个对象<span class="math inline">\(F\)</span>是<strong>终对象(final object)</strong>,
+如果对任意<span class="math inline">\(\sf{C}\)</span>对象<span class="math inline">\(A\)</span>, 都唯一存在态射<span class="math inline">\(A\to F\)</span>.</p>
+<ul>
+<li>一个范畴<span class="math inline">\(\sf{C}\)</span>不一定始对象或终对象,
+但是如果存在的话,
+它们分别在同构意义下唯一(类比前文对张量积在同构意义下唯一的证明).</li>
+</ul>
+<p>如果一个对象是某个范畴的始对象或终对象, 那么称它满足某种泛性质,
+即"对任意态射..., 都存在唯一的态射..., 使得下图...交换".</p>
+<h3 id="products-and-coproducts">3.2  Products and coproducts</h3>
+<p>最后我们通过泛性质定义两个重要的构造.</p>
+<p>两个对象<span class="math inline">\(A,B\)</span>的<strong>积(product)</strong>是<span class="math inline">\({\sf C}_{A,B}\)</span>中的一个始对象<span class="math inline">\((X,\pi_A,\pi_B)\)</span>, 即 <span class="math display">\[
+\xymatrix@C=20pt@R=5pt@L=0.5pt{
+&amp; A \\
+X \ar[ru]^-{\pi_A} \ar[rd]_-{\pi_B} \\
+&amp; B
+}
+\]</span> 而且对任意<span class="math inline">\((Z,f_A,f_B)\)</span>,
+都唯一存在态射<span class="math inline">\(\sigma:Z\to X\)</span>,
+使得下图交换: <span class="math display">\[
+\xymatrix@C=20pt@R=5pt@L=0.5pt{
+&amp;&amp; A \\
+Z \ar@/^10pt/[rru]^{f_A} \ar@/_10pt/[rrd]_{f_B} \ar@{.&gt;}[r]^-{\sigma}
+&amp;
+X \ar[ru]^{\pi_A} \ar[rd]_{\pi_B} \\
+&amp;&amp; B
+}
+\]</span></p>
+<p>将积的箭头反转就得到了<strong>余积(coproduct)</strong>的定义,
+简而言之 <span class="math display">\[
+\xymatrix@C=20pt@R=5pt@L=0.5pt{
+&amp;&amp; A \ar@/_10pt/[lld]_{f_A} \ar[ld]_{\iota_A} \\
+Z &amp; X \ar@{..&gt;}[l]_(0.4){\sigma} \\
+&amp;&amp; B \ar@/^10pt/[llu]^{f_B} \ar[lu]^{\iota_B}
+}
+\]</span></p>
+<div class="note note-info">
+<p><u>Example</u> 集合范畴<span class="math inline">\(\sf
+Set\)</span>中<span class="math inline">\(A,B\)</span>的积是笛卡尔积<span class="math inline">\(A\times B\)</span>, 余积是无交并<span class="math inline">\(A\amalg B\)</span>.</p>
+<p><span class="math inline">\(\R\)</span>线性空间范畴<span class="math inline">\(\sf{Vect}_\R\)</span>中<span class="math inline">\(V,W\)</span>的积和余积都是直和<span class="math inline">\(V\oplus W\)</span>.</p>
+<p>考虑这样一个范畴<span class="math inline">\({\sf C}\)</span>,
+它的对象是所有整数, 如果两个对象<span class="math inline">\(m\leq
+n\)</span>, 那么恰好存在一个态射<span class="math inline">\(m\to
+n\)</span>. 在这个范畴中,</p>
+<ul>
+<li><span class="math inline">\(m,n\)</span>的积是两数的较大者<span class="math inline">\(\min\qty{m,n}\)</span>,</li>
+<li><span class="math inline">\(m,n\)</span>的余积是两数的较小者<span class="math inline">\(\max\qty{m,n}\)</span>.</li>
+</ul>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>不过这和一般的加法结合律不同, 因为<span class="math inline">\(\oplus\)</span>​和<span class="math inline">\(+\)</span>​是两种不同的运算,
+所以这只是形式上的结合律.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>这也是形式上的结合律.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>设线性空间V的线性子空间U, 则商空间为<span class="math inline">\(V/U:=\qty{v+U\,|\,v\in V}\)</span>,
+配以线性运算<span class="math inline">\((v_1+U)+(v_2+U):=(v_1+v_2)+U,
+k(v+U):=(kv)+U\)</span>. 向量<span class="math inline">\(v,w\in
+V\)</span>等价当且仅当<span class="math inline">\(v-w\in U\)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#线性代数</a>
+      
+        <a href="/tags/%E8%8C%83%E7%95%B4%E8%AE%BA/" class="print-no-link">#范畴论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从张量积到泛性质</div>
+      <div>https://disembo.github.io/Note/tensor-products-and-universal-properties/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-1/" title="GTM275 | 1 曲率与向量场">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 1 曲率与向量场</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-lgr-index/" title="梁GR | 笔记索引">
+                        <span class="hidden-mobile">梁GR | 笔记索引</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

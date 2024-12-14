@@ -1,0 +1,900 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="把线性微分方程打包成向量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ODE4 线性微分方程">
+<meta property="og:url" content="https://disembo.github.io/Visualizing/ode-4/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="把线性微分方程打包成向量">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/superposition-of-oscillations.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/vector-space-abstraction.png">
+<meta property="article:published_time" content="2022-07-02T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.706Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="线性代数">
+<meta property="article:tag" content="微分方程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/superposition-of-oscillations.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ODE4 线性微分方程 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/articles/ode-4.banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ODE4 线性微分方程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-02 12:00" pubdate>
+          2022年7月2日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ODE4 线性微分方程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body><h2 id="向量">1 向量</h2>
+<p>现在我们来关注线性（齐次）微分方程的求解. 从二阶的起步， <span class="math display">\[
+y''=py'+qy
+\]</span> 我们把它扩写成方程组： <span class="math display">\[
+\Cases{
+y'=y' \\
+y''=py'+qy
+}
+\]</span> 再改写成向量形式：令<span class="math inline">\(\vb{Y}=\pmqty{y\\y'}\)</span>，<span class="math inline">\(\vb{A}=\pmqty{0&amp;1\\q&amp;p}\)</span>，则有
+<span class="math display">\[
+\vb{Y}'=\vb{AY} \tag{1.1}
+\]</span> 这是一个关于向量<span class="math inline">\(\vb{Y}\)</span>的一阶线性微分方程.
+至此，我们完成了高阶方程<span class="math inline">\(\longrightarrow\)</span>多个一阶组的转化.</p>
+<p>方程<span class="math inline">\(\text{1.1}\)</span>表示的含义是：有一个随时间变化的向量（函数）<span class="math inline">\(\vb{Y}(t)\)</span>，它的变化率<span class="math inline">\(\vb{Y}'(t)\)</span>等于一个矩阵作用于自身<span class="math inline">\(\vb{AY}(t)\)</span>，如下面的动画所示：</p>
+<video controls="" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/ode/vector-derivative.mp4" type="video/mp4">
+</video>
+<div class="note note-secondary">
+<p>薛定谔方程(Schrödinger equation)是一个线性微分方程： <span class="math display">\[
+\dv{}{t}\blue{\ket{\psi}}
+= \frac{1}{\i\hbar} \hat{H} \blue{\ket{\psi}}
+\]</span> 其中<span class="math inline">\(\blue{\ket{\psi(t)}}\)</span>是描述量子系统状态的向量；<span class="math inline">\(\hat{H}\)</span>是一个线性算子；<span class="math inline">\(\i\)</span>是虚数单位，<span class="math inline">\(\hbar\)</span>是约化普朗克常数.
+薛定谔方程的结构和<span class="math inline">\(\displaystyle\dv{}{t}\blue{
+\vb{Y}}=\vb{A}\blue{\vb{Y}}\)</span>十分相似.</p>
+</div>
+<h2 id="叠加原理">2 叠加原理</h2>
+<p>我们先不着急求解，而是研究一下这个方程的性质： <span class="math display">\[
+\vb{Y}'(t)=\vb{AY}(t)
+\]</span>
+线性齐次微分方程的一个重要特性是<strong>叠加原理</strong>(superposition
+principle)：如果<span class="math inline">\({\color{royalblue}\vb{Y}_1}(t)\)</span>与<span class="math inline">\({\color{forestgreen}\vb{Y}_2}(t)\)</span>都是方程的解，那么它们的线性组合<span class="math inline">\(\alpha{\color{royalblue}\vb{Y}_1}(t)+\beta{\color{forestgreen}\vb{Y}_2}(t)\)</span>也是方程的解.</p>
+<div class="note note-secondary">
+<p>原因：线性齐次微分方程<span class="math inline">\(\displaystyle\dv{}{t}\vb{Y}=\vb{AY}\)</span>的左右两边都是线性的：
+<span class="math display">\[
+\Align{
+\dv{}{t}(
+\alpha{\color{royalblue}\vb{Y}}_1+
+\beta{\color{forestgreen}\vb{Y}_2}) &amp;=
+\alpha\dv{}{t}{\color{royalblue}\vb{Y}}_1 +
+\beta\dv{}{t}{\color{forestgreen}\vb{Y}_2} \\
+\vb{A}(
+\alpha{\color{royalblue}\vb{Y}}_1+
+\beta{\color{forestgreen}\vb{Y}_2}) &amp;=
+\alpha\vb{A}{\color{royalblue}\vb{Y}}_1 +
+\beta\vb{A}{\color{forestgreen}\vb{Y}_2}
+}
+\]</span>
+<u>线性</u>(linear)的含义就是保持线性运算（加法和数量乘法）：如果 <span class="math display">\[
+\Cases{
+F({\color{royalblue}\vb{v}}+{\color{forestgreen}\vb{w}})
+= F({\color{royalblue}\vb{v}})+F({\color{forestgreen}\vb{w}}) \\
+F(\alpha{\color{royalblue}\vb{v}}) = \alpha F({\color{royalblue}\vb{v}})
+}
+% \textsf{, 合起来就是}
+% F(\alpha{\color{royalblue}\vb{v}}+\beta{\color{forestgreen}\vb{w}})
+% =\alpha F({\color{royalblue}\vb{v}})
+% +\beta F({\color{forestgreen}\vb{w}})
+\]</span> （其中<span class="math inline">\(\alpha,\beta\)</span>是实数，<span class="math inline">\(\vb{v},\vb{w}\)</span>是向量）那么称映射<span class="math inline">\(F\)</span>是线性的. 导数算子<span class="math inline">\(\displaystyle\dv{}{t}\)</span>，矩阵<span class="math inline">\(\vb{A}\)</span>都是线性的.</p>
+</div>
+<p>例如，</p>
+<ul>
+<li><p>对于人口模型<span class="math inline">\(N'=rN\)</span>，当初始人口是<span class="math inline">\(n\)</span>，有<span class="math inline">\(N=N_1(t)\)</span>，那么初始人口为<span class="math inline">\({\color{coral}2}n\)</span>时，<span class="math inline">\(N={\color{coral}2}N_1(t)\)</span>.</p></li>
+<li><p>一个简谐振子在<span class="math inline">\(P\)</span>处自由释放，得到<span class="math inline">\(x={\color{royalblue}x_1}(t)\)</span>，在原点处以初速度<span class="math inline">\(v\)</span>释放，得到<span class="math inline">\(x={\color{forestgreen}x_2}(t)\)</span>，则在<span class="math inline">\(P\)</span>处以初速度<span class="math inline">\(v\)</span>释放，有<span class="math inline">\(x={\color{royalblue}x_1}(t)+{\color{forestgreen}x_2}(t)\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/superposition-of-oscillations.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>在相空间中的表现就是向量的线性运算.</p>
+<video controls="" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/ode/superposition-in-vector-field.mp4" type="video/mp4">
+</video></li>
+<li><p>薛定谔方程是线性的，量子系统的状态<span class="math inline">\(|\Psi(t)\rangle\)</span>也满足叠加原理.</p></li>
+</ul>
+<h2 id="指数函数">3 指数函数</h2>
+<p>现在来求解方程.</p>
+<p>注意到向量微分方程<span class="math inline">\(\vb{Y}'(t)=\vb{AY}(t)\)</span>和一阶微分方程<span class="math inline">\(y'(t)=ay(t)\)</span>的形式是相同的，其实它们解的形式也相同：
+<span class="math display">\[
+y(t)=\e^{at}\cdot y_0
+\quad\textsf{和}\quad
+\vb{Y}(t)=\e^{\vb{A}t}\cdot \vb{Y}_0
+\]</span> 其中<span class="math inline">\(y_0=y(0)\)</span>是一个初值条件；<span class="math inline">\(\vb{Y}_0=\vb{Y}(0)=\pmqty{y{(0)}\\y'{(0)}}\)</span>，包含了<span class="math inline">\(2\)</span>个初值条件.</p>
+<div class="note note-secondary">
+<p><span class="math inline">\(\e^{\vb{A}}\)</span>称为矩阵<span class="math inline">\(\vb{A}\)</span>的指数函数. 回想指数函数<span class="math inline">\(f(x)=\e^x\)</span>的Taylor级数： <span class="math display">\[
+\small{
+\e^x
+=1+\frac{x^1}{1!}+\frac{x^2}{2!}+\dots
+=\sum_{k=0}^\infty \frac{x^k}{k!}
+\quad (x\in\R)
+}
+\]</span> 照葫芦画瓢，矩阵指数就是 <span class="math display">\[
+\small{
+\e^{\vb{A}}
+=\vb{I}+\frac{\vb{A}^1}{1!}+\frac{\vb{A}^2}{2!}+\dots
+=\sum_{k=0}^\infty \frac{\vb{A}^k}{k!}
+\quad (\vb{A}\textsf{是$2\times2$方阵})
+}
+\]</span> （认为<span class="math inline">\(\vb{A}^0=\vb{I}\)</span>为单位阵）一般把<span class="math inline">\(\e\)</span>指数函数<span class="math inline">\(\e^{\vb{A}}\)</span>记作<span class="math inline">\(\exp(\vb{A})\)</span>；函数输出的结果还是一个<span class="math inline">\(2\times2\)</span>的矩阵.</p>
+<p>当然，也可以用第二篇「一阶微分方程」<span class="math inline">\(\S4\)</span>中的思路（从差分到微分）来推导矩阵指数.</p>
+</div>
+<p>现在我们来直观地感受一下矩阵指数. 矩阵表示了一个线性变换，<span class="math inline">\(\purple{\exp(\vb{A}t)}\cdot\vb{Y}_0\)</span>表示的就是一个线性变换<span class="math inline">\(\purple{\exp(\vb{A}t)}\)</span>作用在了向量<span class="math inline">\(\vb{Y}_0\)</span>身上.</p>
+<video controls="" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/ode/matrix-exponential.mp4" type="video/mp4">
+</video>
+<div class="note note-secondary">
+<p>举一个具体的例子，简谐振子的运动方程是<span class="math inline">\(\Cases{x'=v\\v'=-\dfrac{k}{m}x}\)</span>.
+不妨让<span class="math inline">\(\dfrac km=1\)</span>，那么 <span class="math display">\[
+\pmqty{x\\v}'=\pmqty{0&amp;1\\-1&amp;0}\pmqty{x\\v}
+\]</span> 发现<span class="math inline">\(\vb{A}=\pmqty{0&amp;1\\-1&amp;0}\)</span>是一个顺时针<span class="math inline">\(90^\circ\)</span>的旋转矩阵，也就是说<span class="math inline">\(\vb{Y}'\)</span>的变化率与<span class="math inline">\(\vb{Y}'\)</span>垂直，也就是说，<span class="math inline">\(\vb{Y}\)</span>在<span class="math inline">\(x-v\)</span>相平面中做匀速圆周运动（如下），<span class="math inline">\(x,v\)</span>与<span class="math inline">\(t\)</span>的关系都是正弦式的.</p>
+<video controls="" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/ode/vector-derivative-example.mp4" type="video/mp4">
+</video>
+<p>我们再来计算<span class="math inline">\(\exp(\vb{A}t)\)</span>，注意到<span class="math inline">\(\vb{A}\)</span>的幂是以<span class="math inline">\(4\)</span>为周期的（因为顺时针旋转<span class="math inline">\(4\)</span>个<span class="math inline">\(90^\circ\)</span>后又回到了初始状态）： <span class="math display">\[
+\begin{array}{}
+\vb{A}^0=\pmqty{1&amp;0\\0&amp;1} &amp;
+\vb{A}^1=\pmqty{0&amp;1\\-1&amp;0} &amp;
+\vb{A}^2=\pmqty{-1&amp;0\\0&amp;-1} &amp;
+\vb{A}^3=\pmqty{0&amp;-1\\1&amp;0} \\
+\vb{A}^4=\pmqty{1&amp;0\\0&amp;1} &amp; \dots\dots
+\end{array}
+\]</span> 所以 <span class="math display">\[
+\Align{
+\exp(\vb{A}t)
+&amp;=\vb{A}^0
++\frac{\vb{A}^1t^1}{1!}
++\frac{\vb{A}^2t^2}{2!}
++\frac{\vb{A}^3t^3}{3!}+\dots \\
+&amp;=\pmqty{1&amp;0\\0&amp;1}
++\pmqty{0&amp;\frac{t^1}{1!}\\-\frac{t^1}{1!}&amp;0}
++\pmqty{-\frac{t^2}{2!}&amp;0\\0&amp;-\frac{t^2}{2!}}
++\pmqty{0&amp;-\frac{t^3}{3!}\\\frac{t^3}{3!}&amp;0}+\dots \\
+&amp;=\pmqty{
+{\color{orange}1-\frac{t^2}{2!}+\frac{t^4}{4!}-\dots} &amp;
+{\color{orangered}\frac{t^1}{1!}-\frac{t^3}{3!}+\frac{t^5}{5!}-\dots} \\
+-\pqty{{
+\color{orangered}\frac{t^1}{1!}-\frac{t^3}{3!}+\frac{t^5}{5!}-\dots
+}} &amp;
+{\color{orange}1-\frac{t^2}{2!}+\frac{t^4}{4!}-\dots}
+} \\
+&amp;=\pmqty{ {\color{orange}\cos{t}} &amp; {\color{orangered}\sin{t}}
+\\
+-{\color{orangered}\sin{t}} &amp; {\color{orange}\cos{t}} }
+}
+\]</span> （最后一步利用了<span class="math inline">\(\color{orange}\cos{t}\)</span>和<span class="math inline">\(\color{orangered}\sin{t}\)</span>的Taylor展开式）矩阵<span class="math inline">\(\pmqty{ {\color{orange}\cos{t}} &amp;
+{\color{orangered}\sin{t}}\\-{\color{orangered}\sin{t}} &amp;
+{\color{orange}\cos{t}} }\)</span>恰好是<u>顺时针旋转<span class="math inline">\(t\)</span>（弧度）的矩阵</u>，那么<span class="math inline">\(\vb{Y}=\pmqty{ {\color{orange}\cos{t}} &amp;
+{\color{orangered}\sin{t}} \\-{\color{orangered}\sin{t}} &amp;
+{\color{orange}\cos{t}} }\vb{Y}_0\)</span>表示：<span class="math inline">\(\vb{Y}\)</span>从<span class="math inline">\(\vb{Y}_0\)</span>开始，顺时针匀速旋转.</p>
+</div>
+<p>那么，对于一个一般的<span class="math inline">\(\vb{A}\)</span>，怎样求<span class="math inline">\(\purple{\exp(\vb{A}t)}\)</span>？我们当然希望矩阵<span class="math inline">\(\vb{A}\)</span>越简单越好，简化的方式就是把它写成更简单的矩阵的乘积（把线性变换分解为更简单的变换的复合）.
+线性代数的一大主题就是把复杂的矩阵（线性算子）分解为简单的矩阵（线性算子）的乘积（复合）.</p>
+<h2 id="向量空间">4 向量空间</h2>
+<p>我们再来研究一下二阶线性微分方程的解集<span class="math inline">\(V=\set{f\,|\,f''=pf'+qf}\)</span>.
+我们知道，叠加原理描述了<span class="math inline">\(V\)</span>对<u>加法、数量乘法</u>的封闭性： <span class="math display">\[
+\Align{
+\textsf{如果}f,g\in V, \hspace{5pt}&amp; \textsf{那么}f+g\in V \\
+\textsf{如果}f\in V, \hspace{5pt}&amp; \textsf{那么}\alpha f\in V \quad
+(\alpha\in\R)
+}
+\]</span></p>
+<div class="note note-secondary">
+<p>其中，函数的加法和数乘的概念是很自然的：</p>
+<ul>
+<li>加法：<span class="math inline">\((f+g)(x)=f(x)+g(x)\)</span>.</li>
+<li>数量乘法：<span class="math inline">\((\alpha f)(x)=\alpha
+f(x)\)</span>（<span class="math inline">\(\alpha\in\R\)</span>）.</li>
+</ul>
+</div>
+<p>这样的集合<span class="math inline">\(V\)</span>十分特殊，以至于我们专门给它了一个定义.</p>
+<p>我们把这种定义了加法与数量乘法（且对这两种运算封闭）的集合<span class="math inline">\(V\)</span>称作<strong>向量空间</strong>(vector
+space)，<span class="math inline">\(V\)</span>里面的元素<span class="math inline">\(f,g,\dots\)</span>叫做<strong>向量</strong>(vector).</p>
+<div class="note note-secondary">
+<p>这里的定义是简化版本. 要成为一个向量空间，<span class="math inline">\(V\)</span>上的加法、数量乘法还要满足一些性质，比如交换律、结合律、分配律.</p>
+</div>
+<p>我们在高中接触过平面向量，那时我们定义平面向量<span class="math inline">\(\vb{a}\)</span>是一个有方向、有大小的量，可以形象地表示为二维空间中的有向线段<span class="math inline">\(\va{OA}\)</span>，也可以表示成有序实数对<span class="math inline">\((x,y)\)</span>；与之类似的，物理中的矢量是一个有大小、方向的量，而且满足平行四边形法则……</p>
+<p>"向量空间"就是这些概念的<u>推广</u>：以上这些（平面向量的集合、有序实数对的集合、某一点上所有矢量的集合、函数的集合……）都是向量空间.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/vector-space-abstraction.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>"向量"的本质既不是它的长度、方向，也不是怎样来表示向量（箭头、有序数组……），而是它的<u>线性运算</u>：
+<span class="math display">\[
+\large \alpha\blue{v}+\beta\blue{w}
+\]</span>
+而向量空间的本质，就是定义了线性运算（也叫线性结构）的集合<span class="math inline">\(V\)</span>（所以也叫线性空间），向量就是线性空间里面的元素.
+定义了线性结构之后，我们还可以往<span class="math inline">\(V\)</span>上附加其他东西：</p>
+<ul>
+<li><p>线性相关与线性无关的概念. 进而可以引出基底、维度、坐标……</p></li>
+<li><p>内积. 作为点积的推广，内积本质上是一个函数，把两个向量<span class="math inline">\((v,w)\)</span>映射到一个实数，一般记作<span class="math inline">\(\lr{v,w}\)</span>（注意这不是中学课本里的"夹角"）.</p>
+<ul>
+<li><p>内积为我们带来的"长度"、"夹角"等概念：<span class="math inline">\(\abs{v}=\sqrt{\lr{v,v}}\)</span>，<span class="math inline">\(\cos(v,w\textsf{的夹角})=\dfrac{\lr{v,w}}{\abs{v}\cdot\abs{w}}\)</span>.</p>
+<p>这时候我们就可以谈及一个向量的"大小"或者"方向"了.</p>
+<p>我们甚至可以说一个函数<span class="math inline">\(f\)</span>的"长度"（范数），或者两个函数<span class="math inline">\(f,g\)</span>"正交"（内积为<span class="math inline">\(0\)</span>）.</p></li>
+</ul></li>
+<li><p>线性映射，也就是两个线性空间<span class="math inline">\(V,W\)</span>之间，保持线性运算的函数<span class="math inline">\(T\)</span>.
+有了它，就可以构建起两个线性空间之间的关系……</p>
+<p>如果把线性空间比作舞台，那线性映射就是舞台上的表演.
+线性映射的理论是线性代数中最精彩的部分.</p></li>
+<li><p>……</p></li>
+</ul>
+<div class="note note-secondary">
+<p>当然，普适的代价是抽象（Abstractness is the price of
+generality），如果要得出脱离于具体实例的结论，当然要抛弃一部分具体与直观；但是在研究的过程中，借助直观的实例来探究、理解还是很有帮助的.</p>
+<p>下面是一些个人想法<span class="math inline">\((^-\,_\Lambda\,^-\,)\)</span></p>
+<p>在学习抽象概念的时候，极为重要的一点就是理解这个概念，构建起概念间的关系，形成框架.
+在此之后，再往里面填充细节（比如定理的证明、习题等）.</p>
+<p>比如一棵树，先长枝干，再长叶子，那么这棵树的长势、形态就非常清晰明了；如果先是一堆叶子的话，东一片西一片，就会显得凌乱复杂了.
+像后者这样学习，越学越乱.</p>
+<p>当然，概念的理解与框架的构建是艰难的过程.
+看到一个定义的时候，你可能完全不知所云，想破脑袋也不知道这个鬼东西是怎么来的，为什么要定义成这个样子.
+这时候可以借助"直观"来理解，或者干脆往后学或者去干别的事情.
+在这之后总会有一天，你忽然就明白了（脑回路对上了），"原来xxx就是xxx！"，豁然开朗.
+学习就是这样一个让自己的观点重构、理解深入的过程.</p>
+<ul>
+<li>学习不图快，也不必急，只要理解层次到了，那顿悟就是一瞬间的事.</li>
+<li>上面的"直观"包括但不限于通常说的"几何直观"，只要你构建了清晰的框架，代数什么的也可以很直观.</li>
+</ul>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Visualizing/" class="category-chain-item">Visualizing</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#线性代数</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" class="print-no-link">#微分方程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ODE4 线性微分方程</div>
+      <div>https://disembo.github.io/Visualizing/ode-4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-lgr-1/" title="梁GR | 1 流形与张量场">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">梁GR | 1 流形与张量场</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Visualizing/ode-3/" title="ODE3 二阶微分方程">
+                        <span class="hidden-mobile">ODE3 二阶微分方程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

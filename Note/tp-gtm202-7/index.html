@@ -1,0 +1,1033 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一维流形的分类, 单纯复形.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM202 | 7 胞腔复形">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-7/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="一维流形的分类, 单纯复形.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/simplicial-complex-examples.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Torus-triang.png/1280px-Torus-triang.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Dolphin_triangle_mesh.svg/1280px-Dolphin_triangle_mesh.svg.png">
+<meta property="article:published_time" content="2024-12-13T13:03:07.708Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.709Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="拓扑">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/simplicial-complex-examples.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM202 | 7 胞腔复形 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM202 | 7 胞腔复形"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-13 21:03" pubdate>
+          2024年12月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM202 | 7 胞腔复形</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 5
+的笔记.</p>
+</div>
+<h2 id="classification-of-1-manifolds">19  Classification of
+1-Manifolds</h2>
+<h3 id="cw-decomposition-on-1-manifolds">19.1  CW decomposition on
+1-manifolds</h3>
+<div class="note note-success">
+<p><u>Claim 19.1</u> <span class="math inline">\(1\)</span>
+维流形上存在正则 CW 分解.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 19.2</u> 设 <span class="math inline">\(1\)</span> 维流形
+<span class="math inline">\(M\)</span> 上有正则 CW 分解. 则任一 <span class="math inline">\(1\)</span> 维胞腔的边界恰好是两个 <span class="math inline">\(0\)</span> 维胞腔; 任一 <span class="math inline">\(0\)</span> 维胞腔恰好是两个 <span class="math inline">\(1\)</span> 维胞腔的边界.</p>
+</div>
+<h3 id="classification-theorems">19.2  Classification theorems</h3>
+<div class="note note-success">
+<p><u>Claim 19.3</u> (一维连通流形的分类) 设非空一维连通流形 <span class="math inline">\(M\)</span>. 若 <span class="math inline">\(M\)</span> 紧, 则它同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>, 若非紧, 则同胚于 <span class="math inline">\(\R\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 19.4</u> (一维连通带边流形的分类) 设非空一维连通带边流形
+<span class="math inline">\(M\)</span>. 若 <span class="math inline">\(M\)</span> 紧, 则它同胚于 <span class="math inline">\([0,1]\)</span>, 若非紧, 则同胚于 <span class="math inline">\([0,+\infty)\)</span>.</p>
+</div>
+<p>任意 <span class="math inline">\(n\)</span> 维流形同胚于若干连通
+<span class="math inline">\(n\)</span> 维流形的不交并; 任意 <span class="math inline">\(n\)</span> 维带边流形同胚于若干连通 <span class="math inline">\(n\)</span> 维带边 (或不带边) 流形的不交并. 因此,
+我们可以得到任意 <span class="math inline">\(1\)</span>
+维流形的分类.</p>
+<h2 id="simplicial-complexes">20  Simplicial Complexes</h2>
+<h3 id="simplicial-complexes-1">20.1  Simplicial complexes</h3>
+<p>设欧氏空间 <span class="math inline">\(\R^n\)</span> 的线性子空间
+<span class="math inline">\(S\)</span>. 一个平行于 <span class="math inline">\(S\)</span> 的<strong>仿射子空间</strong>指的是陪集
+<span class="math inline">\(b+S\)</span> (<span class="math inline">\(b\in\R^n\)</span>), 其维数定义为 <span class="math inline">\(S\)</span> 的维数.</p>
+<p>任给 <span class="math inline">\(\R^n\)</span> 中互异的 <span class="math inline">\(k+1\)</span> 个点 <span class="math inline">\(v_0,\dots,v_k\)</span>. 只要 <span class="math inline">\(n\geq k\)</span>, 总存在 <span class="math inline">\(k\)</span> 维仿射子空间包含 <span class="math inline">\(\{v_0,\dots,v_k\}\)</span>. 如果不存在小于 <span class="math inline">\(k\)</span> 维的仿射子空间包含 <span class="math inline">\(\{v_0,\dots,v_k\}\)</span>, 则称 <span class="math inline">\(\{v_0,\dots,v_k\}\)</span>
+是<strong>仿射无关的</strong>, 或<strong>在一般位置的 (in general
+position)</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 20.1</u> (仿射无关的刻画) 对于 <span class="math inline">\(k+1\)</span> 个互异的点 <span class="math inline">\(v_0,\dots,v_k\in\R^n\)</span>, TFAE:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\{v_0,\dots,v_k\}\)</span>
+仿射无关.</p></li>
+<li><p><span class="math inline">\(\{v_1-v_0,\dots,v_k-v_0\}\)</span>
+线性无关.</p></li>
+<li><p>若实数 <span class="math inline">\(c_0,\dots,c_k\)</span> 使得
+<span class="math display">\[
+\sum_{i=1}^kc_iv_i=0,\quad \sum_{i=1}^kc_i=0,
+\]</span> 则 <span class="math inline">\(c_0=\dots=c_k=0\)</span>.</p></li>
+</ol>
+</div>
+<p>设仿射无关的 <span class="math inline">\(\{v_0,\dots,v_k\}\subset\R^n\)</span>,
+它生成的<strong>单形/单纯形 (simplex)</strong> 定义为 <span class="math display">\[
+[v_0,\dots,v_k]:=\left\{
+\sum_{i=0}^kt_iv_i \,\middle|\, t_i\geq0 \textsf{ 且 } \sum_{i=0}^kt_i=1
+\right\},
+\]</span> 配以子空间拓扑. 对于 <span class="math inline">\(x=\sum
+t_iv_i\in[v_0,\dots,v_k]\)</span>, 非负实数 <span class="math inline">\(t_i\)</span> 称为 <span class="math inline">\(x\)</span> 关于 <span class="math inline">\([v_0,\dots,v_k]\)</span> 的<strong>重心坐标
+(barycentric coordinates)</strong>. 点 <span class="math inline">\(v_i\)</span> 称为单形的<strong>顶点
+(vertex)</strong>, 整数 <span class="math inline">\(k\)</span>
+称为单形的<strong>维数 (dimension)</strong>.</p>
+<ul>
+<li><p><span class="math inline">\(0\)</span> 维单形是一个点, <span class="math inline">\(1\)</span> 维单形是一条线段, <span class="math inline">\(2\)</span> 维单形是一个三角形及内部, <span class="math inline">\(3\)</span> 维单形是一个四面体及内部.</p></li>
+<li><p>闭区间 <span class="math inline">\([a,b]\subset\R\)</span>
+是一个以 <span class="math inline">\(a,b\)</span> 为顶点的单形.
+单形的符号是闭区间符号的推广.</p></li>
+<li><p><strong>标准 <span class="math inline">\(k\)</span> 维单形
+(standard <span class="math inline">\(k\)</span>-simplex)</strong>
+定义为 <span class="math inline">\(\Delta_k:=[e_0,\dots,e_k]\subset\R^k\)</span>,
+其中 <span class="math inline">\(e_0=0\)</span>, <span class="math inline">\(e_i\)</span> 是 <span class="math inline">\(\R^k\)</span> 的第 <span class="math inline">\(i\)</span> 个标准基向量 <span class="math inline">\((0,\dots,1,\dots,0)\)</span>.</p></li>
+<li><p>任何 <span class="math inline">\(k\)</span> 维单形 <span class="math inline">\(\sigma=[v_0,\dots,v_k]\)</span> 都同胚于 <span class="math inline">\(\Delta_k\)</span>: <span class="math display">\[
+\Align{
+F:\Delta_k &amp;\overset\sim\to \sigma, \\
+(t_1,\dots,t_k) &amp;\mapsto t_0v_0+t_1v_1+\dots+t_kv_k,
+}
+\]</span> 其中 <span class="math inline">\(t_0=1-\sum_{i=1}^kt_i\)</span>.
+这是一个连续的双射, 根据闭映射引理, <span class="math inline">\(F\)</span> 是同胚.</p></li>
+</ul>
+<p>对于 <span class="math inline">\(W\subset\R^n\)</span>,
+它的<strong>凸包 (convex hull)</strong> 是包含 <span class="math inline">\(W\)</span> 的所有凸集的交集, 也就是包含 <span class="math inline">\(W\)</span> 的最小凸集.</p>
+<ul>
+<li>集合 <span class="math inline">\(W\)</span> 是凸集,
+当且仅当它的凸包等于 <span class="math inline">\(W\)</span> 自身.</li>
+<li>根据定义容易验证, 单形是凸的, 因此其凸包等于自身.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 20.2</u> <span class="math inline">\(k\)</span> 维单形是一个
+<span class="math inline">\(k\)</span> 维闭胞腔.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为任意 <span class="math inline">\(k\)</span>
+维单形都同胚于标准单形 <span class="math inline">\(\Delta_k\)</span>,
+所以只需考虑后者. 因为 <span class="math inline">\(\Delta_k\)</span> 是
+<span class="math inline">\(\R^k\)</span> 的凸紧子集,
+其内部是重心坐标严格正 <span class="math inline">\(t_i&gt;0\)</span>
+的点, 根据 Claim 17.1, <span class="math inline">\(\Delta_k\)</span> 是
+<span class="math inline">\(k\)</span> 维闭胞腔.</p>
+</div>
+<p>接下来的一些定义也是很直观的.</p>
+<p>设 <span class="math inline">\(k\)</span> 维单形 <span class="math inline">\(\sigma\)</span>. 由 <span class="math inline">\(\sigma\)</span> 的若干 (至少一个)
+顶点生成的单形称为 <span class="math inline">\(\sigma\)</span>
+的一个<strong>面 (face)</strong>. 真包含于 <span class="math inline">\(\sigma\)</span> 的面称为<strong>真面 (proper
+face)</strong>. 零维的面就是顶点, 一维的面称为<strong>边
+(edge)</strong>.</p>
+<p><span class="math inline">\(k\)</span> 维单形 <span class="math inline">\(\sigma\)</span> 的 <span class="math inline">\((k-1)\)</span> 维面称为<strong>边界面 (boundary
+face)</strong>. 因为 <span class="math inline">\(\sigma\)</span>
+是闭胞腔, 它是一个 <span class="math inline">\(k\)</span> 维紧带边流形.
+它的流形边界 <span class="math inline">\(\partial\sigma\)</span>
+是所有边界面的并 (也等于所有真面的并), 称为它的<strong>边界
+(boundary)</strong>; 它的<strong>内部 (interior)</strong>
+是它减去它的边界. 一个 <span class="math inline">\(k\)</span>
+维<strong>开单形 (open simplex)</strong> 指的是 <span class="math inline">\(k\)</span> 维单形的内部: (把单形定义中的 <span class="math inline">\(t_i\geq0\)</span> 换成 <span class="math inline">\(t_i&gt;0\)</span>) <span class="math display">\[
+\left\{
+\sum_{i=0}^kt_iv_i \,\middle|\, t_i&gt;0 \textsf{ 且 } \sum_{i=0}^kt_i=1
+\right\},
+\]</span></p>
+<ul>
+<li>注意, 当 <span class="math inline">\(k&lt;n\)</span> 时, <span class="math inline">\(k\)</span> 维开单形并非 <span class="math inline">\(\R^n\)</span> 中的开集, 其边界 (等于流形边界)
+和内部 (等于流形内部) 不等于其拓扑边界/内部. (实际上,
+其拓扑边界是它自身, 拓扑内部为空.)</li>
+</ul>
+<p>欧氏空间 <span class="math inline">\(\R^n\)</span> 中的一个 (欧氏)
+<strong>单纯复形 (simplicial complex)</strong> 指的是 <span class="math inline">\(\R^n\)</span> 中的单形族 <span class="math inline">\(K\)</span>, 满足:</p>
+<ol type="1">
+<li>对 <span class="math inline">\(\sigma\in K\)</span>, 则 <span class="math inline">\(\sigma\)</span> 的每个面都在 <span class="math inline">\(K\)</span> 中.</li>
+<li><span class="math inline">\(K\)</span> 中两个单形的交或者为空,
+或者为它们的公共面.</li>
+<li><span class="math inline">\(K\)</span> 是局部有限的.</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/simplicial-complex-examples.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>局部有限性蕴含 <span class="math inline">\(K\)</span> 的可数性.
+因为对于 <span class="math inline">\(\R^n\)</span> 中任意一点 <span class="math inline">\(p\)</span>, 存在邻域 <span class="math inline">\(U_p\)</span> 与有限个单形相交; 所有 <span class="math inline">\(U_p\)</span> 组成 <span class="math inline">\(\R^n\)</span> 的开覆盖, 它有可数子覆盖, 意味着
+<span class="math inline">\(K\)</span> 是可数的.
+我们感兴趣的主要是<strong>有限单纯复形</strong>,
+即只包含有限个单形的单纯复形. 此时条件 3 是多余的.</p>
+<p>对于 <span class="math inline">\(\R^n\)</span> 中的单纯复形 <span class="math inline">\(K\)</span>,
+其<strong>维数</strong>定义为其中单形的最大维数, 这显然不超过 <span class="math inline">\(n\)</span>. 复形 <span class="math inline">\(K\)</span>
+的一个<strong>子复形</strong>指的是满足条件 1 的子集 <span class="math inline">\(S\subset K\)</span> (它自动满足 2, 3). 对于 <span class="math inline">\(k\leq n\)</span>, <span class="math inline">\(K\)</span> 的所有不超过 <span class="math inline">\(k\)</span> 维的单形组成的子复形称为 <span class="math inline">\(K\)</span> 的 <strong><span class="math inline">\(k\)</span> 维骨架</strong>.</p>
+<p>对于 <span class="math inline">\(\R^n\)</span> 中的单纯复形 <span class="math inline">\(K\)</span>, 它的<strong>承载空间 (underlying
+space)</strong> 定义为 <span class="math inline">\(|K|:=\bigcup_{\sigma\in K}\sigma\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 20.3</u> 设欧氏单纯复形 <span class="math inline">\(K\)</span>, 则 <span class="math inline">\(K\)</span> 中所有单形的内部组成的集族构成 <span class="math inline">\(|K|\)</span> 的正则 CW 分解.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 根据 Claim 17.1, 对 <span class="math inline">\(k\)</span>
+维单形 <span class="math inline">\(\sigma\in K\)</span> (视作 <span class="math inline">\(\R^k\)</span> 的子空间), 有同胚 <span class="math inline">\(\Phi:\overline{\mathbb{B}^k}\overset\sim\to\sigma\)</span>,
+将 <span class="math inline">\(\mathbb{S}^{k-1}\)</span> 映到 <span class="math inline">\(\sigma\)</span> 的边界, 将 <span class="math inline">\(\mathbb{B}^k\)</span> 映到 <span class="math inline">\(\sigma\)</span> 的内部. 注意 <span class="math inline">\(\sigma\)</span> 的边界由 <span class="math inline">\((k-1)\)</span> 维单形组成, 因此 <span class="math inline">\(\Phi\)</span> 是特征映射. 记 <span class="math inline">\(K\)</span> 中单形的内部组成的集族为 <span class="math inline">\({\cal E}\)</span>, 根据条件 2, <span class="math inline">\({\cal E}\)</span> 中的集合不交, 因此 <span class="math inline">\({\cal E}\)</span> 构成 <span class="math inline">\(|K|\)</span> 的胞腔分解.</p>
+<p>由条件 3, <span class="math inline">\({\cal E}\)</span> 是局部有限的,
+结合 Claim 17.3, <span class="math inline">\({\cal E}\)</span> 是 CW
+分解. 因为 <span class="math inline">\(\Phi\)</span> 将 <span class="math inline">\(\overline{\mathbb{B}^k}\)</span> 同胚地映到 <span class="math inline">\(\sigma\)</span> 的内部的闭包, 所以 <span class="math inline">\(\cal E\)</span> 是正则 CW 分解.</p>
+</div>
+<p>这里有一个术语上的区别. "CW 复形" 指的是一个拥有 "CW 分解" (开胞腔族)
+的拓扑空间 <span class="math inline">\(X\)</span>; 而 "单纯复形"
+指的是闭胞腔族 <span class="math inline">\(K\)</span>, "承载空间" <span class="math inline">\(|K|\)</span> 才是一个拓扑空间.</p>
+<p>根据 Claim 20.3, 所有 CW 复形的理论可以应用于 <span class="math inline">\(|K|\)</span> 上. 例如, <span class="math inline">\(|K|\)</span> 紧当且仅当 <span class="math inline">\(K\)</span> 是有限的; <span class="math inline">\(|K|\)</span> 连通当且仅当其 <span class="math inline">\(1\)</span> 维骨架是连通的.</p>
+<ul>
+<li>一个 <span class="math inline">\(n\)</span> 维单形 <span class="math inline">\(\sigma\)</span> 及其所有面组成了一个 <span class="math inline">\(n\)</span> 维单纯复形, 其承载空间同胚于 <span class="math inline">\(\overline{\mathbb{B}^n}\)</span>.</li>
+<li><span class="math inline">\(\sigma\)</span> 的所有真面组成的单纯复形
+(即 <span class="math inline">\(\sigma\)</span> 的边界) 是一个 <span class="math inline">\((n-1)\)</span> 维单纯复形, 同胚于 <span class="math inline">\(\mathbb{S}^{n-1}\)</span>.</li>
+<li>(正多边形) 对 <span class="math inline">\(m\geq3\)</span>, 记 <span class="math inline">\(P_m\)</span> 是平面上的正 <span class="math inline">\(m\)</span> 边形. <span class="math inline">\(P_m\)</span> 的所有顶点与边构成一个单纯复形,
+其承载空间同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</li>
+<li>(实数轴) 之前构造过 <span class="math inline">\(\R\)</span> 的正则
+CW 分解 (所有整数与单位区间 <span class="math inline">\((n,n+1)\)</span>
+组成), 而所有整数与单位闭区间 <span class="math inline">\([n,n+1]\)</span> 则组成了一个以 <span class="math inline">\(\R\)</span> 为承载空间的 <span class="math inline">\(1\)</span> 为单纯复形.</li>
+</ul>
+<p>设 <span class="math inline">\(X\)</span> 是拓扑空间, <span class="math inline">\(X\)</span> 到某单纯复形的承载空间 <span class="math inline">\(|K|\)</span> 的同胚称为 <span class="math inline">\(X\)</span> 的<strong>三角剖分
+(triangulation)</strong>. 从一维流形分类定理看出,
+一维流形都是可三角剖分的.</p>
+<div class="note note-success">
+<p><u>Claim 20.4</u> (二维流形的三角剖分) 二维流形上存在三角剖分.</p>
+</div>
+<p>该定理的证明技术性很强. 其思想大致与 Claim 19.1 的证明相同,
+即用正则坐标球覆盖流形 <span class="math inline">\(M\)</span>,
+归纳地说明每个坐标球上存在三角剖分, 且与已经定义的三角剖分相容.
+然而找到这样一种相容的剖分十分困难, 因为坐标球的边界可能与
+(已经定义好的) 单形的边界相交无穷多次.
+证明的过程需要用一些精妙的拓扑定理, 这超出了本书范围, 故略去.</p>
+<p>根据定义, 可以得到二维流形的三角剖分 <span class="math inline">\(\varphi:M\overset\sim\to|K|\)</span>
+的一些性质:</p>
+<ul>
+<li><span class="math inline">\(K\)</span> 由一些 <span class="math inline">\(2\)</span> 维单形 (三角形) 及其所有面 (边和顶点)
+组成.</li>
+<li><span class="math inline">\(K\)</span> 中任两个 <span class="math inline">\(2\)</span> 维单形的交集或者为空, 或者为其公共面
+(边或顶点).</li>
+<li><span class="math inline">\(K\)</span> 中任意 <span class="math inline">\(1\)</span> 维单形恰好是两个 <span class="math inline">\(2\)</span> 维单形的公共面.</li>
+</ul>
+<p>空间中的正多面体都能看成球面 <span class="math inline">\(\mathbb{S}^2\)</span> 的三角剖分,
+其他三角剖分的例子:</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Torus-triang.png/1280px-Torus-triang.png" srcset="/img/loading.gif" lazyload style="zoom:20%;"></th>
+<th style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Dolphin_triangle_mesh.svg/1280px-Dolphin_triangle_mesh.svg.png" srcset="/img/loading.gif" lazyload style="zoom:20%;"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>实际上, 任意三维流形也能被三角剖分 (由 Edwin Moise 在 1950
+年代证明).</p>
+<div class="note note-success">
+<p><u>Claim 20.5</u> (三维流形的三角剖分) 三维流形上存在三角剖分.</p>
+</div>
+<p>然而, 当 <span class="math inline">\(n\geq3\)</span> 时,
+情况变得复杂. 在二十世纪末, 人们发现了不存在三角剖分的四维流形;
+更高维流形上三角剖分的存在性仍是未知的.
+单纯复形的拓扑信息完全地以组合的方式呈现, 因此能将拓扑问题
+(对流形的研究) 简化为组合问题 (对单纯复形的研究).
+单纯复形和三角剖分是<strong>组合拓扑 (combinatorial topology)</strong>
+的重要研究对象.</p>
+<p>一个流形上可能有许多三角剖分, 我们想要知道哪些剖分是 "等价" 的,
+于是引入下面的概念.</p>
+<p>设单纯复形 <span class="math inline">\(K\)</span>,
+它的一个<strong>细分 (subdivision)</strong> 指的是满足如下条件的单纯复形
+<span class="math inline">\(K'\)</span>:</p>
+<ol type="1">
+<li><span class="math inline">\(|K'|=|K|\)</span>,</li>
+<li>对于任意 <span class="math inline">\(\sigma'\in K'\)</span>,
+存在 <span class="math inline">\(\sigma\in K\)</span>, 使得 <span class="math inline">\(\sigma'\subset\sigma\)</span>.</li>
+</ol>
+<p>此时, <span class="math inline">\(K\)</span> 中的每个单形都是 <span class="math inline">\(K'\)</span> 中的一些单形之并.
+如果两个单纯复形有相同的细分, 则称它们是<strong>组合等价的
+(combinatorially equivalent)</strong>. Ernst Steinitz 和 Heinrich Tietze
+在 1908 年提出猜想:</p>
+<ul>
+<li>若两个单纯复形的承载空间是同胚的, 则它们是组合等价的.</li>
+</ul>
+<p>它的等价表述是:</p>
+<ul>
+<li>任意可被三角剖分的空间, 其不同的三角剖分是组合等价的.</li>
+</ul>
+<p>这个猜想称为 "组合拓扑的主猜想 (Hauptvermugung)".
+这个猜想的二维和三维情形是成立的, 但是对于任意更高的维数都不成立.</p>
+<h3 id="simplicial-maps">20.2  Simplicial maps</h3>
+<p>一个<strong>仿射映射</strong> <span class="math inline">\(F:\R^n\to\R^m\)</span> 是形如 <span class="math inline">\(F(x)=c+A(x)\)</span> 的映射, 其中 <span class="math inline">\(c\in\R^m\)</span>, <span class="math inline">\(A:\R^n\to\R^m\)</span> 为线性映射.
+仿射映射是连续的.</p>
+<ul>
+<li>仿射映射保持<strong>仿射组合</strong>: 若 <span class="math inline">\(\sum_{i=1}^kt_i=1\)</span>, 则 <span class="math inline">\(f(\sum_{i=1}^k
+t_iv_i)=\sum_{i=1}^kt_iF(v_i)\)</span>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 20.6</u> (顶点映射确定的仿射映射) 设 <span class="math inline">\(k\)</span> 维单形 <span class="math inline">\(\sigma=[v_0,\dots,v_k]\subset\R^n\)</span>, 任给
+<span class="math inline">\((k+1)\)</span> 个点 <span class="math inline">\(w_0,\dots,w_k\in\R^m\)</span>, 对于任意仿射映射
+<span class="math inline">\(F:\R^n\to\R^m\)</span> 将 <span class="math inline">\(v_i\)</span> 映到 <span class="math inline">\(w_i\)</span>, <span class="math inline">\(F|_\sigma\)</span> 无关 <span class="math inline">\(F\)</span> 的选取.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 注意仿射映射 <span class="math inline">\(F\)</span> 在
+<span class="math inline">\(\sigma\)</span> 上的限制 <span class="math inline">\(F|_\sigma\)</span> 保持仿射组合: <span class="math display">\[
+F|_\sigma\pqty{\sum_{i=1}^k t_i v_i}
+=\sum_{i=1}^k t_i F|_\sigma(v_i)
+=\sum_{i=1}^k t_i w_i
+\]</span> 这唯一确定了 <span class="math inline">\(F|_\sigma\)</span>.</p>
+</div>
+<p>我们称 <span class="math inline">\(f:=F|_\sigma:\sigma\to\R^m\)</span>
+是<strong>顶点映射 <span class="math inline">\(v_i\mapsto w_i\)</span>
+确定的仿射映射</strong>.</p>
+<p>设单纯复形 <span class="math inline">\(K,L\)</span>, <span class="math inline">\(K_0,L_0\)</span> 分别是其 <span class="math inline">\(0\)</span> 维骨架 (顶点集). 一个从 <span class="math inline">\(K\)</span> 到 <span class="math inline">\(L\)</span> 的<strong>单纯映射 (simplicial
+map)</strong> 指的是连续映射 <span class="math inline">\(f:|K|\to|L|\)</span>, 满足 <span class="math inline">\(f\)</span> 在任意单形 <span class="math inline">\(\sigma\in K\)</span> 上的限制与某个将 <span class="math inline">\(\sigma\)</span> 映到 <span class="math inline">\(\tau\in L\)</span> 的仿射映射相同.
+(根据上面的定理, 这个 <span class="math inline">\(f|_\sigma\)</span>
+由单形 <span class="math inline">\(\sigma,\tau\)</span> 唯一确定.) <span class="math inline">\(f\)</span> 在 <span class="math inline">\(K_0\)</span> 的限制 <span class="math inline">\(f_0:K_0\to L_0\)</span> 称为 <span class="math inline">\(f\)</span> 的<strong>顶点映射 (vertex
+map)</strong>. 构成同胚的单纯映射称为<strong>单纯同构 (simplicial
+isomorphism)</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 20.7</u> (单纯映射由顶点映射唯一确定) 设单纯复形 <span class="math inline">\(K,L\)</span>, 映射 <span class="math inline">\(f_0:K_0\to L_0\)</span> 满足:</p>
+<ul>
+<li>若 <span class="math inline">\(\{v_0,\dots,v_k\}\)</span> 是 <span class="math inline">\(K\)</span> 中某单形的顶点, 则 <span class="math inline">\(\{f_0(v_0),\dots,f_0(v_k)\}\)</span> 是 <span class="math inline">\(L\)</span> 中某单形的顶点 (可重复).</li>
+</ul>
+<p>则存在唯一以 <span class="math inline">\(f_0\)</span>
+为顶点映射的单纯映射 <span class="math inline">\(f:|K|\to|L|\)</span>.
+此外, <span class="math inline">\(f\)</span> 是单纯同构当且仅当 <span class="math inline">\(f_0\)</span> 满足:</p>
+<ul>
+<li><span class="math inline">\(\{v_0,\dots,v_k\}\)</span> 是 <span class="math inline">\(K\)</span> 中某单形的顶点, 当且仅当 <span class="math inline">\(\{f_0(v_0),\dots,f_0(v_k)\}\)</span> 是 <span class="math inline">\(L\)</span> 中某单形的顶点.</li>
+</ul>
+</div>
+<h3 id="abstract-simplicial-complexes">20.3  Abstract simplicial
+complexes</h3>
+<p>下面简单地介绍抽象单形,
+它将一个欧氏单形的拓扑信息完全以组合方式呈现出来.</p>
+<p>Claim 20.7 表明, 要 (在同构意义下) 确定一个单纯复形,
+只需要给出两个信息: 其所有顶点以及哪些顶点张成单形. 受此启发,
+我们给出如下定义.</p>
+<p>一个<strong>抽象单纯复形 (abstract simplicial complex)</strong>
+指的是非空有限集的集族 <span class="math inline">\({\cal K}\)</span>,
+满足: 若 <span class="math inline">\(s\in{\cal K}\)</span>, 则 <span class="math inline">\(s\)</span> 的任意非空子集也在 <span class="math inline">\({\cal K}\)</span> 中. <span class="math inline">\({\cal K}\)</span> 中的集合 <span class="math inline">\(s\)</span> 称为<strong>抽象单形</strong>, <span class="math inline">\(s\)</span> 中的元素称为 <span class="math inline">\(s\)</span> 的<strong>顶点</strong>, <span class="math inline">\(s\)</span> 的非空子集称为其<strong>面</strong>.
+<span class="math inline">\(s\)</span> 的<strong>维数</strong>定义为
+<span class="math inline">\(|s|-1\)</span>. 如果 <span class="math inline">\({\cal K}\)</span> 中抽象单形的维数有上界, 则称
+<span class="math inline">\({\cal K}\)</span>
+是<strong>有限维的</strong>, 其维数是 <span class="math inline">\(s\in{\cal K}\)</span> 维数的最大值.</p>
+<p>若 <span class="math inline">\({\cal K}\)</span> 是有限集,
+则称之为<strong>有限复形</strong>; 若每个顶点只属于有限个抽象单形, 则称
+<span class="math inline">\({\cal K}\)</span>
+为<strong>局部有限复形</strong>.</p>
+<p>抽象单形 <span class="math inline">\({\cal K}\)</span>
+的<strong>顶点集</strong>定义为 <span class="math display">\[
+{\cal K}_0 = \bigcup_{s\in{\cal K}} s.
+\]</span> 设 <span class="math inline">\({\cal K},{\cal L}\)</span>
+是抽象单纯复形. 映射 <span class="math inline">\(f:{\cal K}\to{\cal
+L}\)</span> 称为<strong>抽象单纯映射 (abstract simplicial map)</strong>,
+若存在映射 <span class="math inline">\(f_0:{\cal K}_0\to{\cal
+L}_0\)</span>, 使得 <span class="math display">\[
+f(\{v_0,\dots,v_k\}) = \{f_0(v_0),\dots,f_0(v_k)\}
+\]</span> 其中 <span class="math inline">\(f_0\)</span> 称为 <span class="math inline">\(f\)</span> 的<strong>顶点映射</strong>, 需满足:
+只要 <span class="math inline">\(\{v_0,\dots,v_k\}\in{\cal K}\)</span>,
+则 <span class="math inline">\(\{f_0(v_0),\dots,f_0(v_k)\}\in{\cal
+L}\)</span>. 若 <span class="math inline">\(f_0,f\)</span> 都是双射,
+则称 <span class="math inline">\(f\)</span> 是<strong>同构</strong>.
+此时, <span class="math inline">\(f^{-1}\)</span> 也是抽象单纯映射.</p>
+<p>欧氏单纯复形 <span class="math inline">\(\rightarrow\)</span>
+抽象单纯复形. 给定欧氏单纯复形 <span class="math inline">\(K\)</span>,
+记 <span class="math inline">\({\cal K}\)</span> 是 <span class="math inline">\(K\)</span> 中所有单形的顶点集组成的集族, 则 <span class="math inline">\({\cal K}\)</span> 构成抽象单纯复形, 称为 <span class="math inline">\(K\)</span> 的<strong>顶点概形 (vertex
+scheme)</strong>. 根据 Claim 20.7, 两个欧氏单纯复形同构,
+当且仅当其顶点概形同构.</p>
+<p>欧氏单纯复形 <span class="math inline">\(\leftarrow\)</span>
+抽象单纯复形. 给定抽象单纯复形 <span class="math inline">\({\cal
+K}\)</span>, 如果某欧氏单纯复形 <span class="math inline">\(K\)</span>
+的顶点概形同构于 <span class="math inline">\({\cal K}\)</span>, 则称
+<span class="math inline">\(K\)</span> 是 <span class="math inline">\({\cal K}\)</span> 的一个<strong>几何实现
+(geometric realization)</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 20.8</u> 有限的抽象单纯复形存在几何实现.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 将 <span class="math inline">\({\cal K}\)</span>
+中的顶点一一列出: <span class="math inline">\(v_1,\dots,v_m\)</span>, 令
+<span class="math inline">\(K\subset\R^m\)</span> 是以 <span class="math inline">\(\{e_1,\dots,e_m\}\)</span> 为顶点的欧氏单纯复形,
+且 <span class="math inline">\([e_{i_1},\dots,e_{i_k}]\in K\)</span>
+当且仅当 <span class="math inline">\(\{e_{i_1},\dots,e_{i_k}\}\in{\cal
+K}\)</span>. 容易验证 <span class="math inline">\(K\)</span>
+满足欧氏单纯复形的定义, 且其顶点概形同构于 <span class="math inline">\({\cal K}\)</span>.</p>
+</div>
+<p>一些例子:</p>
+<ul>
+<li><p><span class="math inline">\(\{0,1,2,\dots,n\}\)</span>
+的所有非空子集构成抽象单纯复形, 其几何实现同胚于 <span class="math inline">\(\overline{\mathbb{B}^n}\)</span>.</p></li>
+<li><p><span class="math inline">\(\{0,1,2,\dots,n\}\)</span>
+的所有非空<em>真</em>子集构成抽象单纯复形, 其几何实现同胚于 <span class="math inline">\(\mathbb{S}^{n-1}\)</span>.</p></li>
+<li><p>(抽象正多边形) 对 <span class="math inline">\(n\geq3\)</span>, 记
+<span class="math inline">\({\cal K}_m\)</span> 是以 <span class="math inline">\(\{\{1\},\{2\},\dots,\{m\}\}\)</span> 为 <span class="math inline">\(0\)</span> 维抽象单形, 以 <span class="math display">\[
+\{\{1,2\},\{2,3\},\dots,\{m-1,m\},\{m,1\}\}
+\]</span> 为 <span class="math inline">\(1\)</span>
+维抽象单形的抽象单纯复形. <span class="math inline">\({\cal
+K}_m\)</span> 的几何实现同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</p></li>
+<li><p>(抽象实数轴) 记 <span class="math inline">\({\cal R}\)</span>
+是所有 <span class="math inline">\(\{n\}\)</span> 和 <span class="math inline">\(\{n,n+1\}\)</span> (<span class="math inline">\(n\in\Z\)</span>) 组成的集族, 它的几何实现同胚于
+<span class="math inline">\(\R\)</span>.</p></li>
+</ul>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM202 | 7 胞腔复形</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-7/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm218-3/" title="GTM218 | 3 切空间">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM218 | 3 切空间</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm218-7/" title="GTM218 | 7 子流形">
+                        <span class="hidden-mobile">GTM218 | 7 子流形</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

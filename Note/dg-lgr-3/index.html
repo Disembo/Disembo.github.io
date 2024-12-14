@@ -1,0 +1,1201 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《微分几何入门与广义相对论》第四章的笔记.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="梁GR | 3 李导数, Killing场和超曲面">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-lgr-3/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="《微分几何入门与广义相对论》第四章的笔记.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-1-coordinate-transform.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-3-killing-field-S2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-4-hypersurface-M2.png">
+<meta property="article:published_time" content="2023-08-04T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.705Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分几何">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-1-coordinate-transform.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>梁GR | 3 李导数, Killing场和超曲面 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="梁GR | 3 李导数, Killing场和超曲面"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-04 12:00" pubdate>
+          2023年8月4日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">梁GR | 3 李导数, Killing场和超曲面</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body><div class="note note-secondary">
+<p>梁灿彬, 周彬《微分几何入门与广义相对论》第四章的笔记.</p>
+</div>
+<h2 id="lie-derivatives-killing-fields-and-hypersurfaces">4  Lie
+Derivatives, Killing Fields and Hypersurfaces</h2>
+<h3 id="maps-of-manifolds">4.1  Maps of manifolds</h3>
+<div style="text-align: right;">
+2023.8.2
+</div>
+<p><strong>拉回与推前</strong>.</p>
+<p>设<span class="math inline">\(\phi:M\to N\)</span>为微分同胚,
+那么这个点的映射可以诱导出张量场<span class="math inline">\(\mathcal{F}_M(k,l)\)</span>与<span class="math inline">\(\mathcal{F}_N(k,l)\)</span>之间的映射,
+即<strong>拉回(pull back)</strong><span class="math inline">\(\phi^*\)</span>和<strong>推前(push
+forward)</strong><span class="math inline">\(\phi_*\)</span>.
+我们一步一步地来定义: (其中<span class="math inline">\(f,v,\omega\)</span>是<span class="math inline">\(M\)</span>上的场, <span class="math inline">\(g,w,\mu\)</span>是<span class="math inline">\(N\)</span>上的场, <span class="math inline">\(p\in
+M\)</span>, <span class="math inline">\(q\in N\)</span>)</p>
+<ul>
+<li><p>标量场<span class="math inline">\({\cal F}_M\longleftrightarrow
+{\cal F}_N\)</span>.</p>
+<ul>
+<li>拉回, <span class="math inline">\(\phi^*g:=g\circ\phi\)</span>.</li>
+<li>推前, <span class="math inline">\(\phi_*f:=f\circ\phi^{-1}\)</span>.</li>
+</ul></li>
+<li><p>矢量场<span class="math inline">\({\cal F}_M(1,0)
+\longleftrightarrow {\cal F}_N(1,0)\)</span>.</p>
+<ul>
+<li>拉回, <span class="math inline">\((\phi^*w)|_p(f):=w|_{\phi(p)}(\phi_*f)\)</span>.</li>
+<li>推前, <span class="math inline">\((\phi_*v)|_q(g):=v|_{\phi^{-1}(q)}(\phi^*g)\)</span>.</li>
+</ul></li>
+<li><p>对偶矢量场<span class="math inline">\({\cal F}_M(0,1)
+\longleftrightarrow {\cal F}_N(0,1)\)</span>.</p>
+<ul>
+<li><p>拉回, <span class="math inline">\((\phi^*\mu)|_p(v):=\mu|_{\phi(p)}(\phi_*v)\)</span>.</p></li>
+<li><p>推前, <span class="math inline">\((\phi_*\omega)|_q(w):=\omega|_{\phi^{-1}(q)}(\phi^*w)\)</span>.</p></li>
+</ul></li>
+<li><p><span class="math inline">\((k,l)\)</span>型张量场的推拉,
+很容易借助矢量场和对偶矢量场的推拉来定义, 这里仅举出一例. 对于<span class="math inline">\(T^a{_b}\in{\cal F}_N(1,1)\)</span>, 其拉回定义为
+<span class="math display">\[
+(\phi^*T)^a{_b} |_p
+(\omega_a v^b) :=
+T^a{_b}|_{\phi(p)} (\phi_*\omega)_a (\phi_*v)^b.
+\]</span></p></li>
+</ul>
+<p>容易验证, 定义出来的<span class="math inline">\(\phi^*v,\phi_*v\)</span>等满足线性性和Leibniz律.</p>
+<div class="note note-secondary">
+<p>注: 如果<span class="math inline">\(\phi\)</span>只是光滑映射而非同胚, 那么<span class="math inline">\(\phi^{-1}\)</span>不存在, 拉回至多延拓到<span class="math inline">\(\phi^*:\mathcal{F}_N(0,l)\to\mathcal{F}_M(0,l)\)</span>;
+推前只能逐点地定义, <span class="math inline">\(\phi_*:\mathcal{T}_{V_p}(k,0)\to\mathcal{T}_{V_{\phi(p)}}(k,0)\)</span>,
+而不能推前张量场. 定义如下,</p>
+<ul>
+<li><p>标量场的拉回, <span class="math inline">\(\phi^*:{\cal
+F}_N\to{\cal F}_M\)</span>, <span class="math inline">\((\phi^*g)|_p:=g(\phi(p))\)</span>.</p></li>
+<li><p>切空间的推前, <span class="math inline">\(\phi_*:V_p\to
+V_{\phi(p)}\)</span>, <span class="math inline">\((\phi_*v)(g):=v(\phi^*g)\)</span>,
+也称切映射(tangent map).</p></li>
+<li><p>拉回的延拓, <span class="math inline">\(\phi^*:{\cal
+F}_N(0,l)\to{\cal F}_M(0,l)\)</span>, <span class="math display">\[
+(\phi^*T)_{a_1\dots a_l}|_{p} (v_1)^{a_1}\cdots(v_l)^{a_l}:=
+T_{a_1\dots a_l}|_{\phi(p)} (\phi_*v_1)^{a_1}\cdots(\phi_*v_l)^{a_l}.
+\]</span></p></li>
+<li><p>推前的延拓, <span class="math inline">\(\phi_*:{\cal
+T}_{V_p}(k,0)\to{\cal T}_{V_{\phi(p)}}(k,0)\)</span>, <span class="math display">\[
+(\phi_* T)^{a_1\dots a_k} (\omega^1)_{a_1}\cdots(\omega^k)_{a_k}
+:= T^{a_1\dots a_k}
+(\phi^*\omega^1)_{a_1}\cdots(\phi^*\omega^k)_{a_k}.
+\]</span></p></li>
+</ul>
+<p>推前映射<span class="math inline">\(\phi_*:V_p\to
+V_{\phi(p)}\)</span>也被称为<span class="math inline">\(\phi\)</span>在<span class="math inline">\(p\)</span>点的微分(differential).</p>
+<p>设<span class="math inline">\(V_p\)</span>和<span class="math inline">\(V_{\phi(p)}\)</span>的坐标基矢<span class="math inline">\(\{(\pdv{x^\mu})^a\},\{(\pdv{y^\nu})^a\}\)</span>,
+我们计算<span class="math inline">\((\pdv{x^\mu})^a\)</span>的推前:
+一方面, 因为推前是线性的, 有<span class="math inline">\(\phi_*\pqty{\pdv{x^\mu}}^a =
+A^\nu{_\mu}\pqty{\pdv{y^\nu}}^a\)</span>, 其中<span class="math inline">\(A^\nu{_\mu}\)</span>为矩阵. 另一方面,
+由推前的定义, <span class="math inline">\(\phi_*\pqty{\pdv{x^\mu}}^a =
+\pdv{}{x^\mu}\circ\phi^*\)</span>. 于是 <span class="math display">\[
+A^\nu{_\mu}\pdv{y^\nu} = \pdv{}{x^\mu}\circ\phi^*, \tag{$*$}
+\]</span> 令<span class="math inline">\(\phi^\sigma=y^\sigma\circ\phi\)</span>, 即<span class="math inline">\(\phi\)</span>借坐标系的体现. 将<span class="math inline">\((*)\)</span>式两边作用于坐标函数<span class="math inline">\(y^\sigma\)</span>给出 <span class="math display">\[
+A^\nu{_\mu}\pdv{y^\sigma}{y^\nu} = \pdv{(y^\sigma\circ\phi)}{x^\mu}
+\Rightarrow A^\sigma{_\mu} = \pdv{\phi^\sigma}{x^\mu},
+\]</span> 这说明, <span class="math inline">\(\phi_*\)</span>(作为线性映射)的矩阵恰好是<span class="math inline">\(\phi\)</span>(坐标分量式)的Jacobi矩阵. 所以,
+推前可以看作是"导数"的推广.</p>
+</div>
+<p><u>Claim 1</u> 推前和拉回的性质. 下面<span class="math inline">\(\phi\)</span>为微分同胚.</p>
+<ol type="1">
+<li>互逆. <span class="math inline">\(\phi^*\circ\phi_*={\rm id}_{ {\cal
+F}_M(k,l)}\)</span>且<span class="math inline">\(\phi_*\circ\phi^*={\rm
+id}_{ {\cal F}_N(k,l)}\)</span>.</li>
+<li>和求逆可交换. <span class="math inline">\((\phi^*)^{-1}=(\phi^{-1})^*\)</span>.</li>
+<li>保持张量积. <span class="math inline">\(\phi^*(TT')=\phi^*(T)\phi^*(T')\)</span>.
+(推前同理.)</li>
+<li>与缩并可交换. <span class="math inline">\(\phi^*({\rm C}T)={\rm
+C}\phi^*(T)\)</span>. (推前同理.)</li>
+<li>复合映射. <span class="math inline">\((\psi\circ\phi)^*=\phi^*\circ\psi^*\)</span>,
+且<span class="math inline">\((\psi\circ\phi)_*=\psi_*\circ\phi_*\)</span>.</li>
+<li>于对易子. <span class="math inline">\(\phi_*([v,u])=[\phi_*v,\phi_*u]\)</span>.</li>
+</ol>
+<p><strong>坐标的变换</strong>.</p>
+<p>一个微分同胚<span class="math inline">\(\phi:M\to
+N\)</span>不仅给出了点的变换, 还诱导出了:</p>
+<ul>
+<li>坐标场和的推前和拉回(下图黄). 设<span class="math inline">\(M\)</span>上的坐标卡<span class="math inline">\((O_1,\qty{x^\mu})\)</span>, 它可以被推前为<span class="math inline">\((\phi[O_1],\qty{x^\mu\circ\phi^{-1}})\)</span>.</li>
+<li>张量场的推前和拉回(下图蓝).</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-1-coordinate-transform.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<p>一个自然的问题就是, 以上两者的变换是否是相容的? 即, 张量场的推前<span class="math inline">\(\phi_*T\)</span>在<span class="math inline">\(\phi[O_1]\)</span>的坐标分量, 是否等于变换前<span class="math inline">\(T\)</span>在<span class="math inline">\(O_1\)</span>的坐标分量?</p>
+<p>回顾分量的定义, 要求分量就要求基矢, 而基矢是坐标线的切矢,
+所以我们先证明以下引理.</p>
+<p><u>Claim 2</u> 曲线像的切矢 <span class="math inline">\(=\)</span>
+切矢的推前. (等价地, 曲线原像的切矢 <span class="math inline">\(=\)</span> 像的切矢的拉回.)</p>
+<div class="note note-light">
+<p><u>Pf</u> 对曲线<span class="math inline">\(c\)</span>和微分同胚<span class="math inline">\(\phi\)</span>, 设<span class="math inline">\(T\)</span>为<span class="math inline">\(c(t)\)</span>在<span class="math inline">\(t_0\in
+I\)</span>处的切矢, <span class="math inline">\(T'\)</span>为<span class="math inline">\(\phi(c(t))\)</span>在<span class="math inline">\(t_0\)</span>处的切矢, 则 <span class="math display">\[
+(\phi_*T)(f) = T(\phi^* f) = T(f\circ\phi)
+= \dv{t}((f\circ\phi)\circ c)
+= \dv{t}(f\circ(\phi\circ c)).
+\]</span> (多次使用切矢, 推前, 拉回的定义.) 上式左边为切矢的像,
+右边为像的切矢.</p>
+</div>
+<ul>
+<li>自然地有推论: <span class="math inline">\(M\)</span>的坐标系推前的坐标基底 <span class="math inline">\(=\)</span> 坐标基底的推前, 即 <span class="math display">\[
+\pdv{x'^\mu} = \phi_*\pdv{x^\mu}, \quad
+\dd{x}'^\mu = \phi_*\dd{x}^\mu,
+\]</span> 其中<span class="math inline">\(x'^\mu=\phi_*x^\mu\)</span>. (等价地, <span class="math inline">\(N\)</span>中坐标系拉回的坐标基底 <span class="math inline">\(=\)</span> 坐标基底的拉回.)</li>
+</ul>
+<p><u>Claim 3</u> 设微分同胚<span class="math inline">\(\phi:M\to
+N\)</span>, <span class="math inline">\(M\)</span>上坐标卡<span class="math inline">\((O_1,\qty{x^\mu})\)</span>被推前为<span class="math inline">\((\phi[O_1],\qty{x^\mu\circ\phi^{-1}})\)</span>,
+<span class="math inline">\(T\)</span>是<span class="math inline">\(M\)</span>上的张量场, 则 <span class="math display">\[
+T^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_p =
+(\phi_*T)'^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_{\phi(p)},
+\]</span> 其中左边是<span class="math inline">\(T\)</span>在<span class="math inline">\(O_1\)</span>上的坐标分量, 右边是<span class="math inline">\(\phi_*T\)</span>在<span class="math inline">\(\phi[O_1]\)</span>上的坐标分量.</p>
+<div class="note note-light">
+<p><u>Pf</u> 根据坐标分量的定义, <span class="math display">\[
+\Align{
+(\phi_*T)'^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_{\phi(p)}
+&amp;=(\phi_*T)|_{\phi(p)}
+  \pqty{
+    \pdv{x'^{\mu_1}},\dots,\pdv{x'^{\mu_k}};
+    \dd{x'^{\nu_1}},\dots,\dd{x'^{\nu_l}}
+  } \\
+&amp;=T|_p
+  \pqty{
+    \phi^*\pdv{x'^{\mu_1}},\dots,\phi^*\pdv{x'^{\mu_k}};
+    \phi^*\dd{x'^{\nu_1}},\dots,\phi^*\dd{x'^{\nu_l}}
+  } \\
+&amp;=T|_p
+  \pqty{
+    \pdv{x^{\mu_1}},\dots,\pdv{x^{\mu_k}};
+    \dd{x^{\nu_1}},\dots,\dd{x^{\nu_l}}
+  } \\
+&amp;=T^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_p,
+}
+\]</span> 第三步利用了坐标基矢的变换关系.</p>
+</div>
+<p><strong>微分同胚的两种观点</strong>.</p>
+<p>看待微分同胚<span class="math inline">\(\phi:M\to
+N\)</span>向来有两种观点,</p>
+<ul>
+<li><p><strong>主动观点(active viewpoint)</strong>认为, <span class="math inline">\(\phi\)</span>表示点的变换(<span class="math inline">\(p\mapsto\phi(p)\)</span>)以及张量的变换(<span class="math inline">\(T\mapsto\phi_*T\)</span>).</p></li>
+<li><p><strong>被动观点(passive viewpoint)</strong>认为, <span class="math inline">\(p\)</span>点及上所有张量都没变, <span class="math inline">\(\phi:M\to N\)</span>的结果只是坐标系发生变化:</p>
+<p>取<span class="math inline">\(M\)</span>上的<span class="math inline">\((O_1,\qty{x^\mu})\)</span>和<span class="math inline">\(N\)</span>上的<span class="math inline">\((O_2,\qty{y^\mu})\)</span>, 后者拉回为<span class="math inline">\((\phi^{-1}[O_2],\qty{x'^\mu})\)</span>,
+因此<span class="math inline">\(M\)</span>的坐标系从<span class="math inline">\(\qty{x^\mu}\)</span>变为<span class="math inline">\(\qty{x'^\mu}\)</span>.</p></li>
+</ul>
+<p>实际上, 两种观点是等价的. 在Claim 3中, 设<span class="math inline">\(N\)</span>上的坐标系<span class="math inline">\(O_2\)</span>, 取系<span class="math inline">\(O_1\)</span>为<span class="math inline">\(\phi^{-1}[O_2]\)</span>, 于是<span class="math inline">\(\phi[O_1]=O_2\)</span>, 因此有 <span class="math display">\[
+T'^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_p =
+(\phi_*T)^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_{\phi(p)}.
+\]</span> 左边是老点<span class="math inline">\(p\)</span>的老张量<span class="math inline">\(T\)</span>在新系<span class="math inline">\(\phi^{-1}[O_2]\)</span>下的分量, 右边是新点<span class="math inline">\(\phi(p)\)</span>的新张量<span class="math inline">\(\phi_*T\)</span>在老系<span class="math inline">\(O_2\)</span>下的分量.</p>
+<h3 id="lie-derivatives">4.2  Lie derivatives</h3>
+<div style="text-align: right;">
+2023.8.2
+</div>
+<p>有了推前和拉回, 就可以在流形上搬运张量, 进而引出导数的概念.
+在第二章我们已经知道, <span class="math inline">\(M\)</span>上的一个光滑矢量场<span class="math inline">\(v^a\)</span>会给出一个单参数微分同胚群 <span class="math display">\[
+\phi = \qty{\phi_t:
+\phi_t(p)\textsf{表示$p$点沿着$p$处的积分曲线走$t$单位}
+},
+\]</span> 群元<span class="math inline">\(\phi_t\)</span>的拉回为<span class="math inline">\(\phi_t^*\)</span>. 给定光滑张量场<span class="math inline">\(T\)</span>, 则<span class="math inline">\(\phi^*_tT\)</span>也是同型光滑张量场,
+这两个场在<span class="math inline">\(p\)</span>点的差值为<span class="math inline">\(\phi_t^*T|_p-T|_p\)</span>, 这可以看作张量场<span class="math inline">\(T\)</span>的(沿着<span class="math inline">\(v\)</span>的)变化量, <span class="math inline">\((\phi_t^*T|_p-T|_p)/t\)</span>的极限则可以看作<span class="math inline">\(T\)</span>在<span class="math inline">\(p\)</span>点的某种导数. 于是我们定义 <span class="math display">\[
+{\cal L}_v T := \lim_{t\to0} \frac{\phi_t^*T-T}{t}
+\]</span> 为张量场<span class="math inline">\(T\)</span>沿着矢量场<span class="math inline">\(v\)</span>的<strong>李导数(Lie
+derivative)</strong>, 是一个与<span class="math inline">\(T\)</span>同型的张量场. <span class="math inline">\({\cal L}_v\)</span>是线性的, 而且与缩并可交换.</p>
+<p><u>Claim 1</u> <span class="math inline">\({\cal L}_vf=v(f)\)</span>,
+对于<span class="math inline">\(f\in{\cal F}_M\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 任取<span class="math inline">\(p\in M\)</span>, 设<span class="math inline">\(c(t)\)</span>为矢量场<span class="math inline">\(v^a\)</span>从<span class="math inline">\(p\)</span>出发的积分曲线, 于是有<span class="math inline">\(c(0)=p\)</span>, <span class="math inline">\(c(t)=\phi_t(p)\)</span>, 所以 <span class="math display">\[
+\Align{
+{\cal L}_vf |_p
+=\lim_{t=0} \frac{\phi^*_tf|_p-f|_p}{t}
+=\lim_{t=0} \frac{f\circ\phi_t|_p-f|_p}{t}
+=\lim_{t=0} \frac{f(c(t))-f(c(0))}{t}
+=\dv{(f\circ c)}{t}\Big|_p
+}
+\]</span> 根据曲线切矢的定义, 右边就是<span class="math inline">\(T(f)|_p\)</span>, 也就是<span class="math inline">\(v(f)|_p\)</span>.</p>
+</div>
+<p>下面介绍一种对计算李导数很有用的坐标系, 称为矢量场<span class="math inline">\(v^a\)</span>的<strong>适配坐标系(adapted
+coordinate system)</strong>. 选定<span class="math inline">\(v^a\)</span>的积分曲线作为<span class="math inline">\(x^1\)</span>的坐标曲线(以<span class="math inline">\(t\)</span>充当<span class="math inline">\(x^1\)</span>),
+再选定另一组与这组曲线相截(交点上切矢不平行)的曲线作为<span class="math inline">\(x^2\)</span>的坐标曲线, 以此类推. 可以看出<span class="math inline">\(v^a=(\pdv{t})^a=(\pdv{x^1})^a\)</span>.</p>
+<p><u>Claim 2</u> 张量场<span class="math inline">\(T\)</span>沿<span class="math inline">\(v\)</span>的李导数在<span class="math inline">\(v\)</span>适配的坐标系下的分量 <span class="math display">\[
+({\cal L}_vT)^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} =
+\pdv{T^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}}}{x^1}.
+\]</span></p>
+<ul>
+<li>需要注意的是, 上面的等式只在适配的坐标系下成立, 不服从张量变换律,
+故不能写成张量等式.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 取适配坐标系包含<span class="math inline">\(p,q=\phi_t(p)\)</span>两点, 另注意到<span class="math inline">\(\phi^*_t=(\phi^{-1}_t)_*=\phi_{-t*}\)</span>, 有
+<span class="math display">\[
+\Align{
+({\cal L}_vT)^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_p
+&amp;= \lim_{t\to0}\frac{
+  (\phi_{-t*}T)^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}}|_p -
+  T^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}}|_p
+}{t}.
+\tag{a}
+}
+\]</span> 计算第一项, 由上一节"主被动观点的等价性"(同胚映射为<span class="math inline">\(\phi_{-t}\)</span>)有 <span class="math display">\[
+\Align{
+(\phi_{-t*}T)^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}}|_p
+&amp;= T'^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}}|_q \\
+&amp;= \pqty{
+  \pdv{x'^{\mu_1}}{x^{\rho_1}}\dots\pdv{x'^{\mu_k}}{x^{\rho_k}}
+  \pdv{x^{\sigma_1}}{x'^{\nu_1}}\dots\pdv{x^{\sigma_l}}{x'^{\nu_l}}
+} T^{\rho_1\dots\rho_k}{_{\sigma_1\dots\sigma_l}} \bigg|_q.
+\tag{b}
+}
+\]</span> (第二步用了张量的坐标变换律) 现在要搞清楚<span class="math inline">\(x\)</span>和<span class="math inline">\(x'\)</span>的变换关系, 其中<span class="math inline">\(x\)</span>是<span class="math inline">\(q\)</span>点老适配坐标系, <span class="math inline">\(x'\)</span>是<span class="math inline">\(p\)</span>点适配坐标系推前到<span class="math inline">\(q\)</span>点. 在<span class="math inline">\(p,q\)</span>的邻域中任取点<span class="math inline">\(\bar{q},\bar{p}=\phi_{-t}(\bar{q})\)</span>,
+根据适配坐标系的定义有<span class="math inline">\(x^1(\bar{q})=x^1(\bar{p})+t\)</span>, <span class="math inline">\(x^\tau(\bar{q})=x^\tau(\bar{p})\)</span>(<span class="math inline">\(\tau=2,\dots,n\)</span>). 而按照定义, <span class="math inline">\(\phi_{-t}\)</span>在<span class="math inline">\(\bar{q}\)</span>诱导的新坐标为<span class="math inline">\(x'^1(\bar{q})=x^1(\bar{p})\)</span>, <span class="math inline">\(x'^\tau(\bar{q})=x^\tau(\bar{p})\)</span>,
+因此<span class="math inline">\(x'^1(\bar{q})=x^1(\bar{q})-t\)</span>, <span class="math inline">\(x'^\tau(\bar{q})=x^\tau(\bar{q})\)</span>,
+根据<span class="math inline">\(\bar{p}\)</span>的任意性有 <span class="math display">\[
+x'^1 = x^1-t,\quad x'^\tau=x^\tau,
+\]</span> 求导得<span class="math inline">\(\displaystyle\pdv{x'^\mu}{x^\rho}=\delta^\mu{_\rho},\pdv{x^\sigma}{x'^\nu}=\delta^\sigma{_\nu}\)</span>,
+代入<span class="math inline">\(({\rm b})\)</span>式得到 <span class="math display">\[
+\Align{
+(\phi_{-t*}T)^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}}|_p
+&amp;= \pqty{
+  \delta^{\mu_1}{_{\rho_1}}\dots\delta^{\mu_k}{_{\rho_k}}
+  \delta^{\sigma_1}{_{\nu_1}}\dots\delta^{\sigma_l}{_{\nu_l}}
+} T^{\rho_1\dots\rho_k}{_{\sigma_1\dots\sigma_l}} |_q \\
+&amp;= T^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_q,
+}
+\]</span> 将其代回<span class="math inline">\(({\rm a})\)</span>式,
+再由<span class="math inline">\(t=x^1\)</span>即证. <span class="math display">\[
+\Align{
+({\cal L}_vT)^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}} |_p
+= \lim_{t\to0}\frac{
+  T^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}}|_q -
+  T^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}}|_p
+}t
+= \pdv{T^{\mu_1\dots\mu_k}{_{\nu_1\dots\nu_l}}}{x^1} \bigg|_p.
+}
+\]</span></p>
+</div>
+<ul>
+<li>推论: <span class="math inline">\({\cal L}_v\)</span>满足Leibniz律,
+<span class="math inline">\({\cal L}_v(ST)=({\cal L}_vS)T+S({\cal
+L}_vT)\)</span>.</li>
+</ul>
+<p><u>Claim 3</u> 与导数算符的关系. (以下<span class="math inline">\(\nabla_a\)</span>为任意无挠导数算符.)</p>
+<ol type="1">
+<li><p>(矢量场) <span class="math inline">\({\cal
+L}_vu^a=[v,u]^a\)</span>(<span class="math inline">\(=v^b\nabla_bu^a-u^b\nabla_bv^a\)</span>).</p></li>
+<li><p>(对偶矢量场) <span class="math inline">\({\cal
+L}_v\omega_a=v^b\nabla_b\omega_a+\omega_b\nabla_av^b\)</span>.</p></li>
+<li><p>(任意张量场) <span class="math display">\[
+\Align{
+({\cal L}_vT)^{a_1\dots a_k}{_{b_1\dots b_l}}
+= v^c\nabla_c T^{a_1\dots a_k}{_{b_1\dots b_l}}
+&amp;-\sum_{i=1}^k
+  T^{a_1\dots c\dots a_k}{_{b_1\dots b_l}} \nabla_c v^{a_i} \\
+&amp;+\sum_{j=1}^l
+  T^{a_1\dots a_k}{_{b_1\dots c\dots b_l}} \nabla_{b_j} v^c.
+}
+\]</span></p></li>
+</ol>
+<div class="note note-light">
+<p><u>Pf</u> 第1个. 只需证明两个张量在某坐标系下分量相等. 取<span class="math inline">\(v^a\)</span>的适配坐标系以及普通导数算符, <span class="math display">\[
+\Align{
+[v,u]^\mu
+&amp;=(\dd{x}^\mu)_a [v,u]^a \\
+&amp;=(\dd{x}^\mu)_a (v^b\partial_b u^a - u^b\partial_b v^a) \\
+&amp;=(\dd{x}^\mu)_a (v^b\partial_b u^a)
+= v^b\partial_b u^\mu
+= v(u^\mu)
+= \pdv{u^\mu}{x^1}
+= ({\cal L}_v u)^\mu,
+}
+\]</span> 其中第三步是因为<span class="math inline">\(\partial_b
+v^a=\partial_b(\pdv{}{x^1})^a=0\)</span>,
+第五步用到了导数算符的定义.</p>
+</div>
+<p><u>Claim 4</u> 设矢量场<span class="math inline">\(v,u\)</span>,
+则<span class="math inline">\([{\cal L}_v,{\cal L}_u]={\cal
+L}_{[v,u]}\)</span>作用于任意张量场都成立, 其中<span class="math inline">\([{\cal L}_v,{\cal L}_u]:={\cal L}_v{\cal
+L}_u-{\cal L}_u{\cal L}_v\)</span>.</p>
+<h3 id="killing-fields">4.3  Killing fields</h3>
+<div style="text-align: right;">
+2023.8.3
+</div>
+<p>现在为流形<span class="math inline">\(M\)</span>附加一个度规场<span class="math inline">\(g_{ab}\)</span>. 在所有的微分同胚<span class="math inline">\(\phi:M\to M\)</span>中,
+我们称那些保持度规的同胚为等度规映射,
+简称<strong>等度规(isometry)</strong>, 即满足<span class="math inline">\(\phi^*g_{ab}=g_{ab}\)</span>的<span class="math inline">\(\phi\)</span>.</p>
+<ul>
+<li>两边作用于矢量就是<span class="math inline">\((\phi^*g)_{ab}v^av^b=g_{ab}v^av^b\)</span>,
+即<span class="math inline">\(g_{ab}(\phi_*v)^a(\phi_*v)^b=g_{ab}v^av^b\)</span>.</li>
+<li><span class="math inline">\(\phi\)</span>等度规 <span class="math inline">\(\iff\phi^{-1}\)</span>等度规.</li>
+</ul>
+<p>称矢量场<span class="math inline">\(\xi^a\)</span>为<strong>Killing矢量场</strong>,
+如果它给出的单参微分同胚群是等度规群. 可知, <span class="math inline">\(\xi^a\)</span>为Killing场当且仅当<span class="math inline">\({\cal L}_\xi g_{ab}=0\)</span>. 根据上一节Claim 2,
+如果<span class="math inline">\(\displaystyle\pdv{g_{\mu\nu}}{x^1}=0\)</span>,
+则<span class="math inline">\(\displaystyle\pqty{\pdv{x^1}}^a\)</span>是坐标域上的Killing场.</p>
+<p><u>Claim 1</u> <span class="math inline">\(\xi^a\)</span>为Killing场的充要条件是满足下面的Killing方程,
+(其中<span class="math inline">\(\nabla_cg_{ab}=0\)</span>) <span class="math display">\[
+\nabla_a\xi_b+\nabla_b\xi_a=0,
+\quad\textsf{或}\, \nabla_{(a}\xi_{b)}=0,
+\quad\textsf{或}\, \nabla_{a}\xi_{b}=\nabla_{[a}\xi_{b]},
+\]</span> <u>Claim 2</u> 设Killing场<span class="math inline">\(\xi^a\)</span>, 测地线切矢<span class="math inline">\(T^a\)</span>, 则两者内积沿测地线不变, 即<span class="math inline">\(T^a\nabla_a(T^b\xi_b)=0\)</span>. (其中<span class="math inline">\(\nabla_cg_{ab}=0\)</span>.)</p>
+<div class="note note-light">
+<p><u>Pf</u> <span class="math inline">\(T^a\nabla_a(T^b\xi_b)=T^a\xi_b\nabla_aT^b+T^aT^b\nabla_a\xi_b=\xi_b(T^a\nabla_aT^b)+T^{(a}T^{b)}\nabla_{[a}\xi_{b]}=0\)</span>.</p>
+</div>
+<p><u>Claim 3</u> (与曲率的关系) 设<span class="math inline">\((M,g_{ab})\)</span>的Killing场<span class="math inline">\(\xi^a\)</span>, 黎曼张量<span class="math inline">\(R_{abc}{^d}\)</span>, 里奇张量<span class="math inline">\(R_{ac}\)</span>, 则</p>
+<ol type="1">
+<li><span class="math inline">\(\nabla_a\nabla_b\xi_c=-R_{bca}{^d}\xi_d\)</span>.</li>
+<li><span class="math inline">\(\nabla^a\nabla_a\xi_c=-R_{cd}\xi^d\)</span>.</li>
+</ol>
+<p><u>Claim 4</u> 设<span class="math inline">\(\xi^a,\eta^a\)</span>为<span class="math inline">\((M,g_{ab})\)</span>的两个Killing场, 则</p>
+<ol type="1">
+<li>线性组合<span class="math inline">\(\alpha\xi^a+\beta\eta^a\)</span>, 对易子<span class="math inline">\([\xi,\eta]^a\)</span>也都是Killing场.</li>
+<li>推前<span class="math inline">\(\phi_*\xi^a\)</span>也是Killing场,
+其中<span class="math inline">\(\phi:M\to M\)</span>等度规.</li>
+</ol>
+<div class="note note-light">
+<p><u>Pf</u> 第1条, <span class="math inline">\(\alpha\xi^a+\beta\eta^a\)</span>的Killing性由Killing方程的线性性即得;
+而利用上一节Claim 4容易得到 <span class="math display">\[
+{\cal L}_{[\xi,\eta]}g_{ab}
+= [{\cal L}_\xi,{\cal L}_\eta]g_{ab}
+= {\cal L}_\xi({\cal L}_\eta g_{ab})-{\cal L}_\eta({\cal L}_\xi g_{ab})
+= {\cal L}_\xi(0)-{\cal L}_\eta(0) = 0
+\]</span> 第2条, 设<span class="math inline">\(\xi^a\)</span>给出同胚<span class="math inline">\(\psi_t\)</span>, 先证明<span class="math inline">\(\phi_*\xi^a\)</span>给出同胚<span class="math inline">\(\phi\circ\psi_t\)</span>, 再证明<span class="math inline">\(g_{ab}\)</span>沿<span class="math inline">\(\phi_*\xi^a\)</span>的李导数为零即可.</p>
+</div>
+<p>由第1条可见, 所有的Killing矢量场构成一个线性空间<span class="math inline">\({\cal K}\)</span>. 实际上, 作为线性空间, <span class="math inline">\(\dim{\cal K}\leq\dfrac{n(n+1)}2\)</span>.
+一个Killing场等同于一类等度规变换, 也就是<span class="math inline">\((M,g_{ab})\)</span>上的一类对称性, 我们称<span class="math inline">\(\dim{\cal
+K}=n(n+1)/2\)</span>的广义黎曼空间为最高对称空间.</p>
+<div class="note note-info">
+<p><u>Example 1</u></p>
+<p>欧氏空间<span class="math inline">\((\R^2,\delta_{ab})\)</span>.
+坐标系<span class="math inline">\(\qty{x,y}\)</span>下, <span class="math inline">\(\dd{s}^2=\dd{x}^2+\dd{y}^2\)</span>,
+度规分量全部为常数, 有<span class="math inline">\(\pdv{g_{\mu\nu}}{x}=\pdv{g_{\mu\nu}}{y}=0\)</span>,
+对应两个独立的Killing场<span class="math inline">\((\pdv{x})^a\)</span>,
+<span class="math inline">\((\pdv{y})^a\)</span>, 它们表示平移对称性,
+积分曲线是<span class="math inline">\(x\)</span>和<span class="math inline">\(y\)</span>坐标曲线. 为了找到第三个,
+我们采用极坐标<span class="math inline">\(\qty{r,\varphi}\)</span>,
+有<span class="math inline">\(\dd{s}^2=\dd{r}^2+r^2\dd{\varphi}^2\)</span>,
+度规分量与<span class="math inline">\(\varphi\)</span>无关, 于是<span class="math inline">\((\pdv{\varphi})^a=-y(\pdv{x})^a+x(\pdv{y})^a\)</span>也是Killing场,
+它表示旋转对称性, 积分曲线是以原点为圆心的圆.</p>
+<p>二维欧氏空间有3个独立Killing场, 是最高对称空间. 相似地,
+三维欧氏空间有6个独立Killing场, 包括3个平移和3个旋转.</p>
+<p>闵氏空间<span class="math inline">\((\R^2,\eta_{ab})\)</span>.
+坐标系<span class="math inline">\(\qty{t,x}\)</span>下, <span class="math inline">\(\dd{s}^2=-\dd{t}^2+\dd{x}^2\)</span>,
+同样有两个平移场<span class="math inline">\((\pdv{x})^a\)</span>, <span class="math inline">\((\pdv{y})^a\)</span>. 现在采用新坐标<span class="math inline">\(\qty{\psi,\eta}\)</span>: <span class="math display">\[
+x=\psi\cosh\eta,\quad y=\psi\sinh\eta,\quad
+\psi\in(0,+\infty),\eta\in(-\infty,+\infty),
+\]</span> 线元<span class="math inline">\(\dd{s}^2=\dd{\psi}^2-\psi^2\dd{\eta}^2\)</span>,
+可看出<span class="math inline">\((\pdv{\eta})^a\)</span>是第三个Killing场,
+它表示伪转动(boost), 积分曲线是双曲线.</p>
+<p>四维闵氏时空有10个独立的Killing场, 分为4个平移,
+3个转动和3个伪转动.</p>
+</div>
+<div class="note note-info">
+<p><u>Example 2</u> 考虑二维球面<span class="math inline">\(S^2\)</span>, 坐标<span class="math inline">\(\qty{\theta,\phi}\)</span>下<span class="math inline">\(\dd{s}^2=R^2\dd\theta^2+R^2\sin^2\theta\dd\phi^2\)</span>.
+现在我们尝试通过解方程求出Killing场<span class="math inline">\(\xi^a\)</span>. 我们已经计算过克氏符的分量,
+现在直接把公式<span class="math inline">\(\nabla_a\xi_b=\partial_a\xi_b-\Gamma^c{_{ab}}\xi_c\)</span>代入Killing方程,
+得到 <span class="math display">\[
+\partial_{(a}\xi_{b)}-\Gamma^c{_{(ab)}}\xi_c = 0,
+\quad\textsf{即}\,
+\partial_{(\mu}\xi_{\nu)}-\Gamma^\sigma{_{(\mu\nu)}}\xi_\sigma = 0,
+\quad (\mu,\nu=\theta,\phi)
+\]</span> 其中Killing场的分量<span class="math inline">\(\xi_\theta(\theta,\phi),\xi_\phi(\theta,\phi)\)</span>都是关于坐标的函数.
+将右边的方程写开, 得到 <span class="math display">\[
+\left\{\Align{
+&amp;\partial_\theta\xi_{\theta}=0, \\
+&amp;\partial_\phi\xi_\phi+\sin\theta\cos\theta\xi_\theta=0, \\
+&amp;\partial_\phi\xi_\theta+\partial_\theta\xi_\phi-2\cot\theta\xi_\phi=0,
+}\right.
+\]</span></p>
+<p>解得<span class="math inline">\(\Cases{\xi_\theta=A\sin\phi+B\cos\phi\\\xi_\phi=A\sin\theta\cos\theta\cos\phi-B\sin\theta\cos\theta\sin\phi+C\sin^2\theta}\)</span>,
+其中<span class="math inline">\(A,B,C\)</span>为常数,
+用度规升指标得到<span class="math inline">\(\Cases{\xi^\theta=A\sin\phi+B\cos\phi\\\xi^\phi=A\cos\phi\cot\theta-B\sin\phi\cot\theta+C}\)</span>,
+分别令<span class="math inline">\(A,B,C\)</span>为<span class="math inline">\(1\)</span>(其余为<span class="math inline">\(0\)</span>), 可以得到三个独立的Killing场: <span class="math display">\[
+\Align{
+\xi_1^a &amp;= \sin\phi\pqty{\pdv{\theta}}^a
++\cos\phi\cot\theta \pqty{\pdv{\phi}}^a, \\
+\xi_2^a &amp;= \cos\phi\pqty{\pdv{\theta}}^a
+-\sin\phi\cot\theta \pqty{\pdv{\phi}}^a, \\
+\xi_3^a &amp;= \pqty{\pdv{\phi}}^a.
+}
+\]</span> 可见二维球面是最高对称空间. 将<span class="math inline">\(\xi_1,\xi_2,\xi_3\)</span>画出来(如下图),
+可以看出它们分别表示绕<span class="math inline">\(x,y,z\)</span>轴的旋转.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-3-killing-field-S2.png" style="zoom: 60%;" cloud-img="" lazyload="true"></p>
+</div>
+<h3 id="hypersurfaces">4.4  Hypersurfaces</h3>
+<div style="text-align: right;">
+2023.8.3
+</div>
+<p><strong>嵌入子流形, 超曲面, 法矢和法余矢</strong>.</p>
+<p>设<span class="math inline">\(M,S\)</span>为流形, <span class="math inline">\(\dim{S}\leq\dim{M}=n\)</span>, 映射<span class="math inline">\(\phi:S\to
+M\)</span>称为<strong>嵌入(embedding)</strong>, 若<span class="math inline">\(\phi\)</span>是光滑的单射, 且对任意一点<span class="math inline">\(p\in S\)</span>, 推前<span class="math inline">\(\phi_*:V_p\to
+V_{\phi(p)}\)</span>是非退化的(单射). <span class="math inline">\(S\)</span>的拓扑和微分结构可以自然地带到<span class="math inline">\(\phi[S]\)</span>上去, 使得<span class="math inline">\(\phi:S\to\phi[S]\)</span>成为微分同胚.</p>
+<p>称<span class="math inline">\(\phi:S\to M\)</span>为<span class="math inline">\(M\)</span>的一个<strong>嵌入子流形(embedded
+submanifold)</strong>, 有时也称<span class="math inline">\(\phi[S]\)</span>为嵌入子流形. 若<span class="math inline">\(\dim{S}=n-1\)</span>, 则称<span class="math inline">\(\phi[S]\)</span>为<span class="math inline">\(M\)</span>的一张<strong>超曲面(hypersurface)</strong>.</p>
+<ul>
+<li>设<span class="math inline">\(S^2\)</span>为<span class="math inline">\(\R^3\)</span>中的单位球面, 则恒等映射<span class="math inline">\(\phi:S^2\to\R^3\)</span>给出一个嵌入子流形,
+而且是超曲面.</li>
+<li>嵌入子流形<span class="math inline">\(\phi[S]\)</span>有两个拓扑,
+一个是<span class="math inline">\(\phi\)</span>带来的, 一个是<span class="math inline">\(M\)</span>的拓扑在<span class="math inline">\(\phi[S]\)</span>上诱导的, 两者不一定相同.
+如果进一步要求这两个拓扑相同(<span class="math inline">\(\phi\)</span>同胚), 则这样的<span class="math inline">\(\phi:S\to M\)</span>成为<strong>正则嵌入(regular
+embedding)</strong>.</li>
+<li><span class="math inline">\(M\)</span>上的某些光滑函数<span class="math inline">\(f\)</span>可以确定一个超曲面, 其由满足<span class="math inline">\(f|_p=0\)</span>的点组成. 例如,
+三维欧氏空间中的<span class="math inline">\(f=ax+by+cz\)</span>给出一个二维平面.
+<ul>
+<li>方程<span class="math inline">\(f=0\)</span>给出一个超曲面当且仅当<span class="math inline">\(\dd{f}|_{f=0}\neq0\)</span>恒成立.</li>
+</ul></li>
+</ul>
+<p>设嵌入<span class="math inline">\(\phi:S\to M\)</span>, <span class="math inline">\(p\in S\)</span>. <span class="math inline">\(q=\phi(p)\)</span>作为<span class="math inline">\(M\)</span>的一点, 有切空间<span class="math inline">\(V_p\)</span>, 而<span class="math inline">\(\phi[S]\)</span>在<span class="math inline">\(q\)</span>处也有切空间<span class="math inline">\(W_q\)</span>(<span class="math inline">\(W_q\)</span>是<span class="math inline">\(V_q\)</span>的线性子空间, 对于<span class="math inline">\(V_q\)</span>中的向量<span class="math inline">\(w^a\)</span>: <span class="math inline">\(w^a\in
+W_q\)</span>当且仅当<span class="math inline">\(w^a\)</span>是<span class="math inline">\(\phi[S]\)</span>的某条曲线的切矢).</p>
+<p>非零对偶矢量<span class="math inline">\(n_a\in
+V_q^*\)</span>称为<span class="math inline">\(\phi[S]\)</span>在<span class="math inline">\(q\)</span>点的<strong>法余矢(normal
+covector)</strong>为, 如果<span class="math inline">\(n_aw^a=0,\forall
+w^a\in W_q\)</span>. 如果<span class="math inline">\(M\)</span>上度规<span class="math inline">\(g_{ab}\)</span>,
+则可以将法余矢升指标为<strong>法矢(normal vector)</strong>, 即<span class="math inline">\(n^a=g^{ab}n_b\in V_q\)</span>. 法矢与<span class="math inline">\(W_q\)</span>中的所有矢量正交.</p>
+<ul>
+<li>回顾线性代数, 法余矢和法矢分别可以看作<span class="math inline">\(W_q\)</span>的零化子<span class="math inline">\(W_q^0\)</span>和正交补空间<span class="math inline">\(W_q^\perp\)</span>的(非零)元素.</li>
+</ul>
+<p><u>Claim 1</u> 对于超曲面<span class="math inline">\(\phi[S]\)</span>, 其上任意一点<span class="math inline">\(q\)</span>都有法余矢,
+且两个法余矢之间相差非零实数.</p>
+<p><u>Claim 2</u> 设<span class="math inline">\(\phi[S]\)</span>是光滑函数<span class="math inline">\(f=0\)</span>给出的超曲面, 则<span class="math inline">\(\nabla_af|_q\)</span>(<span class="math inline">\(q\in\phi[S]\)</span>)是该曲面的法余矢.</p>
+<div class="note note-light">
+<p><u>Pf</u> 任取<span class="math inline">\(q\in\phi[S]\)</span>和<span class="math inline">\(w^a\in W_q\)</span>, 因为<span class="math inline">\(w^a\)</span>一定是超曲面上某条曲线<span class="math inline">\(c(t)\)</span>的切矢, 而<span class="math inline">\(c(t)\)</span>上的点总有<span class="math inline">\(f=0\)</span>为常数, 所以<span class="math inline">\(w^a\nabla_af=w(f)=\pdv{f}{t}=0\)</span>.</p>
+</div>
+<p><u>Claim 3</u> 设<span class="math inline">\(n_a\)</span>为超曲面<span class="math inline">\(\phi[S]\)</span>的法余矢, 则<span class="math inline">\(n^a\in W_q\)</span>的充要条件为<span class="math inline">\(n^an_a=0\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> (<span class="math inline">\(\Rightarrow\)</span>)
+因为<span class="math inline">\(n_a\)</span>为法余矢, 且<span class="math inline">\(n^a\in W_q\)</span>, 所以<span class="math inline">\(n^an_a=0\)</span>.</p>
+<p>(<span class="math inline">\(\Leftarrow\)</span>) 取<span class="math inline">\(V_q\)</span>的基底<span class="math inline">\(\qty{(e_\mu)^a}\)</span>使得<span class="math inline">\((e_2)^a,\dots,(e_n)^a\in W_q\)</span>, 且<span class="math inline">\((e_1)_a=n_a\)</span>, 因此<span class="math inline">\(n^a\)</span>在该基底的第一分量<span class="math inline">\(n^1=n^a(e_1)_a=n^an_a=0\)</span>, 所以<span class="math inline">\(n^a\)</span>可以被<span class="math inline">\(\qty{(e_2)^a,\dots,(e_n)^a}\)</span>表出, <span class="math inline">\(n^a\in W_q\)</span>.</p>
+</div>
+<div class="note note-info">
+<p><u>Example 1</u> 考虑二维闵氏空间<span class="math inline">\((\R^2,\eta_{ab})\)</span>的超曲面的法矢,
+分以下三种情况:</p>
+<p>超曲面是<span class="math inline">\(x\)</span>坐标线, 切矢<span class="math inline">\((e_2)^a=(\pdv{x})^a\)</span>, 设<span class="math inline">\((e_1)^a=\alpha(\pdv{t})^a+\beta(\pdv{x})^a\)</span>(<span class="math inline">\(\alpha\neq0\)</span>), 因为<span class="math inline">\((e^1)_a(e_1)^a=1\)</span>且<span class="math inline">\((e^1)_a(e_2)^a=0\)</span>, 解得<span class="math inline">\((e^1)_a=\alpha^{-1}(\dd{t})_a\)</span>, 可知<span class="math inline">\((e^1)_a\)</span>为法余矢, 升指标得到法矢<span class="math inline">\(n^a=-\alpha^{-1}(\pdv{t})^a\)</span>.</p>
+<p>超曲面是<span class="math inline">\(t\)</span>坐标线, 同上.
+法矢平行于<span class="math inline">\(x\)</span>轴.</p>
+<p>超曲面是<span class="math inline">\(45^\circ\)</span>斜直线,
+切矢<span class="math inline">\((e_2)^a=(\pdv{t})^a+(\pdv{x})^a\)</span>, 设<span class="math inline">\((e_1)^a=\alpha(\pdv{x})^a+\beta(\pdv{t})^a\)</span>(<span class="math inline">\(\alpha\neq\beta\)</span>), 可以解得<span class="math inline">\((e^1)_a=(\alpha-\beta)^{-1}((\dd{t})_a-(\dd{x})_a)\)</span>,
+升指标得到法矢<span class="math inline">\(n^a=(\beta-\alpha)^{-1}((\pdv{t})^a+(\pdv{x})^a)\)</span>,
+可以发现法矢与切矢<span class="math inline">\((e_2)^a\)</span>平行!
+这就是<span class="math inline">\(n^a\in W_q\)</span>的例子,
+类光测地线切矢长度为零.</p>
+</div>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/4-4-hypersurface-M2.png" style="zoom: 50%;" cloud-img="" lazyload="true"></p>
+<p>称超曲面<strong>类空</strong>, 若其法矢处处类时;
+超曲面<strong>类时</strong>, 若其法矢处处类空;
+超曲面<strong>类光</strong>, 若其法矢处处类光. 若<span class="math inline">\(n^an_a\neq0\)</span>, 则今后谈的都是归一化法矢,
+即<span class="math inline">\(g_{ab}n^an^b\equiv
+n^an_a=\pm1\)</span>.</p>
+<p><strong>诱导度规</strong>.</p>
+<p>设<span class="math inline">\(\phi[S]\)</span>为嵌入子流形, 在<span class="math inline">\(V_q\)</span>上有度规<span class="math inline">\(g_{ab}\)</span>, 现在在<span class="math inline">\(W_q\)</span>上找一个度规<span class="math inline">\(h_{ab}\)</span>, 如果满足 <span class="math display">\[
+g_{ab}w_1^aw_2^b=h_{ab}w_1^aw_2^b,\quad (\forall w_1^a,w_2^a\in W_q)
+\]</span> 则称<span class="math inline">\(h_{ab}\)</span>为<span class="math inline">\(g_{ab}\)</span>生出的<strong>诱导度规(induced
+metric)</strong>. 诱导度规本质上就是把<span class="math inline">\(V_q\)</span>的度规限制在<span class="math inline">\(W_q\)</span>上的结果.</p>
+<ul>
+<li>一个类光超曲面不存在诱导度规. 如果取法矢<span class="math inline">\(n^a\in W_q\)</span>, 则<span class="math inline">\(h_{ab}n^aw^b=g_{ab}n^aw^b=n_bw^b=0\)</span>对于<span class="math inline">\(w^b\in W_q\)</span>恒成立, 于是<span class="math inline">\(h_{ab}\)</span>是退化的, 不构成度规.</li>
+</ul>
+<p>当<span class="math inline">\(\phi[S]\)</span>为类时或类空超曲面(或正定度规下的超曲面)时,
+诱导度规可以用归一化法矢(<span class="math inline">\(n^an_a=\pm1\)</span>)表示为 <span class="math display">\[
+h_{ab} := g_{ab} - (n^cn_c)n_an_b,
+\]</span> 可以验证它确实是诱导度规. 用度规<span class="math inline">\(g\)</span>对其升指标得到 <span class="math display">\[
+h^a{_b} = g^{ad}h_{db} = \delta^a{_b} - (n^cn_c)n^an_b.
+\]</span> 这是一个<span class="math inline">\((1,1)\)</span>型张量,
+代表<span class="math inline">\(V_q\)</span>上的一个线性变换,
+将其作用与<span class="math inline">\(v^b\in V_q\)</span>得到 <span class="math display">\[
+h^a{_b}v^b = v^a - (n^cn_c)n^a(n_bv^b), \quad\textsf{或}\,
+v^a =  h^a{_b}v^b + (n^cn_c)(n_bv^b)n^a,
+\]</span> 其中<span class="math inline">\((n^cn_c)\)</span>和<span class="math inline">\((n^bv_b)\)</span>都是实数, 所以右边这个式子将<span class="math inline">\(v^a\)</span>写作了法向部分<span class="math inline">\((n^cn_c)(n_bv^b)n^a\)</span>和切向部分<span class="math inline">\(h^a{_b}v^b\)</span>(因为<span class="math inline">\(n_a(h^a{_b}v^b)=(n_b-(n^cn_c)(n_an^a)n_b)v^b=0\)</span>,
+所以<span class="math inline">\(h^a{_b}v^b\in V_q\)</span>)的和. 称<span class="math inline">\(h^a{_b}\)</span>为<span class="math inline">\(V_q\)</span>到<span class="math inline">\(W_q\)</span>的<strong>投影映射(projection
+map)</strong>.</p>
+<ul>
+<li>容易验证, <span class="math inline">\(h^a{_b}\)</span>在<span class="math inline">\(W_q\)</span>上是恒等算子, 从而<span class="math inline">\(h^a{_b}\)</span>是满射; 而且<span class="math inline">\(h^a{_b}h^b{_c}=h^a{_c}\)</span>, 即<span class="math inline">\(h\)</span>幂等.</li>
+</ul>
+<div class="note note-info">
+<p><u>Example 2</u> 考虑嵌入于<span class="math inline">\((\R^3,\delta_{ab})\)</span>的<span class="math inline">\(S^2\)</span>.</p>
+<p>取<span class="math inline">\(\R^3\)</span>的球坐标<span class="math inline">\(\qty{r,\theta,\phi}\)</span>, 则度规场分量<span class="math inline">\(g_{\mu\nu}=\diag(1,r^2,r^2\sin^2\theta)\)</span>.
+设球面上一点<span class="math inline">\(q\)</span>, 则<span class="math inline">\(W_q\)</span>的基底<span class="math inline">\(\{(\pdv{\theta})^a,(\pdv{\phi})^a\}\)</span>,
+由定义可以求得单位法余矢<span class="math inline">\(n_a=(\dd{r})_a\)</span>, 升指标得到<span class="math inline">\(n^a=(\pdv{r})^a\)</span>, 可得<span class="math inline">\(n^an_a=1\)</span>, 诱导度规场<span class="math inline">\(h_{ab}=g_{ab}-n_an_b\)</span>, 其分量 <span class="math display">\[
+h_{\mu\nu} = \pmqty{0\\&amp;r^2\\&amp;&amp;r^2\sin^2\theta},
+\]</span> 进而可以求得投影映射场<span class="math inline">\(h^a{_b}\)</span>的分量为<span class="math inline">\(h^\mu{_\nu}=\diag(0,1,1)\)</span>.</p>
+<p>现在我们取笛卡尔坐标<span class="math inline">\(\qty{x,y,z}\)</span>,
+此时可用Claim 2求法余矢: 将<span class="math inline">\(S^2\)</span>看作<span class="math inline">\(f=x^2+y^2+z^2-R^2=0\)</span>给出的超曲面, 计算
+<span class="math display">\[
+\nabla_af=(\dd{f})_a=2x(\dd{x})_a+2y(\dd{y})_a+2z(\dd{z})_a
+\]</span> 可以得到归一化的法矢和法余矢(场) <span class="math display">\[
+\Align{
+n^a &amp;= \frac1R \bqty{
+  x\pqty{\pdv{x}}^a+y\pqty{\pdv{y}}^a+z\pqty{\pdv{z}}^a}, \\
+n_a &amp;= \frac1R \bqty{
+  x(\dd{x})_a+y(\dd{y})_a+z(\dd{z})_a},
+}
+\]</span> 其中<span class="math inline">\(R=\sqrt{x^2+y^2+z^2}\)</span>.
+现在可以计算诱导度规场的分量 <span class="math display">\[
+h_{\mu\nu} = \delta_{\mu\nu}-n_\mu n_\nu =
+\pmqty{
+1-\frac{x^2}{R^2} &amp; -\frac{xy}{R^2} &amp; -\frac{xz}{R^2} \\
+-\frac{xy}{R^2} &amp; 1-\frac{y^2}{R^2} &amp; -\frac{yz}{R^2} \\
+-\frac{xz}{R^2} &amp; -\frac{yz}{R^2} &amp; 1-\frac{z^2}{R^2}
+},
+\]</span> 投影映射场的分量同上.</p>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>梁GR | 3 李导数, Killing场和超曲面</div>
+      <div>https://disembo.github.io/Note/dg-lgr-3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-lgr-4/" title="梁GR | 4 微分形式及其积分">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">梁GR | 4 微分形式及其积分</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-lgr-2/" title="梁GR | 2 内禀曲率张量">
+                        <span class="hidden-mobile">梁GR | 2 内禀曲率张量</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

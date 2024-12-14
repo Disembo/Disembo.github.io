@@ -1,0 +1,1095 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="定理的内容与应用 (楔和, 图, CW 复形, 紧曲面).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM202 | 14 Seifert–Van Kampen 定理">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-14/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="定理的内容与应用 (楔和, 图, CW 复形, 紧曲面).">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/circles-side-by-side.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-generators.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-pf-init.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-pf-induction.png">
+<meta property="article:published_time" content="2024-08-16T12:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.707Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="代数拓扑">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/circles-side-by-side.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM202 | 14 Seifert–Van Kampen 定理 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM202 | 14 Seifert–Van Kampen 定理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-16 20:00" pubdate>
+          2024年8月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM202 | 14 Seifert–Van Kampen 定理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 10
+的笔记.</p>
+</div>
+<h2 id="the-seifertvan-kampen-theorem">32  The Seifert–Van Kampen
+Theorem</h2>
+<p>本章中, 我们介绍一个计算基本群的重要定理, 可以用来计算诸如 CW 复形,
+紧曲面等空间的基本群.</p>
+<p>这个重要定理, 即 Seifert–Van Kampen 定理, 通过考察拓扑空间 <span class="math inline">\(X\)</span> 的子空间的基本群,
+进而给出全空间的基本群.</p>
+<h3 id="statement-of-the-theorem">32.1  Statement of the theorem</h3>
+<p>设拓扑空间 <span class="math inline">\(X\)</span> 的开覆盖 <span class="math inline">\(\{U,V\}\)</span>, 设 <span class="math inline">\(U,V,U\cap V\)</span> 道路连通,
+并且我们能计算这三个子集的基本群. 我们会发现, <span class="math inline">\(X\)</span> 中的任一环路道路同伦于若干环路的积,
+积的每一项都在 <span class="math inline">\(U\)</span> 或者 <span class="math inline">\(V\)</span> 中. 这样的一条道路可以代表 <span class="math inline">\(\pi_1(U)*\pi_1(V)\)</span> 中某的群元. 然而, <span class="math inline">\(\pi_1(U\cap V)\)</span>
+中的环路在自由积群中被视作不同的群元 (分别作为 <span class="math inline">\(\pi_1(U)\)</span> 和 <span class="math inline">\(\pi_1(V)\)</span> 的群元参与自由积),
+因此我们还需要在此基础上商去某些关系.</p>
+<p>下面我们给出定理的严谨叙述.</p>
+<p>设 <span class="math inline">\(X\)</span> 为拓扑空间, <span class="math inline">\(\{U,V\}\)</span> 是 <span class="math inline">\(X\)</span> 的开覆盖, 且 <span class="math inline">\(U\cap V\neq\emptyset\)</span>. 任取基点 <span class="math inline">\(p\in U\cap V\)</span>. 我们有四个包含映射 <span class="math display">\[
+\xymatrix@!{
+&amp; U \ar[rd]^k \\
+U\cap V \ar[ru]^i \ar[rd]_j &amp;&amp; X \\
+&amp; V \ar[ru]_l
+}
+\]</span> 它们诱导出基本群同态 <span class="math display">\[
+\xymatrix@!{
+&amp; \pi_1(U,p) \ar[rd]^{k_*} \\
+\pi_1(U\cap V,p) \ar[ru]^{i_*} \ar[rd]_{j_*} &amp;&amp; \pi_1(X,p) \\
+&amp; \pi_1(V,p) \ar[ru]_{l_*}
+}
+\]</span> 下面将 <span class="math inline">\(\pi_1(U)*\pi_1(V)\)</span>
+插入这个交换图. 根据自由积的泛性质, 同态 <span class="math inline">\(k_*\)</span> 和 <span class="math inline">\(l_*\)</span> 唯一地诱导出同态 <span class="math inline">\(\Phi:\pi_1(U)*\pi_1(V)\to\pi_1(X)\)</span>,
+使得下图的右半部分交换: <span class="math display">\[
+\xymatrix@!@C=1em{
+&amp; \pi_1(U,p) \ar[rd]^{k_*} \ar@{^{(}-&gt;}[d] \\
+\pi_1(U\cap V,p) \ar[ru]^{i_*} \ar[rd]_{j_*} &amp;
+\pi_1(U,p)*\pi_1(V,p) \ar[r]^(.58)\Phi &amp;
+\pi_1(X,p) \\
+&amp; \pi_1(V,p) \ar[ru]_{l_*} \ar@{_{(}-&gt;}[u]
+}
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 32.1</u> (Seifert–Van Kampen 定理) 设拓扑空间 <span class="math inline">\(X\)</span> 的开覆盖 <span class="math inline">\(\{U,V\}\)</span>, 满足 <span class="math inline">\(U,V,U\cap V\)</span> 道路连通. 令 <span class="math inline">\(p\in U\cap V\)</span>, 定义子集 <span class="math inline">\(C\subset\pi_1(U,p)*\pi_1(V,p)\)</span>, <span class="math display">\[
+C=\{(i_*\gamma)(j_*\gamma)^{-1}\mid \gamma\in\pi_1(U\cap V,p)\}.
+\]</span> 则如上定义的 <span class="math inline">\(\Phi\)</span>
+是满同态, 且 <span class="math inline">\(\ker\Phi\)</span> 等于 <span class="math inline">\(C\)</span> 在 <span class="math inline">\(\pi_1(U,p)*\pi_1(V,p)\)</span> 中的正规闭包. 因此,
+<span class="math display">\[
+\pi_1(X,p) \cong \big(\pi_1(U,p)*\pi_1(V,p)\big) \big/ \overline{C}.
+\]</span> 特别地, <span class="math inline">\(\pi_1(X,p)\)</span> 由
+<span class="math inline">\(\pi_1(U,p)\)</span> 和 <span class="math inline">\(\pi_1(V,p)\)</span> 在 <span class="math inline">\(\Phi\)</span> 下的像生成.</p>
+</div>
+<ul>
+<li><p>利用融合自由积的语言, <span class="math inline">\(\pi_1(X,p)\)</span> 同构于 <span class="math inline">\(\pi_1(U,p)\)</span> 和 <span class="math inline">\(\pi_1(V,p)\)</span> 沿着 <span class="math inline">\(\pi_1(U\cap V,p)\)</span> 的融合自由积: <span class="math display">\[
+\pi_1(X,p) \cong \pi_1(U,p) *_{\pi_1(U\cap V,p)} \pi_1(V,p),
+\]</span> 其中, 融合自由积定义中的群同态由 <span class="math inline">\(i_*\)</span> 和 <span class="math inline">\(j_*\)</span> 给出.</p></li>
+<li><p>Seifert–Van Kampen 定理的证明在本章最后给出. 实际上,
+该定理能推广到任意开覆盖 <span class="math inline">\(\{U_\alpha\}\)</span> 的情形.</p></li>
+</ul>
+<p>在后面几节的大多数应用中, 我们只需要考虑定理的特殊情况.</p>
+<div class="note note-success">
+<p><u>Claim 32.2</u> (Seifert–Van Kampen, 交集单连通) 假设同 Seifert–Van
+Kampen, 若还有 <span class="math inline">\(U\cap V\)</span> 单连通, 则
+<span class="math inline">\(\Phi\)</span> 是 <span class="math inline">\(\pi_1(U,p)*\pi_1(V,p)\)</span> 与 <span class="math inline">\(\pi_1(X,p)\)</span> 的群同构. 如果 <span class="math inline">\(U,V\)</span> 的基本群有表现 <span class="math display">\[
+\Align{
+\pi_1(U,p) &amp;\cong
+\lr{\alpha_1,\dots,\alpha_n\mid\rho_1,\dots,\rho_r}, \\
+\pi_1(V,p) &amp;\cong
+\lr{\beta_1,\dots,\beta_m\mid\sigma_1,\dots,\sigma_s},
+}
+\]</span> 则 <span class="math inline">\(X\)</span> 的基本群有表现 <span class="math display">\[
+\pi_1(X,p) \cong \lr{
+  \alpha_1,\dots,\alpha_n,\beta_1,\dots,\beta_m \mid
+  \rho_1,\dots,\rho_r,\sigma_1,\dots,\sigma_s
+}.
+\]</span></p>
+</div>
+<p>另一种特殊情况是其中一个开集 (比如 <span class="math inline">\(U\)</span>) 单连通的情况. 此时, <span class="math inline">\(\pi_1(U,p)\)</span> 平凡, <span class="math inline">\(i_*,k_*\)</span> 都是平凡同态, 交换图中央的 <span class="math inline">\(\pi_1(U,p)*\pi_1(V,p)\)</span> 变成了 <span class="math inline">\(\pi_1(V,p)\)</span>. 因此整个交换图化简为 <span class="math display">\[
+\pi_1(U\cap V,p) \overset{j_*}\longrightarrow
+\pi_1(V,p) \overset{l_*}\longrightarrow
+\pi_1(X,p).
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 32.3</u> (Seifert–Van Kampen, 一个开集单连通) 假设同
+Seifert–Van Kampen, 若还有 <span class="math inline">\(U\)</span>
+单连通, 则包含映射 <span class="math inline">\(l:V\hookrightarrow
+X\)</span> 诱导群同构 <span class="math display">\[
+\pi_1(X,p)\cong\pi_1(V,p)\Big/\overline{j_*\pi_1(U\cap V,p)},
+\]</span> 其中 <span class="math inline">\(\overline{j_*\pi_1(U\cap
+V,p)}\)</span> 是 <span class="math inline">\({j_*\pi_1(U\cap
+V,p)}\)</span> 在 <span class="math inline">\(\pi_1(V,p)\)</span>
+中的正规闭包. 若 <span class="math inline">\(V,U\cap V\)</span>
+的基本群有表现 <span class="math display">\[
+\Align{
+\pi_1(V,p) &amp;\cong
+\lr{\beta_1,\dots,\beta_m\mid\sigma_1,\dots,\sigma_s}, \\
+\pi_1(U\cap V,p) &amp;\cong
+\lr{\gamma_1,\dots,\gamma_p\mid\tau_1,\dots,\tau_t},
+}
+\]</span> 则 <span class="math inline">\(X\)</span> 的基本群有表现 <span class="math display">\[
+\pi_1(X,p) \cong \lr{
+  \beta_1,\dots,\beta_m \mid
+  \sigma_1,\dots,\sigma_s,v_1,\dots,v_p
+},
+\]</span> 其中 <span class="math inline">\(v_a\)</span> 是 <span class="math inline">\(j_*\gamma_a\in\pi_1(V,p)\)</span> 关于生成元 <span class="math inline">\(\{\beta_i\}\)</span> 的表达式.</p>
+</div>
+<h3 id="applications">32.2  Applications</h3>
+<h4 id="wedge-sums">32.2.1  Wedge sums</h4>
+<p>回忆拓扑空间的楔和/一点并: 设带基点的拓扑空间 <span class="math inline">\((X_j,p_j)\)</span>, <span class="math inline">\(j=1,\dots,n\)</span>, 其楔和 <span class="math inline">\(X_1\vee\dots\vee X_n\)</span> 定义为 <span class="math inline">\(\coprod_iX_i\)</span> 商去等价关系 <span class="math inline">\(p_1\sim\dots\sim p_n\)</span>. 楔和的基点 <span class="math inline">\(*\)</span> 是 <span class="math inline">\(p_j\)</span> 所在的等价类. 记商映射 <span class="math inline">\(q:\coprod_jX_j\to\bigvee_jX_j\)</span>.</p>
+<p>空间 <span class="math inline">\(X_j\)</span> 可以视作 <span class="math inline">\(\bigvee_iX_i\)</span> 的子空间. 考虑复合映射 <span class="math inline">\(\iota_j:X_j\hookrightarrow\coprod_iX_i\overset{q}\to\bigvee_iX_i\)</span>,
+这是一个连续的单射, 容易验证它还是开映射, 因此 <span class="math inline">\(\iota_j\)</span> 是拓扑嵌入, <span class="math inline">\(X_j\)</span> 可以和 <span class="math inline">\(\bigvee_iX_i\)</span> 的子空间 <span class="math inline">\(\iota_j(X_j)\)</span> 认同.</p>
+<p>为了利用 Seifert–Van Kampen 定理计算楔和的基本群,
+我们需要对基点提出一个要求. 点 <span class="math inline">\(p\in
+X\)</span> 称为<strong>非退化基点 (nondegenerate base point)</strong>,
+若 <span class="math inline">\(p\)</span> 的某邻域 <span class="math inline">\(U\)</span> 能够强形变收缩到 <span class="math inline">\(\{p\}\)</span>.</p>
+<ul>
+<li>流形的所有点都是非退化基点,
+因为坐标开球可以强形变收缩到其中任意一点.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 32.4</u> (楔和的非退化基点) 若 <span class="math inline">\(p_j\in X_j\)</span> 是非退化基点, 则 <span class="math inline">\(*\)</span> 是 <span class="math inline">\(\bigvee_jX_j\)</span> 的非退化基点.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 对于 <span class="math inline">\(p_i\)</span>, 有强形变收缩
+<span class="math inline">\(r_i:W_i\to\{p_i\}\)</span>, 设同伦 <span class="math inline">\({\rm id}_{W_i}\sim\iota_{\{p_i\}}\circ
+r_i\)</span> 由 <span class="math inline">\(H_i:W_i\times I\to
+W_i\)</span> 给出. 定义不交并空间上的同伦 <span class="math inline">\(H:(\coprod_iW_i)\times I\to\coprod_iW_i\)</span>,
+定义为 <span class="math inline">\(H|_{W_i\times I}:=H_i\)</span>
+(根据不交并的特征性质, 这是连续映射).</p>
+<p>商映射 <span class="math inline">\(q\)</span> 在饱和开集 <span class="math inline">\(\coprod_iW_i\)</span> 上的限制是 <span class="math inline">\(\coprod_iW_i\)</span> 到 <span class="math inline">\(W:=q(\coprod_iW_i)\)</span> 的商映射, 其中 <span class="math inline">\(W\)</span> 是基点 <span class="math inline">\(*\)</span> 的一个邻域. 因为 <span class="math inline">\(I\)</span> 局部紧, 乘积 <span class="math inline">\(q\times{\rm id}_I:(\coprod_iW_i)\times I\to
+W\times I\)</span> 是商映射. 因为 <span class="math inline">\(q\circ
+H\)</span> 在 <span class="math inline">\(q\times{\rm id}_I\)</span>
+的纤维上常值, 它下降到连续映射 <span class="math inline">\(\tilde{H}:W\times I\to W\)</span>, 这给出了 <span class="math inline">\(W\)</span> 到 <span class="math inline">\(\{*\}\)</span> 的强形变收缩.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 32.5</u> (楔和的基本群) 设带有非退化基点的拓扑空间 <span class="math inline">\((X_j,p_j)\)</span>, <span class="math inline">\(j=1,\dots,n\)</span>, 则 <span class="math display">\[
+(\iota_j)_*:\pi_1(X_j,p_j) \to \pi_1(X_1\vee\dots\vee X_n,*)
+\]</span> 诱导出的群同态 <span class="math display">\[
+\Phi: \pi_1(X_1,p_1)*\dots*\pi_1(X_n,p_n) \to
+\pi_1(X_1\vee\dots\vee X_n,*)
+\]</span> 是群同构.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 用归纳法. 下面我们证明 <span class="math inline">\(X_1\vee
+X_2\)</span> 的情形. 对于 <span class="math inline">\(n&gt;2\)</span>,
+对 <span class="math inline">\(X_1\)</span> 和 <span class="math inline">\(X_2\vee\dots\vee X_n\)</span> 应用下面的证明
+(上面的引理保证这两个空间都有非退化基点).</p>
+<p>考虑 <span class="math inline">\(X_1\vee X_2\)</span>. 需要注意,
+直接对 <span class="math inline">\(U=X_1,V=X_2\)</span> 应用 SVK
+定理是不对的, 因为它们不是开集.</p>
+<p>取邻域 <span class="math inline">\(W_i\subset X_i\)</span>
+使得它能强形变收缩到 <span class="math inline">\(\{p_i\}\)</span>, 令
+<span class="math inline">\(U=q(X_1\amalg W_2)\)</span>, <span class="math inline">\(V=q(X_2\amalg W_1)\)</span>, 其中 <span class="math inline">\(q:X_1\amalg X_2\to X_1\vee X_2\)</span> 是商映射.
+因为 <span class="math inline">\(X_1\amalg W_2\)</span> 和 <span class="math inline">\(X_2\amalg W_1\)</span> 都是饱和开集, <span class="math inline">\(q\)</span> 将它们映到开集, 所以 <span class="math inline">\(U,V,U\cap V\)</span> 是 <span class="math inline">\(X_1\vee X_2\)</span> 中的开集.</p>
+<p>一个关键的观察是: 由基点的非退化性, 有三组同伦等价 <span class="math display">\[
+\Align{
+\{*\} &amp;\hookrightarrow U\cap V, \\
+X_1 &amp;\hookrightarrow U, \\
+X_2 &amp;\hookrightarrow V, \\
+}
+\]</span> 其中每一组的左边是右边的强形变收缩.</p>
+<p>因为 <span class="math inline">\(U\cap V\)</span> 可缩, 进而单连通,
+应用 Claim 32.2, 有群同构 <span class="math display">\[
+\Phi: \pi_1(U,*)*\pi_1(V,*) \overset\sim\to \pi_1(X,*),
+\]</span> 另外, 单射 <span class="math inline">\(\iota_1:X_1\hookrightarrow U\)</span> 和 <span class="math inline">\(\iota_2:X_2\hookrightarrow V\)</span> 是同伦等价,
+因此有基本群同构 <span class="math display">\[
+\Align{
+(\iota_1)_*:\pi_1(X_1,*)&amp;\overset\sim\to\pi_1(U,*), &amp;
+(\iota_2)_*:\pi_1(X_2,*)&amp;\overset\sim\to\pi_1(V,*),
+}
+\]</span> 将它们复合便得到想要的结果. 具体的过程见交换图: <span class="math display">\[
+\xymatrix@!@C=1em{
+\pi_1(X_1,*)
+  \ar@[tomato][r]^{(\iota_1)_*}_{\sim} &amp;
+\pi_1(U,*)
+  \ar[rd]^{k_*}
+  \ar@{^{(}-&gt;}@[tomato][d] \\ &amp;
+\pi_1(U,*)*\pi_1(V,*)
+  \ar@[tomato][r]^(.58)\Phi_(.58){\sim} &amp;
+\pi_1(X,*) \\
+\pi_1(X_2,*)
+  \ar@[tomato][r]^{(\iota_2)_*}_{\sim} &amp;
+\pi_1(V,*)
+  \ar[ru]_{l_*}
+  \ar@{_{(}-&gt;}@[tomato][u]
+}
+\]</span></p>
+</div>
+<p>一些例子:</p>
+<ul>
+<li><p>(圆束) <span class="math inline">\(\mathbb{S}^1\vee\dots\vee\mathbb{S}^1\)</span>
+的基本群同构于 <span class="math inline">\(\Z*\dots*\Z\)</span>. 如果记
+<span class="math inline">\([\omega_i]\)</span> 是第 <span class="math inline">\(i\)</span> 个 <span class="math inline">\(\mathbb{S}^1\)</span> 的基本群的生成元,
+则圆束的基本群是 <span class="math inline">\([\omega_1],\dots,[\omega_n]\)</span> 生成的自由群
+<span class="math inline">\(\lr{[\omega_1],\dots,[\omega_n]}\)</span>.</p>
+<ul>
+<li>特别地, 8 字形空间 <span class="math inline">\(\mathbb{S}^1\vee\mathbb{S}^1\)</span>
+的基本群是由两个基本环路 <span class="math inline">\([\omega_1],[\omega_2]\)</span> 生成的自由群,
+一个群元形如 <span class="math display">\[
+[\omega_1]^{i_1}[\omega_2]^{j_1}\cdots
+[\omega_1]^{i_m}[\omega_2]^{j_m}.
+\]</span></li>
+</ul></li>
+<li><p>(去掉 <span class="math inline">\(n\)</span> 个点的平面) 设 <span class="math inline">\(\R^2\setminus\{p_1,\dots,p_n\}\)</span> 是去掉
+<span class="math inline">\(n\)</span> 的点的平面, 它可以强形变收缩到
+<span class="math inline">\(\mathbb{S}^1\vee\dots\vee\mathbb{S}^1\)</span>
+(每个 <span class="math inline">\(\mathbb{S}^1\)</span> 包住一个 <span class="math inline">\(p_i\)</span>). 因此 <span class="math inline">\(\R^2\setminus\{p_1,\dots,p_n\}\)</span>
+的基本群同构于 <span class="math inline">\(\Z^{*n}\)</span>.</p></li>
+<li><p>(去掉 <span class="math inline">\(n\)</span> 个点的球面)
+注意到去掉一个点的球面 <span class="math inline">\(\mathbb{S}^2\setminus\{p_0\}\)</span> 同胚于平面
+<span class="math inline">\(\R^2\)</span> (球极投影), 因而去掉 <span class="math inline">\(n\)</span> 个点的球面同胚于去掉 <span class="math inline">\((n-1)\)</span> 个点的 <span class="math inline">\(\R^2\)</span>, 其基本群同构于 <span class="math inline">\(\Z^{*(n-1)}\)</span>.</p></li>
+<li><p>(圆的另一种楔和) 记 <span class="math inline">\(X_n\)</span> 是
+<span class="math inline">\(\C\)</span> 中以 <span class="math inline">\(\{0,2,\dots,2n-2\}\)</span> 为圆心的单位元的并.
+<span class="math inline">\(X_{n+1}\)</span> 可以看作 <span class="math inline">\(X_n\)</span> 与单位圆的楔和, 基点为 <span class="math inline">\(2n-1\)</span>.</p>
+<ul>
+<li><p>记 <span class="math inline">\(\omega_k\)</span> 是第 <span class="math inline">\(k\)</span> 个圆周上以 <span class="math inline">\(2k-1\)</span> 为基点, 逆时针转一圈的环路. 记 <span class="math inline">\(\tilde\omega_k\)</span> 是第 <span class="math inline">\(k\)</span> 个圆周上以 <span class="math inline">\(2k-3\)</span> 为基点, 顺时针转一圈的环路.</p></li>
+<li><p>记 <span class="math inline">\(\gamma_{k,l}\)</span> 是 <span class="math inline">\(X_n\)</span> 中连接 <span class="math inline">\(x\)</span> 轴上 <span class="math inline">\(k,l\)</span> 两点的最短道路,
+规定其沿着上半圆周.</p></li>
+<li><p>可以归纳地证明, <span class="math inline">\(X_n\)</span> 以 <span class="math inline">\(1\)</span> 为基点的基本群是 <span class="math display">\[
+\pi_1(X_n,1)=\lr{[\omega_1],
+[\tilde\omega_2],
+[\gamma_{1,3}*\tilde\omega_3*\gamma_{3,1}],
+\dots,
+[\gamma_{1,2n-3}*\tilde\omega_n*\gamma_{2n-3,1}]
+}.
+\]</span> 生成元的几何含义是明显的: <span class="math inline">\(\gamma_{1,2n-3}*\tilde\omega_n*\gamma_{2n-3,1}\)</span>
+表示先从 <span class="math inline">\(1\)</span> 沿着上半圆周走到 <span class="math inline">\(2n-3\)</span>, 接着绕第 <span class="math inline">\(n\)</span> 个圆一圈, 再沿着上半圆周走回 <span class="math inline">\(1\)</span> 的环路 (橙色).</p></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/circles-side-by-side.png" style="zoom:50%;" cloud-img="" lazyload="true"></p></li>
+</ul>
+<h4 id="graphs">32.2.2  Graphs</h4>
+<p>在 CW 复形一章中, 我们介绍了图的概念. 一个<strong>图 (graph)</strong>
+是 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(1\)</span> 维的 CW 复形. 其 <span class="math inline">\(0\)</span> 维胞腔称为<strong>顶点
+(vertices)</strong>, <span class="math inline">\(1\)</span>
+维胞腔称为<strong>边 (edges)</strong>. 根据定义, 对于任意一条边 <span class="math inline">\(e\)</span>, <span class="math inline">\(\overline{e}\setminus e\)</span> 包含 <span class="math inline">\(1\)</span> 或 <span class="math inline">\(2\)</span> 个顶点. 对于包含于 <span class="math inline">\(\overline{e}\)</span> 的顶点 <span class="math inline">\(v\)</span>, 我们称 <span class="math inline">\(v\)</span> 和 <span class="math inline">\(e\)</span> 是<strong>关联的 (incident)</strong>.
+一个<strong>子图 (subgraph)</strong> 是图的子复形. 因此,
+若一个子图包含一条边, 则它必须包含与之关联的顶点.</p>
+<p>只与一个顶点关联的边称为<strong>自环 (self-loop)</strong>. 若顶点
+<span class="math inline">\(v_1,v_2\)</span> (可以相同)
+同时与多条边关联, 则称这些边为<strong>重边 (multiple edges)</strong>.
+没有自环, 也没有多重边的图称为<strong>简单图 (simple graph)</strong>.
+(有的图论文献以 "图" 代指简单图, 以 "重图" 代指这里一般意义上的图.)</p>
+<p>一条<strong>路径 (edge path)</strong> 指的是有限序列 <span class="math inline">\((v_0,e_1,v_1,\dots,v_{k-1},e_k,v_k)\)</span>,
+其中顶点和边交替出现, 以点起止, 并且满足对任意 <span class="math inline">\(i=1,\dots,k\)</span>, <span class="math inline">\(\{v_{i-1},v_i\}\)</span> 恰好是与边 <span class="math inline">\(e_i\)</span> 关联的顶点 (<span class="math inline">\(v_{i-1}=v_i\)</span> 当且仅当 <span class="math inline">\(e_i\)</span> 是自环). 顶点 <span class="math inline">\(v_0,v_k\)</span> 分别称为<strong>起点 (initial
+vertex)</strong> 和<strong>终点 (terminal vertex)</strong>.
+<strong>平凡路径 (trivial edge path)</strong> 是单顶点的路径 <span class="math inline">\((v_0)\)</span>. 一条路径称为<strong>闭的
+(closed)</strong>, 若 <span class="math inline">\(v_0=v_k\)</span>;
+称为<strong>简单的 (simple)</strong>, 若其中的顶点 (除了 <span class="math inline">\(v_0,v_k\)</span>) 和边都只出现一次.</p>
+<ul>
+<li>图 <span class="math inline">\(\Gamma\)</span> 是连通的,
+当且仅当任给 <span class="math inline">\(v,v'\in\Gamma\)</span>,
+存在连接 <span class="math inline">\(v,v'\)</span> 的路径.
+在连通图中, 任意两点可以由简单路径相连.</li>
+</ul>
+<p>一个<strong>环 (cycle)</strong> 是非平凡的简单闭路径. 一棵<strong>树
+(tree)</strong> 是不含有环的连通图.</p>
+<ul>
+<li>一棵树中不能含有重边或自环. 若 <span class="math inline">\(e\)</span> 是与顶点 <span class="math inline">\(v\)</span> 关联的自环, 则 <span class="math inline">\((v,e,v)\)</span> 是一个环. 若 <span class="math inline">\(e,e'\)</span> 是与顶点 <span class="math inline">\(v,v'\)</span> 关联的重边, 则 <span class="math inline">\((v,e,v',e',v)\)</span> 是一个环. 因此,
+树是一个简单图.</li>
+<li>一棵树的顶点数总是比边数多 <span class="math inline">\(1\)</span>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 32.6</u> 任意有限树都是可缩的, 因此是单连通的.</p>
+</div>
+<p>图 <span class="math inline">\(\Gamma\)</span> 的一棵<strong>生成树
+(spanning tree)</strong> 是包含了 <span class="math inline">\(\Gamma\)</span> 的所有顶点的一棵子树. 图 <span class="math inline">\(\Gamma\)</span> 的一棵<strong>极大子树 (maximal
+tree)</strong> 是不真包含于其他子树的子树.</p>
+<div class="note note-success">
+<p><u>Claim 32.7</u> 任意有限连通图都包含一棵生成树.</p>
+</div>
+<p>设 <span class="math inline">\(\Gamma\)</span> 是一个有限连通图,
+下面我们尝试构造其基本群的一组生成元. 取顶点 <span class="math inline">\(v\)</span> 为基点, 令 <span class="math inline">\(T\subset\Gamma\)</span> 为一棵生成树. 设 <span class="math inline">\(e_1,\dots,e_n\)</span> 是不在 <span class="math inline">\(T\)</span> 中的边, 对于 <span class="math inline">\(e_i\)</span>, 记与之关联的顶点为 <span class="math inline">\(\{w_i,w_i'\}\)</span>. 我们这样构造一条以
+<span class="math inline">\(v\)</span> 为基点的环路 (如下图): ① 在 <span class="math inline">\(T\)</span> 中选择一条从 <span class="math inline">\(v\)</span> 到 <span class="math inline">\(w_i\)</span> 的道路 <span class="math inline">\(g_i\)</span>, ② 沿着 <span class="math inline">\(e_i\)</span> 从 <span class="math inline">\(w_i\)</span> 走到 <span class="math inline">\(w_i'\)</span>, ③ 在 <span class="math inline">\(T\)</span> 中选择一条从 <span class="math inline">\(w_i'\)</span> 到 <span class="math inline">\(v\)</span> 的道路 <span class="math inline">\(h_i\)</span>. 记这条环路为 <span class="math inline">\(f_i\)</span>. 注意 <span class="math inline">\([f_i]\)</span> 与 <span class="math inline">\(g_i,h_i\)</span> 的选取无关: 因为 <span class="math inline">\(T\)</span> 是单连通的,
+所以任意起点与终点相同的道路是道路同伦的.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-generators.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
+<div class="note note-success">
+<p><u>Claim 32.8</u> (有限图的基本群) 有限连通图 <span class="math inline">\(\Gamma\)</span> 的基本群 <span class="math inline">\(\pi_1(\Gamma,v)\)</span> 是以上 <span class="math inline">\([f_1],\dots,[f_n]\)</span> 生成的自由群.</p>
+</div>
+<ul>
+<li><p>记 <span class="math inline">\(E,V\)</span> 分别为 <span class="math inline">\(\Gamma\)</span> 的边数, 顶点数, 则其生成树的边数为
+<span class="math inline">\((V-1)\)</span>, 因此 <span class="math inline">\(n=E-V+1\)</span>, 于是 <span class="math display">\[
+\pi_1(\Gamma,v) \cong \underbrace{\Z*\dots*\Z}_{n=E-V+1}.
+\]</span></p></li>
+<li><p>有限连通图 <span class="math inline">\(\Gamma\)</span> 的
+<strong>Euler 示性数</strong>定义为 <span class="math inline">\(\chi(\Gamma):=V-E\)</span>. 图 <span class="math inline">\(\Gamma\)</span> 的基本群的秩为 <span class="math inline">\(1-\chi(\Gamma)\)</span>, 因此 Euler
+示性数是有限连通图的同伦不变量.</p></li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 对 <span class="math inline">\(n\)</span> (即 <span class="math inline">\(\Gamma\setminus T\)</span> 的边数) 进行归纳. 当
+<span class="math inline">\(n=0\)</span>, <span class="math inline">\(\Gamma=T\)</span> 是单连通的, 基本群平凡.</p>
+<p>当 <span class="math inline">\(n=1\)</span>, 我们要证明 <span class="math inline">\(\pi_1(\Gamma,v)\)</span> 是 <span class="math inline">\([f_1]\)</span> 生成的无穷循环群. 根据假设 <span class="math inline">\(\Gamma\)</span> 中有环 <span class="math inline">\((v_0,e_1,\dots,e_m,v_m)\)</span>, 并且 <span class="math inline">\(\Gamma\setminus{T}\)</span> 中的唯一一条边 <span class="math inline">\(e\)</span> 在这个环中 (否则 <span class="math inline">\(T\)</span> 中有环). 包含 <span class="math inline">\(\{v_0,e_1,\dots,e_m,v_m\}\)</span> 的子图 <span class="math inline">\(C\subset\Gamma\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>. 我们下面证明包含映射 <span class="math inline">\(C\hookrightarrow\Gamma\)</span> 是同伦等价.</p>
+<p>设 <span class="math inline">\(K\)</span> 是 <span class="math inline">\(\Gamma\setminus{T}\)</span>
+中的所有边及其顶点构成的子图. <span class="math inline">\(K\)</span>
+的任一分量 <span class="math inline">\(K_i\)</span> 是 <span class="math inline">\(\Gamma\)</span> 的连通子图, 且包含于 <span class="math inline">\(T\)</span>, 进而是一棵树 (下图). 还需注意到 <span class="math inline">\(K_i\)</span> 与 <span class="math inline">\(C\)</span> 有公共顶点 <span class="math inline">\(y_i\)</span> (因为 <span class="math inline">\(\Gamma\)</span> 连通), 并且该 <span class="math inline">\(y_i\)</span> 是唯一的: 假如 <span class="math inline">\(K_i\cap C\)</span> 有两个点 <span class="math inline">\(y_i,y_i'\)</span>, 我们就能找到 <span class="math inline">\(T\)</span> 中的一个环 (在 <span class="math inline">\(K_i\)</span> 中从 <span class="math inline">\(y_i\)</span> 走到 <span class="math inline">\(y_i'\)</span>, 再在 <span class="math inline">\(C\)</span> 中从 <span class="math inline">\(y_i'\)</span> 走到 <span class="math inline">\(y_i\)</span>, 且不穿过 <span class="math inline">\(e\)</span>), 这是不可能的.</p>
+<p>现在可以定义 <span class="math inline">\(\Gamma\to C\)</span>
+的强形变收缩了: 在每个 <span class="math inline">\(K_i\)</span> 上, 令
+<span class="math inline">\(K_i\)</span> 强形变收缩到 <span class="math inline">\(y_i\)</span>; 在 <span class="math inline">\(C\)</span> 上取恒等映射. 根据 gluing lemma,
+这是强形变收缩, 进而 <span class="math inline">\(\Gamma\sim\mathbb{S}^1\)</span>.</p>
+<p>最后我们证明 <span class="math inline">\([f_1]\)</span> 生成 <span class="math inline">\(\pi_1(\Gamma,v)\)</span>. 取顶点 <span class="math inline">\(z\in C\)</span>, 从 <span class="math inline">\(z\)</span> 出发, 依次遍历 <span class="math inline">\(C\)</span> 的边的一条道路 <span class="math inline">\(a\)</span> 显然道路同伦于 <span class="math inline">\(\mathbb{S}^1\)</span> 的标准环路 (或其逆), 可作为
+<span class="math inline">\(\pi_1(\Gamma,z)\)</span> 的生成元. 一条从
+<span class="math inline">\(v\)</span> 到 <span class="math inline">\(z\)</span> 的道路 <span class="math inline">\(b\)</span> 给出了基点变换 <span class="math inline">\(\Phi_b:\pi_1(\Gamma,z)\overset\sim\to\pi_1(\Gamma,v)\)</span>,
+因此 <span class="math inline">\(\pi_1(\Gamma,v)\)</span> 的一个生成元是
+<span class="math inline">\(\Phi_b[a]=[\bar{b}*a*b]\)</span>, 这是一条 ①
+从 <span class="math inline">\(v\)</span> 到 <span class="math inline">\(w_1\)</span>, ② 走过 <span class="math inline">\(e\)</span>, ③ 从 <span class="math inline">\(w_1'\)</span> 回到 <span class="math inline">\(v\)</span> 的环路, 所以道路同伦于 <span class="math inline">\(f_1\)</span> (因为 <span class="math inline">\(f_1\)</span> 的道路类不依赖于 ① 和 ③ 道路的选取).
+因此我们完成了对 <span class="math inline">\(n=1\)</span>
+情形的证明.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-pf-init.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>假设命题当 <span class="math inline">\(n\geq1\)</span> 时正确,
+下面考虑 <span class="math inline">\(n+1\)</span> 的情形. 对于不在 <span class="math inline">\(T\)</span> 中的边 <span class="math inline">\(e_1,\dots,e_{n+1}\)</span>, 取 <span class="math inline">\(x_i\in e_i\)</span>, 令 <span class="math inline">\(U=\Gamma\setminus\{x_1,\dots,x_n\}\)</span>, <span class="math inline">\(V=\Gamma\setminus\{x_{n+1}\}\)</span> 为 <span class="math inline">\(\Gamma\)</span> 中的开集. 容易构造强形变收缩
+(如下图) <span class="math display">\[
+U\cap V\sim T,\quad
+U\sim T\cup e_{n+1},\quad
+V\sim\Gamma\setminus e_{n+1}.
+\]</span> 根据 <span class="math inline">\(n=1\)</span> 的情形, <span class="math inline">\(\pi_1(U,v)=\lr{[f_{n+1}]}\)</span>; 根据归纳假设,
+<span class="math inline">\(\pi_1(V,v)=\lr{[f_1],\dots,[f_n]}\)</span>.
+因为 <span class="math inline">\(U\cap V\)</span> 单连通, 由 SVK
+的特殊情形, <span class="math inline">\(\pi_1(\Gamma,v)\)</span>
+同构于这两个自由群的自由积, 进而同构于 <span class="math inline">\([f_1],\dots,[f_{n+1}]\)</span> 生成的自由群.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/graph-fundamental-group-pf-induction.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+</div>
+<h4 id="cw-complexes">32.2.3  CW complexes</h4>
+<p>向拓扑空间 <span class="math inline">\(X\)</span> 粘贴一个圆盘 <span class="math inline">\(D\)</span>, 其基本群会 "变小": 贴映射 <span class="math inline">\(\varphi:\partial{D}\to X\)</span>
+是一条环路的圆代表元, 在粘贴后, 这条环路在 <span class="math inline">\(D\)</span> 中可以缩成一点, 是零伦的.</p>
+<div class="note note-success">
+<p><u>Claim 32.9</u> (粘贴一个圆盘) ...</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 32.10</u> (粘贴一个 <span class="math inline">\(n\)</span>
+维胞腔) 设 <span class="math inline">\(X\)</span> 道路连通, <span class="math inline">\(\tilde{X}\)</span> 是向 <span class="math inline">\(X\)</span> 粘贴一个 <span class="math inline">\(n\geq3\)</span> 维胞腔得到的空间. 则包含映射 <span class="math inline">\(X\hookrightarrow\tilde{X}\)</span>
+诱导出基本群同构.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 32.11</u> (有限 CW 复形的基本群) ...</p>
+</div>
+<h4 id="compact-surfaces">32.2.4  Compact surfaces</h4>
+<p>通过对标准曲面基本群的计算, 我们能够证明曲面分类定理中的 "唯一性"
+(即证明标准曲面互不同胚), 进而完成分类定理的证明.</p>
+<div class="note note-success">
+<p><u>Claim 32.12</u> (多边形表示的基本群) 设拓扑空间 <span class="math inline">\(M\)</span> 有单字的多边形表示 <span class="math inline">\(\lr{a_1,\dots,a_n\mid W}\)</span>,
+其中所有点都认同, 则 <span class="math inline">\(\pi_1(M)\)</span>
+有表现 <span class="math inline">\(\lr{a_1,\dots,a_n\mid
+W}\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 32.13</u> (紧曲面的基本群) 标准曲面的基本群有如下表现:</p>
+<ul>
+<li><span class="math inline">\(\pi_1(\mathbb{S}^2)\cong\lr{\emptyset\mid\emptyset}\)</span>
+(平凡群).</li>
+<li><span class="math inline">\(\pi_1(\Sigma_k)\cong\lr{\beta_1,\gamma_1,\dots,\beta_k,\gamma_k\mid\beta_1\gamma_1\beta_1^{-1}\gamma_1^{-1}\cdots\beta_k\gamma_k\beta_k^{-1}\gamma_k^{-1}=e}\)</span>.</li>
+<li><span class="math inline">\(\pi_1(\tilde\Sigma_l)\cong\lr{\beta_1,\dots,\beta_l\mid\beta_1^2\cdots\beta_l^2=e}\)</span>.</li>
+</ul>
+<p>带边版本:</p>
+<ul>
+<li><span class="math inline">\(\pi_1(\mathbb{S}^2_m)\cong\lr{c_1,\dots,c_m}\)</span>
+(自由群).</li>
+<li><span class="math inline">\(\pi_1(\Sigma_{k,m})\cong\lr{\beta_1,\gamma_1,\dots,\beta_k,\gamma_k,c_1,\dots,c_m\mid\beta_1\gamma_1\beta_1^{-1}\gamma_1^{-1}\cdots\beta_k\gamma_k\beta_k^{-1}\gamma_k^{-1}=c_1\cdots
+c_m}\)</span>.</li>
+<li><span class="math inline">\(\pi_1(\tilde\Sigma_{l,m})\cong\lr{\beta_1,\dots,\beta_l,c_1,\dots,c_m\mid\beta_1^2\cdots\beta_l^2=c_1\cdots
+c_m}\)</span>.</li>
+</ul>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 先看无边版本. 我们之前就讨论过, <span class="math inline">\(\mathbb{S}^2\)</span> 的基本群是平凡的, 因为它是
+<span class="math inline">\(\R^3\setminus\{0\}\)</span> 的强形变收缩.
+基本曲面 <span class="math inline">\(\Sigma_k\)</span> 和 <span class="math inline">\(\tilde\Sigma_l\)</span> 的基本群从 Claim 32.12
+立刻得到 (它们的标准表示中, 所有点都认同).</p>
+<p>带边版本...</p>
+</div>
+<p>特别地, <span class="math inline">\(\pi_1(\mathbb{T}^2)=\pi_1(\Sigma_1)\cong\lr{\beta,\gamma\mid\beta\gamma=\gamma\beta}\cong\Z^2\)</span>,
+与我们之前得到的结果一致. 对于实射影平面, 我们有 <span class="math inline">\(\pi_1(\mathbb{RP}^2)\cong\lr{\beta\mid\beta^2=e}\cong\Z/2\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf (紧连通曲面分类定理, 剩下的部分)</u> 首先注意到 <span class="math inline">\(\mathbb{S}^2\)</span> 不可能同胚于 <span class="math inline">\(\Sigma_k,\tilde\Sigma_k\)</span> (对任意 <span class="math inline">\(k&gt;0\)</span>), 因为前者基本群平凡,
+而后两者基本群非平凡. 为了区分后两者, 我们考虑其基本群的交换化. 由 Claim
+31.14, 我们得到 (<span class="math inline">\(k,l&gt;0\)</span>) <span class="math display">\[
+\Align{
+{\rm Ab}(\pi_1(\Sigma_k)) &amp;\cong \Z^{2k}, \\
+{\rm Ab}(\pi_1(\tilde\Sigma_l)) &amp;\cong \Z^{l-1}\times\Z/2. \\
+}
+\]</span> 注意 <span class="math inline">\(\Z^{l-1}\times\Z/2\)</span>
+含有一个非平凡的挠元, 而 <span class="math inline">\(\Z^{2k}\)</span>
+是无挠的, 因此 <span class="math inline">\(\pi_1(\Sigma_k)\)</span> 与
+<span class="math inline">\(\pi_1(\tilde\Sigma_l)\)</span>
+的交换化不同构, 它们本身也不同构. 因此 <span class="math inline">\(\Sigma_k\)</span> 不同胚于 <span class="math inline">\(\tilde\Sigma_l\)</span>.</p>
+<p>注意 <span class="math inline">\(\pi_1(\Sigma_k)\)</span>
+的交换化的秩为 <span class="math inline">\(2k\)</span>, 因此, 亏格 <span class="math inline">\(k\)</span> 可以被基本群的交换化确定,
+进而是拓扑不变量. 换言之, 对于 <span class="math inline">\(k\neq
+k'\)</span>, <span class="math inline">\(\Sigma_k\)</span> 与 <span class="math inline">\(\Sigma_{k'}\)</span> 不同胚.</p>
+<p>同样地, <span class="math inline">\(\pi_1(\tilde\Sigma_l)\)</span>
+的交换化的秩为 <span class="math inline">\(l-1\)</span>, 亏格 <span class="math inline">\(l\)</span> 也是拓扑不变量. 对于 <span class="math inline">\(l\neq l'\)</span>, <span class="math inline">\(\tilde\Sigma_l\)</span> 与 <span class="math inline">\(\tilde\Sigma_{l'}\)</span> 不同胚.</p>
+</div>
+<p>要证明 <span class="math inline">\(\mathbb{S}^2_m,\Sigma_{k,m},\tilde\Sigma_{k,m}\)</span>
+互不同胚, 用到 "可定向性" 是拓扑不变量这一事实. 这个事实的证明 (Claim
+23.10) 没有用到分类的唯一性.</p>
+<div class="note note-light">
+<p><u>Pf (紧连通带边曲面分类定理, 剩下的部分)</u> 注意边界的连通分量数
+<span class="math inline">\(m\)</span> 是拓扑不变量. 我们计算交换化:
+(<span class="math inline">\(k,l,m\geq1\)</span>) <span class="math display">\[
+\Align{
+{\rm Ab}(\pi_1(\mathbb{S}^2_m)) &amp;\cong \Z^{m-1}, \\
+{\rm Ab}(\pi_1(\Sigma_{k,m})) &amp;\cong \Z^{2k+m-1}, \\
+{\rm Ab}(\pi_1(\tilde\Sigma_{l,m})) &amp;\cong \Z^{l+m-1}. \\
+}
+\]</span> 因此交换化可以被用来区分大多数情况, 唯一的例外是: <span class="math display">\[
+{\rm Ab}(\pi_1(\Sigma_{k,m})) \cong
+{\rm Ab}(\pi_1(\tilde\Sigma_{2k,m})).
+\]</span> 此时, 可以利用可定向性来区分: <span class="math inline">\(\Sigma_{k,m}\)</span> 可定向, <span class="math inline">\(\tilde\Sigma_{2k,m}\)</span> 不可定向,
+而可定向性是拓扑不变性!</p>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E4%BB%A3%E6%95%B0%E6%8B%93%E6%89%91/" class="print-no-link">#代数拓扑</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM202 | 14 Seifert–Van Kampen 定理</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-14/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202-15/" title="GTM202 | 15 覆叠映射">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM202 | 15 覆叠映射</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202-9/" title="GTM202 | 9 紧曲面">
+                        <span class="hidden-mobile">GTM202 | 9 紧曲面</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,976 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Logistic回归, 最大似然估计, 梯度下降, 多分类问题, 过拟合与正则化.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习: 逻辑回归">
+<meta property="og:url" content="https://disembo.github.io/Note/logistic-regression/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="Logistic回归, 最大似然估计, 梯度下降, 多分类问题, 过拟合与正则化.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ml/logistic-reg-sigmoid.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ml/logistic-reg-multiclass.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ml/logistic-reg-overfit.png">
+<meta property="article:published_time" content="2024-03-25T13:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.705Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="逻辑回归">
+<meta property="article:tag" content="MLE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ml/logistic-reg-sigmoid.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>机器学习: 逻辑回归 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="机器学习: 逻辑回归"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-25 21:00" pubdate>
+          2024年3月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">机器学习: 逻辑回归</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>机器学习的笔记, 主要参考吴恩达的机器学习线上课, 以及"AI引论"课程.</p>
+<div data-align="right">
+2021.5.31, 2024.3.25
+</div>
+</div>
+<h2 id="hypothesis">1  Hypothesis</h2>
+<p>虽然叫做<strong>逻辑回归(logistic regression)</strong>,
+但是是用于分类的模型.</p>
+<p>对于一个二分类问题, 数据集 <span class="math inline">\(D=\qty{(\boldsymbol{x}^{(i)},y^{(i)})}_{i=1}^N\)</span>,
+其中 <span class="math inline">\(y^{(i)}\in\qty{0,1}\)</span>.
+Logistic回归假设可以用超平面 <span class="math display">\[
+\boldsymbol{\theta}\T\boldsymbol{x}=0
+\]</span> 分开两类, 即当 <span class="math inline">\(\boldsymbol{\theta}\T\boldsymbol{x}&lt;0\)</span>
+时(负类), 标签 <span class="math inline">\(y=0\)</span>; <span class="math inline">\(\boldsymbol{\theta}\T\boldsymbol{x}\geq0\)</span>
+时(正类), 标签 <span class="math inline">\(y=1\)</span>.
+我们进一步假设样本服从sigmoid函数的分布, 即标签 <span class="math inline">\(y=1\)</span> 的概率为 <span class="math display">\[
+p(y=1|\boldsymbol{x};\boldsymbol\theta)
+= \operatorname{sigmoid}(\boldsymbol{\theta}\T\boldsymbol{x})
+= \pqty{ 1+\exp(-\boldsymbol{\theta}\T\boldsymbol{x}) }^{-1}.
+\]</span></p>
+<div class="note note-secondary">
+<p>这个累积分布函数 <span class="math display">\[
+\operatorname{sigmoid}(x) := \frac1{1+\exp(-x)}
+\]</span> 满足一些性质, 例如严格单调增加, 图像关于点<span class="math inline">\((0,\frac12)\)</span>对称, 光滑性等.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ml/logistic-reg-sigmoid.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+</div>
+<p>自然, 标签 <span class="math inline">\(y=0\)</span>​ 的概率 <span class="math display">\[
+p(y=0|\boldsymbol{x};\boldsymbol\theta)
+= 1-\operatorname{sigmoid}(\boldsymbol{\theta}\T\boldsymbol{x})
+= \operatorname{sigmoid}(-\boldsymbol{\theta}\T\boldsymbol{x}).
+\]</span></p>
+<ul>
+<li>上面第二个等号用到了sigmoid函数的对称性.</li>
+<li>注意到 <span class="math inline">\(p(y=1|\boldsymbol{x};\boldsymbol\theta)\geq\frac12\)</span>
+当且仅当 <span class="math inline">\(\boldsymbol{\theta}\T\boldsymbol{x}\geq0\)</span>​.</li>
+</ul>
+<p><strong>假设函数</strong>: 相较于线性回归,
+Logistic回归的假设函数是线性函数 <span class="math inline">\(g(\boldsymbol{x})=\boldsymbol\theta\T\boldsymbol{x}\)</span>
+和sigmoid函数的复合, <span class="math display">\[
+h_\theta(\boldsymbol{x})
+= \frac1{1+\exp(-\boldsymbol\theta\T\boldsymbol{x})}.
+\]</span></p>
+<p><strong>决策边界(decision boundary)</strong>:
+两类边界上的数据点构成的图形, 即超平面 <span class="math inline">\(\boldsymbol{\theta}\T\boldsymbol{x}=0\)</span>.</p>
+<div class="note note-secondary">
+<p>实际上, 可以在 <span class="math inline">\(\boldsymbol{x}\)</span>
+中引入非线性项, 使得决策边界为曲面.</p>
+<p>例如, <span class="math inline">\(h_\theta(\boldsymbol{x}) =
+-1+0x_1+0x_2+1x_1^2+1x_2^2\)</span>的决策边界 <span class="math display">\[
+\begin{align}
+C:-1+0x_1+0x_2+1x_1^2+1x_2^2&amp;=0, \\
+x_1^2+x_2^2&amp;=1
+\end{align}
+\]</span> 是平面直角坐标系<span class="math inline">\(x_1Ox_2\)</span>中的单位圆.</p>
+</div>
+<h2 id="maximum-likelihood-estimation">2  Maximum Likelihood
+Estimation</h2>
+<p>如果我们使用线性回归的方差损失函数 <span class="math display">\[
+J(\theta) = \frac1N\sum_{i=1}^N
+\frac12(h_\theta(\boldsymbol{x}^{(i)})-y^{(i)})^2,
+\]</span> 由于假设函数非线性, 所以损失函数是非凸函数,
+梯度下降不能保证收敛到全局最小值, 在这里我们采用另一种思路,
+即最大似然估计(MLE).</p>
+<p>对于模型 <span class="math inline">\(h_\theta(\boldsymbol{x})\)</span>, 把数据集 <span class="math inline">\(D\)</span> 由这个模型生成的概率 <span class="math display">\[
+p(y|\boldsymbol{x};\boldsymbol\theta)
+= \prod_{i=1}^N
+  h_\theta(\boldsymbol{x}^{(i)})^{y^{(i)}}
+  [1-h_\theta(\boldsymbol{x}^{(i)})]^{1-y^{(i)}}
+\]</span> 称为似然函数, 记作 <span class="math inline">\(L(h_\theta)\)</span>. 我们假设似然函数取最大值,
+也就是说, 最终找到的模型 <span class="math inline">\(h_\theta\)</span>
+应当是最有可能生成出数据集 <span class="math inline">\(D\)</span>
+的那个模型.</p>
+<p>为了方便计算机计算, 取对数得到对数似然, <span class="math display">\[
+\ell(h_\theta) = \log(L(h_\theta))
+= \sum_{i=1}^N\bqty{
+  y^{(i)} \log{h_\theta(\boldsymbol{x}^{(i)})} +
+  (1-y^{(i)}) \log{}[1-h_\theta(\boldsymbol{x}^{(i)})]
+}.
+\]</span></p>
+<ul>
+<li>当预测值与真实值非常接近时, 损失接近 <span class="math inline">\(0\)</span>; 当预测值与真实值的相反类接近时,
+损失趋于 <span class="math inline">\(+\infty\)</span>​.</li>
+</ul>
+<p>最终得到代价函数为 <span class="math display">\[
+J(h_\theta) = -\frac1N\ell(h_\theta).
+\]</span> 最大似然即最小化损失函数.</p>
+<div class="note note-warning">
+<p><u>Note</u>. 线性回归的MLE方法. 对于线性回归,
+一般认为确定平方差函数作为代价函数(经验风险最小化, ERM),
+实际上可以用MLE解释.</p>
+<p>模型 <span class="math inline">\(h_\theta(\boldsymbol{x})=\boldsymbol\theta\T\boldsymbol{x}\)</span>;
+假设数据 <span class="math inline">\(\boldsymbol{x}^{(i)},y^{(i)}\)</span>
+服从带有(正态分布)误差的线性关系, 即 <span class="math display">\[
+y^{(i)} = h_\theta(\boldsymbol{x}^{(i)}) + \epsilon^{(i)},
+\quad \epsilon\sim N(0,\sigma^2).
+\]</span> 于是, 似然函数 <span class="math display">\[
+L(h_\theta) = p(y|\boldsymbol{x};\boldsymbol\theta)
+= \prod_{i=1}^N \frac1{\sqrt{2\pi\sigma^2}} \exp\bqty{
+  \frac{-1}{2\sigma^2} \pqty{
+    y^{(i)} - h_\theta(\boldsymbol{x}^{(i)})
+  }^2
+},
+\]</span> 损失函数 <span class="math display">\[
+J(h_\theta) = -\frac1N\log{L(h_\theta)}
+= \frac1N\sum_{i=1}^N\bqty{
+  \frac12\log(2\pi\sigma^2) +
+  \frac1{2\sigma^2} \pqty{
+    y^{(i)} - h_\theta(\boldsymbol{x}^{(i)})
+  }^2
+}.
+\]</span> 可以发现, 损失函数与平方差函数具有相同的梯度(相差一个正常数),
+两者会得出相同的最优解.</p>
+</div>
+<h2 id="gradient-descent">3  Gradient Descent</h2>
+<h3 id="derivation">3.1  Derivation</h3>
+<p>我们可以用梯度下降算法求得最佳参数, 首先对代价函数求导得到 <span class="math display">\[
+\pdv{J}{\boldsymbol\theta} = \frac1N \sum_{i=1}^N \pqty{
+  h_\theta(\boldsymbol{x}^{(i)}) - y^{(i)}
+} \boldsymbol{x}^{(i)}.
+\]</span></p>
+<div class="note note-secondary">
+<p>具体推导过程: 先计算</p>
+<p><span class="math display">\[
+\Align{
+\pdv{h_\theta}{\boldsymbol\theta}
+= \dv{\operatorname{sigmoid}(g)}{g} \cdot \pdv{g}{\boldsymbol\theta}
+= h_\theta(1-h_\theta)\boldsymbol{x}.
+}
+\]</span> (其中 <span class="math inline">\(g(\boldsymbol{x})=\boldsymbol\theta\T\boldsymbol{x}\)</span>)
+对代价函数求偏导, 有 <span class="math display">\[
+\begin{align}
+\pdv{J}{\boldsymbol\theta}
+&amp;= -\frac1N \sum_{i=1}^N \bqty{
+y^{(i)} \frac1{h_\theta(\boldsymbol{x}^{(i)})}
+\pdv{h_\theta}{\boldsymbol\theta} -
+(1-y^{(i)}) \frac1{1-h_\theta(\boldsymbol{x}^{(i)})}
+\pdv{h_\theta}{\boldsymbol\theta}
+} \\
+&amp;= -\frac1N \sum_{i=1}^N \bqty{
+y^{(i)} \frac1{h_\theta(\boldsymbol{x}^{(i)})} -
+(1-y^{(i)}) \frac1{1-h_\theta(\boldsymbol{x}^{(i)})}
+} \pdv{h_\theta}{\boldsymbol\theta} \\
+&amp;= -\frac1N \sum_{i=1}^N \bqty{
+y^{(i)} \frac1{h_\theta(\boldsymbol{x}^{(i)})} -
+(1-y^{(i)}) \frac1{1-h_\theta(\boldsymbol{x}^{(i)})}
+} h_\theta(\boldsymbol{x}^{(i)})(1-h_\theta(\boldsymbol{x}^{(i)}))
+\boldsymbol{x}^{(i)} \\
+&amp;= -\frac1N \sum_{i=1}^N \bqty{
+y^{(i)} (1-h_\theta(\boldsymbol{x}^{(i)})) -
+(1-y^{(i)}) h_\theta(\boldsymbol{x}^{(i)})
+} \boldsymbol{x}^{(i)} \\
+&amp;= -\frac1N \sum_{i=1}^N \pqty{
+y^{(i)} - h_\theta(\boldsymbol{x}^{(i)})
+} \boldsymbol{x}^{(i)} \\
+&amp;= \frac1N \sum_{i=1}^N \pqty{
+h_\theta(\boldsymbol{x}^{(i)}) - y^{(i)}
+} \boldsymbol{x}^{(i)}.
+\end{align}
+\]</span></p>
+</div>
+<p>这样我们就可以用下面的方法来更新参数 <span class="math inline">\(\boldsymbol\theta\)</span>: <span class="math display">\[
+\begin{align}
+&amp;\textsf{Repeat until convergence \{} \\
+&amp;\qquad \boldsymbol\theta := \boldsymbol\theta
+- \frac{\alpha}N \sum_{i=1}^N \pqty{
+  \frac1{1+\exp(-\boldsymbol\theta\T\boldsymbol{x}^{(i)})} - y^{(i)}
+} \boldsymbol{x}^{(i)} \\
+&amp;\text{\}}
+\end{align}
+\]</span> 可以发现,
+似然代价函数的偏导和线性回归中的方差代价函数的偏导看起来一样,
+唯一的差异是假设函数 <span class="math inline">\(h_\theta(\boldsymbol{x})\)</span> 不同.</p>
+<h3 id="optimization">3.2  Optimization</h3>
+<p>算法优化:</p>
+<ul>
+<li>Conjugate gradient</li>
+<li>BFGS</li>
+<li>L-BFGS</li>
+</ul>
+<p>它们的优点:</p>
+<ul>
+<li>不需要手动选择学习率 <span class="math inline">\(\alpha\)</span>.</li>
+<li>通常比梯度下降快.</li>
+</ul>
+<p>缺点: 复杂.</p>
+<h2 id="multi-class-classification">4  Multi-Class Classification</h2>
+<p><strong>一对多(one-vs-all)</strong>或<strong>一对余(one-vs-rest)</strong>:
+将多元分类问题转化为多个二元分类问题.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ml/logistic-reg-multiclass.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<ul>
+<li><p>对于每个类 <span class="math inline">\(k\in\set{1,2,\dots,K}\)</span>, 将其当作正类,
+其余当作负类, 训练得到一个分类器 <span class="math inline">\(h_\theta^{(k)}(\boldsymbol{x})\)</span>.</p>
+<p>那么对于每个新的测试数据 <span class="math inline">\(\boldsymbol{x}^{(i)}\)</span>, <span class="math display">\[
+h^{(k)}_\theta(\boldsymbol{x}^{(i)}) = P(y^{(i)}=k),
+\]</span> 我们只需要取概率最大的那个类, <span class="math display">\[
+\textsf{Predict: } y^{(i)} = \argmax_{k}
+h_\theta^{(k)}(\boldsymbol{x}^{(i)}).
+\]</span></p></li>
+<li><p>此种方法存在一个问题, 即各个分类器是独立的, 无法统一成一个模型.
+进而当类别数 <span class="math inline">\(K\)</span>​ 较大时,
+分别训练各个分类器的代价太高.</p></li>
+</ul>
+<p>可以利用<strong>Softmax回归</strong>方法解决多分类问题. 共同训练
+<span class="math inline">\(K\)</span> 个模型 <span class="math inline">\(f_k(\boldsymbol{x})=\boldsymbol\theta_k\T\boldsymbol{x}\)</span>,
+标签 <span class="math inline">\(y=k\)</span> 概率 <span class="math display">\[
+p(y=k|\boldsymbol{x},\boldsymbol\theta)
+= \frac{\exp f_{k}(\boldsymbol{x})}{\sum_{j=1}^K \exp
+f_j(\boldsymbol{x})},
+\]</span></p>
+<ul>
+<li>这里的指数函数可以保证, 当 <span class="math inline">\(f_k(\boldsymbol{x})\)</span> 比其他 <span class="math inline">\(f_j(\boldsymbol{x})\)</span> 大一些时, 概率 <span class="math inline">\(p(y=k)\)</span> 能够比 <span class="math inline">\(p(y=j)\)</span> 大很多.</li>
+</ul>
+<p>进而得到似然函数 <span class="math display">\[
+L(\boldsymbol\theta) = \prod_{i=1}^N \frac
+{\exp f_{y^{(i)}}(\boldsymbol{x}^{(i)})}
+{\sum_{j=1}^K \exp f_j(\boldsymbol{x}^{(i)})}.
+\]</span></p>
+<h2 id="overfit-regularization">5  Overfit &amp; Regularization</h2>
+<p>一个模型对于测试数据需要有一定的假设, 即<strong>偏见(bias)</strong>.
+偏见的存在使得我们具有归纳的能力, 即对于相似的事物, 抓住主要相似点,
+忽略其次要差异, 将它们归为同一类群; 如果没有偏见, 我们就缺乏归纳的能力.
+模型亦如此. 由于模型的偏见不同, 造成的拟合结果也不同:</p>
+<ul>
+<li>欠拟合(underfit): 高偏见(在训练集上代价过高).</li>
+<li>合适的拟合.</li>
+<li>过拟合(overfit): 高方差. 对于<span class="math inline">\(N\)</span>个数据的回归问题, 总存在<span class="math inline">\(N-1\)</span>次多项式函数能够穿过这些数据点,
+但这通常对新的数据预测能力差(在测试集上代价明显高于训练集).</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ml/logistic-reg-overfit.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<p>过拟合的原因一般有</p>
+<ol type="1">
+<li>某几个特征维度支配了预测, 即 <span class="math inline">\(\boldsymbol\theta\)</span> 的某些分量过大.</li>
+<li>存在大量无用特征, 但仍赋予了非零权重.</li>
+</ol>
+<p>要解决第1个, 可以利用L2正则化(regularization)方法, 即将 <span class="math inline">\(\boldsymbol\theta\)</span>​
+的L2范数添加到代价函数中(以线性回归为例), <span class="math display">\[
+J(h_\theta) = \frac1{2N} \bqty{\sum_{i=1}^N \pqty{
+  h_\theta(\boldsymbol{x}^{(i)})-y^{(i)}
+}^2 } + \color{or}\frac{\lambda}{2N}\sum_{j=1}^M\theta_j^2
+\]</span></p>
+<ul>
+<li>其中的 <span class="math inline">\(\theta_j^2\)</span>
+会对较大的权重给出很大的惩罚, 使得权重分配更平均.</li>
+<li>注意最后的求和是从 <span class="math inline">\(j=1\)</span> 开始的,
+即不考虑 <span class="math inline">\(\theta_0\)</span> 的大小.</li>
+<li>L2正则化的线性回归也称为岭回归(rindge regression).</li>
+<li>式中 <span class="math inline">\(\lambda &gt;0\)</span>,
+称为正则化参数(regularization parameter). 它和学习率 <span class="math inline">\(\alpha\)</span> 一样是在学习前预先设定的,
+成为超参数 (hyperparameter). 选择哪种模型, 哪种代价函数,
+哪种正则化也可看作超参数. 对于超参数的选择,
+一般先找出所有可能的超参数组合, (分别训练完毕后)在验证集(validation
+set)上找出误差最小的超参数集.</li>
+</ul>
+<p>要解决第2个, 可以手动选择要保留的特征, 或使用模型选择算法;
+也可以利用L1正则化方法, 即将 <span class="math inline">\(\boldsymbol\theta\)</span>
+的L1范数添加到代价函数中(以线性回归为例), <span class="math display">\[
+J(h_\theta) =
+\frac1{2N} \bqty{\sum_{i=1}^N \pqty{
+  h_\theta(\boldsymbol{x}^{(i)})-y^{(i)}
+}^2 } + \color{or}\frac{\lambda}{N}\sum_{j=1}^M|\theta_j|
+\]</span></p>
+<ul>
+<li>鼓励稀疏的 <span class="math inline">\(\boldsymbol\theta\)</span>​,
+即大部分维度的权重为零.</li>
+<li>L1正则化的线性回归也称为Lasso回归.</li>
+</ul>
+<p>以线性回归+L2正则化为例, 新的代价函数的导数是 <span class="math display">\[
+\pdv{J}{\boldsymbol\theta} = \frac1N \sum_{i=1}^N \pqty{
+  h_\theta(\boldsymbol{x}^{(i)}) - y^{(i)}
+} \boldsymbol{x}^{(i)} + \frac\lambda N \boldsymbol\theta
+\]</span> 迭代中更新的步骤(注意 <span class="math inline">\(\theta_0\)</span> 要单独更新): <span class="math display">\[
+\begin{align}
+\boldsymbol\theta
+&amp;:= \boldsymbol\theta - \alpha\bqty{
+    \frac1N \sum_{i=1}^N \pqty{
+      h_\theta(\boldsymbol{x}^{(i)}) - y^{(i)}
+    } \boldsymbol{x}^{(i)} + \frac{\lambda}N \boldsymbol\theta
+} \\
+&amp;= \blue{\pqty{1-\alpha\frac{\lambda}N}}\boldsymbol\theta - \alpha
+    \frac1N \sum_{i=1}^N \pqty{
+      h_\theta(\boldsymbol{x}^{(i)}) - y^{(i)}
+    } \boldsymbol{x}^{(i)}
+\end{align}
+\]</span> 可以关注到蓝色的部分是略小于 <span class="math inline">\(1\)</span> 的数, 它在每次迭代的时候都把 <span class="math inline">\(\boldsymbol\theta\)</span> 变小一点点.</p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+        <a href="/tags/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/" class="print-no-link">#逻辑回归</a>
+      
+        <a href="/tags/MLE/" class="print-no-link">#MLE</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>机器学习: 逻辑回归</div>
+      <div>https://disembo.github.io/Note/logistic-regression/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-3/" title="GTM275 | 3 曲率与微分形式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 3 曲率与微分形式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-2/" title="GTM275 | 2 曲率与向量场">
+                        <span class="hidden-mobile">GTM275 | 2 曲率与向量场</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

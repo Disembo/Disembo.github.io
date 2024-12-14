@@ -1,0 +1,1277 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《微分几何入门与广义相对论》第一章、第二章的笔记.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="梁GR | 1 流形与张量场">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-lgr-1/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="《微分几何入门与广义相对论》第一章、第二章的笔记.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-differentiable-manifolds.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-smoothness.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-2-tangent-vectors.png">
+<meta property="article:published_time" content="2023-07-08T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.704Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分几何">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-differentiable-manifolds.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>梁GR | 1 流形与张量场 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="梁GR | 1 流形与张量场"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-08 12:00" pubdate>
+          2023年7月8日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">梁GR | 1 流形与张量场</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body><div class="note note-secondary">
+<p>梁灿彬, 周彬《微分几何入门与广义相对论》第一章, 第二章的笔记.</p>
+</div>
+<h2 id="topology-baiscs">1  Topology Baiscs</h2>
+<h3 id="topological-spaces">1.1  Topological spaces</h3>
+<p>给集合赋予一种结构(开集):</p>
+<p><strong>拓扑(topology)</strong>(选择集合的开子集): 有集合<span class="math inline">\(X\)</span>, <span class="math inline">\(\mathcal{T}\)</span>中装有选定的<strong>开集(open
+set)</strong>, 满足:</p>
+<ol type="1">
+<li><span class="math inline">\(X,\varnothing\in\mathcal{T}\)</span>.</li>
+<li><span class="math inline">\(\mathcal{T}\)</span>中任意有限个元素的交集仍在<span class="math inline">\(\mathcal{T}\)</span>中.</li>
+<li><span class="math inline">\(\mathcal{T}\)</span>中任意多个元素的并集仍在<span class="math inline">\(\mathcal{T}\)</span>中.</li>
+</ol>
+<p>那么<span class="math inline">\(\mathcal{T}\)</span>称为<span class="math inline">\(X\)</span>上的拓扑, <span class="math inline">\((X,\mathcal{T})\)</span>是一个拓扑空间.
+<strong>闭集(closed set)</strong>是开集的补集. 无关<span class="math inline">\(\mathcal{T}\)</span>的选择, <span class="math inline">\(X,\varnothing\)</span>既是开集也是闭集.</p>
+<p><strong>通常拓扑(usual topology)</strong>: <span class="math inline">\(\R^n\)</span>的通常拓扑是<span class="math inline">\(\mathcal{T}_u=\qty{\textsf{可以表示为开球之并的集合}}\)</span>.
+不加声明时用它.</p>
+<p><strong>离散拓扑(discrete topology)</strong>:
+每一个子集都是开集的拓扑, <span class="math inline">\({\cal
+T}_d=2^X\)</span>.</p>
+<p><strong>诱导拓扑(induced topology)</strong>: 集合<span class="math inline">\(X\)</span>的子集<span class="math inline">\(A\)</span>上面也可以有拓扑<span class="math inline">\(\mathcal{S}\)</span>, 它可以由<span class="math inline">\(\mathcal{T}\)</span>诱导生成: <span class="math inline">\(\mathcal{S}=\set{V|\exists O\in X:O\cap
+A=V}\)</span>.</p>
+<p>设两个拓扑空间<span class="math inline">\((X,\mathcal{T}),(Y,\mathcal{S})\)</span>, <span class="math inline">\(f:X\to Y\)</span>, 满足<span class="math inline">\(\forall
+O\in\mathcal{S}:f^{-1}[O]\in\mathcal{T}\)</span>(<span class="math inline">\(Y\)</span>的开集的逆像是<span class="math inline">\(X\)</span>中开集的并), 那么称<span class="math inline">\(f\)</span><strong>连续</strong>. 如果<span class="math inline">\(f\)</span>是一元实变函数, 那么可以证明,
+这个定义和<span class="math inline">\(\varepsilon-\delta\)</span>语言的定义是等价的.</p>
+<p>如果两个拓扑空间间存在双射<span class="math inline">\(f\)</span>,
+且它与它的逆映射都是连续的, 那么<span class="math inline">\(f\)</span>称是<strong>同胚映射(homeomorphism)</strong>,
+两个空间是同胚的(homeomorphic).</p>
+<ul>
+<li>同胚映射不能"剪开"和"粘合": 平面上的线段和圆不是同胚的.</li>
+<li>在同胚映射下保持不变的性质称为拓扑性质/拓扑不变性(topological
+invariance).</li>
+</ul>
+<p>集合<span class="math inline">\(N\subset X\)</span>称为<span class="math inline">\(x\in
+X\)</span>的一个<strong>邻域(neighborhood)</strong>, 如果存在<span class="math inline">\(O\in{\cal T}\)</span>, 使得<span class="math inline">\(x\in O\subset N\)</span>. 相似的, 可以定义<span class="math inline">\(X\)</span>的子集的邻域(将属于改成包含于即可).</p>
+<p>若一个拓扑空间<span class="math inline">\((X,{\cal
+T})\)</span>除了<span class="math inline">\(X\)</span>和<span class="math inline">\(\emptyset\)</span>之外没有既开又闭的子集,
+那么称之为<strong>连通的(connected)</strong>.</p>
+<p>拓扑空间<span class="math inline">\((X,{\cal T})\)</span>中, 定义</p>
+<ul>
+<li><p><span class="math inline">\(A\)</span>的<strong>闭包(closure)</strong><span class="math inline">\(\bar{A}\)</span>是所有包含<span class="math inline">\(A\)</span>的闭集的交集. <span class="math display">\[
+\bar{A} := \bigcap_\alpha C_\alpha, \quad
+A\subset C_\alpha \textsf{ 且 } C_\alpha \textsf{ 为闭}.
+\]</span></p></li>
+<li><p><span class="math inline">\(A\)</span>的<strong>内部(interior)</strong><span class="math inline">\(\i(A)\)</span>是所有包含于<span class="math inline">\(A\)</span>的开集的并集. <span class="math display">\[
+\i(A) := \bigcup_\alpha O_\alpha, \quad
+A\supset C_\alpha \textsf{ 且 } C_\alpha\in{\cal T}.
+\]</span></p></li>
+<li><p><span class="math inline">\(A\)</span>的<strong>边界(boundary)</strong><span class="math inline">\(\partial A:=\bar{A}-\i(A)\)</span>.
+边界中的点称为边界点.</p></li>
+</ul>
+<h3 id="properties-of-topological-spaces">1.2  *Properties of topological
+spaces</h3>
+<p><span class="math inline">\(X\)</span>的开子集的集合<span class="math inline">\(\qty{O_\alpha}\)</span>称为<span class="math inline">\(A\subset X\)</span>的一个<strong>开覆盖(open
+cover)</strong>, 如果<span class="math inline">\(A\subset\bigcup_\alpha
+O_\alpha\)</span>.</p>
+<ul>
+<li>开覆盖<span class="math inline">\(\qty{V_\alpha}\)</span>称为<span class="math inline">\(\qty{O_\alpha}\)</span>的<strong>加细(refinement)</strong>,
+如果对任意<span class="math inline">\(V_\alpha\)</span>, 存在<span class="math inline">\(O_\alpha\)</span>, 使得<span class="math inline">\(V_\alpha\subset O_\alpha\)</span>.</li>
+<li>开覆盖<span class="math inline">\(\qty{O_{\alpha'}}\)</span>称为<span class="math inline">\(\qty{O_\alpha}\)</span>的<strong>子覆盖(subcover)</strong>,
+如果<span class="math inline">\(\qty{O_{\alpha'}}\subset\qty{O_{\alpha}}\)</span>.</li>
+</ul>
+<p>对于<span class="math inline">\(A\)</span>的一个覆盖<span class="math inline">\(\qty{O_\alpha}\)</span>,</p>
+<ul>
+<li>若对任意<span class="math inline">\(p\in A\)</span>, 存在<span class="math inline">\(p\)</span>的邻域<span class="math inline">\(W\)</span>, 使得只存在有限个<span class="math inline">\(O_\alpha\cap W\neq\emptyset\)</span>,
+则称其为局部有限覆盖(locally finite cover).</li>
+<li>若其为有限集, 则称其为有限覆盖(finite cover).</li>
+</ul>
+<p>一个集合<span class="math inline">\(A\)</span>称为<strong>仿紧的(paracompact)</strong>,
+若其任意开覆盖都有局部有限的加细. 更进一步,
+若其任意开覆盖都有有限子覆盖, 则称其为<strong>紧致的(compact)</strong>.
+这个定义也可以拓展到<span class="math inline">\(X\)</span>上,
+此时称拓扑空间<span class="math inline">\((X,{\cal
+T})\)</span>是仿紧/紧致的.</p>
+<p>一个拓扑空间<span class="math inline">\((X,{\cal
+T})\)</span>称为<strong>Hausforff的</strong>,
+如果任意两点都有不相交的邻域.</p>
+<p>一个拓扑空间<span class="math inline">\((X,{\cal T})\)</span>称为</p>
+<ul>
+<li><strong>第一可数的(first countable),</strong> 如果对任意一点<span class="math inline">\(p\)</span>, 都存在可数邻域族<span class="math inline">\(\qty{O_\alpha}\)</span>, 满足对任意邻域<span class="math inline">\(N\)</span>, 都存在<span class="math inline">\(O_\alpha\)</span>, 使得<span class="math inline">\(N\supset O_\alpha\)</span>.</li>
+<li><strong>第二可数的(second countable)</strong>,
+如果存在可数集合族<span class="math inline">\(\qty{O_\alpha}\subset{\cal
+T}\)</span>, 使得<span class="math inline">\(\cal
+T\)</span>中任意元素都为<span class="math inline">\(\qty{O_\alpha}\)</span>的元素之并.</li>
+</ul>
+<h2 id="differentiable-manifolds">2  Differentiable Manifolds</h2>
+<h3 id="differentiable-manifolds-1">2.1  Differentiable manifolds</h3>
+<p>在拓扑空间上增加另外的条件, 来得到一个和<span class="math inline">\(\R^n\)</span>局部相似,
+但不必整体上完全相同的空间.</p>
+<p><strong>拓扑流形(topological manifold)</strong>: 若拓扑空间<span class="math inline">\(M\)</span>满足如下性质,</p>
+<ol type="1">
+<li>Hausdorff的.</li>
+<li>第二可数的.</li>
+<li>(同<span class="math inline">\(\R^n\)</span>的局部相似性) 存在<span class="math inline">\(M\)</span>开覆盖<span class="math inline">\(\qty{O_\alpha}\)</span>和<span class="math inline">\(\R^n\)</span>的开覆盖<span class="math inline">\(\qty{V_\alpha}\)</span>, 而且对于所有<span class="math inline">\(O_\alpha\)</span>, 存在同胚映射<span class="math inline">\(\psi_\alpha:O_\alpha\to V_\alpha\)</span>.</li>
+</ol>
+<p>则称其为一个<span class="math inline">\(n\)</span>维拓扑流形,
+简称流形.</p>
+<p><span class="math inline">\(O_\alpha\)</span>中的每个点在<span class="math inline">\(\psi_\alpha\)</span>下都获得了一组<span class="math inline">\(\R^n\)</span>中的坐标, 把<span class="math inline">\((O_\alpha,\psi_\alpha)\)</span>称为一个<strong>图</strong>(chart),
+或者说是坐标系. 很多个图(应当是<span class="math inline">\(M\)</span>的一个开覆盖)放在一起组成了一个<strong>图册(atlas)</strong>:
+<span class="math inline">\(\mathcal{A}=\set{(O_\alpha,\psi_\alpha)}\)</span>.
+对图册进行更高的要求:</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-differentiable-manifolds.png" style="zoom:43%;" cloud-img="" lazyload="true"></p>
+<ol type="1">
+<li>(<span class="math inline">\(C^r\)</span>相容性) 如果<span class="math inline">\(O_\alpha\cap O_\beta\neq\varnothing\)</span>,
+那么<span class="math inline">\(\psi_\beta\circ\psi^{-1}_\alpha\)</span>是<span class="math inline">\(C^r\)</span>的.</li>
+<li>(图册最大化) 如果图<span class="math inline">\((\psi_0,U_0)\)</span>满足: <span class="math inline">\(\forall(\psi_\alpha,U_\alpha)\in\mathcal{A}\)</span>与<span class="math inline">\((\psi_0,U_0)\)</span>相容, 那么<span class="math inline">\((\psi_0,U_0)\in\mathcal{A}\)</span>.</li>
+</ol>
+<p>则称<span class="math inline">\({\cal
+A}\)</span>为一个微分结构(differential structure).</p>
+<p><strong>微分流形(differentiable
+manifold)</strong>指的是具有微分结构的拓扑流形. 今后,
+我们默认要求微分结构是光滑(<span class="math inline">\(C^\infty\)</span>)的, 此时微分流形<span class="math inline">\(M\)</span>也称为光滑流形. 可以证明, 任一<span class="math inline">\(C^r\)</span>相容的图册(也称为微分结构的一个基)都能唯一地拓展成一个最大图册,
+所以指定图册时只需指定一个<span class="math inline">\(C^r\)</span>相容的图册即可.</p>
+<p>举例:</p>
+<ul>
+<li><span class="math inline">\(\R^2\)</span>和图册<span class="math inline">\(\set{(O_1,\psi_1)}\)</span>构成了一个流形,
+其中<span class="math inline">\(\psi_1\)</span>是恒等映射.
+这种只需一个图便可覆盖的流形称为平凡流形.</li>
+<li>圆<span class="math inline">\(S^1\)</span>和二维球面<span class="math inline">\(S^2\)</span>. 它们都至少需要两个图来覆盖.</li>
+</ul>
+<p>映射的<strong>光滑度</strong>: 要考虑两个微分流形<span class="math inline">\(M,M'\)</span>之间的映射<span class="math inline">\(f\)</span>, 可以借助<span class="math inline">\(\R^n\to\R^{n'}\)</span>的映射. 设<span class="math inline">\(p\in O_\alpha\subset M\)</span>, <span class="math inline">\(f(p)\in O_\beta'\subset M'\)</span>,
+当<span class="math inline">\(\psi_\beta'\circ
+f\circ\psi_\alpha^{-1}\)</span>是<span class="math inline">\(C^r\)</span>的, 那么称<span class="math inline">\(f\)</span>是<span class="math inline">\(C^r\)</span>的.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-1-smoothness.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p><strong>微分同胚(diffeomorphism)</strong>:
+如果两个微分流形间存在双射<span class="math inline">\(f\)</span>,
+且它与它的逆映射都是<span class="math inline">\(C^\infty\)</span>的,
+那么<span class="math inline">\(f\)</span>是微分同胚映射,
+两个微分流形间是微分同胚的(diffeomorphic).</p>
+<p><strong>标量场(scalar field)</strong>: <span class="math inline">\(f:M\to\R\)</span>.</p>
+<ul>
+<li>选定坐标系<span class="math inline">\((O_0,\psi_0)\)</span>后,
+就有<span class="math inline">\(f(p)\equiv F_0(x^1,x^2,\dots,x^n)\equiv
+F_0(x)\)</span>.</li>
+</ul>
+<p>记<span class="math inline">\(\mathcal{F}_M\)</span>为<span class="math inline">\(M\)</span>上全体<span class="math inline">\(C^\infty\)</span>标量场的集合.</p>
+<h3 id="tangent-spaces">2.2  Tangent spaces</h3>
+<p><strong>向量(vector)</strong>: 设<span class="math inline">\(p\in
+M\)</span>, 映射<span class="math inline">\(v:\mathcal{F}_M\to\R\)</span>满足: <span class="math inline">\(\forall f,g\in\mathcal{F}_M\)</span>, <span class="math inline">\(\forall\alpha,\beta\in\R\)</span>:</p>
+<ol type="1">
+<li>(线性性) <span class="math inline">\(v(\alpha f+\beta g)=v(\alpha
+f)+v(\beta g)\)</span>.</li>
+<li>(Leibniz法则) <span class="math inline">\(v(fg)=f|_pv(g)+g|_pv(f)\)</span>.</li>
+</ol>
+<p>则称<span class="math inline">\(v\)</span>是流形<span class="math inline">\(M\)</span>中, 点<span class="math inline">\(p\)</span>的一个向量. <span class="math inline">\(p\)</span>点的全体向量的集合记作<span class="math inline">\(V_p\)</span>.</p>
+<div class="note note-secondary">
+<p>向量可以理解为求<span class="math inline">\(f\)</span>在<span class="math inline">\(v\)</span>"方向"的"方向导数"(于点<span class="math inline">\(p\)</span>).</p>
+</div>
+<p><u>Claim 1</u> <span class="math inline">\(V_p\)</span>是一个向量空间, 且<span class="math inline">\(\dim{V_p}=\dim{M}\equiv n\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 定义加法与数乘: <span class="math inline">\((v+u)(f):=v(f)+u(f)\)</span>, <span class="math inline">\((\alpha v)(f):=\alpha v(f)\)</span>, 于是零元<span class="math inline">\(\underline{0}(f)=0\in\R\)</span>.</p>
+<p>在<span class="math inline">\(p\)</span>附近选定坐标系<span class="math inline">\((O_p,\psi_p)\)</span>. 定义向量<span class="math inline">\(\displaystyle
+X_\mu(f):=\eval{\pdv{f(x)}{x^\mu}}_p\)</span>(<span class="math inline">\(\mu=1,2,\dots,n\)</span>), 下证其构成<span class="math inline">\(V_p\)</span>的一个基底.</p>
+<ol type="A">
+<li><p>线性无关性. 设实数<span class="math inline">\(\alpha^\mu\)</span>满足: <span class="math inline">\(\sum_\mu\alpha^\mu
+X_\mu=\underline0\)</span>这是一个向量方程.
+使方程两边同时作用在一个光滑函数上. 设光滑函数<span class="math inline">\(x^\nu:O_\alpha\to\R\)</span>, <span class="math inline">\(p\mapsto p\)</span>的坐标的第<span class="math inline">\(\nu\)</span>个分量(<span class="math inline">\(\nu=1,2,\dots,n\)</span>). 则: <span class="math display">\[
+(\alpha^\mu X_\mu)(x^\nu)=\underline0(x^\nu).
+\]</span> 又<span class="math inline">\(\rhs=0\)</span>, <span class="math inline">\(\displaystyle\lhs=\alpha^\mu
+X_\mu(x^\nu)=\alpha^\mu\pdv{x^\nu}{x^\mu}=\alpha^\mu\delta^\nu_\mu=\alpha^\nu\)</span>,
+所以<span class="math inline">\(\alpha^\nu=0\)</span>, <span class="math inline">\(X_\mu\)</span>线性无关.</p></li>
+<li><p>可线性表出性. 由<span class="math inline">\(\forall v\in
+V:v=v^\mu X_\mu\)</span>两边作用于<span class="math inline">\(x^\nu\)</span>, 可以得到<span class="math inline">\(v^\nu=v(x^\nu)\)</span>(<span class="math inline">\(\nu=1,2,\dots,n\)</span>).</p></li>
+</ol>
+</div>
+<p><span class="math inline">\(\set{X_\mu}\)</span>称为一个<strong>坐标基底(coordinate
+basis)</strong>, <span class="math inline">\(v^\mu\)</span>称为<span class="math inline">\(v\)</span>的坐标分量.</p>
+<p><u>Claim 2</u> 两个坐标基底下, <span class="math inline">\(v=v^\mu
+X_\mu=v'^\nu X'_\nu\)</span>, 则坐标分量满足<span class="math inline">\(\displaystyle
+v'^\nu=\eval{\pdv{x'^\nu}{x^\mu}}_p v^\mu\)</span>.</p>
+<p><strong>曲线(curve)</strong>: 映射<span class="math inline">\(c:I\to
+M\)</span>. 如果有一个坐标系<span class="math inline">\((O,\psi)\)</span>, <span class="math inline">\(c[I]\subset O\)</span>, 那么点坐标分量<span class="math inline">\(x^\mu=x^\mu(t)\)</span>(<span class="math inline">\(\mu=1,\dots,n\)</span>), 这就是曲线的参数式.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-lgr/2-2-tangent-vectors.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p><strong>切向量(tangent vector)</strong>: 在<span class="math inline">\(t_0\)</span>处, 切向量<span class="math inline">\(T:\mathcal{F}_M\to\R\)</span>, 定义为<span class="math inline">\(\displaystyle T(f):=\eval{\dv{(f\circ
+c)}{t}}_{t_0}\)</span>对任意光滑<span class="math inline">\(f\)</span>.
+记<span class="math inline">\(\displaystyle
+T\equiv\eval{\pdv{}{t}}_{t_0}\)</span>.</p>
+<p><span class="math inline">\(M\)</span>中某坐标系<span class="math inline">\(\qty{O,\psi}\)</span>的坐标线是仅有一个分量能够自由变化的曲线.
+可以验证, <span class="math inline">\(X_\mu\)</span>是第<span class="math inline">\(\mu\)</span>个坐标的坐标线的切向量: <span class="math inline">\(\displaystyle
+X_\mu\equiv\pdv{}{x^\mu}\)</span>.</p>
+<p>应用链式法则可得, 切向量的坐标分量是该曲线的参数式之导数: <span class="math inline">\(\displaystyle
+\pdv{}{t}=\dv{x^\mu(t)}{t}\cdot\pdv{}{x^\mu}\)</span>.</p>
+<p>对于<span class="math inline">\(p\)</span>点的向量空间<span class="math inline">\(V_p\)</span>中每个向量<span class="math inline">\(v\)</span>, 都存在一条曲线, 使得<span class="math inline">\(v\)</span>是它的切向量, 所以<span class="math inline">\(V_p\)</span>也称为<span class="math inline">\(p\)</span>点的<strong>切空间(tangent
+space)</strong>.</p>
+<div class="note note-secondary">
+<p>之前说过, <span class="math inline">\(v\in
+V_p\)</span>可以理解为求取方向导数的算子: <span class="math inline">\(\displaystyle v=\alpha^\mu\pdv{}{x^\mu}\)</span>,
+它是坐标基向量算子(即偏导数算子)的线性组合.
+注意偏导数算子依赖于坐标系的选择.</p>
+</div>
+<p><strong>向量场(vector field)</strong>: 对每一点<span class="math inline">\(p\in M\)</span>, 都取<span class="math inline">\(V_p\)</span>中一个向量<span class="math inline">\(v_p\)</span>, 就有了一个向量场.
+给定了一个光滑映射<span class="math inline">\(f:M\to\R\)</span>之后,
+<span class="math inline">\(M\)</span>中每一点<span class="math inline">\(p\)</span>都有<span class="math inline">\(v_p(f)\in\R\)</span>, 即一个实数与之对应,
+所以<span class="math inline">\(v_p(f)\)</span>可以看作一个标量场,
+简记为<span class="math inline">\(v(f)\)</span>. 如果<span class="math inline">\(v(f)\)</span>是<span class="math inline">\(C^r\)</span>的, 那么称向量场<span class="math inline">\(v\)</span>是<span class="math inline">\(C^r\)</span>的.</p>
+<p><strong>对易子(commutator)</strong>: 两个<span class="math inline">\(C^\infty\)</span>向量场<span class="math inline">\(u,v\)</span>的对易子为<span class="math inline">\([u,v](f):=u(v(f))-v(u(f))\)</span>. 可以验证,
+它是一个向量场. 如果<span class="math inline">\([u,v]=\underline0\)</span>, 那么称<span class="math inline">\(u,v\)</span>是对易的.</p>
+<ul>
+<li><p>坐标基底场: <span class="math inline">\(\displaystyle
+v_\mu=\pdv{}{x^\mu}\)</span>, 任意<span class="math inline">\(v_\mu,v_\nu\)</span>都是对易的.</p></li>
+<li><p>对易子满足Jacobi恒等式, 即 <span class="math display">\[
+\sum_{\rm cyc}[u,[v,w]] \equiv
+[u,[v,w]] + [v,[w,u]] + [w,[u,v]] = \underline0.
+\]</span></p></li>
+</ul>
+<p><strong>积分曲线(integral curve)</strong>: 设向量场<span class="math inline">\(v\)</span>, 若曲线<span class="math inline">\(c\)</span>每一点<span class="math inline">\(t_0\)</span>都有<span class="math inline">\(\pdv{}{t}|_{t=t_0}=v|_{c(t_0)}\)</span>,
+那么称<span class="math inline">\(c\)</span>是<span class="math inline">\(v\)</span>的一条积分曲线. 对于<span class="math inline">\(C^\infty\)</span>的向量场, 过任意一点<span class="math inline">\(p\)</span>的积分曲线总是唯一存在的(在<span class="math inline">\(c(0)=p\)</span>的条件下).</p>
+<ul>
+<li>称一个向量场<span class="math inline">\(v\)</span>是完备的,
+如果它的每一条积分曲线的参数都可以延拓至<span class="math inline">\(\R\)</span>.</li>
+</ul>
+<p><strong>单参数微分同胚群(one-parameter group of
+diffeomorphisms)</strong>: 含有一个参数的微分同胚映射构成的群.
+设光滑映射<span class="math inline">\(\phi:\R\times M\to
+M\)</span>(记<span class="math inline">\(\phi_t(\cdot)\equiv\phi(t,\cdot)\)</span>, <span class="math inline">\(\phi_p(\cdot)\equiv\phi(\cdot,p)\)</span>, <span class="math inline">\(\phi_t:M\to M\)</span>, <span class="math inline">\(\phi_p:\R\to M\)</span>), 满足:</p>
+<ol type="1">
+<li>对任意<span class="math inline">\(t\in\R\)</span>, <span class="math inline">\(\phi_t:M\to M\)</span>是微分同胚.</li>
+<li>对任意<span class="math inline">\(s,t\in\R\)</span>, <span class="math inline">\(\phi_t\cdot\phi_s:=\phi_t\circ\phi_s\equiv\phi_{t+s}\)</span>.</li>
+</ol>
+<p>那么<span class="math inline">\(G\equiv\set{\phi_t:t\in\R}\)</span>与(2)的乘法构成单参微分同胚群.
+单位元<span class="math inline">\(\phi_0(p)=p\)</span>, 逆元<span class="math inline">\(\phi_{-t}\cdot\phi_t=\phi_0\)</span>.</p>
+<p><u>Claim 3</u> 单微群<span class="math inline">\(\overset{\longrightarrow}{\underset{\text{locally}}{\longleftarrow}}
+C^\infty\)</span>向量场<span class="math inline">\(v\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 给定单微群. <span class="math inline">\(\forall p\in
+M\)</span>, 都有<span class="math inline">\(\phi_p(0)\equiv\phi(0,p)\equiv\phi_0(p)=p\)</span>,
+所以曲线<span class="math inline">\(\phi_p:\R\to M\)</span>恒过<span class="math inline">\(p\)</span>, 便可以取它在<span class="math inline">\(p\)</span>处的切向量<span class="math inline">\(T\)</span>. 由于<span class="math inline">\(p\)</span>是任意的, 所以就有了一个向量场.</p>
+<p>给定光滑向量场. <span class="math inline">\(\forall p\in M\)</span>,
+都有唯一一条过<span class="math inline">\(p\)</span>的积分曲线<span class="math inline">\(c_p:I\to M\)</span>, 定义<span class="math inline">\(\phi_t(p)\equiv c_p(t)\)</span>(<span class="math inline">\(t\in I\)</span>), 注意到这只对局部的参数<span class="math inline">\(t\in I\)</span>成立.</p>
+</div>
+<h3 id="dual-vector-fields">2.3  Dual vector fields</h3>
+<p><strong>对偶空间(dual space)</strong>: 给定线性空间<span class="math inline">\(V\)</span>, 一个线性映射<span class="math inline">\(\omega:V\to\R\)</span>, 称为<span class="math inline">\(V\)</span>的一个对偶向量(dual vector),
+对偶向量构成的集合称为对偶空间, 记作<span class="math inline">\(V^*\)</span>.</p>
+<p><u>Claim 1</u> <span class="math inline">\(V^*\)</span>是一个线性空间, 且<span class="math inline">\(\dim{V^*}=\dim{V}\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 定义加法与数乘: <span class="math inline">\((\omega_1+\omega_2)(v):=\omega_1(v)+\omega_2(v)\)</span>,
+<span class="math inline">\((\alpha \omega)(v):=\alpha
+\omega(v)\)</span>; 零元<span class="math inline">\(\underline{0}(v):=0\in\R\)</span>.</p>
+<p>取<span class="math inline">\(V\)</span>的基底<span class="math inline">\(e_\mu\)</span>(<span class="math inline">\(\mu=1,\dots,n\)</span>), 定义<span class="math inline">\(e^{\mu*}:V\to\R\)</span>, 满足<span class="math inline">\(e^{\mu*}(e_\nu):=\delta^\mu{}_\nu\in\R\)</span>.
+下面验证它们构成基底.</p>
+<ol type="A">
+<li><p>线性无关. <span class="math inline">\(\alpha_\mu
+e^{\mu*}=\underline0\)</span>有<span class="math inline">\(\forall
+\nu:\alpha_\mu e^{\mu*}(e_\nu)=0\)</span>即<span class="math inline">\(\alpha_\mu\delta^\mu_\nu=0\)</span>, 则<span class="math inline">\(\alpha_\nu=0\)</span>.</p></li>
+<li><p>线性表出. 对任意<span class="math inline">\(v\in V\)</span>,
+令<span class="math inline">\(\omega_\mu\equiv\omega(e_\mu)\in\R\)</span>,
+那么容易证明<span class="math inline">\(\omega=\omega_\mu
+e^{\mu*}\)</span>.</p></li>
+</ol>
+</div>
+<p><span class="math inline">\(\qty{e^{\mu*}}\)</span>称为<span class="math inline">\(V\)</span>的对偶基底(dual basis). 对<span class="math inline">\(v\in V\)</span>, 对偶基底<span class="math inline">\(e^{\mu*}\)</span>的作用是取(基底<span class="math inline">\(e^\nu\)</span>下)<span class="math inline">\(v\)</span>的第<span class="math inline">\(\mu\)</span>个分量.</p>
+<p>若两个线性空间<span class="math inline">\(V,V'\)</span>之间有一个线性双射<span class="math inline">\(L\)</span>, 那么称<span class="math inline">\(L\)</span>为<strong>同构映射(isomorphism)</strong>,
+称<span class="math inline">\(V,V'\)</span>是同构的(isomorphic).
+<span class="math inline">\(V,V'\)</span>同构<span class="math inline">\(\iff\dim{V}=\dim{V'}\)</span>. <span class="math inline">\(V\)</span>和<span class="math inline">\(V^*\)</span>同构.</p>
+<p>自然同构: <span class="math inline">\(V,V^*,V^{**}\)</span>两两同构.
+构造<span class="math inline">\(L:V\to V^{**},v\mapsto v^{**}\)</span>,
+满足<span class="math inline">\(v^{**}(\omega)=\omega(v)\)</span>(<span class="math inline">\(\forall\omega\in V^*\)</span>), 称<span class="math inline">\(L\)</span>是<span class="math inline">\(V,V^{**}\)</span>的自然同构. 一般将<span class="math inline">\(V,V^{**}\)</span>认为等同.</p>
+<p><u>Claim 2</u> 基变换. 若<span class="math inline">\(e'_\mu=A^\nu{}_\mu e_\nu\)</span>,
+那么对偶基底<span class="math inline">\(e'^{\mu*}=(\tilde{A}^{-1})_\nu{}^\mu
+e^{\nu*}\)</span>.(<span class="math inline">\(\tilde{A}\)</span>为转置矩阵.)</p>
+<p><strong>对偶向量场(dual vector field)</strong>: 对每一点<span class="math inline">\(p\)</span>, 都取<span class="math inline">\(V_p^*\)</span>中一个向量<span class="math inline">\(\omega\)</span>, 就有了一个对偶矢量场.
+称一个对偶向量场<span class="math inline">\(\omega\)</span>是<span class="math inline">\(C^\infty\)</span>的, 若对于任何<span class="math inline">\(C^\infty\)</span>向量场<span class="math inline">\(v\)</span>, 都有<span class="math inline">\(\omega(v)\)</span>是<span class="math inline">\(C^\infty\)</span>标量场.</p>
+<div class="note note-info">
+<p><u>Example</u> 对<span class="math inline">\(f\in\mathcal{F}_M\)</span>, 设对偶向量场<span class="math inline">\(\dd{f}\)</span>(称为<span class="math inline">\(f\)</span>诱导的对偶向量场), 让它在<span class="math inline">\(p\)</span>点的取值, 再作用于<span class="math inline">\(v\)</span>, 满足<span class="math inline">\(\dd{f}|_p(v):=v(f)\)</span>(<span class="math inline">\(\forall v\in V_p\)</span>).
+对一个"方向导数算子"<span class="math inline">\(v\)</span>,
+对偶向量场的效果就是把<span class="math inline">\(v\)</span>作用在<span class="math inline">\(f\)</span>上.</p>
+<p>建立坐标系<span class="math inline">\((O,\psi)\)</span>, 取<span class="math inline">\(p\in O\)</span>, 坐标标量场<span class="math inline">\(x^\mu\)</span>(取点<span class="math inline">\(p\)</span>的第<span class="math inline">\(\mu\)</span>坐标分量), 坐标基矢<span class="math inline">\(\displaystyle\pdv{}{x^\nu}\)</span>, 则 <span class="math display">\[
+\dd{x^\mu}\pqty{\pdv{}{x^\nu}}
+=\pdv{}{x^\nu}(\dd{x}^\mu)=\delta^\mu{}_\nu,
+\]</span> 称<span class="math inline">\(\dd{x^\mu}\)</span>为<strong>对偶坐标基矢</strong>.</p>
+</div>
+<p><u>Claim 3</u> <span class="math inline">\(\displaystyle\dd{f}=\pdv{f}{x^\mu}\dd{x^\mu}\)</span>,
+对<span class="math inline">\(f\in\mathcal{F}_O\)</span>(注意等式右边的<span class="math inline">\(f\)</span>的自变量是在坐标系<span class="math inline">\((O,\psi)\)</span>中取值的).</p>
+<p><u>Claim 4</u> 坐标变换(与2.2 Claim 2向结合; 注意指标平衡): <span class="math display">\[
+\Align{
+v=v^\mu\pdv{}{x^\mu}=v'^\nu\pdv{}{x'^\nu}
+&amp;\Rightarrow v'^\nu=\eval{\pdv{x'^\nu}{x^\mu}}_pv^\mu, \\
+\omega=\omega_\mu\dd{x^\mu}=\omega'_\nu\dd{x}'_\nu
+&amp;\Rightarrow
+\omega'_\nu=\eval{\pdv{x^\mu}{x'^\nu}}_p\omega_\mu.
+}
+\]</span></p>
+<h3 id="tensor-fields">2.4  Tensor fields</h3>
+<p><strong>张量(tensor)</strong>: 多重线性的映射<span class="math inline">\(T:(\underbrace{V^*\times\dots\times
+V^*}_{k个})\times(\underbrace{V\times\dots\times
+V}_{l个})\to\R\)</span>称为<span class="math inline">\(V\)</span>上的一个<span class="math inline">\((k,l)\)</span>型张量.</p>
+<div class="note note-secondary">
+<p><span class="math inline">\(\omega\in V^*\)</span>, <span class="math inline">\(\omega:V\to\R\)</span>是一个<span class="math inline">\((0,1)\)</span>型张量.</p>
+<p><span class="math inline">\(v\in V,v^{**}\in V^{**}\)</span>,
+在自然同构<span class="math inline">\(L\)</span>下, <span class="math inline">\(v\equiv v^{**}:V^*\to\R\)</span>是一个<span class="math inline">\((1,0)\)</span>型张量.</p>
+</div>
+<p><span class="math inline">\(V\)</span>上全体<span class="math inline">\((k,l)\)</span>型张量的集合记为<span class="math inline">\(\mathcal{T}_V(k,l)\)</span>. <span class="math inline">\(V=\mathcal{T}_V(1,0)\)</span>, <span class="math inline">\(V^*=\mathcal{T}_{V}(0,1)\)</span>.</p>
+<p>张量面面观: 给一个<span class="math inline">\(T(\cdot;\cdot)\in
+T_V(1,1)\)</span>之后, 给定一个<span class="math inline">\(\omega\in
+V^*\)</span>, 就有<span class="math inline">\(T(\omega;\cdot):V\to\R\)</span>, 从而<span class="math inline">\(T(\omega;\cdot)\in V^*\)</span>, 所以有<span class="math inline">\(T:V^*\to V^*\)</span>; 同样地, 也有<span class="math inline">\(T:V\to V\)</span>.</p>
+<p><strong>张量积(tensor product)</strong>: <span class="math inline">\(T\in\mathcal{T}_V(k,l)\)</span>, <span class="math inline">\(T'\in\mathcal{T}_V(k',l')\)</span>,
+则定义<span class="math inline">\(T\otimes
+T'\in\mathcal{T}_V(k+k',l+l')\)</span>, 且 <span class="math display">\[
+\Align{
+&amp; T \otimes T'(
+  \omega^1,\dots,\omega^k,\omega^{k+1},\dots,\omega^{k+k'};
+  v_1,\dots,v_l,v_{l+1},\dots,v_{l+l'}
+) \\ :={}
+&amp; T(\omega^1,\dots,\omega^k;v_1,\dots,v_l) \cdot
+T'(\omega^{k+1},\dots,\omega^{k+k'};v_{l+1},\dots,v_{l+l'}).
+}
+\]</span></p>
+<ul>
+<li>张量积不满足交换律, 但满足结合律.</li>
+</ul>
+<p><u>Claim 1</u> <span class="math inline">\(\mathcal{T}_V(k,l)\)</span>是向量空间, 且<span class="math inline">\(\dim{\mathcal{T}_V(k,l)}=n^{k+l}\)</span>(<span class="math inline">\(n\equiv\dim{V}\)</span>).</p>
+<div class="note note-info">
+<p><u>Example</u> 取<span class="math inline">\(T\in\mathcal{T}_V(2,1)\)</span>, 则<span class="math inline">\(T=T^{\mu\nu}{}_\sigma e_\mu\otimes e_\nu\otimes
+e^{\sigma*}\)</span>, 其中<span class="math inline">\(T^{\mu\nu}{}_\sigma\equiv
+T(e^{\mu*},e^{\nu*};e_\sigma)\in\R\)</span>.(注意指标平衡.)
+这个式子是<span class="math inline">\(T\)</span>在基底(<span class="math inline">\(e_\mu\otimes e_\nu\otimes
+e^{\sigma*}\)</span>)下的展开式.</p>
+</div>
+<p><strong>张量缩并(tensor contraction)</strong>:
+(从矩阵的迹推广而来)<span class="math inline">\(T\in\mathcal{T}_V(k,l)\)</span>, 定义 <span class="math display">\[
+{\rm C}^i_j T :=
+T(
+  \underbrace{\dots,e^{\mu*}}_i,\dots;
+  \underbrace{\dots,e_\mu}_j,\dots
+) \in \mathcal{T}_V(k-1,l-1),
+\]</span> 其中<span class="math inline">\(1\le i\le k\)</span>, <span class="math inline">\(1\le j\le l\)</span>. 给定线性变换,
+其矩阵的迹与基底无关; 相似地, 缩并是与基底无关的.</p>
+<p><u>Claim 2</u> <span class="math inline">\({\rm
+C}^1_1(v\otimes\omega)=\omega(v)\)</span>.(左边的<span class="math inline">\(v\)</span>应理解为<span class="math inline">\(v^{**}\)</span>.) 推而广之, 有"作用<span class="math inline">\(=\)</span>张量积<span class="math inline">\(+\)</span>缩并".</p>
+<p><strong>张量场(tensor field)</strong>: 每点<span class="math inline">\(p\)</span>选取一个<span class="math inline">\(V_p\)</span>上的<span class="math inline">\((k,l)\)</span>型张量, 就有一个<span class="math inline">\((k,l)\)</span>型张量场.</p>
+<p><u>Claim 3</u> (张量变换律) 两个不同基底<span class="math inline">\(\displaystyle\qty{\pdv{}{x^\mu}},\qty{\pdv{}{x'^\mu}}\)</span>与对应的对偶基底<span class="math inline">\(\set{\dd{x}^\mu},\set{\dd{x}'^\mu}\)</span>下,
+一个<span class="math inline">\((k,l)\)</span>型张量<span class="math inline">\(T^{a_1\dots a_k}{_{b_1\dots
+b_l}}\)</span>的分量满足变换公式 <span class="math display">\[
+T'^{\mu_1\dots\mu_k}{}_{\nu_1\dots\nu_l}
+= \eval{
+  \pdv{x'^{\mu_1}}{x^{\rho_1}}\cdots\pdv{x'^{\mu_k}}{x^{\rho_k}}
+  \pdv{x^{\sigma_1}}{x'^{\nu_1}}\cdots\pdv{x^{\sigma_l}}{x'^{\nu_l}}
+}_p T^{\rho_1\dots\rho_k}{}_{\sigma_1\dots\sigma_l}.
+\]</span></p>
+<h3 id="metric-tensor-fields">2.5  Metric tensor fields</h3>
+<p><strong>度规张量(metric tensor)</strong>: <span class="math inline">\(V\)</span>上的一个<span class="math inline">\((0,2)\)</span>型张量<span class="math inline">\(g\)</span>满足:</p>
+<ol type="1">
+<li><p>(对称性) <span class="math inline">\(\forall u,v\in
+V:g(u,v)=g(v,u)\)</span>.</p></li>
+<li><p>(非退化性) <span class="math inline">\((\forall u\in
+V:g(v,u)=0)\Rightarrow v=\underline0\)</span>.</p></li>
+</ol>
+<p>那么<span class="math inline">\(g\)</span>称为<span class="math inline">\(V\)</span>上的一个度规, 此时<span class="math inline">\(V\)</span>有了一个度规的结构, 记作<span class="math inline">\((V,g)\)</span>. 现在可以定义:</p>
+<ul>
+<li>模长: <span class="math inline">\(|v|:=\sqrt{|g(v,v)|}\)</span>.</li>
+<li>正交(orthogonal)性: <span class="math inline">\(u\perp v\iff
+g(u,v)=0\)</span>.</li>
+</ul>
+<p>若基底<span class="math inline">\(\set{e_\mu}\)</span>满足: <span class="math inline">\(g_{\mu\nu}\equiv
+g(e_\mu,e_\nu)=\Cases{0,&amp;\mu\ne\nu\\\pm1,&amp;\mu=\nu}=\pm\delta^\mu{}_\nu\)</span>,
+那么基底称为<strong>正交归一</strong>的(orthonormal).</p>
+<p><strong>号差(signature)</strong>: <span class="math inline">\(g_{\mu\nu}\)</span>组成的矩阵中<span class="math inline">\(+1\)</span>的个数减去<span class="math inline">\(-1\)</span>的个数, 即对角元之和.
+号差与基底的选取无关.</p>
+<ul>
+<li><p><strong>正定(positive
+definite)</strong>度规或<strong>黎曼(Riemannian)</strong>度规: <span class="math inline">\(g_{\mu\nu}\)</span>全是<span class="math inline">\(+1\)</span>的度规.</p></li>
+<li><p><strong>负定(negative definite)</strong>度规: <span class="math inline">\(g_{\mu\nu}\)</span>全是<span class="math inline">\(-1\)</span>的度规.</p></li>
+<li><p>不定(indefinite)度规.</p>
+<ul>
+<li><p><strong>洛伦兹</strong>(Lorentzian)度规: 恰有一个<span class="math inline">\(-1\)</span>的度规. 在洛伦兹度规下: 若<span class="math inline">\(g(v,v)&gt;0\)</span>, 则<span class="math inline">\(v\)</span>称为类空矢量(spacelike vector), <span class="math inline">\(&lt;0\)</span>称为类时矢量(timelike vector), <span class="math inline">\(=0\)</span>称为类光矢量(lightlike/null
+vector).</p>
+<p>如果曲线<span class="math inline">\(c\)</span>每一点的切向量都是类空向量, 那么<span class="math inline">\(c\)</span>称为<strong>类空曲线(spacelike
+curve)</strong>. 其他同理.</p></li>
+</ul></li>
+</ul>
+<p>给定<span class="math inline">\(g\)</span>, 再给一个<span class="math inline">\(v\)</span>, 可以造出<span class="math inline">\(g(v,\cdot)\in V^*\)</span>, 所以有<span class="math inline">\(g:V\to V^*\)</span>, 是一个同构映射. <span class="math inline">\(V\)</span>和<span class="math inline">\(V^*\)</span>有度规后自然同构.</p>
+<p><strong>度规张量场(metric tensor field)</strong>: <span class="math inline">\(V\)</span>上的处处对称, 非退化的张量场<span class="math inline">\(g\)</span>. 只考虑号差处处相等的度规场.
+度规场可以定义曲线长度.</p>
+<div class="note note-info">
+<p><u>Example</u> <span class="math inline">\(\R^2\)</span>中, <span class="math inline">\(\dd{l}^2=(\dd{x})^2+(\dd{y})^2\)</span>, 从而<span class="math inline">\(\displaystyle\dd{l}=\sqrt{\pqty{\dv{x}{t}}^2+\pqty{\dv{y}{t}}^2}\dd{t}=|T|\dd{t}\)</span>.</p>
+</div>
+<p>黎曼度规下, <span class="math inline">\(l:=\displaystyle\int\abs{T}\dd{t}=\int\sqrt{g(T,T)}\dd{t}\)</span>.</p>
+<p>洛伦兹度规下, (类空, 类时, 类光曲线) <span class="math display">\[
+\Align{
+l:=\displaystyle\int\abs{T}\dd{t}
+&amp;=\int\sqrt{\abs{g(T,T)}}\dd{t} \\
+&amp;=\int\sqrt{\abs{g\pqty{T^\mu\pdv{}{x^\mu},T^\nu\pdv{}{x^\nu}}}}\dd{t}
+\\
+&amp;=\int\sqrt{\abs{T^\mu T^\nu g_{\mu\nu}}} \dd{t}
+=\int\sqrt{\abs{\dv{x^\mu}{t} \dv{x^\nu}{t} g_{\mu\nu}}}\dd{t}
+=\int\sqrt{\abs{g_{\mu\nu}\dd{x^\mu}\dd{x^\mu}}}.
+}
+\]</span> 记<span class="math inline">\(\dd{s^2}\equiv
+g_{\mu\nu}\dd{x^\mu}\dd{x^\mu}\)</span>, 称为线元表达式(不过是<span class="math inline">\(g\)</span>的另一记号), 它可能为正, 零, 负.
+类光曲线的长度为零. 曲线的长度与参数的选择, 坐标系无关.</p>
+<p><strong>广义黎曼空间</strong><span class="math inline">\((M,g)\)</span>. 若<span class="math inline">\(g\)</span>正定, 则为<strong>黎曼空间(Riemannian
+space)</strong>; 若<span class="math inline">\(g\)</span>洛伦兹,
+则为<strong>伪黎曼空间(Pseudo-Riemannian space)</strong>.</p>
+<p>黎曼空间中最简单的例子<span class="math inline">\((\R^n,\delta)\)</span>称为<span class="math inline">\(n\)</span>维<strong>欧氏空间(Euclidean
+space)</strong>. 取自然坐标, 且<span class="math inline">\(\delta:=\delta_{\mu\nu}\dd{x^\mu}\otimes\dd{x^\nu}\)</span>,
+<span class="math inline">\(\delta_{\mu\nu}=\Cases{0,&amp;\mu\ne\nu\\+1,&amp;\mu=\nu}\)</span>.
+可以证得, 自然坐标基底<span class="math inline">\(\displaystyle
+\qty{\pdv{}{x^\mu}}\)</span>在欧氏度规下是正交归一的.</p>
+<ul>
+<li>保持正交归一性的坐标变换: 平移, 旋转, 反射.</li>
+</ul>
+<p>伪黎曼空间中最简单的例子<span class="math inline">\((\R^n,\eta)\)</span>称为<span class="math inline">\(n\)</span>维<strong>闵氏空间(Minkowski
+space)</strong>. 取自然坐标, 且<span class="math inline">\(\eta:=\eta_{\mu\nu}\dd{x^\mu}\otimes\dd{x^\nu}\)</span>,
+<span class="math inline">\(\eta_{\mu\nu}=\Cases{0,&amp;\mu\ne\nu,\\-1,&amp;\mu=\nu=0,\\+1,&amp;\mu=\nu=1,\dots,n-1}\)</span>.
+自然坐标基底<span class="math inline">\(\displaystyle
+\qty{\pdv{}{x^\mu}}\)</span>在闵氏度规下是正交归一的.</p>
+<ul>
+<li>保持正交归一性的坐标变换: 平移, 伪转动(<span class="math inline">\(\set{x,t}\mapsto\set{x',t'}\)</span>:
+<span class="math inline">\(t'=t\cosh\alpha+x\sinh\alpha\)</span>,
+<span class="math inline">\(x'=t\cosh\alpha+x\sinh\alpha\)</span>),
+反射.</li>
+</ul>
+<div class="note note-secondary">
+<p>把一个<span class="math inline">\(S^2\)</span>放在<span class="math inline">\((\R^3,\delta)\)</span>里面,
+欧氏度规能够诱导出球面上的度规.</p>
+<p><span class="math inline">\((\R^3,\delta_{ab})\)</span>中,
+笛卡尔系下线元表达式为<span class="math inline">\(\dd{s}^2=\dd{x}^2+\dd{y}^2+\dd{z}^2\)</span>,
+引入球坐标系<span class="math inline">\(\qty{r,\theta,\phi}\)</span>满足
+<span class="math display">\[
+\Cases{x=r\sin\theta\cos\phi,\\y=r\sin\theta\sin\phi,\\z=r\cos\theta.}
+\]</span> (<span class="math inline">\(\phi\to\)</span> 经度, <span class="math inline">\(\theta\to\)</span> 与<span class="math inline">\(z\)</span>轴夹角) 于是<span class="math inline">\(\dd{s}^2=\dd{r}^2+r^2(\dd{\theta}^2+\sin^2\theta\,\dd{\phi}^2)\)</span>.
+将其限制在半径为<span class="math inline">\(R\)</span>的二维球面上,
+有<span class="math inline">\(\dd{r}=0\)</span>, 于是 <span class="math display">\[
+\dd{\hat s}^2=R^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2),
+\]</span> 这是诱导出的度规(induced metric)在球面坐标系<span class="math inline">\(\qty{\theta,\phi}\)</span>下的线元表达式(称为诱导线元).</p>
+</div>
+<h3 id="abstract-index-notation">2.6  Abstract index notation</h3>
+<div style="text-align: right;">
+2023.7.7
+</div>
+<p><strong>抽象指标记号</strong>.</p>
+<ol type="1">
+<li><p>使用小写拉丁字母表示张量类型, 如<span class="math inline">\(v^a,
+\omega_b\)</span>等; 注意指标平衡.</p></li>
+<li><p>重复代表缩并, <span class="math inline">\(T^{ab}{}_a=T(e^{\mu*},*;e_\mu)\)</span>.</p></li>
+<li><p>省略张量积记号. <span class="math inline">\(\omega\otimes\mu\to\omega_a\mu_b=\mu_b\omega_a\)</span>.</p></li>
+<li><p>抽象指标与具体指标. <span class="math inline">\(T^{ab}{}_c=T^{\mu\nu}{}_\sigma(e_\mu)^a(e_\nu)^b(e^\sigma)_c\)</span>,
+其中<span class="math inline">\(T^{\mu\nu}{}_\sigma=T^{ab}{}_c(e^\mu)_a(e^\nu)_b(e_\sigma)^c\)</span>.</p></li>
+<li><p>恒等映射<span class="math inline">\(\delta^a{}_b:V\to V\)</span>,
+即<span class="math inline">\(\delta^a{}_bv^b=v^a\)</span>. 可得<span class="math inline">\(\delta^a{}_b\omega_a=\omega_b\)</span>.
+其分量<span class="math inline">\(\delta^a{}_b(e^\mu)_a(e_\nu)^b=\delta^\mu{}_\nu\)</span>.</p></li>
+<li><p>度规<span class="math inline">\(g_{ab}:V\to V^*\)</span>, <span class="math inline">\(V\)</span>与<span class="math inline">\(V^*\)</span>认同. 记<span class="math inline">\(g_{ab}v^b=v_a\)</span>(<strong>降指标</strong>).</p>
+<ul>
+<li><p>逆映射<span class="math inline">\(g^{ab}:V^*\to V\)</span>,
+满足<span class="math inline">\(g^{ca}g_{ab}=\delta^c{}_b\)</span>.
+记<span class="math inline">\(g^{ab}\omega_b=\omega^a\)</span>(<strong>升指标</strong>).
+度规和逆度规在同一个基底下的分量互为逆矩阵.</p></li>
+<li><p>基矢/对偶基矢升降指标的结果, <span class="math display">\[
+\Align{
+g_{ab}\pqty{\pdv{x^\mu}}^a &amp;= g_{\mu\nu}(\dd{x^\nu})_b, &amp;
+g^{ab}(\dd{x^\mu})_a &amp;= g^{\mu\nu}\pqty{\pdv{x^\nu}}^b.
+}
+\]</span></p></li>
+<li><p><span class="math inline">\(g\)</span>对称 <span class="math inline">\(\iff g_{ab}=g_{ba}\)</span>. 若<span class="math inline">\(T^a{}_b=T_b{}^a\)</span>, 则说明<span class="math inline">\(T^a{}_b\)</span>降指标后的<span class="math inline">\(T_{ab}\)</span>对称.</p></li>
+</ul></li>
+</ol>
+<p><strong>张量的对称性</strong>.</p>
+<p>(下面讨论的对象是<span class="math inline">\((0,l)\)</span>型张量,
+对<span class="math inline">\((k,0)\)</span>型张量是同样的.)</p>
+<p>一个<span class="math inline">\((0,l)\)</span>型张量<span class="math inline">\(T_{a_1\dots
+a_l}\)</span>的<strong>对称部分(symmetric
+part)</strong>和<strong>反对称部分(antisymmetric
+part)</strong>分别定义为 <span class="math display">\[
+\Align{
+T_{(a_1 \dots a_l)} &amp;:= \frac1{l!}\sum_{\sigma\in S_l}
+   T_{a_{\sigma(1)}\dots a_{\sigma(l)}}, \\
+T_{[a_1 \dots a_l]} &amp;:= \frac1{l!}\sum_{\sigma\in S_l} \sgn(\sigma)
+   T_{a_{\sigma(1)}\dots a_{\sigma(l)}}.
+}
+\]</span></p>
+<ul>
+<li>例如, <span class="math inline">\(T_{[ab]}=\dfrac12(T_{ab}-T_{ba})\)</span>, <span class="math inline">\(T_{[abc]}=\dfrac16(T_{abc}+T_{bca}+T_{cab}-T_{bac}-T_{cba}-T_{acb})\)</span>.</li>
+</ul>
+<p>若<span class="math inline">\(T\)</span>等于其对称部分,
+称其为<strong>全对称的(totally symmetric)</strong>; 若<span class="math inline">\(T\)</span>等于其反对称部分,
+称其为<strong>全反对称的(totally antisymmetric)</strong>.</p>
+<ul>
+<li>由定义可知, <span class="math inline">\(T_{(a_1\dots
+a_l)}\)</span>中交换两个指标, 值不变; <span class="math inline">\(T_{[a_1\dots a_l]}\)</span>中交换两个指标,
+多一个负号. 因此, 有如下性质,
+<ul>
+<li>若<span class="math inline">\(T\)</span>对称, 则<span class="math inline">\(T_{a_1\dots a_l}=T_{a_{\sigma(1)}\dots
+a_{\sigma(l)}}\)</span>, 对任意置换<span class="math inline">\(\sigma\in
+S_n\)</span>.</li>
+<li>若<span class="math inline">\(T\)</span>反对称, 则<span class="math inline">\(T_{a_1\dots a_l}=(\sgn\sigma)T_{a_{\sigma(1)}\dots
+a_{\sigma(l)}}\)</span>, 对任意置换<span class="math inline">\(\sigma\in
+S_n\)</span>.</li>
+</ul></li>
+</ul>
+<p><u>Claim 1</u> 一些很有用的运算定律,</p>
+<ol type="1">
+<li>对称/反称号具有"传染性", <span class="math inline">\(T_{[a_1\dots
+a_l]}S^{a_1\dots a_l}=T_{[a_1\dots a_l]}S^{[a_1\dots a_l]}=T_{a_1\dots
+a_l}S^{[a_1\dots a_l]}\)</span>.</li>
+<li>括号内同种子括号随意增删, <span class="math inline">\(T_{[a_1\dots
+a_l]}=T_{[a_1\dots [a_{i+1}\dots a_j]\dots a_l]}\)</span>.
+<ul>
+<li>嵌套括号的定义, 以<span class="math inline">\((0,3)\)</span>型张量为例, <span class="math inline">\(T_{[a[bc]]}=\dfrac12(T_{[abc]}-T_{[bac]})\)</span>.</li>
+</ul></li>
+<li>括号内异种子括号为零, <span class="math inline">\(T_{[a_1\dots(a_i\dots a_j)\dots
+a_l]}=0\)</span>.</li>
+<li>异种括号缩并为零, <span class="math inline">\(T_{[a_1\dots
+a_l]}S^{(a_1\dots a_l)}=0\)</span>.</li>
+<li>若<span class="math inline">\(T\)</span>反对称, 则其对称部分为零;
+若<span class="math inline">\(T\)</span>对称, 则其反对称部分为零.</li>
+</ol>
+<div class="note note-light">
+<p><u>Pf</u> 1证明如下, <span class="math display">\[
+\Align{
+T_{[a_1 \dots a_l]} S^{[a_1 \dots a_l]}
+&amp;=\frac1{(l!)^2}\sum_{\sigma,\tau\in S_l} (\sgn\sigma)(\sgn\tau)
+T_{a_{\sigma(1)}\dots a_{\sigma(l)}}
+S^{a_{\tau(1)}\dots a_{\tau(l)}} \\
+&amp;=\frac1{(l!)^2}\sum_{\sigma,\tau\in S_l}
+(\sgn\sigma)(\sgn\tau)\pqty{
+{\rm C}^{(\tau^{-1}\sigma)(1)}_{1} \cdots
+{\rm C}^{(\tau^{-1}\sigma)(l)}_{l} }
+(T_{a_1\dots a_l} S^{b_1\dots b_l}) \\
+&amp;=\frac1{(l!)^2}\sum_{\pi=\tau^{-1}\sigma} l! (\sgn\pi) \pqty{
+{\rm C}^{\pi(1)}_{1} \cdots
+{\rm C}^{\pi(l)}_{l} }
+(T_{a_1\dots a_l} S^{b_1\dots b_l}) \\
+&amp;=\frac1{l!}\sum_{\pi\in S_l} (\sgn\pi)
+T_{a_1\dots a_l} S^{a_{\pi(1)}\dots a_{\pi(l)}} \\
+&amp;=T_{a_1\dots a_l} S^{[a_1\dots a_l]}.
+}
+\]</span></p>
+<ul>
+<li>第3步, 注意到求和式的每一项只与<span class="math inline">\(\tau^{-1}\sigma\)</span>有关, 因此设<span class="math inline">\(\pi=\tau^{-1}\sigma\)</span>. 对每一个<span class="math inline">\(\pi\)</span>, 有<span class="math inline">\(l!\)</span>个<span class="math inline">\((\sigma,\tau)\)</span>的有序对使得<span class="math inline">\(\pi=\tau^{-1}\sigma\)</span>(对任意<span class="math inline">\(\sigma\)</span>, 都恰好有一个满足条件的<span class="math inline">\(\tau=\pi^{-1}\sigma\)</span>), 因此多出来一个<span class="math inline">\(l!\)</span>. 又有<span class="math inline">\(\sgn\pi=(\sgn\tau)(\sgn\sigma)\)</span>,
+即得.</li>
+<li>圆括号的证明是一样的, 只需去掉<span class="math inline">\(\sgn\)</span>.</li>
+</ul>
+<p>2证明如下, <span class="math display">\[
+\Align{
+T_{[a_1\dots [a_{i+1}\dots a_j]\dots a_l]}
+&amp;=\frac1{(j-i)!} \sum_{\sigma\in S_{j-i}} (\sgn\sigma)
+  T_{[
+  a_1 \dots a_i
+  a_{i+\sigma(1)} \dots a_{i+\sigma(j-i)}
+  a_{j+1} \dots a_l]} \\
+&amp;=\frac1{(j-i)!} \sum_{\sigma\in S_{j-i}}
+  T_{[
+  a_1 \dots a_i
+  a_{i+1} \dots a_{j}
+  a_{j+1} \dots a_l]} \\
+&amp;=T_{[a_1 \dots a_l]}, \\
+T_{(a_1\dots(a_{i+1}\dots a_j)\dots a_l)}
+&amp;=\frac1{(j-i)!} \sum_{\sigma\in S_{j-i}}
+  T_{(
+  a_1 \dots a_i
+  a_{i+\sigma(1)} \dots a_{i+\sigma(j-i)}
+  a_{j+1} \dots a_l)} \\
+&amp;=\frac1{(j-i)!} \sum_{\sigma\in S_{j-i}}
+  T_{(
+  a_1 \dots a_i
+  a_{i+1} \dots a_{j}
+  a_{j+1} \dots a_l)} \\
+&amp;=T_{(a_1 \dots a_l)}.
+}
+\]</span> 3证明如下. 根据2, 只需证明<span class="math inline">\(T_{[(a_1\dots a_l)]}=0\)</span>即可: <span class="math display">\[
+T_{([a_1\dots a_l])}
+= \frac1{l!} \sum_{\sigma\in S_l} (\sgn\sigma)
+  T_{(a_{\sigma(1)} \dots a_{\sigma(l)})}
+= \frac1{l!} \sum_{\sigma\in S_l} (\sgn\sigma)
+  T_{(a_1 \dots a_l)}
+= 0.
+\]</span></p>
+<ul>
+<li>第3步根据<span class="math inline">\(\sum_{\sigma\in S_l}
+\sgn\sigma=0\)</span>.</li>
+</ul>
+<p>4是1和3的推论. 5是3的推论.</p>
+</div>
+<p><u>Claim 2</u> 对于任意矢量<span class="math inline">\((v_1)^a,\dots,(v_n)^a\)</span>, 有 <span class="math display">\[
+(v_1)^{[a_1}\cdots(v_n)^{a_n]}=(v_{[1})^{a_1}\cdots(v_{n]})^{a_n}.
+\]</span> 对偶矢量以及圆括号亦然.</p>
+<div class="note note-light">
+<p><u>Pf</u> (圆括号同理) <span class="math display">\[
+\Align{
+(v_1)^{[a_1}\cdots(v_n)^{a_n]}
+&amp;=\sum_{\sigma\in S_n} (\sgn\sigma)
+  (v_1)^{a_{\sigma(1)}}\cdots(v_n)^{a_{\sigma(n)}} \\
+&amp;=\sum_{\sigma\in S_n} (\sgn\sigma)
+  (v_{\sigma^{-1}(1)})^{a_1}\cdots(v_{\sigma^{-1}(n)})^{a_n} \\
+&amp;=\sum_{\sigma^{-1}\in S_n} (\sgn\sigma^{-1})
+  (v_{\sigma^{-1}(1)})^{a_1}\cdots(v_{\sigma^{-1}(n)})^{a_n} \\
+&amp;=(v_{[1})^{a_1}\cdots(v_{n]})^{a_n}.
+}
+\]</span></p>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>梁GR | 1 流形与张量场</div>
+      <div>https://disembo.github.io/Note/dg-lgr-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-lgr-2/" title="梁GR | 2 内禀曲率张量">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">梁GR | 2 内禀曲率张量</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Visualizing/ode-4/" title="ODE4 线性微分方程">
+                        <span class="hidden-mobile">ODE4 线性微分方程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

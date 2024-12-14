@@ -1,0 +1,1473 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="构造新的拓扑空间, 群作用.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM202 | 2 构造新的拓扑空间">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-2/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="构造新的拓扑空间, 群作用.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/attach-manifolds-along-boundaries.png">
+<meta property="article:published_time" content="2024-07-23T13:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.708Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="拓扑">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/attach-manifolds-along-boundaries.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM202 | 2 构造新的拓扑空间 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM202 | 2 构造新的拓扑空间"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-23 21:00" pubdate>
+          2024年7月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM202 | 2 构造新的拓扑空间</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 3
+的笔记.</p>
+</div>
+<h2 id="subspaces">6  Subspaces</h2>
+<h3 id="the-subspace-topology">6.1  The subspace topology</h3>
+<p><strong>子空间拓扑 / 相对拓扑</strong>: <span class="math inline">\({\cal T}_S=\{V\cap S\mid V\in{\cal
+T}\}\)</span>.</p>
+<ul>
+<li><p>开集 <span class="math inline">\(U\subset S\)</span> 为 <span class="math inline">\(X\)</span> 中开集与 <span class="math inline">\(S\)</span> 的交. 闭集同理.</p></li>
+<li><p>(度量空间) 子空间拓扑 = 限制度量得到的拓扑.</p></li>
+<li><p>注意: <span class="math inline">\(S\)</span>
+中的<strong>相对开子集</strong>, <strong>相对闭子集</strong>.</p>
+<ul>
+<li><span class="math inline">\(S_1=[0,1]\cup(2,3)\)</span>, 闭子集
+<span class="math inline">\([0,1]\)</span> 是相对开子集. <span class="math inline">\(S_2=\{1/n\}_{n=1}^\infty\)</span>,
+单点子集是相对开子集.</li>
+</ul></li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 6.1</u> (相对开/闭子集) <span class="math inline">\(X\)</span> 的子空间 <span class="math inline">\(S\)</span>, <span class="math inline">\(U\subset
+X\)</span>.</p>
+<ul>
+<li>(继承) <span class="math inline">\(U\)</span> 在 <span class="math inline">\(S\)</span> 中开, <span class="math inline">\(S\)</span> 在 <span class="math inline">\(X\)</span> 中开, 则 <span class="math inline">\(U\)</span> 在 <span class="math inline">\(X\)</span> 中开. (对闭同理.)</li>
+<li><span class="math inline">\(U\)</span> 在 <span class="math inline">\(X\)</span> 中开/闭, 则 <span class="math inline">\(U\)</span> 在 <span class="math inline">\(S\)</span> 中开/闭.</li>
+</ul>
+</div>
+<div class="note note-success">
+<p><u>Claim 6.2</u> (子空间拓扑的特征性质) 子空间 <span class="math inline">\(S\subset X\)</span>. 任给 <span class="math inline">\(f:Y\to S\)</span>, <span class="math inline">\(f\)</span> 连续当且仅当 <span class="math inline">\(i\circ f:Y\to X\)</span> 连续. (特别地, 包含映射
+<span class="math inline">\(i:S\to X\)</span> 是连续的.) <span class="math display">\[
+\xymatrix{
+&amp; X \\
+Y \ar[r]_f \ar[ru]^{i\circ f} &amp; S \ar@{_{(}-&gt;}[u]_i
+}
+\]</span></p>
+<p>子空间拓扑是满足特征性质的唯一拓扑.</p>
+</div>
+<ul>
+<li>我们想要子空间拓扑满足: (1) 包含映射连续 (要有足够开集); (2)
+若连续映射 <span class="math inline">\(f:Y\to X\)</span> 的像集包含在
+<span class="math inline">\(S\)</span> 内, 则 <span class="math inline">\(f:Y\to S\)</span> 也连续 (不能有太多开集).
+子空间拓扑是平衡两者的唯一选择.</li>
+<li>子空间拓扑是使得包含映射 <span class="math inline">\(S\hookrightarrow X\)</span> 连续的最弱拓扑.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(f\)</span> 连续. 任给开集
+<span class="math inline">\(U\subset X\)</span>, 因为 <span class="math inline">\((i\circ f)^{-1}(U)=f^{-1}(U\cap S)\)</span>,
+子空间拓扑意味 <span class="math inline">\(U\cap S\)</span> 开, 所以
+<span class="math inline">\(f^{-1}(U\cap S)\)</span> 开.</p>
+<p>设 <span class="math inline">\(i\circ f\)</span> 连续. 任给开集 <span class="math inline">\(U\subset S\)</span>, 存在开集 <span class="math inline">\(V\subset X\)</span> 使得 <span class="math inline">\(U=V\cap S\)</span>, 有 <span class="math inline">\(f^{-1}(U)=(i\circ f)^{-1}(V)\)</span> 是开集.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 6.3</u> (连续映射的限制) <span class="math inline">\(f:X\to
+Y\)</span> 连续.</p>
+<ul>
+<li>(限制定义域) <span class="math inline">\(f|_S:S\to Y\)</span> 连续
+(<span class="math inline">\(S\subset X\)</span> 子空间).</li>
+<li>(限制陪域) <span class="math inline">\(f:X\to T\)</span> 连续 (<span class="math inline">\(T\subset Y\)</span> 子空间).</li>
+<li>(扩张陪域) <span class="math inline">\(f:X\to Z\)</span> 连续 (<span class="math inline">\(Y\subset Z\)</span> 子空间).</li>
+</ul>
+</div>
+<div class="note note-success">
+<p><u>Claim 6.4</u> (子空间拓扑的性质) <span class="math inline">\(X\)</span> 的子空间 <span class="math inline">\(S\)</span>.</p>
+<ul>
+<li><span class="math inline">\(R\)</span> 是 <span class="math inline">\(S\)</span> 的子空间, 则 <span class="math inline">\(R\)</span> 也是 <span class="math inline">\(X\)</span> 的子空间.</li>
+<li>(子空间的基) <span class="math inline">\({\cal B}_S=\{B\cap S\mid
+B\in{\cal B}\}\)</span>.</li>
+<li><span class="math inline">\(S\)</span> 中序列在 <span class="math inline">\(S\)</span> 下收敛到 <span class="math inline">\(p\in S\)</span> 当且仅当在 <span class="math inline">\(X\)</span> 下收敛到 <span class="math inline">\(p\)</span>.</li>
+<li>(继承) Hausdorff, 第一可数, 第二可数.</li>
+</ul>
+</div>
+<div class="note note-success">
+<p><u>Claim 6.5</u> (稠密性夹逼) 设 <span class="math inline">\(A\subset
+B\subset X\)</span>, 则 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(X\)</span> 中稠密, 当且仅当 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中稠密, 且 <span class="math inline">\(B\)</span> 在 <span class="math inline">\(X\)</span> 中稠密.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(\overline{A}=X\)</span>, 则
+<span class="math inline">\(\overline{B}\supset\overline{A}=X\)</span>,
+于是 <span class="math inline">\(\overline{A}=\overline{B}=X\)</span>.</p>
+<p>设 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中稠密, <span class="math inline">\(B\)</span> 在 <span class="math inline">\(X\)</span> 中稠密. 记 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(B\)</span> 中的闭包为 <span class="math inline">\(\overline{A}^B\)</span>, 则 <span class="math display">\[
+B
+= \overline{A}^B
+= \bigcap\{(\textsf{包含 }A\textsf{ 的闭集})\cap B\}
+= \overline{A}\cap B.
+\]</span> 因此 <span class="math inline">\(B\subset\overline{A}\)</span>, 进而 <span class="math inline">\(X=\overline{B}\subset\overline{\overline{A}}=\overline{A}\)</span>,
+有 <span class="math inline">\(\overline{A}=X\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 6.6</u> (边界是流形) 带边 <span class="math inline">\(n\)</span>-流形 <span class="math inline">\(M\)</span> 的非空边界 <span class="math inline">\(\partial M\)</span> (子空间拓扑) 是 <span class="math inline">\((n-1)\)</span> 维无边流形.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 子空间 <span class="math inline">\(\partial{M}\)</span>
+继承 Hausdorff 性与第二可数性. 下面证明局部欧氏. <span class="math inline">\(M\)</span> 的坐标开覆盖 <span class="math inline">\({(U_\alpha,\psi_\alpha)}\)</span> 给出了 <span class="math inline">\(\partial{M}\)</span> 的一个开覆盖 <span class="math inline">\(\{U_\alpha\cap\partial{M}\}\)</span>.
+根据边界的定义, <span class="math inline">\(\psi_\alpha(U_\alpha\cap\partial{M})=\psi(U_\alpha)\cap\partial{\H^n}\)</span>,
+其中右边是 <span class="math inline">\(\partial\H^n=\R^{n-1}\)</span>
+的开子集. 因此 <span class="math inline">\(U_\alpha\cap\partial{M}\)</span> 同胚于 <span class="math inline">\(\R^{n-1}\)</span> 的开子集, 是欧氏邻域.</p>
+</div>
+<h3 id="embeddings">6.2  Embeddings</h3>
+<p><strong>拓扑嵌入</strong>: <span class="math inline">\(f:A\to
+X\)</span> 单射, 且 <span class="math inline">\(A\to f(A)\)</span>
+是同胚.</p>
+<ul>
+<li><p>子空间的包含映射 <span class="math inline">\(i:S\hookrightarrow
+X\)</span> 是嵌入.</p></li>
+<li><p>(刻画) 开/闭的连续单射是嵌入.</p>
+<ul>
+<li>拓扑嵌入 <span class="math inline">\(f\)</span> 是开/闭映射,
+当且仅当 <span class="math inline">\(f(A)\)</span> 是 <span class="math inline">\(X\)</span> 的开/bi</li>
+</ul></li>
+<li><p>(与同胚) 满射嵌入是同胚.</p></li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 6.7</u> (粘合引理, gluing lemma) 设 <span class="math inline">\(X\)</span> 的开覆盖/有限闭覆盖 <span class="math inline">\(\{A_i\}\)</span>. 连续映射 <span class="math inline">\(f_i:A_i\to Y\)</span> 满足 <span class="math inline">\(f_i|_{A_{ij}}=f_j|_{A_{ij}}\)</span>,
+则存在唯一连续映射 <span class="math inline">\(f:X\to Y\)</span> 满足
+<span class="math inline">\(f|_{A_i}=f_i\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 显然 <span class="math inline">\(f:X\to Y\)</span>
+是唯一存在的.</p>
+<p>若 <span class="math inline">\(\{A_i\}\)</span> 是开覆盖,
+则根据连续性的局部 criterion, <span class="math inline">\(f\)</span>
+连续.</p>
+<p>若 <span class="math inline">\(\{A_i\}\)</span> 是有限闭覆盖. 设
+<span class="math inline">\(K\subset Y\)</span> 闭, 注意到 <span class="math inline">\(f^{-1}(K)\cap A_i=f_i^{-1}(K)\)</span>, 且这是闭集
+(因为 <span class="math inline">\(f_i\)</span> 连续, <span class="math inline">\(f_i^{-1}(K)\)</span> 是 <span class="math inline">\(A_i\)</span> 的闭子集, 而 <span class="math inline">\(A_i\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集, 所有 <span class="math inline">\(f^{-1}(K)\)</span> 是 <span class="math inline">\(X\)</span> 的闭子集).</p>
+<p>又因为 <span class="math inline">\(f^{-1}(K)\)</span> 是所有 <span class="math inline">\(f^{-1}(K)\cap A_i\)</span> 的并, 作为闭集的有限并,
+也是闭集. 因此闭集的 <span class="math inline">\(f\)</span> 原象是闭集,
+故连续.</p>
+</div>
+<p>流形的例子.</p>
+<ul>
+<li><p><strong>图像</strong>: 连续映射 <span class="math inline">\(f:\R^n\supset U\to\R^k\)</span> 的图像 <span class="math inline">\(\Gamma(f)=\{(x,y)\mid x\in
+U,y=f(x)\}\subset\R^{n+k}\)</span>, 赋予子空间拓扑. 实际上, <span class="math inline">\(\Gamma(f)\)</span> 同胚于 <span class="math inline">\(U\)</span>. 考虑 <span class="math inline">\(\psi:U\to\R^{n+k}\)</span>, <span class="math inline">\(\psi(x)=(x,f(x))\)</span>, 这是一个连续单射.
+连续的投射 <span class="math inline">\(\pi_1:\Gamma(f)\to U\)</span> 是
+<span class="math inline">\(\psi\)</span> 的逆映射 (即 <span class="math inline">\(\psi\)</span> 是开映射) 所以 <span class="math inline">\(\psi\)</span> 是嵌入, <span class="math inline">\(\Gamma(f)\)</span> 同胚于 <span class="math inline">\(U\)</span>.</p></li>
+<li><p><strong>单位球面</strong>: 考虑 <span class="math inline">\(\R^{n+1}\)</span> 中的单位球面 <span class="math inline">\(\mathbb{S}^n\)</span>.</p>
+<ul>
+<li><p>作为函数图像. 可以将 <span class="math inline">\(\mathbb{S}^n\)</span> 分成若干个函数的函数图像. 设
+<span class="math inline">\(U_i^+\)</span> 表示 <span class="math inline">\(\R^{n+1}\)</span> 中满足 <span class="math inline">\(x_i&gt;0\)</span> 的子集. <span class="math inline">\(U_i^-\)</span> 表示 <span class="math inline">\(x_i&lt;0\)</span> 的子集. 因为 <span class="math inline">\(\mathbb{S}^n\)</span> 不包含原点, 所以 <span class="math inline">\(U_1^\pm,\dots,U_n^\pm\)</span> 覆盖住 <span class="math inline">\(\mathbb{S}^n\)</span>. 在 <span class="math inline">\(U_i^\pm\)</span> 上解方程 <span class="math inline">\(\|x\|=1\)</span> 得到 <span class="math inline">\(x\in \mathbb{S}^n\cap U_i^\pm\)</span> 当且仅当
+<span class="math display">\[
+x_i =
+\pm\sqrt{1-(x_1)^2-\dots-(x_{i-1})^2-(x_{i+1})^2-\dots-(x_n)^2}.
+\]</span> 因此 <span class="math inline">\(\mathbb{S}^n\cap
+U_i^\pm\)</span> 是连续函数的图像, 同胚于 <span class="math inline">\(\R^n\)</span> 中的开集. 因此 <span class="math inline">\(\mathbb{S}^n\)</span> 是 <span class="math inline">\(n\)</span> 维流形.</p></li>
+<li><p><strong>球极投影</strong> (stereographic projection). 设北极点
+<span class="math inline">\(N=(0,\dots,0,1)\)</span>, 映射 <span class="math inline">\(\sigma:\mathbb{S}^n\setminus\{N\}\to\R^n\)</span>
+将 <span class="math inline">\(x\in \mathbb{S}^n\setminus\{N\}\)</span>
+映到点 <span class="math inline">\(u\in\R^n\)</span>, 满足 <span class="math inline">\(N,x,U=(u,0)\)</span> 三点共线. 可得 <span class="math display">\[
+\sigma(x_1,\dots,x_{n+1})=\frac{(x_1,\dots,x_n)}{1-x_{n+1}}.
+\]</span> 容易算出其逆映射为 <span class="math display">\[
+\sigma^{-1}(x_1,\dots,x_n) =
+\frac{(2u_1,\dots,2u_n,\|u\|^2-1)}{\|u\|^2+1}.
+\]</span> 因为 <span class="math inline">\(\sigma,\sigma^{-1}\)</span>
+都是连续的, 所以 <span class="math inline">\(\mathbb{S}^n\setminus\{N\}\)</span> 同胚于 <span class="math inline">\(\R^n\)</span>, 给出了 <span class="math inline">\(N\)</span> 以外的点的欧氏邻域.
+南极点的球极投影给出了 <span class="math inline">\(N\)</span>
+的欧氏邻域.</p></li>
+</ul></li>
+<li><p><strong>甜甜圈面</strong>: <span class="math inline">\(xz\)</span>-平面中的圆周 <span class="math inline">\(C:(x-2)^2+z^2=1\)</span> 绕 <span class="math inline">\(z\)</span> 轴旋转一周所得曲面 <span class="math inline">\(D\)</span>. 令 <span class="math inline">\(r=\sqrt{x^2+y^2}\)</span>, 则环面由方程 <span class="math inline">\((r-2)^2+z^2=1\)</span> 给出. 引入参数 <span class="math inline">\(\theta\)</span> 表示以 <span class="math inline">\(z\)</span> 为轴的经度角, <span class="math inline">\(\phi\)</span> 表示圆 <span class="math inline">\(C\)</span> 的圆心角, 则环面 <span class="math inline">\(D\)</span> 的一个参数化是 <span class="math inline">\(F:\R^2\to D\)</span>, <span class="math display">\[
+F(u,v)=((2+\cos{2\pi u})\cos{2\pi v},(2+\cos{2\pi u})\sin{2\pi v},
+\sin{2\pi u}).
+\]</span> <span class="math inline">\(F\)</span> 是局部同胚, 所以 <span class="math inline">\(D\)</span> 是 <span class="math inline">\(2\)</span>-流形.</p></li>
+</ul>
+<h2 id="product-spaces">7  Product spaces</h2>
+<h3 id="finite-products">7.1  Finite products</h3>
+<p><strong>积拓扑</strong>: 拓扑空间 <span class="math inline">\(X_1,\dots,X_n\)</span> 的乘积拓扑由 <span class="math inline">\({\cal B}=\{U_1\times\cdots\times U_n\mid
+U_i\in{\cal T}_i\}\)</span> 生成.</p>
+<ul>
+<li>欧氏空间 <span class="math inline">\(\R^n=\R\times\cdots\times\R\)</span>
+的乘积拓扑与度量拓扑相同.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 7.1</u> (乘积拓扑的特征性质) 映射 <span class="math inline">\(f:Y\to\prod X_i\)</span> 连续, 当且仅当任何分量
+<span class="math inline">\(f_i=\pi_i\circ f\)</span> 连续. <span class="math display">\[
+\xymatrix{
+&amp; \prod X_i \ar@{-&gt;&gt;}[d]^{\pi_i} \\
+Y \ar[r]_{f_i} \ar[ur]^f &amp; X_i
+}
+\]</span></p>
+<p>特别地, 自然投射 <span class="math inline">\(\pi_i:\prod X_i\to
+X_i\)</span> 连续. 此外, 乘积拓扑是满足特征性质的唯一拓扑.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 7.2</u> (乘积拓扑的性质)</p>
+<ul>
+<li><p>(结合性) <span class="math inline">\(X_1\times X_2\times
+X_3\)</span>, <span class="math inline">\((X_1\times X_2)\times
+X_3\)</span>, <span class="math inline">\(X_1\times(X_2\times
+X_3)\)</span> 上的拓扑相同.</p></li>
+<li><p>(嵌入) 下面映射是拓扑嵌入 <span class="math display">\[
+\Align{
+f: X_i &amp;\to X_1\times\cdots\times X_n, \\
+x &amp;\mapsto (x_1,\dots,x_{i-1},x,x_{i+1},\dots,x_n).
+}
+\]</span></p>
+<ul>
+<li>可以证明, 这是一个闭的连续单射.</li>
+</ul></li>
+<li><p>(自然投射) 自然投射 <span class="math inline">\(\pi_i:\prod
+X_i\to X_i\)</span> 是开映射.</p></li>
+<li><p>(基的乘积) <span class="math inline">\(X_i\)</span> 的基 <span class="math inline">\({\cal B}_i\)</span>, 则积拓扑的基 <span class="math inline">\(\{B_1\times\cdots\times B_n\mid B_i\in{\cal
+B}_i\}\)</span>.</p></li>
+<li><p>(积与子空间拓扑) <span class="math inline">\(S_i\)</span> 为
+<span class="math inline">\(X_i\)</span> 子空间, 则 <span class="math inline">\(\prod S_i\)</span> 的积拓扑与作为 <span class="math inline">\(\prod X_i\)</span> 的子空间拓扑相同.</p></li>
+<li><p>(继承) <span class="math inline">\(X_i\)</span>
+Hausdorff/第一可数/第二可数, 则 <span class="math inline">\(\prod
+X_i\)</span> 也具有相同性质.</p></li>
+</ul>
+</div>
+<div class="note note-success">
+<p><u>Claim 7.3</u> (Hausdorff 的对角线刻画) <span class="math inline">\(X\)</span> Hausdorff
+当且仅当<strong>对角线</strong> <span class="math inline">\(\Delta=\{(x,x)\mid x\in X\}\)</span> 在 <span class="math inline">\(X\times X\)</span> 中闭.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 Hausdorff. 任给 <span class="math inline">\((x,y)\in\Delta^C\)</span>, 则 <span class="math inline">\(x\neq y\)</span>, 存在邻域 <span class="math inline">\(U_x\cap U_y=\emptyset\)</span>, 进而 <span class="math inline">\(U_x\times U_y\subset\Delta^C\)</span>, 说明 <span class="math inline">\(\Delta^C\)</span> 开, 即 <span class="math inline">\(\Delta\)</span> 闭.</p>
+<p>反之, 设 <span class="math inline">\(\Delta\)</span> 闭, 则任给 <span class="math inline">\((x,y)\in\Delta^C\)</span>, 则存在邻域 <span class="math inline">\(U_{(x,y)}\subset\Delta^C\)</span>, 自然投射 <span class="math inline">\(U_x=\pi_1(U_{(x,y)})\)</span> 和 <span class="math inline">\(U_y=\pi_2(U_{x,y})\)</span> 给出了 <span class="math inline">\(x,y\)</span> 的不交邻域.</p>
+</div>
+<p><strong>积映射</strong>: <span class="math inline">\((\prod
+f_i)(x_1,\dots,x_k)=(f_1(x_1),\dots,f_k(x_k))\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 7.4</u> 连续映射的乘积是连续映射, 同胚的乘积是同胚.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(f_i:X_i\to Y_i\)</span>
+连续, (连续的基 criterion) 取 <span class="math inline">\(\prod
+Y_i\)</span> 的开集 <span class="math inline">\(\prod U_i\)</span>
+(<span class="math inline">\(U_i\)</span> 是 <span class="math inline">\(Y_i\)</span> 的开集), 则 <span class="math display">\[
+\pqty{\prod f_i}^{-1}\pqty{\prod U_i}
+= \prod f_i^{-1}(U_i),
+\]</span> 因为每一个 <span class="math inline">\(f_i^{-1}(U_i)\)</span>
+开, 所以其乘积开, <span class="math inline">\(\prod f_i\)</span> 连续.
+双射的乘积是双射; 同上可证开映射的乘积是开映射,
+所以同胚的乘积是同胚.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 7.5</u> (<strong>积流形</strong>) <span class="math inline">\(M_1,\dots,M_k\)</span> 分别为 <span class="math inline">\(n_1,\dots,n_k\)</span> 维流形, 则 <span class="math inline">\(\prod M_i\)</span> 是 <span class="math inline">\(\sum n_i\)</span> 维流形.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 积空间 <span class="math inline">\(\prod M_i\)</span>
+继承第二可数和 Hausdorff 性. 设 <span class="math inline">\((x_1,\dots,x_k)\in\prod M_i\)</span>, 取 <span class="math inline">\(x_i\)</span> 的欧氏邻域 <span class="math inline">\(U_i\in M_i\)</span>, 则 <span class="math inline">\(\prod U_i\)</span> 也是开集,
+又因为同胚的乘积还是同胚, 所以 <span class="math inline">\(\prod
+U_i\)</span> 同胚于 <span class="math inline">\(\prod\R^{n_i}=\R^{\sum
+n_i}\)</span> 的开集. 因此 <span class="math inline">\(\prod
+M_i\)</span> 是 <span class="math inline">\(\sum n_i\)</span>
+维流形.</p>
+</div>
+<ul>
+<li><strong>环面 (torus)</strong>: <span class="math inline">\(\mathbb{T}^n=\mathbb{S}^1\times\cdots\times
+\mathbb{S}^1\)</span>.</li>
+</ul>
+<h3 id="infinite-products">7.2  Infinite products</h3>
+<p>无穷乘积: <span class="math inline">\(\prod X_\alpha\)</span>,
+默认为积拓扑.</p>
+<ul>
+<li><p><strong>箱拓扑</strong>: <span class="math inline">\({\cal
+B}_0=\{\prod U_\alpha\mid U_\alpha\in{\cal T}_\alpha\}\)</span>
+生成.</p></li>
+<li><p><strong>积拓扑</strong>: <span class="math inline">\({\cal
+B}=\{\prod U_\alpha\mid U_\alpha\in{\cal T}_\alpha,\textsf{ 只有有限个 }
+U_\alpha\neq X_\alpha\}\)</span> 生成.</p>
+<ul>
+<li>当只有有限个 <span class="math inline">\(X_\alpha\)</span>
+具有非平凡拓扑时, 积拓扑与箱拓扑相同.</li>
+<li>若有无穷多个非平凡 <span class="math inline">\(X_\alpha\)</span>,
+考虑 <span class="math inline">\(U=\prod U_\alpha\)</span>, 其中无穷多个
+<span class="math inline">\(U_\alpha\neq X_\alpha\)</span>. 则 <span class="math inline">\(U\)</span> 在箱拓扑下开, 在积拓扑下不是开集.</li>
+</ul></li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 7.6</u> (无穷积拓扑特征性质) 映射 <span class="math inline">\(f:Y\to\prod X_\alpha\)</span> 连续, 当且仅当所有
+<span class="math inline">\(f_\alpha=\pi_\alpha\circ f\)</span> 连续.
+积拓扑是满足特征性质的唯一拓扑.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> <span class="math inline">\(f\)</span> 连续推出 <span class="math inline">\(f_i\)</span> 连续是平凡的. 设 <span class="math inline">\(f_i\)</span> 连续, 开集 <span class="math inline">\(\prod U_\alpha\subset \prod X_\alpha\)</span>.
+因为 <span class="math display">\[
+f^{-1}\pqty{\prod U_\alpha}=\bigcap f^{-1}(U_\alpha),
+\]</span> 注意, 只有有限个 <span class="math inline">\(U_\alpha\neq
+X_\alpha\)</span>, 所以右边实际上是有限交, 因此仍是开集.</p>
+</div>
+<h2 id="disjoint-union-spaces">8  Disjoint union spaces</h2>
+<p><strong>不交并拓扑</strong>: 设不交并 <span class="math inline">\(\coprod X_\alpha\)</span>. 子集 <span class="math inline">\(U\subset\coprod X_\alpha\)</span> 是开集,
+当且仅当所有 <span class="math inline">\(U\cap X_\alpha\)</span>
+是开集.</p>
+<div class="note note-success">
+<p><u>Claim 8.1</u> (不交并拓扑的特征性质) 映射 <span class="math inline">\(f:\coprod X_\alpha\to Y\)</span> 连续,
+当且仅当任意限制 <span class="math inline">\(f_\alpha=f\circ
+i_\alpha\)</span> 连续. 不交并拓扑是满足特征性质的唯一拓扑. <span class="math display">\[
+\xymatrix{
+&amp; \coprod X_\alpha \\
+Y \ar[r]_{f_\alpha} \ar[ru]^f &amp; X_\alpha
+\ar@{_{(}-&gt;}[u]_{i_\alpha}
+}
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(f\)</span> 连续, 由 <span class="math inline">\(f_\alpha^{-1}(U)=X_\alpha\cap f^{-1}(U)\)</span>
+即得. 设 <span class="math inline">\(f_\alpha\)</span> 连续, 注意到
+<span class="math inline">\(f^{-1}(U) = \bigcup
+f_\alpha^{-1}(U)\)</span>, 开集的任意并都是开集.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 8.2</u> (不交并拓扑的性质)</p>
+<ul>
+<li>(闭集刻画) <span class="math inline">\(U\subset\coprod
+X_\alpha\)</span> 闭, 当且仅当每个 <span class="math inline">\(U\cap
+X_\alpha\)</span> 闭.</li>
+<li>(包含映射) <span class="math inline">\(i_\alpha:X_\alpha\to\coprod
+X_\alpha\)</span> 是拓扑嵌入 (连续单射, 既开又闭).</li>
+<li>(不交并与积拓扑) 若 <span class="math inline">\(Y\)</span>
+是离散空间, 则拓扑空间 <span class="math inline">\(X\times Y\)</span> 与
+<span class="math inline">\(\coprod_{y\in Y}X\)</span> 认同.</li>
+<li>(继承) <span class="math inline">\(X_i\)</span>
+Hausdorff/第一可数/第二可数(且指标集可数), 则 <span class="math inline">\(\prod X_i\)</span> 也具有相同性质.</li>
+</ul>
+</div>
+<div class="note note-success">
+<p><u>Claim 8.3</u> (<strong>不交并流形</strong>) 若干 <span class="math inline">\(n\)</span> 维流形 <span class="math inline">\((M_\alpha)_{\alpha\in A}\)</span> 的不交并是流形,
+当且仅当 <span class="math inline">\(A\)</span> 可数.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 若 <span class="math inline">\(A\)</span> 可数, 则 <span class="math inline">\(\coprod M_\alpha\)</span> 第二可数且 Hausdorff.
+任意 <span class="math inline">\(M_\alpha\)</span> 的某欧氏邻域 <span class="math inline">\(U\)</span> 也是 <span class="math inline">\(\coprod M_\alpha\)</span> 的欧氏邻域.</p>
+<p>若 <span class="math inline">\(A\)</span> 不可数, 只需说明 <span class="math inline">\(\coprod M_\alpha\)</span> 不是第二可数的. 设 <span class="math inline">\(M_\alpha\)</span> 的开覆盖 <span class="math inline">\(\{U_\alpha\}\)</span>, 则 <span class="math inline">\(\coprod\{U_\alpha\}\)</span> 构成了 <span class="math inline">\(\coprod M_\alpha\)</span> 的开覆盖.
+这个覆盖不可数, 且没有可数子覆盖 (不满足第二可数空间的性质).</p>
+</div>
+<h2 id="quotient-spaces">9  Quotient spaces</h2>
+<h3 id="the-quotient-topology">9.1  The quotient topology</h3>
+<p><strong>商拓扑</strong>: 拓扑空间 <span class="math inline">\(X\)</span>, 满射 <span class="math inline">\(q:X\to Y\)</span>. 定义 <span class="math inline">\(U\subset Y\)</span> 为开集, 当且仅当 <span class="math inline">\(q^{-1}(U)\)</span> 是 <span class="math inline">\(X\)</span> 的开集. 此时 <span class="math inline">\(q\)</span> 称为<strong>商映射</strong>.
+商映射显然是连续的.</p>
+<p>设拓扑空间 <span class="math inline">\(X\)</span> 上的等价关系 <span class="math inline">\(\sim\)</span>, <span class="math inline">\(q:X\to
+X/{\sim}\)</span>, <span class="math inline">\(x\mapsto[x]\)</span>. 在
+<span class="math inline">\(q\)</span> 的商拓扑下, <span class="math inline">\(X/{\sim}\)</span> 称为<strong>商空间</strong>.</p>
+<ul>
+<li>商空间一般不继承 Hausdorff, 可数, 局部欧氏性质.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 9.1</u> (商的第二可数条件) 设 <span class="math inline">\(P\)</span> 第二可数, <span class="math inline">\(M\)</span> 是商空间. 若 <span class="math inline">\(M\)</span> 局部欧氏, 则它也第二可数.</p>
+</div>
+<ul>
+<li>因此, 流形的商空间, 如果局部欧氏且 Hausdorff 的话, 也是流形.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 记商映射 <span class="math inline">\(q:P\to M\)</span>.
+对于 <span class="math inline">\(M\)</span> 的坐标球开覆盖 <span class="math inline">\({\cal U}\)</span>, <span class="math inline">\(q^{-1}[{\cal U}]\)</span> 是 <span class="math inline">\(P\)</span> 的开覆盖. 它有可数子覆盖 <span class="math inline">\(q[{\cal U}']\)</span>, 其中 <span class="math inline">\({\cal U}'\)</span> 可数. 于是 <span class="math inline">\({\cal U}'\)</span> 是 <span class="math inline">\(M\)</span> 的坐标球可数开覆盖. 坐标球第二可数, 则
+<span class="math inline">\(M\)</span> 也第二可数.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 9.2</u> (商的 Hausdorff 条件) 设开的商映射 <span class="math inline">\(q:X\to Y\)</span>, 则 <span class="math inline">\(Y\)</span> Hausdorff 当且仅当 <span class="math display">\[
+{\cal R}=\{(x_1,x_2)\mid q(x_1)=q(x_2)\}
+\]</span> 在 <span class="math inline">\(X\times X\)</span> 中闭.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(Y\)</span> Hausdorff. 对
+<span class="math inline">\((x_1,x_2)\notin{\cal R}\)</span>, 存在 <span class="math inline">\(q(x_1),q(x_2)\)</span> 的不交邻域 <span class="math inline">\(V_1,V_2\subset Y\)</span>, 则 <span class="math inline">\(q^{-1}(V_1)\times q^{-1}(V_2)\)</span> 是 <span class="math inline">\((x_1,x_2)\)</span> 的邻域, 且与 <span class="math inline">\({\cal R}\)</span> 不交, 因此 <span class="math inline">\({\cal R}\)</span> 闭.</p>
+<p>反之, 设 <span class="math inline">\({\cal R}\)</span> 闭.
+设不同的两点 <span class="math inline">\(y_1,y_2\in Y\)</span>, 取 <span class="math inline">\(x_i\in X\)</span> 满足 <span class="math inline">\(q(x_i)=y_i\)</span>. 因为 <span class="math inline">\((x_1,x_2)\notin{\cal R}\)</span>, 存在邻域 <span class="math inline">\(U_1\times U_2\subset X\times X\)</span> 与 <span class="math inline">\({\cal R}\)</span> 不交. 因为 <span class="math inline">\(q\)</span> 开, <span class="math inline">\(q(U_1),q(U_2)\)</span> 是 <span class="math inline">\(y_1,y_2\)</span> 的不交邻域.</p>
+</div>
+<ul>
+<li>若 <span class="math inline">\(q\)</span> 是等价关系 <span class="math inline">\(\sim\)</span> 确定的, 则定理表明, <span class="math inline">\(X/{\sim}\)</span> 闭当且仅当 <span class="math inline">\(\sim\)</span> 在 <span class="math inline">\(X\times X\)</span> 闭.</li>
+</ul>
+<h3 id="properties-of-the-quotient-map">9.2  Properties of the quotient
+map</h3>
+<p>设 <span class="math inline">\(X,Y\)</span> 为拓扑空间, <span class="math inline">\(q:X\to Y\)</span> 是商映射.</p>
+<ul>
+<li><p>子集 <span class="math inline">\(q^{-1}(y)\)</span> 称为 <span class="math inline">\(y\in Y\)</span> 的<strong>纤维</strong>. 子集
+<span class="math inline">\(U\subset X\)</span> 称为<strong>关于 <span class="math inline">\(q\)</span> 饱和</strong>, 若 <span class="math inline">\(U=q^{-1}(V)\)</span>.</p>
+<ul>
+<li><span class="math inline">\(U\)</span> 饱和 <span class="math inline">\(\iff U=q^{-1}(q(U))\iff U\)</span>
+是纤维之并.</li>
+</ul></li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 9.3</u> (商映射刻画) 连续满射 <span class="math inline">\(q:X\to Y\)</span> 是商映射, 当且仅当 <span class="math inline">\(q\)</span> 将饱和开/闭集映到开/闭集.</p>
+</div>
+<ul>
+<li>一个充分条件: 连续的开/闭满射是商映射.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(q\)</span> 商映射,
+则是连续的, 显然将饱和开/闭集映到开/闭集.</p>
+<p>设 <span class="math inline">\(q\)</span> 将饱和开集映到开集.
+任给子集 <span class="math inline">\(U\subset Y\)</span>, 注意 <span class="math inline">\(q^{-1}(U)\)</span> 是饱和子集. 若 <span class="math inline">\(q^{-1}(U)\)</span> 开, 则 <span class="math inline">\(U\)</span> 开. 若 <span class="math inline">\(U\)</span> 开, 则 <span class="math inline">\(q^{-1}(U)\)</span> 开 (因为 <span class="math inline">\(q\)</span> 连续). 因此 <span class="math inline">\(q\)</span> 是商映射.</p>
+<p>设 <span class="math inline">\(q\)</span> 将饱和闭集映到闭集.
+任给子集 <span class="math inline">\(U\subset Y\)</span>. 若 <span class="math inline">\(q^{-1}(U)\)</span> 开, 即 <span class="math inline">\(X\setminus q^{-1}(U)=q^{-1}(Y\setminus U)\)</span>
+闭, 则 <span class="math inline">\(Y\setminus U\)</span> 闭, 即 <span class="math inline">\(U\)</span> 开. 若 <span class="math inline">\(U\)</span> 开, 则 <span class="math inline">\(q^{-1}(U)\)</span> 开 (连续性). 因此 <span class="math inline">\(q\)</span> 是商映射.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 9.4</u> (商映射的性质)</p>
+<ul>
+<li>商映射的复合是商映射.</li>
+<li>单射的商映射是同胚.</li>
+<li><span class="math inline">\(K\subset Y\)</span> 闭, 当且仅当 <span class="math inline">\(q^{-1}(K)\)</span> 闭.</li>
+<li>(限制) 商映射在饱和开/闭集上的限制是商映射.</li>
+<li>一族商映射 <span class="math inline">\(q_\alpha:X_\alpha\to
+Y_\alpha\)</span>, 若 <span class="math inline">\(q:\coprod
+X_\alpha\to\coprod Y_\alpha\)</span> 满足 <span class="math inline">\(q|_{X_\alpha}=q_\alpha\)</span>, 则 <span class="math inline">\(q\)</span> 也是商映射.</li>
+</ul>
+</div>
+<div class="note note-success">
+<p><u>Claim 9.5</u> (连续的开/闭映射的性质总结) 设开/闭的连续映射 <span class="math inline">\(f:X\to Y\)</span>.</p>
+<ul>
+<li>若单射, 则是拓扑嵌入.</li>
+<li>若满射, 则是商映射.</li>
+<li>若双射, 则是同胚.</li>
+</ul>
+</div>
+<p>商的特征性质.</p>
+<div class="note note-success">
+<p><u>Claim 9.6</u> (商映射的特征性质) 商映射 <span class="math inline">\(q:X\to Y\)</span>. 映射 <span class="math inline">\(f:Y\to Z\)</span> 连续当且仅当 <span class="math inline">\(f\circ q\)</span> 连续. <span class="math display">\[
+\xymatrix{
+X \ar[d]_q \ar[dr]^{f\circ q} \\
+Y \ar[r]_f &amp; Z
+}
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 对开集 <span class="math inline">\(U\)</span>, 因为 <span class="math inline">\(q^{-1}(f^{-1}(U))=(f\circ q)^{-1}(U)\)</span>,
+所以 <span class="math inline">\(f^{-1}(U)\)</span> 开当且仅当 <span class="math inline">\((f\circ q)^{-1}(U)\)</span> 开.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 9.7</u> (商拓扑的唯一性) 设拓扑空间 <span class="math inline">\(X\)</span>, 集合 <span class="math inline">\(Y\)</span>, 满射 <span class="math inline">\(q:X\to Y\)</span>.
+商拓扑是满足特征性质的唯一拓扑.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 9.8</u> (唯一下降/泛性质) 设商映射 <span class="math inline">\(q:X\to Y\)</span>. 任给连续映射 <span class="math inline">\(f:X\to Z\)</span> 满足在纤维上常值,
+则存在唯一连续映射 (称为 <span class="math inline">\(f\)</span>
+<strong>在商空间的下降</strong>) <span class="math inline">\(\tilde{f}:Y\to Z\)</span> 使得 <span class="math inline">\(f=\tilde{f}\circ q\)</span>. <span class="math display">\[
+\xymatrix{
+X \ar[d]_q \ar[dr]^f \\
+Y \ar@{.&gt;}[r]_{\tilde{f}} &amp; Z
+}
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 存在唯一性由商集合的泛性质保证.
+连续性由商拓扑特征性质保证.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 9.9</u> (商空间唯一性) 设商映射 <span class="math inline">\(q_1:X\to Y_1\)</span> 和 <span class="math inline">\(q_2:X\to Y_2\)</span> 满足 <span class="math inline">\(q_1(x)=q_1(x')\)</span> 当且仅当 <span class="math inline">\(q_2(x)=q_2(x')\)</span>, 则存在唯一的同胚
+<span class="math inline">\(\phi:Y_1\to Y_2\)</span>, 使得 <span class="math inline">\(\phi\circ q_1=q_2\)</span>.</p>
+</div>
+<p>商空间的例子.</p>
+<ul>
+<li><p><strong>单位圆</strong>. <span class="math inline">\(\R\)</span>
+上的等价关系 <span class="math inline">\(x\sim y\iff x-y\in\Z\)</span>.
+商空间 <span class="math inline">\(\R/{\sim}\)</span> 同胚于 <span class="math inline">\(\mathbb{S}^1\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(q:\R\to
+\mathbb{S}^1\)</span>, <span class="math inline">\(q(t)=\e^{2\pi\i
+t}\)</span>. 要证明 <span class="math inline">\(q\)</span> 开, 只需考虑
+<span class="math inline">\(\R\)</span> 的拓扑基, 即所有的开区间即可.
+对于长度 <span class="math inline">\(\geq1\)</span> 的开区间, 它映到整个
+<span class="math inline">\(\mathbb{S}^1\)</span>, 当然是开的. 对于长度
+<span class="math inline">\(&lt;1\)</span> 的开区间, 它映到 <span class="math inline">\(\mathbb{S}^1\)</span> 上的一段弧 (不含端点),
+显然是某 <span class="math inline">\(\R^2\)</span> 开球与 <span class="math inline">\(\mathbb{S}^1\)</span> 的交, 所以是开集. 因此 <span class="math inline">\(q\)</span> 是开的满射, 进而是商映射.</p>
+<p>注意到 <span class="math inline">\(q:\R\to \mathbb{S}^1\)</span> 和
+<span class="math inline">\(\R\to\R/{\sim}\)</span> 给出相同的
+identification, 根据商映射的唯一性 <span class="math inline">\(\mathbb{S}^1\)</span> 同胚于 <span class="math inline">\(\R/{\sim}\)</span>.</p>
+</div>
+<ul>
+<li>连续的 <span class="math inline">\(\Z\)</span> 周期函数 <span class="math inline">\(f:\R\to\R\)</span> 可以唯一地下降到 <span class="math inline">\(\tilde{f}:\R/{\sim}\to\R\)</span>.</li>
+</ul></li>
+<li><p><strong>球面</strong>. <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span>, 定义映射 <span class="math inline">\(q:\R^{n+1}\setminus\{0\}\to \mathbb{S}^n\)</span>,
+<span class="math inline">\(q(x)=x/\|x\|\)</span>. 这是一个连续的满射.
+<span class="math inline">\(q\)</span> 的饱和开子集是开射线之并, 显然
+<span class="math inline">\(q\)</span> 将饱和开子集映到饱和开子集,
+进而是商映射.</p></li>
+<li><p><strong>实射影空间</strong>. <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span> 上的等价关系 <span class="math inline">\(x\sim y\iff x=\lambda y\)</span> (<span class="math inline">\(\lambda\in\R^*\)</span>). 商空间称为实射影空间
+<span class="math inline">\(\mathbb{RP}^n\)</span>.</p></li>
+<li><p><strong>将子集坍缩为一点</strong>. 设子集 <span class="math inline">\(A\subset X\)</span>. 等价关系 <span class="math inline">\(a_1\sim a_2\)</span> 对任意 <span class="math inline">\(a_1,a_2\in A\)</span>, 而 <span class="math inline">\(x\sim x\)</span> 对任意 <span class="math inline">\(x\notin A\)</span>. 记 <span class="math inline">\(X/A:=X/{\sim}\)</span>, 即将 <span class="math inline">\(A\)</span> 坍缩到一点.</p></li>
+<li><p><strong>锥(cone)</strong>. <span class="math inline">\(I=[0,1]\)</span>. 商空间 <span class="math inline">\((X\times I)/(X\times\{0\})\)</span> 称为 <span class="math inline">\(X\)</span> 上的锥, 记作 <span class="math inline">\(CX\)</span>.</p>
+<ul>
+<li>考虑 <span class="math inline">\(X\times I\)</span> 的饱和子集 <span class="math inline">\(X\times\{1\}\)</span>, 商映射 <span class="math inline">\(q:X\times I\to CX\)</span> 限制到 <span class="math inline">\(X\times\{1\}\)</span> 仍是商映射. 记 <span class="math inline">\(X^*=q(X\times\{1\})\)</span>, 则商映射 <span class="math inline">\(X\cong X\times\{1\}\to X^*\)</span> 是单射,
+进而是同胚. 一般认同 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(X^*\)</span>, 将 <span class="math inline">\(X\)</span> 视作 <span class="math inline">\(CX\)</span> 的子空间.</li>
+</ul></li>
+<li><p><strong>楔和/一点并</strong>. 设拓扑空间 <span class="math inline">\(X_\alpha\)</span>, 给定 <span class="math inline">\(p_\alpha\in X_\alpha\)</span>
+称为<strong>基点</strong>. 楔和 <span class="math inline">\(\bigvee
+X_\alpha\)</span> 定义为 <span class="math inline">\(\coprod
+X_\alpha\)</span> 将 <span class="math inline">\(\{p_\alpha\}_{\alpha}\)</span> 认同为一点的商空间.
+例如, <span class="math inline">\(\R\vee\R\)</span> 同胚于平面上的 <span class="math inline">\(xy\)</span> 轴之并; <span class="math inline">\(\mathbb{S}^1\vee \mathbb{S}^1\)</span> 同胚于一个
+8 字.</p></li>
+<li><p><strong>两个原点的直线</strong>. 令 <span class="math inline">\(X=(\R\times\{0\})\cup(\R\times\{1\})\subset\R^2\)</span>,
+等价关系 <span class="math inline">\((x,0)\sim(x,1)\)</span> 对 <span class="math inline">\(x\neq0\)</span>. 商空间 <span class="math inline">\(X/{\sim}\)</span> 称为两个原点的直线.
+它是局部欧氏且第二可数的, 但不 Hausdorff.</p></li>
+</ul>
+<h2 id="adjunction-spaces">10  Adjunction spaces</h2>
+<p><strong>黏着空间</strong>: 设拓扑空间 <span class="math inline">\(X,Y\)</span>, 闭子集 <span class="math inline">\(A\subset X\)</span>, 连续映射 <span class="math inline">\(f:A\to Y\)</span>. 设 <span class="math inline">\(X\amalg Y\)</span> 上的等价关系 <span class="math inline">\(a\sim f(a)\)</span> 对任意 <span class="math inline">\(a\in A\)</span>, 则黏着空间 <span class="math inline">\(X\cup_fY:=(X\amalg Y)/{\sim}\)</span>. 称 <span class="math inline">\(Y\)</span> 沿着 <span class="math inline">\(f\)</span> 黏合到 <span class="math inline">\(X\)</span>, 映射 <span class="math inline">\(f\)</span> 称为<strong>贴映射(attaching
+map)</strong>. 特别地, 若 <span class="math inline">\(A\)</span> 空,
+则黏着空间是不交并.</p>
+<div class="note note-success">
+<p><u>Claim 10.1</u> (黏着空间的性质) 设商映射 <span class="math inline">\(q:X\amalg Y\to X\cup_fY\)</span>.</p>
+<ul>
+<li><span class="math inline">\(q|_X\)</span> 是拓扑嵌入, <span class="math inline">\(q(X)\)</span> 是 <span class="math inline">\(X\cup_fY\)</span> 的闭子空间.</li>
+<li><span class="math inline">\(q|_{Y\setminus A}\)</span> 是拓扑嵌入,
+<span class="math inline">\(q(Y\setminus A)\)</span> 是 <span class="math inline">\(X\cup_fY\)</span> 的开子空间.</li>
+<li><span class="math inline">\(X\cup_fY\)</span> 是 <span class="math inline">\(q(X)\)</span> 和 <span class="math inline">\(q(Y\setminus A)\)</span> 的不交并.</li>
+</ul>
+</div>
+<ul>
+<li>因此, <span class="math inline">\(X,Y\setminus A\)</span> 分别认同于
+<span class="math inline">\(q(X),q(Y\setminus A)\)</span>, 视作 <span class="math inline">\(X\cup_fY\)</span> 的子空间.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 先证明 <span class="math inline">\(q\)</span> 是闭映射.
+任取闭集 <span class="math inline">\(B\subset X\)</span>, 要证明 <span class="math inline">\(q(B)\)</span> 在 <span class="math inline">\(X\cup_fY\)</span> 中闭, 等价于 <span class="math inline">\(q^{-1}(q(B))\)</span> 在 <span class="math inline">\(X\amalg Y\)</span> 中闭, 即 <span class="math display">\[
+q^{-1}(q(B))\cap X,\quad q^{-1}(q(B))\cap Y
+\]</span> 分别闭. 前者等于 <span class="math inline">\(B\)</span>,
+根据假设是闭的. 后者等于 <span class="math inline">\(f^{-1}(B)\)</span>,
+由 <span class="math inline">\(f\)</span> 的连续性, 是闭的. 这样, <span class="math inline">\(q\)</span> 是闭映射, 所以 <span class="math inline">\(q(X)\)</span> 是闭集. 又 <span class="math inline">\(q|_X\)</span> 是单的闭映射, 进而是嵌入.</p>
+<p>注意 <span class="math inline">\(X\setminus A\subset X\amalg
+Y\)</span> 是饱和子集, 所以 <span class="math inline">\(q|_{Y\setminus
+A}\)</span> 是商映射, 故单射 <span class="math inline">\(q|_{X\setminus
+A}:X\setminus A\to q(X\setminus A)\)</span> 是同胚. 特别地, <span class="math inline">\(q(X\setminus A)\)</span> 开.</p>
+</div>
+<p>黏着空间的例子.</p>
+<ul>
+<li>选定基点 <span class="math inline">\(x,y\)</span> 的拓扑空间 <span class="math inline">\(X,Y\)</span>, 令 <span class="math inline">\(A=\{y\}\)</span>, <span class="math inline">\(f:A\to X\)</span> 定义为 <span class="math inline">\(f(y)=x\)</span>, 则 <span class="math inline">\(X\cup_fY\)</span> 是楔和 <span class="math inline">\(X\vee Y\)</span>.</li>
+<li>令 <span class="math inline">\(A=\mathbb{S}^2\subset\overline{\mathbb{B}^2}\)</span>,
+包含映射 <span class="math inline">\(f:A\hookrightarrow\overline{\mathbb{B}^2}\)</span>,
+则 <span class="math inline">\(\overline{\mathbb{B}^2}\cup_f\overline{\mathbb{B}^2}\)</span>
+同胚于 <span class="math inline">\(\mathbb{S}^2\)</span>.</li>
+</ul>
+<p><strong>流形沿着边界贴合</strong>. 设 <span class="math inline">\(n\)</span> 维带边流形 <span class="math inline">\(M,N\)</span>, 边界非空且 <span class="math inline">\(h:\partial N\to\partial M\)</span> 同胚. 注意
+<span class="math inline">\(\partial{N}\)</span> 是 <span class="math inline">\(N\)</span> 的闭子集, 则有黏着空间 <span class="math inline">\(M\cup_hN\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 10.2</u> (流形沿着边界贴合) <span class="math inline">\(M\cup_hN\)</span> 是 <span class="math inline">\(n\)</span> 维无边流形. 有嵌入 <span class="math inline">\(e:M\to M\cup_hN\)</span>, <span class="math inline">\(f:N\to M\cup_hN\)</span>, 其像都是闭子集, 且 <span class="math display">\[
+\Align{
+e(M)\cup f(N)&amp;=M\cup_hN \\
+e(M)\cap f(N)&amp;=e(\partial M)=f(\partial N).
+}
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为 <span class="math inline">\(h\)</span> 是同胚, 有
+<span class="math inline">\(M\cup_hN=N\cup_{h^{-1}}M\)</span>.
+根据黏着空间的性质, 取 <span class="math inline">\(e=q|_M\)</span>,
+<span class="math inline">\(f=q|_N\)</span> 即可满足上面的条件. 下面证明
+<span class="math inline">\(M\cup_h N\)</span> 是 <span class="math inline">\(n\)</span> 维无边流形. 根据 Claim 9.1,
+只用证明局部欧氏与 Hausdorff.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/attach-manifolds-along-boundaries.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>局部欧氏. 对于 <span class="math inline">\(M,N\)</span> 的内部点,
+因为内部是开子集, 故其充分小坐标球仍在内部, 可以作为 <span class="math inline">\(M\cup_h N\)</span> 的坐标球. 对于 <span class="math inline">\(M,N\)</span> 的一对边界点 <span class="math inline">\(x,y\)</span> (有 <span class="math inline">\(h(x)=y\)</span>), 记 <span class="math inline">\(s=q(x)=q(y)\)</span>,
+我们的想法是将两者的边界坐标系 "拼和" 成 <span class="math inline">\(s\)</span> 的一个内部坐系.</p>
+<p>取 <span class="math inline">\(x,y\)</span> 的坐标系 <span class="math inline">\(U,V\)</span>, 设 <span class="math inline">\(\varphi\)</span> 将 <span class="math inline">\(U\)</span> 映到 <span class="math inline">\(\H^n\)</span> (作为上半平面) 的矩形, <span class="math inline">\(\psi\)</span> 将 <span class="math inline">\(V\)</span> 映到 <span class="math inline">\(\H^n\)</span> (作为下半平面) 的矩形 (如图).
+适当缩小 <span class="math inline">\(U,V\)</span>, 我们设 <span class="math inline">\(U\cap\partial{M}\)</span> 与 <span class="math inline">\(V\cap\partial{N}\)</span> 中的点通过 <span class="math inline">\(h\)</span> 一一对应.</p>
+<p>此时 <span class="math inline">\(U_0=\varphi(U)\cap\partial\H^n\)</span> 和 <span class="math inline">\(V_0=\psi(V)\cap\partial\H^n\)</span>
+的对应点可能不在对应位置上. 因此 <span class="math inline">\(\varphi(U)\)</span> 和 <span class="math inline">\(\psi(V)\)</span> 不能直接拼合, 需要对 <span class="math inline">\(\psi(V)\)</span> 进行一个变换 <span class="math inline">\(F\)</span>. 这 <span class="math inline">\(F\)</span> 应当满足 <span class="math display">\[
+(F\circ\psi)(p) = (\varphi\circ h)(p),\quad\forall p\in
+V\cap\partial{N}.
+\]</span> 即 <span class="math inline">\(F|_{V_0}\)</span>
+的取值是确定的, 将其延拓到 <span class="math inline">\(\psi(V)\)</span>
+(取 <span class="math inline">\(F|_{V_0}\)</span> 与恒等映射的积即可).
+定义 <span class="math inline">\(\Phi:U\amalg V\to\R^n\)</span>, <span class="math display">\[
+\Phi|_U:=\varphi,\quad \Phi|_V:=F\circ\psi.
+\]</span> 因为 <span class="math inline">\(U\amalg V\)</span>
+是饱和开子集, <span class="math inline">\(q\)</span>
+在其上的限制是商映射, 且 <span class="math inline">\(q(U\amalg
+V)\)</span> 是 <span class="math inline">\(M\cup_hN\)</span> 的开集.
+根据 <span class="math inline">\(F\)</span> 的取法, <span class="math inline">\(\Phi\)</span> 可以下降到商空间 <span class="math inline">\(\tilde{\Phi}:q(U\amalg V)\to\R^n\)</span>,
+它的一个逆映射是 <span class="math display">\[
+\tilde\Phi^{-1}(p) = \Cases{
+(q\circ\varphi^{-1})(p), &amp; p^n\geq0, \\
+(q\circ\psi^{-1}\circ F^{-1})(p), &amp; p^n\leq0,
+}
+\]</span> 根据 gluing lemma, <span class="math inline">\(\tilde\Phi^{-1}\)</span> 连续, 故 <span class="math inline">\(\tilde\Phi\)</span> 是同胚, 即 <span class="math inline">\(s\)</span> 的一个坐标映射.</p>
+<p>Hausdorff. 即证明 <span class="math inline">\(q\)</span>
+的纤维可被饱和开集分离.</p>
+</div>
+<p><strong>流形的双倍</strong>: 设带边流形 <span class="math inline">\(M\)</span>, 恒等映射 <span class="math inline">\(h={\rm id}_{\partial M}\)</span>, 则 <span class="math inline">\(D(M):=M\cup_hM\)</span> 称为 <span class="math inline">\(M\)</span> 的双倍. 若 <span class="math inline">\(\partial M\)</span> 为空, 则 <span class="math inline">\(D(M)=M\amalg M\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 10.3</u> (带边流形 <span class="math inline">\(\cong\)</span> 闭子集) 任意带边 <span class="math inline">\(n\)</span> 维流形都与 <span class="math inline">\(n\)</span> 维流形 (比如 <span class="math inline">\(D(M)\)</span>) 的闭子集同胚.</p>
+</div>
+<h2 id="group-actions">11  Group actions</h2>
+<h3 id="topological-groups">11.1  Topological groups</h3>
+<p><strong>拓扑群</strong>: 群 <span class="math inline">\(G\)</span>
+有拓扑结构, 且 <span class="math inline">\(\mu:G\times G\to G\)</span>,
+<span class="math inline">\(\mu(g,h)=gh\)</span> 和 <span class="math inline">\(\iota:G\to G\)</span>, <span class="math inline">\(\iota(g)=g^{-1}\)</span> 都连续.</p>
+<div class="note note-success">
+<p><u>Claim 11.1</u> (群结构 &amp; 拓扑结构相容) 对于拓扑群,</p>
+<ul>
+<li>(子群) 子群是拥有子空间拓扑的拓扑群.</li>
+<li>(直积群) 有限直积是拥有积拓扑的拓扑群.</li>
+<li>(闭包) 子群的闭包也是子群.</li>
+</ul>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 设子群 <span class="math inline">\(H\)</span>
+配以子空间拓扑, 嵌入 <span class="math inline">\(i_H:H\to G\)</span>, 则
+<span class="math inline">\(\mu_H=\mu\circ(i_H,i_H)\)</span> 以及 <span class="math inline">\(\iota_H=\iota\circ i_H\)</span>
+作为连续映射的复合, 都是连续的.</p>
+<p>2, 设直积群 <span class="math inline">\(H=\prod G_i\)</span>
+配以积拓扑. 一方面, 逆 <span class="math inline">\(\iota_H=\prod\iota_i\)</span> 作为连续映射的积,
+是连续的. 另一方面, <span class="math inline">\(H\times H\cong
+\prod(G_i\times G_i)\)</span>, 进而乘积 <span class="math display">\[
+\mu_H:H\times H\cong \prod(G_i\times G_i)\to\prod G_i
+\]</span> 可以认同为 <span class="math inline">\(\prod \mu_i\)</span>,
+所以是连续的.</p>
+<p>3, 设子群 <span class="math inline">\(H\)</span>, 需要证明 <span class="math inline">\(\overline{H}\)</span> 对乘积 <span class="math inline">\(\mu\)</span> 和逆 <span class="math inline">\(\iota\)</span> 封闭. 对于逆, <span class="math inline">\(\iota\)</span> 连续且 <span class="math inline">\(\iota(H)=H\)</span>, 利用连续的刻画,</p>
+<p><span class="math inline">\(\iota(\overline{H})=\overline{\iota(H)}=\overline{H}\)</span>,
+可得 <span class="math inline">\(\overline{H}\)</span> 对逆封闭.
+同理可得 <span class="math inline">\(\overline{H}\)</span> 对 <span class="math inline">\(\mu\)</span> 封闭.</p>
+</div>
+<ul>
+<li><p><strong>左平移</strong>: <span class="math inline">\(l_g(g')=gg'\)</span>, 是连续的, 因为 <span class="math inline">\(l_g=\mu\circ i_g\)</span>, 其中嵌入 <span class="math inline">\(i_g(g')=(g,g')\)</span>. 又 <span class="math inline">\(l_g^{-1}=l_{g^{-1}}\)</span>,
+所以左平移是同胚.</p></li>
+<li><p><strong>右平移</strong> <span class="math inline">\(r_g(g')=g'g\)</span> 也是同胚.</p></li>
+<li><p><strong>拓扑齐性</strong>: <span class="math inline">\(X\)</span>
+的任意两点 <span class="math inline">\(x,y\)</span>, 存在同胚 <span class="math inline">\(\varphi:X\to X\)</span> 满足 <span class="math inline">\(\varphi(x)=y\)</span>.
+拓扑群是拓扑齐性的.</p></li>
+</ul>
+<p>拓扑群的例子.</p>
+<ul>
+<li>实数加法群 <span class="math inline">\(\R\)</span> 和直积群 <span class="math inline">\(\R^n\)</span>.</li>
+<li>实数乘法群 <span class="math inline">\(\R^*\)</span> 和子群,
+正实数乘法群 <span class="math inline">\(\R^+\)</span>.</li>
+<li>复数乘法群 <span class="math inline">\(\C^*\)</span> 和子群,
+单位复数乘法群 <span class="math inline">\(\mathbb{S}^1\)</span>.</li>
+<li>环面 <span class="math inline">\(\mathbb{T}^n=\mathbb{S}^1\times\cdots\times
+\mathbb{S}^1\)</span>.</li>
+<li><strong>离散群</strong>, 拥有离散拓扑的群.</li>
+<li><strong>一般线性群</strong> <span class="math inline">\({\rm
+GL}(n,\R)\)</span>, 由 <span class="math inline">\(n\times n\)</span>
+可逆实矩阵组成, 拥有 <span class="math inline">\(\R^{n^2}\)</span>
+的子空间拓扑.</li>
+<li><strong>复一般线性群</strong> <span class="math inline">\({\rm
+GL}(n,\C)\)</span>.</li>
+<li><strong>正交群</strong> <span class="math inline">\({\rm
+O}(n)\)</span>, 是 <span class="math inline">\({\rm GL}(n,R)\)</span>
+的子群, 由正交阵组成.</li>
+</ul>
+<h3 id="group-actions-1">11.2  Group actions</h3>
+<p>群作用.</p>
+<ul>
+<li><p><strong>左作用</strong>: <span class="math inline">\(G\times X\to
+X\)</span>, 满足 <span class="math inline">\(g_1\cdot(g_2\cdot
+x)=(g_1g_2)\cdot x\)</span> 和 <span class="math inline">\(e\cdot
+x=x\)</span>. 同理有<strong>右作用</strong>.</p></li>
+<li><p><strong>同胚作用</strong>: 若 <span class="math inline">\(X\)</span> 是拓扑空间, 且对任意 <span class="math inline">\(g\in G\)</span>, <span class="math inline">\(x\mapsto g\cdot x\)</span> 是同胚.</p></li>
+<li><p><strong>连续作用</strong>: <span class="math inline">\(G\times
+X\to X\)</span> 是连续映射.</p></li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 11.2</u> (连续作用 &amp; 同胚作用)</p>
+<ul>
+<li>连续的作用是同胚作用.</li>
+<li>若 <span class="math inline">\(G\)</span> 离散,
+则作用是连续的当且仅当它是同胚作用.</li>
+</ul>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设作用 <span class="math inline">\(G\times X\to X\)</span>
+连续, 这意味着 <span class="math inline">\(x\mapsto g\cdot x\)</span>
+也连续, 因为它是复合 <span class="math inline">\(x\mapsto(g,x)\mapsto
+g\cdot x\)</span>. 左作用的定义保证 <span class="math inline">\(x\mapsto
+g\cdot x\)</span> 的逆映射是 <span class="math inline">\(x\mapsto
+g^{-1}\cdot x\)</span>, 它也是连续的. 因此 <span class="math inline">\(x\mapsto g\cdot x\)</span> 是同胚.</p>
+<p>设 <span class="math inline">\(G\)</span> 离散,
+只需证明同胚作用是连续的. 此时, 映射 <span class="math inline">\(G\times
+X\to X\)</span> 限制到任意 <span class="math inline">\(\{g\}\times
+X\)</span> 上是连续的. 因为 <span class="math inline">\(\{g\}\times
+X\)</span> 构成 <span class="math inline">\(G\times X\)</span> 的开覆盖,
+由 gluing lemma, <span class="math inline">\(G\times X\to X\)</span>
+是连续的.</p>
+</div>
+<ul>
+<li><p><strong>轨道</strong>: <span class="math inline">\(G\cdot
+x=\{g\cdot x\mid g\in G\}\subset X\)</span>.</p></li>
+<li><p><strong>传递作用</strong>: 任何点的轨道都是 <span class="math inline">\(X\)</span>.</p></li>
+<li><p><strong>自由作用</strong>: <span class="math inline">\(g\cdot
+x=x\)</span> (存在 <span class="math inline">\(x\in X\)</span>) 蕴含
+<span class="math inline">\(g=e\)</span>.</p></li>
+<li><p><strong>轨道空间</strong>: 等价关系 <span class="math inline">\(x\sim y\iff x=g\cdot y\)</span>, 即 <span class="math inline">\(x,y\)</span> 在同一轨道中. 商空间 <span class="math inline">\(X/{\sim}:=X/G\)</span> 称为轨道空间.
+等价关系称作轨道关系.</p></li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 11.3</u> (轨道关系是开的) 商映射 <span class="math inline">\(q:X\to X/G\)</span> 是开映射.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 任给 <span class="math inline">\(U\subset X\)</span>,
+要证明 <span class="math inline">\(q(U)\)</span> 开, 即证 <span class="math inline">\(q^{-1}(q(U))\)</span> 开. 根据定义, <span class="math display">\[
+q^{-1}(q(U))
+= \{g\cdot x\in X\mid g\in G, x\in U\}
+= \bigcup_{g\in G} g\cdot U,
+\]</span> 因为 <span class="math inline">\(x\mapsto g\cdot x\)</span>
+是同胚, <span class="math inline">\(U\)</span> 开, 所以 <span class="math inline">\(g\cdot U\)</span> 开. 作为开集之并, <span class="math inline">\(q^{-1}(q(U))\)</span> 也开.</p>
+</div>
+<p>立刻得到推论:</p>
+<div class="note note-success">
+<p><u>Claim 11.4</u> (轨道空间的 Hausdorff 判定) <span class="math inline">\(X/G\)</span> Hausdorff 当且仅当 <span class="math display">\[
+{\cal O}=\{(x_1,x_2)\mid x_1=g\cdot x_2,\exists g\in G\}
+\]</span> 在 <span class="math inline">\(X\times X\)</span> 中闭.</p>
+</div>
+<p>子群在群上的作用.</p>
+<ul>
+<li>拓扑群 <span class="math inline">\(G\)</span> 的子群 <span class="math inline">\(\Gamma\)</span> 右作用于 <span class="math inline">\(G\)</span>. 轨道 <span class="math inline">\(\{g\gamma\mid\gamma\in\Gamma\}=g\Gamma\)</span> 是
+<span class="math inline">\(\Gamma\)</span> 的左陪集. 轨道空间 <span class="math inline">\(G/\Gamma\)</span>
+称为<strong>左陪集空间</strong>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 11.5</u> (陪集空间的齐性) 陪集空间 <span class="math inline">\(G/\Gamma\)</span> 是拓扑齐性的.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 任取 <span class="math inline">\(g\in G\)</span>, 同胚
+<span class="math inline">\(l_g:G\to G\)</span>, 考虑 <span class="math inline">\(\theta_g:G/\Gamma\to G/\Gamma\)</span>, <span class="math inline">\(\theta_g(h\Gamma)=gh\Gamma\)</span>. 显然这是双射,
+且满足交换图 <span class="math display">\[
+\xymatrix{
+G \ar[d]_q \ar[r]^{l_g} &amp; G \ar[d]^q \\
+G/\Gamma \ar[r]_{\theta_g} &amp; G/\Gamma.
+}
+\]</span> 任取开集 <span class="math inline">\(U\subset
+G/\Gamma\)</span>, 计算得到 <span class="math inline">\(\theta_g^{-1}(U)=(q\circ l_g\circ
+q^{-1})(U)\)</span>, 其中 <span class="math inline">\(q,l_g\)</span>
+都是连续的开映射, 所以右侧是开集, 故 <span class="math inline">\(\theta_g^{-1}\)</span> 连续. 同理得到 <span class="math inline">\(\theta_g\)</span> 是开映射, 进而同胚.</p>
+<p>任意两个陪集 <span class="math inline">\(g\Gamma,h\Gamma\)</span>
+通过同胚 <span class="math inline">\(\theta_{hg^{-1}}\)</span> 联系.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 11.6</u> (商群) 若 <span class="math inline">\(\Gamma\)</span> 是正规子群, 则商群 <span class="math inline">\(G/\Gamma\)</span> 是拥有商拓扑的拓扑群.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 只需证明 <span class="math inline">\(G/\Gamma\)</span> 上的
+<span class="math inline">\(\mu',\iota'\)</span> 连续.
+根据商群的定义, <span class="math display">\[
+\Align{
+\mu'\circ(q,q) &amp;= (q,q)\circ\mu,&amp;
+\iota'\circ q &amp;= q\circ\iota,
+}
+\]</span> 任取开集 <span class="math inline">\(U\subset
+G/\Gamma\)</span>, 有 <span class="math inline">\(\mu'^{-1}(U)=(q,q)\circ\mu^{-1}\circ(q,q)^{-1}(U)\)</span>,
+其中 <span class="math inline">\((q,q)\)</span> 是连续的开映射
+(是连续开映射的直积), <span class="math inline">\(\mu^{-1}\)</span>
+连续, 所以右侧是开集, 故 <span class="math inline">\(\mu'^{-1}\)</span> 连续. 同理得到 <span class="math inline">\(\iota'\)</span> 连续.</p>
+</div>
+<p>连续作用的例子.</p>
+<ul>
+<li><p><span class="math inline">\({\rm GL}(n,\R)\)</span> 在 <span class="math inline">\(\R^n\)</span> (列向量空间) 上的左作用.
+这是连续作用, 因为 <span class="math inline">\(g\cdot x\)</span> 是关于
+<span class="math inline">\(g,x\)</span> 的多项式函数.
+这个作用只有两条轨道: <span class="math inline">\(\R^n\setminus\{0\}\)</span> 和 <span class="math inline">\(\{0\}\)</span>.</p></li>
+<li><p><span class="math inline">\({\rm O}(n)\)</span> 在 <span class="math inline">\(\R^n\)</span> (列向量空间) 上的左作用.
+作为上一个作用的限制, 它也是连续的. 这个作用的轨道是 <span class="math inline">\(\{0\}\)</span> 和所有以球心在 <span class="math inline">\(0\)</span> 的球面.</p>
+<ul>
+<li>轨道空间同胚于 <span class="math inline">\([0,+\infty)\)</span>:
+考虑 <span class="math inline">\(f:\R^n\to[0,+\infty)\)</span>, <span class="math inline">\(f(x)=\|x\|\)</span>, 则 <span class="math inline">\(f\)</span> 是连续的开满射, 进而是商映射. <span class="math inline">\(f\)</span> 和轨道关系给出相同的 identification,
+根据商空间的唯一性, 轨道空间同胚于 <span class="math inline">\([0,+\infty)\)</span>.</li>
+</ul></li>
+<li><p><span class="math inline">\({\rm O}(n)\)</span> 在 <span class="math inline">\(\R^n\)</span> 的单位球面 <span class="math inline">\(\mathbb{S}^{n-1}\)</span>
+上的作用是传递的.</p></li>
+<li><p><strong>实射影空间</strong>. <span class="math inline">\(\R^*\)</span> 在 <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span> 上的左作用
+(数量乘法). 这个作用是自由的, 轨道空间由所有过原点的直线 (去掉原点)
+组成, 即 <span class="math inline">\(\mathbb{RP}^n\)</span>. 下面将说明,
+<span class="math inline">\(\mathbb{RP}^n\)</span> 是 <span class="math inline">\(n\)</span> 维的拓扑流形.</p>
+<ul>
+<li><p>Hausdorff. 考虑 <span class="math inline">\({\cal
+O}=\{(x_1,x_2)\mid x_1=\lambda x_2,\lambda\neq0\}\)</span>, 将 <span class="math inline">\(x_1,x_2\)</span> 视作列向量, 则 <span class="math inline">\((x_1,x_2)\)</span> 是秩为 <span class="math inline">\(1\)</span> 的 <span class="math inline">\((n+1)\times 2\)</span> 矩阵. 秩为 <span class="math inline">\(1\)</span> 等价于所以二阶子式为零.
+因为某二阶子式的零点是闭集, 所以 <span class="math inline">\({\cal
+O}\)</span> 作为有限闭集之交, 也是闭集. 这说明 <span class="math inline">\(\mathbb{RP}^n\)</span> 是 Hausdorff 的.</p></li>
+<li><p>局部欧氏. 设开集 <span class="math inline">\(U_i=\{(x_1,\dots,x_{n+1})\mid x_i\neq0\}\)</span>,
+则所有 <span class="math inline">\(q(U_i)\)</span> 构成 <span class="math inline">\(\mathbb{RP}^n\)</span> 的开覆盖. 定义 <span class="math display">\[
+\Align{
+\psi_i:U_i &amp;\to \R^n \\
+(x_1,\dots,x_{n+1}) &amp;\mapsto
+\frac1{x_i}(x_1,\dots,\widehat{x_i},\dots,x_{n+1}),
+}
+\]</span> 是连续的开映射, 于是 <span class="math inline">\(\psi_i\circ
+q\)</span> 也是连续的开映射. 注意到 <span class="math inline">\(\psi_i\circ q\)</span> 还是双射, 进而是同胚. 因此,
+<span class="math inline">\(\{(q(U_i),\psi_i\circ q)\}\)</span> 构成了
+<span class="math inline">\(\mathbb{RP}^n\)</span> 的图册.</p></li>
+</ul></li>
+<li><p><strong>复射影空间</strong>. <span class="math inline">\(\C^*\)</span> 在 <span class="math inline">\(\C^{n+1}\setminus\{0\}\)</span> 上的左作用.
+轨道空间记作 <span class="math inline">\(\mathbb{RP}^n\)</span>, 是一个
+<span class="math inline">\(2n\)</span> 维拓扑流形.</p></li>
+<li><p><strong>环面</strong>. <span class="math inline">\(\Z\)</span> 在
+<span class="math inline">\(\R\)</span> 上有连续的作用 <span class="math inline">\(n\cdot x=n+x\)</span>. 考虑陪集空间 <span class="math inline">\(\R/\Z\)</span>. 因为 <span class="math inline">\(x,y\)</span> 在同一条轨道当且仅当 <span class="math inline">\(x-y\in\Z\)</span>, 所以 <span class="math inline">\(\R/\Z\)</span> 和单位圆 <span class="math inline">\(\R/{\sim}\)</span> 由同样的等价关系生成,
+所以同胚.</p>
+<ul>
+<li><p>同样可以说明 <span class="math inline">\(\R^n/\Z^n\)</span> 与
+<span class="math inline">\(\mathbb{T}^n=\mathbb{S}^1\times\cdots\times
+\mathbb{S}^1\)</span> 同胚.</p></li>
+<li><p>回忆 <span class="math inline">\(\R\to \mathbb{S}^1\)</span>
+的一个商映射是 <span class="math inline">\(q(t)=\e^{2\pi\i t}\)</span>,
+则 <span class="math inline">\(\R^n\to \mathbb{T}^n\)</span>
+的一个商映射是 <span class="math display">\[
+(t_1,\dots,t_n)\mapsto(\e^{2\pi\i t_1},\dots,\e^{2\pi\i t_n}),
+\]</span> 称作<strong>指数商映射</strong>.</p></li>
+</ul></li>
+</ul>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM202 | 2 构造新的拓扑空间</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202-3/" title="GTM202 | 3 连通性">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM202 | 3 连通性</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202-index/" title="GTM202 | 拓扑流形笔记">
+                        <span class="hidden-mobile">GTM202 | 拓扑流形笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

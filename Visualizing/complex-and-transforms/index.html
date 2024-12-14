@@ -1,0 +1,1311 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="可视化的复变函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复数与变换">
+<meta property="og:url" content="https://disembo.github.io/Visualizing/complex-and-transforms/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="可视化的复变函数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/complex-plane.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/modulus-argument-conjugate.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/complex-plot.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/linear-operations.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/right-trig-of-complex-number.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/multiplication.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/multiplication-application.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/fifth-roots-of-unity.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/euler-formula-from-kinematics.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/complex-plot-of-exp.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/topology-types-of-points.svg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/topology-connectivity.svg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/local-transform.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/inversion-transform.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/complex-sphere.png">
+<meta property="article:published_time" content="2021-09-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.701Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="复变函数">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/complex-plane.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>复数与变换 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/articles/complex-and-transforms.banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="复数与变换"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-04 00:00" pubdate>
+          2021年9月4日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">复数与变换</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body><div class="note note-secondary">
+<p>推荐：<em>Visualizing Complex Analysis</em> by Tristan
+Needham.（《复分析可视化方法》尼达姆著.）</p>
+</div>
+<div class="note note-secondary">
+<p>数学在某方面类似于考古学.
+你也许会找到某个东西的一角，并由此判断它是有趣的.
+于是你开始在别处挖掘，又找到了非常相似的另一角，你会想，是否有更深的联系？你继续挖掘，最终发现了地下的结构.
+当某些东西最终表明有意义时，你有一种发现的激动.</p>
+<div data-align="right">
+——陶哲轩
+</div>
+<p>很多数学问题看似毫无关联，或者似乎有关联却无法理论解释.
+但是若站在更高、更抽象和更一般的角度上往往能发现它们之间的关联.</p>
+</div>
+<h2 id="复数的引入">1 复数的引入</h2>
+<p>方程求根是数学研究中一个非常核心的问题了，它催生出了许多新的数学分支.
+在实数域内，不是所有的二次方程都有根，例如<span class="math inline">\(x^2=-2\)</span>​，没有任何一个实数的平方是负数.
+而对于三次方程，在使用求根公式求根的过程中，即使系数和根都是实数，也会不可避免地遇到负数开平方的问题.</p>
+<div class="note note-secondary">
+<p>Tartaglia公式给出了形式为<span class="math inline">\(x^3=px+q\)</span>​​的三次方程的解，例如<span class="math inline">\(x^3=x\)</span>，解为 <span class="math display">\[
+\dfrac1{\sqrt3}\pqty{\pqty{\sqrt{-1}}^{1/3}+\pqty{\sqrt{-1}}^{-1/3}}
+\]</span></p>
+</div>
+<p>如此看来，我们必须认真面对负数开平方问题.
+一个想法是定义一些新的数，这些数的平方是负数，但是它们肯定无法用无限小数的形式表示（实数和无限小数一一对应），看起来"子虚乌有"，所以命名为"虚数"，定义虚数单位<span class="math inline">\(\i:\i^2=-1\)</span>​.</p>
+<div class="note note-secondary">
+<p>"实数(Real numbers)"和"虚数(Imaginary
+numbers)"两个名字都是Descartes起的.</p>
+</div>
+<p>实数单位是<span class="math inline">\(1\)</span>​​​​，虚数单位是<span class="math inline">\(\i\)</span>​​​​，两者线性组合<span class="math inline">\(z=a+b\i(a,b\in\R)\)</span>​​​​称为<strong>复数</strong>(Complex
+number)，复数构成及集合称为复数集<span class="math inline">\(\C=\qty{z=a+b\i|a,b\in\R}\)</span>​​.</p>
+<p>可以发现，实数是一个一维的数域，它和直线上的点一一对应；复数是一个二维的数域，自然和平面上的点一一对应：<span class="math inline">\((a,b)\leftrightarrow a+b\i\)</span>​​​.
+称这个平面为<strong>复平面</strong>(Complex plane).
+复平面的横轴称为实轴，纵轴称为虚轴.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/complex-plane.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>点的横坐标<span class="math inline">\(a\)</span>称为<span class="math inline">\(z\)</span>的实部(Real part)，纵坐标<span class="math inline">\(b\)</span>称为<span class="math inline">\(z\)</span>的虚部(Imaginary part)，记作<span class="math inline">\(a=\Re(z),b=\Im(z)\)</span>，注意实部和虚部都是实数.
+对于一个复数<span class="math inline">\(z\)</span>，如果虚部为<span class="math inline">\(0\)</span>，那么<span class="math inline">\(z\)</span>就是实数（对应实轴）；如果实部为<span class="math inline">\(0\)</span>且虚部不为<span class="math inline">\(0\)</span>，那么<span class="math inline">\(z\)</span>称为纯虚数（对应虚轴去掉原点）.</p>
+<p>实数<span class="math inline">\(x\)</span>​的绝对值是<span class="math inline">\(x\)</span>​离数轴原点的距离，类似地，复数<span class="math inline">\(z\)</span>​的<strong>模</strong>(Modulus)是<span class="math inline">\(z\)</span>离复平面原点的距离，记作 <span class="math display">\[
+|z|=|a+b\i|=\sqrt{a^2+b^2}
+\]</span> &gt; 复数是二维的，不能比较大小，但是它们的模可以比较大小.</p>
+<p>把非零复数<span class="math inline">\(z\)</span>对应的向量和正实轴的的夹角称为<strong>辐角</strong>(Argument)，记作<span class="math inline">\(\Arg z\)</span>，<span class="math inline">\(z\)</span>的辐角显然有无穷多个，之间相差<span class="math inline">\(2\pi\)</span>的整数倍. 把那个在<span class="math inline">\((-\pi,\pi]\)</span>的辐角称为<strong>辐角主值</strong>(Principal
+value of argument)，记作<span class="math inline">\(\arg{z}\)</span>.</p>
+<p>如果<span class="math inline">\(z=0\)</span>，那么<span class="math inline">\(z\)</span>的辐角<span class="math inline">\(\Arg{0}\)</span>是任意的，<span class="math inline">\(\arg{0}\)</span>没有意义.</p>
+<p><strong>复共轭</strong>(Complex conjugate)：复数<span class="math inline">\(z=a+b\i(a,b\in\R)\)</span>的共轭复数是<span class="math inline">\(\overline{z}=a-b\i\)</span>，它们两个在复平面中关于实轴对称.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/modulus-argument-conjugate.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<h3 id="关于复变函数">* 关于复变函数</h3>
+<p>刚才提到了复数的辐角：给定<span class="math inline">\(z\in\C\setminus\qty{0}\)</span>，有唯一确定的辐角主值<span class="math inline">\(\arg{z}\)</span>，所以<span class="math inline">\(\arg\)</span>是一个函数；而<span class="math inline">\(z\)</span>的辐角有无穷多个，如果记为<span class="math inline">\(\Arg{z}\)</span>的话，<span class="math inline">\(\Arg\)</span>不是一个函数.</p>
+<p>但是，如果我们拓展函数的概念，允许有<u>一个或多个</u>确定的值与自变量对应，并将这种函数称为<strong>多值函数</strong>(Multivalued
+function)，那么<span class="math inline">\(\Arg\)</span>就是一个多值函数.
+与之对应的是单值函数，如<span class="math inline">\(\arg\)</span>.</p>
+<p>可以理解为，多值函数把一个值对应到了一个数集，<span class="math inline">\(\Arg z=\qty{\arg z+2k\pi|k\in\Z}\)</span>.</p>
+<p><span class="math inline">\(\arg\)</span>和<span class="math inline">\(\Arg\)</span>都是以复数为自变量的函数，给这种函数一个定义：</p>
+<p><strong>复变函数</strong>(Complex
+function)指的是以复数作为自变量和因变量的函数（与之相应的是实变函数）.</p>
+<div class="note note-secondary">
+<p>下面几节要讨论的复变函数一部分是多值的，而这归根到底就是因为辐角函数是多值的.</p>
+</div>
+<p>实变函数<span class="math inline">\(y=f(x)\)</span>的自变量和因变量都是一维的，可以在二维<span class="math inline">\(xOy\)</span>平面上以<span class="math inline">\((x,y)\)</span>画出它的图像.</p>
+<p>复变函数<span class="math inline">\(w=f(z)\)</span>的自变量和因变量都是二维的，若要同时表示自变量和因变量，需要在四维的坐标系中，我们难以构建.
+所以人们想出了别的方法，把四个自由度在二维或三维空间中表现出来：</p>
+<div class="note note-secondary">
+<ul>
+<li><p><strong>模-辐角图</strong>：给复平面上每个点都涂上颜色，色相和明暗表示这一点函数值的辐角和模.</p>
+<ul>
+<li><p>还有3D版的：在空间坐标系画出<span class="math inline">\(w=|f(z)|\)</span>的图像曲面，再用颜色表示辐角.</p>
+<p>下面给出了函数<span class="math inline">\(f(z)=z\)</span>的图像模-辐角图：</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/complex-plot.png" cloud-img="" lazyload="true"></p>
+<p>这两幅图把从<span class="math inline">\(-\pi\)</span>到<span class="math inline">\(\pi\)</span>的辐角主值涂上了从蓝色到红色再到绿色的颜色.</p>
+<p>左图给出了辐角的等值线（从原点出发的射线）和模的等值线（同心圆）；右图的纵坐标是表示模长，图上只给出了辐角的等值线.</p></li>
+</ul></li>
+<li><p><strong>实部-虚部图</strong>：把一个复变函数看作两个函数：<span class="math inline">\(u(z),v(z)\)</span>，分别作为实部和虚部： <span class="math display">\[
+f(z)=u(z)+\i v(z)
+\]</span> 又因为<span class="math inline">\(z=x+\i y\)</span>，从而<span class="math inline">\(u,v\)</span>就是二元的实变量函数： <span class="math display">\[
+f(x,y)=u(x,y)+\i v(x,y)
+\]</span> 所以可以把<span class="math inline">\(u,v\)</span>的图像曲面分别在两个三维坐标系中画出.</p></li>
+<li><p><strong>动画</strong>：把复平面上每个点<span class="math inline">\(z_0\)</span>"移动"到对应的<span class="math inline">\(f(z_0)\)</span>，这在之后会展示.</p></li>
+</ul>
+</div>
+<h2 id="加法与乘法">2 加法与乘法</h2>
+<h3 id="加法与平移">2.1 加法与平移</h3>
+<p>每个复数都可以看做复平面中的一个点，或者是一个向量（这里我们用列向量），
+<span class="math display">\[
+z=a+b\i(a,b\in\R) \leftrightarrow
+\text{点}(a,b) \leftrightarrow
+\text{向量}\pmqty{a\\b}
+\]</span> &gt;
+在下文中的某些地方，"点"、"复数"、"向量"可能不加区分地使用.</p>
+<p>其中向量空间的基是<span class="math inline">\(\qty{1,\i}\)</span>​.
+我们可以直接将向量的加法和数量乘法类比过来， <span class="math display">\[
+\Align{
+&amp;\pmqty{a\\b}+\pmqty{c\\d}=\pmqty{a+b\\c+d}
+\rightarrow (a+b\i)+(c+d\i)=(a+b)+(c+d)\i \\
+&amp;\lambda\pmqty{a\\b}=\pmqty{\lambda a\\\lambda b}
+\rightarrow \lambda(a+b\i)=(\lambda a)+(\lambda b)\i \\
+}
+\]</span>
+<img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/linear-operations.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>其中<span class="math inline">\(a,b,c,d,\lambda\in\R\)</span>​.
+这样定义是和实数的加法和乘法兼容的，因为实数加法和乘法可以看作一维向量的线性运算.</p>
+<p>如果我们把加法看作一个变换，把<span class="math inline">\(z+w\)</span>​看作把"加<span class="math inline">\(w\)</span>​"作用在复数<span class="math inline">\(z\)</span>​​​上面，<span class="math inline">\(f(z)=z+w\)</span>​. 设<span class="math inline">\(z=a+b\i,w=c+d\i\)</span>​，<span class="math inline">\(f(z)\)</span>看作向量函数 <span class="math display">\[
+f(\pmqty{a\\b}) = \pmqty{a\\b}+\pmqty{c\\d} = \pmqty{a+c\\b+d}
+\]</span> 如果我们把<span class="math inline">\(f\)</span>​作用于复平面上每个复数，那么效果就是所有点都按照向量<span class="math inline">\(\pmqty{c\\d}\)</span>平移​​​.</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 加法变换.mp4" type="video/mp4">
+</video>
+<p>平移变换和复数加法​​是一一对应的.</p>
+<h3 id="乘法与旋转">2.2 乘法与旋转</h3>
+<p>对于复数乘法，我们按照多项式乘法原则定义 <span class="math display">\[
+(a+b\i)\cdot(c+d\i)=ac+ad\i+bc\i+bd\i^2=(ac-bd)+(ad+bc)\i
+\]</span>
+显然，复数乘法是满足交换律（可交换）的，而且对于加法满足分配律，且对之前定义的标量乘法兼容（即<span class="math inline">\(d=0\)</span>​​​的情况.）</p>
+<div class="note note-secondary">
+<p>下面需要一定线性代数基础，可以直接跳过看<span class="math inline">\(\S3.1\)</span>.</p>
+</div>
+<p>重新来看复数乘法的式子，用向量<span class="math inline">\(\pmqty{a\\b},\pmqty{c\\d}\)</span>表示复数<span class="math inline">\(a+b\i,c+d\i\)</span>，两者相乘，得到了<span class="math inline">\(\pmqty{ac-bd\\bc+ad}\)</span>，可以看出是一个矩阵和向量相乘的结果：
+<span class="math display">\[
+\pmqty{ac-bd\\bc+ad}=\pmqty{a&amp;-b\\b&amp;a}\pmqty{c\\d}
+\]</span> 所以说，复数乘法（一个数乘以<span class="math inline">\(z=a+b\i\)</span>）实际上和矩阵<span class="math inline">\(\vb{Z}=\pmqty{a&amp;-b\\b&amp;a}\)</span>表示的变换是等价的.
+对矩阵进行变形： <span class="math display">\[
+\vb{Z}=|z|\pmqty{
+  \frac{a}{\sqrt{a^2+b^2}} &amp; \frac{-b}{\sqrt{a^2+b^2}} \\
+  \frac{b}{\sqrt{a^2+b^2}} &amp; \frac{a}{\sqrt{a^2+b^2}}
+}
+\]</span> 令<span class="math inline">\(\cos\theta=\dfrac{a}{\sqrt{a^2+b^2}}\in[-1,1]\)</span>​​，<span class="math inline">\(\sin\theta=\dfrac{b}{\sqrt{a^2+b^2}}\in[-1,1]\)</span>​​，其中<span class="math inline">\(\theta\in[0,2\pi)\)</span>​​，那么 <span class="math display">\[
+\vb{Z}
+=|z|\pmqty{\cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta}
+=\pmqty{|z|&amp;0\\0&amp;|z|}\pmqty{\cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta}
+\]</span>
+显然是一个旋转矩阵和一个缩放矩阵的乘积，它表示的变换就是<u>旋转和缩放的复合</u>.
+注意到</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/right-trig-of-complex-number.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>所以<span class="math inline">\(\theta\)</span>实际上是<span class="math inline">\(z\)</span>的辐角（主值）.</p>
+<p>所以一个数乘以一个复数<span class="math inline">\(z\)</span>，就是把它表示的点（或向量）绕原点旋转<span class="math inline">\(\theta\)</span>（逆时针为正），并且放大<span class="math inline">\(|w|\)</span>倍.
+若复数是单位复数（模长为一），那么保留下来的就只有旋转.
+单位复数和二维旋转变换是一一对应的.
+采用极坐标表示复数的话，这一点会更加清晰.</p>
+<div class="note note-secondary">
+<p>每个复数都与一个"缩放旋转"矩阵对应，若<span class="math inline">\(|z|=1\)</span>，则它的矩阵只表示旋转.</p>
+<p><span class="math inline">\(1\)</span>对应单位阵<span class="math inline">\(\pmqty{1&amp;0\\0&amp;1}\)</span>；虚数单位<span class="math inline">\(\i\)</span>对应<span class="math inline">\(\pmqty{0&amp;-1\\1&amp;0}\)</span>，是旋转<span class="math inline">\(90^\circ\)</span>矩阵.</p>
+</div>
+<h2 id="极坐标形式">3 极坐标形式</h2>
+<h3 id="乘法与除法">3.1 乘法与除法</h3>
+<p>给定一个辐角<span class="math inline">\(\theta\)</span>和模<span class="math inline">\(r\ge0\)</span>​​可以唯一确定一个复数， <span class="math display">\[
+z=r(\cos\theta+\i\sin\theta)=r\ang\theta
+\rightarrow \text{极坐标形式}(r,\theta)
+\]</span> 再来考虑复数乘法，设<span class="math inline">\(z=|z|(\cos\theta+\i\sin\theta)\)</span>，<span class="math inline">\(w=|w|(\cos\phi+\i\sin\phi)\)</span>，则 <span class="math display">\[
+\Align{
+z\cdot w
+&amp;= |z|(\cos\theta+\i\sin\theta) \cdot |w|(\cos\phi+\i\sin\phi) \\
+&amp;= |z|\cdot|w|\cdot\bqty{
+  \cos\theta\cos\phi-\sin\theta\sin\phi
+  +\i(\cos\theta\sin\phi+\sin\theta\cos\phi)
+} \\
+&amp;= |z||w|(\cos(\theta+\phi)+\i\sin(\theta+\phi))
+}
+\]</span> 它们的乘积<span class="math inline">\(z\cdot
+w\)</span>的<u>模是两者模的乘积，辐角是两者辐角之和</u>，这与<span class="math inline">\(\S2.2\)</span>​我们得出的结论是一致的.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/multiplication.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>考虑变换<span class="math inline">\(f(z)=z\cdot
+w\)</span>​，它把复平面上所有的点先旋转<span class="math inline">\(\arg(w)\)</span>​，再拉伸<span class="math inline">\(|w|\)</span>​倍. 如果<span class="math inline">\(w\ne0\)</span>，变换前后的图形必定是相似的.</p>
+<p>下面的动画演示了<span class="math inline">\(f(z)=z\cdot(2+\i)\)</span>.</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 乘法变换.mp4" type="video/mp4">
+</video>
+<p>再看平方对复平面的作用，<span class="math inline">\(f(z)=z^2\)</span>：（为了清晰，这里仅展示了上半平面，还有一个扇形网格）</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 平方变换.mp4" type="video/mp4">
+</video>
+<div class="note note-secondary">
+<p>变换后的坐标系格线都是抛物线. <span class="math display">\[
+z=a+b\i \to (a+b\i)^2=(a^2-b^2)+2ab\i \to \text{点}(a^2-b^2,2ab)
+\]</span></p>
+</div>
+<p>关于除法，刚好和乘法反过来. 除以一个数就是乘它的倒数.
+定义一个非零复数的倒数<span class="math inline">\(z^{-1}\)</span>：
+<span class="math display">\[
+z\cdot z^{-1} = 1
+\]</span> 因为<span class="math inline">\(1\)</span>的辐角主值为<span class="math inline">\(0\)</span>，模为<span class="math inline">\(1\)</span>，所以<span class="math inline">\(z^{-1}\)</span>的辐角主值为<span class="math inline">\(-\arg z\)</span>，模为<span class="math inline">\(\dfrac1{|z|}\)</span>；所以，除以<span class="math inline">\(z\)</span>，即乘以<span class="math inline">\(z^{-1}\)</span>，辐角加了<span class="math inline">\(-\arg{z}\)</span>，也就是辐角相减；模乘以<span class="math inline">\(\dfrac1{|z|}\)</span>，也就是模相除.</p>
+<p>此外，也可以等价地按照多项式除法定义：<span class="math inline">\((a+b\i)/(c+d\i)\)</span>.</p>
+<div class="note note-secondary">
+<p>下面展示了<span class="math inline">\(f(z)=\dfrac1z\)</span>对复平面的作用（最后放大了方便看），变换后的格线很像圆.</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 乘法逆变换.mp4" type="video/mp4">
+</video>
+<p>设<span class="math inline">\(z=a+b\i(a,b\in\R)\)</span>， <span class="math display">\[
+z^{-1}=\frac{a-b\i}{a^2+b^2}=\frac{a}{a^2+b^2}+\frac{-b}{a^2+b^2}\i \to
+\text{点}\pqty{\frac{a}{a^2+b^2}, \frac{-b}{a^2+b^2}}
+\]</span> 点的轨迹方程<span class="math inline">\(\Cases{x=\frac{a}{a^2+b^2}\\y=\frac{-b}{a^2+b^2}}\)</span>，</p>
+<ul>
+<li><p>消去<span class="math inline">\(a\)</span>得到<span class="math inline">\(x^2+\pqty{y+\dfrac1{2b}}^2=\pqty{\dfrac1{2b}}^2\)</span>，即当<span class="math inline">\(b\)</span>为定值（即原来黄色的横向格线），变换后的图形是圆心在纵轴，且与横轴相切的圆.</p></li>
+<li><p>消去<span class="math inline">\(b\)</span>得到<span class="math inline">\(\pqty{x-\dfrac1{2a}}^2+y^2=\pqty{\dfrac1{2a}}^2\)</span>，即当<span class="math inline">\(a\)</span>为定值（即原来蓝色的纵向格线），变换后的图形是圆心在横轴，且与纵轴相切的圆.</p></li>
+</ul>
+</div>
+<p>复数乘法的几何意义使得它有很多几何上的应用，例如：</p>
+<div class="note note-secondary">
+<p>例子：平面四边形<span class="math inline">\(abcd\)</span>，在每条边外作正方形，求证：相对的正方形中心连线<span class="math inline">\(pq,st\)</span>垂直且相等.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/multiplication-application.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>可以尝试使用复数乘法解决这个问题，也可以想想用纯几何方法怎么做.</p>
+</div>
+<h3 id="de-moivre公式">3.2 de Moivre公式</h3>
+<p><strong>棣莫弗公式</strong>(de Moivre's
+formula)是上面乘法结论的推广，对<span class="math inline">\(\theta\in\R\)</span>​​和<span class="math inline">\(n\in\Z\)</span>​​， <span class="math display">\[
+(\cos\theta+\i\sin\theta)^n=\cos{n\theta}+\i\sin{n\theta}
+\]</span> 其中<span class="math inline">\(\cos\theta+\i\sin\theta\)</span>是辐角为<span class="math inline">\(\theta\)</span>，模为<span class="math inline">\(1\)</span>的复数，它的<span class="math inline">\(n\)</span>次方的模仍然为<span class="math inline">\(1\)</span>，辐角为<span class="math inline">\(n\theta\)</span>.</p>
+<p>我们可以看看高次方程<span class="math inline">\(x^n=1(n\in\N_+)\)</span>的解，利用乘法的几何意义，一个复数的<span class="math inline">\(n\)</span>次方是<span class="math inline">\(1\)</span>，首先它的模长是<span class="math inline">\(1\)</span>，其次它的辐角是<span class="math inline">\(1\)</span>的辐角（<span class="math inline">\(\Arg1=2k\pi\)</span>）的<span class="math inline">\(\dfrac1n\)</span>，所以它的根 <span class="math display">\[
+x = \cos\dfrac{2k\pi}n+\i\sin\dfrac{2k\pi}n, k\in\Z
+\]</span> 当<span class="math inline">\(k\)</span>​取遍整数，<span class="math inline">\(\dfrac{2k\pi}n\)</span>​只表示<span class="math inline">\(n\)</span>​​个不同的辐角（终边相同的认为是同一个角），所以根一共有<span class="math inline">\(n\)</span>​个，称为<span class="math inline">\(n\)</span>​次单位根，一般记作<span class="math inline">\(\omega\)</span>​. 如下图是5次单位根.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/fifth-roots-of-unity.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>从上面的推导可以看出来，<span class="math inline">\(1^{1/5}\)</span>有<span class="math inline">\(5\)</span>个不同的值的原因是因为<span class="math inline">\(\Arg\)</span>函数是多值的.</p>
+<h2 id="指数与对数">4 指数与对数</h2>
+<p>在下面的几节，我们尝试将实数域中的基本初等函数扩充到复数域.
+一个基本原则是</p>
+<ol type="1">
+<li>当<span class="math inline">\(z\)</span>取实数，函数值与实变量的函数值相等.</li>
+<li>保持函数的基本特征.</li>
+</ol>
+<h3 id="指数函数euler公式">4.1 指数函数&amp;Euler公式</h3>
+<p><strong>指数函数</strong>(Exponential
+function)​的定义可以参考实指数函数：</p>
+<div class="note note-secondary">
+<p>指数函数可以由幂级数<span class="math inline">\(\sum\limits_{k=0}^\infty\dfrac{x^k}{k!}=1+\dfrac{x^1}{1!}+\dfrac{x^2}{2!}+\dfrac{x^3}{3!}+\dots\)</span>定义（收敛半径为<span class="math inline">\(+\infty\)</span>，可推广到任意<span class="math inline">\(z\in\C\)</span>）.</p>
+</div>
+<p>定义指数函数函数<span class="math inline">\(\exp: \C\to\C\)</span>，
+<span class="math display">\[
+\e^z = \exp{z} := \sum_{k=0}^\infty \dfrac{z^k}{k!}
+\]</span> （规定<span class="math inline">\(z^0=1\)</span>；与实指数函数不同，这里的<span class="math inline">\(\e^z\)</span>不表示无理数<span class="math inline">\(2.718\dots\)</span>的<span class="math inline">\(z\)</span>次幂，而是一个记法）</p>
+<div class="note note-secondary">
+<p>随便选定一个复数<span class="math inline">\(z\)</span>，把<span class="math inline">\(1,\dfrac{z^1}{1!},\dfrac{z^2}{2!},\dfrac{z^3}{3!},\dots\)</span>首尾相接地画出来，会形成一个线段组成的螺旋：</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 指数函数级数.mp4" type="video/mp4">
+</video>
+<p>每两条线段之间的夹角是定值，等于<span class="math inline">\(z\)</span>的辐角.</p>
+</div>
+<p>指数函数是单值的，而且满足<span class="math inline">\((\exp
+z)'=\exp z\)</span>，是指数函数的一个非常重要的特征.</p>
+<p><strong>欧拉公式</strong>(Euler's
+formula)在复分析领域是一个非常基本、有用的公式，它把三角函数和指数函数联系了起来.
+对<span class="math inline">\(\theta\in\R\)</span>​​， <span class="math display">\[
+\large{ \e^{\i\theta} = \cos\theta+\i\sin\theta }
+\]</span></p>
+<div class="note note-secondary">
+<p>将<span class="math inline">\(\theta=\pi\)</span>代入，可以得到著名的Euler恒等式：<span class="math inline">\(\e^{\i\pi}+1=0\)</span>.</p>
+</div>
+<p>通过这个公式，每一个模长为<span class="math inline">\(1\)</span>的复数<span class="math inline">\(z\)</span>都可以写成指数形式，<span class="math inline">\(z=\e^{\i\Arg z}\)</span>.
+如果我们在这前面乘上一个系数<span class="math inline">\(|z|&gt;0\)</span>作为<span class="math inline">\(z\)</span>模长，那么复平面上每个非零复数都可以用指数表示（若<span class="math inline">\(z=0\)</span>即<span class="math inline">\(|z|=0\)</span>，那么无论<span class="math inline">\(\Arg{z}\)</span>取何值，下式都为零）：， <span class="math display">\[
+z = |z|\cdot\e^{\i\Arg z}
+\]</span></p>
+<div class="note note-secondary">
+<p>证明：从质点运动的角度，</p>
+<p>设<span class="math inline">\(w=\cos t+\i\sin t\)</span>​，当<span class="math inline">\(t\)</span>​改变时，<span class="math inline">\(w\)</span>​在单位圆上逆时针运动.
+在每单位时间内，<span class="math inline">\(w\)</span>​走了<span class="math inline">\(1\)</span>​弧度，所以运动的角速度大小为<span class="math inline">\(1\)</span>​，从而速度大小为<span class="math inline">\(1\)</span>​​.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/euler-formula-from-kinematics.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>又因为速度<span class="math inline">\(v\)</span>方向沿单位圆切线，与位矢方向呈<span class="math inline">\(90^\circ\)</span>夹角，也就是位矢<span class="math inline">\(w\)</span>乘以<span class="math inline">\(\i\)</span>，所以 <span class="math display">\[
+v=\dv{w}{t}=\i w
+\]</span> 因为指数函数的导数等于它自身<span class="math inline">\((\e^z)'=\e^z\)</span>，所以解得<span class="math inline">\(w=C\e^{\i t}\)</span>，再代入<span class="math inline">\(w(0)=1\)</span>，得到<span class="math inline">\(w=\e^{\i t}\)</span>，从而<span class="math inline">\(\cos t+\i\sin t=w=e^{\i t}\)</span>​.​</p>
+</div>
+<p>考虑一个函数 <span class="math display">\[
+z(t) = A\e^{\i(\omega t+\varphi)}
+\]</span> 其中<span class="math inline">\(A\ge0\)</span>​​，<span class="math inline">\(\omega,\varphi\in\R\)</span>​​​​.
+它描述了一个复平面上的匀速圆周运动，圆心在原点，<span class="math inline">\(A\)</span>是半径，<span class="math inline">\(\omega\)</span>是角速度，<span class="math inline">\(\varphi\)</span>是初始角度.
+这个圆周运动在实轴和虚轴上的投影分别是两个简谐运动： <span class="math display">\[
+\Align{
+\Re{z(t)} &amp;= A\cos(\omega t+\varphi) \\
+\Im{z(t)} &amp;= A\sin(\omega t+\varphi)
+}
+\]</span></p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 圆周运动与简谐运动.mp4" type="video/mp4">
+</video>
+<p>所以说，简谐运动是匀速圆周运动的投影，Euler公式给我们带来了一种非常简便的描述这些运动的方式.</p>
+<div class="note note-secondary">
+<p>拓展：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vt411N7Ti">从热流到画圈圈</a>.</p>
+</div>
+<p>下面来看指数函数的一些性质.</p>
+<p>可以证明，实数域上指数的运算法则仍然成立（加法法则）：<span class="math inline">\(\exp(z+w)=\exp(z)\exp(w)\)</span>.</p>
+<p>从而可以得指数函数是周期函数： <span class="math display">\[
+\e^{z+2k\pi\i}=\e^z\e^{2k\pi\i}=\e^z(\cos(2k\pi)+\i\sin(2k\pi))=\e^z
+,\quad k\in\Z
+\]</span> 一个周期是<span class="math inline">\(2\pi\i\)</span>.
+这就说明，指数函数不再是一一对应函数了，出现了多对一的情况，从后面的动画中也可以看出来，平面某些部分被折叠到了一起，重合了.</p>
+<p>由<span class="math inline">\(\exp(a+b\i)=\e^a\e^{\i
+b}\)</span>可以得出指数函数的值域是<span class="math inline">\(\C\setminus\set0\)</span>，因为<span class="math inline">\(\e^a&gt;0\)</span>而<span class="math inline">\(\e^{\i
+b}\)</span>可以表示任意方向上的单位复数，两者乘积便可以表示除了原点外复平面上所有的复数.</p>
+<p>指数函数对复平面上点的变换：</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 指数函数变换.mp4" type="video/mp4">
+</video>
+<div class="note note-secondary">
+<p>实部<span class="math inline">\(\Re\)</span>的等值线（蓝色）好像变成了以原点为圆心的圆.（虚轴形成了黑色的单位圆.）</p>
+<p>虚部<span class="math inline">\(\Im\)</span>的等值线（黄色）似乎变成了以原点为端点的射线.</p>
+<p>比较容易解释：设<span class="math inline">\(z=a+b\i(a,b\in\R)\)</span>，则 <span class="math display">\[
+w=\exp(a+b\i)=\exp(a)\exp(b\i)=\exp(a)\pqty{\cos{b}+\i\sin{b}}
+\]</span> 若<span class="math inline">\(a\)</span>是定值，则所有<span class="math inline">\(w\)</span>构成一个半径为<span class="math inline">\(\exp(a)\)</span>的圆；若<span class="math inline">\(b\)</span>是定值，则所有<span class="math inline">\(w\)</span>构成一条角度是<span class="math inline">\(b\)</span>的去端射线.</p>
+</div>
+<p>之前说过可以用模长-辐角图是可视化复变函数的一种方法，<span class="math inline">\(w=\exp(z)\)</span>：</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/complex-plot-of-exp.png" style="zoom:63%;" cloud-img="" lazyload="true"></p>
+<p>图中白色平面（<span class="math inline">\(\Im(z)=0\)</span>）和图像的交线就是实变函数<span class="math inline">\(y=\e^x\)</span>的图线.</p>
+<h3 id="对数函数">4.2 对数函数</h3>
+<p><strong>对数函数</strong>(Logarithm
+function)是指数函数的反函数，由于指数函数不是一一映射，所以对数函数是多值函数.</p>
+<p>若想求出它的公式，从Euler公式开始， <span class="math display">\[
+z=|z|\cdot\exp(\i\Arg z)=\exp(\ln|z|+\i\Arg z),\quad z\ne0
+\]</span> 所以我们定义复变对数函数（大写的） <span class="math display">\[
+{\rm Ln}\, z=\ln|z|+\i\Arg z, \quad z\ne0
+\]</span>
+对数函数的多值性来源于指数函数的周期性，而这在公式中体现为多值的<span class="math inline">\(\Arg\)</span>. <span class="math inline">\({\rm
+Ln}\)</span>的值域是<span class="math inline">\(\exp\)</span>的定义域，即<span class="math inline">\(\C\)</span>.</p>
+<p>如果我们把辐角变成辐角主值，那就得到了单值的对数函数（小写的），
+<span class="math display">\[
+\ln z=\ln|z|+\i\arg z, \quad z\ne0
+\]</span> <span class="math inline">\(\ln:\C\setminus\set0\to\C\)</span>，值域是<span class="math inline">\(\qty{z|\Im z\in(-\pi,\pi]}\)</span>.</p>
+<p>单值复变对数函数的零点仍然只有一个<span class="math inline">\(z=1\)</span>： <span class="math display">\[
+\ln{z}=0 \iff \ln|z|+\i\arg{z}=0 \iff \Cases{|z|=1\\\arg z=0} \iff z=1
+\]</span> 一些运算性质：</p>
+<ul>
+<li><p><span class="math inline">\(\exp(\ln z)=z\)</span>（<span class="math inline">\(z\ne0\)</span>）.</p></li>
+<li><p>幂的积：<span class="math inline">\(\exp(z+w)=\exp(z)\exp(w)\)</span>.</p></li>
+<li><p>幂的乘方：<span class="math inline">\(\exp(z)^w=\exp(zw)\)</span>.</p></li>
+<li><p>注意，<span class="math inline">\(\ln(zw)=\ln(z)+\ln(w)\)</span>不一定成立，因为<span class="math inline">\(\arg\)</span>运算值域的限制.</p>
+<p>（<span class="math inline">\(\arg z+\arg w\)</span>只有在<span class="math inline">\((-\pi,\pi]\)</span>内时才等于<span class="math inline">\(\arg(zw)\)</span>相等.）</p>
+<p>但是如果是<span class="math inline">\({\rm
+Ln}\)</span>的话，就有<span class="math inline">\({\rm Ln}\,(zw)={\rm
+Ln}\, z+{\rm Ln}\,
+w\)</span>，这里的等号应该理解为取值集合相等.</p></li>
+</ul>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 对数函数变换.mp4" type="video/mp4">
+</video>
+<div class="note note-secondary">
+<p>函数在原点没有定义，原点附近的值会被拉到左边很远的地方，所以都去掉了.</p>
+<p>每格的边长为<span class="math inline">\(1/2\)</span>.</p>
+<p>可以注意到函数把复平面压缩在了虚部为<span class="math inline">\((-\pi,\pi]\)</span>的部分.</p>
+</div>
+<p>如果把两个函数复合起来，对数在内<span class="math inline">\(g(z)=\exp(\ln z)=z\)</span>（<span class="math inline">\(z\ne0\)</span>），</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 对数+指数变换.mp4" type="video/mp4">
+</video>
+<p>指数在内，<span class="math inline">\(h(z)=\ln(\exp z)\)</span>，</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 指数+对数变换.mp4" type="video/mp4">
+</video>
+<p>平面最后没有被复原，而是折叠到了<span class="math inline">\(\qty{z|\Im{z}\in(-\pi,\pi]}\)</span>的区域.</p>
+<div class="note note-secondary">
+<p>此外，三角函数、双曲函数这两种基本初等函数和它们的反函数也可推广到复数域，在这里不说了.</p>
+</div>
+<h3 id="幂函数">4.3 幂函数</h3>
+<div class="note note-secondary">
+<p>这一部分偏重代数运算，如果不想看可以跳过.</p>
+</div>
+<p>实际上在之前de Moivre公式一节里面，我们已经发现，对于<span class="math inline">\(w=z^n\)</span>，如果<span class="math inline">\(n\)</span>是整数，那么一个<span class="math inline">\(z\)</span>恰好对应一个<span class="math inline">\(w\)</span>（对<span class="math inline">\(n&lt;0\)</span>要求<span class="math inline">\(z\ne0\)</span>），即此时<span class="math inline">\(w\)</span>是单值的函数. 而类似<span class="math inline">\(w=z^{1/5}\)</span>的则是多值的.
+为了更好研究这一点，我们先严谨的给出幂函数的定义.</p>
+<p>对于实数<span class="math inline">\(x\)</span>，那么有一种表示指数的方法<span class="math inline">\(x^3=\e^{3\ln{x}}\)</span>，现在看看能不能同样用指数和对数定义复变指数函数，
+<span class="math display">\[
+w=z^\alpha=\exp(\alpha\cdot{\rm Ln}\,{z}), \quad z\ne0
+\]</span> 把它展开（在每一步中都把多值的部分标了出来） <span class="math display">\[
+\Align{
+w
+&amp;=\exp(\alpha\cdot\orange{{\rm Ln}\,{z}}) \\
+&amp;=\exp[\alpha( \ln|z|+\i\orange{\Arg z} )] \\
+&amp;=\exp(\alpha\ln|z|)\cdot \exp(\alpha\i\orange{\Arg z}) \\
+&amp;=\exp(\alpha\ln|z|)\cdot \exp[\alpha\i(\arg z+2\orange{k}\pi)]
+  &amp; (\orange{k\in\Z}) \\
+&amp;=\exp(\alpha\ln|z|) \cdot
+  \exp(\alpha\i\arg{z}) \cdot
+  \exp(\alpha\cdot2\orange{k}\pi\i)
+}
+\]</span> - 可见，问题出在了<span class="math inline">\(\exp(\alpha\cdot2\orange{k}\pi\i)\)</span>上，随着<span class="math inline">\(\orange{k}\)</span>的改变，这个因式会取不同的值.</p>
+<ul>
+<li><p>如果<span class="math inline">\(\alpha\)</span>是整数，那么<span class="math inline">\(\alpha\cdot2\orange{k}\pi\i\)</span>就是指数函数的一个周期，所以无论<span class="math inline">\(\orange{k}\)</span>怎么变化，自变量总是会相差周期的整数倍，<span class="math inline">\(\exp(...)\)</span>都是单值的，从而幂函数<span class="math inline">\(w=z^\alpha\)</span>也是单值的.</p></li>
+<li><p>如果<span class="math inline">\(\alpha\)</span>是有理数，可以表示成既约分数<span class="math inline">\(\dfrac{p}{q}\)</span>（<span class="math inline">\(p,q\in\Z\)</span>），设<span class="math inline">\(\orange{s}=\dfrac{p}{q}\cdot2\orange{k}\pi\i\)</span>，</p>
+<ul>
+<li><p>当<span class="math inline">\(\orange{k}=1,2,\dots,(q-1),q\)</span>的时候，一个<span class="math inline">\(\orange{k}\)</span>对应了一个不同的<span class="math inline">\(\orange{s}\)</span>的值.</p></li>
+<li><p>当<span class="math inline">\(\orange{k}\)</span>取其他的整数，<span class="math inline">\(\orange{s}\)</span>便开始重复，因为 <span class="math display">\[
+\orange{s}
+= \frac{p}{q}\cdot2(\orange{k}+nq)\pi\i
+= \frac{p}{q}\cdot2\orange{k}\pi\i+2np\pi\i
+\qquad(n\in\Z)
+\]</span> 加上了一个<span class="math inline">\(2np\pi\i\)</span>，而<span class="math inline">\(2np\pi\i\)</span>是指数函数的周期，所以<span class="math inline">\(\orange{s}\)</span>的值开始重复了.</p></li>
+</ul>
+<p>所以此时<span class="math inline">\(\exp(2\orange{k}\pi\i\cdot\alpha)\)</span>只有<span class="math inline">\(q\)</span>个不同的取值，所以<span class="math inline">\(w=z^\alpha\)</span>是<span class="math inline">\(q\)</span>值的.</p></li>
+<li><p>如果<span class="math inline">\(\alpha\)</span>的值是无理数，甚至虚数，那么<span class="math inline">\(\exp(2\orange{k}\pi\i\cdot\alpha)\)</span>就不会重复了，它有无穷多个不同的值，幂函数是无穷多值的.</p></li>
+</ul>
+<div class="note note-secondary">
+<p>例如，<span class="math inline">\(\i^\i\)</span>是多少？ <span class="math display">\[
+\Align{
+\i^\i
+&amp;=\exp(\i{\rm Ln}\,\i)
+=\exp[\i(\ln1+\i\Arg\i)] \\
+&amp;=\exp\pqty{-\Arg{\i}}=\exp(-\frac\pi2+2k\pi)
+&amp;(k\in\Z)
+}
+\]</span></p>
+<p>有无穷多个值，但它们都是实数！</p>
+</div>
+<div class="note note-secondary">
+<p>有一个很经典的错误案例：<span class="math inline">\(-1=\sqrt{-1}^2=\sqrt{-1}\cdot\sqrt{-1}\;{\color{red}=}\;\sqrt{(-1)\cdot(-1)}=\sqrt{1}=1\)</span>，错就错在了红色等号处，因为对于<span class="math inline">\(x_1,x_2&lt;0\)</span>，不满足<span class="math inline">\(\sqrt{x_1}\sqrt{x_2}=\sqrt{x_1x_2}\)</span>.</p>
+<p>为什么？原因就在上面. 上面的开算术平方根实际上对应了幂函数<span class="math inline">\(z^{1/2}\)</span>（是2值的），而算术平方根只取了其中一个，在非负实数范围内，这看不出来影响，但若拓展到实数甚至复数域，就会有问题了.</p>
+<p>引入复变幂函数后，有 <span class="math display">\[
+z_1^{1/2} \cdot z_2^{1/2} = (z_1z_2)^{1/2}
+\]</span> 等号左边是多值的，等号右边也是多值的，等号要这样理解：</p>
+<p>举例：设<span class="math inline">\(z_1=z_2=-1\)</span>，<span class="math inline">\(z_1^{1/2}=\pm\i\)</span>，<span class="math inline">\(z_2^{1/2}=\pm\i\)</span>，<span class="math inline">\((z_1z_2)^{1/2}=\pm1\)</span>，我们对<span class="math inline">\(z_1,z_2\)</span>的<span class="math inline">\(1/2\)</span>次方的取值分类讨论：</p>
+<ul>
+<li>当<span class="math inline">\(z_1^{1/2}\)</span>取<span class="math inline">\(+\i\)</span>：
+<ul>
+<li>当<span class="math inline">\(z_2^{1/2}\)</span>取<span class="math inline">\(+\i\)</span>：则左边<span class="math inline">\(=-1\)</span>，对应了右边<span class="math inline">\((z_1z_2)^{-1}\)</span>取<span class="math inline">\(-1\)</span>.</li>
+<li>当<span class="math inline">\(z_2^{1/2}\)</span>取<span class="math inline">\(-\i\)</span>：则左边<span class="math inline">\(=+1\)</span>，对应了右边<span class="math inline">\((z_1z_2)^{-1}\)</span>取<span class="math inline">\(+1\)</span>.</li>
+</ul></li>
+<li>当<span class="math inline">\(z_1^{1/2}\)</span>取<span class="math inline">\(-\i\)</span>：
+<ul>
+<li>当<span class="math inline">\(z_2^{1/2}\)</span>取<span class="math inline">\(+\i\)</span>：则左边<span class="math inline">\(=+1\)</span>，对应了右边<span class="math inline">\((z_1z_2)^{-1}\)</span>取<span class="math inline">\(+1\)</span>.</li>
+<li>当<span class="math inline">\(z_2^{1/2}\)</span>取<span class="math inline">\(-\i\)</span>：则左边<span class="math inline">\(=-1\)</span>，对应了右边<span class="math inline">\((z_1z_2)^{-1}\)</span>取<span class="math inline">\(-1\)</span>.</li>
+</ul></li>
+</ul>
+<p>而最初展示的错误案例让<span class="math inline">\(z_1,z_2\)</span>的<span class="math inline">\(1/2\)</span>次方都取了<span class="math inline">\(\i\)</span>，而乘积的<span class="math inline">\(1/2\)</span>次方却取了<span class="math inline">\(+1\)</span>，显然有问题，归根结底就在算术平方根的"选择性取值"上.</p>
+</div>
+<div class="note note-secondary">
+<p>到这里，我们发现：如果我们把<span class="math inline">\(z=\e=2.718\dots\)</span>代入<span class="math inline">\(w=z^\alpha\)</span>，即<span class="math inline">\(w=\e^z\)</span>，和我们之前定义的指数函数长得很像，但是这里的<span class="math inline">\(\e^z\)</span>显然是多值的，但是之前定义的指数函数是单值的啊？为了避免这种困惑，我们在之前就做出了规定，指数函数<span class="math inline">\(\e^z\)</span>不是常规意义上的<span class="math inline">\((2.718\dots)^z\)</span>，而是一种记号.
+为了避免混淆，我们还发明了指数函数专门的记号<span class="math inline">\(\exp(z)\)</span>.</p>
+</div>
+<h2 id="变换的几何性质">5 变换的几何性质</h2>
+<p>前面几节的动图展示的变换有一些共有的几何性质，这一节我们主要研究这些性质.</p>
+<p>宏观上看，这些变换好像没什么共同点，既没有把几何图形伸缩固定的倍数或者旋转一定的角度，也没有保持直线的平行等关系（甚至有的直线变成了曲线、曲线变成了直线）.</p>
+<p>这时候我们可以从更"细致"的角度，即微观的角度：</p>
+<p>观察格线的交点，则可以发现：原来垂直的格线（黄色和蓝色的），在变换之后仍然垂直（交点处的切线垂直，这是微观的角度）.
+既然如此，我们就需要研究复变函数变换的微观特性，即研究微积分理论.</p>
+<div class="note note-secondary">
+<p><span class="math inline">\(\S5.1\)</span>给出了一些概念的严格定义，不想看的话可以先看<span class="math inline">\(\S5.2\)</span>：先有一个直观上的认识；况且复变函数的微分理论和实变函数有很多相似点，可以大致当成实变函数来理解.</p>
+</div>
+<h3 id="函数的可导">5.1 函数的可导</h3>
+<p>在数轴上，我们有邻域、开区间、闭区间的定义，现在我们把它们拓展到复平面上.
+这些定义看起来比较吓人，但是它们都有很直观的几何解释.</p>
+<p><strong>邻域</strong>(Neighborhood)：<span class="math inline">\(z_0\)</span>的邻域：<span class="math inline">\(U(z_0,\delta)=\qty{z\big||z-z_0|&lt;\delta}\)</span>，是一个不含边界的圆盘.</p>
+<p>设<span class="math inline">\(S\subset\R^2\)</span>是一些点的集合，对于里面的点<span class="math inline">\(z\)</span>：</p>
+<ul>
+<li>若<span class="math inline">\(z\)</span>的某个邻域完全落在<span class="math inline">\(S\)</span>内，则称<span class="math inline">\(z\)</span>是<strong>内点</strong>.</li>
+<li>若<span class="math inline">\(z\)</span>的某个邻域完全落在<span class="math inline">\(S\)</span>外，则称<span class="math inline">\(z\)</span>是<strong>外点</strong>.</li>
+<li>若<span class="math inline">\(z\)</span>的所有邻域既有<span class="math inline">\(S\)</span>中的点，也有不在<span class="math inline">\(S\)</span>中的点，那么称<span class="math inline">\(z\)</span>是<strong>边界点</strong>.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/topology-types-of-points.svg" style="zoom:65%;" cloud-img="" lazyload="true"></p>
+<p><strong>连通集</strong>：如果点集<span class="math inline">\(S\)</span>中任意两点<span class="math inline">\(x,y\)</span>都可以用一条全部包含于<span class="math inline">\(S\)</span>的折线连起来，那么<span class="math inline">\(S\)</span>是连通集.</p>
+<p>如果点集<span class="math inline">\(S\)</span>中所有的点都是内点（即没有边界点），那么<span class="math inline">\(S\)</span>是<strong>开集</strong>；开集的补集是<strong>闭集</strong>.</p>
+<p>连通的开集称为<strong>区域</strong>，区域<span class="math inline">\(D\)</span>和它的所有边界点构成了一个<strong>闭区域</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/topology-connectivity.svg" style="zoom:65%;" cloud-img="" lazyload="true"></p>
+<p>复变函数的导数与微分可以在形式上完全仿照一元实变函数：</p>
+<p>函数<span class="math inline">\(w=f(z)\)</span>定义在区域<span class="math inline">\(D\)</span>上，如果在<span class="math inline">\(z_0\)</span>处，自变量增量与因变量增量的极限 <span class="math display">\[
+\lim_{\Delta z\to0}\frac{\Delta w}{\Delta z}
+=\lim_{\Delta z\to0}\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z},
+\quad (z_0,z_0+\Delta z\in D)
+\]</span> 存在，则称<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(z_0\)</span>处可导，极限值为<span class="math inline">\(z_0\)</span>处的导数，记为<span class="math inline">\(f'(z_0)\)</span>或<span class="math inline">\(\dv{w}{z}(z_0)\)</span>.</p>
+<p>此时，在<span class="math inline">\(z_0\)</span>处，因变量的改变量<span class="math inline">\(\Delta w\)</span>也可以写作自变量的改变量<span class="math inline">\(\Delta z\)</span>乘以导数，再加上<span class="math inline">\(|\Delta z|\)</span>的高阶无穷小， <span class="math display">\[
+\Delta w=f'(z_0)\Delta z+ o(|\Delta z|)
+\]</span> 如果自变量该变量的模<span class="math inline">\(|\Delta
+z|\)</span>充分小（<span class="math inline">\(\to0\)</span>），直接略去高阶无穷小，得到 <span class="math display">\[
+\dd{w}=f'(z_0)\dd{z}
+\]</span> 其中<span class="math inline">\(\dd
+w\)</span>称为因变量在<span class="math inline">\(z_0\)</span>的的微分，<span class="math inline">\(\dd z\)</span>称为自变量在<span class="math inline">\(z_0\)</span>的微分.</p>
+<div class="note note-secondary">
+<p>例如，函数<span class="math inline">\(w=z^2\)</span>在<span class="math inline">\(z_0\in\C\)</span>处的导数： <span class="math display">\[
+\lim_{\Delta z\to0}\frac{\Delta w}{\Delta z}
+=\lim_{\Delta z\to0}\frac{(z_0+\Delta z)^2-z_0^2}{\Delta z}
+=\lim_{\Delta z\to0}\frac{2z_0\Delta z+\Delta z^2}{\Delta z}
+=\lim_{\Delta z\to0}(2z_0+\Delta z)=2z_0
+\]</span></p>
+</div>
+<p>如果<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(z_0\)</span>的某个邻域中每个点都可导，那么称<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(z_0\)</span><strong>解析</strong>，如果<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(D\)</span>中的每个点都解析，那么称<span class="math inline">\(f(z)\)</span>在<span class="math inline">\(D\)</span>上解析，称<span class="math inline">\(f(z)\)</span>是<strong>解析函数</strong>(Analytic
+function). 解析函数具有一些很好的性质，是复分析的主要研究对象.</p>
+<div class="note note-secondary">
+<p>函数在区域（区域是开集）内处处可导<span class="math inline">\(\iff\)</span>函数在区域内解析.</p>
+</div>
+<h3 id="导数的几何意义">5.2 导数的几何意义</h3>
+<p>要解决夹角问题，我们只需要研究在一个很小的局部内，变换的效果是什么.</p>
+<p>设在复平面上的区域<span class="math inline">\(D\)</span>内解析（即<span class="math inline">\(D\)</span>内处处可导）的函数<span class="math inline">\(w=f(z)\)</span>，<span class="math inline">\(z_0\in D\)</span>.</p>
+<p>考虑<span class="math inline">\(z_0\)</span>附近的（邻域内的）一个数<span class="math inline">\(z_1=z_0+\Delta z\)</span>，以点<span class="math inline">\(z_0\)</span>和<span class="math inline">\(z_1\)</span>为端点有一条很短的线段，线段的方向就是向量<span class="math inline">\(\Delta z\)</span>的方向，长度是向量<span class="math inline">\(\Delta z\)</span>的模长.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/local-transform.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>应用<span class="math inline">\(w=f(z)\)</span>变换后，<span class="math inline">\(w_0=f(z_0)\)</span>，<span class="math inline">\(w_1=f(w_1)\)</span>， <span class="math display">\[
+\Delta w=w_1-w_0=f(z_0+\Delta z)-f(z_0)
+\]</span> （因为<span class="math inline">\(f(z)\)</span>解析）当<span class="math inline">\(\Delta
+z\)</span>的模足够小，因变量改变量可以近似为 <span class="math display">\[
+\Delta w = f'(z_0)\Delta z
+\]</span> 此时<span class="math inline">\(\Delta
+w\)</span>的模长和方向分别表示变换后线段的长度和方向.</p>
+<p>根据复数乘法的几何意义， <span class="math display">\[
+\Align{
+\Arg(\Delta w) &amp;= \Arg(f'(z_0))+\Arg(\Delta z) \\
+|\Delta w| &amp;= |f'(z_0)|\cdot|\Delta z|
+}
+\]</span>
+所以线段的长度乘以了导数的模，并且按照导数的辐角旋转了一个角度.</p>
+<p>从而可以说：在<span class="math inline">\(z_0\in
+D\)</span>的一个很小的邻域内，解析函数<span class="math inline">\(w=f(z)\)</span>表示的变换的作用效果是缩放和旋转的复合.
+如果<span class="math inline">\(|f'(z_0)|=0\)</span>，函数把这一区域压缩成了一个点；如果<span class="math inline">\(|f'(z_0)|\ne0\)</span>，那么这一区域内变换前后的图形是相似的.</p>
+<div class="note note-secondary">
+<p>实变函数可以看作对数轴的变换，导数的大小表示的是某一点附近被拉伸的程度.</p>
+</div>
+<div class="note note-secondary">
+<p>下面的动画展示了<span class="math inline">\(f(z)=\dfrac12z^2\)</span>在点<span class="math inline">\(1+\sqrt3\i\)</span>的附近对图形的变换.
+左下角展示了局部放大的画面. 为了方便对比，放了一个字在<span class="math inline">\(1+\sqrt3\i\)</span>上面.</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 共形映射局部放大.mp4" type="video/mp4">
+</video>
+</div>
+<p>我们把这种在局部具有如此性质的映射给出一个正式的描述：</p>
+<p><strong>共形映射</strong>(Conformal mapping)，也称保形变换.
+若区域<span class="math inline">\(D\)</span>上的<span class="math inline">\(w=f(z)\)</span>满足：</p>
+<ul>
+<li>是一一映射.（变换前后的点一一对应）</li>
+<li>具有保角性.（<span class="math inline">\(D\)</span>内任意两条相交曲线夹角的大小、方向不变，即任意一点附近被旋转.）</li>
+<li>具有保伸缩率性.（<span class="math inline">\(D\)</span>内任意一点附近被"各个方向上均匀缩放".）</li>
+</ul>
+<p>则称<span class="math inline">\(w=f(z)\)</span>是区域<span class="math inline">\(D\)</span>内的共形映射.</p>
+<p>"共形"可以理解为在邻域内的图形变换前后形状相同，即相似.</p>
+<p>函数解析且导数不为零能保证它满足后两个条件，再加上一个一一映射便能保证它是一个共形映射：
+<span class="math display">\[
+\boxed{\text{解析}} + \boxed{f'(z)\ne0} + \boxed{\text{一一映射}}
+= \text{共形映射}
+\]</span></p>
+<div class="note note-secondary">
+<p><span class="math inline">\(w=\exp(z)\)</span>不是共形的，因为<span class="math inline">\(\exp(z+2\pi\i)=\exp(z)\)</span>，不是一一射.
+如果限制其定义域为<span class="math inline">\(\qty{z|\Im
+z\in(-\pi,\pi)}\)</span>，那么它就是一个一一映射，而且<span class="math inline">\((\exp z')=\exp
+z\ne0\)</span>，从而是一个共形映射.</p>
+</div>
+<p>下面我们来讨论一种特殊的共形映射——分式线性映射.</p>
+<h3 id="分式线性映射">5.3 分式线性映射</h3>
+<p><span class="math display">\[
+w=\frac{az+b}{cz+d}, \quad (ad-bc\ne0)
+\]</span> 这种映射被称为<strong>分式线性映射</strong>(Linear fractional
+mapping)，其中<span class="math inline">\(a,b,c,d\)</span>都可以在复数域内取值.</p>
+<p>令<span class="math inline">\(ad-bc\ne0\)</span>是为了使它有逆映射，即<span class="math inline">\(z=\dfrac{dw-b}{-cw+a}\)</span>.</p>
+<p>分式线性映射可以分解成更基本映射的复合：</p>
+<div class="note note-secondary">
+<p>例：<span class="math inline">\(w=\dfrac{2z}{z+\i}\)</span>. <span class="math display">\[
+\Align{
+w
+=\frac{2z}{z+\i}
+=\frac{2(z+\i)-2\i}{z+\i}
+=2+\frac{-2\i}{z+\i}
+=2+2\e^{-\pi\i/2} \frac{1}{z+\i}
+}
+\]</span> （最后一步用了Euler公式）可以看出其复合过程为 <span class="math display">\[
+z
+\xrightarrow[\text{平移}]{z+\i} z_1
+\xrightarrow[\text{倒数}]{1/z_1} z_2
+\xrightarrow[\text{旋转}]{\exp(-\pi\i/2)z_2} z_3
+\xrightarrow[\text{缩放}]{2z_3} z_4
+\xrightarrow[\text{平移}]{z_4+2} w
+\]</span> 动画（去掉了使分母为零的点<span class="math inline">\(-\i\)</span>）：</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 分式变换的分解.mp4" type="video/mp4">
+</video>
+</div>
+<p>一个一般的分式线性映射可以由以下四种最简单的分式线性映射复合而成：</p>
+<ol type="1">
+<li>平移<span class="math inline">\(w=z+b\)</span>（<span class="math inline">\(b\in\C\)</span>）.</li>
+<li>旋转<span class="math inline">\(w=\e^{\i\theta}z\)</span>（<span class="math inline">\(\theta\in\R\)</span>）.</li>
+<li>缩放<span class="math inline">\(w=rz\)</span>（<span class="math inline">\(r&gt;0\)</span>）.</li>
+<li>倒数<span class="math inline">\(w=\dfrac1z\)</span>.</li>
+</ol>
+<p>我们来看看第四种，它也称为<strong>反演映射</strong>(Inversion
+mapping)，就是<span class="math inline">\(\S3.1\)</span>动画中的<span class="math inline">\(f(z)=\dfrac1z\)</span>. 继续对其进行分解： <span class="math display">\[
+w=\dfrac1z
+=\dfrac1{a+b\i}
+=\dfrac{a-b\i}{a^2+b^2}
+=\frac{1}{|z|^2} \overline{z}
+\]</span> 可以看出是先缩放<span class="math inline">\(\dfrac1{|z|^2}\)</span>倍，再取共轭（关于实轴对称）.
+经过第一步缩放后，单位圆外的点到了单位圆内；单位圆内的点到了单位圆外，圆上的点不变，所以这个缩放也可以看作"<u>关于圆的对称</u>".</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/inversion-transform.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>反演映射在原点没有定义，但是若我们扩充复数集：</p>
+<div class="note note-secondary">
+<p>设<span class="math inline">\(1/0=\infty\)</span>为无穷大，<span class="math inline">\(\hat\C=\C\cup\qty{\infty}\)</span>称为<strong>扩充的复数集</strong>.</p>
+<p>无大对应扩充复平面上的<strong>无穷远点</strong>(Point at
+infinity)，是一个假想的点. 任何直线都通过无穷远点.</p>
+<p>作一个与复平面相切于原点的球面，切点为原点<span class="math inline">\(S\)</span>（南极），过原点作垂直于复平面的直线，交球面于另一点<span class="math inline">\(N\)</span>（北极）. 取球面上除<span class="math inline">\(N\)</span>外任意一点<span class="math inline">\(P\)</span>，射线<span class="math inline">\(NP\)</span>交复平面（除无穷远点）于唯一一点<span class="math inline">\(Q\)</span>，这两个点是一一对应的. 如果<span class="math inline">\(P=N\)</span>，即<span class="math inline">\(NP\)</span>是球面在<span class="math inline">\(N\)</span>的切线，那么<span class="math inline">\(NP\)</span>与复平面的交点<span class="math inline">\(Q\)</span>是无穷远点.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-and-transforms/complex-sphere.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>这个模型是黎曼球面(Riemann sphere)模型.</p>
+<p>运算：对<span class="math inline">\(z\in\C\)</span>：<span class="math inline">\(z/0=\infty(z\ne0)\)</span>，<span class="math inline">\(z/\infty=0\)</span>，<span class="math inline">\(z+\infty=\infty\)</span>，<span class="math inline">\(z\cdot\infty=\infty(z\ne0)\)</span>.</p>
+</div>
+<p>对于<span class="math inline">\(w=1/z\)</span>，有<span class="math inline">\(1/0=\infty\)</span>，<span class="math inline">\(1/\infty=0\)</span>，所以<span class="math inline">\(w=1/z\)</span>成功地成为了扩充复数集上的双射.
+其他3种简单分式线性映射也可以推广到扩充复数集，而且是一一映射.
+进而可以证明，分式线性映射是解析的，所以分式线性映射是共形映射.</p>
+<p>分式线性映射作为一种特殊的共形映射，有它自己的特殊的性质.</p>
+<p><strong>保圆性</strong>：在扩充复平面上，分式线性映射把圆映成圆.</p>
+<div class="note note-secondary">
+<p>这里的圆是扩充复平面中的，除了一般的欧式空间中的圆之外，直线也算作圆，半径是无穷大.</p>
+</div>
+<div class="note note-secondary">
+<p>性质的证明：第1-3种简单分式线性变换显然保圆，只需证明反演变换的保圆形即可.
+把变换前的点坐标用变换后的坐标表示，代入圆的方程即可证得.</p>
+</div>
+<p>显然，如果一个圆不经过<span class="math inline">\(z_0\)</span>（<span class="math inline">\(z_0\)</span>代入变换后分母为零），那么它会被映成一个半径有限大的圆；反之则会被映成半径无穷大的圆（直线）.</p>
+<div class="note note-secondary">
+<p>下面的动画展示了反演变换的保圆性.</p>
+<video controls="" name="media" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/complex-and-transforms/复数与变换 - 反演的保圆性.mp4" type="video/mp4">
+</video>
+</div>
+<hr>
+<div class="note note-secondary">
+<p>复数值得研究的东西有很多，这里只展示了冰山一角.</p>
+<p>复数的引入不仅完善了数学体系（复数域对加减乘除、指对幂、极限都是封闭的），同时还能解释一些以前解释不通的东西：</p>
+<ul>
+<li><p>例如错误案例<span class="math inline">\(-1=\sqrt{-1}^2=\sqrt{-1}\sqrt{-1}\;{\color{red}=}\;\sqrt{(-1)(-1)}=\sqrt{1}=1\)</span>.</p></li>
+<li><p>再如之后可能会写到的Taylor级数收敛半径问题.</p></li>
+</ul>
+<p>找到一些数学对象的内在联系：</p>
+<ul>
+<li><p>三角函数和指数函数的联系：<span class="math inline">\(\exp(\i
+x)=\cos{x}+\i\sin{x}\)</span>.</p></li>
+<li><p>三角函数和双曲函数的联系：<span class="math inline">\(\i\sin{z}=\sinh(\i z)\)</span>，<span class="math inline">\(\cos{z}=\cosh(\i z)\)</span>.</p></li>
+</ul>
+<p>还为描述某些现象提供了全新的视角：</p>
+<ul>
+<li>复数的乘法和乘方来描述二维中的旋转，进而还有Fourier变换（<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vt411N7Ti">从热流到画圈圈</a>，<a target="_blank" rel="noopener" href="https://www.jezzamon.com/fourier/index.html">Fourier变换可视化</a>），这是计算机信号处理和文件格式JPEG、MP3的基石！</li>
+<li>解析函数的实部和虚部可以表示某种流体的流和势.</li>
+</ul>
+<p>……</p>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Visualizing/" class="category-chain-item">Visualizing</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/" class="print-no-link">#复变函数</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>复数与变换</div>
+      <div>https://disembo.github.io/Visualizing/complex-and-transforms/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Visualizing/taylor-series-1/" title="Taylor展开(一)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Taylor展开(一)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1076 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基本群的函子性 &amp; 拓扑不变性; 同伦等价, 基本群的同伦不变性; 高阶同伦群简介.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM202 | 11 同伦与基本群">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202-11/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="基本群的函子性 &amp; 拓扑不变性; 同伦等价, 基本群的同伦不变性; 高阶同伦群简介.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/homotopy-equivalent-examples.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/induced-homomorphisms-of-homotopy-maps.png">
+<meta property="article:published_time" content="2024-08-07T10:30:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.707Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="拓扑">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/homotopy-equivalent-examples.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM202 | 11 同伦与基本群 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM202 | 11 同伦与基本群"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-07 18:30" pubdate>
+          2024年8月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM202 | 11 同伦与基本群</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 7
+的笔记.</p>
+</div>
+<h2 id="functoriality-of-fundamental-groups">26  Functoriality of
+Fundamental Groups</h2>
+<p>拓扑空间之间的连续映射可以诱导出基本群间的同态. 这使得基本群构造
+<span class="math inline">\(\pi_1\)</span> 成为了 "带点拓扑范畴"
+到群范畴的函子, 进而导致了 <span class="math inline">\(\pi_1\)</span>
+的拓扑不变性.</p>
+<h3 id="the-induced-homomorphism">26.1  The induced homomorphism</h3>
+<p>设拓扑空间 <span class="math inline">\(X\)</span>, 以 <span class="math inline">\(p\)</span> 为基点的基本群 <span class="math inline">\(\pi_1(X,p)\)</span>. 因为连续映射保持道路同伦,
+<span class="math inline">\(\varphi\in C(X,Y)\)</span> 诱导出了映射
+<span class="math inline">\(\varphi_*:\pi_1(X,p)\to\pi_1(Y,\varphi(p))\)</span>,
+<span class="math display">\[
+\varphi_*[f] := [\varphi\circ f].
+\]</span></p>
+<ul>
+<li>若 <span class="math inline">\(f\sim g\)</span>, 则 <span class="math inline">\(\varphi\circ f\sim\varphi\circ g\)</span>,
+说明这个映射是良定义的.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 26.1</u> (诱导同态) 对 <span class="math inline">\(\varphi\in C(X,Y)\)</span>, <span class="math inline">\(\varphi_*\)</span> 是群同态, 称为 <strong><span class="math inline">\(\varphi\)</span> 诱导的同态</strong>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 有 <span class="math display">\[
+\varphi_*([f]*[g])=\varphi_*[f*g]=[\varphi\circ(f*g)],
+\]</span> 只需证明 <span class="math inline">\(\varphi\circ(f*g)=(\varphi\circ f)*(\varphi\circ
+g)\)</span> (连续映射保持道路乘积), 用乘积定义直接展开即可.</p>
+</div>
+<h3 id="functoriality-of-pi_1">26.2  Functoriality of <span class="math inline">\(\pi_1\)</span></h3>
+<div class="note note-success">
+<p><u>Claim 26.2</u> (诱导同态的函子性)</p>
+<ol type="1">
+<li>设 <span class="math inline">\(\varphi\in C(X,Y)\)</span>, <span class="math inline">\(\psi\in C(Y,Z)\)</span>, 则 <span class="math inline">\((\psi\circ\varphi)_*=\psi_*\circ\varphi_*\)</span>.</li>
+<li>恒等映射 <span class="math inline">\({\rm id}_X\)</span>
+诱导出的同态 <span class="math inline">\(({\rm id}_X)_*\)</span> 是
+<span class="math inline">\(\pi_1(X,p)\)</span> 的恒等映射.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 计算: <span class="math display">\[
+\Align{
+\psi_*(\varphi_*[f])
+&amp;=\psi_*[\varphi\circ f]=[\psi\circ\varphi\circ f]
+=(\psi\circ\varphi)_*[f], \\
+({\rm id}_X)_*[f] &amp;= [{\rm id}_X\circ f]=[f].
+}
+\]</span></p>
+</div>
+<p>为了进一步阐明函子性, 我们引入带点拓扑空间范畴. <strong>带点拓扑空间
+(pointed space)</strong> 指的是二元组 <span class="math inline">\((X,p)\)</span>, 其中 <span class="math inline">\(X\)</span> 是拓扑空间, 点 <span class="math inline">\(p\in X\)</span>. 带点拓扑空间 <span class="math inline">\((X,p),(Y,q)\)</span> 之间的态射是连续映射 <span class="math inline">\(f\in C(X,Y)\)</span> 满足 <span class="math inline">\(f(p)=q\)</span>. <strong>带点拓扑空间范畴 (pointed
+topological category)</strong> 是由带点拓扑空间和态射组成的范畴, 记作
+<span class="math inline">\({\sf Top}_*\)</span>.</p>
+<p><strong>基本群函子 (fundamental group functor)</strong> <span class="math inline">\(\pi_1:{\sf Top}_*\to{\sf Grp}\)</span>
+是带点拓扑空间范畴到群范畴的函子, 将 <span class="math inline">\((X,p)\)</span> 映到基本群 <span class="math inline">\(\pi_1(X,p)\)</span>, 将态射 <span class="math inline">\(\varphi:(X,p)\to(Y,q)\)</span> 映到诱导同态 <span class="math inline">\(\varphi_*:\pi_1(X,p)\to\pi_1(Y,q)\)</span>.
+根据上面的定理, <span class="math inline">\(\pi_1\)</span>
+满足函子的条件, 是一个协变函子.</p>
+<p>函子性的标准应用是拓扑不变性 (函子将同构映到同构).</p>
+<div class="note note-success">
+<p><u>Claim 26.3</u> (基本群的拓扑不变性) 若 <span class="math inline">\(\varphi:X\to Y\)</span> 是同胚, 则有同构 <span class="math inline">\(\varphi_*:\pi_1(X,p)\to\pi_1(Y,\varphi(p))\)</span>.</p>
+</div>
+<p>基本群函子将 <span class="math inline">\({\sf Top}_*\)</span> 的积
+(积空间) 映到 <span class="math inline">\({\sf Grp}\)</span> 的积
+(直积群). 设拓扑空间 <span class="math inline">\(X_1,\dots,X_n\)</span>,
+自然投射 <span class="math inline">\(p_i:X_1\times\dots\times X_n\to
+X_i\)</span>. 取定基点 <span class="math inline">\(x_i\in X_i\)</span>,
+有诱导同态 <span class="math display">\[
+(p_i)_*:\pi_1(X_1\times\dots\times X_n,(x_1,\dots,x_n))
+\to \pi_1(X_i,x_i).
+\]</span> 这些同态的积是 <span class="math display">\[
+\Align{
+P:\pi_1(X_1\times\dots\times X_n,(x_1,\dots,x_n)) &amp;\to
+\pi_1(X_1,x_1)\times\dots\times\pi_1(X_n,x_n), \\
+[f] &amp;\mapsto ((p_1)_*[f],\dots,(p_n)_*[f]).
+}
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 26.4</u> (乘积的基本群) 如上定义的 <span class="math inline">\(P\)</span> 是群同构.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 同态的积是同态, 只需验证双射.</p>
+<p>满: 任取 <span class="math inline">\([f_i]\in\pi_1(X_i,x_i)\)</span>,
+定义积空间的环路 <span class="math inline">\(f(s)=(f_1(s),\dots,f_n(s))\)</span>, 则 <span class="math display">\[
+P[f]
+= ((p_1)_*[f],\dots,(p_n)_*[f])
+= ([p_1\circ f],\dots,[p_n\circ f])
+= ([f_1],\dots,[f_n]).
+\]</span> 单: 设乘积空间的环路 <span class="math inline">\(f(s)=(f_1(s),\dots,f_n(s))\)</span> 满足 <span class="math inline">\(P[f]\)</span> 是直积群的恒等元, 即 <span class="math display">\[
+[c_{x_i}]=(p_i)_*[f]=[p_i\circ f]=[f_i],
+\]</span> 即 <span class="math inline">\(f_i\)</span> 道路同伦于常环路
+<span class="math inline">\(c_{x_i}\)</span>, <span class="math inline">\(H_i:f_i\sim c_{x_i}\)</span>. 定义 <span class="math inline">\(H:I\times I\to X_1\times\dots\times X_n\)</span>,
+<span class="math display">\[
+H(s,t)=(H_1(s,t),\dots,H_n(s,t)).
+\]</span> 这给出了 <span class="math inline">\(f\)</span> 到常环路 <span class="math inline">\(c_{(x_1,\dots,x_n)}\)</span> 的道路同伦.</p>
+</div>
+<p>实际上, 基本群函子还将 <span class="math inline">\({\sf
+Top}_*\)</span> 的余积 (一点并) 映到 <span class="math inline">\({\sf
+Grp}\)</span> 的余积 (自由积), 我们在后面进一步讨论.</p>
+<p>补充一个简单的例子. 回顾拓扑齐性空间: 拓扑齐性空间 <span class="math inline">\(X\)</span> 中, 任意两点可以由同胚联系起来.
+因此任意基点的基本群 <span class="math inline">\(\pi_1(X,p)\)</span>
+都是同构的. 特别地, 拓扑群是齐性的, 因此拓扑群的基本群处处同构.</p>
+<div class="note note-success">
+<p><u>Claim 26.5</u> (拓扑群的基本群) 拓扑群的基本群是交换群.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为拓扑群是齐性的, 只需考虑 <span class="math inline">\(e\in G\)</span> 处的基本群. 任给环路 <span class="math inline">\(f,g\in\Omega(G,e)\)</span>, 考虑连续映射 <span class="math inline">\(F:I\times I\to G\)</span>, <span class="math inline">\(F(s,t)=f(s)g(t)\)</span>, 应用正方形引理, 立刻得到
+<span class="math inline">\(f*g\sim g*f\)</span>.</p>
+</div>
+<h3 id="retraction">26.3  Retraction</h3>
+<p>需要注意的是, 连续映射 <span class="math inline">\(\varphi\in
+C(X,Y)\)</span> 的单射性/满射性不意味着诱导同态 <span class="math inline">\(\varphi_*\)</span> 的单射性/满射性. 例如, <span class="math inline">\(\iota:\mathbb{S}^1\hookrightarrow\R^2\)</span>
+是单射, 然而 <span class="math inline">\(\pi_1(\mathbb{S}^1)\)</span>
+是无穷循环群, <span class="math inline">\(\pi_1(\R^2)\)</span> 平凡,
+<span class="math inline">\(i_*\)</span> 是平凡同态.</p>
+<p>利用函子性, 要保证诱导同态的单射/满射性, 需要为连续映射找到单侧逆.
+设子空间 <span class="math inline">\(A\subset X\)</span>, 包含映射 <span class="math inline">\(\iota_A:A\hookrightarrow X\)</span>. 连续映射
+<span class="math inline">\(r:X\to A\)</span> 称为<strong>收缩
+(retraction)</strong>, 若它是 <span class="math inline">\(\iota\)</span>
+的左逆: <span class="math inline">\(r\circ\iota_A={\rm id}_A\)</span>.
+等价的说法是 <span class="math inline">\(r\)</span> 在 <span class="math inline">\(A\)</span> 上的限制是恒等映射. 此时称
+<strong><span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的一个收缩</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 26.6</u> (收缩的性质)</p>
+<ol type="1">
+<li>(道路) 连通空间的收缩是 (道路) 连通的.</li>
+<li>紧空间的收缩是紧的.</li>
+<li>(传递) <span class="math inline">\(A\subset B\subset X\)</span>, 若
+<span class="math inline">\(A\)</span> 是 <span class="math inline">\(B\)</span> 的收缩, <span class="math inline">\(B\)</span> 是 <span class="math inline">\(X\)</span> 的收缩, 则 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的收缩.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 收缩是连续的满射, 因此 1, 2 是显然的. 3, 设收缩 <span class="math inline">\(r_1:B\to A\)</span>, <span class="math inline">\(r_2:X\to B\)</span>, 容易验证, 复合映射 <span class="math inline">\(r_1\circ r_2:X\to A\)</span> 给出了 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(A\)</span> 的收缩.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 26.7</u> (收缩的诱导同态) 设收缩 <span class="math inline">\(r:X\to A\)</span>, 则对任意一点 <span class="math inline">\(p\in A\)</span>, <span class="math inline">\((\iota_A)_*:\pi_1(A,p)\to\pi_1(X,p)\)</span>
+是单射, <span class="math inline">\(r_*:\pi_1(X,p)\to\pi_1(A,p)\)</span>
+是满射.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为 <span class="math inline">\(r\circ\iota_A={\rm
+id}_A\)</span>, 利用函子性有 <span class="math inline">\(r_*\circ(\iota_A)_*={\rm id}\)</span>,
+两者互为单侧逆, 即 <span class="math inline">\(r_*\)</span> 满, <span class="math inline">\((\iota_A)_*\)</span> 单.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 26.8</u> (收缩保持单连通) 单连通空间的收缩是单连通的.</p>
+</div>
+<ul>
+<li>(逆否命题) 若收缩不单连通, 则原空间不单连通.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 因为 <span class="math inline">\((\iota_A)_*:\pi_1(A,p)\to\pi_1(X,p)\)</span>
+是单射, 如果 <span class="math inline">\(\pi_1(X,p)\)</span> 平凡, 则
+<span class="math inline">\(\pi_1(A,p)\)</span> 平凡.</p>
+</div>
+<p>一些收缩的例子:</p>
+<ul>
+<li>(去掉一个点的平面) 对于 <span class="math inline">\(n\geq1\)</span>,
+映射 <span class="math inline">\(r:\R^n\setminus\{0\}\to\mathbb{S}^n\)</span>,
+<span class="math inline">\(x\mapsto x/\|x\|\)</span> 是收缩. 因为 <span class="math inline">\(\mathbb{S}^1\)</span> 不单连通,
+所以去掉一个点的平面 <span class="math inline">\(\R^2\setminus\{0\}\)</span> 不单连通.</li>
+<li>(二维环面) 环面 <span class="math inline">\(\mathbb{T}^2=\mathbb{S}^1\times\mathbb{S}^1\)</span>
+到子空间 <span class="math inline">\(\mathbb{S}^1\times\{1\}\)</span>
+的收缩由 <span class="math inline">\(r(z,w)=(z,1)\)</span> 给出. 因此
+<span class="math inline">\(\mathbb{T}^2\)</span> 不是单连通的.</li>
+<li>(数字 <span class="math inline">\(8\)</span>) <strong>数字 <span class="math inline">\(8\)</span> 空间</strong> <span class="math inline">\({\cal E}\subset\R^2\)</span> 是两个单位圆 <span class="math inline">\(\mathbb{S}^1\)</span> 的一点并,
+它可以收缩到其中一个单位圆, 因此不单连通.</li>
+<li>(圆盘不可收缩到边界) 单位圆盘 <span class="math inline">\(\overline{\mathbb{B}^2}\)</span> 单连通, 而其边界
+<span class="math inline">\(\mathbb{S}^1\)</span> 非单连通,
+因此单位圆盘不可收缩到其边界.</li>
+</ul>
+<h2 id="homotopy-equivalence">27  Homotopy Equivalence</h2>
+<p>同伦等价是一个比同胚弱的等价关系. 基本群不光在同胚下保持,
+还在同伦等价下保持. 这个结论让我们能够计算更多空间的基本群.</p>
+<h3 id="homotopy-equivalence-1">27.1  Homotopy equivalence</h3>
+<p>回顾: 拓扑空间 <span class="math inline">\(X,Y\)</span> 称为同胚的,
+记 <span class="math inline">\(X\cong Y\)</span>, 若存在 <span class="math inline">\(\varphi\in C(X,Y)\)</span> 和 <span class="math inline">\(\psi\in C(Y,X)\)</span> 满足 <span class="math inline">\(\psi\circ\varphi={\rm id}_X\)</span> 且 <span class="math inline">\(\varphi\circ\psi={\rm id}_Y\)</span>. 称 <span class="math inline">\(\psi,\varphi\)</span> 互为逆映射.
+同胚是一个很强的等价关系, 同胚的空间具有相同的拓扑性质.
+下面引入一个较弱的等价关系.</p>
+<p>设 <span class="math inline">\(\varphi\in C(X,Y)\)</span>, 若存在
+<span class="math inline">\(\psi\in C(Y,X)\)</span>, 满足 <span class="math inline">\(\psi\circ\varphi\sim{\rm id}_X\)</span> 且 <span class="math inline">\(\varphi\circ\psi\sim{\rm id}_Y\)</span>, 则称
+<span class="math inline">\(X,Y\)</span> 是<strong>同伦等价的 (homotopy
+equivalent)</strong>, 称映射 <span class="math inline">\(\varphi,\psi\)</span> 是 <span class="math inline">\(X,Y\)</span> 间的<strong>同伦等价 (homotopy
+equivalence)</strong>, <span class="math inline">\(\psi\)</span> 称为
+<span class="math inline">\(\varphi\)</span> 的一个<strong>同伦逆
+(homotopy inverse)</strong>.
+在同伦等价下保持不变的性质称为<strong>同伦不变性</strong>.</p>
+<ul>
+<li><p>同伦等价是拓扑空间之间的等价关系.</p></li>
+<li><p><span class="math inline">\(X\cong Y\)</span> 蕴含 <span class="math inline">\(X\sim Y\)</span>, 反之不然. 实际上, 很多拓扑性质
+(如紧性, Hausdorff 性) 不能在同伦等价下保持.
+同伦等价大致说的是两个空间具有相似的形状, 比如 "洞" 的个数.
+下图中的几个拓扑空间互不同胚, 但同伦等价: (<a target="_blank" rel="noopener" href="https://www.bananaspace.org/wiki/%E5%90%8C%E4%BC%A6%E7%AD%89%E4%BB%B7">图自香蕉空间</a>)</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/homotopy-equivalent-examples.png" style="zoom:40%;" cloud-img="" lazyload="true"></p></li>
+</ul>
+<h3 id="deformation-retractions">27.2  Deformation retractions</h3>
+<p>收缩映射满足 <span class="math inline">\(r\circ\iota_A={\rm
+id}_A\)</span>, 如果进一步还有 <span class="math inline">\(\iota_A\circ
+r\sim{\rm id}_X\)</span>, 则称之为<strong>形变收缩 (deformation
+retraction)</strong>, 此时我们说 <strong><span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的一个形变收缩</strong>. 形变收缩是空间
+<span class="math inline">\(X\)</span> 与其子空间的一种同伦等价.</p>
+<p>如果收缩映射还满足 <span class="math inline">\(\iota_A\circ
+r\)</span> 相对 <span class="math inline">\(A\)</span> 同伦于 <span class="math inline">\({\rm id}_X\)</span>, 则称之为<strong>强形变收缩
+(strong deformation retraction)</strong>.</p>
+<ul>
+<li><p>子空间 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的形变收缩, 当且仅当存在同伦 <span class="math inline">\(H:X\times I\to X\)</span>, 满足 <span class="math display">\[
+\Align{
+H(x,0) &amp;= x, &amp;\forall x\in X, \\
+H(x,1) &amp;\in A, &amp;\forall x\in X, \\
+H(a,1) &amp;= a, &amp;\forall a\in A.
+}
+\]</span> 强形变收缩则进一步要求 <span class="math inline">\(H(a,t)=a\)</span>, <span class="math inline">\(\forall a\in A,t\in I\)</span>. 有时, 我们也将同伦
+<span class="math inline">\(H\)</span> 称作形变收缩.</p></li>
+<li><p>直观上讲, <span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的形变收缩, 若 <span class="math inline">\(X\)</span> 能够连续地形变成 <span class="math inline">\(A\)</span>, 同时 <span class="math inline">\(A\)</span> 中的点最终回到原位. <span class="math inline">\(A\)</span> 是 <span class="math inline">\(X\)</span> 的强形变收缩, 若 <span class="math inline">\(X\)</span> 能够连续地形变成 <span class="math inline">\(A\)</span>, 同时 <span class="math inline">\(A\)</span> 中的点自始至终保持不动.</p></li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 27.1</u> (球面是强形变收缩) 对 <span class="math inline">\(n\geq1\)</span>, <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 是 <span class="math inline">\(\R^n\setminus\{0\}\)</span> 以及 <span class="math inline">\(\overline{\mathbb{B}^n}\setminus\{0\}\)</span>
+的强形变收缩.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 定义同伦 <span class="math inline">\(H:(\R^n\setminus\{0\})\times
+I\to\R^n\setminus\{0\}\)</span>, <span class="math display">\[
+H(x,t)=(1-t)x + t\frac{x}{\|x\|},
+\]</span> 是恒等映射 <span class="math inline">\({\rm
+id}_{\R^n\setminus\{0\}}\)</span> 与收缩映射 <span class="math inline">\(r:\R^n\setminus\{0\}\to\mathbb{S}^{n-1}\)</span>
+间的直线同伦, 并且保持 <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 不变, 因此是强形变收缩.
+上式也应用于 <span class="math inline">\(\overline{\mathbb{B}^n}\setminus\{0\}\)</span>.</p>
+</div>
+<p>形变收缩最极端的情况是 <span class="math inline">\(X\)</span>
+形变收缩到一个点. 拓扑空间 <span class="math inline">\(X\)</span>
+称为<strong>可缩的 (contractible)</strong>, 如果 <span class="math inline">\(X\)</span> 同伦等价于一个独点空间.</p>
+<div class="note note-success">
+<p><u>Claim 27.2</u> (可缩空间的刻画) 设空间 <span class="math inline">\(X\)</span>, TFAE:</p>
+<ol type="1">
+<li><span class="math inline">\({\rm id}_X\)</span> 零伦.</li>
+<li><span class="math inline">\(X\)</span> 可缩.</li>
+<li><span class="math inline">\(X\)</span> 中任意一点是 <span class="math inline">\(X\)</span> 的形变收缩.</li>
+<li>任意连续映射 <span class="math inline">\(\varphi\in C(Y,X)\)</span>
+是零伦的.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 我们证明 1 <span class="math inline">\(\Rightarrow\)</span>
+2 <span class="math inline">\(\Rightarrow\)</span> 3 <span class="math inline">\(\Rightarrow\)</span> 4 <span class="math inline">\(\Rightarrow\)</span> 1, 其中 4 <span class="math inline">\(\Rightarrow\)</span> 1 是显然的.</p>
+<p>1 <span class="math inline">\(\Rightarrow\)</span> 2, 设 <span class="math inline">\({\rm id}_X\sim f_p\)</span>, 其中 <span class="math inline">\(f_p(x)\equiv p\in X\)</span> 是常映射. 记同伦为
+<span class="math inline">\(H:X\times I\to X\)</span>, 有 <span class="math display">\[
+\Align{
+H(x,0) &amp;= x, &amp;\forall x\in X, \\
+H(x,1) &amp;= p, &amp;\forall x\in X.
+}
+\]</span> 注意到这给出了一个 <span class="math inline">\(X\)</span> 到
+<span class="math inline">\(\{p\}\)</span> 的形变收缩, 故 <span class="math inline">\(X\sim\{p\}\)</span>.</p>
+<p>2 <span class="math inline">\(\Rightarrow\)</span> 3, 设同伦等价
+<span class="math inline">\(\varphi:X\to\{p\}\)</span>, <span class="math inline">\(\psi:\{p\}\to X\)</span>, 满足 <span class="math inline">\(\psi\circ\varphi\sim{\rm id}_X\)</span>. 任给一点
+<span class="math inline">\(x\in X\)</span>, 有唯一的映射 <span class="math inline">\(f:\{p\}\to\{x\}\)</span>. 容易证明, <span class="math inline">\(f\circ\varphi:X\to\{x\}\)</span> 就是形变收缩:
+一方面, 它保持 <span class="math inline">\(x\)</span> 点不动; 另一方面,
+注意到 <span class="math inline">\(\iota_{\{x\}}=\psi\circ
+f^{-1}\)</span>, 所以 <span class="math display">\[
+\iota_{\{x\}}\circ(f\circ\varphi)
+= (\psi\circ f^{-1})\circ(f\circ\varphi)
+= \psi\circ\varphi
+\sim {\rm id}_X.
+\]</span> 3 <span class="math inline">\(\Rightarrow\)</span> 4, 任给空间
+<span class="math inline">\(Y\)</span> 和 <span class="math inline">\(\varphi\in C(Y,X)\)</span>, 取 <span class="math inline">\(p\in\im\varphi\)</span>. 有形变收缩 <span class="math inline">\(r:X\to\{p\}\)</span>, 满足 <span class="math inline">\(\iota_{\{p\}}\circ r\sim{\rm id}_X\)</span>.
+因为复合保持同伦, 两边复合 <span class="math inline">\(\varphi\)</span>
+得到 <span class="math display">\[
+\iota_{\{p\}}\circ r\circ\varphi \sim {\rm id}_X\circ\varphi.
+\]</span> 上式左边是常值映射, 右边等于 <span class="math inline">\(\varphi\)</span>, 故 <span class="math inline">\(\varphi\)</span> 是零伦的.</p>
+</div>
+<h3 id="homotopy-invariance-of-pi_1">27.3  Homotopy invariance of <span class="math inline">\(\pi_1\)</span></h3>
+<p>基本群不光被同胚关系保持, 还被同伦等价保持.</p>
+<p>在此之前, 我们先证明同伦的映射 <span class="math inline">\(\varphi,\psi\)</span> 诱导出相同的基本群同态 <span class="math inline">\(\varphi_*,\psi_*\)</span>
+(在相差一个同构的意义下).</p>
+<div class="note note-success">
+<p><u>Claim 27.3</u> (诱导同态的 "同伦不变性") 设 <span class="math inline">\(\varphi,\psi\in C(X,Y)\)</span>, 同伦 <span class="math inline">\(H:\varphi\sim\psi\)</span>. 对于 <span class="math inline">\(p\in X\)</span>, 记 <span class="math inline">\(h\)</span> 是 <span class="math inline">\(Y\)</span> 中连接 <span class="math inline">\(\varphi(p),\psi(p)\)</span> 的道路, 定义为 <span class="math inline">\(h(t)=H(p,t)\)</span>. 令 <span class="math display">\[
+\Phi_h:\pi_1(Y,\varphi(p))\to\pi_1(Y,\psi(p))
+\]</span> 表示基点变换导出的群同构. 则下图交换: <span class="math display">\[
+\xymatrix@C=0em{
+&amp; \pi_1(Y,\varphi(p)) \ar[dd]_{\sim}^{\Phi_h} \\
+\pi_1(X,p) \ar[ru]^{\varphi_*} \ar[rd]_{\psi_*} \\
+&amp; \pi_1(Y,\psi(p)).
+}
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 任取以 <span class="math inline">\(p\)</span> 为基点的环路
+<span class="math inline">\(f\)</span>. 我们要证明 <span class="math display">\[
+\Align{
+\psi_*[f] &amp;= \Phi_h(\varphi_*[f]) \\
+\iff &amp;\psi\circ f \sim \bar{h}*(\varphi\circ f)* h \\
+\iff &amp;h*(\psi\circ f) \sim (\varphi\circ f)* h.
+}
+\]</span> 对连续映射 <span class="math inline">\(F:I\times I\to
+Y\)</span>, <span class="math inline">\(F(s,t)=H(f(s),t)\)</span>
+应用正方形引理即得 (如下图).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/induced-homomorphisms-of-homotopy-maps.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 27.4</u> (基本群的同伦不变性) 若 <span class="math inline">\(\varphi\in C(X,Y)\)</span> 是同伦等价, 则 <span class="math inline">\(\varphi_*:\pi_1(X,p)\to\pi_1(Y,\varphi(p))\)</span>
+是同构.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(\varphi:X\to Y\)</span>
+的一个同伦逆是 <span class="math inline">\(\psi:Y\to X\)</span>,
+它们满足 <span class="math inline">\(\psi\circ\varphi\sim{\rm
+id}_X\)</span> 和 <span class="math inline">\(\varphi\circ\psi\sim{\rm
+id}_Y\)</span>. 对这两对同伦分别应用上面的定理, 得到两个交换图: <span class="math display">\[
+\xymatrix@C=0em{
+&amp; \pi_1(X,\psi(\varphi(p))) \ar[dd]_{\sim}^{\Phi_h} \\
+\pi_1(X,p)
+  \ar[ru]^(.4){\psi_*\circ\varphi_*}
+  \ar[rd]_(.4){({\rm id}_X)_*}^{\sim} \\
+&amp; \pi_1(X,p)
+}
+\]</span> 以及 <span class="math display">\[
+\xymatrix@C=0em{
+&amp; \pi_1(Y,\varphi(\psi(\varphi(p)))) \ar[dd]_{\sim}^{\Phi_k} \\
+\pi_1(Y,\varphi(p))
+  \ar[ru]^(.4){\varphi_*\circ\psi_*}
+  \ar[rd]_(.4){({\rm id}_Y)_*}^{\sim} \\
+&amp; \pi_1(Y,\varphi(p)),
+}
+\]</span> 其中 <span class="math inline">\(\Phi_h,\Phi_k\)</span>
+是同构. 从第一个交换图看出, <span class="math inline">\(\psi_*\circ\varphi_*\)</span> 是同构, 特别地,
+<span class="math inline">\(\varphi_*\)</span> 单. 从第二个交换图看出,
+<span class="math inline">\(\varphi_*\circ\psi_*\)</span> 是同构,
+特别地, <span class="math inline">\(\varphi_*\)</span> 满. 因此 <span class="math inline">\(\varphi_*\)</span> 是双射.</p>
+</div>
+<p>作为推论, 立刻得到: 空间 <span class="math inline">\(X\)</span>
+与其形变收缩 <span class="math inline">\(A\)</span> 的基本群同构.
+特别地, 因为独点空间是单连通的, 所以可缩空间都是单连通的.</p>
+<ul>
+<li>(去掉一点的空间) 我们已经证明了, <span class="math inline">\(\mathbb{S}^{n-1}\)</span> 是 <span class="math inline">\(\R^n\setminus\{0\}\)</span> 以及 <span class="math inline">\(\overline{\mathbb{B}^n}\setminus\{0\}\)</span>
+的强形变收缩. 因此,
+<ul>
+<li>当 <span class="math inline">\(n=2\)</span> 时, <span class="math inline">\(\R^2\setminus\{0\}\)</span> 以及 <span class="math inline">\(\overline{\mathbb{B}^2}\setminus\{0\}\)</span>
+的基本群都是无穷循环群 (之后证明);</li>
+<li>当 <span class="math inline">\(n\geq3\)</span> 时, <span class="math inline">\(\R^n\setminus\{0\}\)</span> 以及 <span class="math inline">\(\overline{\mathbb{B}^n}\setminus\{0\}\)</span>
+都是单连通的.</li>
+</ul></li>
+<li>(星形子集) <span class="math inline">\(\R^n\)</span> 的子集 <span class="math inline">\(B\)</span> 称为<strong>星形的
+(star-shaped)</strong>, 若存在 <span class="math inline">\(p_0\in
+B\)</span>, 使得 <span class="math inline">\(p_0\)</span> 与 <span class="math inline">\(B\)</span> 中任意一点所连线段包含于 <span class="math inline">\(B\)</span> 内. 易见星形子集是可缩的
+(可以强形变收缩到 <span class="math inline">\(\{p_0\}\)</span>),
+因此是单连通的.
+<ul>
+<li><span class="math inline">\(\R^n\)</span>
+的凸子集是一种星形子集.</li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(\pi_1\)</span>
+的同伦等价性使得我们能够将其视作 "带点同伦范畴" <span class="math inline">\({\sf HTop}_*\)</span> 到群范畴 <span class="math inline">\({\sf Grp}\)</span> 的函子.</p>
+<ul>
+<li><strong>同伦范畴 (homotopy category)</strong> <span class="math inline">\({\sf HTop}\)</span> 的对象是拓扑空间 (和 <span class="math inline">\(\sf Top\)</span> 相同),
+态射是连续映射的<em>同伦类</em>. 因为复合映射保持同伦,
+所以态射的复合是良定义的. <span class="math inline">\({\sf
+HTop}\)</span> 的同构是同伦等价 (的同伦类).</li>
+<li><strong>带点同伦范畴 (pointed homotopy category)</strong> <span class="math inline">\({\sf HTop}_*\)</span> 的对象是带点拓扑空间 (和
+<span class="math inline">\({\sf Top}_*\)</span> 相同),
+态射是保持基点的连续映射的同伦类 (保持基点不变的相对同伦).</li>
+</ul>
+<h2 id="higher-homotopy-groups">28  Higher Homotopy Groups</h2>
+<p>实际上, 基本群 <span class="math inline">\(\pi_1(X)\)</span> 只是
+<span class="math inline">\(X\)</span> 上的一系列群中的一个.</p>
+<p>回顾环路的圆表示: 取定基点 <span class="math inline">\(p\in
+X\)</span> 和 <span class="math inline">\(0\sim
+1\in\mathbb{S}^1\)</span>, 则以 <span class="math inline">\(p\)</span>
+为基点的环路 <span class="math inline">\(f:I\to X\)</span>
+与保持基点的连续映射 <span class="math inline">\(\tilde{f}:\mathbb{S}^1\to X\)</span> (<span class="math inline">\(\tilde{f}(0)=\tilde{f}(1)=p\)</span>) 一一对应.
+因此, <span class="math inline">\(\Omega(X,p)\)</span> 可以与 <span class="math inline">\(C((\mathbb{S}^1,1),(X,p))\)</span> 认同.</p>
+<p>又注意到, 环路 <span class="math inline">\(f,g\)</span> 道路同伦,
+当且仅当 <span class="math inline">\(\tilde{f},\tilde{g}\)</span>
+相对同伦 (保持 <span class="math inline">\(\{1\}\subset\mathbb{S}^1\)</span> 不变),
+因此基本群 <span class="math inline">\(\pi_1(X,p)\)</span> 可以视作
+<span class="math inline">\(C((\mathbb{S}^1,1),(X,p))\)</span> 在 (相对)
+同伦关系下的商集 <span class="math inline">\([(\mathbb{S}^1,1),(X,p)]\)</span>.</p>
+<p>作为其自然的推广, 我们考虑 <span class="math inline">\(C((\mathbb{S}^n,x_0),(X,p))\)</span> 在 (相对)
+同伦关系下的商集 <span class="math inline">\([(\mathbb{S}^n,x_0),(X,p)]\)</span>, 记作 <span class="math inline">\(\pi_n(X,p)\)</span>.</p>
+<ul>
+<li>当 <span class="math inline">\(n=0\)</span> 时, <span class="math inline">\(\mathbb{S}^0=\{\pm1\}\)</span>, 连续映射 <span class="math inline">\(f\in C((\mathbb{S}^0,1),(X,p))\)</span> 总将 <span class="math inline">\(1\)</span> 映到 <span class="math inline">\(p\)</span>, 因此它完全决定于 <span class="math inline">\(f(-1)\)</span> 的取值. 这样的两个连续映射 <span class="math inline">\(f,g\)</span> 同伦, 当且仅当 <span class="math inline">\(f(-1)\)</span> 和 <span class="math inline">\(g(-1)\)</span> 处在相同的道路分量中. 因此, <span class="math inline">\(\pi_0(X,p)\)</span> 是装有 <span class="math inline">\(X\)</span> 的所有道路分量的集合.
+其上没有标准的群结构.</li>
+<li>当 <span class="math inline">\(n\geq1\)</span> 时, <span class="math inline">\(\pi_n(X,p)\)</span> 上可以定义群乘法, 称为以
+<strong><span class="math inline">\(p\)</span> 为基点的 <span class="math inline">\(n\)</span> 阶同伦群 (<span class="math inline">\(n\)</span>th holonomy group based at <span class="math inline">\(p\)</span>)</strong>. (<span class="math inline">\(n=1\)</span> 时就是熟知的基本群.)</li>
+</ul>
+<p>和基本群一样, 同伦群 <span class="math inline">\(\pi_n\)</span> 也是
+<span class="math inline">\({\sf Top}_*\)</span> 到 <span class="math inline">\({\sf Grp}\)</span> 的协变函子. 不同的是,
+高阶同伦群 <span class="math inline">\(\pi_n(X,p)\)</span> (<span class="math inline">\(n\geq2\)</span>) 是交换群. <span class="math inline">\(\pi_n(X,p)\)</span> 给出了空间 <span class="math inline">\(X\)</span> 的 "<span class="math inline">\(n\)</span> 维洞" 的信息. 高阶同伦群极难计算, 例如,
+我们对球面同伦群 <span class="math inline">\(\pi_k(\mathbb{S}^n)\)</span> (<span class="math inline">\(n\)</span> 远大于 <span class="math inline">\(k\)</span>) 的理解是十分有限的.
+同伦群的结构与计算是代数拓扑 (同伦论) 的重要主题.</p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM202 | 11 同伦与基本群</div>
+      <div>https://disembo.github.io/Note/tp-gtm202-11/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202-12/" title="GTM202 | 12 圆的基本群">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM202 | 12 圆的基本群</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202-10/" title="GTM202 | 10 同伦与基本群">
+                        <span class="hidden-mobile">GTM202 | 10 同伦与基本群</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

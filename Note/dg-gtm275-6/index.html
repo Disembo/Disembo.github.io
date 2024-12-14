@@ -1,0 +1,1351 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="模的张量代数与外代数.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM275 | 6 代数与拓扑工具">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-6/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="模的张量代数与外代数.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-02T05:30:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.703Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="线性代数">
+<meta property="article:tag" content="微分几何">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM275 | 6 代数与拓扑工具 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM275 | 6 代数与拓扑工具"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-02 13:30" pubdate>
+          2024年7月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM275 | 6 代数与拓扑工具</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and
+Characteristic Classes</em>) 第 18-19 节的笔记.</p>
+</div>
+<p>接下来四节会补充一些代数和拓扑的工具, 包括张量,
+向量丛和向量值微分形式. 这两节是关于模的张量积和楔积的,
+是纯粹的线性代数.</p>
+<h2 id="the-tensor-product-and-the-dual-module">16  The Tensor Product and
+the Dual Module</h2>
+<h3 id="the-tensor-product">16.1  The tensor product</h3>
+<p>设 <span class="math inline">\(R\)</span> 是含幺交换环. 左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(M\)</span> 的一个子集 <span class="math inline">\(B\)</span> 称为<strong>基底(basis)</strong>, 若
+<span class="math inline">\(M\)</span> 中每个元素可以唯一地写作 <span class="math inline">\(B\)</span> 中元素的有限线性组合 <span class="math inline">\(\sum r_ib_i\)</span>, <span class="math inline">\(r_i\in R\)</span>, <span class="math inline">\(b_i\in B\)</span>. 若模 <span class="math inline">\(M\)</span> 存在基底, 则称 <span class="math inline">\(M\)</span> 为<strong>自由的(free)</strong>.
+交换环上的自由模 <span class="math inline">\(M\)</span>
+的任意两个基底具有相同基数, 称为 <span class="math inline">\(M\)</span>
+的<strong>秩(rank)</strong>. 本章中我们只考虑含幺交换环上的左模.</p>
+<p>下面开始定义模的张量积. 设 <span class="math inline">\(V,W\)</span>
+为左 <span class="math inline">\(R\)</span>-模, 记 <span class="math inline">\(\operatorname{Free}(V\times W)\)</span> 是 <span class="math inline">\(V\times W\)</span> 生成的自由模, 即 <span class="math inline">\(\operatorname{Free}(V\times W)\)</span>
+中的元素可写成 <span class="math inline">\(V\times W\)</span>
+中元素的有限线性组合: <span class="math display">\[
+\sum r_i(v_i,w_i),\quad r_i\in R,\quad (v_i,w_i)\in V\times W.
+\]</span> 考虑由 <span class="math inline">\(\operatorname{Free}(V\times
+W)\)</span> 中所有下列元素生成的子模 <span class="math inline">\(S\)</span>: <span class="math display">\[
+\Align{
+(v_1+v_2,w)&amp;-(v_1,w)-(v_2,w), \\
+(v,w_1+w_2)&amp;-(v,w_1)-(v,w_2), \\
+(rv,w)&amp;-r(v,w), \\
+(v,rw)&amp;-r(v,w),
+}
+\]</span> 其中 <span class="math inline">\(v,v_1,v_2\in V\)</span>,
+<span class="math inline">\(w,w_1,w_2\in W\)</span>, <span class="math inline">\(r\in R\)</span>. 定义 <span class="math inline">\(V\)</span> 和 <span class="math inline">\(W\)</span> 的<strong>张量积(tensor
+product)</strong>为商 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(\operatorname{Free}(V\times W)/S\)</span>, 记作
+<span class="math inline">\(V\otimes_R W\)</span>,
+底环明确时可以省略下标 <span class="math inline">\(R\)</span>. 记 <span class="math inline">\((v,w)\)</span> 所在等价类为 <span class="math inline">\(v\otimes w\)</span>, 称为向量 <span class="math inline">\(v,w\)</span> 的张量积. 因为 <span class="math inline">\(S\)</span> 中的元素在 <span class="math inline">\(V\otimes W\)</span> 中等同于 <span class="math inline">\(0\)</span>, 所以张量积是双线性的: <span class="math display">\[
+\begin{gather}
+(v_1+v_2)\otimes w=v_1\otimes w+v_2\otimes w, \\
+v\otimes (w_1+w_2)=v\otimes w_1+v\otimes w_2, \\
+(rv)\otimes w=r(v\otimes w)=v\otimes(rw).
+\end{gather}
+\]</span> 换言之, 有双线性映射 <span class="math inline">\(\otimes:V\times W\to V\otimes W\)</span>, <span class="math inline">\((v,w)\mapsto v\otimes w\)</span>.</p>
+<p>张量积模 <span class="math inline">\(V\otimes W\)</span> 中形如 <span class="math inline">\(v\otimes w\)</span>
+的元素称为<strong>可分解的(decomposable)</strong>. 根据张量积的构造过程,
+<span class="math inline">\(V\otimes W\)</span>
+中的任意元素是可分解元素的有限和: <span class="math display">\[
+\sum r_i(v_i\otimes w_i)
+= \sum (r_iv_i)\otimes w_i = \sum v_i\otimes(r_iw_i),
+\]</span> 注意到这种分解方式不唯一.</p>
+<div class="note note-success">
+<p><u>Claim 16.1</u> (张量积的泛性质) 设 <span class="math inline">\(V,W\)</span> 是含幺交换环 <span class="math inline">\(R\)</span> 上的左模.</p>
+<ol type="1">
+<li><p>任给 <span class="math inline">\(R\)</span>-双线性映射 <span class="math inline">\(f:V\times W\to Z\)</span>, 存在唯一的 <span class="math inline">\(R\)</span>-线性映射 <span class="math inline">\(\tilde{f}:V\otimes W\to Z\)</span>, 使得下图交换:
+<span class="math display">\[
+\xymatrix{
+V\times W \ar[rd]_{f} \ar[r]^{\otimes}
+&amp; V\otimes W \ar@{.&gt;}[d]^{\tilde{f}} \\
+&amp; Z.
+}
+\]</span> 此性质称为张量积 <span class="math inline">\(\otimes\)</span>
+的<strong>泛性质(universal mapping property)</strong>.</p></li>
+<li><p>若 <span class="math inline">\(R\)</span>-双线性映射 <span class="math inline">\(\phi:V\times W\to T\)</span> 满足张量积的泛性质,
+则有同构 <span class="math inline">\(\tilde\otimes:T\to V\otimes
+W\)</span>.</p></li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 第一条. 上图交换意味着 <span class="math inline">\(\tilde{f}(v\otimes w)=f(v,w)\)</span> 对任意 <span class="math inline">\(v\in V,w\in W\)</span>.</p>
+<p>定义 <span class="math inline">\(F:\operatorname{Free}(V\times W)\to
+Z\)</span>, 满足 <span class="math inline">\(F(v,w)=f(v,w)\)</span>.
+根据 <span class="math inline">\(R\)</span>-线性性将 <span class="math inline">\(F\)</span> 延拓到整个 <span class="math inline">\(\operatorname{Free}\)</span>: <span class="math display">\[
+F\pqty{\sum r_i(v_i,w_i)} = \sum r_i F(v_i,w_i).
+\]</span> 由 <span class="math inline">\(F\)</span> 的双线性性, <span class="math inline">\(F(S)=0\)</span>, 于是 (根据典范投影 <span class="math inline">\(\pi:\operatorname{Free}(V\times
+W)\twoheadrightarrow\operatorname{Free}(V\times W)/S\)</span> 的泛性质)
+存在唯一 <span class="math inline">\(R\)</span>-线性映射 <span class="math display">\[
+\tilde{f}:
+V\otimes W = \frac{\operatorname{Free}(V\times W)}{S}\to Z,
+\]</span> 使得 <span class="math inline">\(\tilde{f}(v\otimes
+w)=F(v,w)=f(v,w)\)</span>, 证明了存在性. 对于唯一性, 设 <span class="math inline">\(\tilde{g}\)</span> 也使得上图交换, 则 <span class="math display">\[
+\tilde{g}(v\otimes w)=f(v,w)=\tilde{f}(v\otimes w)
+\]</span> 对任意 <span class="math inline">\(v\in V,w\in W\)</span>
+成立, 即 <span class="math inline">\(\tilde{f},\tilde{g}\)</span>
+在可分解元素上取值相同. 因为可分解元素生成了 <span class="math inline">\(V\otimes W\)</span>, 根据线性性, <span class="math inline">\(\tilde{f},\tilde{g}\)</span> 恒同.</p>
+<p>第二条. <span class="math display">\[
+\xymatrix{
+V\times W \ar[r]^{\otimes} \ar[d]_{\phi} &amp; V\otimes W
+  \ar[dl]_{\tilde\phi} \\
+T \ar@&lt; -1ex&gt;[ur]_{\tilde\otimes}
+}
+\]</span> 由 <span class="math inline">\(\otimes\)</span> 的泛性质, 存在
+<span class="math inline">\(\tilde\phi\)</span>, 使得 <span class="math inline">\(\tilde\phi\circ\otimes=\phi\)</span>. 由 <span class="math inline">\(\phi\)</span> 的泛性质, 存在 <span class="math inline">\(\tilde\otimes\)</span>, 使得 <span class="math inline">\(\tilde\otimes\circ\phi=\otimes\)</span>. 于是
+<span class="math display">\[
+\otimes
+= \tilde\otimes\circ\phi
+= \tilde\otimes\circ(\tilde\phi\circ\otimes)
+= (\tilde\otimes\circ\tilde\phi)\circ\otimes,
+\]</span> 即下图交换: <span class="math display">\[
+\xymatrix{
+V\times W \ar[r]^{\otimes} \ar[dr]_{\otimes}
+&amp; V\otimes W \ar@{.&gt;}[d]^{\tilde\otimes\circ\tilde\phi} \\
+&amp; V\otimes W
+}
+\]</span> 但是 <span class="math inline">\({\rm id}_{V\otimes
+W}\)</span> 也能使上图交换, 根据泛性质中的唯一性, <span class="math display">\[
+\tilde\otimes\circ\tilde\phi = {\rm id}_{V\otimes W}.
+\]</span> 相似地, 有 <span class="math display">\[
+\tilde\phi\circ\tilde\otimes = {\rm id}_{T},
+\]</span> 所以 <span class="math inline">\(\tilde\otimes:T\to V\otimes
+W\)</span> 为线性同构.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.2</u> 左 <span class="math inline">\(R\)</span>-模上的数量乘法 <span class="math inline">\(f:R\times V\to V\)</span>, <span class="math inline">\((r,v)\mapsto rv\)</span> 作为 <span class="math inline">\(R\)</span>-双线性映射, 诱导出一个 <span class="math inline">\(R\)</span>-线性同构 <span class="math inline">\(\tilde{f}:R\otimes_R V\to V\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 由泛性质, 双线性映射 <span class="math inline">\(f:R\times
+V\to V\)</span> 导出线性映射 <span class="math inline">\(\tilde{f}:R\otimes V\to V\)</span>. 定义线性映射
+<span class="math inline">\(g:V\to R\otimes V\)</span>, <span class="math inline">\(g(v)=1\otimes v\)</span>. 可以验证, <span class="math display">\[
+\Align{
+g\circ\tilde{f}  &amp;= {\rm id}_{R\otimes V}, &amp;
+\tilde{f}\circ g &amp;= {\rm id}_{V},
+}
+\]</span> 所以 <span class="math inline">\(\tilde{f}\)</span>
+是同构.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.3</u> 设 <span class="math inline">\(R\)</span>-左模
+<span class="math inline">\(V,W\)</span>, 则存在唯一的 <span class="math inline">\(R\)</span>-线性同构 <span class="math inline">\(\tilde{f}:V\otimes W\to W\otimes V\)</span>, 使得
+<span class="math display">\[
+\tilde{f}(v\otimes w)=w\otimes v,\quad v\in V,w\in W.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 定义双线性映射 <span class="math inline">\(f:V\times W\to
+W\otimes V\)</span>, <span class="math inline">\(f(v,w)=w\otimes
+v\)</span>. 根据张量积的泛性质, 存在唯一的线性映射 <span class="math inline">\(\tilde{f}:V\otimes W\to W\otimes V\)</span>, 使得
+<span class="math display">\[
+\tilde{f}(v\otimes w) = w\otimes v.
+\]</span> 相似地, 考虑 <span class="math inline">\(g:W\times V\to
+V\otimes W\)</span>, <span class="math inline">\(g(w,v)=v\otimes
+w\)</span>, 导出唯一的线性映射 <span class="math inline">\(\tilde{g}:W\otimes V\to V\otimes W\)</span> 使得
+<span class="math display">\[
+\tilde{g}(w\otimes v) = v\otimes w.
+\]</span> 因此 <span class="math inline">\(\tilde{f},\tilde{g}\)</span>
+在可分解元素上互逆. 而 <span class="math inline">\(V\otimes W\)</span>
+由可分解元素生成, 所以 <span class="math inline">\(\tilde{f},\tilde{g}\)</span> 在 <span class="math inline">\(V\otimes W\)</span>, <span class="math inline">\(W\otimes V\)</span> 上互逆.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.4</u> (张量积的基底) 设 <span class="math inline">\(B_V=\{v_i\}_{i\in I}\)</span>, <span class="math inline">\(B_W=\{w_j\}_{j\in J}\)</span> 分别为有限秩自由
+<span class="math inline">\(R\)</span>-模 <span class="math inline">\(V,W\)</span> 的基底, 则 <span class="math display">\[
+B_V\otimes B_W := \{ v_i\otimes w_j \}_{i\in I,j\in J}
+\]</span> 为 <span class="math inline">\(V\otimes W\)</span> 的基底.
+进而 <span class="math inline">\(\rank(V\otimes W)=(\rank V)(\rank
+W)\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 可分解元素 <span class="math inline">\(v\otimes w\)</span>
+可以写作 <span class="math inline">\(v_i\otimes w_j\)</span> 的线性组合:
+设 <span class="math inline">\(v=\sum a^iv_i\)</span>, <span class="math inline">\(w=\sum b^jw_j\)</span>, 则 <span class="math display">\[
+v\otimes w=\sum a^ib^jv_i\otimes w_j,
+\]</span> 因为可分解元素生成 <span class="math inline">\(V\otimes
+W\)</span>, 所以 <span class="math inline">\(\{v_i\otimes
+w_j\}_{i,j}\)</span> 张成 <span class="math inline">\(V\otimes
+W\)</span>.</p>
+<p>在证明表出的唯一性前, 给出一个引理: 对 <span class="math inline">\(k\in I,l\in J\)</span>, 存在线性函数 <span class="math inline">\(f^{kl}:V\times W\to R\)</span>, 使得 <span class="math display">\[
+f^{kl}(v_i\otimes w_j) = \delta^{k,l}_{i,j} := \delta^k_i\delta^l_j,
+\quad i\in I,j\in J.
+\]</span> 引理的证明: 定义双线性函数 <span class="math inline">\(h^{kl}:V\times W\to R\)</span>, 使得 <span class="math inline">\(h^{kl}(v_i,w_j)=\delta^{k,l}_{i,j}\)</span>
+并由双线性性拓展到整个 <span class="math inline">\(V\times W\)</span>.
+根据泛性质, 存在唯一线性函数 <span class="math inline">\(\tilde{h}^{kl}:V\otimes W\to R\)</span>, 使得
+<span class="math display">\[
+\tilde{h}^{kl}(v_i\otimes w_j)
+= h^{kl}(v_i,w_j) = \delta^{k,l}_{i,j}.
+\]</span> 令 <span class="math inline">\(f^{kl}=\tilde{h}^{kl}\)</span>
+即可.</p>
+<p>回到原命题. 表出的唯一性等价于 <span class="math inline">\(\{v_i\otimes w_j\}_{i,j}\)</span> 线性无关. 设
+<span class="math display">\[
+\sum c^{ij}v_i\otimes w_j = 0,\quad c^{ij}\in R,
+\]</span> 让引理中的 <span class="math inline">\(f^{kl}\)</span>
+作用于上式得到 <span class="math display">\[
+\Align{
+0 = f^{kl}\pqty{ \sum c^{ij}v_i\otimes w_j }
+&amp;= \sum c^{ij}f^{kl}(v_i\otimes w_j) \\
+&amp;= \sum c^{ij}\delta^{k,l}_{i,j} \\
+&amp;= c^{kl}.
+}
+\]</span></p>
+</div>
+<h3 id="the-dual-module">16.2  The dual module</h3>
+<p>记 <span class="math inline">\(\operatorname{Hom}_R(V,W)\)</span>
+是所有 <span class="math inline">\(V\to W\)</span> 的 <span class="math inline">\(R\)</span>-线性映射的集合.
+在线性映射的加法和数乘之下, <span class="math inline">\(\operatorname{Hom}_R(V,W)\)</span> 构成了一个左
+<span class="math inline">\(R\)</span>-模. 若底环明确, <span class="math inline">\(\operatorname{Hom}_R(V,W)\)</span> 中的 <span class="math inline">\(R\)</span> 可以省略. 模 <span class="math inline">\(V\)</span> 的<strong>对偶模(dual
+module)</strong>定义为 <span class="math inline">\(\operatorname{Hom}_R(V,R)\)</span>, 记作 <span class="math inline">\(V^\vee\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 16.5</u> 设 <span class="math inline">\(\{e_i\}_{i\in
+I}\)</span> 是有限秩自由模 <span class="math inline">\(V\)</span>
+的基底, 定义 <span class="math inline">\(\alpha^i:V\to R\)</span>, <span class="math display">\[
+\alpha^i(e_j) = \delta^i_j,
+\]</span> 则 <span class="math inline">\(\{\alpha^i\}_{i\in I}\)</span>
+是 <span class="math inline">\(V^\vee\)</span> 的基底. 于是 <span class="math inline">\(\rank{V}=\rank{V^\vee}\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 任给 <span class="math inline">\(\beta\in V^\vee\)</span>,
+设 <span class="math inline">\(c_i=\beta(e_i)\)</span>, 则断言 <span class="math inline">\(\beta = \sum c_i\alpha^i\)</span>, 两边作用于
+<span class="math inline">\(v=\sum v^ie_i\)</span> 即可验证.</p>
+<p>线性无关性, 设 <span class="math inline">\(\sum c_i\alpha^i =
+0\)</span>, 两边作用于 <span class="math inline">\(e_j\)</span>, 得到
+<span class="math inline">\(c_j=0\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.6</u> 设 <span class="math inline">\(V,W\)</span>
+是有限秩的左 <span class="math inline">\(R\)</span>-模, 则存在唯一的
+<span class="math inline">\(R\)</span>-线性同构 <span class="math display">\[
+\Align{
+\tilde{f}:V^\vee\otimes W &amp;\to \operatorname{Hom}_R(V,W), \\
+\alpha\otimes w &amp;\mapsto \alpha(\cdot)w.
+}
+\]</span> 于是, <span class="math inline">\(\operatorname{Hom}_R(V,W)\)</span> 是秩为 <span class="math inline">\((\rank{V})(\rank{W})\)</span> 的自由模.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 定义双线性映射 <span class="math inline">\(f:V^\vee\times
+W\to\operatorname{Hom}(V,W)\)</span>, <span class="math inline">\(f(\alpha,w)=\alpha(\cdot)w\)</span>.
+存在唯一线性映射 <span class="math inline">\(\tilde{f}:V^\vee\otimes
+W\to\operatorname{Hom}(V,W)\)</span>, 使得 <span class="math display">\[
+\tilde{f}(\alpha\otimes w)=\alpha(\cdot)w.
+\]</span> 设 <span class="math inline">\(V^\vee,W\)</span> 的基底 <span class="math inline">\(\{\alpha^i\},\{w_j\}\)</span>. 则 <span class="math inline">\(V^\vee\otimes W\)</span> 的基底 <span class="math inline">\(\{\alpha^i\otimes w_j\}\)</span>, <span class="math inline">\(\operatorname{Hom}(V,W)\)</span> 的基底 <span class="math inline">\(\{\alpha^i(\cdot)w_j\}\)</span>, 因此 <span class="math inline">\(\tilde{f}\)</span> 将基底映成基底, 是一个同构.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 16.7</u> 设 <span class="math inline">\(V,W\)</span>
+是有限秩的左 <span class="math inline">\(R\)</span>-模, 则存在唯一的
+<span class="math inline">\(R\)</span>-线性同构 <span class="math display">\[
+\Align{
+\tilde{f}:V^\vee\otimes W^\vee &amp;\to(V\otimes W)^\vee, \\
+\alpha\otimes\beta &amp;\mapsto((v\otimes w)\mapsto\alpha(v)\beta(w)).
+}
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 定义双线性映射 <span class="math inline">\(f:V^\vee\times
+W^\vee\to(V\otimes W)^\vee\)</span>, <span class="math inline">\(f(\alpha,\beta)=((v\otimes
+w)\mapsto\alpha(v)\beta(w))\)</span>. 存在唯一的线性映射 <span class="math inline">\(\tilde{f}:V^\vee\otimes W^\vee\to(V\otimes
+W)^\vee\)</span>, 使得 <span class="math display">\[
+\tilde f(\alpha\otimes\beta)=((v\otimes w)\mapsto\alpha(v)\beta(w)).
+\]</span> 设 <span class="math inline">\(V^\vee,W^\vee\)</span> 的基底
+<span class="math inline">\(\{\alpha^i\},\{\beta^j\}\)</span>, 则 <span class="math inline">\(V^\vee\otimes W^\vee\)</span> 的基底 <span class="math inline">\(\{\alpha^i\otimes\beta^j\}\)</span>, <span class="math inline">\((V\otimes W)^\vee\)</span> 的基底 <span class="math inline">\(\{\alpha^i(\cdot)\beta^j(\cdot)\}\)</span>, <span class="math inline">\(\tilde{f}\)</span> 将基底映成基底, 是一个同构.</p>
+</div>
+<h3 id="functoriality-and-associativity">16.3  Functoriality and
+associativity</h3>
+<div class="note note-success">
+<p><u>Claim 16.8</u> 设 <span class="math inline">\(R\)</span>-线性映射
+<span class="math inline">\(f:V\to V'\)</span>, <span class="math inline">\(g:W\to W'\)</span>, 则存在唯一 <span class="math inline">\(R\)</span>-线性映射 <span class="math display">\[
+f\otimes g:V\otimes W\to V'\otimes W',
+\]</span> 使得 <span class="math inline">\((f\otimes g)(v\otimes
+w)=f(v)\otimes g(w)\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 定义双线性映射 <span class="math inline">\(h:V\times W\to
+V'\otimes W'\)</span>, <span class="math inline">\(h(v,w)=f(v)\otimes g(w)\)</span>, 存在唯一线性映射
+<span class="math inline">\(\tilde{h}:V\otimes W\to V'\otimes
+W'\)</span>, 使得 <span class="math display">\[
+\tilde{h}(v\otimes w)=f(v)\otimes g(w),
+\]</span> 于是 <span class="math inline">\(\tilde{h}\)</span>
+就是我们想要的 <span class="math inline">\(f\otimes g\)</span>.</p>
+</div>
+<p>任给一对左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\((V,W)\)</span> 和一对 <span class="math inline">\(R\)</span>-线性映射 <span class="math inline">\((f:V\to V',g:W\to W')\)</span>, 张量积
+<span class="math inline">\(\otimes\)</span> 给出了 <span class="math inline">\(V\otimes W\)</span> 和 <span class="math inline">\(f\otimes g:V\otimes W\to V'\otimes
+W'\)</span>. 容易验证, 这个构造满足下面的性质:</p>
+<ol type="1">
+<li><p>保持恒等映射. <span class="math inline">\({\rm id}_{V}\otimes{\rm
+id}_W={\rm id}_{V\otimes W}\)</span>.</p></li>
+<li><p>保持映射的复合. 若 <span class="math inline">\((f:V\to
+V',g:W\to W')\)</span>, <span class="math inline">\((f':V'\to V'',g:W'\to
+W'')\)</span>, 则 <span class="math display">\[
+(f'\otimes g')\circ(f\otimes g)=(f'\circ
+f)\otimes(g'\circ g).
+\]</span></p></li>
+</ol>
+<p>所以张量积是从左 <span class="math inline">\(R\)</span>-模对范畴到左
+<span class="math inline">\(R\)</span>-模范畴的函子.</p>
+<p>张量积可以推广到任意多个左 <span class="math inline">\(R\)</span>-模上. 设 <span class="math inline">\(m\)</span> 个左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(\{V_i\}_{i\in I}\)</span>, <span class="math inline">\(I=\{1,\dots,m\}\)</span>, 定义 <span class="math inline">\(\operatorname{Free}(\prod_{i\in I}V_i)\)</span>
+是基底 <span class="math inline">\(\prod_{i\in I}V_i\)</span> 生成的自由
+<span class="math inline">\(R\)</span>-模. 设 <span class="math inline">\(S\)</span> 是所有形如下列元素生成的子模: <span class="math display">\[
+\begin{gather}
+(\cdots,v_1+v_2,\dots) - (\cdots,v_1,\dots) - (\cdots,v_2,\dots), \\
+(\cdots,rv,\dots) - r(\cdots,v,\cdots),
+\end{gather}
+\]</span> 则 <span class="math inline">\(\{V_i\}_{i\in I}\)</span>
+的<strong>张量积</strong>定义为 <span class="math inline">\(\operatorname{Free}(\prod V_i)/S\)</span>, 记作
+<span class="math inline">\(\bigotimes_{i\in I}V_i\)</span>. 典范投射
+<span class="math display">\[
+\Align{
+\otimes:\prod_{i\in I} V_i &amp;\to \bigotimes_{i\in I}V, \\
+(v_1,\dots,v_m) &amp;\mapsto v_1\otimes\cdots\otimes v_m
+}
+\]</span> 是一个 <span class="math inline">\(m\)</span> 重线性映射, 满足
+<span class="math inline">\(m\)</span> 重线性映射的泛性质: 任意 <span class="math inline">\(m\)</span> 重线性映射 <span class="math inline">\(f:\prod V_i\to Z\)</span> 唯一地诱导出一个线性映射
+<span class="math inline">\(\tilde{f}:\bigotimes V_i\to Z\)</span>, 满足
+<span class="math inline">\(\tilde{f}\circ\otimes=f\)</span>. 此外, 满足
+<span class="math inline">\(m\)</span>
+重线性映射泛性质的映射在同构意义下唯一.</p>
+<div class="note note-success">
+<p><u>Claim 16.9</u> 设左 <span class="math inline">\(R\)</span>-模
+<span class="math inline">\(\{V_i\}_{i=1}^m\)</span>,
+则存在唯一的线性同构 <span class="math display">\[
+V_1\otimes\cdots\otimes(V_{i}\otimes V_{i+1})\otimes\cdots\otimes V_m
+\to \bigotimes_{i=1}^m V_i
+\]</span> 将 <span class="math inline">\(v_1\otimes\cdots\otimes(v_{i}\otimes
+v_{i+1})\otimes\cdots\otimes v_m\)</span> 映到 <span class="math inline">\(v_1\otimes\cdots\otimes v_m\)</span> (<span class="math inline">\(v_k\in V_k\)</span>).</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为满足泛性质的线性映射有唯一同构, 我们只需要证明 <span class="math display">\[
+\Align{
+\phi:\prod V_i&amp;\to
+V_1\otimes\cdots\otimes(V_{i}\otimes V_{i+1})\otimes\cdots\otimes V_m,\\
+(v_1,\dots,v_m) &amp;\mapsto
+v_1\otimes\cdots\otimes(v_{i}\otimes v_{i+1})\otimes\cdots\otimes v_m
+}
+\]</span> 也满足 <span class="math inline">\(m\)</span>
+重线性映射的泛性质.</p>
+<p>任给 <span class="math inline">\(m\)</span> 重线性映射 <span class="math inline">\(f:\prod V_i\to Z\)</span>, 只考虑 <span class="math inline">\(f\)</span> 的第 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(i+1\)</span> 个输入, 固定其他输入不变,
+则得到一个双线性映射 <span class="math display">\[
+\Align{
+f(v_1,\dots,-,-,\dots,v_m):
+V_i\times V_{i+1} &amp;\to Z, \\
+(v_i,v_{i+1}) &amp;\mapsto f(v_1,\dots,v_i,v_{i+1},\dots,v_m),
+}
+\]</span> 根据双线性映射的泛性质, 存在唯一线性映射 <span class="math display">\[
+\tilde{f}(v_1,\dots,-,\dots,v_m):V_i\otimes V_{i+1}\to Z
+\]</span> 使得 <span class="math display">\[
+\tilde{f}(v_1,\dots,v_i\otimes v_{i+1},\dots,v_n) = f(v_1,\dots,v_m).
+\]</span> 注意到 <span class="math inline">\(\tilde{f}\)</span> 是一个
+<span class="math inline">\(m-1\)</span> 重线性映射,
+于是存在唯一的线性映射 <span class="math display">\[
+\tilde{\tilde{f}}:
+V_1\otimes\cdots\otimes(V_i\otimes V_{i+1})\otimes\cdots\otimes V_m
+\to Z,
+\]</span> 使得 <span class="math display">\[
+\Align{
+\tilde{\tilde{f}}(
+v_1\otimes\cdots\otimes(v_i\otimes v_{i+1})\otimes\cdots\otimes v_m
+)
+&amp;= \tilde{f}(v_1,\dots,v_i\otimes v_{i+1},\dots,v_n) \\
+&amp;= f(v_1,\dots,v_m).
+}
+\]</span> 综上所述, 有交换图 <span class="math display">\[
+\xymatrix@C=6em@R=5em{
+\prod V_i \ar[r] \ar[d]_{f} &amp;
+V_1\times\cdots\times(V_i\otimes V_{i+1})\times\cdots\times V_m
+\ar[d] \ar@{.&gt;}[dl]_(.5){\tilde{f}} \\
+Z &amp;
+V_1\otimes\cdots\otimes(V_i\otimes V_{i+1})\otimes\cdots\otimes V_m
+\ar@{.&gt;}[l]^(.68){\tilde{\tilde{f}}}
+}
+\]</span> 交换图外圈的矩形路径说明 <span class="math inline">\(\phi\)</span> 满足泛性质.</p>
+</div>
+<p>立刻有推论:</p>
+<div class="note note-success">
+<p><u>Claim 16.10</u> (张量积的结合性) 设左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(\{V_i\}_{i=1}^m\)</span>, 则存在唯一的线性同构
+<span class="math display">\[
+\cdots\otimes(V_i\otimes V_{i+1})\otimes\cdots \to
+\cdots\otimes(V_j\otimes V_{j+1})\otimes\cdots
+\]</span> 将 <span class="math inline">\(\cdots\otimes(v_i\otimes
+v_{i+1})\otimes\cdots\)</span> 映到 <span class="math inline">\(\cdots\otimes(v_j\otimes
+v_{j+1})\otimes\cdots\)</span> (<span class="math inline">\(v_k\in
+V_k\)</span>).</p>
+</div>
+<h3 id="the-tensor-algebra">16.4  The tensor algebra</h3>
+<p>对于左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(V\)</span>, 定义 <span class="math inline">\(T^0(V)=R\)</span>, <span class="math inline">\(T^k(V)=V\otimes\cdots\otimes V\)</span> (<span class="math inline">\(k\)</span> 个 <span class="math inline">\(V\)</span> 张量积), 记 <span class="math display">\[
+T(V) = \bigoplus_{k=0}^\infty T^k(V),
+\]</span> 其中直和的含义是: 任意 <span class="math inline">\(v\in
+T(V)\)</span> 可唯一地写成有限线和 <span class="math inline">\(\sum_iv_{k_i}\)</span>, <span class="math inline">\(v_{k_i}\in T^{k_i}(V)\)</span>. 元素 <span class="math inline">\(v\in T^k(V)\)</span> 称为 <strong><span class="math inline">\(k\)</span> 次齐次的(homogeneous of degree <span class="math inline">\(k\)</span>)</strong>, 记 <span class="math inline">\(\deg{v}=k\)</span>. 左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(T(V)\)</span> 上有乘法结构</p>
+<p><span class="math display">\[
+\Align{
+\mu:T^k(V)\times T^l(V) &amp;\to T^{k+l}(V) \\
+(x,y) &amp;\mapsto x\otimes y,
+}
+\]</span> 并根据双线性性拓展到 <span class="math inline">\(T(V)\times
+T(V)\to T(V)\)</span>. 于是 <span class="math inline">\(T(V)\)</span>
+成为了一个 <span class="math inline">\(R\)</span>-分次代数, 叫做 <span class="math inline">\(V\)</span> 的<strong>张量代数(tensor
+algebra)</strong>, 是一个结合代数.</p>
+<h2 id="the-exterior-power">17  The Exterior Power</h2>
+<h3 id="the-exterior-algebra">17.1  The exterior algebra</h3>
+<p>设左 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(V\)</span>, 记 <span class="math inline">\(I(V)\)</span> 是张量代数 <span class="math inline">\(T(V)\)</span> 中所有形如 <span class="math inline">\(v\otimes v\)</span> 的元素生成的双边理想. 于是
+<span class="math inline">\(I(V)\)</span> 包含了形如 <span class="math display">\[
+\cdots\otimes v\otimes v\otimes \cdots
+\]</span> 的元素.</p>
+<p>模 <span class="math inline">\(V\)</span> 的<strong>外代数(exterior
+algebra)</strong>定义为商代数 <span class="math inline">\(T(V)/I(V)\)</span>, 记 <span class="math inline">\(v_1\otimes\cdots\otimes v_k\)</span>
+在典范投射下的像 <span class="math display">\[
+v_1\wedge\cdots\wedge v_k,
+\]</span> 这种元素称为<strong>可分解的</strong>, 算符 <span class="math inline">\(\wedge\)</span> 称为<strong>楔积(wedge
+product)</strong>. 根据张量积的结合性, 楔积也是结合的.</p>
+<p>模 <span class="math inline">\(V\)</span> 的 <strong><span class="math inline">\(k\)</span>次外幂(<span class="math inline">\(k\)</span>th exterior power)</strong>为 <span class="math inline">\(T^k(V)\)</span> 在典范投射下的像, 记作 <span class="math inline">\(\bigwedge^k(V)\)</span>. 于是有典范模同构 <span class="math display">\[
+\bigwedge\nolimits^k(V)
+\cong \frac{T^k(V)}{T^k(V)\cap I(V)}
+= \frac{T^k(V)}{I^k(V)},
+\]</span> 其中 <span class="math inline">\(I^k(V):=I(V)\cap
+T^k(V)\)</span> 包含了 <span class="math inline">\(I(V)\)</span> 中所有
+<span class="math inline">\(k\)</span> 次齐次元素. 于是 <span class="math inline">\(\bigwedge(V)\)</span> 继承了 <span class="math inline">\(T(V)\)</span> 的分次结构, 成为一个分次代数. 一般记
+<span class="math inline">\(\bigwedge^k(V)\)</span> 为 <span class="math inline">\(\bigwedge^kV\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 17.1</u> (楔积的分次反对称性)</p>
+<ol type="1">
+<li><p>设 <span class="math inline">\(u\in\bigwedge^kV\)</span>, <span class="math inline">\(v\in\bigwedge^lV\)</span>, 则 <span class="math display">\[
+u\wedge v=(-1)^{kl}v\wedge u.
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(v_i\in V\)</span>, 置换 <span class="math inline">\(\pi\in S_k\)</span>, 则 <span class="math display">\[
+v_{\pi(1)}\wedge\cdots\wedge v_{\pi(k)} = (\sgn\pi)
+v_1\wedge\cdots\wedge v_k.
+\]</span></p></li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 第一条. 先证明最简单的情形: <span class="math inline">\(u,v\in\bigwedge^1V=V\)</span>. 因为 <span class="math inline">\(w\otimes w\in I(V)\)</span> (<span class="math inline">\(w\in V\)</span>), 所以 <span class="math inline">\(w\wedge w=0\)</span>, 因此 <span class="math display">\[
+\Align{
+0
+&amp;= (u+v)\wedge(u+v) \\
+&amp;= u\wedge u+u\wedge v+v\wedge u+v\wedge v \\
+&amp;= u\wedge v+v\wedge u,
+}
+\]</span> 即 <span class="math inline">\(u\wedge v=-v\wedge
+u\)</span>.</p>
+<p>考虑高次的元素. 因为任意元素可写成可分解元素的有限和, 注意到待证等式
+<span class="math inline">\(u\wedge v=(-1)^{kl}v\wedge u\)</span> 关于
+<span class="math inline">\(u,v\)</span> 是线性的,
+所以只需要对可分解元素证明. 设 <span class="math inline">\(u=u_1\wedge\cdots\wedge u_k\)</span>, <span class="math inline">\(v=v_1\wedge\cdots\wedge v_l\)</span>, 依次将 <span class="math inline">\(v_1,v_2,\dots,v_l\)</span> 交换到前面: <span class="math display">\[
+\Align{
+u\wedge v
+&amp;= (-1)^k
+   v_1\wedge(u_1\wedge\cdots\wedge u_k)\wedge
+   (v_2\wedge\cdots\wedge v_l) \\
+&amp;= (-1)^{2k}
+   v_1\wedge v_2\wedge(u_1\wedge\cdots\wedge u_k)\wedge
+   (v_3\wedge\cdots\wedge v_l) \\
+&amp;\qquad\vdots \\
+&amp;= (-1)^{kl}v_1\wedge\cdots\wedge v_l\wedge(u_1\wedge\cdots\wedge
+u_k) \\
+&amp;= (-1)^{kl}v\wedge u.
+}
+\]</span> 第二条. 用类似的方法可以证明, <span class="math display">\[
+\cdots\wedge v_i\wedge\cdots\wedge v_j\wedge\cdots = -
+\cdots\wedge v_j\wedge\cdots\wedge v_i\wedge\cdots,
+\]</span> 设 <span class="math inline">\(v_1\wedge\cdots\wedge
+v_k\)</span> 通过 <span class="math inline">\(l\)</span> 次对换达到
+<span class="math inline">\(v_{\pi(1)}\wedge\cdots\wedge
+v_{\pi(k)}\)</span>, 则两者相差 <span class="math inline">\((-1)^l\)</span>, 即 <span class="math inline">\(\sgn\pi\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 17.2</u> (楔积的泛性质) 任给交错的 <span class="math inline">\(k\)</span> 重线性映射 <span class="math inline">\(f:V^k\to Z\)</span>, 存在唯一的线性映射 <span class="math inline">\(\tilde{f}:\bigwedge^kV\to Z\)</span>, 使下图交换
+<span class="math display">\[
+\xymatrix{
+V^k \ar[r]^(.45)\wedge \ar[rd]_f
+&amp; \bigwedge\nolimits^kV \ar@{.&gt;}[d]^{\tilde{f}} \\
+&amp; Z
+}
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为 <span class="math inline">\(f\)</span> 是 <span class="math inline">\(k\)</span> 重线性的, 根据张量积的泛性质,
+存在唯一线性映射 <span class="math inline">\(h:T^kV\to Z\)</span>, 满足
+<span class="math display">\[
+h(v_1\otimes\cdots\otimes v_k) = f(v_1,\dots,v_k).
+\]</span> 由 <span class="math inline">\(f\)</span> 的交错性, <span class="math display">\[
+h(\cdots\otimes v\otimes v\otimes \cdots)
+=f(\cdots,v,v,\cdots)=0,
+\]</span> 因此 <span class="math inline">\(h(I^k(V))=0\)</span>,
+根据商模的泛性质, 存在唯一的线性映射 <span class="math display">\[
+\tilde{f}:\frac{T^kV}{I^k(V)}=\bigwedge\nolimits^kV\to Z,
+\]</span> 使得 <span class="math display">\[
+\tilde{f}(v_1\wedge\cdots\wedge v_k)
+= h(v_1\otimes\cdots\otimes v_k)
+= f(v_1,\dots,v_k),
+\]</span> 这证明了存在性. 至于唯一性, 因为 <span class="math inline">\(\tilde{f}\)</span> 是唯一确定的,
+且其在可分解元素上的取值确定, 所以 <span class="math inline">\(\tilde{f}\)</span> 唯一地定义在了 <span class="math inline">\(\bigwedge^kV\)</span> 上.</p>
+</div>
+<p>引入多重指标(multi-index)的记号. 设 <span class="math inline">\(I=(1\leq i_1&lt;\cdots&lt;i_k\leq n)\)</span> 为
+<span class="math inline">\(k\)</span> 重指标, <span class="math inline">\(|I|=k\)</span>, 记 <span class="math display">\[
+e_I := e_{i_1}\wedge\cdots\wedge e_{i_k},
+\]</span> 补指标 <span class="math inline">\(I':=\{1,\dots,n\}-I\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 17.3</u> (楔积的基底) 设有限秩 <span class="math inline">\(V\)</span> 的基底 <span class="math inline">\(\{e_i\}_{i=1}^n\)</span>, 则 <span class="math inline">\(\bigwedge^kV\)</span> 的一个基底是 <span class="math display">\[
+S:=\{ e_I \mid I=(1\leq i_1&lt;\cdots&lt;i_k\leq n) \}.
+\]</span> 于是 <span class="math inline">\(\bigwedge^kV\)</span> 的秩为
+<span class="math inline">\(n\choose k\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 先考虑一个引理: 若 <span class="math inline">\(B=\{e_i\}_{i=1}^n\)</span> 为 <span class="math inline">\(V\)</span> 的基底, 则 <span class="math inline">\(e_1\wedge\cdots\wedge e_n\neq0\)</span>.
+为了证明引理, 只需找到一个线性映射 <span class="math inline">\(\bigwedge^kV\to V\)</span> 将 <span class="math inline">\(e_1\wedge\cdots\wedge e_n\)</span> 映成非零元.
+定义交错函数 <span class="math inline">\(f:B^n\to R\)</span>, <span class="math display">\[
+f(e_{\pi(1)},\dots,e_{\pi(n)}) = \sgn\pi,\quad\pi\in S_n,
+\]</span> 可将 <span class="math inline">\(f\)</span> 延拓 <span class="math inline">\(f:V^n\to R\)</span>, 使得 <span class="math inline">\(f\)</span> 是交错的 <span class="math inline">\(n\)</span> 重线性函数. 根据泛性质,
+存在唯一的线性函数 <span class="math display">\[
+\tilde{f}:\bigwedge\nolimits^kV\to R,
+\]</span> 使得 <span class="math inline">\(\tilde{f}\circ\wedge=f\)</span>. 特别地, <span class="math display">\[
+\tilde{f}(e_1\wedge\cdots\wedge e_n) = f(e_1,\dots,e_n) = 1.
+\]</span> 这个引理的一个重要推论是, 若 <span class="math inline">\(1\leq
+i_1&lt;\cdots&lt;i_k\leq n\)</span>, 则 <span class="math inline">\(e_{i_1}\wedge\cdots\wedge
+e_{i_k}\neq0\)</span>.</p>
+<p>回到原命题. 考虑到 <span class="math display">\[
+S_0=\{ e_{i_1}\otimes\cdots\otimes e_{i_k}\mid
+1\leq i_1,\cdots,i_k\leq n \}
+\]</span> 是 <span class="math inline">\(T^kV\)</span> 的一个基底, 而
+<span class="math inline">\(\bigwedge^kV\)</span> 为 <span class="math inline">\(T^kV\)</span> 的商, 所以 <span class="math inline">\(S\)</span> 生成 <span class="math inline">\(\bigwedge^kV\)</span>.</p>
+<p>线性无关性. 设 <span class="math display">\[
+\sum a^Ie_I = 0,
+\]</span> 任给 <span class="math inline">\(n-k\)</span> 重指标 <span class="math inline">\(J\)</span>, 因为 <span class="math inline">\(e_I\wedge e_J=\Cases{\pm e_1\wedge\cdots\wedge
+e_n,&amp; I\cap J=\emptyset,\\0,&amp;I\cap J\neq\emptyset,}\)</span>
+上式两边与 <span class="math inline">\(e_J\)</span> 楔积得到 <span class="math display">\[
+0
+= \pqty{\sum a^Ie_I}\wedge e_J
+= \pm a^{J'}e_1\wedge\cdots\wedge e_n.
+\]</span> 因为 <span class="math inline">\(e_1\wedge\cdots\wedge
+e_n\neq0\)</span>, 只能 <span class="math inline">\(a^{J'}=0\)</span>. 由 <span class="math inline">\(J\)</span> 的任意性, 所有 <span class="math inline">\(a^I=0\)</span>.</p>
+</div>
+<h3 id="nondegenerate-pairings">17.2  Nondegenerate pairings</h3>
+<p>两个 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(V,W\)</span>
+的<strong>配对(pairing)</strong>指的是双线性映射 <span class="math inline">\(\lr{\cdot,\cdot}:V\times W\to R\)</span>. 固定
+<span class="math inline">\(v\)</span>, 可以得到一个线性映射 <span class="math display">\[
+\lr{v,\cdot}:W\to R,\quad w\mapsto\lr{v,w},
+\]</span> 这诱导出一个线性映射 <span class="math inline">\(V\to
+W^\vee\)</span>, <span class="math inline">\(v\mapsto\lr{v,\cdot}\)</span>. 相似地,
+还有线性映射 <span class="math inline">\(W\to V^\vee\)</span>, <span class="math inline">\(w\mapsto\lr{\cdot,w}\)</span>. 配对 <span class="math inline">\(\lr{\cdot,\cdot}\)</span>
+称为<strong>非退化的(nondegenerate)</strong>, 若 <span class="math inline">\(V\to W^\vee\)</span> 和 <span class="math inline">\(W\to V^\vee\)</span> 都是单射.</p>
+<div class="note note-success">
+<p><u>Claim 17.4</u> 若 <span class="math inline">\(V,W\)</span> 秩有限,
+<span class="math inline">\(\lr{\cdot,\cdot}:V\times W\to R\)</span>
+为非退化配对, 则导出映射 <span class="math inline">\(V\to
+W^\vee\)</span> 和 <span class="math inline">\(W\to V^\vee\)</span>
+为同构.</p>
+</div>
+<p>一个 <span class="math inline">\(V\)</span> 上的非退化配对 <span class="math inline">\(V\times V\to R\)</span> 导出了 <span class="math inline">\(V\to V^\vee\)</span> 的一个标准同构.</p>
+<div class="note note-success">
+<p><u>Claim 17.5</u> 配对 <span class="math display">\[
+\Align{
+f:(V^\vee)^k\times V^k &amp;\to R, \\
+((\beta^1,\dots,\beta^n),(v_1,\dots,v_k)) &amp;\mapsto
+\det[\beta^i(v_j)].
+}
+\]</span> 诱导出了外幂的配对 <span class="math inline">\(\bigwedge^k(V^\vee)\times\bigwedge^kV\to
+R\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 应用两次泛性质可以诱导出一个双线性的配对. 固定 <span class="math inline">\((\beta^1,\dots,\beta^n)\)</span>, 函数 <span class="math display">\[
+(v_1,\dots,v_k)\mapsto\det[\beta^i(v_j)]
+\]</span> 是交错的 <span class="math inline">\(k\)</span> 重线性映射,
+唯一地诱导出线性映射 <span class="math inline">\(\bigwedge^kV\to
+R\)</span>, 使得 <span class="math display">\[
+v_1\wedge\cdots\wedge v_k \mapsto\det[\beta^i(v_j)].
+\]</span> 综合以上过程, 我们得到了一个映射 <span class="math inline">\(h:(V^\vee)^k\to(\bigwedge^kV)^\vee\)</span>, <span class="math display">\[
+h(\beta_1,\dots,\beta^k)(v_1\wedge\cdots\wedge v_k)=\det[\beta^i(v_j)].
+\]</span> 显然 <span class="math inline">\(h\)</span> 是交错的 <span class="math inline">\(k\)</span> 重线性映射, 唯一诱导出 <span class="math inline">\(\tilde{h}:\bigwedge^k(V^\vee)\to(\bigwedge^kV)^\vee\)</span>,
+使得 <span class="math display">\[
+\tilde{h}(\beta^1\wedge\cdots\wedge\beta^k)
+(v_1\wedge\cdots\wedge v_k)=\det[\beta^i(v_j)].
+\]</span> 这可以看作一个双线性映射 <span class="math inline">\(\bigwedge^k(V^\vee)\times\bigwedge^kV\to
+R\)</span>, <span class="math display">\[
+((\beta^1\wedge\cdots\wedge\beta^k),
+(v_1\wedge\cdots\wedge v_k))\mapsto\det[\beta^i(v_j)].
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 17.6</u> 设秩 <span class="math inline">\(n\)</span> 的自由
+<span class="math inline">\(R\)</span>-模 <span class="math inline">\(V\)</span>. 对 <span class="math inline">\(k\leq
+n\)</span>, Claim 17.5 证明过程中的 <span class="math display">\[
+\Align{
+\tilde{h}:\bigwedge\nolimits^k(V^\vee) &amp;\to
+\pqty{\bigwedge\nolimits^kV}^\vee, \\
+(\beta^1\wedge\cdots\wedge\beta^k) &amp;\mapsto
+(v_1\wedge\cdots\wedge v_k\mapsto\det[\beta^i(v_j)]).
+}
+\]</span> 是同构映射.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 记 <span class="math inline">\(f=\tilde{h}\)</span>,
+只需证明 <span class="math inline">\(f\)</span> 将基底映成基底. 设 <span class="math inline">\(V\)</span> 的基底 <span class="math inline">\(\{e_i\}\)</span>, 对偶基底 <span class="math inline">\(\{\alpha^i\}\)</span>, 则 <span class="math inline">\(\bigwedge^k(V^\vee)\)</span> 的基底 <span class="math display">\[
+\{ \alpha^I \mid I=(1\leq i_1&lt;\cdots&lt;i_k\leq n) \},
+\]</span> <span class="math inline">\(\bigwedge^kV\)</span> 的基底 <span class="math inline">\(\{e_I\}\)</span>, 记其对偶基底 <span class="math inline">\(\{e^*_I\}\)</span>, 满足 <span class="math display">\[
+e^*_I(e_J)=\delta_{IJ}.
+\]</span> 我们断言 <span class="math inline">\(f(\alpha^I)=e^*_I\)</span>, 即 <span class="math inline">\(f(\alpha^I)(e_J)=\delta_{IJ}\)</span>. <span class="math display">\[
+\Align{
+f(\alpha^I)(e_J)
+&amp;= f(\alpha^{i_1}\wedge\cdots\wedge\alpha^{i_k})
+   (e_{j_1}\wedge\cdots\wedge e_{j_k}) \\
+&amp;= \det[\alpha^{i_r}(e_{j_s})],
+}
+\]</span> 对于 <span class="math inline">\(I=J\)</span>, 则 <span class="math inline">\(i_r=j_r\)</span>, <span class="math inline">\(\det[\alpha^{i_r}(e_{j_s})]=\det(\delta^r_s)=1\)</span>.</p>
+<p>对于 <span class="math inline">\(I\neq J\)</span>, 则某 <span class="math inline">\(i_0\)</span> 不等于 <span class="math inline">\(j_1,\dots,j_n\)</span>, 行列式的第 <span class="math inline">\(i_0\)</span> 行为零, 行列式为零.</p>
+</div>
+<h3 id="tensors-as-multilinear-maps">17.3  Tensors as multilinear maps</h3>
+<p>设 <span class="math inline">\(L_k(V)\)</span> 是 <span class="math inline">\(V^k\)</span> 上的所有 <span class="math inline">\(k\)</span> 重线性映射 <span class="math inline">\(V^k\to R\)</span> 组成的左 <span class="math inline">\(R\)</span>-模. 根据张量积的泛性质, <span class="math inline">\(L_k(V)\)</span> 可以与 <span class="math inline">\(T^kV\)</span> 上的线性映射认同: <span class="math display">\[
+\Align{
+L_k(V) &amp;\cong (T^kV)^\vee, \\
+f &amp;\mapsto \tilde{f}.
+}
+\]</span> 相似地, 根据楔积的泛性质, <span class="math inline">\(V^k\)</span> 上的所有交错的 <span class="math inline">\(k\)</span> 重线性映射 <span class="math inline">\(A_k(V)\)</span> 可以与 <span class="math inline">\(\bigwedge^kV\)</span> 上的线性映射认同: <span class="math display">\[
+\Align{
+A_k(V) &amp;\cong \pqty{\bigwedge\nolimits^kV}^\vee, \\
+f &amp;\mapsto \tilde{f}.
+}
+\]</span> 根据 Claim 16.7 和 Claim 17.6, 还有同构 <span class="math display">\[
+\Align{
+L_k(V) &amp;\cong(T^kV)^\vee\cong T^k(V^\vee), \\
+A_k(V) &amp;\cong\pqty{\bigwedge\nolimits^kV}^\vee \cong
+\bigwedge\nolimits^k(V^\vee).
+}
+\]</span></p>
+<p>现在我们将 <span class="math inline">\(T^k(V^\vee)\)</span> 中的元素
+<span class="math inline">\(\alpha^1\otimes\cdots\otimes\alpha^k\)</span>
+看作一个 <span class="math inline">\(k\)</span> 重线性映射 <span class="math inline">\(V^k\to R\)</span>. 对于 <span class="math inline">\(\alpha\in T^k(V^\vee)\)</span>, <span class="math inline">\(\beta\in T^l(V^\vee)\)</span>, <span class="math display">\[
+\alpha\otimes\beta\in T^{k+l}(V^\vee)\cong L_{k+l}(V),
+\]</span> 并且由如下公式给出 <span class="math display">\[
+(\alpha\otimes\beta)(v_1,\dots,v_{k+l})
+= \alpha(v_1,\dots,v_k)
+  \beta(v_{k+1},\dots,v_{k+l}).
+\]</span> 同样地, 将 <span class="math inline">\(\bigwedge^k(V^\vee)\)</span> 中的元素 <span class="math inline">\(\beta^1\wedge\cdots\wedge\beta^k\)</span>
+可以看作一个交错的 <span class="math inline">\(k\)</span> 重线性映射
+<span class="math inline">\(V^k\to R\)</span>. 对于 <span class="math inline">\(\alpha\in\bigwedge^k(V^\vee)\)</span>, <span class="math inline">\(\beta\in\bigwedge^l(V^\vee)\)</span>, <span class="math display">\[
+\alpha\wedge\beta\in\bigwedge\nolimits^{k+l}(V^\vee)\cong A_{k+l}(V)
+\]</span> 是一个 <span class="math inline">\(k+l\)</span> 重交错线性映射
+<span class="math inline">\(V^{k+l}\to R\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 17.7</u> 设 <span class="math inline">\(\alpha\in\bigwedge^k(V^\vee)\)</span>, <span class="math inline">\(\beta\in\bigwedge^l(V^\vee)\)</span>, <span class="math inline">\(v_i\in V\)</span>, <span class="math display">\[
+(\alpha\wedge\beta)(v_1,\dots,v_{k+l}) = \sum_\pi (\sgn\pi)
+\alpha(v_{\pi(1)},\dots,v_{\pi(k)})
+\beta(v_{\pi(k+1)},\dots,v_{\pi(k+l)}).
+\]</span> 右边对满足如下条件的置换 <span class="math inline">\(\pi\in
+S_{k+l}\)</span> 求和: <span class="math display">\[
+\pi(1)&lt;\cdots&lt;\pi(k),\quad \pi(k+1)&lt;\cdots&lt;\pi(k+l).
+\]</span> 称这样的置换是一个 <span class="math inline">\((k,l)\)</span>-洗牌(shuffle).</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为线性性, 只需要对可分解的元素证明. 设 <span class="math inline">\(\alpha=\alpha^1\wedge\cdots\wedge\alpha^k\)</span>,
+<span class="math inline">\(\beta=\beta^1\wedge\cdots\wedge\beta^k\)</span>.</p>
+<p>任给置换 <span class="math inline">\(\rho\in S_{k+l}\)</span>,
+对前面的 <span class="math inline">\(\rho(1),\dots,\rho(k)\)</span>
+使用某 <span class="math inline">\(\sigma\in S_k\)</span> 重排后可以使得
+<span class="math display">\[
+\rho(\sigma(1))&lt;\cdots&lt;\rho(\sigma(k)).
+\]</span> 同样, 对后面的 <span class="math inline">\(\rho(k+1),\dots,\rho(k+l)\)</span> 使用某 <span class="math inline">\(\tau\in S_l\)</span> (令 <span class="math inline">\(S_l\)</span> 表示 <span class="math inline">\(\{k+1,\dots,k+l\}\)</span> 的置换群)
+重拍后可以使得 <span class="math display">\[
+\rho(\tau(k+1))&lt;\cdots&lt;\rho(\tau(k+l)).
+\]</span> 如此 <span class="math inline">\(\pi:=\rho\circ\sigma\circ\tau\)</span> 成为了一个
+<span class="math inline">\((k,l)\)</span>-洗牌. 这样的 <span class="math inline">\(\sigma,\tau\)</span> 是唯一的.</p>
+<p>根据 Claim 17.6, <span class="math display">\[
+\Align{
+&amp;
+(\alpha^1\wedge\cdots\wedge\alpha^k
+\wedge\beta^1\wedge\cdots\wedge\beta^l)(v_1,\dots,v_{k+l}) \\
+&amp;= \sum_{\rho\in S_{k+l}} (\sgn\rho)
+   \alpha^1(v_{\rho(1)})\cdots\alpha^k(v_{\rho(k)})
+   \beta^1(v_{\rho(k+1)})\cdots\beta^l(v_{\rho(k+l)}) \\
+&amp;= \sum_{\pi}(\sgn\pi)
+   \sum_{\sigma\in S_k}\sum_{\tau\in S_l}(\sgn\sigma)(\sgn\tau) \\
+&amp;\hspace{5.75em}
+   \alpha^1(v_{\pi(\sigma(1))})\cdots\alpha^k(v_{\pi(\sigma(k))})
+   \beta^1(v_{\pi(\tau(k+1))})\cdots\beta^l(v_{\pi(\tau(k+l))}) \\
+&amp;= \sum_{\pi}(\sgn\pi)
+   (\alpha^1\wedge\cdots\wedge\alpha^k)(v_{\pi(1)},\dots,v_{\pi(k)}) \\
+&amp;\hspace{5.75em}
+   (\beta^1\wedge\cdots\wedge\beta^l)(v_{\pi(k+1)},\dots,v_{\pi(k+l)})
+\\
+&amp;= \sum_{\pi} (\sgn\pi)
+   \alpha(v_{\pi(1)},\dots,v_{\pi(k)})
+   \beta(v_{\pi(k+1)},\dots,v_{\pi(k+l)}). \\
+}
+\]</span></p>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#线性代数</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM275 | 6 代数与拓扑工具</div>
+      <div>https://disembo.github.io/Note/dg-gtm275-6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-7/" title="GTM275 | 7 代数与拓扑工具">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 7 代数与拓扑工具</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-5/" title="GTM275 | 5 测地线">
+                        <span class="hidden-mobile">GTM275 | 5 测地线</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

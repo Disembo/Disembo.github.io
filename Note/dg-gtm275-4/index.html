@@ -1,0 +1,1376 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="克氏符与沿曲线的协变导数, 测地线, 指数映射.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM275 | 4 测地线">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-4/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="克氏符与沿曲线的协变导数, 测地线, 指数映射.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/geodesic-poincare-half-plane.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/9/99/Droites_disquePoincare.svg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/geodesic-poincare-disk.png">
+<meta property="article:published_time" content="2024-06-23T08:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.703Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分几何">
+<meta property="article:tag" content="黎曼几何">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/geodesic-poincare-half-plane.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM275 | 4 测地线 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM275 | 4 测地线"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-23 16:00" pubdate>
+          2024年6月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM275 | 4 测地线</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and
+Characteristic Classes</em>) 第 13-15 节的笔记.</p>
+</div>
+<h2 id="more-on-affine-connections">10  More on Affine Connections</h2>
+<p>在研究测地线之前, 我们先补充一些关于仿射联络的内容. 先介绍克氏符,
+再介绍仿射联络诱导出来的"沿着曲线的导数".
+联络形式是向量丛上的联络借标架的体现,
+而克氏符则是仿射联络借坐标系的体现.</p>
+<h3 id="christoffel-symbols">10.1  Christoffel symbols</h3>
+<p>某一标架下的联络形式能够描述仿射联络, 特别地,
+当我们取坐标基底为标架时, 得到的就是克氏符.</p>
+<ul>
+<li>坐标基底场 <span class="math inline">\(\qty{\partial_i=\pdv{x^i}}\)</span> 比切丛上的标架
+<span class="math inline">\(\qty{e_i}\)</span> 性质更好,
+坐标基底的李括号为零: <span class="math inline">\([\partial_i,\partial_j]=0\)</span>.</li>
+</ul>
+<p>设 <span class="math inline">\(\nabla\)</span> 为流形 <span class="math inline">\(M\)</span> 上的仿射联络, <span class="math inline">\((U,x^1,\dots,x^n)\)</span> 为一坐标开集, <span class="math inline">\(\qty{\partial_i}\)</span> 为坐标基底场.
+回顾联络形式的定义, 向量场 <span class="math inline">\(\nabla_{\partial_i}\partial_j\)</span> 能展开为
+<span class="math display">\[
+\nabla_{\partial_i}\partial_j = \sum_k \omega^k_j(\partial_i)\partial_k.
+\]</span> 其中 <span class="math inline">\(\omega^k_j(\partial_i)\)</span>
+是联络形式在此坐标基底下的分量, 记 <span class="math inline">\(\Gamma^k_{ij}=\omega^k_j(\partial_i)\)</span>, 这
+<span class="math inline">\(n^3\)</span> 个函数称为联络 <span class="math inline">\(\nabla\)</span>
+在该坐标系下的<strong>克氏符(Christoffel symbols)</strong>. 于是 <span class="math display">\[
+\nabla_{\partial_i}\partial_j = \sum_k \Gamma^k_{ij}\partial_k.
+\]</span> 设向量场 <span class="math inline">\(X=\sum
+X^i\partial_i\)</span>, <span class="math inline">\(Y=\sum
+Y^i\partial_i\)</span>, <span class="math display">\[
+\Align{
+\nabla_XY
+&amp;= \nabla_{X^i\partial_i}(Y^j\partial_j) \\
+&amp;= X^i \nabla_{\partial_i}(Y^j\partial_j) \\
+&amp;= X^i \partial_i(Y^j)\partial_j +
+X^iY^j\nabla_{\partial_i}\partial_j \\
+&amp;= [X^i \partial_i(Y^k) + X^iY^j\Gamma^k_{ij}]\partial_k.
+}
+\]</span> 给出了向量场的联络与普通偏导数的关系.</p>
+<div class="note note-success">
+<p><u>Claim 10.1</u> 流形 <span class="math inline">\(M\)</span>
+上的仿射联络 <span class="math inline">\(\nabla\)</span> 无挠,
+当且仅当在任意坐标系 <span class="math inline">\((U,x^1,\dots,x^n)\)</span> 上,
+克氏符的两个下标是对称的, 即 <span class="math display">\[
+\Gamma^k_{ij} = \Gamma^k_{ji}.
+\]</span> 所以无挠联络也叫做对称联络.</p>
+</div>
+<ul>
+<li>由于对称性, 黎曼联络克氏符的 <span class="math inline">\(n^3\)</span> 个分量中, 只有 <span class="math inline">\(\frac12n^2(n+1)\)</span> 个独立分量.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 设联络无挠. 在任意坐标系下, <span class="math inline">\([\partial_i,\partial_j]=0\)</span>. 由无挠性,
+<span class="math display">\[
+\nabla_{\partial_i}\partial_j-\nabla_{\partial_j}\partial_i
+= [\partial_i,\partial_j] = 0,
+\]</span> 即 <span class="math display">\[
+\sum_k\Gamma^k_{ij}\partial_k + \sum_k\Gamma^k_{ji}\partial_k = 0,
+\]</span> 所以 <span class="math inline">\(\Gamma^k_{ij}=\Gamma^k_{ji}\)</span>.</p>
+<p>设任意坐标系下的克氏符对称, 于是 <span class="math inline">\(\nabla_{\partial_i}\partial_j=\nabla_{\partial_j}\partial_i\)</span>,
+进而 <span class="math display">\[
+T(\partial_i,\partial_j)
+= \nabla_{\partial_i}\partial_j
+-\nabla_{\partial_j}\partial_i
+-[\partial_i,\partial_j]
+= 0.
+\]</span> 由挠率的 <span class="math inline">\(\cal F\)</span>-线性性,
+<span class="math inline">\(T(X,Y)=0\)</span>.</p>
+</div>
+<p>计算黎曼联络的克氏符, 既可以利用标架, 算出联络形式, 再导出克氏符;
+也可以借助坐标系, 利用黎曼度量计算.</p>
+<p>黎曼度量 <span class="math inline">\(\lr{\cdot,\cdot}\)</span> 作为双
+<span class="math inline">\({\cal F}\)</span>-线性映射, 构成 <span class="math inline">\(M\)</span> 上的张量场. 在标架开集 <span class="math inline">\((U,e_1,\dots,e_n)\)</span> 下, 黎曼度量的分量记作
+<span class="math inline">\(g_{ij}=\lr{e_i,e_j}\)</span>. <span class="math inline">\([g_{ij}]\)</span> 是一个 <span class="math inline">\(n\times n\)</span>​ 的正定矩阵, 其逆矩阵记作 <span class="math inline">\([g^{ij}]\)</span>, 两者相乘为单位阵, 即 <span class="math display">\[
+\sum_j g_{ij}g^{jk} = \delta_i^k.
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 10.2</u> 设黎曼流形 <span class="math inline">\(M\)</span>,
+坐标系 <span class="math inline">\((U,x_1,\dots,x_n)\)</span>. 度量分量
+<span class="math inline">\([g_{ij}]\)</span>, 则黎曼联络的克氏符 <span class="math display">\[
+\Gamma^k_{ij} = \frac12\sum_l g^{kl}\pqty{
+\pdv{g_{li}}{x^j} + \pdv{g_{lj}}{x^i} - \pdv{g_{ij}}{x^l}
+}.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 下面要用到之前证明黎曼度量存在唯一性时导出的 Koszul 公式:
+对 <span class="math inline">\(X,Y,Z\in{\frak X}(M)\)</span>, <span class="math display">\[
+\Align{
+2\lr{\nabla_XY,Z} = \;
+&amp;X\lr{Y,Z}+Y\lr{Z,X}-Z\lr{X,Y}+{} \\
+&amp;\lr{[X,Y],Z}-\lr{[Y,Z],X}-\lr{Y,[X,Z]}.
+}
+\]</span> 令 <span class="math inline">\(X=\partial_i\)</span>, <span class="math inline">\(Y=\partial_j\)</span>, <span class="math inline">\(Z=\partial_l\)</span>, 注意 <span class="math inline">\(X,Y,Z\)</span> 两两对易, 有 <span class="math display">\[
+\Align{
+2\lr{\nabla_{\partial_i}\partial_j,\partial_l}
+&amp;= \partial_i\lr{\partial_j,\partial_l}
+  +\partial_j\lr{\partial_l,\partial_i}
+  -\partial_l\lr{\partial_i,\partial_j} \\
+&amp;= \pdv{g_{lj}}{x^i}+\pdv{g_{li}}{x^j}-\pdv{g_{ij}}{x^l}.
+}
+\]</span> 其中, 左边 <span class="math display">\[
+\Align{
+2\lr{\nabla_{\partial_i}\partial_j,\partial_l}
+&amp;= 2\sum_m\lr{ \Gamma^m_{ij}\partial_m,\partial_l } \\
+&amp;= 2\sum_m\Gamma^m_{ij} g_{ml},
+}
+\]</span> 左右两边乘以 <span class="math inline">\([g^{kl}]\)</span>,
+得到 <span class="math display">\[
+\Align{
+2\sum_{m,l}\Gamma^m_{ij} g_{ml}g^{kl} &amp;= \sum_l
+g^{kl}\pqty{\pdv{g_{lj}}{x^i}+\pdv{g_{li}}{x^j}-\pdv{g_{ij}}{x^l}} \\
+\iff\quad
+\Gamma^k_{ij} &amp;= \frac12 \sum_l
+g^{kl}\pqty{\pdv{g_{lj}}{x^i}+\pdv{g_{li}}{x^j}-\pdv{g_{ij}}{x^l}}.
+}
+\]</span></p>
+</div>
+<div class="note note-info">
+<p><u>Example</u> 双曲模型. 在 Poincaré 圆盘 <span class="math inline">\(\mathbb{D}\)</span> 的坐标系 <span class="math inline">\((\mathbb{D},x,y)\)</span> 下, 度量分量 <span class="math display">\[
+\Align{
+g_{11}&amp;=g_{22}=\frac{4}{(1-|z|^2)^2}, &amp; g_{12}&amp;=g_{21}=0, \\
+g^{11}&amp;=g^{22}=\frac{(1-|z|^2)^2}{4}, &amp; g^{12}&amp;=g^{21}=0.
+}
+\]</span> 导数 <span class="math display">\[
+\partial_1g_{11}=\partial_1g_{22}=\frac{16x}{(1-|z|^2)^3},\quad
+\partial_2g_{11}=\partial_2g_{22}=\frac{16y}{(1-|z|^2)^3}.
+\]</span> 计算克氏符. 因为度量有两个分量为零,
+所以计算过程其实没有想象中那么复杂. 这里给出结果: <span class="math display">\[
+\begin{array}{|c|c|c|} \hline
+k,ij &amp; 11 &amp; 12 &amp; 21 &amp; 22 \\ \hline
+1 &amp; \dfrac{2x}{1-|z|^2} &amp; \dfrac{2y}{1-|z|^2} &amp;
+\dfrac{2y}{1-|z|^2} &amp; \dfrac{-2x}{1-|z|^2} \\ \hline
+2 &amp; \dfrac{-2y}{1-|z|^2} &amp; \dfrac{2x}{1-|z|^2} &amp;
+\dfrac{2x}{1-|z|^2} &amp; \dfrac{2y}{1-|z|^2} \\ \hline
+\end{array}
+\]</span> 同样, 还可以算出 Poincaré 上半平面的克氏符: <span class="math display">\[
+\begin{array}{|c|c|c|} \hline
+k,ij &amp; 11 &amp; 12 &amp; 21 &amp; 22 \\ \hline
+1 &amp; 0 &amp; -1/y &amp; -1/y &amp; 0 \\ \hline
+2 &amp; 1/y &amp; 0 &amp; 0 &amp; -1/y \\ \hline
+\end{array}
+\]</span></p>
+</div>
+<h3 id="covariant-derivative-along-a-curve">10.2  Covariant derivative along a
+curve</h3>
+<p>设流形 <span class="math inline">\(M\)</span> 上的光滑曲线 <span class="math inline">\(c:[a,b]\to M\)</span>, 则沿着曲线 <span class="math inline">\(c\)</span> 的向量场 (vector field along <span class="math inline">\(c\)</span>) 指的是 <span class="math display">\[
+V:[a,b]\to\coprod_{t\in[a,b]} T_{c(t)}M,
+\]</span> 而且 <span class="math inline">\(V(t)\in T_{c(t)}M\)</span>.
+向量场 <span class="math inline">\(V(t)\)</span> 称为光滑的,
+如果对任意光滑函数 <span class="math inline">\(f:M\to\R\)</span>, <span class="math inline">\(V(t)f\)</span> 都是光滑的. 曲线 <span class="math inline">\(c\)</span> 上的所有光滑向量场的全体记作 <span class="math inline">\(\Gamma(TM|_{c(t)})\)</span>.</p>
+<p>设流形 <span class="math inline">\(M\)</span> 上的仿射联络 <span class="math inline">\(\nabla\)</span>, 光滑曲线 <span class="math inline">\(c:[a,b]\to M\)</span>. 沿着曲线 <span class="math inline">\(c\)</span> 的<strong>协变导数(covariant
+derivative)</strong>指的是映射 <span class="math display">\[
+\frac{\rm D}{\dd{t}}:\Gamma(TM|_{c(t)})\to\Gamma(TM|_{c(t)}),
+\]</span> 并且满足下列条件:</p>
+<ol type="1">
+<li><p><span class="math inline">\({\rm D}V/\dd{t}\)</span> 关于 <span class="math inline">\(V\)</span> 是 <span class="math inline">\(\R\)</span>-线性的.</p></li>
+<li><p>(Leibniz 律) 对任意 <span class="math inline">\([a,b]\)</span>
+上的光滑函数 <span class="math inline">\(f\)</span>, <span class="math display">\[
+\frac{{\rm D}(fV)}{\dd{t}} = \dv{f}{t}V+f\frac{{\rm D}V}{\dd{t}}.
+\]</span></p></li>
+<li><p>(与 <span class="math inline">\(\nabla\)</span> 适配) 若 <span class="math inline">\(\tilde{V}\in{\frak X}(M)\)</span> 为 <span class="math inline">\(V\in\Gamma(TM|_{c(t)})\)</span> 的任意一个光滑延拓
+(即有 <span class="math inline">\(\tilde{V}_{c(t)}=V(t)\)</span>), 则
+<span class="math display">\[
+\frac{{\rm D}V}{\dd{t}}(t) = \nabla_{c'(t)}\tilde{V}.
+\]</span></p></li>
+</ol>
+<div class="note note-success">
+<p><u>Claim 10.3</u> 任给联络 <span class="math inline">\(\nabla\)</span> 和光滑曲线 <span class="math inline">\(c\)</span>, 存在唯一的沿着曲线 <span class="math inline">\(c\)</span>​ 的协变导数算子.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 假设协变导数存在. 在标架开集 <span class="math inline">\((U,e_1,\dots,e_n)\)</span> 上, 沿着 <span class="math inline">\(c\)</span> 的向量场 <span class="math inline">\(V(t)=\sum v^i(t)e_{i,c(t)}\)</span>. 有 <span class="math display">\[
+\Align{
+\frac{{\rm D}V}{\dd{t}}
+&amp;= \sum_i \frac{{\rm D}(v^ie_{i,c(t)})}{\dd{t}} \\
+&amp;= \sum_i \dv{v^i}{t}e_{i,c(t)} + v^i\frac{{\rm
+D}e_{i,c(t)}}{\dd{t}} \\
+&amp;= \sum_i \dv{v^i}{t}e_{i,c(t)} + v^i\nabla_{c'(t)}e_{i}.
+}
+\]</span> 因此若协变导数存在, 则它是唯一的.</p>
+<p>我们以上式作为协变导数的定义, 容易验证其满足三个条件.
+还需验证上式与标架的选取无关. 设 <span class="math inline">\(U\)</span>
+上的另一个标架 <span class="math inline">\(\bar{e}_1,\dots,\bar{e}_n\)</span>, <span class="math inline">\(V(t)=\sum\bar{v}^i(t)\bar{e}_{i,c(t)}\)</span>,
+该标架下的协变导数为 <span class="math display">\[
+\frac{{\rm\bar D}V}{\dd{t}}
+= \sum_i \dv{\bar v^i}{t}\bar e_{i,c(t)}
++ \bar v^i\nabla_{c'(t)}\bar e_{i,c(t)},
+\]</span> 也满足三个条件, 根据唯一性, <span class="math inline">\({\rm\bar D}V/\dd{t}={\rm D}V/\dd{t}\)</span>. 取
+<span class="math inline">\(M\)</span> 的标架开覆盖,
+能够将协变导数定义到整条曲线 <span class="math inline">\(c\)</span>
+上.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 10.4</u> (协变导数的链式法则) 设曲线 <span class="math inline">\(c:[a,b]\to M\)</span>, 光滑函数 <span class="math inline">\(u:[a,b]\to[a,b]\)</span>. 若 <span class="math inline">\(V(t)\)</span> 是沿着 <span class="math inline">\(c\)</span> 的光滑向量场, 则 <span class="math inline">\(W=V\circ u\)</span> 是沿着 <span class="math inline">\(\bar{c}=c\circ u\)</span> 的光滑向量场. 设 <span class="math inline">\({\rm D}/\dd{t}\)</span> 和 <span class="math inline">\({\rm\bar D}/\dd{t}\)</span>
+分别代表沿着两条曲线的协变导数, 则 <span class="math display">\[
+\eval{ \frac{{\rm\bar D}W}{\dd{t}} }_t
+= \eval{\frac{{\rm D}V}{\dd{t}}}_{u(t)} \eval{\dv{u}{t}}_t.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 若 <span class="math inline">\(V(t)\)</span> 是沿着 <span class="math inline">\(c\)</span> 的向量场, 即 <span class="math inline">\(V(t)\in T_{c(t)}M\)</span>, 则 <span class="math inline">\(W(t)=V(u(t))=T_{c(u(t))}M\)</span>, 因此 <span class="math inline">\(W\)</span> 是沿着重参数化后的曲线 <span class="math inline">\(\bar{c}=c\circ u\)</span> 的向量场.</p>
+<p>下面证明链式法则. 只需在标价开集 <span class="math inline">\((U,e_1,\dots,e_n)\)</span> 上验证. 设 <span class="math inline">\(V(t)=\sum v^i(t)e_{i,c(t)}\)</span>, 则 <span class="math display">\[
+W(t) = \sum w^i(t) e_{i,\bar{c}(t)},
+\]</span> 其中 <span class="math inline">\(w^i=v^i\circ u\)</span>.
+带入协变导数的局部定义式, <span class="math display">\[
+\Align{
+\frac{{\rm\bar D}W}{\dd{t}}
+&amp;= \sum_i \dv{w^i}{t}e_{i,\bar c(t)}
++ w^i\nabla_{\bar c'(t)}e_{i} \\
+&amp;= \sum_i \dv{v^i}{u} u'(t) e_{i,\bar c(t)}
++ w^i\nabla_{c'(u(t))u'(t)}e_i \\
+&amp;= \sum_i \dv{v^i}{u} u'(t) e_{i,\bar c(t)}
++ w^i u'(t) \nabla_{c'(u(t))}e_i \\
+&amp;= u'(t)\pqty{
+  \sum_i \dv{v^i}{u} e_{i,\bar c(t)}
+  + w^i \nabla_{c'(u(t))}e_i
+  } \\
+&amp;= u'(t) \eval{\frac{{\rm D}V}{\dd{t}}}_{u(t)}.
+}
+\]</span> 其中, 第二个等号利用了求导的链式法则; 第三个等号利用了 <span class="math inline">\(\nabla\)</span> 的 <span class="math inline">\({\cal F}\)</span>-线性性将 <span class="math inline">\(u'(t)\)</span> 拿出来.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 10.5</u> (黎曼流形上的协变导数) 设黎曼流形 <span class="math inline">\(M\)</span>, 黎曼联络 <span class="math inline">\(\nabla\)</span>, 光滑曲线 <span class="math inline">\(c\)</span> 上的协变导数 <span class="math inline">\({\rm D}/\dd{t}\)</span>.</p>
+<ol type="1">
+<li><p>对任意 <span class="math inline">\(V,W\in\Gamma(TM|_{c(t)})\)</span>, <span class="math display">\[
+\dv{t}\lr{V,W} =
+\lr{ \frac{{\rm D}V}{\dd{t}}, W } +
+\lr{ V, \frac{{\rm D}W}{\dd{t}} }.
+\]</span></p></li>
+<li><p>设 <span class="math inline">\(c\)</span> 的像在嵌入子流形 <span class="math inline">\(S\)</span> 内. 子流形 <span class="math inline">\(S\)</span> 的黎曼联络为 <span class="math inline">\(\nabla'={\rm pr}(\nabla)\)</span>, <span class="math inline">\(S\)</span> 上沿着 <span class="math inline">\(c\)</span> 的协变导数为 <span class="math display">\[
+\frac{\rm D'}{\dd{t}}:\Gamma(TS|_{c(t)})\to\Gamma(TS|_{c(t)}),
+\]</span> 则 <span class="math display">\[
+\frac{{\rm D}'V}{\dd{t}} = {\rm pr}\pqty{ \frac{{\rm D}V}{\dd{t}} }.
+\]</span></p></li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 第一条, 取局部正交归一标架 <span class="math inline">\(e_1,\dots,e_n\)</span> 后不难证明.
+第二条根据协变导数的公理 3 是很显然的.</p>
+</div>
+<p>我们知道, 设流形 <span class="math inline">\((M,\nabla)\)</span>,
+微分同胚 <span class="math inline">\(f:M\to\tilde{M}\)</span> 能够将
+<span class="math inline">\(M\)</span> 上的联络搬到 <span class="math inline">\(\tilde{M}\)</span> 上去, 定义出一个 <span class="math inline">\(\tilde{M}\)</span> 上的联络 <span class="math inline">\(\tilde\nabla\)</span>: <span class="math display">\[
+\tilde\nabla_{f_*X}f_*Y = f_*(\nabla_XY).
+\]</span> 从另一个角度看, 若有流形 <span class="math inline">\((M,\nabla)\)</span> 和 <span class="math inline">\((\tilde{M},\tilde\nabla)\)</span>,
+一个满足上式的微分同胚 <span class="math inline">\(f:M\to\tilde{M}\)</span>
+称为保持联络的(connection-preserving).</p>
+<ul>
+<li>可以证明, 黎曼流形之间的等距同构保持黎曼联络.</li>
+</ul>
+<p>设 <span class="math inline">\(V\)</span> 是一个沿着 <span class="math inline">\(c\)</span> 的向量场, 则其在微分同胚 <span class="math inline">\(f\)</span> 下的推前 <span class="math inline">\(f_*V\)</span> 是一个沿着 <span class="math inline">\(f\circ c\)</span> 的向量场, 定义为 <span class="math display">\[
+(f_*V)(t) := f_{*,c(t)}(V(t)).
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 10.6</u> 设保持联络的微分同胚 <span class="math inline">\(f:(M,\nabla)\to(\tilde{M},\tilde\nabla)\)</span>,
+光滑曲线 <span class="math inline">\(c:[a,b]\to M\)</span> 和 <span class="math inline">\(f\circ c:[a,b]\to\tilde{M}\)</span>. 记 <span class="math inline">\({\rm D}/\dd{t}\)</span> 和 <span class="math inline">\({\rm\tilde{D}}/\dd{t}\)</span> 分别为沿着 <span class="math inline">\(c\)</span> 和 <span class="math inline">\(f\circ
+c\)</span> 的协变导数, 则 <span class="math display">\[
+\frac{{\rm\tilde D}(f_*V)}{\dd{t}} = f_*\pqty{ \frac{{\rm D}V}{\dd{t}}
+},
+\quad V\in\Gamma(TM|_{c(t)}).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(V\in\Gamma(TM|_{c(t)})\)</span>, <span class="math inline">\(\bar{V}\in\Gamma(TM)\)</span> 为其延拓, 则 <span class="math inline">\(f_*\bar{V}\)</span> 是 <span class="math inline">\(f_*V\)</span> 的延拓, 这从定义直接看出: <span class="math display">\[
+(f_*\bar{V})_{f(c(t))}
+= f_{*,c(t)}\bar{V}_{c(t)}
+= f_{*,c(t)}V(t)
+= (f_*V)(t).
+\]</span> 再由 <span class="math inline">\(f\)</span>
+保联络的定义和保持切向量的性质, <span class="math display">\[
+f_*\pqty{ \frac{{\rm D}V}{\dd{t}} }
+= f_*(\nabla_{c'(t)}\bar{V})
+= \tilde{\nabla}_{f_*c'(t)}f_*\bar{V}
+= \tilde{\nabla}_{(f\circ c)'(t)}f_*\bar{V}
+= \frac{{\rm\tilde D}(f_*V)}{\dd{t}}.
+\]</span></p>
+</div>
+<p>最后推导协变导数的坐标表示. 设点 <span class="math inline">\(p=c(t_0)\)</span>, <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U\)</span> 上有标架 <span class="math inline">\(e_1,\dots,e_n\)</span>, 联络矩阵 <span class="math inline">\([\omega^i_j]\)</span>. 若 <span class="math inline">\(V(t)=\sum V^i(t)e_{i,c(t)}\)</span>, 则 <span class="math display">\[
+\Align{
+\frac{{\rm D}V}{\dd{t}}
+&amp;= \sum_i\dv{V^i}{t}e_{i,c(t)} + \sum_iV^i\frac{{\rm
+D}e_{i,c(t)}}{\dd{t}} \\
+&amp;= \sum_i\dv{V^i}{t}e_{i,c(t)} + \sum_jV^j\nabla_{c'(t)}e_j \\
+&amp;= \sum_i\dv{V^i}{t}e_{i,c(t)} +
+\sum_{i,j}V^j\omega^i_j(c'(t))e_{i,c(t)} \\
+&amp;= \sum_i\pqty{ \dv{V^i}{t} + \sum_jV^j\omega^i_j(c'(t)) }
+e_{i,c(t)}.
+}
+\]</span> 特别地, 取坐标基底, 并且令 <span class="math inline">\(c'(t)=\sum T^k(t)\partial_{k,c(t)}\)</span>​,
+则有 <span class="math display">\[
+\Align{
+\frac{{\rm D}V}{\dd{t}}
+&amp;= \sum_i\pqty{ \dv{V^i}{t} + \sum_{j,k}V^jT^k\Gamma^i_{kj} }
+   \partial_{i,c(t)} \\
+&amp;= \sum_k\pqty{ \dv{V^k}{t} + \sum_{i,j}\Gamma^k_{ij}T^iV^j }
+   \partial_{i,c(t)}.
+}
+\]</span></p>
+<h2 id="geodesics">11  Geodesics</h2>
+<h3 id="parallel-translation">11.1  Parallel translation</h3>
+<p>设流形 <span class="math inline">\(M\)</span> 有仿射联络 <span class="math inline">\(\nabla\)</span>, 光滑曲线 <span class="math inline">\(c:I\to M\)</span>. 一个沿着曲线 <span class="math inline">\(c\)</span> 的向量场 <span class="math inline">\(V(t)\)</span> 若满足 <span class="math display">\[
+\frac{{\rm D}V}{\dd{t}} \equiv 0,
+\]</span> 则称 <span class="math inline">\(V(t)\)</span>​
+为沿着曲线<strong>平行(parallel)</strong>或<strong>平移</strong>的向量场.</p>
+<p>若 <span class="math inline">\(V(t)\)</span> 是沿着曲线 <span class="math inline">\(c:[a,b]\to M\)</span> 平行的向量场, 则称 <span class="math inline">\(V(b)\)</span> 是 <span class="math inline">\(V(a)\)</span> 沿着 <span class="math inline">\(c\)</span>​​ <strong>平移(parallel translate /
+parallel transport)</strong>而来的向量.</p>
+<p>平移的坐标表示. 在坐标系 <span class="math inline">\((U,x^1,\dots,x^n)\)</span> 内, <span class="math inline">\(V(t)=\sum V^i(t)\partial_{i,c(t)}\)</span>, 则
+<span class="math inline">\(V\)</span> 沿着曲线平移当且仅当 <span class="math display">\[
+\dv{V^k}{t} + \sum_{i,j}\Gamma^k_{ij}T^iV^j = 0.
+\]</span> 这是一个关于 <span class="math inline">\(V^i\)</span>
+的一阶线性常微分方程组. 根据解的存在唯一性定理, 给定初值 <span class="math inline">\(V(t_0)\)</span> 后, 方程组在包含 <span class="math inline">\(t_0\)</span> 的某区间内有唯一解. 下面还要证明,
+解不仅在某个区间内存在, 还在 <span class="math inline">\(c\)</span>
+的整个定义区间 <span class="math inline">\(I\)</span>​ 上存在. 实际上,
+曲线 <span class="math inline">\(c:[a,b]\to M\)</span>​ 也不必是光滑的,
+只需要<strong>分段光滑(piecewise smooth)</strong>: 存在区间 <span class="math inline">\([a,b]\)</span> 的划分 <span class="math display">\[
+a=t_0&lt;t_1&lt;\cdots&lt;t_r=b,
+\]</span> 使得 <span class="math inline">\(c\)</span> 在每个 <span class="math inline">\([t_i,t_{i+1}]\)</span> 是光滑的 (<span class="math inline">\(i=0,\dots,r-1\)</span>).</p>
+<div class="note note-success">
+<p><u>Claim 11.1</u> 设流形 <span class="math inline">\((M,\nabla)\)</span>. 分段光滑曲线 <span class="math inline">\(c:[a,b]\to M\)</span>. 则任给 <span class="math inline">\(v_0\in T_{c(a)}M\)</span>, 唯一存在沿着 <span class="math inline">\(c\)</span> 平移的向量场 <span class="math inline">\(V(t)\)</span>, 使得 <span class="math inline">\(V(a)=v_0\)</span>. 沿着 <span class="math inline">\(c\)</span> 的平移诱导出了一个线性同构 <span class="math inline">\(\varphi_{a,b}:T_{c(a)}M\to T_{c(b)}M\)</span>​​​.</p>
+</div>
+<ul>
+<li>平移能够将不同点处的切空间联系起来, 这也是"联络"名称的由来.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 只需要考虑光滑曲线, 对于分段光滑曲线,
+只需要在每一段上平移.</p>
+<p>向量场 <span class="math inline">\(V(t)\)</span>
+的存在唯一性由常微分方程组的存在唯一性保证. 映射 <span class="math inline">\(\varphi_{a,b}\)</span>
+的线性性由线性齐次微分方程组的叠加原理保证, 其单射性由解的唯一性保证.
+由于切空间维数相等, <span class="math inline">\(\varphi_{a,b}\)</span>
+为同构.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 11.2</u> 设黎曼流形 <span class="math inline">\(M\)</span>
+与黎曼联络 <span class="math inline">\(\nabla\)</span>, 则沿着曲线 <span class="math inline">\(c\)</span> 的平移保持向量的内积. 换言之, <span class="math inline">\(\varphi_{a,b}\)</span> 是切空间的等距同构.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(V(t),W(t)\)</span> 是沿着
+<span class="math inline">\(c\)</span> 的向量场.
+根据黎曼联络的协变导数的性质, <span class="math display">\[
+\dv{t}\lr{V,W}
+= \lr{\frac{{\rm D}V}{\dd{t}},W} + \lr{V,\frac{{\rm D}W}{\dd{t}}}
+= 0,
+\]</span> 既 <span class="math inline">\(\lr{V,W}\)</span> 沿 <span class="math inline">\(c\)</span> 为常数.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 11.3</u> 保持联络的微分同胚 <span class="math inline">\(f:(M,\nabla)\to(\tilde{M},\tilde\nabla)\)</span>
+也保持向量场沿曲线的平行性质. 换言之, 若 <span class="math inline">\(V(t)\)</span> 沿曲线 <span class="math inline">\(c:I\to M\)</span> 平移, 则 <span class="math inline">\(f_*V\)</span> 沿曲线 <span class="math inline">\(c\circ f\)</span> 平移.</p>
+</div>
+<h3 id="geodesics-1">11.2  Geodesics</h3>
+<p>设流形 <span class="math inline">\(M\)</span> 有仿射联络 <span class="math inline">\(\nabla\)</span>. 若光滑曲线 <span class="math inline">\(c:I\to M\)</span> 的切向量场 <span class="math inline">\(c'(t)\)</span> 沿着 <span class="math inline">\(c\)</span> 平行, 则称 <span class="math inline">\(c\)</span>
+为一条<strong>测地线(geodesic)</strong>. 测地线 <span class="math inline">\(c\)</span> 称为<strong>极大的(maximal)</strong>,
+若定义域 <span class="math inline">\(I\)</span>
+不能扩大到更大的区间.</p>
+<ul>
+<li>测地线的定义不依赖于度量, 但在黎曼流形上有唯一的黎曼联络.
+我们说测地线, 指的就是黎曼联络的测地线.</li>
+<li>黎曼流形上的测地线切向量长度恒定. 切向量沿着曲线平移,
+而平移保持内积, 自然也保持向量的长度.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 11.4</u> 设曲线 <span class="math inline">\(\gamma:I\to
+M\)</span> 为(非常数)测地线, 则重参数化后的曲线 <span class="math inline">\(\bar\gamma=\gamma\circ u\)</span> 为测地线,
+当且仅当 <span class="math inline">\(u\)</span> 为仿射变换, 即 <span class="math inline">\(u=at+b\)</span>, <span class="math inline">\(a,b\)</span>​​​​​ 为常数.</p>
+</div>
+<ul>
+<li>若 <span class="math inline">\(\gamma(t)\)</span> 是以 <span class="math inline">\(\gamma(0)=p\)</span> 为起点, <span class="math inline">\(\gamma'(0)=v\)</span> 为起始速度的测地线, 那么
+<span class="math inline">\(\gamma(kt)\)</span> 是以 <span class="math inline">\(p\)</span> 为起点, <span class="math inline">\(kv\)</span> 为起始速度的测地线.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(\gamma'(t)=T(t)\)</span>, <span class="math inline">\(\bar\gamma'(t)=\bar{T}(t)\)</span>.
+由链式法则, <span class="math display">\[
+\bar{T}=\dv{t}(\gamma\circ u)=T(u(t))u'(t).
+\]</span> 利用 Leibniz 律和链式法则化简 <span class="math inline">\(\bar\gamma(t)\)</span> 切向量的协变导数: <span class="math display">\[
+\Align{
+\frac{{\rm\bar D}\bar{T}}{\dd{t}}
+&amp;= \frac{{\rm\bar D}T(u(t))}{\dd{t}}u'(t)
+  +T(u(t))u''(t) \\
+&amp;= \eval{\frac{{\rm D}T}{\dd{t}}}_{u(t)}(u'(t))^2
+  +T(u(t))u''(t) \\
+&amp;= T(u(t))u''(t).
+}
+\]</span> 因为 <span class="math inline">\(T(u(t))\)</span> 恒不为零,
+因此 <span class="math inline">\({\rm D}\bar{T}/\dd{t}=0\)</span>
+当且仅当 <span class="math inline">\(u''(t)=0\)</span>, 即 <span class="math display">\[
+u(t)=at+b.
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 11.5</u> 一个保持联络的微分同胚 <span class="math inline">\(f:(M,\nabla)\to(\tilde{M},\tilde\nabla)\)</span>​
+将测地线映成测地线.</p>
+</div>
+<ul>
+<li>黎曼流形的等距同构保持黎曼联络, 自然也保持测地线.</li>
+</ul>
+<p>根据向量场沿曲线平移的方程, 可以写出测地线切向量满足的条件,
+即<strong>测地线方程(geodesic equation)</strong>: <span class="math display">\[
+\dv{T^i}{t} + \sum_{i,j}\Gamma^k_{ij}T^iT^j = 0.
+\]</span> 这是一个关于 <span class="math inline">\(T^i\)</span>
+的二阶非线性常微分方程组. 根据解的存在唯一性, 有下面的定理.</p>
+<div class="note note-success">
+<p><u>Claim 11.6</u> 设流形 <span class="math inline">\((M,\nabla)\)</span>. 任给一点 <span class="math inline">\(p\in M\)</span> 和向量 <span class="math inline">\(v\in T_pM\)</span>, 存在从 <span class="math inline">\(p\)</span> 开始的, 以 <span class="math inline">\(v\)</span> 为初始速度的测地线 <span class="math inline">\(c:I\to M\)</span>​​​. 此外, 这样的测地线是唯一的,
+即满足此条件的测地线必然(在定义区间的交集上)重合.</p>
+</div>
+<ul>
+<li>因此, 存在唯一的从 <span class="math inline">\(p\)</span> 开始的, 以
+<span class="math inline">\(v\)</span> 为初速度的<em>极大</em>测地线,
+记作 <span class="math inline">\(\gamma_v(t)\)</span>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 11.7</u> 设黎曼流形 <span class="math inline">\(M\)</span>.
+任给一点 <span class="math inline">\(p\)</span>, 总存在 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U\)</span> 和正数 <span class="math inline">\(\delta,a&gt;0\)</span>, 使得对任意 <span class="math inline">\(q\in U\)</span>, <span class="math inline">\(v\in
+T_pM\)</span> 且 <span class="math inline">\(\|v\|\leq\delta\)</span>,
+存在唯一的从 <span class="math inline">\(q\)</span> 开始, 初速度 <span class="math inline">\(v\)</span>, 定义在区间 <span class="math inline">\((-a,a)\)</span>​ 上的测地线 <span class="math inline">\(\gamma\)</span>.</p>
+</div>
+<ul>
+<li>一般来说, 要扩大测地线的定以区间 <span class="math inline">\((-a,a)\)</span>, 就得缩小 <span class="math inline">\(\delta\)</span>.</li>
+<li>特别地, 设 <span class="math inline">\(k=a/2\)</span>, 于是 <span class="math inline">\(\bar\gamma(t):=\gamma(kt)\)</span> 是从 <span class="math inline">\(q\)</span> 开始的, 初速度 <span class="math inline">\(kv\)</span>, 定义在 <span class="math inline">\((-a/k,a/k)=(-2,2)\)</span>​ 上的测地线.
+于是可以断言, 对任意 <span class="math inline">\(\|kv\|\leq\varepsilon=a\delta/2\)</span>, 以 <span class="math inline">\(kv\)</span> 为初速度的测地线, 其定义域包含 <span class="math inline">\((-2,2)\)</span>.
+这个命题让我们可以定义指数函数.</li>
+</ul>
+<div class="note note-info">
+<p><u>Example 1</u> 球面 <span class="math inline">\(S^2\)</span>
+的测地线. 将球面放进 <span class="math inline">\(\R^3\)</span> 考虑. 设
+<span class="math inline">\(c\)</span> 为弧长参数化的大圆, 则 <span class="math inline">\(c''(t)\)</span> 指向球心, 与切平面垂直,
+于是 <span class="math display">\[
+\frac{{\rm D}T}{\dd{t}}
+= \operatorname{pr}\pqty{\dv{T}{t}}
+= \operatorname{pr}(c''(t)) = 0,
+\]</span> 说明大圆是球面上的测地线. 又因为任给一点 <span class="math inline">\(p\in S^2\)</span> 和 <span class="math inline">\(v\in T_pS^2\)</span>, 都存在从 <span class="math inline">\(p\)</span> 开始, 以 <span class="math inline">\(v\)</span> 为初速度的大圆, 由测地线的存在唯一性,
+所有的测地线都是大圆.</p>
+</div>
+<div class="note note-info">
+<p><u>Example 2</u> 双曲模型的测地线.</p>
+<p>Poincaré 上半平面. 设 <span class="math inline">\(c(t)=(x(t),y(t))\)</span>, 测地线方程 <span class="math display">\[
+\begin{gather}
+\ddot{x}-\dfrac2y\dot{x}\dot{y} = 0, \tag{1} \\
+\ddot{y}+\dfrac1y(\dot{x}^2-\dot{y}^2) = 0. \tag{2}
+\end{gather}
+\]</span> 测地线速度恒定, 不妨设 <span class="math inline">\(\lr{c'(t),c'(t)}=1\)</span>, 即 <span class="math display">\[
+\dot{x}^2+\dot{y}^2=y^2.\tag{3}
+\]</span> 从 <span class="math inline">\((1)(3)\)</span> 两式可以导出
+<span class="math inline">\((2)\)</span> 式, 故我们只考虑 <span class="math inline">\((1)(3)\)</span>. 设 <span class="math inline">\(\dot{x}\)</span> 不恒为零, <span class="math inline">\((1)\)</span> 移项后两边除以 <span class="math inline">\(\dot{x}\)</span> 得到 <span class="math display">\[
+\frac{\ddot{x}}{\dot{x}}=\frac{2\dot{y}}{y},
+\]</span> 两边对 <span class="math inline">\(t\)</span> 积分, <span class="math display">\[
+\ln|\dot{x}|=2\ln y+\textsf{常数}\iff
+\dot{x}=ky^2 \tag{4}
+\]</span> 对于常数 <span class="math inline">\(k\neq0\)</span>. 代入
+<span class="math inline">\((3)\)</span> 并解出 <span class="math inline">\(\dot{y}\)</span>, <span class="math display">\[
+\dot{y} = \pm y\sqrt{1-k^2y^2},\tag{5}
+\]</span> 以 <span class="math inline">\((4)\)</span> 除 <span class="math inline">\((5)\)</span> 得到 <span class="math display">\[
+\dv{y}{x} = \pm\frac{ky}{\sqrt{1-k^2y^2}},
+\]</span> 分离变量后积分得到 <span class="math display">\[
+x=\pm\frac1k\sqrt{1-k^2y^2}+\textsf{常数}\,d,
+\]</span> 即 <span class="math display">\[
+(x-d)^2+y^2=\frac1{k^2},
+\]</span> 表示所有圆心在 <span class="math inline">\(x\)</span>
+轴上的圆. 上式要求 <span class="math inline">\(\dot{x}\)</span>
+不恒为零, 若 <span class="math inline">\(\dot{x}\)</span> 恒为零, 则
+<span class="math inline">\(c\)</span> 是竖直的直线.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/geodesic-poincare-half-plane.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<p>回忆上半平面到圆盘的等距同构 <span class="math inline">\(T:z\mapsto\frac{z-\i}{z+\i}\)</span>.
+因为等距同构保持测地线, 所以 <span class="math inline">\(\gamma\)</span>
+是 <span class="math inline">\(\mathbb{H}\)</span> 上的测地线当且仅当
+<span class="math inline">\(T\circ\gamma\)</span> 是 <span class="math inline">\(\mathbb{D}\)</span> 的测地线.
+根据分式线性变换的保圆性与保角性, <span class="math inline">\(\mathbb{D}\)</span>
+上的测地线是所有与单位圆正交的圆弧​.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Droites_disquePoincare.svg" srcset="/img/loading.gif" lazyload style="zoom:60%;"></p>
+</div>
+<p>球面和 Poincaré 双曲模型是非欧几何的两个重要例子.
+将极大测地线视作直线, 认为两条直线平行当且仅当它们不相交.
+球面和双曲模型满足欧几里得的前四条公设, 却不满足第五条: (平行公设)
+过直线外一点有且仅有一条直线与该直线平行. 这也说明,
+第五公设是独立于前四条的.</p>
+<ul>
+<li>球面上, 过直线外一点不存在直线与该支线平行.
+任意两个大圆都相交于对径两点.</li>
+<li>双曲空间中, 过直线外一点有无穷多条直线与之平行. 在 Poincaré 圆盘上,
+任给直线 <span class="math inline">\(l\)</span> 和直线外一点 <span class="math inline">\(p\)</span>, 对于从 <span class="math inline">\(p\)</span> 开始的直线 <span class="math inline">\(c\)</span>, 当 <span class="math inline">\(c'(0)\)</span> 处在某个固定的合适的范围内
+(如图阴影部分), <span class="math inline">\(c\)</span> 和 <span class="math inline">\(l\)</span> 总是平行的.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/geodesic-poincare-disk.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
+<h2 id="exponential-maps">12  Exponential Maps</h2>
+<h3 id="the-exponential-map-of-a-connection">12.1  The exponential map of a
+connection</h3>
+<p>设流形 <span class="math inline">\((M,\nabla)\)</span>. 任给一点
+<span class="math inline">\(q\in M\)</span> 和 <span class="math inline">\(v\in T_qM\)</span>, 有唯一的极大测地线 <span class="math inline">\(\gamma_v(t)\)</span>. 若 <span class="math inline">\(\gamma_v(1)\)</span> 有定义, 记 <span class="math display">\[
+\operatorname{Exp}_q(v) := \gamma_v(1).
+\]</span> 称映射 <span class="math inline">\(\operatorname{Exp}_q:T_qM\supset V\to M\)</span>
+为 <span class="math inline">\(p\)</span>
+处的<strong>指数映射(exponential map)</strong>.</p>
+<p>若 <span class="math inline">\(M\)</span> 有黎曼度量, 则 (根据 Claim
+11.7) 对于任意一点 <span class="math inline">\(p\in M\)</span>, 存在邻域
+<span class="math inline">\(U\)</span> 和 <span class="math inline">\(\varepsilon&gt;0\)</span>, 使得对任意 <span class="math inline">\(q\in U\)</span>, 指数函数 <span class="math inline">\(\operatorname{Exp}_q(v)=\gamma_v(1)\)</span> 在以
+<span class="math inline">\(0\in T_qM\)</span> 为中心的闭球 <span class="math inline">\(B_\varepsilon(0)\)</span>​​ 上有定义.</p>
+<ul>
+<li><p>根据常微分方程对参数的光滑依赖性可知,
+指数映射是一个光滑映射.</p></li>
+<li><p>设 <span class="math inline">\(s:M\to TM\)</span> 为零截面, <span class="math inline">\(s(U)=\{(p,0)\mid p\in U\}\)</span> 为 <span class="math inline">\(U\)</span> 在 <span class="math inline">\(s\)</span> 下的像. 指数函数 <span class="math inline">\(\operatorname{Exp}_p(v)\)</span>,
+将其视为二元函数的话, 在 <span class="math inline">\(s(U)\)</span>
+周围的一个管状区域 <span class="math display">\[
+T_\varepsilon(U) =
+\{ (p,v)\in TM \mid p\in U, \|v\|\leq\varepsilon \}
+\]</span> 内有定义.</p></li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 12.1</u> 在流形 <span class="math inline">\((M,\nabla)\)</span> 上, 从任意一点 <span class="math inline">\(q\)</span> 开始的极大测地线 <span class="math inline">\(\gamma_v(t)=\operatorname{Exp}_q(tv)\)</span>​.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> <span class="math inline">\(\operatorname{Exp}_q(tv)=\gamma_{tv}(1)=\gamma_v(t)\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 12.2</u> (指数映射的自然性) 设 <span class="math inline">\(f:(M,\nabla)\to(M',\nabla')\)</span>
+为保联络的微分同胚, <span class="math inline">\(p\in M\)</span>. 设
+<span class="math inline">\(\operatorname{Exp}_p\)</span> 和 <span class="math inline">\(\operatorname{Exp}_{f(p)}\)</span> 分别在 <span class="math inline">\(V\subset T_pM\)</span> 和 <span class="math inline">\(U\subset T_{f(p)}M'\)</span> 有定义,
+则有交换图 <span class="math display">\[
+\xymatrix{
+V \ar[r]^{f_{*,p}} \ar[d]_{\operatorname{Exp}_p} &amp; U
+\ar[d]^{\operatorname{Exp}_{f(p)}} \\
+M \ar[r]_{f} &amp; M'.
+}
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设从 <span class="math inline">\(p\)</span>
+开始的极大测地线 <span class="math inline">\(\gamma_v(t)\)</span>. 因为
+<span class="math inline">\(f\)</span> 保持测地线, 所以 <span class="math inline">\((f\circ\gamma_v)(t)\)</span> 是从 <span class="math inline">\(f(p)\)</span>​ 开始的极大测地线.
+因为切映射保持曲线的切向量, <span class="math display">\[
+(f\circ\gamma_v)(t) = \gamma_{f_*v}(t),
+\]</span> 令 <span class="math inline">\(t=1\)</span> 得到 <span class="math display">\[
+(f\circ\operatorname{Exp}_p)(v) = (\operatorname{Exp}_{f(p)}\circ
+f_*)(v).
+\]</span></p>
+</div>
+<p>指数映射 <span class="math inline">\(\operatorname{Exp}_p:T_pM\supset
+V\to M\)</span> 在零元处的微分是映射 <span class="math inline">\((\operatorname{Exp}_p)_{*,0}:T_0(T_pM)\to
+T_pM\)</span>. 因为 <span class="math inline">\(T_pM\)</span>
+是线性空间, 和自身的切空间认同, 所以 <span class="math inline">\((\operatorname{Exp}_p)_{*,0}\)</span> 可以看作
+<span class="math inline">\(T_pM\)</span> 上的线性映射.</p>
+<div class="note note-success">
+<p><u>Claim 12.3</u> (指数映射的微分) 指数映射在零元的微分为恒等映射,
+<span class="math inline">\((\operatorname{Exp}_p)_{*,0}={\rm
+id}_{T_pM}\)</span>​.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 利用曲线求微分. 任给 <span class="math inline">\(v\in
+T_pM\)</span>, 设 <span class="math inline">\(c:I\to T_pM\)</span> 满足
+<span class="math inline">\(c(0)=0\)</span>, <span class="math inline">\(c'(0)=v\)</span>, 可以取 <span class="math inline">\(c(t)=tv\)</span>. <span class="math display">\[
+\Align{
+(\operatorname{Exp}_p)_{*,0}(v)
+= \eval{\dv{t}}_0 (\operatorname{Exp}_p\circ\,c)(t)
+= \eval{\dv{t}}_0 \operatorname{Exp}_p(tv)
+= \eval{\dv{t}}_0 \gamma_{v}(t)
+= v.
+}
+\]</span></p>
+</div>
+<p>应用链式法则, 进一步能求出测地线的切向量与指数函数的关系 <span class="math display">\[
+\dv{t}\gamma_v(t) = (\operatorname{Exp}_p)_{*,tv}(v).
+\]</span></p>
+<h3 id="normal-coordinates">12.2  Normal coordinates</h3>
+<p>根据前一小节 Claim 12.3 以及反函数定理, 存在 <span class="math inline">\(0\in T_pM\)</span> 的邻域 <span class="math inline">\(V\)</span> 和 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U\)</span>, 使得指数映射 <span class="math inline">\(\operatorname{Exp}_p:V\to U\)</span> 是微分同胚.
+于是我们可以将 <span class="math inline">\(V\)</span> 上的坐标搬到 <span class="math inline">\(U\)</span> 上. 取 <span class="math inline">\(T_pM\)</span> 的一个正交归一基底 <span class="math inline">\(\qty{e_1,\dots,e_n}\)</span>, 令 <span class="math inline">\(r^1,\dots,r^n\)</span> 表示 <span class="math inline">\(T_pM\)</span> 关于此基底的坐标函数. 定义 <span class="math inline">\(U\)</span> 上的坐标函数 <span class="math display">\[
+x^i := r^i \circ \operatorname{Exp}_p^{-1},
+\]</span> 称坐标邻域 <span class="math inline">\((U,x^1,\dots,x^n)\)</span> 为 <span class="math inline">\(p\)</span> 的一个<strong>正规邻域(normal
+neighborhood)</strong>, 坐标系 <span class="math inline">\(x^1,\dots,x^n\)</span> 为<strong>正规坐标(normal
+coordinates)</strong>. 正规坐标也叫做法坐标. 正规坐标系的原点为 <span class="math inline">\(p\)</span>. 在这个特殊的坐标系下,
+许多几何对象有很简单的形式.</p>
+<ul>
+<li><span class="math inline">\(p\)</span> 处的坐标基底 <span class="math inline">\(\{\partial_i|_p\}\)</span> 为正交归一的. 也就是说,
+<span class="math inline">\(p\)</span> 处的度量分量 <span class="math inline">\(g_{ij}=\delta_{ij}\)</span>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 12.4</u></p>
+<ol type="1">
+<li>正规坐标系下, 通过 <span class="math inline">\(p\)</span>
+的测地线的参数式为直线.</li>
+<li>正规坐标系下, 等距同构为正交线性变换.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 第一条. 设 <span class="math inline">\(\gamma:I\to
+M\)</span> 为过 <span class="math inline">\(p\)</span> 的测地线, 且
+<span class="math inline">\(\gamma'(0)=v=\sum v^ie_i\)</span>, 则
+<span class="math inline">\(\gamma(t)=\operatorname{Exp}_p(tv)\)</span>,
+<span class="math display">\[
+x^i(\gamma(t))
+= r^i(\operatorname{Exp}_p^{-1}(\gamma(t)))
+= tv^i.
+\]</span> 第二条具体说明如下. 设等距同构 <span class="math inline">\(f:N\to M\)</span>, 则有 <span class="math inline">\(0\in T_{f(p)}M\)</span> 的邻域 <span class="math inline">\(U'\)</span> 和 <span class="math inline">\(f(p)\)</span> 的邻域 <span class="math inline">\(U''\)</span>, 使得 <span class="math inline">\(\operatorname{Exp}_{f(p)}:U'\to
+U''\)</span> 为微分同胚. 因为 <span class="math inline">\(f_{*,p}\)</span> 是连续的, 存在 <span class="math inline">\(0\in T_pN\)</span> 的邻域 <span class="math inline">\(V'\)</span>, 使 <span class="math inline">\(f(V')=U'\)</span>. 根据指数映射的自然性,
+有交换图 <span class="math display">\[
+\xymatrix{
+V' \ar[r]^{f_{*,p}} \ar[d]_{\operatorname{Exp}_p}^{\simeq} &amp;
+U' \ar[d]^{\operatorname{Exp}_{f(p)}}_{\simeq} \\
+V'' \ar[r]_{f} &amp; U''.
+}
+\]</span> 设 <span class="math inline">\(U'',V''\)</span> 的正规坐标 <span class="math inline">\(\{x^i=r^i\circ\operatorname{Exp}^{-1}_p\},\{y^i=s^i\circ\operatorname{Exp}_{f(p)}^{-1}\}\)</span>,
+<span class="math inline">\(f\)</span> 的坐标式 <span class="math display">\[
+\Align{
+y^j\circ f\circ(x^i)^{-1}
+&amp;= s^i\circ\operatorname{Exp}_{f(p)}^{-1}\circ
+f\circ\operatorname{Exp}_p\circ(r^i)^{-1} \\
+&amp;= s^i\circ f_{*,p}\circ(r^i)^{-1},
+}
+\]</span> 即等距变换 <span class="math inline">\(f_{*,p}\)</span>
+在正交归一基底下的矩阵, 为正交阵.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 12.5</u> 正规坐标下, <span class="math inline">\(p\)</span>
+处的克氏符 <span class="math inline">\(\Gamma^k_{ij}\)</span>​ 为零,
+度量分量的各偏导数 <span class="math inline">\(\partial_kg_{ij}\)</span>
+也为零.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设过 <span class="math inline">\(p\)</span> 的测地线 <span class="math inline">\(\gamma^i(t)=v^it\)</span>, 于是 <span class="math inline">\(T^i(t)=v^i\)</span>, 带入测地线方程得到 <span class="math display">\[
+\sum_{i,j}\Gamma^k_{ij}v^iv^j = 0.
+\]</span> 由于 <span class="math inline">\(v\)</span> 是任意的, 令 <span class="math inline">\(v^i=v^j=1\)</span>, 其余分量为零, 得到 <span class="math display">\[
+\Gamma^k_{ij} + \Gamma^k_{ji} = 0,
+\]</span> 结合 <span class="math inline">\(\Gamma^k_{ij}=\Gamma^k_{ji}\)</span>, 有 <span class="math inline">\(\Gamma^k_{ij}=0\)</span>​. 此外, <span class="math display">\[
+\Align{
+\partial_kg_{ij}
+= \partial_k\lr{\partial_i,\partial_j}
+= \lr{\nabla_{\partial_k}\partial_i,\partial_j} +
+\lr{\partial_i,\nabla_{\partial_k}\partial_j},
+}
+\]</span> 在 <span class="math inline">\(p\)</span> 点克氏符为零, 所以
+<span class="math inline">\(\nabla_{\partial_k}\partial_i=\nabla_{\partial_k}\partial_j=0\)</span>,
+于是 <span class="math inline">\(\partial_kg_{ij}|_p=0\)</span>.</p>
+</div>
+<p>设指数映射 <span class="math inline">\(\operatorname{Exp}_p:T_pM\supset V\to U\subset
+M\)</span> 为微分同胚, 闭球 <span class="math inline">\(B_\delta(0)\subset V\)</span>.</p>
+<ul>
+<li><span class="math inline">\(T_pM\)</span> 中半径为 <span class="math inline">\(r\leq\delta\)</span> 的球面在 <span class="math inline">\(\operatorname{Exp}_p\)</span> 下的像 <span class="math inline">\(S_r(p)\)</span> 称为<strong>测地球面(geodesic
+sphere)</strong>.</li>
+<li>类似地, 半径为 <span class="math inline">\(r\leq\delta\)</span>
+的实心球的 <span class="math inline">\(\operatorname{Exp}_p\)</span> 像
+<span class="math inline">\(B_r(p)\)</span> 称为<strong>测地球(geodesic
+ball)</strong>.</li>
+</ul>
+<p>在 <span class="math inline">\(T_pM\)</span> 中, 从 <span class="math inline">\(0\)</span> 出发的直线 <span class="math inline">\(tv\)</span> 与球面 <span class="math inline">\(S_r(0)\)</span> 是正交的 (即交点处的切向量正交).
+在指数映射下, <span class="math inline">\(tv\)</span> 映到测地线 <span class="math inline">\(\gamma_v(t)\)</span>, <span class="math inline">\(S_r(0)\)</span> 映到 <span class="math inline">\(S_r(p)\)</span>. 下面的定理则断言此两者也正交.
+换言之, 指数映射是一个局部的<strong>径向等距同构(radial
+isometry)</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 12.6</u> (高斯引理) 测地球面 <span class="math inline">\(S_r(p)\)</span> 正交于所有过 <span class="math inline">\(p\)</span> 的极大测地线.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(\operatorname{Exp}_p:B_\varepsilon(0)\to
+M\)</span>, 记 <span class="math inline">\(S^{n-1}\)</span> 为 <span class="math inline">\(T_pM\)</span> 中的单位球面, <span class="math display">\[
+\Align{
+\sigma:S^{n-1}\times(0,\varepsilon) &amp;\to B_\varepsilon(p)-\{p\}, \\
+(v,t) &amp;\mapsto \operatorname{Exp}_p(tv).
+}
+\]</span> 显然 <span class="math inline">\(t\mapsto\sigma(v_0,t)\)</span> 是测地线 <span class="math inline">\(\gamma_{v_0}(t)\)</span>; 并且 <span class="math inline">\(v\mapsto\sigma(v,t_0)\)</span> 是 <span class="math inline">\(S^{n-1}\to S_{t_0}(p)\)</span> 的微分同胚.</p>
+<p>令 <span class="math inline">\(\{\partial/\partial y^i\}\)</span> 为
+<span class="math inline">\(S^{n-1}\)</span> 的局部坐标系, <span class="math inline">\(\partial/\partial r\)</span> 为 <span class="math inline">\((0,\varepsilon)\)</span> 的自然坐标, <span class="math display">\[
+\Align{
+Y^i &amp;= \sigma_*\pqty{ \pdv{y^i} }, &amp;
+R &amp;= \sigma_*\pqty{ \pdv{r} },
+}
+\]</span> 于是 <span class="math inline">\(Y^i\)</span>
+是测地球面之切空间的坐标系, <span class="math inline">\(R\)</span>
+是测地线 <span class="math inline">\(\gamma_v(t)\)</span> 的切向量,
+只用证明 <span class="math display">\[
+\lr{Y^i,R} = 0,\quad i=1,\dots,n-1.
+\]</span> 注意到 <span class="math inline">\([\partial/\partial{y^i},R]=0\)</span>, 所以 <span class="math inline">\([Y^i,R]=0\)</span>, 进而 <span class="math display">\[
+\Align{
+R\lr{Y^i,R}
+&amp;= \lr{ \nabla_RY^i,R } + \lr{ Y^i,\nabla_RR } \\
+&amp;= \lr{ \nabla_RY^i,R } \\
+&amp;= \lr{ \nabla_{Y^i}R,R } \\
+&amp;= \frac12Y^i\lr{R,R} = 0.
+}
+\]</span> (其中第二个等号是因为 <span class="math inline">\(R\)</span>
+沿测地线平移; 第三个等号根据 <span class="math inline">\(\nabla\)</span>
+无挠性和 <span class="math inline">\([Y^i,R]=0\)</span>.) 于是 <span class="math inline">\(\lr{Y^i,R}\)</span> 沿着测地线为常数. 这常数为零,
+因为当 <span class="math inline">\(p\to0\)</span> 时, <span class="math inline">\(Y^i(p)\to0\)</span>, 有 <span class="math display">\[
+\lr{Y^i,R} \equiv \lim_{p\to0} \lr{Y^i,R}(p) = 0.
+\]</span></p>
+</div>
+<p>此外, 指数映射也保持径向向量的长度: 设 <span class="math inline">\(v\in B_\delta(0)\)</span>, <span class="math inline">\(tv\in B_\delta(0)\)</span>, 则 <span class="math display">\[
+\norm{(\operatorname{Exp}_p)_{*,v}(tv)}
+= \norm{t\cdot (\operatorname{Exp}_p)_{*,v}(v)}
+= \norm{t\cdot \eval{\dv{t}}_{1} \gamma_v(t) }
+= \|tv\|.
+\]</span> 高斯引理在之后我们证明测地线是 (局部) 最短线中有很大用处.</p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+        <a href="/tags/%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95/" class="print-no-link">#黎曼几何</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM275 | 4 测地线</div>
+      <div>https://disembo.github.io/Note/dg-gtm275-4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-5/" title="GTM275 | 5 测地线">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 5 测地线</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-3/" title="GTM275 | 3 曲率与微分形式">
+                        <span class="hidden-mobile">GTM275 | 3 曲率与微分形式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

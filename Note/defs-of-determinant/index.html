@@ -1,0 +1,1072 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从展开式定义, 公理化定义和泛性质定义, 逐步发掘行列式的真相.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="行列式的几种定义方式">
+<meta property="og:url" content="https://disembo.github.io/Note/defs-of-determinant/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="从展开式定义, 公理化定义和泛性质定义, 逐步发掘行列式的真相.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-28T06:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.701Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="线性代数">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>行列式的几种定义方式 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="行列式的几种定义方式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-28 14:00" pubdate>
+          2023年9月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">行列式的几种定义方式</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+
+<h2 id="部分教材上的定义">1  部分教材上的定义</h2>
+<p>一部分线性代数的教材从解线性方程组讲起,
+从方程组的解来得到行列式的定义. 具体来说, 一个方阵<span class="math inline">\(A=(a_{ij})\)</span>的行列式(determinant)是用排列来定义的,
+<span class="math display">\[
+|A| := \sum_{\sigma\in S_n}(\sgn\sigma)
+a_{1\sigma(1)} \cdots a_{n\sigma(n)}.
+\]</span> 它是一个数. 由这个看起来比较复杂的公式出发,
+可以推出行列式的性质, 例如</p>
+<ol type="1">
+<li>交换矩阵的两行, 行列式多一个负号.</li>
+<li>(推论) 矩阵某两行相等, 行列式为零.</li>
+<li>矩阵的某一行乘以一个常数, 行列式也乘以一个常数.</li>
+<li>行列式的某一行是两组数之和, 那么行列式等于两个行列式的和,
+它们的这一行分别为这两组数, 其余行不变.</li>
+<li>(推论) 将行列式某行的常数倍加到另一行上, 行列式值不变.</li>
+</ol>
+<p>行列式的展开式定义虽然直接, 却略显琐碎,
+也很难让人一下子理解行列式的本质特征. 因此, 我们不妨抛弃这个定义,
+重新定义一个"行列式".</p>
+<h2 id="characterizing-properties">2  Characterizing properties</h2>
+<p>设域<span class="math inline">\(F\)</span>上的线性空间<span class="math inline">\(V=F^n\)</span>.</p>
+<p><u>Def 1</u> 行列式<span class="math inline">\(\det\)</span>可以看作一个<span class="math inline">\(n\)</span>元函数, 输入<span class="math inline">\(n\)</span>个向量<span class="math inline">\(v_1,\dots,v_n\in V\)</span>, 并输出一个数. 所以,
+<span class="math display">\[
+\det:V^n \to F.
+\]</span> 我们要求<span class="math inline">\(\det\)</span>满足如下三条公理:</p>
+<ol type="1">
+<li><p>(<span class="math inline">\(n\)</span>-线性性) 对每个<span class="math inline">\(v_i\)</span>都是线性的: <span class="math display">\[
+\Align{
+\det(\dots,kv_i,\dots) &amp;= k\det(\dots,v_i,\dots), \\
+\det(\dots,v_i+w,\dots) &amp;=
+\det(\dots,v_i,\dots) + \det(\dots,w,\dots).
+}
+\]</span> (这实际上参照了上一节的性质3, 4.)</p></li>
+<li><p>(交错性) 若<span class="math inline">\(v_i=v_j\)</span>(<span class="math inline">\(i\neq j\)</span>), 则<span class="math inline">\(\det(\dots,v_i,\dots,v_j,\dots)=0\)</span>.
+(这参照了性质1.)</p></li>
+<li><p>(归一化) 对于<span class="math inline">\(V=F^n\)</span>的标准基底<span class="math inline">\(\{e_i\}\)</span>(其中<span class="math inline">\(e_i\)</span>是第<span class="math inline">\(i\)</span>分量为<span class="math inline">\(1\)</span>, 其余分量为<span class="math inline">\(0\)</span>的向量), <span class="math inline">\(\det(e_1,\dots,e_n)=1\)</span>.</p></li>
+</ol>
+<p>简单来说, 行列式<span class="math inline">\(\det\)</span>是一个归一化的(normalized)交错(alternating)<span class="math inline">\(n\)</span>-线性形式(<span class="math inline">\(n\)</span>-linear form).</p>
+<p>从这个定义可以推出行列式的一切性质. 在此之前, 先给出几个引理.</p>
+<div class="note note-success">
+<p><u>Lemma 1</u> 设<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\)</span>. 如果<span class="math inline">\(f\)</span>是交错的, 则<span class="math inline">\(f\)</span>是反对称的.</p>
+<ul>
+<li>反对称(anti-symmetric)的含义如下: 交换<span class="math inline">\(f\)</span>的任意两个向量, <span class="math inline">\(f\)</span>多一个负号, 即 <span class="math display">\[
+f(\dots,v_i,\dots,v_j,\dots)
+= -f(\dots,v_j,\dots,v_i,\dots).
+\]</span></li>
+</ul>
+<p><u>Lemma 2</u> 设反对称的<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\)</span>, <span class="math inline">\(n\)</span>阶置换<span class="math inline">\(\sigma\in S_n\)</span>, 则 <span class="math display">\[
+f(v_{\sigma(1)},\dots,v_{\sigma(n)})
+= (\sgn\sigma) f(v_1,\dots,v_n).
+\]</span></p>
+<ul>
+<li>一般将<span class="math inline">\(f(v_{\sigma(1)},\dots,v_{\sigma(n)})\)</span>记作<span class="math inline">\((\tau f)(v_1,\dots,v_n)\)</span>.</li>
+<li>行列式<span class="math inline">\(\det\)</span>是交错的,
+自然是反对称的(Lemma 1), 因此适用此引理.</li>
+</ul>
+<p><u>Lemma 3</u> 设反对称的<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\neq0\)</span>, <span class="math inline">\(v_1,\dots,v_n\in V\)</span>, 则 <span class="math display">\[
+v_1,\dots,v_n\,\textsf{线性无关}\iff f(v_1,\dots,v_n)\neq0.
+\]</span></p>
+</div>
+<p>由Def 1, 我们可以得到行列式的展开形式. 设<span class="math inline">\(v_1,\dots,v_n\in V\)</span>, 且<span class="math inline">\(v_i=\sum_{j=1}^nv_{ij}e_j\)</span>, 则 <span class="math display">\[
+\Align{
+\det(v_1,\dots,v_n)
+&amp;=\det\pqty{
+  \sum_{j_1=1}^nv_{1j_1}e_{j_1},\dots,
+  \sum_{j_n=1}^nv_{nj_n}e_{j_n} } \tag{1} \\
+&amp;=\sum_{j_1,\dots,j_n=1}^n
+  v_{1j_1}\cdots v_{nj_n}
+  \det(e_{j_1},\dots,e_{j_n}) \tag{2} \\
+&amp;=\sum_{\sigma\in S_n}
+  v_{1\sigma(1)}\cdots v_{n\sigma(n)}
+  \det(e_{\sigma(1)},\dots,e_{\sigma(n)}) \tag{3} \\
+&amp;=\sum_{\sigma\in S_n}
+  v_{1\sigma(1)}\cdots v_{n\sigma(n)}
+  (\sgn\sigma)\det(e_1,\dots,e_n) \tag{4} \\
+&amp;=\sum_{\sigma\in S_n}(\sgn\sigma)v_{1\sigma(1)}\cdots
+v_{n\sigma(n)}.
+\tag{5}
+}
+\]</span> 其中, <span class="math inline">\((2)\)</span>根据<span class="math inline">\(\det\)</span>的<span class="math inline">\(n\)</span>-线性性; <span class="math inline">\((3)\)</span>是因为<span class="math inline">\(\det\)</span>是交错的, 所以<span class="math inline">\(j_1,\dots,j_n\)</span>必定两两不相等,
+即对所有排列(置换)求和; <span class="math inline">\((4)\)</span>根据Lemma 2; <span class="math inline">\((5)\)</span>根据<span class="math inline">\(\det\)</span>的归一性.</p>
+<p>行列式的一些简单性质也可以由<span class="math inline">\(\det\)</span>的三条公理很快得到. 另外,
+我们可以得到如下定理.</p>
+<p><u>Proposition 1</u> (Cramer's rule) 设向量<span class="math inline">\(A_1,\dots,A_n,B\in F^n\)</span>, 如果<span class="math inline">\(x_1,\dots,x_n\in F\)</span>满足方程 <span class="math display">\[
+x_1A_1 + \dots + x_nA_n = B, \tag{a}
+\]</span> 则对于<span class="math inline">\(i=1,\dots,n\)</span>, 有
+<span class="math display">\[
+\det(A_1,\dots,A_n)\, x_i = \det(A_1,\dots,A_{i-1},B,A_{i+1},\dots,A_n).
+\tag{b}
+\]</span></p>
+<div class="note note-light">
+<p><u>Pf</u> 只需<span class="math inline">\(\text{(a)}\)</span>式的<span class="math inline">\(B\)</span>代入<span class="math inline">\(\text{(b)}\)</span>式, 利用<span class="math inline">\(\det\)</span>的线性性和交错性即得.</p>
+</div>
+<p>现在我们给出了一个行列式的不依赖于展开式的定义, 看上去十分简洁清晰.
+然而, 如果我们要推导一些重要结论, 例如</p>
+<ul>
+<li>矩阵乘积的行列式等于行列式的乘积.</li>
+<li>线性变换的表示矩阵的行列式不依赖于基底的选取.</li>
+<li>...</li>
+</ul>
+<p>利用Def 1去证明还是有些曲折的: 一般我们还得诉诸于行列式的展开式.
+一个原因就是Def 1是依赖于基底的(归一化条件), 或者说, <span class="math inline">\(\det\)</span>是<span class="math inline">\(n\times
+n\)</span>矩阵的函数, 而不是线性映射<span class="math inline">\(T\in{\rm
+End}_F(V)\)</span>的函数(其中<span class="math inline">\(V\)</span>是一个一般的线性空间).
+下面我们将给出一个更一般化的, 不依赖于基底的定义.</p>
+<h2 id="泛性质-交错线性形式">3  泛性质: 交错线性形式</h2>
+<p>设<span class="math inline">\(V\)</span>是域<span class="math inline">\(F\)</span>上的<span class="math inline">\(n\)</span>维线性空间.</p>
+<p>先回顾线性空间<span class="math inline">\(V\)</span>上的<span class="math inline">\(k\)</span>形式空间<span class="math inline">\(\Lambda_k(V)\)</span>. <span class="math inline">\(\Lambda_k(V)\)</span>的元素是所有交错的<span class="math inline">\(k\)</span>-线性函数 <span class="math display">\[
+f : V^k \to F,
+\]</span> 而且作为线性空间, <span class="math inline">\(\dim\Lambda_k(V)={n\choose k}\)</span>. 特别地,
+有<span class="math inline">\(\dim\Lambda_n(V)={n\choose
+n}=1\)</span>.</p>
+<p>现在可以开始定义行列式了. 对于一个线性映射<span class="math inline">\(T:V\to V\)</span>和一个<span class="math inline">\(n\)</span>形式<span class="math inline">\(f\in\Lambda_n(V)\)</span>, 记 <span class="math display">\[
+(T^{(n)}f)(v_1,\dots,v_n) := f(Tv_1,\dots,Tv_n),\quad
+\forall v_1,\dots,v_n\in V.
+\]</span> 容易验证, <span class="math inline">\(T^{(n)}f\in\Lambda_n(V)\)</span>.
+上式定义了一个线性映射<span class="math inline">\(f\mapsto
+T^{(n)}f\)</span>, <span class="math inline">\(\Lambda_n(V)\to\Lambda_n(V)\)</span>. 注意到<span class="math inline">\(\Lambda_n(V)\)</span>是<span class="math inline">\(1\)</span>维线性空间, 所以<span class="math inline">\(f\mapsto T^{(n)}f\)</span>就是一个数乘运算,
+即存在<span class="math inline">\(\lambda\in F\)</span>, 使得<span class="math inline">\(T^{(n)}f=\lambda f\)</span>.</p>
+<p><u>Def 2</u> 对于线性映射<span class="math inline">\(T:V\to
+V\)</span>, 存在唯一的<span class="math inline">\(\lambda\in F\)</span>,
+使得<span class="math inline">\(T^{(n)}=\lambda\,{\rm
+id}_{\Lambda_n(V)}\)</span>. 我们把<span class="math inline">\(\lambda\)</span>称为<span class="math inline">\(T\)</span>的<strong>行列式(determinant)</strong>,
+记作<span class="math inline">\(\det{T}\)</span>.</p>
+<ul>
+<li><p>也被称为行列式的泛性质定义. 可以画成交换图: <span class="math display">\[
+\xymatrix{
+V^n \ar[r]^{T^n} \ar[d]_{f} &amp; V^n \ar[d]^{f} \\
+F \ar@{.&gt;}[r]^{\lambda} &amp; F
+}
+\]</span></p></li>
+<li><p>立刻可以看出, 恒等映射<span class="math inline">\({\rm
+id}_V\)</span>的行列式为<span class="math inline">\(1\)</span>.</p></li>
+</ul>
+<p>Def 2定义的行列式是一个映射<span class="math inline">\(\det:{\rm
+End}_F(V)\to F\)</span>. 这个定义比较抽象, 不涉及具体的基底和坐标,
+然而却将行列式的性质挖掘得更加深入(之后证明定理的过程中就可看出).
+下面我们给出Def 2定义的行列式的一种构造方法, 进而说明Def
+2和展开式定义以及Def 1是等价的.</p>
+<div class="note note-secondary">
+<p>取<span class="math inline">\(V\)</span>的一个基底<span class="math inline">\(\qty{e_i}\)</span>, 设<span class="math inline">\(Te_i=\sum_{j=1}^n e_jT_{ji}\)</span>,
+于是(仿照上一节的推导) <span class="math display">\[
+\Align{
+(\det{T})f(e_1,\dots,e_n)
+&amp;=f(Te_1,\dots,Te_n)\\
+&amp;=f\pqty{
+  \sum_{j_1=1}^nT_{j_11}e_{j_1},\dots,
+  \sum_{j_n=1}^nT_{j_nn}e_{j_n} } \\
+&amp;=\sum_{j_1,\dots,j_n=1}^n
+  T_{j_11}\cdots T_{j_nn}
+  f(e_{j_1},\dots,e_{j_n}) \\
+&amp;=\sum_{\sigma\in S_n}
+  T_{\sigma(1)1}\cdots T_{\sigma(n)n}
+  f(e_{\sigma(1)},\dots,e_{\sigma(n)}) \\
+&amp;=\sum_{\sigma\in S_n}
+  T_{\sigma(1)1}\cdots T_{\sigma(n)n}
+  (\sgn\sigma)f(e_1,\dots,e_n).
+}
+\]</span> 由Lemma 3, <span class="math inline">\(f(e_1,\dots,e_n)\neq0\)</span>,
+两边约去后得到<span class="math inline">\(\det{T}\)</span>在基底<span class="math inline">\(\qty{e_i}\)</span>下的表达式, 也称为矩阵<span class="math inline">\((T_{ji})\)</span>的<strong>行列式</strong>.
+由于<span class="math inline">\(\det{T}\)</span>是唯一由<span class="math inline">\(T\)</span>决定的, 所以<span class="math inline">\(\det{T}\)</span>在不同基底下的矩阵具有相同的行列式.</p>
+</div>
+<p>接下来给出几个定理. 利用行列式的展开式证明这些定理是不太容易的,
+但是泛性质定义大大简化了证明过程.</p>
+<p><u>Proposition 2</u> 对于<span class="math inline">\(S,T\in{\rm
+End}_F(V)\)</span>, 有<span class="math inline">\(\det(ST)=(\det{S})(\det{T})\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 取线性无关的<span class="math inline">\(v_1,\dots,v_n\)</span>, 则<span class="math inline">\(f(v_1,\dots,v_n)\neq0\)</span>. 有 <span class="math display">\[
+\Align{
+(\det{ST}) f(v_1,\dots,v_n)
+&amp;=f(v_1,\dots,v_n) \\
+&amp;=f(STv_1,\dots,STv_n) \\
+&amp;=\det{T}\cdot f(Sv_1,\dots,Sv_n) \\
+&amp;=\det{S}\cdot\det{T}\cdot f(v_1,\dots,v_n),
+}
+\]</span> (第三步, 因为<span class="math inline">\(S^{(n)}f\)</span>也是一个<span class="math inline">\(n\)</span>-形式, 对<span class="math inline">\(T\)</span>应用行列式的定义可得.) 所以<span class="math inline">\(\det{ST}=\det{S}\det{T}\)</span>.</p>
+</div>
+<p><u>Proposition 3</u> <span class="math inline">\(T\in{\rm
+End}_F(V)\)</span>可逆的充要条件是<span class="math inline">\(\det{T}\neq0\)</span>. 此时<span class="math inline">\(\det(T^{-1})=(\det{T})^{-1}\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 若<span class="math inline">\(T\)</span>可逆, 则<span class="math inline">\(TT^{-1}={\rm id}_V\)</span>, 由Proposition
+2有<span class="math inline">\(\det{T}\det(T^{-1})=\det({\rm
+id}_V)=1\)</span>, 所以<span class="math inline">\(\det{T}\neq0\)</span>且<span class="math inline">\(\det(T^{-1})=(\det{T})^{-1}\)</span>.</p>
+<p>若<span class="math inline">\(\det{T}\neq0\)</span>, 取<span class="math inline">\(V\)</span>的基底<span class="math inline">\(\qty{e_i}\)</span>, 由Lemma 3得<span class="math inline">\(f(e_1,\dots,e_n)\neq0\)</span>, 于是 <span class="math display">\[
+\Align{
+0\neq(\det{T})f(e_1,\dots,e_n)
+=(T^{(n)}f)(e_1,\dots,e_n)
+=f(Te_1,\dots,Te_n),
+}
+\]</span> 再次应用Lemma 3可知, <span class="math inline">\(Te_1,\dots,Te_n\)</span>线性无关, 进而是<span class="math inline">\(V\)</span>的基底. <span class="math inline">\(T\)</span>将基底映为基底, 即<span class="math inline">\(T\)</span>可逆.</p>
+</div>
+<h2 id="泛性质-一般线性群的交换化">4  泛性质: 一般线性群的交换化</h2>
+<p>线性空间<span class="math inline">\(V\)</span>的<strong>一般线性群(general linear
+group)</strong>是所有可逆线性映射<span class="math inline">\(T:V\to
+V\)</span>, 以映射的复合为乘法, 所构成的群, 记作<span class="math inline">\({\rm GL}(V)\)</span>. 由Proposition3, <span class="math inline">\({\rm GL}(V)\)</span>中元素的行列式非零.
+而Proposition 2, <span class="math display">\[
+\det(ST) = \det{S}\cdot\det{T},
+\]</span> 这其实说的是, 行列式<span class="math inline">\(\det\)</span>是一个<span class="math inline">\({\rm GL}(V)\to F^\times\)</span>的群同态<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">&nbsp;<span class="math inline">\(F^\times\)</span>表示域<span class="math inline">\(F\)</span>的乘法群, 即<span class="math inline">\(F\setminus\qty{0}\)</span>在域乘法下构成的群.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>. <span class="math inline">\({\rm
+GL}(V)\)</span>中, 所有行列式为<span class="math inline">\(1\)</span>的线性映射组成了<span class="math inline">\(\det\)</span>的核<span class="math inline">\(\ker\det\)</span>, 称为<span class="math inline">\(V\)</span>的<strong>特殊线性群(special linear
+group)</strong>, 记作 <span class="math display">\[
+{\rm SL}(V):=\qty{T\in{\rm GL}(V):\det{T}=1}.
+\]</span> 根据同态基本定理, 有 <span class="math display">\[
+{\rm GL}(V)/{\rm SL}(V)={\rm GL}(V)/\ker{\det}\cong\im\det=F^\times.
+\]</span> 注意到, <span class="math inline">\(F^\times\)</span>是一个交换群. 实际上, <span class="math inline">\(\det\)</span>作为<span class="math inline">\({\rm
+GL}(V)\)</span>到交换群<span class="math inline">\(F^\times\)</span>的同态, 具有如下泛性质.</p>
+<p><u>Proposition 4</u> <span class="math inline">\({\rm
+GL}(V)\)</span>到任意交换群<span class="math inline">\(H\)</span>的群同态<span class="math inline">\(\varphi\)</span>都可以唯一地由<span class="math inline">\(\det\)</span>复合得到, 即唯一存在<span class="math inline">\(\tilde\varphi:F^\times\to H\)</span>,
+使得下图交换: <span class="math display">\[
+\xymatrix{
+\mathrm{GL}(V) \ar[r]^(.55){\det} \ar[dr]_{\varphi}
+&amp; F^\times \ar@{.&gt;}[d]^{\tilde\varphi} \\
+&amp; H
+}
+\]</span></p>
+<ul>
+<li>这里有个小瑕疵. 当<span class="math inline">\({\rm
+char}\,F=\dim{V}=2\)</span>时, 如果想成立此性质, 需要将<span class="math inline">\(F^\times\)</span>换成<span class="math inline">\(\Z/2\Z\)</span>(二阶循环群). 下文中, 我们默认<span class="math inline">\({\rm char}\,F\neq2\)</span>或<span class="math inline">\(\dim{V}\neq2\)</span>.</li>
+</ul>
+<div class="note note-secondary">
+<p>行列式<span class="math inline">\(\det\)</span>的这个泛性质其实是"交换化"的泛性质.</p>
+<p>一个群<span class="math inline">\(G\)</span>的换位子群(commutator
+subgroup)<span class="math inline">\(G'\)</span>定义为所有 <span class="math display">\[
+[g,h]:=ghg^{-1}h^{-1},\quad\forall g,h\in G,
+\]</span> 生成的子群. <span class="math inline">\([g,h]\)</span>称为<span class="math inline">\(g,h\)</span>的换位子(commutator). 换位子群<span class="math inline">\(G'\)</span>是一个正规子群, 商群<span class="math inline">\(G/G'\)</span>称为<span class="math inline">\(G\)</span>的<strong>交换化(abelianization)</strong><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">粗略地说, 一个群<span class="math inline">\(G\)</span>的交换化是与<span class="math inline">\(G\)</span>"最接近"的那个<span class="math inline">\(G\)</span>的可交换子群.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span>, 记作<span class="math inline">\(G^{\rm ab}\)</span>.</p>
+<p>可以证明(在这儿就不证了), 交换化满足如下泛性质: <span class="math inline">\(G\)</span>到任意交换群<span class="math inline">\(H\)</span>的群同态<span class="math inline">\(\varphi\)</span>都可以由标准投影<span class="math inline">\(\pi:G\to G^{\rm ab}\)</span>复合得到, 即有交换图
+<span class="math display">\[
+\xymatrix{
+G \ar[r]^(0.45){\pi} \ar[rd]_{\varphi}
+&amp; G^{\textrm{ab}} \ar@{.&gt;}[d]^{\tilde\varphi} \\
+&amp; H
+}
+\]</span></p>
+</div>
+<p>回到行列式. 下面我们尝试去证明Proposition 4. 对此,
+我们只需要证明<span class="math inline">\({\rm SL}(V)\)</span>是<span class="math inline">\({\rm GL}(V)\)</span>的换位子群, 从而<span class="math inline">\(\det:{\rm GL}(V)\to{\rm GL}(V)/{\rm SL}(V)\cong
+F^\times\)</span>作为标准投影, 满足交换化的泛性质.</p>
+<p>一般线性群<span class="math inline">\({\rm
+GL}(V)\)</span>的换位子群<span class="math inline">\({\rm
+GL}(V)'\)</span>的群元是由所有换位子 <span class="math display">\[
+[S,T]=STS^{-1}T^{-1} \quad (S,T\in{\rm GL}(V))
+\]</span> 乘积得到的, (根据Proposition 2, 3)显然行列式等于<span class="math inline">\(1\)</span>, 于是<span class="math inline">\({\rm
+GL}(V)'\subset{\rm SL}(V)\)</span>. 另一方面, <span class="math inline">\({\rm GL}(V)'\supset{\rm
+SL}(V)\)</span>的证明则需要费些功夫. 我们首先要把<span class="math inline">\({\rm GL}(V)\)</span>中的线性映射表示为矩阵,
+因为矩阵的可操作性更强一些. 设矩阵群 <span class="math display">\[
+\Align{
+{\rm GL}_n(F) &amp;:= \qty{A\in F^{n\times n}:\det{A}\neq0}, \\
+{\rm SL}_n(F) &amp;:= \qty{A\in F^{n\times n}:\det{A}=1}, \\
+}
+\]</span> 它们分别和<span class="math inline">\({\rm GL}(V)\)</span>,
+<span class="math inline">\({\rm SL}(V)\)</span>同构,
+所以我们只需证明<span class="math inline">\({\rm
+GL}_n(F)'\supset{\rm SL}_n(F)\)</span>. 给出几个引理:</p>
+<div class="note note-secondary">
+<p>回忆一下, 第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>(<span class="math inline">\(i\neq j\)</span>)指的是对角线上全为<span class="math inline">\(1\)</span>, 第<span class="math inline">\(i,j\)</span>元为<span class="math inline">\(\lambda\in F\)</span>, 其余位置为<span class="math inline">\(0\)</span>的矩阵. <span class="math inline">\(E_{ij}(\lambda)\)</span>可逆, 且<span class="math inline">\(\det{E_{ij}(\lambda)}=1\)</span>以及<span class="math inline">\(E_{ij}(\lambda)=E_{ij}(-\lambda)\)</span>.</p>
+<p><u>Lemma 4</u> 任意第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>都是某两个可逆矩阵<span class="math inline">\(A,B\)</span>的换位子<span class="math inline">\([A,B]\)</span>.</p>
+<p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(F)\)</span>.</p>
+</div>
+<p>根据Lemma 4, 5, 特殊线性群<span class="math inline">\({\rm
+SL}_n(F)\)</span>可以由所有的换位子<span class="math inline">\([A,B]\)</span>生成, 也就是说<span class="math inline">\({\rm GL}_n(F)'\supset{\rm SL}_n(F)\)</span>,
+即<span class="math inline">\({\rm GL}(V)'\supset{\rm
+SL}(V)\)</span>. 结合第一部分有<span class="math inline">\({\rm
+GL}(V)'={\rm SL}(V)\)</span>. 根据定义, <span class="math inline">\({\rm GL}(V)/{\rm SL}(V)\cong
+F^\times\)</span>是<span class="math inline">\({\rm
+GL}(V)\)</span>交换化, 标准投影<span class="math inline">\(\det\)</span>也就满足泛性质:
+任意一个一般线性群到交换群的同态<span class="math inline">\(\varphi\)</span>都唯一地由行列式<span class="math inline">\(\det\)</span>复合而来.</p>
+<p>Proposition 4启发我们用<span class="math inline">\({\rm
+GL}(V)\)</span>的交换化<span class="math inline">\((F^\times,\det:{\rm
+GL}(V)\to F^\times)\)</span>来定义行列式.
+注意到任意满足交换化泛性质的东西<span class="math inline">\((A,\pi:{\rm
+GL}(V)\to A)\)</span>都是同构的(unique up to an isomorphism),
+所以光有这一个条件还不能唯一确定行列式<span class="math inline">\(\det\)</span>, 还应该附加另外的条件,
+然而这超出了我目前的能力范围.</p>
+<h2 id="引理的证明">5  *引理的证明</h2>
+<p><u>Lemma 1</u> 设<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\)</span>. 如果<span class="math inline">\(f\)</span>是交错的, 则<span class="math inline">\(f\)</span>是反对称的.</p>
+<ul>
+<li>当<span class="math inline">\({\rm char}\,F\neq2\)</span>时,
+逆命题成立.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 让<span class="math inline">\(f\)</span>的某两个输入相同,
+则 <span class="math display">\[
+\Align{0
+=f(\dots,v+w,\dots,v+w,\dots)
+={}
+&amp;f(\dots,v,\dots,v,\dots)+{} \\
+&amp;f(\dots,v,\dots,w,\dots)+{} \\
+&amp;f(\dots,w,\dots,v,\dots)+{} \\
+&amp;f(\dots,w,\dots,w,\dots),
+}
+\]</span> 注意到第一项和第四项为零, 于是第二项和第三项为相反数,
+即得反对称性.</p>
+</div>
+<p><u>Lemma 2</u> 设反对称的<span class="math inline">\(n\)</span>-线性形式<span class="math inline">\(f\)</span>, <span class="math inline">\(n\)</span>阶置换<span class="math inline">\(\sigma\in S_n\)</span>, 则 <span class="math display">\[
+f(v_{\sigma(1)},\dots,v_{\sigma(n)})
+= (\sgn\sigma) f(v_1,\dots,v_n).
+\]</span></p>
+<div class="note note-light">
+<p><u>Pf</u> 从反对称形式以及置换的符号的定义即得.</p>
+</div>
+<p><u>Lemma 3</u> 设交错<span class="math inline">\(n\)</span>形式<span class="math inline">\(f\neq0\)</span>, <span class="math inline">\(v_1,\dots,v_n\in V\)</span>, 则 <span class="math display">\[
+v_1,\dots,v_n\,\textsf{线性无关}\iff f(v_1,\dots,v_n)\neq0.
+\]</span></p>
+<div class="note note-light">
+<p><u>Pf</u> <span class="math inline">\(\Leftarrow\)</span>是比较容易的, 但是<span class="math inline">\(\Rightarrow\)</span>则需要用到楔积等构造来弄清<span class="math inline">\(\Lambda_k(V)\)</span>的结构, 在此略去.</p>
+</div>
+<p><u>Lemma 4</u> 任意第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>都是某两个可逆矩阵<span class="math inline">\(A,B\)</span>的换位子<span class="math inline">\([A,B]\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 分为两种情况.</p>
+<ul>
+<li>记<span class="math inline">\(E_{ij}(\lambda)=I+e_{ij}(\lambda)\)</span>,
+其中<span class="math inline">\(e_{ij}(\lambda)\)</span>是<span class="math inline">\(i,j\)</span>处为<span class="math inline">\(\lambda\)</span>, 其余为零的矩阵. 注意到 <span class="math display">\[
+e_{ij}(x)e_{jk}(y) = e_{ik}(xy),
+\]</span> 而<span class="math inline">\(e_{ij}(x)e_{kl}(y)=0\)</span>若<span class="math inline">\(j\neq k\)</span>.</li>
+</ul>
+<p>对于<span class="math inline">\(n\geq3\)</span>. 取<span class="math inline">\(A=E_{il}(\lambda)\)</span>, <span class="math inline">\(B=E_{lj}(1)\)</span>, 其中<span class="math inline">\(l\)</span>不同于<span class="math inline">\(i,j\)</span>, 下面验证<span class="math inline">\([A,B]=E_{ij}(\lambda)\)</span>. <span class="math display">\[
+\Align{ [A,B]
+&amp;=E_{il}(\lambda)E_{lj}(1)E_{il}(-\lambda)E_{lj}(-1) \\
+&amp;=(I+e_{il}(\lambda))(I+e_{lj}(1))(I-e_{il}(e_\lambda))(1-e_{lj}(1))
+\\
+&amp;=(I+e_{il}(\lambda)+e_{lj}(1))(I-e_{il}(\lambda)-e_{lj}(1)) \\
+&amp;=I+e_{ij}(\lambda) =E_{ij}(\lambda).
+}
+\]</span> 对于<span class="math inline">\(n=2\)</span>且<span class="math inline">\({\rm char}\,F\neq2\)</span>.
+此时第一类初等矩阵只有<span class="math inline">\(E_{12}(\lambda)\)</span>和<span class="math inline">\(E_{21}(\lambda)\)</span>. 取<span class="math inline">\(\mu\neq0,1\)</span>, 可以验证, <span class="math display">\[
+A=\pmqty{\mu&amp;0\\0&amp;1},\quad
+B=\pmqty{1&amp;\frac\lambda{\mu-1}\\0&amp;1}
+\]</span> 的换位子是<span class="math inline">\(E_{12}(\lambda)\)</span>, 而下方<span class="math inline">\(A,B\)</span>的换位子是<span class="math inline">\(E_{21}(\lambda)\)</span>. <span class="math display">\[
+A=\pmqty{1&amp;0\\0&amp;\mu},\quad
+B=\pmqty{1&amp;0\\\frac\lambda{\mu-1}&amp;1}.
+\]</span></p>
+</div>
+<p><u>Lemma 5</u> 所有第一类初等矩阵<span class="math inline">\(E_{ij}(\lambda)\)</span>生成了特殊线性群<span class="math inline">\({\rm SL}_n(F)\)</span>.</p>
+<div class="note note-light">
+<p><u>Pf</u> 任取<span class="math inline">\(A\in{\rm SL}_n(F)\)</span>,
+根据Gauss-Jordan消元法的思想, 可以将<span class="math inline">\(A\)</span>经过若干次第一类初等行变换<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">将一行的常数倍加到另一行上.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>和第一类初等列变换(即左,
+右乘若干<span class="math inline">\(E_{ij}(\lambda)\)</span>)变为单位矩阵<span class="math inline">\(I\)</span>(证明见后), 即 <span class="math display">\[
+E_{i_pj_p}(\lambda_p)\cdots E_{i_1j_1}(\lambda_1) \, A \,
+E_{k_1l_1}(\mu_1)\cdots E_{k_ql_q}(\mu_q)
+= I,
+\]</span> 或 <span class="math display">\[
+A=
+E_{i_1j_1}(-\lambda_1)\cdots E_{i_pj_p}(-\lambda_p)
+E_{k_ql_q}(-\mu_q)\cdots E_{k_1l_1}(-\mu_1),
+\]</span> 所以<span class="math inline">\(A\)</span>是若干第一类初等矩阵的乘积, 即证.</p>
+<p>注: 下面证明, 可以将<span class="math inline">\(A\)</span>(<span class="math inline">\(\det{A}=1\)</span>)经过第一类初等行与列变换变成<span class="math inline">\(I\)</span>. 利用数学归纳法.</p>
+<p>当<span class="math inline">\(n=1\)</span>时, <span class="math inline">\(A_1=(1)\)</span>已经是单位矩阵.</p>
+<p>假设命题对<span class="math inline">\(n\)</span>(<span class="math inline">\(n\geq1\)</span>)成立, 下面证明命题对<span class="math inline">\(n+1\)</span>成立. 设 <span class="math display">\[
+A_{n+1} = \pmqty{
+  a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1,n+1} \\
+  a_{21} \\
+  \vdots &amp;&amp; A_{n}  \\
+  a_{n+1,1}
+},
+\]</span> 其中右下角的<span class="math inline">\(A_n\)</span>为<span class="math inline">\(n\times n\)</span>矩阵. 我们只需要将<span class="math inline">\(A_{n+1}\)</span>变成如下形式 <span class="math display">\[
+\tilde A_{n+1} = \pmqty{
+  1 &amp; 0 &amp; \cdots &amp; 0 \\
+  0 \\
+  \vdots &amp;&amp; A'_{n}  \\
+  0
+},
+\]</span> 之后由归纳假设, <span class="math inline">\(A_n'\)</span>可以变成单位阵, 即证. 其中,
+对<span class="math inline">\(A_{n+1}\)</span>的变换分为两步:</p>
+<p>第一步, 将<span class="math inline">\(a_{11}\)</span>变成<span class="math inline">\(1\)</span>. 对于<span class="math inline">\(a_{11}\neq1\)</span>, 进行分类讨论:</p>
+<ul>
+<li>若<span class="math inline">\(a_{11}=0\)</span>, 则<span class="math inline">\(a_{21},\dots,a_{n+1,1}\)</span>中一定有非零元<span class="math inline">\(a_{k1}\)</span>(否则矩阵不可逆), 将第<span class="math inline">\(k\)</span>行的<span class="math inline">\(\frac1{a_{k1}}\)</span>倍加到第一行即可.</li>
+<li>若<span class="math inline">\(a_{11}\neq0\)</span>,
+<ul>
+<li>若<span class="math inline">\(a_{21},\dots,a_{n+1,1}\)</span>与<span class="math inline">\(a_{12},\dots,a_{1,n+1}\)</span>中有非零元<span class="math inline">\(a_{k1}\)</span>(或<span class="math inline">\(a_{1k}\)</span>), 只需将第<span class="math inline">\(k\)</span>行(列)的<span class="math inline">\(\frac{1-a_{11}}{a_{k1}}\)</span>(<span class="math inline">\(\frac{1-a_{11}}{a_{1k}}\)</span>)倍加到第一行(列)即可.</li>
+<li>若<span class="math inline">\(a_{21},\dots,a_{n+1,1}\)</span>与<span class="math inline">\(a_{12},\dots,a_{1,n+1}\)</span>均为零, 则<span class="math inline">\(A_{n+1}\)</span>的第二行一定存在非零元(否则矩阵不可逆),
+将第二行加到第一行, 便转化为上面的情况.</li>
+</ul></li>
+</ul>
+<p>第二步, 将第一行乘以<span class="math inline">\(-a_{21},\dots,-a_{n+1,1}\)</span>, 分别加到第<span class="math inline">\(2\)</span>到<span class="math inline">\(n+1\)</span>行; 再将第一列乘以<span class="math inline">\(-a_{12},\dots,-a_{1,n+1}\)</span>, 分别加到第<span class="math inline">\(2\)</span>到<span class="math inline">\(n+1\)</span>列,
+便消去了第一行和第一列的其他元素.</p>
+<p>经过上面两步, <span class="math inline">\(A_{n+1}\)</span>变成了我们想要的形式<span class="math inline">\(\tilde A_{n+1}\)</span>, 根据归纳假设,
+可以将右下角的<span class="math inline">\(A_n'\)</span>变成单位阵(而且不影响<span class="math inline">\(\tilde A_{n+1}\)</span>的第一行和第一列),
+进而整个<span class="math inline">\(A_{n+1}\)</span>就变成了单位矩阵,
+即证.</p>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>&nbsp;<span class="math inline">\(F^\times\)</span>表示域<span class="math inline">\(F\)</span>的乘法群, 即<span class="math inline">\(F\setminus\qty{0}\)</span>在域乘法下构成的群.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>粗略地说, 一个群<span class="math inline">\(G\)</span>的交换化是与<span class="math inline">\(G\)</span>"最接近"的那个<span class="math inline">\(G\)</span>的可交换子群.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>将一行的常数倍加到另一行上.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#线性代数</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>行列式的几种定义方式</div>
+      <div>https://disembo.github.io/Note/defs-of-determinant/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-2/" title="GTM275 | 2 曲率与向量场">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 2 曲率与向量场</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275-1/" title="GTM275 | 1 曲率与向量场">
+                        <span class="hidden-mobile">GTM275 | 1 曲率与向量场</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

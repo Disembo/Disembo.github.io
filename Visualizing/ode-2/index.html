@@ -1,0 +1,900 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="指数增减、向量场、不动点、自然常数e...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ODE2 一阶微分方程">
+<meta property="og:url" content="https://disembo.github.io/Visualizing/ode-2/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="指数增减、向量场、不动点、自然常数e...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/population-graph.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/single-rod.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/single-rod-vector-field.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/single-rod-graph.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/line-stable-fixed-point.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/line-unstable-fixed-point.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/line-halfstable-fixed-point.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/stability-example.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/logistic-population-growth-rate.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/logistic-population-vector-field.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/logistic-population-graph.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/e-fragmenting-interval.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/e-discrete-exponential.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/equiangular-spiral.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/spiral-nautilus-shell.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/spiral-tropical-cyclone.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/spiral-milky-way.jpg">
+<meta property="article:published_time" content="2022-05-18T01:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.706Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分方程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/population-graph.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ODE2 一阶微分方程 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/articles/ode-2.banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ODE2 一阶微分方程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-18 09:00" pubdate>
+          2022年5月18日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ODE2 一阶微分方程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body><h2 id="人口模型">1 人口模型</h2>
+<p>设想某个地区的人口增长情况：总人口为<span class="math inline">\(N(t)\)</span>；人口的增长速度，即<span class="math inline">\(N'(t)\)</span>，正比于人口总数： <span class="math display">\[
+N'(t)=rN(t)
+\]</span> 增长率<span class="math inline">\(r\)</span>是一个正的常数.
+这个方程是一个<u>一阶线性微分方程</u>，它表示函数<span class="math inline">\(N(t)\)</span>的导数正比于它自身，很容易让我们想到指数函数：<span class="math inline">\(\displaystyle\dv{\e^{kt}}{t}=k\e^{kt}\)</span>，所以方程的一个解是<span class="math inline">\(N(t)=\e^{rt}\)</span>，此时初始人口为<span class="math inline">\(N(0)=1\)</span>. 如果我们规定初始人口数量为<span class="math inline">\(N(0)=N_0\)</span>，那么解就是 <span class="math display">\[
+N(t)=N_0\e^{rt}
+\]</span> 可以代入验证：它仍然满足原方程.
+一个微分方程的解是不唯一的，需要根据初始条件来确定. 下面画出了不同<span class="math inline">\(N_0\)</span>时的解：</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/population-graph.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>微分方程有多解，这是因为在求导数的过程中"消去"了一些信息： <span class="math display">\[
+y(t)=2t+C(C\textsf{是常数}) \xrightarrow{求导数}
+y'(t)=2
+\]</span>
+在这个过程中，常数被抹去了，导致我们不能由一个函数的的导数来唯一确定它.</p>
+<p>这就像平方和开平方： <span class="math display">\[
+\pm2 \xrightarrow{平方} 4
+\]</span> 正负号被抹去了，所以由一个实数的平方并不能唯一确定它.</p>
+<p>一个<span class="math inline">\(n\)</span>阶的微分方程最高涉及到<span class="math inline">\(n\)</span>阶导数，所以解的表达式中含有<span class="math inline">\(n\)</span>个待定的常数，需要<span class="math inline">\(n\)</span>个条件来确定它们.</p>
+<h2 id="电源单杆">2 电源单杆</h2>
+<p>另外一个例子.</p>
+<div class="note note-secondary">
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/single-rod.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>电源电动势为<span class="math inline">\(\varepsilon\)</span>，空间中有垂直向里的匀强磁场<span class="math inline">\(B\)</span>，水平平行光滑导轨（足够长）上有一个导体棒，电阻为<span class="math inline">\(R\)</span>. 不计阻力和其他电阻.
+由物理学知识，我们知道电路中会出现顺时针的电流，导体棒会向右运动，产生的反电动势又会阻碍运动……设导体棒的速度为<span class="math inline">\(v(t)\)</span>，加速度为<span class="math inline">\(a(t)\)</span>，电路中电流为<span class="math inline">\(i(t)\)</span>（速度向右为正方向、电流顺时针为正方向），那么有：<span class="math inline">\(\Cases{
+v(t)BL+i(t)R = \varepsilon \\
+mv'(t) = i(t)LB
+}\)</span></p>
+</div>
+<p>从而有 <span class="math display">\[
+v'(t)+\frac{B^2L^2}{mR}{v(t)}=\frac{\varepsilon LB}{mR}
+\]</span>
+这也是一个一阶线性微分方程，但是和人口方程不同的是，它多了一个常数项，是一个<u>非齐次</u>的微分方程.</p>
+<h3 id="向量场">2.1 向量场</h3>
+<p>我们先不去解这个方程，而是采用几何方法. 原方程移项后变为<span class="math inline">\(v'=-Av+B\)</span>（<span class="math inline">\(A,B\)</span>是系数），想象一条横轴<span class="math inline">\(v\)</span>表示速度，上面的每个点<span class="math inline">\(v\)</span>都长出来了一根向量<span class="math inline">\(v'\)</span>，表示加速度，即速度的变化率.</p>
+<p>这构成了一个<strong>向量场</strong>. 为了画出它，可以先画出<span class="math inline">\(v'-v\)</span>图像，再在横轴上的每个点画出对应的加速度向量.（当<span class="math inline">\(v'&lt;0\)</span>，箭头向左；<span class="math inline">\(v'&gt;0\)</span>，箭头向右.）</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/single-rod-vector-field.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<div class="note note-secondary">
+<p>在数学中，<strong>场</strong>(field)<span class="math inline">\(f\)</span>是一个从几何空间<span class="math inline">\(M\)</span>到集合<span class="math inline">\(S\)</span>的映射. "向量场"和"标量场"指的是<span class="math inline">\(S\)</span>中的元素是向量还是标量. 例如，电场<span class="math inline">\(\vb{E}\)</span>给三维空间<span class="math inline">\(\R^3\)</span>中的每个点赋予了一个电场强度<span class="math inline">\(\vb{E}(x,y,z)\)</span>，是向量场；电势场<span class="math inline">\(\varphi\)</span>给<span class="math inline">\(\R^3\)</span>中的每个点赋予了一个电势<span class="math inline">\(\varphi(x,y,z)\)</span>，是标量场.</p>
+<p>这个例子中的向量场把直线上的点映射到了一个向量.</p>
+</div>
+<p>可以把横轴想象成一种流体在流动. 在<span class="math inline">\(v'&lt;0\)</span>（箭头向左）的地方，流体向左流动；在<span class="math inline">\(v'&gt;0\)</span>（箭头向右）的地方，流体向右流动.
+在<span class="math inline">\(v'=0\)</span>的地方，流体不流动，所以把这个点叫做<strong>不动点</strong>(fixed
+point). 上图中，不动点两侧的流体都流向不动点，不动点两侧所有的<span class="math inline">\(v\)</span>都会趋近于这个不动点.</p>
+<p>所以可以得出结论：当初始速度<span class="math inline">\(v_0\ne\dfrac\varepsilon{BL}\)</span>时，速度会逐渐趋近于<span class="math inline">\(\dfrac\varepsilon{BL}\)</span>；当<span class="math inline">\(v_0=\dfrac\varepsilon{BL}\)</span>，速度会保持不变.</p>
+<p>最后看看要怎么解这个方程. <span class="math display">\[
+v'+\frac{B^2L^2}{mR} v=\frac{\varepsilon LB}{mR}
+\]</span> 回想一下<span class="math inline">\(\S1\)</span>的例子，我们希望<span class="math inline">\(v'\)</span>能和<span class="math inline">\(v\)</span>成正比，也就是<span class="math inline">\(v'-v\)</span>图像是一条过原点的直线.
+所以只需要把图像向左平移<span class="math inline">\(\dfrac\varepsilon{BL}\)</span>就行，也就是作替换：<span class="math inline">\(V=v-\dfrac\varepsilon{BL}\)</span>，代入方程后有
+<span class="math display">\[
+V'=-\frac{B^2L^2}{mR} V
+\]</span> 所以<span class="math inline">\(V=C\e^{\large-\frac{B^2L^2}{mR}t}\)</span>，从而<span class="math inline">\(v=C\e^{\large-\frac{B^2L^2}{mR}t}+\dfrac\varepsilon{BL}\)</span>，其中<span class="math inline">\(C\)</span>是一个与初始速度有关的常数.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/single-rod-graph.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>当<span class="math inline">\(t\to+\infty\)</span>时，<span class="math inline">\(\e^{\large-\frac{B^2L^2}{mR}t}\to0\)</span>，所以<span class="math inline">\(v\to\dfrac\varepsilon{BL}\)</span>.
+以及从图像中也可以看出，不论初始值如何，速度总是会趋向于不动点<span class="math inline">\(\dfrac\varepsilon{BL}\)</span>.</p>
+<h3 id="不动点">2.2 不动点</h3>
+<p>现在对不动点做更深入的研究. 对于一个关于函数<span class="math inline">\(y(t)\)</span>的一阶微分线性方程 <span class="math display">\[
+y'=py+q
+\]</span> 如果<span class="math inline">\(p,q\)</span>与是<span class="math inline">\(t\)</span>无关的常数，那么我们称方程是<u>自治</u>的（也就是系统的演化规律与时间无关），此时我们可以画出它的向量场.</p>
+<p>如果<span class="math inline">\(p\ne0\)</span>，那么<span class="math inline">\(y'-y\)</span>图像与横轴有一个交点，称为不动点，一般用<span class="math inline">\(y^*\)</span>表示. 不动点满足<span class="math inline">\(y'=0\)</span>，也就是<span class="math inline">\(y(t)\)</span>不发生变化（不动了）.
+当图像的斜率<span class="math inline">\(p\)</span>小于零，这个不动点是<strong>稳定</strong>的，不动点两侧的解都会趋向于此（下图左）；否则是<strong>不稳定</strong>的，不动点两侧的点都会远离（下图中）.</p>
+<p>这些概念也可以自然地推广到任意的一阶自治微分方程.
+对于一个更一般的方程，也有可能存在"混合"的情况：不动点一侧的解靠近，一侧的解远离（下图右）.</p>
+<center>
+<table>
+<tbody><tr><td>
+<center>
+<img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/line-stable-fixed-point.png" style="zoom:50%;" cloud-img="" lazyload="true">
+<br>稳定
+</center>
+</td>
+<td>
+<center>
+<img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/line-unstable-fixed-point.png" style="zoom:50%;" cloud-img="" lazyload="true">
+<br>不稳定
+</center>
+</td>
+<td>
+<center>
+<img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/line-halfstable-fixed-point.png" style="zoom:50%;" cloud-img="" lazyload="true">
+<br>半稳定
+</center>
+</td>
+</tr></tbody></table>
+</center>
+<ul>
+<li>图中，稳定、不稳定、半稳定的不动点分别用实心、空心、半实心的点表示.</li>
+</ul>
+<div class="note note-secondary">
+<p>怎样理解"稳定"与"不稳定"？假设不动点为<span class="math inline">\(y^*\)</span>，在某一时刻<span class="math inline">\(t\)</span>，有<span class="math inline">\(y(t)=y^*\)</span>，现在给<span class="math inline">\(y\)</span>一个很小的扰动，使得<span class="math inline">\(y(t+\Delta t)=y^*+\Delta y\)</span>，</p>
+<ul>
+<li>如果不动点是稳定的，<span class="math inline">\(y\)</span>会逐渐回到<span class="math inline">\(y^*\)</span>；</li>
+<li>如果不动点是不稳定的，<span class="math inline">\(y\)</span>会远离<span class="math inline">\(y^*\)</span>.</li>
+<li>如果不动点是半稳定的，需要分情况讨论.</li>
+</ul>
+<p>下面的图示非常直观.
+石头处于静止状态，给它一个很小的力，石头可能会：</p>
+<ul>
+<li>回到原来的稳定状态（下左）；</li>
+<li>离开原来的稳定状态（下中）；</li>
+<li>以上情况都有可能（下右）.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/stability-example.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
+</div>
+<h2 id="logistic人口模型">3 Logistic人口模型</h2>
+<p>现在让我们看一个非线性的系统，体会一下向量场和不动点的强大用途.</p>
+<div class="note note-secondary">
+<p>在第一节，我们给出了一个简单的人口模型，其中人口增长率是一个定值<span class="math inline">\(r\)</span>，这使得人口呈指数增长：<span class="math inline">\(N(t)=N_0\e^{at}\)</span>，但实际情况下，由于资源是有限的，人口不可能无限制增长下去.
+所以，我们把增长率修改为<span class="math inline">\(r\pqty{1-\dfrac
+NK}\)</span> ，其中常数<span class="math inline">\(K\)</span>表示环境资源承载能力，<span class="math inline">\(N\)</span>很小时，增长率接近<span class="math inline">\(r\)</span>，<span class="math inline">\(N\)</span>越大，增长率越小，当<span class="math inline">\(N&gt;K\)</span>时，增长率是负的，表示人口减少.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/logistic-population-growth-rate.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+</div>
+<p>这样，我们得到了Logistic方程： <span class="math display">\[
+{N'}=rN\pqty{1-\frac NK}
+\]</span> 注意到展开后方程有<span class="math inline">\(N^2\)</span>项，所以这是一个非线性的一阶微分方程.
+不妨把它的向量场画出来，</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/logistic-population-vector-field.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>有两个不动点，<span class="math inline">\(N^*=0\)</span>是不稳定的，<span class="math inline">\(N^*=K\)</span>是稳定的. 所以，只要<span class="math inline">\(N_0&gt;0\)</span>，人口总数就会趋向于<span class="math inline">\(K\)</span>；如果<span class="math inline">\(N_0=0\)</span>，那么永远也不会有人.</p>
+<p>我们也可以根据上图，预测解曲线<span class="math inline">\(N(t)\)</span>的形状. 考虑初始人口<span class="math inline">\(0&lt;N_0&lt;\dfrac K2\)</span>的情况：当<span class="math inline">\(N&lt;\dfrac K2\)</span>时，<span class="math inline">\(N'\)</span>逐渐变大，图像逐渐变陡；当<span class="math inline">\(\dfrac K2&lt;N&lt;K\)</span>时，<span class="math inline">\(N'\)</span>逐渐变小，图像逐渐平缓，所以此时<span class="math inline">\(N-t\)</span>曲线是一个类似"S"的弧形（也就是下图中最下方的一条曲线）.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/logistic-population-graph.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>尽管这个非线性方程不好解，我们还是有很多办法来分析这个系统的演化状态的.</p>
+<h2 id="为什么是e">4 为什么是e？</h2>
+<p>下面进行一些简单的计算推导.</p>
+<p>在<span class="math inline">\(\S1\)</span>中，我们提到了：指数函数的变化率正比于自身，即<span class="math inline">\(\displaystyle\dv{\e^{at}}{t}=\e^{at}\)</span>.
+很多人在高中时学过导数，知道这一点，却不知为何. 实际上高中课本里连<span class="math inline">\(\e\)</span>的定义都没有，我们只知道他是一个无理数<span class="math inline">\(2.718\dots\)</span> 现在我们来简略推导一下.</p>
+<p>一个一阶齐次线性微分方程 <span class="math display">\[
+\dv{y}{t}=a{y}
+\]</span> 描述了一个<u>连续</u>变化的过程中，<span class="math inline">\(y\)</span>本身与<span class="math inline">\(y\)</span>的变化率之间的关系，我们可以把它<u>离散</u>化：设<span class="math inline">\(T&gt;0\)</span>，把区间<span class="math inline">\([0,T]\)</span>平均分成<span class="math inline">\(n\)</span>份，每一份的长度是<span class="math inline">\(\Delta t\)</span>，于是<span class="math inline">\(T=n\Delta t\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/e-fragmenting-interval.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>用平均变化率<span class="math inline">\(\dfrac{\Delta y}{\Delta
+t}=\dfrac{y(t+\Delta t)-y(t)}{\Delta t}\)</span>来代替瞬时变化率<span class="math inline">\(\displaystyle\dv{y}{t}\)</span>，可以得到 <span class="math display">\[
+\Align{
+\dfrac{y(t+\Delta t)-y(t)}{\Delta t} \approx \dv{y}{t}= ay(t) \\
+\Rightarrow y(t+\Delta t) \approx y(t)\cdot\orange{ (1+a\Delta t)}
+}
+\]</span> 这是一个递推关系式，它表示：从<span class="math inline">\(t=0\)</span>开始，<span class="math inline">\(t\)</span>每前进一个<span class="math inline">\(\Delta t\)</span>，<span class="math inline">\(y(t)\)</span>就会乘以一个固定的倍数<span class="math inline">\(\orange{ (1+a\Delta t)}\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/e-discrete-exponential.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>所以，<span class="math inline">\(y(t)\)</span>的值取决于从<span class="math inline">\(0\)</span>到<span class="math inline">\(t\)</span>有多少个<span class="math inline">\(\Delta t\)</span>. 对于<span class="math inline">\(y(T)\)</span>，因为<span class="math inline">\([0,T]\)</span>中有<span class="math inline">\(n\)</span>个<span class="math inline">\(\Delta
+t\)</span>，所以 <span class="math display">\[
+y(T) \approx y(0) \cdot \orange{ (1+a\Delta t)^n}
+\]</span> 为了方便，令<span class="math inline">\(y(0)=1\)</span>，<span class="math inline">\(m=a\Delta t=\dfrac{aT}{n}\)</span>，代入上式，有
+<span class="math display">\[
+y(T)
+\approx \pqty{1+m} ^ {\large\frac{aT}{m}}
+= \bqty{{ \color{salmon} \pqty{1+m}^{\large\frac1{m}} }} ^ {aT}
+\]</span> 这是<span class="math inline">\(y(T)\)</span>的近似式. <span class="math inline">\(\Delta t\)</span>越小（即<span class="math inline">\(m\)</span>越小），近似效果越好，如果我们让<span class="math inline">\(\Delta t\)</span>无限地趋于<span class="math inline">\(0\)</span>（也即<span class="math inline">\(m\to0\)</span>），那么近似值就变成了精确值，这是一个取极限的过程：
+<span class="math display">\[
+y(T) = \lim_{m\to0}
+\bqty{{ \color{salmon} \pqty{1+m} ^ {\large\frac1{m}} }} ^ {aT}
+\]</span> <span class="math inline">\(m\to0\)</span>的过程中，函数由离散变得连续，就像：</p>
+<video controls="" style="width:700px;" cloud-vid="" preload="metadata">
+<source src="https://blog-media-1307399821.cos.ap-beijing.myqcloud.com/ode/e-discrete-exponential.mp4" type="video/mp4">
+</video>
+<p>从图像上看，似乎确实是一个指数函数. 实际上，我们定义<u>自然常数</u>
+<span class="math display">\[
+\e
+= \lim_{m\to0} {\color{salmon} \pqty{1+m} ^ {\large\frac1{m}}}
+=  2.71828\dots
+\]</span> 于是 <span class="math display">\[
+y(T)=\e^{aT}
+\]</span></p>
+<p><span class="math inline">\(T\)</span>的范围可以拓展到实数域.</p>
+<p>还有最后一个问题，<span class="math inline">\(\e\)</span>为什么要叫"自然"常数？</p>
+<p>在自然界中，许多量的变化速度是和它自身呈比例关系的，这时，指数函数<span class="math inline">\(y=\e^{\alpha t}\)</span>就会参与进来.
+举几个具体的例子：</p>
+<ul>
+<li>种群演化、病毒传播、细胞分裂等：合适的条件下，这些东西繁衍传播的速度和它们的数量呈正比.</li>
+<li>复合利率：在银行存钱<span class="math inline">\(y_0\)</span>，如果年利率为<span class="math inline">\(r\)</span>，且按照复利计算，那么<span class="math inline">\(n\)</span>年后的存款为<span class="math inline">\((1+r)^{n} \cdot y_0\)</span>.</li>
+<li>链式反应：在核裂变中，一个铀原子裂变并且放出多个中子，每个中子又可以被一个铀原子吸收进而裂变，放出更多的中子……
+反应的进程是呈指数爆炸的.</li>
+</ul>
+<p>还有一个几何上的例子，<u>等角螺线</u><span class="math inline">\(r=\e^{k\theta}\)</span>（极坐标方程），它从原点附近向外螺旋伸展，而且任意一点处的切线与径向夹角相等（夹角<span class="math inline">\(\alpha=\abs{\arctan{k}}\)</span>），如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/equiangular-spiral.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>自然界中的等角螺线有很多，如：</p>
+<ul>
+<li>鹦鹉螺壳：壳内每个"小房间"都是相似的.
+从最里面开始，每一个房间都是上一个房间的放大版，使得半径<span class="math inline">\(r\)</span>随着角度<span class="math inline">\(\theta\)</span>呈指数放大，形成了一条等角螺线.</li>
+<li>气旋：气团的速度方向与径向夹角是定值，从而气旋的臂形成了一条等角螺线.</li>
+<li>银河系：银河系的旋臂大致是一条等角螺线，<span class="math inline">\(\alpha\approx12^\circ\)</span>.</li>
+</ul>
+<center>
+<table>
+<tbody><tr><td>
+<center>
+<img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/spiral-nautilus-shell.jpg" cloud-img="" lazyload="true">
+</center>
+</td>
+<td>
+<center>
+<img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/spiral-tropical-cyclone.jpg" cloud-img="" lazyload="true">
+</center>
+</td>
+<td>
+<center>
+<img src="https://raw.githubusercontent.com/Disembo/blog-media/master/ode/spiral-milky-way.jpg" cloud-img="" lazyload="true">
+</center>
+</td>
+</tr></tbody></table>
+</center>
+<p>可以说，指数函数表示的是一个不断重复的、变化与自身成比例的变化过程，这种过程在自然界是随处可见的.</p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Visualizing/" class="category-chain-item">Visualizing</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" class="print-no-link">#微分方程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ODE2 一阶微分方程</div>
+      <div>https://disembo.github.io/Visualizing/ode-2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Visualizing/ode-3/" title="ODE3 二阶微分方程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ODE3 二阶微分方程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Visualizing/ode-1/" title="ODE1 动力系统">
+                        <span class="hidden-mobile">ODE1 动力系统</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+            
+            <div class="footer-content">
+                <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+                <i class="iconfont icon-love"></i>
+                <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+            </div>
+        </div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
