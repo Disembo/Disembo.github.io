@@ -1,0 +1,1055 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="实现一个具有实时交互功能的弱不可压缩 SPH 流体模拟器.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个简单的 SPH 流体模拟器">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/sph-fluid/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="实现一个具有实时交互功能的弱不可压缩 SPH 流体模拟器.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-sketch.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cubic-spline-kernel.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-surface-deficiency.png">
+<meta property="og:image" content="https://disembo.github.io/Note/CG/sph-fluid/images/sph-whirpool-1.png">
+<meta property="og:image" content="https://disembo.github.io/Note/CG/sph-fluid/images/sph-whirpool-2.png">
+<meta property="og:image" content="https://disembo.github.io/Note/CG/sph-fluid/images/sph-force-1.png">
+<meta property="og:image" content="https://disembo.github.io/Note/CG/sph-fluid/images/sph-force-2.png">
+<meta property="og:image" content="https://disembo.github.io/Note/CG/sph-fluid/images/sph-cube-1.png">
+<meta property="og:image" content="https://disembo.github.io/Note/CG/sph-fluid/images/sph-cube-2.png">
+<meta property="og:image" content="https://disembo.github.io/Note/CG/sph-fluid/images/sph-cube-3.png">
+<meta property="article:published_time" content="2025-02-14T14:30:00.000Z">
+<meta property="article:modified_time" content="2025-02-14T14:40:15.509Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="物理">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="模拟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-sketch.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>一个简单的 SPH 流体模拟器 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="一个简单的 SPH 流体模拟器"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-14 22:30" pubdate>
+          2025年2月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">一个简单的 SPH 流体模拟器</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>本文是可是计算与交互 (VCI) 课程的大作业笔记, 主要参考一篇教程<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">https://sph-tutorial.physics-simulation.org/pdf/SPH_Tutorial.pdf</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>和一个在线 demo<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">https://interactivecomputergraphics.github.io/physics-simulation/examples/wcsph.html</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span>.</p>
+<p>本文侧重于介绍 SPH 算法的思想, 给出一些简单的公式和推导,
+以及一些实现上的细节, 基本不会涉及 SPH 各种算法的理论细节.</p>
+</div>
+<h2 id="foundations">1  Foundations</h2>
+<p>计算机流体模拟有两种视角, Eulerian 和 Lagrangian. Eulerian
+将空间离散化, 模拟空间网格上每一点的密度、速度和加速度场; 而 Lagrangian
+将流体离散采样为粒子, 模拟每个采样点 (粒子) 处的密度、速度和加速度等.
+Lagrangian 方法在处理复杂或动态边界上比较有优势.</p>
+<p><strong>SPH (smoothed particles hydrodynamics,
+光滑粒子流体动力学)</strong> 方法是一种基于 Lagrangian 视角的模拟算法.
+SPH 的基本思想是用 (空间中) 离散的采样点来代替连续的物理量, 如密度等.
+这些离散的采样点也称为 "粒子", 每个粒子 <span class="math inline">\(p\in\R^d\)</span> 都携带着物理量 <span class="math inline">\(A(p)\)</span>, 而任意一点处的物理量 <span class="math inline">\(A(x)\)</span> (<span class="math inline">\(x\in\R^d\)</span>) 可以通过 "核函数" 插值得到,
+如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-sketch.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<p>此外, 微分算子 (如梯度, 散度等) 也有其离散化版本.
+将物理量和微分算子离散化之后, 我们就可以将流体力学方程写成离散的版本,
+把连续流体动力学问题转化为粒子相互作用问题, 通过 Euler 积分法求解.</p>
+<h3 id="kernel-functions">1.1  Kernel functions</h3>
+<p>取核函数为 Dirac delta 分布 <span class="math inline">\(\delta(x)\)</span>, 它可以粗略地理解为 <span class="math inline">\(\delta(x)=\Cases{\infty,&amp;x=0,\\0,&amp;x\neq0,}\)</span>
+并且满足归一化条件 <span class="math display">\[
+\int_{\R^d} \delta(x)\dd{x} = 1.
+\]</span> 它的一个重要性质是对任意连续紧支函数 <span class="math inline">\(A:\R^d\to\R\)</span>, 有 <span class="math display">\[
+A(x) = (A*\delta)(x) = \int_{\R^d} A(p)\delta(x-p)\dd{p}.
+\tag{a}
+\]</span> 上式的含义是, 如果采样点 <span class="math inline">\(p\)</span> 遍布整个空间 <span class="math inline">\(\R^d\)</span>, 那么就可以用 <span class="math inline">\(A(p)\)</span> 和 <span class="math inline">\(\delta\)</span> 的卷积来提取函数值 <span class="math inline">\(A(x)\)</span>. 但是 delta 分布是一个广义函数,
+无法直接用于数值计算, 所以我们用一个核函数 <span class="math inline">\(W_h(x)\)</span> 近似它 (<span class="math inline">\(h\)</span> 是一个正实参数). 我们希望 <span class="math inline">\(W_h(x)\)</span> 满足如下性质:</p>
+<ol type="1">
+<li>(归一化) <span class="math inline">\(\int_{\R^d} W_h(x)\dd{x} =
+1\)</span>.</li>
+<li>(逐点收敛到 delta 分布) <span class="math inline">\(\lim_{h\to0}W_h(x)=\delta(x)\)</span>.</li>
+<li>(对称性) <span class="math inline">\(W_h(x)=W_h(-x)\)</span> 对任意
+<span class="math inline">\(x\in\R^d\)</span>.</li>
+<li>(<span class="math inline">\(C^2\)</span> 可微性) <span class="math inline">\(W_h\)</span> 是二阶连续可微的.</li>
+</ol>
+<p>其中 <span class="math inline">\(C^2\)</span>
+可微性是因为我们需要离散化二阶微分算子. 为了数值计算方便,
+通常还要求:</p>
+<ul>
+<li>(紧支性) <span class="math inline">\(W_h(x)\equiv0\)</span> 对任意
+<span class="math inline">\(\|x\|\geq h\)</span>, 其中 <span class="math inline">\(h&gt;0\)</span> 用于控制支集的半径.
+(有的文献中用另一个参数 <span class="math inline">\(\hbar\)</span>
+控制支半径, 本文中不做区分.)</li>
+</ul>
+<p>为了物理模拟的合理性, 有时会加一个条件:</p>
+<ul>
+<li>(非负性) <span class="math inline">\(W_h(x)\geq0\)</span> 对任意
+<span class="math inline">\(x\in\R^d\)</span>.</li>
+</ul>
+<p>有了核函数 <span class="math inline">\(W_h(x)\)</span>, 式 <span class="math inline">\((\textrm{a})\)</span> 就可以改写成 <span class="math display">\[
+A(x) \approx (A*W_h)(x) = \int_{\R^d} A(p)W_h(x-p)\dd{p}.
+\]</span></p>
+<div class="note note-secondary">
+<p>误差分析. 对 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(x\)</span> 处进行 Taylor 展开, <span class="math display">\[
+\Align{
+A(p) = A(x)
+&amp;+{} \sum_{i} \partial_i A(x) \cdot (p_i-x_i) \\
+&amp;+{} \sum_{ij} \partial_{ij} A(x) \cdot (p_i-x_i)(p_j-x_j) \\
+&amp;+{} o(\|p-x\|^2),
+}
+\]</span></p>
+</div>
+<p>一个常用的核函数是<strong>三次样条核函数 (cubic spline
+kernel)</strong> <span class="math display">\[
+W_h(x) = \sigma_d \Cases{
+6(q^3-q^2) + 1, &amp; 0\leq q\leq\frac12, \\
+2(1-q^3), &amp; \frac12&lt;q\leq1, \\
+0, &amp; \textsf{otherwise},
+}
+\]</span> 其中 <span class="math inline">\(q=\|x\|/h\)</span>;
+归一化因子 <span class="math inline">\(\sigma_d\)</span> 与维数有关,
+对于 <span class="math inline">\(d=1,2,3\)</span>, 分别有 <span class="math inline">\(\sigma_d=\frac{4}{3h},\frac{40}{7\pi
+h^2},\frac{8}{\pi h^3}\)</span>. 二维的 <span class="math inline">\(W_h\)</span> 图像如下 (图源教程<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">https://sph-tutorial.physics-simulation.org/pdf/SPH_Tutorial.pdf</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cubic-spline-kernel.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<h3 id="discretizing-field-quantities">1.2  Discretizing field
+quantities</h3>
+<p>为了计算, 需要把积分离散为求和. 设流体的密度场为 <span class="math inline">\(\rho(x)\)</span>, 则质量 <span class="math inline">\(\dd{m}=\rho(x)\dd{V}=\rho(x)\dd{x}\)</span>.
+取采样点 <span class="math inline">\(p_1,\dots,p_n\)</span>, 记 <span class="math inline">\(\rho_i:=\rho(p_i)\)</span>, <span class="math inline">\(A_i:=A(p_i)\)</span>, <span class="math inline">\(m_i\)</span> 为粒子 <span class="math inline">\(p_i\)</span> 的质量, 则 <span class="math display">\[
+\Align{
+A_i = A(p_i)
+&amp;\approx \int_{\R^n} \frac{A(p)}{\rho(p)} W_h(p_i-p)
+    \cdot \underbrace{\rho(p)\dd{p}}_{\dd{m}} \\
+&amp;\approx \sum_{j=1}^n A_j\frac{m_j}{\rho_j} W_h(p_i-p_j),
+}\tag{b}
+\]</span> 为了方便, 记 <span class="math inline">\(W_{ij}:=W_h(p_i-p_j)\)</span>.
+注意核函数的紧支性条件, 这使得当 <span class="math inline">\(\|p_i-p_j\|\geq h\)</span> 时 <span class="math inline">\(W_{ij}=0\)</span>, 大大减少了求和的项数,
+提高了模拟的效率 (即只需考虑 <span class="math inline">\(h\)</span>-邻域内的粒子).</p>
+<p>特别地, 取 <span class="math inline">\(A(x)\)</span> 为密度场 <span class="math inline">\(\rho(x)\)</span>, 即可得到密度场的离散化公式 <span class="math display">\[
+\rho_i \approx \sum_{j=1}^n m_j W_{ij}, \tag{c}
+\]</span> 只需记录每个粒子的质量 <span class="math inline">\(m_i\)</span>, 就能还原出每个粒子处的密度.
+需要注意的是, 由于靠近液体表面的粒子其邻域内粒子较少 (如下图, 图源教程<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">https://sph-tutorial.physics-simulation.org/pdf/SPH_Tutorial.pdf</hcontent><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" style="text-decoration: none;"><sup>[4]</sup></a></span>), 使用 <span class="math inline">\((\text{c})\)</span> 式会导致液体表面的密度被低估,
+需要进行补偿.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-surface-deficiency.png" style="zoom:25%;" cloud-img="" lazyload="true"></p>
+<h3 id="discretizing-differential-operators">1.3  Discretizing differential
+operators</h3>
+<p>根据 <span class="math inline">\((\textrm{b})\)</span>
+可以直接推导出梯度的公式 <span class="math display">\[
+\nabla A_i := \nabla A(p_i)
+\approx \sum_j A_j \frac{m_j}{\rho_j} \nabla W_{ij}.
+\]</span> 然而这种 "直接近似" 有较大的误差, 且会导致模拟不稳定.
+下面我们给出在实际中两种常用的梯度公式.</p>
+<p>梯度的<strong>差分公式 (difference formula)</strong> 为 <span class="math display">\[
+\nabla A_i\approx \sum_j\frac{m_j}{\rho_j} (A_j-A_i)\nabla_iW_{ij}.
+\]</span> 它可以保证 <span class="math inline">\(0\)</span> 阶准确性 (即
+<span class="math inline">\(\nabla A_i\)</span> 的值准确).</p>
+<p>梯度的<strong>对称公式 (symmetric formula)</strong> 为 <span class="math display">\[
+\nabla{A_i}
+\approx \rho_i \sum_j m_j \pqty{
+\frac{A_i}{\rho_i^2}+\frac{A_j}{\rho_j^2} }
+\nabla_i W_{ij}. \tag{f}
+\]</span> 它不能保证 <span class="math inline">\(0\)</span> 阶准确性,
+但其优点是能保证动量和角动量守恒 (对称性可以保证内力之和为零).
+为保证真实性, 一般采用对称公式.</p>
+<h3 id="fluid-equations">1.4  Fluid equations</h3>
+<p>为了模拟流体的运动, 我们需要引入一些物理方程. 在计算机图形学中,
+我们主要关注流体的宏观行为, 忽略那些人类不可感知的微观行为.
+下面我们介绍一些模拟流体时所需的定律.</p>
+<p><strong>连续性方程</strong>描述了流体密度的演化: <span class="math display">\[
+\frac{D\rho}{Dt} = -\rho(\nabla\cdot v). \tag{g}
+\]</span> 其中, <span class="math inline">\(D/Dt\)</span> 称为随体导数
+(material derivative), 指的是物理量随着流体微团运动而变化的时间变化率
+(在我们的模拟中, 物质导数就是某个 "粒子" 携带的物理量的变化率).
+随体导数可分解为两部分: <span class="math display">\[
+\frac{DA}{Dt} = \pdv{A}{t} + v\cdot\nabla A,
+\]</span> 其中 <span class="math inline">\(\partial{A}/\partial{t}\)</span>
+是固定的一点处的物理量的变化率, <span class="math inline">\(v\cdot\nabla
+A\)</span> 是物理量由于流体微团运动而产生的变化率.</p>
+<p>一般的流体 (比如常温常压下低速流动的水, 油) 是不可压缩的, 即 <span class="math inline">\(D\rho/Dt=0\)</span>. 从连续性方程看出,
+流体的不可压缩性等价于 <span class="math inline">\(\nabla\cdot
+v=0\)</span>. 我们的模拟需要在一定程度上保证不可压缩性.</p>
+<p><strong>动量守恒定律</strong>: <span class="math display">\[
+\rho\frac{Dv}{Dt} = \nabla\cdot T + f^{\sf ext}.
+\]</span> 其中 <span class="math inline">\(T\)</span> 为应力张量, <span class="math inline">\(f^{\sf ext}\)</span> 为 (单位体积的) 外力.
+应力张量描述了流体内部某一点的 (单位面积的) 受力状况.</p>
+<p><strong>Navier-Stokes 方程</strong>给出了应力张量, <span class="math display">\[
+T = -p1_{d} + \mu(\nabla v+\nabla v\T),
+\]</span> 其中 <span class="math inline">\(p\)</span> 为压强, <span class="math inline">\(\mu\)</span> 为粘度系数. 粘滞阻力可以平滑速度场,
+保证模拟的稳定性. 压强有两种计算方法:</p>
+<ul>
+<li><p>(强不可压缩) 如果要严格保证不可压缩性, 则需要一些额外的功夫,
+这里不做介绍.</p></li>
+<li><p>(弱不可压缩) 如果无需严格保证不可压缩性,
+则可以利用<strong>状态方程</strong> <span class="math display">\[
+p = k\pqty{\pqty{\frac{\rho}{\rho_0}}^\gamma-1}, \tag{h}
+\]</span> 通过密度 <span class="math inline">\(\rho\)</span> 计算压强
+<span class="math inline">\(p\)</span>. 其中, <span class="math inline">\(\rho_0\)</span> 是密度的基准 (称为松弛密度, rest
+density), 如果密度 <span class="math inline">\(\rho&gt;\rho_0\)</span>,
+则给予一个较大的压强使得粒子间相互排斥, 减小密度. 常数 <span class="math inline">\(k,\gamma&gt;0\)</span> 控制流体不可压缩的级别,
+值越大越不可压缩.</p></li>
+</ul>
+<p>将 Navier-Stokes 方程代入动量守恒定律, 得到 <span class="math display">\[
+\rho\frac{Dv}{Dt} = -\nabla p + \mu\nabla^2v + f^{\sf ext}. \tag{i}
+\]</span></p>
+<h3 id="operator-splitting">1.5  Operator splitting</h3>
+<p>求解上述偏微分方程的一个重要思想是化整为零. "算子分裂" (operator
+splitting) 即把一个大方程化为几个 (顺序的) 子问题,
+并采用单独的技术来求解每个子问题.</p>
+<p>在 SPH 问题中, 针对不同应用场景和流体性质可以有不同的分裂方法,
+下面引入一种低粘度弱不可压缩流体的算子分裂方法.</p>
+<p>对于每个 time step, 将模拟分为如下几个步骤:</p>
+<ol type="1">
+<li><p><strong>计算每个粒子处的密度和压强</strong>: (式 <span class="math inline">\((\text{c})\)</span> 和式 <span class="math inline">\((\text{h})\)</span>) <span class="math display">\[
+\Align{
+\rho_i &amp;\leftarrow \sum_j m_j W_{ij}, \\
+p_i &amp;\leftarrow k\pqty{\pqty{\frac{\rho_i}{\rho_0}}^\gamma-1}.
+}
+\]</span></p></li>
+<li><p><strong>计算每个粒子处的受力和加速度</strong>:</p>
+<ul>
+<li><p>压力: (利用式 <span class="math inline">\((\text{f})\)</span>)
+<span class="math display">\[
+\Align{
+F_i^{\sf pressure}
+&amp;\leftarrow -\frac1{\rho}\nabla p
+= -m_i\sum_j m_j\pqty{\frac{p_i}{\rho_i^2}+\frac{p_j}{\rho_j^2}}
+\nabla W_{ij}.
+}
+\]</span></p></li>
+<li><p>粘滞阻力: <span class="math display">\[
+F_i^{\sf visc} \leftarrow \mu\sum_j \frac{m_j}{\rho_j}(v_j-v_i).
+\]</span></p></li>
+<li><p>加速度: <span class="math display">\[
+a_i \leftarrow \frac1{m_i}
+(F_i^{\sf pressure}+F_i^{\sf visc}+F_i^{\sf ext}),
+\]</span> 其中外力为重力.</p></li>
+</ul></li>
+<li><p><strong>根据加速度更新速度与位置</strong> (半隐式 Euler 积分):
+<span class="math display">\[
+\Align{
+v_i' &amp;\leftarrow v_i + a_i\Delta t, \\
+x_i' &amp;\leftarrow x_i + v_i\Delta t.
+}
+\]</span></p>
+<ul>
+<li>步长 <span class="math inline">\(\Delta t\)</span> 即可以是固定值,
+也可以根据模拟状况动态调整. 为了保证稳定性, 一般取 <span class="math display">\[
+\Delta t\leq \lambda\frac{\tilde h}{\|v\|_{\sf max}},
+\]</span> 其中 <span class="math inline">\(\tilde{h}\)</span>
+为粒子大小, <span class="math inline">\(\lambda\)</span> 为参数 (可以取
+<span class="math inline">\(0.4\)</span>). 上式称为
+Courant-Friedrichs-Lewy (CFL) 条件, 是保证模拟收敛的 <span class="math inline">\(\Delta t\)</span> 的一个上界.</li>
+</ul></li>
+</ol>
+<h3 id="neighbourhood-search">1.6  Neighbourhood search</h3>
+<p>计算密度和加速度的步骤都需要查找粒子的 <span class="math inline">\(h\)</span>-邻域内的粒子, 朴素的算法复杂度为 <span class="math inline">\(O(n^2)\)</span>, 当粒子很多时显然不可行.
+一种加速算法是将空间划分为间距为 <span class="math inline">\(h\)</span>
+的网格, 将粒子以网格索引 <span class="math inline">\((i,j,k)\)</span> 为
+key 存储在一张表里 (称为<strong>邻域表</strong>). 这样,
+邻域搜索时只需查找该粒子周围 <span class="math inline">\(3×3×3\)</span>
+网格内的粒子即可.</p>
+<p>为了达到 <span class="math inline">\(O(1)\)</span> 的查找效率,
+可以使用 hash 表. 处于第 <span class="math inline">\((i,j,k)\)</span>
+网格的粒子以 hash 值 <span class="math display">\[
+(pi\mathop{\rm XOR}qj\mathop{\rm XOR}rk)\mathop{\rm mod}{N}
+\]</span> 为索引 (其中 <span class="math inline">\({\rm XOR}\)</span>
+为按位异或, <span class="math inline">\(p,q,r\)</span> 是大质数, <span class="math inline">\(N\)</span> 为表格长度).</p>
+<h3 id="boundaries">1.7  Boundaries</h3>
+<p>SPH 处理边界有两种常用做法, 第一种是用固定不动的粒子模拟边界;
+第二种是用符号距离场 (SDF) 记录边界, 当粒子靠近边界时令其反弹.
+我们采用第一种, 因为它一方面实现起来较容易,
+每一帧更新时无需额外的边界逻辑; 另一方面能够实现复杂的边界.
+这种方法的一个不足是需要很多额外的粒子, 还可能出现粒子逸出的情况.
+为了缓解粒子逸出, 程序采用双层边界.</p>
+<p>初始化边界时需要为其赋予 "伪质量", 使得每个边界粒子处的密度值等于
+<span class="math inline">\(\rho_0\)</span>.</p>
+<h2 id="an-implementation">2  An implementation</h2>
+<h3 id="sph-solver">2.1  SPH solver</h3>
+<p>为了实时交互, 本程序采用计算负担较小的弱可压缩 SPH 算法 (WCSPH) 配合
+symplectic Euler 积分. 具体步骤已经在上文给出.</p>
+<p><strong>WCSPH 算法</strong>. 更新步骤在上面已经给出,
+只需在第一步之前再加入一步 "计算邻域表".</p>
+<p><strong>并行计算</strong>. 为了加速, 程序使用
+<code>std::thread</code> 实现多线程. 在每一帧的更新过程中,
+计算密度、压力、加速度、更新速度和位置这几个操作,
+不同的粒子是完全不干扰的, 可以直接并行, 每个线程各负责一部分粒子.
+但更新邻域表时, 不同粒子可能写到同一表项, 需要加锁. 实测发现并行计算对
+2D 场景效果不明显, 对 3D 场景加速作用明显.</p>
+<h3 id="visualization">2.2  Visualization</h3>
+<p><strong>Shader 2D</strong>. 二维的粒子渲染为小圆球.
+为了更好观察小球的速度等信息, 小球按照其速度着色:</p>
+<ul>
+<li>从速度慢到快, 分别为蓝色、黄色、红色. 颜色按照经过 sigmoid
+函数变换后的速度 <span class="math inline">\(\|v\|\)</span> 线性插值.
+颜色可以调整.</li>
+</ul>
+<p>在实现上, 只需给 particle 的 shader 传入 Velocities 向量, 在 vert
+shader 里面计算模长并传入 frag shader, 接着在 frag shader
+里插值即可.</p>
+<p>为了实现圆球的效果, 需要使用 <code>gl_PointCoord</code> 向量,
+它记录了当前像素在当前 particle 中的归一化坐标. 将其缩放到 <span class="math inline">\([-1,1]^2\)</span> 范围内后, 丢弃单位圆外的点.</p>
+<p><strong>Shader 3D</strong>. 三维的粒子渲染为 3D 立体小球. 颜色方案与
+2D 一样. 此外还实现了 Phong-Blinn 光照.</p>
+<p><strong>不同的场景</strong>. 目前有 4 个 2D 场景 (Square, Circle,
+Rotating cirlce, Pool) 和 2 个 3D 场景 (Cube, Cylinder). 其中, 2D 场景
+Rotating circle 是一个旋转的 "搅拌机", 通过在更新时旋转边界点来实现
+(实现逻辑并不复杂, 可以看作 Lagrangian 方法的优势之一).</p>
+<h3 id="interaction">2.3  Interaction</h3>
+<p>受到已有模拟器的启发,
+我在模拟程序中实现了添加粒子、施加外力这两个功能,
+为模拟添加了不确定性和一些乐趣.</p>
+<p><strong>添加粒子</strong>.
+按下按钮可以在场景上方固定位置生成固定大小的立方体. 需要注意的是,
+添加粒子最好保证该区域内没有太多其他粒子, 否则可能导致粒子重叠而爆炸. 2D
+和 3D 场景分别有最大粒子数的限制.</p>
+<p><strong>施加外力 (仅 2D)</strong>. 鼠标左键按下并移动, 就会在半径
+<span class="math inline">\(kh\)</span> (<span class="math inline">\(h\)</span> 是 kernel 半径)
+之内施加与移动速度成正比的外力. 半径 <span class="math inline">\(k\)</span> 可以调整. 需要注意的是,
+移动速度过快可能导致能量过大而爆炸.</p>
+<p>三维场景的施加外力功能没有实现. 由于相机投影的 ambiguity,
+目前还没有想到一个好办法处理. 未来的工作还包括解决交互中 "爆炸"
+的问题.</p>
+<h3 id="results">2.4  Results</h3>
+<p><strong>2D</strong>.</p>
+<p>渲染的帧率基本稳定在 120 fps, 模拟的速度与线上 demo 相比慢一点,
+但也是可以接受的水平. 模拟速度和帧率受粒子数影响不大.</p>
+<p>速度可视化让一些现象变得直观. 可以观察到流体中的多个漩涡: (为了直观,
+将粒子大小调到最大)</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="./images/sph-whirpool-1.png" srcset="/img/loading.gif" lazyload style="width:260px"></th>
+<th style="text-align: center;"><img src="./images/sph-whirpool-2.png" srcset="/img/loading.gif" lazyload style="width:260px"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>用鼠标添加外力, 可以明显观察到波的产生和反射:</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="./images/sph-force-1.png" srcset="/img/loading.gif" lazyload style="width:260px;"></th>
+<th style="text-align: center;"><img src="./images/sph-force-2.png" srcset="/img/loading.gif" lazyload style="width:260px;"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>3D</strong>.</p>
+<p>Cube 场景:</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="./images/sph-cube-1.png" srcset="/img/loading.gif" lazyload style="width:240px"></th>
+<th style="text-align: center;"><img src="./images/sph-cube-2.png" srcset="/img/loading.gif" lazyload style="width:240px"></th>
+<th style="text-align: center;"><img src="./images/sph-cube-3.png" srcset="/img/loading.gif" lazyload style="width:240px"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>模拟和渲染的速度受粒子数量影响较大. 当粒子数较少时, 渲染的帧率稳定在
+120 fps, 模拟速度略快于 2D. 当粒子数较大时, 模拟速度不太稳定 (特别是 add
+particles 后新旧流体接触时).</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>https://sph-tutorial.physics-simulation.org/pdf/SPH_Tutorial.pdf<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://interactivecomputergraphics.github.io/physics-simulation/examples/wcsph.html<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://sph-tutorial.physics-simulation.org/pdf/SPH_Tutorial.pdf<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://sph-tutorial.physics-simulation.org/pdf/SPH_Tutorial.pdf<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/CG/" class="category-chain-item">CG</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
+      
+        <a href="/tags/%E6%A8%A1%E6%8B%9F/" class="print-no-link">#模拟</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>一个简单的 SPH 流体模拟器</div>
+      <div>https://disembo.github.io/Note/CG/sph-fluid/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm218-6/" title="GTM218 | 6 光滑映射的局部性态">
+                        <span class="hidden-mobile">GTM218 | 6 光滑映射的局部性态</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
