@@ -16,27 +16,26 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Differential Geometry: Connections, Curvature, and Characteristic Classes (Loring W. Tu) 的笔记合集.">
+    <meta name="description" content="计算机图形学几门课程的笔记.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM275 | 微分几何笔记">
-<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-index/index.html">
+<meta property="og:title" content="计算机图形学笔记">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/cg-index/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="Differential Geometry: Connections, Curvature, and Characteristic Classes (Loring W. Tu) 的笔记合集.">
+<meta property="og:description" content="计算机图形学几门课程的笔记.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-19T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-13T13:03:07.704Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/index-cg-fields.png">
+<meta property="article:published_time" content="2025-02-19T03:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-19T03:27:15.213Z">
 <meta property="article:author" content="jin">
-<meta property="article:tag" content="数学">
-<meta property="article:tag" content="微分几何">
-<meta property="article:tag" content="黎曼几何">
-<meta property="article:tag" content="示性类">
+<meta property="article:tag" content="计算机图形学">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/index-cg-fields.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>GTM275 | 微分几何笔记 | Jin&#39;s Blog</title>
+  <title>计算机图形学笔记 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM275 | 微分几何笔记"></span>
+            <span id="subtitle" data-typed-text="计算机图形学笔记"></span>
           
         </div>
 
@@ -230,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-19 23:00" pubdate>
-          2024年7月19日 晚上
+        <time datetime="2025-02-19 11:00" pubdate>
+          2025年2月19日 上午
         </time>
       </span>
     
@@ -274,95 +273,35 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GTM275 | 微分几何笔记</h1>
+            <h1 id="seo-header">计算机图形学笔记</h1>
             
             
               <div class="markdown-body">
                 
                 <html><head></head><body>
 <div class="note note-secondary">
-<p><em>Differential Geometry: Connections, Curvature, and Characteristic
-Classes</em> by Loring W. Tu (GTM275)</p>
+<p>课程《可视计算与交互概论》(<a target="_blank" rel="noopener" href="https://vcl.pku.edu.cn/course/vci/">课程网站</a>)
+《几何计算前沿》和《图形学中的物理仿真》的笔记.</p>
 </div>
-<p>这本书写得非常清楚, 作者在每章前会介绍概念的来龙去脉和动机,
-学的时候容易抓住主线. 书的内容很细致, 逻辑链很完整, 适合自学.</p>
-<p>作者从欧氏空间中的经典微分几何讲起, 前几章的核心是证明 Gauss
-绝妙定理, 并将曲率高斯曲率推广到一般的流形. 接下来一部分的核心是测地线与
-Gauss-Bonnet 定理. Gauss-Bonnet 定理自然引出了向量丛上的示性类. 最终,
-导向主丛上的联络和示性类. 本书的一个缺憾可能是主线之外的内容介绍较少,
-习题也少有拓展/挑战性的内容.</p>
-<p>曲率是黎曼几何最基本的不变量. 从几何直观上讲,
-<strong>截面曲率</strong>的概念是 Gauss 曲率的直接推广
-(在此之前有曲线曲率的概念), 第 3 篇笔记的 9.3 节进行了一些简单的介绍.
-从代数上看, 联络的<strong>曲率张量</strong>反映了平行移动的某种非对称性,
-可以衡量一个黎曼流形局部上与平直空间的 "差距".</p>
-<p>黎曼流形的局部度量 (黎曼度量) 可以给出整体的<strong>距离</strong>结构
-(距离函数). 局部上看, 两点间距离由测地线实现. 测地线既是 "最直" 的线,
-即切向量关于自身求导为零, 又是线长取极值的曲线. Hopf-Rinow 定理表明,
-黎曼流形在分析上的<strong>完备性</strong> (测地完备)
-和拓扑上的<strong>完备性</strong> (完备距离空间) 是等价的.</p>
-<p>另一个联系几何与拓扑的定理是 Gauss-Bonnet 定理,
-即高斯曲率在流形上的积分给出欧拉数.
-这引出了向量丛上的<strong>示性类</strong>理论, 即局部几何量 (曲率)
-可以构造出整体的拓扑量 (示性类). 示性类在流形上的积分称为示性数,
-它们也是拓扑不变量. 示性类反映了向量丛整体的 "非平凡性", 是它们
-"扭曲程度" 的衡量.</p>
-<p>向量丛的联络可以推广到主丛上, 但是由于主丛没有向量丛那样的线性结构,
-所以定义会比较复杂抽象. 若将主丛看作若干竖直纤维组成的,
-那么<strong>联络</strong>给出了一个 "水平" 的结构 (每一点的水平子空间).
-李群传递地作用于每一根竖直的纤维; 而水平结构将不同的纤维联系起来,
-因此称为<strong>联络</strong>.
-联络的<strong>曲率</strong>给出主丛的示性类.
-主丛的<strong>示性类</strong>将主丛与上同调类联系起来, 是一个拓扑不变量,
-衡量了主丛与平凡丛的差距.</p>
-<p>主丛部分很抽象, 逻辑链挺长, 各种符号满天飞,
-我学的时候费了很大劲才搞懂 (大概).</p>
-<p><strong>第一部分: 向量丛上的联络与曲率, Gauss 绝妙定理.</strong></p>
-<ol type="1">
-<li><a href="/Note/dg-gtm275-1">曲率与向量场</a>: 黎曼流形,
-欧氏空间的方向导数, 曲面的曲率 (法曲率, 形状算子, 基本形式).</li>
-<li><a href="/Note/dg-gtm275-2">曲率与向量场</a>: 仿射联络, 黎曼联络
-(黎曼几何基本定理), 拉回联络; 向量丛 (点算子和局部算子);
-高斯绝妙定理的证明和推广.</li>
-<li><a href="/Note/dg-gtm275-3">曲率与微分形式</a>: 向量丛上的联络,
-联络与曲率形式, 高斯曲率与曲率形式的关系 (绝妙定理),
-截面曲率和常曲率流形.</li>
-</ol>
-<p><strong>第二部分: 黎曼流形的测地线与完备性, Gauss-Bonnet
-定理.</strong></p>
-<ol start="4" type="1">
-<li><a href="/Note/dg-gtm275-4">测地线</a>: 克氏符, 沿曲线的协变导数,
-测地线, 指数映射.
+<p><strong>计算机视觉 (Computer Vision, CV)</strong>
+和<strong>计算机图形学 (Computer Graphics, CG)</strong>
+是计算机领域两个密切相关的学科. CV 的重点在于让计算机 "看到" 并 "理解"
+世界, 即从图像、视频等资料中提取有关真实世界的信息
+(比如检测物体、识别人脸、从图像重建三维场景等), 而 CG
+的重点在于用计算机处理、生成可视化的信息 (比如 3D
+建模、流体模拟、渲染电影和游戏场景、VR 等). CG
+大致可以分为下面几个领域:</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/index-cg-fields.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p><strong>几何表示与处理</strong>.</p>
+<p><strong>几何理解</strong>.</p>
+<p><strong>几何生成</strong>.</p>
+<p><strong>物理仿真</strong>.</p>
 <ul>
-<li><a href="/Note/dg-gtm275-4-Lie">李群上的指数映射</a>:
-李群的指数映射, 双不变度量. (under construction)</li>
-</ul></li>
-<li><a href="/Note/dg-gtm275-5">测地线</a>: 黎曼流形的距离结构, 完备性
-(Hopf-Rinow 定理); 体积形式, Gauss-Bonnet 定理.</li>
-</ol>
-<p><strong>第三部分: 代数与拓扑工具.</strong></p>
-<ol start="6" type="1">
-<li><a href="/Note/dg-gtm275-6">代数与拓扑工具</a>:
-模的张量积和楔积.</li>
-<li><a href="/Note/dg-gtm275-7">代数与拓扑工具</a>: 向量丛的构造 (子丛,
-商丛, 拉回丛, 光滑函子), 张量场和向量值微分形式.</li>
-</ol>
-<p><strong>第四部分: 向量丛上的示性类.</strong></p>
-<ol start="8" type="1">
-<li><a href="/Note/dg-gtm275-8">向量丛与示性类</a>: 张量场的协变导数,
-曲率张量与 Bianchi 恒等式, 向量丛的示性类.</li>
-<li><a href="/Note/dg-gtm275-9">向量丛与示性类</a>: Pontrjagin, Euler 和
-Chern 类简介, 一点应用.</li>
-</ol>
-<p><strong>第五部分: 主丛上的联络与示性类.</strong></p>
-<ol start="10" type="1">
-<li><a href="/Note/dg-gtm275-10">主丛与示性类</a>: 李群作用和基本向量场,
-主丛, 标架丛, 竖直子丛, 水平分布.</li>
-<li><a href="/Note/dg-gtm275-11">主丛与示性类</a>: 主丛上的联络
-(两种定义的等价性), 标架丛上的诱导联络, 联络的曲率.</li>
-<li><a href="/Note/dg-gtm275-12">主丛与示性类</a>: 配丛,
-张量性形式的协变导数, 主丛上的示性类.</li>
-</ol>
+<li><a href="/Note/CG/sph-simulator">一个简单的 SPH 流体模拟器</a>.</li>
+</ul>
+<p><strong>动画原理</strong>.</p>
+<p><strong>光照与渲染</strong>.</p>
+<p><strong>人机交互</strong>.</p>
 </body></html>
                 
               </div>
@@ -384,6 +323,13 @@ Chern 类简介, 一点应用.</li>
   <a href="/categories/Note/" class="category-chain-item">Note</a>
   
   
+    <span>></span>
+    
+  <a href="/categories/Note/CG/" class="category-chain-item">CG</a>
+  
+  
+
+  
 
       </span>
     
@@ -396,13 +342,7 @@ Chern 类简介, 一点应用.</li>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
-      
-        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
-      
-        <a href="/tags/%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95/" class="print-no-link">#黎曼几何</a>
-      
-        <a href="/tags/%E7%A4%BA%E6%80%A7%E7%B1%BB/" class="print-no-link">#示性类</a>
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
       
     </div>
   
@@ -414,8 +354,8 @@ Chern 类简介, 一点应用.</li>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM275 | 微分几何笔记</div>
-      <div>https://disembo.github.io/Note/dg-gtm275-index/</div>
+      <div>计算机图形学笔记</div>
+      <div>https://disembo.github.io/Note/CG/cg-index/</div>
     </div>
     <div class="license-meta">
       
@@ -427,7 +367,7 @@ Chern 类简介, 一点应用.</li>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月19日</div>
+          <div>2025年2月19日</div>
         </div>
       
       
@@ -459,18 +399,12 @@ Chern 类简介, 一点应用.</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-1/" title="GTM202 | 1 拓扑空间">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM202 | 1 拓扑空间</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Note/dg-gtm275-12/" title="GTM275 | 12 主丛与示性类">
-                        <span class="hidden-mobile">GTM275 | 12 主丛与示性类</span>
+                      <a href="/Note/CG/sph-simulator/" title="一个简单的 SPH 流体模拟器">
+                        <span class="hidden-mobile">一个简单的 SPH 流体模拟器</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -19,28 +19,28 @@
     <meta name="description" content="实现一个具有实时交互功能的弱不可压缩 SPH 流体模拟器.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个简单的 SPH 流体模拟器">
-<meta property="og:url" content="https://disembo.github.io/Note/CG/sph-fluid/index.html">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/sph-simulator/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="实现一个具有实时交互功能的弱不可压缩 SPH 流体模拟器.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-sketch.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cubic-spline-kernel.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-surface-deficiency.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-whirpool-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-whirpool-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-force-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-force-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cube-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cube-2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cube-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/sketch.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cubic-spline-kernel.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/surface-deficiency.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/whirpool-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/whirpool-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/force-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/force-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cube-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cube-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cube-3.png">
 <meta property="article:published_time" content="2025-02-14T14:30:00.000Z">
-<meta property="article:modified_time" content="2025-02-16T03:33:37.891Z">
+<meta property="article:modified_time" content="2025-02-19T03:20:38.579Z">
 <meta property="article:author" content="jin">
-<meta property="article:tag" content="物理">
 <meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="物理">
 <meta property="article:tag" content="模拟">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-sketch.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/sketch.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -306,7 +306,7 @@ Lagrangian 方法在处理复杂或动态边界上比较有优势.</p>
 SPH 的基本思想是用 (空间中) 离散的采样点来代替连续的物理量, 如密度等.
 这些离散的采样点也称为 "粒子", 每个粒子 <span class="math inline">\(p\in\R^d\)</span> 都携带着物理量 <span class="math inline">\(A(p)\)</span>, 而任意一点处的物理量 <span class="math inline">\(A(x)\)</span> (<span class="math inline">\(x\in\R^d\)</span>) 可以通过 "核函数" 插值得到,
 如下图.</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-sketch.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/sketch.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
 <p>此外, 微分算子 (如梯度, 散度等) 也有其离散化版本.
 将物理量和微分算子离散化之后, 我们就可以将流体力学方程写成离散的版本,
 把连续流体动力学问题转化为粒子相互作用问题, 通过 Euler 积分法求解.</p>
@@ -345,13 +345,11 @@ A(x) \approx (A*W_h)(x) = \int_{\R^d} A(p)W_h(x-p)\dd{p}.
 \]</span></p>
 <div class="note note-secondary">
 <p>式 <span class="math inline">\(\eqref{convApprox}\)</span>
-的误差分析. 令 <span class="math inline">\(h\to0\)</span>. 根据紧支性,
-被积函数只有 <span class="math inline">\(\|x-p\|&lt;h\to0\)</span>
-时非零. 对 <span class="math inline">\(A(x)\)</span> 在 <span class="math inline">\(x\)</span> 处 Taylor 展开, <span class="math display">\[
+的误差分析. 令 <span class="math inline">\(h\to0\)</span>. 根据 <span class="math inline">\(W_h\)</span> 的紧支性, 被积函数只有 <span class="math inline">\(\|x-p\|&lt;h\to0\)</span> 时非零. 对 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(x\)</span> 处 Taylor 展开, <span class="math display">\[
 \Align{
 A(p) = A(x)
-&amp;+{} \sum_i \partial_iA(x) (p_i-x_i) \\
-&amp;+{} \sum_{ij} \partial_{ij}A(x) (p_i-x_i)(p_j-x_j) \\
+&amp;+{} \sum_i \partial_iA(x) (p^i-x^i) \\
+&amp;+{} \sum_{ij} \partial_{ij}A(x) (p^i-x^i)(p^j-x^j) \\
 &amp;+{} o(\|p-x\|^2),
 }
 \]</span> 代入 <span class="math inline">\(\eqref{convApprox}\)</span>
@@ -362,16 +360,16 @@ A(p) = A(x)
   \underbrace{\int_{\R^d} W_h(x-p) \dd{p}}_1 \\
 &amp;\hspace{1em}+{}
   \sum_i \partial_iA(x)
-  \underbrace{\int_{\R^d} W_h(x-p) (p_i-x_i) \dd{p}}_0 \\
+  \underbrace{\int_{\R^d} W_h(x-p) (p^i-x^i) \dd{p}}_0 \\
 &amp;\hspace{1em}+{}
   \sum_{ij} \underbrace{\partial_{ij}A(x)}_{\mathcal{O}(1)}
   \underbrace{
-      \int_{\R^d} W_h(x-p) (p_i-x_i)(p_j-x_j) \dd{p}
+      \int_{\R^d} W_h(x-p) (p^i-x^i)(p^j-x^j) \dd{p}
   }_{\mathcal{O}(h^2)} + o(h^2) \\
 &amp;= A(x) + \mathcal{O}(h^2),
 }
 \]</span> (根据归一化性质, 第一个积分为 <span class="math inline">\(1\)</span>; 根据对称性, 第二个积分为零;
-由光滑性和紧支性, <span class="math inline">\(A(x)\)</span>
+由光滑性和紧支性, <span class="math inline">\(A\)</span>
 的各阶偏导数有界) 因此式 <span class="math inline">\(\eqref{convApprox}\)</span> 具有 <span class="math inline">\(h^2\)</span> 级别的误差, 支半径 <span class="math inline">\(h\)</span> 越小, 精度越高.</p>
 </div>
 <p>一个常用的核函数是<strong>三次样条核函数 (cubic spline
@@ -385,7 +383,7 @@ W_h(x) = \sigma_d \Cases{
 归一化因子 <span class="math inline">\(\sigma_d\)</span> 与维数有关,
 对于 <span class="math inline">\(d=1,2,3\)</span>, 分别有 <span class="math inline">\(\sigma_d=\frac{4}{3h},\frac{40}{7\pi
 h^2},\frac{8}{\pi h^3}\)</span>. 二维的 <span class="math inline">\(W_h\)</span> 图像如下 (图源教程<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">https://sph-tutorial.physics-simulation.org/pdf/SPH_Tutorial.pdf</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>).</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cubic-spline-kernel.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cubic-spline-kernel.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
 <h3 id="discretizing-field-quantities">1.2  Discretizing field
 quantities</h3>
 <p>为了计算, 需要把积分离散为求和. 设流体的密度场为 <span class="math inline">\(\rho(x)\)</span>, 则质量 <span class="math inline">\(\dd{m}=\rho(x)\dd{V}=\rho(x)\dd{x}\)</span>.
@@ -394,26 +392,61 @@ quantities</h3>
 A_i = A(p_i)
 &amp;\approx \int_{\R^n} \frac{A(p)}{\rho(p)} W_h(p_i-p)
     \cdot \underbrace{\rho(p)\dd{p}}_{\dd{m}} \\
-&amp;\approx \sum_{j=1}^n A_j\frac{m_j}{\rho_j} W_h(p_i-p_j),
+&amp;\approx \sum_{j=1}^n A_j\frac{m_j}{\rho_j} W_h(p_i-p_j) =: \lr{A_i}
 } \label{disField}\tag{c}
 \]</span> 为了方便, 记 <span class="math inline">\(W_{ij}:=W_h(p_i-p_j)\)</span>.
 注意核函数的紧支性条件, 这使得当 <span class="math inline">\(\|p_i-p_j\|\geq h\)</span> 时 <span class="math inline">\(W_{ij}=0\)</span>, 大大减少了求和的项数,
 提高了模拟的效率 (即只需考虑 <span class="math inline">\(h\)</span>-邻域内的粒子).</p>
 <p>特别地, 取 <span class="math inline">\(A(x)\)</span> 为密度场 <span class="math inline">\(\rho(x)\)</span>, 即得到密度场的离散化公式 <span class="math display">\[
-\rho_i \approx \sum_{j=1}^n m_j W_{ij},
+\rho_i \approx \lr{\rho_i} = \sum_{j=1}^n m_j W_{ij},
 \label{disRho}\tag{d}
 \]</span> 只需记录每个粒子的质量 <span class="math inline">\(m_i\)</span>, 就能还原出每个粒子处的密度.
 需要注意的是, 由于靠近液体表面的粒子其邻域内粒子较少 (如下图, 图源教程<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">https://sph-tutorial.physics-simulation.org/pdf/SPH_Tutorial.pdf</hcontent><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" style="text-decoration: none;"><sup>[4]</sup></a></span>),
 使用上式会导致液体表面的密度被低估, 需要进行补偿.</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-surface-deficiency.png" style="zoom:25%;" cloud-img="" lazyload="true"></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/surface-deficiency.png" style="zoom:25%;" cloud-img="" lazyload="true"></p>
+<div class="note note-secondary">
+<p>式 <span class="math inline">\(\eqref{disField}\)</span> 的误差分析.
+将 <span class="math inline">\(A\)</span> 的 Taylor 展开代入 <span class="math inline">\(\eqref{disField}\)</span> 式右边, 得到 <span class="math display">\[
+\Align{
+\lr{A_i}
+&amp;= \orange{A_i} \sum_j\frac{m_j}{\rho_j} W_h(p_i-p_j) \\
+&amp;\hspace{1em}{}+ \nabla A(p_i)
+  \cdot\sum_j(p_j-p_i)\frac{m_j}{\rho_j} W_h(p_i-p_j) \\
+&amp;\hspace{1em}{}+ \mathcal{O}(\|p_j-p_i\|^2).
+}
+\]</span> 可见, 为了达到零阶精度, 应有 <span class="math display">\[
+\sum_j\frac{m_j}{\rho_j}W_h(p_i-p_j)=1.
+\]</span> 为了达到一阶精度, 应进一步有 <span class="math display">\[
+\sum_j(p_j-p_i)\frac{m_j}{\rho_j} W_h(p_i-p_j)=0.
+\]</span></p>
+</div>
 <h3 id="discretizing-differential-operators">1.3  Discretizing differential
 operators</h3>
-<p>根据 <span class="math inline">\((\textrm{b})\)</span>
-可以直接推导出梯度的公式 <span class="math display">\[
-\nabla A_i := \nabla A(p_i)
-\approx \sum_j A_j \frac{m_j}{\rho_j} \nabla W_{ij}.
-\]</span> 然而这种 "直接近似" 有较大的误差, 且会导致模拟不稳定.
-下面我们给出在实际中两种常用的梯度公式.</p>
+<p>直接对 <span class="math inline">\(\eqref{disField}\)</span>
+式求梯度, 可以得到梯度的直接近似, <span class="math display">\[
+\nabla A_i
+\approx
+\nabla \lr{A_i} = \sum_j A_j \frac{m_j}{\rho_j} \nabla W_{ij}.
+\]</span> &gt; 该式的误差分析. 将 <span class="math inline">\(A\)</span>
+的 Taylor 展开代入上式, 得到 &gt; <span class="math display">\[
+&gt; \Align{
+&gt; \nabla \lr{A_i}
+&gt; &amp;= A_i \sum_j \frac{m_j}{\rho_j} \nabla W_{ij} \\
+&gt; &amp;\hspace{1em}{}+ \orange{\nabla A(p_i)}
+&gt;   \cdot \sum_j (p_j-p_i) \frac{m_j}{\rho_j} \nabla W_{ij} \\
+&gt; &amp;\hspace{1em}{}+ \mathcal{O}(\|p_j-p_i\|^2).
+&gt; }
+&gt; \]</span> &gt; 为了达到零阶 (一阶) 精度, 应成立下面左式 (两式) &gt;
+<span class="math display">\[
+&gt; \Align{
+&gt; \lr{\nabla1}\equiv
+&gt; \sum_j \frac{m_j}{\rho_j} \nabla W_{ij} &amp;= 0, &amp;
+&gt; \sum_j \frac{m_j}{\rho_j} (p_j-p_i) \otimes \nabla W_{ij}
+&gt;   &amp;= {\rm id}_d.
+&gt; }
+&gt; \]</span></p>
+<p>这种 "直接近似" 一般误差比较大, 且会导致模拟不稳定.
+下面我们给出在实际中常用的两种梯度公式.</p>
 <p>梯度的<strong>差分公式 (difference formula)</strong> 为 <span class="math display">\[
 \nabla A_i\approx \sum_j\frac{m_j}{\rho_j} (A_j-A_i)\nabla_iW_{ij}.
 \]</span> 它可以保证 <span class="math inline">\(0\)</span> 阶准确性 (即
@@ -596,8 +629,8 @@ Rotating circle 是一个旋转的 "搅拌机", 通过在更新时旋转边界�
 
 <thead>
 <tr>
-<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-whirpool-1.png" style="width:260px" cloud-img="" lazyload="true"></th>
-<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-whirpool-2.png" style="width:260px" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/whirpool-1.png" style="width:260px" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/whirpool-2.png" style="width:260px" cloud-img="" lazyload="true"></th>
 </tr>
 </thead>
 <tbody>
@@ -608,8 +641,8 @@ Rotating circle 是一个旋转的 "搅拌机", 通过在更新时旋转边界�
 
 <thead>
 <tr>
-<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-force-1.png" style="width:260px;" cloud-img="" lazyload="true"></th>
-<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-force-2.png" style="width:260px;" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/force-1.png" style="width:260px;" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/force-2.png" style="width:260px;" cloud-img="" lazyload="true"></th>
 </tr>
 </thead>
 <tbody>
@@ -621,9 +654,9 @@ Rotating circle 是一个旋转的 "搅拌机", 通过在更新时旋转边界�
 
 <thead>
 <tr>
-<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cube-1.png" style="width:240px" cloud-img="" lazyload="true"></th>
-<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cube-2.png" style="width:240px" cloud-img="" lazyload="true"></th>
-<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/sph-simulator/sph-cube-3.png" style="width:240px" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cube-1.png" style="width:240px" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cube-2.png" style="width:240px" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cube-3.png" style="width:240px" cloud-img="" lazyload="true"></th>
 </tr>
 </thead>
 <tbody>
@@ -681,9 +714,9 @@ particles 后新旧流体接触时).</p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
-      
         <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
+      
+        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
       
         <a href="/tags/%E6%A8%A1%E6%8B%9F/" class="print-no-link">#模拟</a>
       
@@ -698,7 +731,7 @@ particles 后新旧流体接触时).</p>
   <div class="license-box my-3">
     <div class="license-title">
       <div>一个简单的 SPH 流体模拟器</div>
-      <div>https://disembo.github.io/Note/CG/sph-fluid/</div>
+      <div>https://disembo.github.io/Note/CG/sph-simulator/</div>
     </div>
     <div class="license-meta">
       
@@ -741,6 +774,12 @@ particles 后新旧流体接触时).</p>
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Note/CG/cg-index/" title="计算机图形学笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计算机图形学笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
