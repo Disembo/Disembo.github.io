@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg1-voronoi-and-delaunay.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg1-alpha-shape.png">
 <meta property="article:published_time" content="2024-03-03T14:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-04T04:39:01.025Z">
+<meta property="article:modified_time" content="2025-03-04T05:57:22.546Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="计算几何">
@@ -335,6 +335,9 @@ On the other hand, topological changes and distance queries are easy for
 implicit surfaces but sampling and shape editing is not straightforward
 and the geometric detail resolution depends on the voxel size.</p>
 </div>
+<p>我们目前只介绍一些最基本的表示方法. 一些先进的方法, 比如八叉树
+(体素的升级版, 实现自适应分辨率), radiance field, 3D Gaussian
+等将在之后特定 topic 中介绍.</p>
 <h3 id="三角形网格">1.1  三角形网格</h3>
 <p>严格地说, 一个多边形网格指的是 <span class="math inline">\(\R^3\)</span> 中有限个多边形的集合 <span class="math inline">\({\cal K}\)</span>, 满足:</p>
 <ul>

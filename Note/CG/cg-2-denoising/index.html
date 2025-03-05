@@ -1,0 +1,995 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Laplace 平滑, 双边滤波, 稀疏优化和数据驱动的算法.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网格去噪与光顺">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/cg-2-denoising/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="Laplace 平滑, 双边滤波, 稀疏优化和数据驱动的算法.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-denoising-history.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-high-order-laplacians.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-bilateral.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-L0-laplacian.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-L0-edge-lap.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-L0-comparison.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-cascaded-regression.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-cascaded-regression-results.png">
+<meta property="article:published_time" content="2025-03-05T12:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-05T12:02:10.222Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="计算几何">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-denoising-history.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>网格去噪与光顺 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="网格去噪与光顺"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-05 20:00" pubdate>
+          2025年3月5日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">网格去噪与光顺</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="三角形网格的去噪光顺">3  三角形网格的去噪光顺</h2>
+<p>扫描设备获取的点云通常有很大噪声, 原本平坦的表面凹凸不平.
+我们需要对网格进行<strong>去噪 (denoising)</strong>
+以尽量还原几何体的形状. 一个相似的概念是<strong>光顺
+(smoothing)</strong>, 它比去噪更近一步, 删去网格的高频细节,
+把网格近一步平滑化.</p>
+<p>网格去噪算法的发展大致经历了从纯几何算法 (下图第一阶段)
+到全局优化算法 (下图第二阶段) 最后到数据驱动的深度学习算法
+(下图第三阶段). 图片截自王鹏帅老师的 PPT.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-denoising-history.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<h3 id="laplace-平滑">3.1  Laplace 平滑</h3>
+<div class="note note-secondary">
+<p>原论文: <em>Implicit Fairing of Irregular Meshes using Diffusion and
+Curvature Flow</em>, SIGGRAPH 1999.</p>
+</div>
+<p>热传导方程描述了物体的温度场 <span class="math inline">\(u(x,t)\)</span> 随时间的变化: <span class="math display">\[
+\pdv{u}{t} = \lambda\Delta u.
+\]</span> (参数 <span class="math inline">\(\lambda&gt;0\)</span>)
+温度场随时间会逐渐变得平滑. 受到热传导方程的启发,
+我们可以用类似的思路进行网格平滑.</p>
+<p>热传导方程在曲面 <span class="math inline">\(\Sigma\subset\R^3\)</span> 上的版本由曲面的
+Laplace-Beltrami 算子 <span class="math inline">\(\Delta\)</span> 给出:
+<span class="math display">\[
+\pdv{f}{t} = \lambda\Delta f,
+\]</span> 其中 <span class="math inline">\(f:\Sigma\to\R\)</span>
+是曲面上随时间演化的可微函数, 它会越来越平缓. 特别地, 将曲面的浸入 <span class="math inline">\(F:\Sigma\to\R^3\)</span>
+(它给出了曲面上每一点的三维坐标) 代入: <span class="math display">\[
+\pdv{F}{t} = \lambda\Delta F,
+\]</span> 便可以让曲面变得平滑.</p>
+<ul>
+<li><p>实际上, <span class="math inline">\(\Delta F=2Hn\)</span>, 其中
+<span class="math inline">\(n\)</span> 是单位法向量场, <span class="math inline">\(H\)</span> 是曲面的平均曲率 (mean curvature).
+直观上看, <span class="math inline">\(Hn\)</span> 指向
+"曲面弯曲得最厉害的方向"<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">对于球面/柱面来说, <span class="math inline">\(Hn\)</span> 指向内部; 对于标准 (主轴长相等)
+双曲抛物面来说, <span class="math inline">\(Hn\)</span> 在中心处为零.
+平均曲率为零意味着该点是曲面的 "鞍点".</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>.</p>
+<p>因此, 热传导方程化为 <span class="math display">\[
+\pdv{F}{t} = \frac{\lambda}{2} Hn.
+\]</span> (称为平均曲率流) 从几何上来看, 它使得曲面沿着其法向演化,
+并减小曲面的表面积; 该方程的稳态满足 <span class="math inline">\(\Delta
+F=0\)</span>, 即 <span class="math inline">\(H=0\)</span>.
+此时的曲面称为极小曲面 (minimal surface), 因其表面积取极小值<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">将铁丝弯成封闭曲线, 浸入肥皂水,
+肥皂薄膜形成的曲面就是极小曲面.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span>.</p></li>
+</ul>
+<p>总之, 如果我们有三角形网格 <span class="math inline">\({\cal
+K}\)</span>, 其顶点集为 <span class="math inline">\(\{x_i\}\)</span>,
+那么我们可以应用离散化的平均曲率流 <span class="math display">\[
+x_i^{(k+1)} = x_i^{(k)} + \tau\Delta x_i^{(k)},
+\]</span> 其中 <span class="math inline">\(x_i^{(k)}\)</span> 表示时间
+<span class="math inline">\(k\)</span> 时的位置; <span class="math inline">\(\tau&gt;0\)</span> 为步长; <span class="math inline">\(\Delta x_i^{(k)}\)</span> 是 <span class="math inline">\(x_i\)</span> 处 (离散) Laplace-Beltrami
+算子的结果. 上式是显式 Euler 方法, 容易导致数值不稳定.
+我们将其替换为隐式 Euler 方法: <span class="math display">\[
+\Align{
+x_i^{(k+1)} &amp;= x_i^{(k)} + \tau\Delta x_i^{(k+1)}, \\
+\textsf{即}\quad
+({\rm id} - \tau\Delta) x_i^{(k+1)} &amp;= x_i^{(k)}.
+}
+\]</span> 这是一个线性方程 (注意到 <span class="math inline">\(\Delta\)</span> 的 uniform formula 或 cotangent
+formula 都是 <span class="math inline">\(x_i^{(k+1)}\)</span> 的一次式<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Cotangent formula 中的内角应利用 <span class="math inline">\(x_i^{(k)}\)</span> 计算.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>), 可以使用 Gauss-Seidel 迭代 /
+共轭梯度 / LU 分解等成熟的方法求解.</p>
+<ul>
+<li>迭代步长 <span class="math inline">\(\tau\)</span> 和迭代次数 <span class="math inline">\(K\)</span> 需要手动调整.</li>
+</ul>
+<p>另外, 也可以使用高阶 Laplacian: <span class="math display">\[
+\pdv{F}{t} = \lambda\Delta^k F,
+\]</span> 它们通常能取得更好的结果, 但是计算成本较高, 故不常用.
+下图展示了高阶 Laplacian 的稳态解, 它们能达到更好的平滑效果 (图源课程
+PPT<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">原图自论文 <em>An Intuitive Framework for Real-Time
+Freeform Modeling</em>.</hcontent><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" style="text-decoration: none;"><sup>[4]</sup></a></span>).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-high-order-laplacians.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<h3 id="顶点双边滤波">3.2  顶点双边滤波</h3>
+<div class="note note-secondary">
+<p>原论文: <em>Bilateral Mesh Denoising</em>, SIGGRAPH 2003.</p>
+</div>
+<p>Laplacian 算法可以把噪音去除, 但是也会抹去几何体原本的细节信息
+(如果用 uniform formula, Laplace
+平滑实际上就是让顶点坐标趋于附近顶点的均值, 类似于 Gauss 模糊).
+为此引入双边滤波, 避免过度平滑.</p>
+<p>先从图像的双边滤波讲起. 设图像 <span class="math inline">\(I\)</span>,
+它的双边滤波可以在去除噪声的同时保持边缘: <span class="math display">\[
+I'(x) := \frac1{K_x} \sum_{y\in N(x)}
+    \underbrace{G_{\sigma_s} (\|y-x\|)}_{\textsf{space/domain kernel}}
+    \cdot \underbrace{G_{\sigma_r} (\|I(y)-I(x)\|)}_{\textsf{range
+kernel}}
+    \cdot I(y).
+\]</span> 其中 <span class="math inline">\(G_{\sigma_s},G_{\sigma_r}\)</span> 是两个正态分布,
+<span class="math inline">\(N(x)\)</span> 是 <span class="math inline">\(x\)</span> 的邻域, <span class="math inline">\(K_x\)</span> 是归一化项. 双边滤波在 Gauss
+模糊的基础上添加了 range kernel: 如果 <span class="math inline">\(x,y\)</span> 像素差异过大, 则 range kernel
+的值极小, 进而 <span class="math inline">\(I(y)\)</span> 的贡献几乎为零,
+不会让边缘变得模糊.</p>
+<p>该论文将双边滤波引入网格去噪. 然而, 我们的待去噪函数 (即图像的 <span class="math inline">\(I(x)\)</span>) 恰好就是网格位置 <span class="math inline">\(x\)</span>, 如果直接代入会导致双边滤波退化为 (类)
+Gauss 模糊: <span class="math display">\[
+x' = \frac1{K_x} \sum_{y\in N(x)}
+G_{\sigma_s}(\orange{\|y-x\|})G_{\sigma_r}(\orange{\|y-x\|})y.
+\]</span> 为此, 我们不去对 <span class="math inline">\(x\)</span>
+进行双边滤波, 而是对高度图进行双边滤波. 设顶点 <span class="math inline">\(x\)</span> 具有单位法向量 <span class="math inline">\(n\)</span>, 其邻域内的点 <span class="math inline">\(y\in N(x)\)</span> 的 "高度" 定义为法向上的位移:
+<span class="math display">\[
+h(y) := \lr{n, x-y}.
+\]</span> 把 <span class="math inline">\(h\)</span> 作为 <span class="math inline">\(I\)</span> 代入双边滤波公式即可.
+双边滤波网格去噪算法十分容易实现, 不需要解方程, 也不需要计算
+Laplace-Beltrami 算子, 只需要做迭代即可.</p>
+<h3 id="法向双边滤波">3.3  法向双边滤波</h3>
+<div class="note note-secondary">
+<p>原论文: <em>Feature-Preserving Mesh Denoising via Bilateral Normal
+Filtering</em>, CAD-CG 2005.</p>
+</div>
+<p>该论文发现, 直接对法向量 <span class="math inline">\(n\)</span>
+进行双边滤波的效果要好于对高度图 <span class="math inline">\(h\)</span>
+进行双边滤波: <span class="math display">\[
+n'_i := \frac1{K_i} \sum_{T_j\in N(T_i)}
+{G_{\sigma_s} (\|c_j-c_i\|)} \cdot {G_{\sigma_r} (\|n_j-n_i\|)} \cdot
+n_j.
+\]</span> (其中三角形 <span class="math inline">\(T_i\)</span> 的中心为
+<span class="math inline">\(c_i\)</span>, 法向量为 <span class="math inline">\(n_i\)</span>.) 尖锐的区域两侧的法向量差别很大
+(与高度图相比), 滤波后易于保持尖锐特征. 该算法迭代地对法向量进行滤波,
+每次滤波过后需要调整三角形顶点的位置. 为了让三角形 <span class="math inline">\(T=(x_i,x_j,x_k)\)</span>
+的法向量尽量接近滤波后的法向量 <span class="math inline">\(n\)</span>,
+考虑优化问题 <span class="math display">\[
+\min_{x_i,x_j,x_k} \sum_{\sf cyc} \lr{n,x_i-x_j}^2.
+\]</span> 最终的目标是使 <span class="math inline">\(n\)</span> 和每条边
+<span class="math inline">\(x_i-x_j,\dots\)</span> 尽量接近垂直.
+我们用梯度下降法求解这个优化问题: <span class="math display">\[
+x_i' = x_i + \lambda
+\sum_{T\ni x_i} \sum_{(x_k,x_l)\in T} \lr{n_T,x_k-x_l} n_T.
+\]</span> 双边滤波法需要手动调整的参数包括方差 <span class="math inline">\(\sigma_s^2,\sigma_r^2\)</span> 和迭代次数.</p>
+<p>可以看到, 对于一般的噪声, 法向双边滤波已经可以取得令人满意的结果
+(图自课程 PPT, 原图自原论文).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-bilateral.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>双边滤波的近一步改进方法是联合双边滤波 (joint bilateral filter),
+用一个 "指导曲面" 作为 range 的 difference: <span class="math display">\[
+n'_i := \frac1{K_i} \sum_{T_j\in N(T_i)}
+{G_{\sigma_s} (\|c_j-c_i\|)} \cdot
+{G_{\sigma_r}(\|\orange{\tilde{n}_j-\tilde{n}_i}\|)} \cdot n_j.
+\]</span> 联合双边滤波的效果十分依赖指导曲面的选取. 一个简单的选择是
+Gauss 模糊后的法向量: <span class="math display">\[
+\tilde{n}_i := \frac1{K'_i}\sum_{T_j\in
+N(T_i)}G_\sigma(\|c_j-c_i\|)n_j.
+\]</span></p>
+<h3 id="l_0-稀疏优化">3.4  <span class="math inline">\(L_0\)</span>
+稀疏优化</h3>
+<div class="note note-secondary">
+<p>原论文: <em>Mesh Denoising via <span class="math inline">\(L_0\)</span> Minimization</em>, SIGGRAPH 2013.</p>
+</div>
+<p>图像处理中有稀疏优化的问题: 优化图像 <span class="math inline">\(I^*\)</span> 的梯度, 使之尽可能稀疏: <span class="math display">\[
+\min_I \pqty{ \|I-I^*\|_2^2 + \lambda\|\nabla I\|_0 }.
+\]</span> 所谓 "尽可能稀疏" 可以用 <span class="math inline">\(\ell^0\)</span> 范数衡量: <span class="math inline">\(\|v\|_0\)</span> 等于 <span class="math inline">\(v\)</span> 的非零分量的个数. 因此, 上式的含义是,
+保持 <span class="math inline">\(I\)</span> 尽量和原图 <span class="math inline">\(I^*\)</span> 接近的条件下,
+使梯度尽可能都等于零.</p>
+<p>然而上式不可微, 难以直接优化. 一个巧妙的办法<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">由论文 <em>Image Smoothing via <span class="math inline">\(L_0\)</span> Gradient Minimization</em> (2011)
+提出.</hcontent><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref" style="text-decoration: none;"><sup>[5]</sup></a></span>是引入辅助变量 <span class="math inline">\(\delta\)</span>, 并考虑优化</p>
+<p><span class="math display">\[
+\min_{I,\delta} \pqty{
+    \|I-I^*\|_2^2 + \beta \|\nabla I-\delta\|_2^2
+    +\lambda \|\delta\|_0
+}.
+\]</span></p>
+<p>只需交替进行两个步骤:</p>
+<ol type="1">
+<li>固定 <span class="math inline">\(I\)</span>, 优化 <span class="math inline">\(\min_{\delta}\pqty{\beta\|\nabla
+I-\delta\|_2^2+\lambda \|\delta\|_0}\)</span>. 这个式子关于 <span class="math inline">\(\delta\)</span> 是 pixelwise 的,
+因此对每个像素分别优化即可.</li>
+<li>固定 <span class="math inline">\(\delta\)</span>, 优化 <span class="math inline">\(\min_{I}\pqty{\|I-I^*\|_2^2 + \beta \|\nabla
+I-\delta\|_2^2}\)</span>. 这是一个二次式,
+可以通过梯度下降或者最小二乘法来优化.</li>
+</ol>
+<p>可以把它推广到三维的三角形网格. 我们构造优化问题 <span class="math display">\[
+\min_c \pqty{ \|p-p^*\|^2 + \lambda\|D(p)\|_0 },
+\]</span> 其中微分算子 <span class="math inline">\(D(p)\)</span>
+的选择是一个问题. 首先, 梯度 <span class="math inline">\(\nabla
+p\)</span> 是不可行的, 因为梯度为零意味着 <span class="math inline">\(p\)</span> 为常值, 即 mesh 退化为一点. 其次,
+Laplace-Beltrami 也不可行, 因为稀疏的 Laplacian 迫使曲面向极小曲面演化
+(下图右侧展示了稀疏化 Laplacian 的结果; 图自原论文).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-L0-laplacian.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<p>论文提出了一种新的离散微分算子——边上的 Laplacian. 类似于顶点
+Laplacian 的 cotangent formula 的推导, 边上 Laplacian 的公式为 <span class="math display">\[
+D(e) = \pmqty{
+- \cot\theta_{2,3,1} - \cot\theta_{1,3,4} \\
+  \cot\theta_{2,3,1} + \cot\theta_{3,1,2} \\
+- \cot\theta_{3,1,2} - \cot\theta_{4,1,3} \\
+  \cot\theta_{1,3,4} + \cot\theta_{4,1,3}
+}\T \pmqty{ p_1\\p_2\\p_3\\p_4 }.
+\]</span> 相关记号见下图 (图自原论文).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-L0-edge-lap.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<p>几何上看, <span class="math inline">\(D(e)\)</span> 的模长为 <span class="math inline">\(2\sin(\gamma/2)\cdot\|p_1-p_3\|\)</span>, 其中
+<span class="math inline">\(\gamma\)</span>
+是两个三角形组成的二面角大小. 当 <span class="math inline">\(\gamma&lt;\pi/2\)</span> 时, <span class="math inline">\(2\sin(\gamma/2)\)</span> 可以较好地估计 <span class="math inline">\(\gamma\)</span>, 因此 <span class="math inline">\(\|D(e)\|\)</span> 可以作为平均曲率的估计.</p>
+<p>稀疏优化方法在强噪音下表现良好, 如下图 (图自课程 PPT,
+原图自原论文).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-L0-comparison.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>然而, 该方法也需要调参, 需要一个合适的 <span class="math inline">\(\lambda\)</span> 来平衡去噪与细节保持.</p>
+<h3 id="数据驱动的去噪">3.5  数据驱动的去噪</h3>
+<div class="note note-secondary">
+<p>原论文: <em>Mesh Denoising via Cascaded Normal Regression</em>,
+SIGGRAPH Asia 2016.</p>
+</div>
+<p>以上的所有方法都需要手动调参,
+能否使用数据驱动的机器学习来自动进行网格去噪?</p>
+<p>除了不用调参之外,
+数据驱动的方法还有另外一个优势——即无需对数据做先验假设.
+三角形网格去噪是一个欠定的问题: <span class="math display">\[
+\underbrace{\textsf{有噪网格}}_{\textsf{已知}}
+= \underbrace{\textsf{干净网格}}_{\textsf{未知,待求}}
++ \underbrace{\textsf{噪音}}_{\textsf{未知}},
+\]</span> 其中干扰变量噪音和干净网格都是未知的.
+我们当然可以对其做出一些假设 (例如线性回归假设噪音服从正态分布),
+前人的方法或多或少都有一些假设:</p>
+<ul>
+<li>Laplacian 平滑和 <span class="math inline">\(L_1\)</span>-analysis
+(Wang et al. 2015) 都假设噪音是独立同分布的.</li>
+<li>法向双边滤波和 <span class="math inline">\(L_0\)</span>
+稀疏优化都假设三角形网格是逐片平滑的 (片与片有清晰的边界).</li>
+</ul>
+<p>然而, 噪音源和网格的几何特征都是多变的, 可能不满足这些先验假设.
+而数据驱动的算法可以从数据中学习先验,
+以得到更好的去噪结果与泛化能力.</p>
+<h4 id="descriptors">3.5.1  Descriptors</h4>
+<p>具体来说, 该论文利用机器学习方法从噪音网格中恢复真实的法向量
+(这可能是最早将数据驱动的方法应用到 3D 几何领域的工作之一了).
+模型的设计受到了法向双边滤波调参过程的启发. 对于有噪音的网格 <span class="math inline">\(M\)</span>, 我们选取若干组方差 <span class="math inline">\((\sigma_{s_1},\sigma_{r_1}),\dots,(\sigma_{s_k},\sigma_{r_k})\)</span>,
+分别应用对应的 bilateral filter 到三角形 <span class="math inline">\(T_i\)</span> 的法向量 <span class="math inline">\(n_i\)</span> 上, 得到各个尺度的双边滤波结果,
+并将它们打包: <span class="math display">\[
+\pqty{
+    n_i(\sigma_{s_1},\sigma_{r_1}),\dots,n_i(\sigma_{s_k},\sigma_{r_k})
+}.
+\]</span> 再对这 <span class="math inline">\(k\)</span>
+个法向量迭代地应用 (对应方差的) bilateral filter, 得到 <span class="math inline">\(K\)</span> 组: <span class="math display">\[
+S_i := \pqty{
+    n_i^{(1)}(\sigma_{s_1},\sigma_{r_1}),\dots,
+    n_i^{(1)}(\sigma_{s_k},\sigma_{r_k}),
+    \dots,
+    n_i^{(K)}(\sigma_{s_1},\sigma_{r_1}),\dots,
+    n_i^{(K)}(\sigma_{s_k},\sigma_{r_k}),
+},
+\]</span> 即为三角形 <span class="math inline">\(T_i\)</span> 的描述子
+(称为 B-FND). 对应地, 还有联合双边滤波版本的描述子 <span class="math inline">\(S_i^g\)</span> (称为 G-FND).</p>
+<p>FND 描述子是平移不变的 (平移不改变法向量), 但在旋转下会变化. 为了让
+FND 旋转不变, 需要对齐主方向 (类似图像的 SIFT 特征).</p>
+<h4 id="cascaded-regression">3.5.2  Cascaded regression</h4>
+<p>模型采用单隐层神经网络拟合 <span class="math inline">\(S_i\mapsto
+n_i^{g}\)</span> (gound truth) 的非线性映射, 损失函数为平方损失: <span class="math display">\[
+\min_{\Theta} \sum_i \| F(S_i;\Theta) - n_i^g \|^2.
+\]</span> 论文将若干 "特征提取 <span class="math inline">\(\Rightarrow\)</span> 单隐层回归" 串联起来,
+得到了一个级联 (cascaded) 回归模型, 如下图 (图自课程 PPT).
+以上一个回归的输出作为下一层的输入,
+可以逐渐减小误差并得到更好的结果.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-cascaded-regression.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<h4 id="k-means-clustering">3.5.3  K-means clustering</h4>
+<p>由于三角形网格不同区域的 descriptors 通常差别很大, 对所有 descriptors
+都用同一个神经网络是不合适的. 我们可以先对 descriptors 进行 K-means
+聚类, 对每个类别中的 descriptors 分别使用一个神经网络 (类似于
+mixture-of-experts 技术).</p>
+<h4 id="results">3.5.4  Results</h4>
+<p>这篇论文其实是王鹏帅老师在微软亚洲研究院时作出的成果.
+为了测试算法在真实 3D 模型上的表现, 他们团队还用 Kinect
+手动扫描了很多石膏模型, 做成了三个数据集. (图自课程 PPT,
+原图自原论文.)</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/cg2-cascaded-regression-results.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>对于球面/柱面来说, <span class="math inline">\(Hn\)</span> 指向内部; 对于标准 (主轴长相等)
+双曲抛物面来说, <span class="math inline">\(Hn\)</span> 在中心处为零.
+平均曲率为零意味着该点是曲面的 "鞍点".<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>将铁丝弯成封闭曲线, 浸入肥皂水,
+肥皂薄膜形成的曲面就是极小曲面.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Cotangent formula 中的内角应利用 <span class="math inline">\(x_i^{(k)}\)</span> 计算.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>原图自论文 <em>An Intuitive Framework for Real-Time
+Freeform Modeling</em>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>由论文 <em>Image Smoothing via <span class="math inline">\(L_0\)</span> Gradient Minimization</em> (2011)
+提出.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/CG/" class="category-chain-item">CG</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" class="print-no-link">#计算几何</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>网格去噪与光顺</div>
+      <div>https://disembo.github.io/Note/CG/cg-2-denoising/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/caiov-1/" title="CAIOV | 1 全纯函数初步理论">
+                        <span class="hidden-mobile">CAIOV | 1 全纯函数初步理论</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
