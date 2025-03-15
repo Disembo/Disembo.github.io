@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-voronoi-and-delaunay.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-alpha-shape.png">
 <meta property="article:published_time" content="2025-03-03T14:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-11T10:49:08.449Z">
+<meta property="article:modified_time" content="2025-03-12T06:50:03.234Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="计算几何">
@@ -572,7 +572,8 @@ G_z(i,j,k) &amp;= \frac{G(i,j,k+1)-G(i,j,k-1)}{2d}.
 G(v) = (1-t)G(p_0) + tG(p_1).
 \]</span></p>
 <h4 id="结果与改进">2.1.4  结果与改进</h4>
-<p>在不同分辨率 <span class="math inline">\(n\)</span> 下运行的结果:</p>
+<p>在不同分辨率 <span class="math inline">\(n\)</span> 下运行的结果 (VCI
+的 lab):</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-results.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
 <p>传统的 marching cubes 算法存在一些不足, 比如遍历 <span class="math inline">\(n^3\)</span> 个立方体的巨大时间开销, 以及对 SDF
 的细节还原不足等等. 改进的办法包括利用八叉树等结构实现非均匀采样,
