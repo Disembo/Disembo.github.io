@@ -16,27 +16,30 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Differential Geometry: Connections, Curvature, and Characteristic Classes (Loring W. Tu) 的笔记合集.">
+    <meta name="description" content="运动方程与时间积分法.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM275 | 微分几何笔记">
-<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-index/index.html">
+<meta property="og:title" content="物理模拟简介">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/simu-1-intro/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="Differential Geometry: Connections, Curvature, and Characteristic Classes (Loring W. Tu) 的笔记合集.">
+<meta property="og:description" content="运动方程与时间积分法.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-19T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-13T13:03:07.704Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/1-runge-kutta-1st-2nd.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/1-runge-kutta-4th.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/1-integration-methods.png">
+<meta property="article:published_time" content="2025-03-17T13:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-17T14:18:29.826Z">
 <meta property="article:author" content="jin">
-<meta property="article:tag" content="数学">
-<meta property="article:tag" content="微分几何">
-<meta property="article:tag" content="示性类">
-<meta property="article:tag" content="黎曼几何">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="物理">
+<meta property="article:tag" content="模拟">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/1-runge-kutta-1st-2nd.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>GTM275 | 微分几何笔记 | Jin&#39;s Blog</title>
+  <title>物理模拟简介 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,7 +222,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM275 | 微分几何笔记"></span>
+            <span id="subtitle" data-typed-text="物理模拟简介"></span>
           
         </div>
 
@@ -230,8 +233,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-19 23:00" pubdate>
-          2024年7月19日 晚上
+        <time datetime="2025-03-17 21:00" pubdate>
+          2025年3月17日 晚上
         </time>
       </span>
     
@@ -274,95 +277,179 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GTM275 | 微分几何笔记</h1>
+            <h1 id="seo-header">物理模拟简介</h1>
             
             
               <div class="markdown-body">
                 
                 <html><head></head><body>
-<div class="note note-secondary">
-<p><em>Differential Geometry: Connections, Curvature, and Characteristic
-Classes</em> by Loring W. Tu (GTM275)</p>
-</div>
-<p>这本书写得非常清楚, 作者在每章前会介绍概念的来龙去脉和动机,
-学的时候容易抓住主线. 书的内容很细致, 逻辑链很完整, 适合自学.</p>
-<p>作者从欧氏空间中的经典微分几何讲起, 前几章的核心是证明 Gauss
-绝妙定理, 并将曲率高斯曲率推广到一般的流形. 接下来一部分的核心是测地线与
-Gauss-Bonnet 定理. Gauss-Bonnet 定理自然引出了向量丛上的示性类. 最终,
-导向主丛上的联络和示性类. 本书的一个缺憾可能是主线之外的内容介绍较少,
-习题也少有拓展/挑战性的内容.</p>
-<p>曲率是黎曼几何最基本的不变量. 从几何直观上讲,
-<strong>截面曲率</strong>的概念是 Gauss 曲率的直接推广
-(在此之前有曲线曲率的概念), 第 3 篇笔记的 9.3 节进行了一些简单的介绍.
-从代数上看, 联络的<strong>曲率张量</strong>反映了平行移动的某种非对称性,
-可以衡量一个黎曼流形局部上与平直空间的 "差距".</p>
-<p>黎曼流形的局部度量 (黎曼度量) 可以给出整体的<strong>距离</strong>结构
-(距离函数). 局部上看, 两点间距离由测地线实现. 测地线既是 "最直" 的线,
-即切向量关于自身求导为零, 又是线长取极值的曲线. Hopf-Rinow 定理表明,
-黎曼流形在分析上的<strong>完备性</strong> (测地完备)
-和拓扑上的<strong>完备性</strong> (完备距离空间) 是等价的.</p>
-<p>另一个联系几何与拓扑的定理是 Gauss-Bonnet 定理,
-即高斯曲率在流形上的积分给出欧拉数.
-这引出了向量丛上的<strong>示性类</strong>理论, 即局部几何量 (曲率)
-可以构造出整体的拓扑量 (示性类). 示性类在流形上的积分称为示性数,
-它们也是拓扑不变量. 示性类反映了向量丛整体的 "非平凡性", 是它们
-"扭曲程度" 的衡量.</p>
-<p>向量丛的联络可以推广到主丛上, 但是由于主丛没有向量丛那样的线性结构,
-所以定义会比较复杂抽象. 若将主丛看作若干竖直纤维组成的,
-那么<strong>联络</strong>给出了一个 "水平" 的结构 (每一点的水平子空间).
-李群传递地作用于每一根竖直的纤维; 而水平结构将不同的纤维联系起来,
-因此称为<strong>联络</strong>.
-联络的<strong>曲率</strong>给出主丛的示性类.
-主丛的<strong>示性类</strong>将主丛与上同调类联系起来, 是一个拓扑不变量,
-衡量了主丛与平凡丛的差距.</p>
-<p>主丛部分很抽象, 逻辑链挺长, 各种符号满天飞,
-我学的时候费了很大劲才搞懂 (大概).</p>
-<p><strong>第一部分: 向量丛上的联络与曲率, Gauss 绝妙定理.</strong></p>
-<ol type="1">
-<li><a href="/Note/dg-gtm275-1">曲率与向量场</a>: 黎曼流形,
-欧氏空间的方向导数, 曲面的曲率 (法曲率, 形状算子, 基本形式).</li>
-<li><a href="/Note/dg-gtm275-2">曲率与向量场</a>: 仿射联络, 黎曼联络
-(黎曼几何基本定理), 拉回联络; 向量丛 (点算子和局部算子);
-高斯绝妙定理的证明和推广.</li>
-<li><a href="/Note/dg-gtm275-3">曲率与微分形式</a>: 向量丛上的联络,
-联络与曲率形式, 高斯曲率与曲率形式的关系 (绝妙定理),
-截面曲率和常曲率流形.</li>
-</ol>
-<p><strong>第二部分: 黎曼流形的测地线与完备性, Gauss-Bonnet
-定理.</strong></p>
-<ol start="4" type="1">
-<li><a href="/Note/dg-gtm275-4">测地线</a>: 克氏符, 沿曲线的协变导数,
-测地线, 指数映射.
+<h2 id="物理模拟简介">1  物理模拟简介</h2>
+<p>我们的目的是在计算机中模拟真实世界中物体的运动.
+这涉及到两方面的离散化: 空间离散化和时间离散化.
+空间离散化就是用离散的数据结构表达一个物体, 比如之前讲的点云 (point
+cloud) / 粒子集 (particles) 和三角形网格 (triangle mesh).
+时间离散化指的是我们只计算物体在离散的时间序列 <span class="math inline">\(\{t_0,t_0+h,t_0+2h,\dots\}\)</span> 上的状态.</p>
+<h3 id="运动方程">1.1  运动方程</h3>
+<p>设物理系统的状态量 (广义坐标) <span class="math inline">\(q\in\R^n\)</span>, 则物理仿真做的就是根据外力
+<span class="math inline">\(f\)</span> 更新 <span class="math inline">\(q\)</span>, 即求解微分方程: <span class="math display">\[
+F_{\sf DE} (q,\dot{q},f,t) = 0.
+\]</span> 其中 <span class="math inline">\(F_{\sf DE}\)</span>
+是系统的常微分方程或者偏微分方程, 由物理定律给出. 通常我们考虑 Newton
+第二定律: <span class="math display">\[
+M(t)\dot{u}(t) = f(q(t),u(t),t),
+\]</span> 其中 <span class="math inline">\(M(t)\in\R^{n\times
+n}\)</span> 是质量矩阵, <span class="math inline">\(u(t)=\dot{q}(t)\in\R^n\)</span> 是广义速度, <span class="math inline">\(f(\cdots)\in\R^n\)</span> 是广义力,
+与时间、广义坐标、广义速度有关.</p>
 <ul>
-<li><a href="/Note/dg-gtm275-4-Lie">李群上的指数映射</a>:
-李群的指数映射, 双不变度量. (under construction)</li>
-</ul></li>
-<li><a href="/Note/dg-gtm275-5">测地线</a>: 黎曼流形的距离结构, 完备性
-(Hopf-Rinow 定理); 体积形式, Gauss-Bonnet 定理.</li>
+<li>所有可能的状态量 <span class="math inline">\(q\)</span>
+组成的空间的维数称为系统的自由度.</li>
+</ul>
+<p>有时, 状态量还需要满足额外的约束条件 (比如在刚体系统中, 刚体不能穿模)
+<span class="math display">\[
+H(q) = 0,\quad\textsf{或者}\quad G(q)\geq0,
+\]</span> 它们分别称为双边约束和单边约束.</p>
+<div class="note note-info">
+<p><u>Example</u> 考虑两个通过弹簧连接的质点 <span class="math inline">\(m_1,m_2\)</span> 在地面上方的空间中运动,
+地面为平面 <span class="math inline">\(z=0\)</span>.
+该系统的广义坐标为两个质点的位置, <span class="math inline">\(q=(x_1,x_2)\in\R^6\)</span>, 自由度为 <span class="math inline">\(6\)</span>. 广义速度 <span class="math inline">\(u=(v_1,v_2)\)</span>. Newton 第二定律给出 <span class="math display">\[
+\underbrace{\pmqty{m_1I_3\\&amp;m_2I_3}}_M \cdot
+\underbrace{\pmqty{\dot{v}_1\\\dot{v}_2}}_{\dot u}
+= \underbrace{\pmqty{
+  -k\pqty{\|x_1-x_2\|-x_0}n + g \\
+   k\pqty{\|x_1-x_2\|-x_0}n + g
+}}_{f}
+\]</span> 其中 <span class="math inline">\(k\)</span> 为弹簧弹力系数,
+<span class="math inline">\(x_0\)</span> 为弹簧原长, <span class="math inline">\(n\)</span> 为 <span class="math inline">\(x_2\)</span> 指向 <span class="math inline">\(x_1\)</span> 的单位向量, <span class="math inline">\(g\)</span> 为重力加速度向量.
+此即系统满足的常微分方程.</p>
+<p>该系统的约束条件是 "质点不能穿透到地面以下", 即 <span class="math display">\[
+x_{1,3}\geq0,\quad\textsf{且}\quad x_{2,3}\geq0.
+\]</span> 另一个例子是平面摆. 它的自由度是 <span class="math inline">\(1\)</span>, 能用角度 <span class="math inline">\(\theta\)</span> 完全描述. 其实我们也可以用 <span class="math inline">\(q=(x,y)\in\R^2\)</span> 作为它的状态量,
+然后施加约束条件 <span class="math inline">\(0=G(x,y):=x^2+y^2-l^2\)</span>. 因此,
+状态量与约束条件的选择是有一定灵活性的.</p>
+</div>
+<h3 id="时间积分">1.2  时间积分</h3>
+<p>解析求解微分方程是非常困难的, 故在模拟中我们采用离散化的办法.</p>
+<p>给定系统的初始状态 <span class="math inline">\(q(t_0)=q_0\)</span>,
+我们要做的是根据微分方程和约束条件算出此后一系列状态的值: <span class="math display">\[
+q(t_0),q(t_0+h),q(t_0+2h),\dots
+\]</span> 其中 <span class="math inline">\(h&gt;0\)</span> 称为时间步长
+(time step), 它决定了模拟的精度.</p>
+<h4 id="euler-methods">1.2.1  Euler methods</h4>
+<p>在模拟时, 我们同时维护系统的 <span class="math inline">\(q\)</span>
+和 <span class="math inline">\(u\)</span>, 在每个时间步更新它们的值.
+具体来说, 取一阶近似, <span class="math display">\[
+\left\{\Align{
+q(t+h) &amp;\leftarrow q(t) + hu(t), \\
+u(t+h) &amp;\leftarrow u(t) + hu'(t), \\
+}\right.
+\]</span> 再将 Newton 第二定律代入, 我们就得到了更新公式 <span class="math display">\[
+\left\{\Align{
+q(t+h) &amp;\leftarrow q(t) + h\orange{u(t)}, \\
+u(t+h) &amp;\leftarrow u(t) + hM^{-1}\orange{f(q(t),u(t),t)}, \\
+}\right.
+\]</span> 其中我们认为质量矩阵 <span class="math inline">\(M(t)\equiv
+M\)</span> 不随时间变化. 上式称为显式 Euler 积分法. 显式 Euler
+法计算简便, 容易实现, 但是精度低、稳定性差 (系统能量容易无限增大,
+导致爆炸). 为此, 将上式的橙色部分改为在 <span class="math inline">\(t+h\)</span> 步的值, 便得到隐式 Euler 积分法:
+<span class="math display">\[
+\left\{\Align{
+q(t+h) &amp;\leftarrow q(t) + h\blue{u(t+h)}, \\
+u(t+h) &amp;\leftarrow u(t) + hM^{-1}\blue{f(q(t+h),u(t+h),t+h)}, \\
+}\right.
+\]</span> 隐式 Euler 相当于给系统添加了一个内在的阻尼, 稳定性好,
+但是需要求解方程组, 计算量比较大. 一个折中的方法是半隐式 Euler /
+Symplectic Euler 积分法: <span class="math display">\[
+\left\{\Align{
+q(t+h) &amp;\leftarrow q(t) + h\purple{u(t+h)}, \\
+u(t+h) &amp;\leftarrow u(t) + hM^{-1}\purple{f(q(t),u(t),t)}. \\
+}\right.
+\]</span></p>
+<div class="note note-secondary">
+<p>对于 Euler 积分, 为了记号简便, 记 <span class="math inline">\(q^+:=q(t+h)\)</span>, <span class="math inline">\(u^+:=u(t+h)\)</span>, <span class="math inline">\(f^+:=f(q^+,u^+,t+h)\)</span> (带 <span class="math inline">\(^+\)</span> 的都是 implicit term) 以及 <span class="math inline">\(q:=q(t)\)</span>, <span class="math inline">\(u:=u(t)\)</span>, <span class="math inline">\(f:=f(q,u,t)\)</span> (不带 <span class="math inline">\(^+\)</span> 的都是 explicit term). 于是 Euler 法
+(以 Symplectic 为例) 简化为 <span class="math display">\[
+\Cases{
+q^+ \leftarrow q+hu^+, \\
+u^+ \leftarrow u+hM^{-1}f.
+}
+\]</span></p>
+</div>
+<h4 id="the-midpoint-method">1.2.2  The midpoint method</h4>
+<p>通过 Taylor 展开可以证明, explicit Euler 和 implicit Euler
+法都具有一阶精度: <span class="math display">\[
+\Align{
+q^+ - \pqty{q + hu} &amp;= \mathcal{O}(h^2), \\
+q^+ - \pqty{q + hu^+} &amp;= \mathcal{O}(h^2),
+}\qquad h\to0.
+\]</span> 有没有精度更高的方法? 请看中点法 (midpoint method): <span class="math display">\[
+\Cases{
+q(t+h) \leftarrow q(t) + hu(t + \orange{\frac{h}{2}}), \\
+u(t+h) \leftarrow u(t) + h^{-1}Mf(t + \orange{\frac{h}{2}}),
+}
+\]</span> 其中采用了中点时刻 <span class="math inline">\(t+\orange{\frac{h}{2}}\)</span> 的 <span class="math inline">\(u\)</span> 和 <span class="math inline">\(f\)</span> 来更新. 中点时刻的 <span class="math inline">\(u,f\)</span> 通过步长为 <span class="math inline">\(\frac{h}{2}\)</span> 的 explicit Euler 计算. 因此,
+中点法的完整迭代步骤为 <span class="math display">\[
+\Cases{
+q_{\sf mid} \leftarrow q(t) + \frac{h}{2}u(t), \\
+u_{\sf mid} \leftarrow u(t) + \frac{h}{2}M^{-1}f(t), \\
+f_{\sf mid} \leftarrow f(q_{\sf mid},u_{\sf mid},t+\frac{h}{2}), \\
+q(t+h) \leftarrow q(t) + hu_{\sf mid}, \\
+u(t+h) \leftarrow u(t) + hM^{-1}f_{\sf mid}.
+}
+\]</span> 下面的示意图对比了 Euler 法和中点法的迭代步:</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/1-runge-kutta-1st-2nd.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>中点法可以达到二阶精度: <span class="math display">\[
+\Align{
+q^+ - (q + hu_{\sf mid})
+&amp;= q(t+h) - \bqty{q(t) + h\pqty{u(t) + \frac{h}{2}M^{-1}f(t)}} \\
+&amp;= hq'(t) +  \frac{h^2}{2} q''(t) + \mathcal{O}(h^3)
+- h\pqty{u(t) + \frac{h}{2}M^{-1}f(t)} \\
+&amp;= \mathcal{O}(h^3).
+}
+\]</span></p>
+<h4 id="runge-kutta-methods">1.2.3  Runge-Kutta methods</h4>
+<p>实际上, Euler 法和中点法是 Runge-Kutta 法的特例. Runge-Kutta
+法是一大类时间积分法, <span class="math inline">\(k\)</span> 阶的 R-K
+法可以达到 <span class="math inline">\(k\)</span> 阶精度. Euler
+法和中点法分别是 <span class="math inline">\(1\)</span> 阶和 <span class="math inline">\(2\)</span> 阶 R-K. 下面我们看看 <span class="math inline">\(4\)</span> 阶 R-K 法的迭代步, 它将 <span class="math inline">\(\dot{q}\)</span> 和 <span class="math inline">\(\dot{u}\)</span> 估计为四个项的加权平均: <span class="math display">\[
+\Align{
+&amp;\Cases{
+\dot{q}_1 \leftarrow u, &amp;
+\dot{u}_1 \leftarrow M^{-1}f(q,u) \\
+\dot{q}_2 \leftarrow u+\frac{h}{2}\dot{u}_1, &amp;
+\dot{u}_2 \leftarrow
+    M^{-1}f(q+\frac{h}{2}\dot{q}_1,v+\frac{h}{2}\dot{u}_1) \\
+\dot{q}_3 \leftarrow u+\frac{h}{2}\dot{u}_2, &amp;
+\dot{u}_3 \leftarrow
+    M^{-1}f(q+\frac{h}{2}\dot{q}_2,v+\frac{h}{2}\dot{u}_2) \\
+\dot{q}_4 \leftarrow u+\frac{h}{2}\dot{u}_3, &amp;
+\dot{u}_4 \leftarrow
+    M^{-1}f(q+\frac{h}{2}\dot{q}_3,v+\frac{h}{2}\dot{u}_3) \\
+} \\
+&amp;{}\Cases{
+q(t+h) \leftarrow q(t)
++ h\frac16(\dot{q}_1+2\dot{q}_2+2\dot{q}_3+\dot{q}_4), \\
+u(t+h) \leftarrow u(t)
++ h\frac16(\dot{u}_1+2\dot{u}_2+2\dot{u}_3+\dot{u}_4).
+}
+}
+\]</span> 具体见下图:</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/1-runge-kutta-4th.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>下面是在 Mathematica 中使用不同方法求解弹簧质点系统 (<span class="math inline">\(x'=v\)</span>, <span class="math inline">\(v'=-x\)</span>, <span class="math inline">\(x(0)=1\)</span>, <span class="math inline">\(v(0)=0\)</span>) 所得的结果. 左边是显式与隐式
+Euler 法, 右边是 <span class="math inline">\(2\)</span> 阶与 <span class="math inline">\(8\)</span> 阶 (显式) Runge-Kutta 法<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">为了体现误差, 特意降低了求解精度. Euler 法和 Runge-Kutta
+法的 <code>AccuracyGoal</code> 分别设置为 <span class="math inline">\(2\)</span> 和 <span class="math inline">\(1\)</span>.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>.
+黑色的单位圆为精确解.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/1-integration-methods.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>可以发现, Runge-Kutta 的确可以达到更高的精度. Explicit Euler
+的系统能量会无节制增大; 而 implicit Euler 自带阻尼,
+导致能量逐渐减小.</p>
+<p><a href="/Visualizing/ode-3/#%E6%95%B0%E5%80%BC%E6%B3%95">这篇文章</a>给出了
+explicit Euler 的一个详细可视化.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>为了体现误差, 特意降低了求解精度. Euler 法和 Runge-Kutta
+法的 <code>AccuracyGoal</code> 分别设置为 <span class="math inline">\(2\)</span> 和 <span class="math inline">\(1\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-<p><strong>第三部分: 代数与拓扑工具.</strong></p>
-<ol start="6" type="1">
-<li><a href="/Note/dg-gtm275-6">代数与拓扑工具</a>:
-模的张量积和楔积.</li>
-<li><a href="/Note/dg-gtm275-7">代数与拓扑工具</a>: 向量丛的构造 (子丛,
-商丛, 拉回丛, 光滑函子), 张量场和向量值微分形式.</li>
-</ol>
-<p><strong>第四部分: 向量丛上的示性类.</strong></p>
-<ol start="8" type="1">
-<li><a href="/Note/dg-gtm275-8">向量丛与示性类</a>: 张量场的协变导数,
-曲率张量与 Bianchi 恒等式, 向量丛的示性类.</li>
-<li><a href="/Note/dg-gtm275-9">向量丛与示性类</a>: Pontrjagin, Euler 和
-Chern 类简介, 一点应用.</li>
-</ol>
-<p><strong>第五部分: 主丛上的联络与示性类.</strong></p>
-<ol start="10" type="1">
-<li><a href="/Note/dg-gtm275-10">主丛与示性类</a>: 李群作用和基本向量场,
-主丛, 标架丛, 竖直子丛, 水平分布.</li>
-<li><a href="/Note/dg-gtm275-11">主丛与示性类</a>: 主丛上的联络
-(两种定义的等价性), 标架丛上的诱导联络, 联络的曲率.</li>
-<li><a href="/Note/dg-gtm275-12">主丛与示性类</a>: 配丛,
-张量性形式的协变导数, 主丛上的示性类.</li>
-</ol>
+</section>
 </body></html>
                 
               </div>
@@ -384,6 +471,13 @@ Chern 类简介, 一点应用.</li>
   <a href="/categories/Note/" class="category-chain-item">Note</a>
   
   
+    <span>></span>
+    
+  <a href="/categories/Note/CG/" class="category-chain-item">CG</a>
+  
+  
+
+  
 
       </span>
     
@@ -396,13 +490,11 @@ Chern 类简介, 一点应用.</li>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
       
-        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
       
-        <a href="/tags/%E7%A4%BA%E6%80%A7%E7%B1%BB/" class="print-no-link">#示性类</a>
-      
-        <a href="/tags/%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95/" class="print-no-link">#黎曼几何</a>
+        <a href="/tags/%E6%A8%A1%E6%8B%9F/" class="print-no-link">#模拟</a>
       
     </div>
   
@@ -414,8 +506,8 @@ Chern 类简介, 一点应用.</li>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM275 | 微分几何笔记</div>
-      <div>https://disembo.github.io/Note/dg-gtm275-index/</div>
+      <div>物理模拟简介</div>
+      <div>https://disembo.github.io/Note/CG/simu-1-intro/</div>
     </div>
     <div class="license-meta">
       
@@ -427,7 +519,7 @@ Chern 类简介, 一点应用.</li>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月19日</div>
+          <div>2025年3月17日</div>
         </div>
       
       
@@ -459,9 +551,9 @@ Chern 类简介, 一点应用.</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-1/" title="GTM202 | 1 拓扑空间">
+                      <a href="/Note/CG/simu-2-rigid/" title="刚体模拟">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM202 | 1 拓扑空间</span>
+                        <span class="hidden-mobile">刚体模拟</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -469,8 +561,8 @@ Chern 类简介, 一点应用.</li>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Note/dg-gtm275-12/" title="GTM275 | 12 主丛与示性类">
-                        <span class="hidden-mobile">GTM275 | 12 主丛与示性类</span>
+                      <a href="/Note/CG/proc-3-remeshing/" title="重网格化">
+                        <span class="hidden-mobile">重网格化</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
