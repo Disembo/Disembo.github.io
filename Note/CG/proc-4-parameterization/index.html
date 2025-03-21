@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/4-mesh-colors-editing.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/4-mesh-colors-non-uniform.png">
 <meta property="article:published_time" content="2025-03-21T14:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-21T14:14:09.645Z">
+<meta property="article:modified_time" content="2025-03-21T14:20:00.584Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="计算几何">
@@ -514,6 +514,7 @@ E(\varphi)
 }
 \]</span> 其中 <span class="math inline">\(J_T\)</span> 是三角形 <span class="math inline">\(T\)</span> 处的 Jacobian, <span class="math inline">\(\theta_{ij}\)</span> 是边 <span class="math inline">\((x_i,x_j)\)</span> 在三角形 <span class="math inline">\(T\)</span> 中的对角, <span class="math inline">\(\|X\|_F:=\sqrt{\tr(X\T X)}\)</span> 为矩阵的
 Frobenius 范数.</p>
+<p>ARAP 可以使用 Tutte 映射或者 LSCM 作为初始化, 其迭代步骤如下:</p>
 <ul>
 <li><p>Local 步优化 <span class="math inline">\(L_T\)</span> 为正交阵.
 注意每个三角形的 <span class="math inline">\(L_T\)</span> 互不相干,
@@ -523,7 +524,9 @@ S_T := \sum_{\textsf{边 }(x_i,x_j)}
 \cot(\theta_{ij}) (\varphi(x_i)-\varphi(x_j))(x_i-x_j)\T,
 \]</span> 它的 SVD 分解为 <span class="math inline">\(S_T=U\Sigma
 V\T\)</span>, 则 <span class="math inline">\(L_T\leftarrow
-UV\T\)</span>.</p></li>
+UV\T\)</span>. 可能要对 <span class="math inline">\(UV\T\)</span>
+的某一列取负号, 保证 <span class="math inline">\(L_T\)</span>
+的行列是为正, 保持定向.</p></li>
 <li><p>Global 步优化顶点位置 <span class="math inline">\(\varphi(x_i)\)</span>. 即求解线性系统
 (最小二乘法): <span class="math display">\[
 \Align{
