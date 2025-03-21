@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/2-pbd-step.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/2-cd-force.png">
 <meta property="article:published_time" content="2025-03-17T14:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-17T14:05:10.131Z">
+<meta property="article:modified_time" content="2025-03-20T05:44:47.592Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="物理">
@@ -352,12 +352,12 @@ Q^+ \leftarrow Q + \frac{h}{2}\pmqty{0, \omega^+}\times Q,
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/2-collision-methods.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>它们的表现与效率总结如下:</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/2-collision-methods-comparison.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
-<h3 id="基于冲量的动力学">2.2  基于冲量的动力学</h3>
+<h2 id="基于冲量的动力学">3  基于冲量的动力学</h2>
 <p>基于力的方法 (force-based dynamics) 有很强的物理直观,
 并且能很好地融合进 Symplectic Euler 积分中. 它的不足是对于积分步长 <span class="math inline">\(h\)</span> 十分敏感. 由此诞生出基于冲量的方法
 (impluse-based dynamics), 将碰撞当成瞬时过程, 不考虑受力,
 直接考虑动量的改变.</p>
-<h4 id="质点碰撞">2.2.1  质点碰撞</h4>
+<h3 id="质点碰撞">3.1  质点碰撞</h3>
 <p>如果一个质点 <span class="math inline">\(x\)</span>
 进入了另一个质点的 SDF 区域内, 即 <span class="math inline">\(\phi(x)&lt;0\)</span>,
 则基于力的方法为粒子施加朝外的力 (penalty). Quadratic penalty method
@@ -389,7 +389,7 @@ a \leftarrow \max\qty{0, 1-\mu(1+c)\frac{\|v_N\|}{\|v_T\|}}.
 \]</span> 参数 <span class="math inline">\(c\in[0,1]\)</span> 为恢复系数
 (<span class="math inline">\(0\)</span> 对应完全非弹性碰撞, <span class="math inline">\(1\)</span> 对应完全弹性碰撞), <span class="math inline">\(\mu\in[0,1]\)</span> 为摩擦系数.</p></li>
 </ul>
-<h4 id="两个刚体碰撞">2.2.2  两个刚体碰撞</h4>
+<h3 id="两个刚体碰撞">3.2  两个刚体碰撞</h3>
 <p>我们的策略是先计算出碰撞点 <span class="math inline">\(x_i\)</span>
 处的速度改变 <span class="math inline">\(\Delta v_i\)</span>,
 再计算出碰撞的冲量 <span class="math inline">\(j\)</span>,
@@ -455,7 +455,7 @@ j_t = \operatorname{clamp}\pqty{
 },
 \]</span> (根据 Coulomb 摩擦定律, 我们需要保证 <span class="math inline">\(|j_t|\leq\mu|j_n|\)</span>.)</p>
 </div>
-<h4 id="多个刚体的碰撞">2.2.3  多个刚体的碰撞</h4>
+<h3 id="多个刚体的碰撞">3.3  多个刚体的碰撞</h3>
 <p>对于多个刚体, 只需枚举它们所有的碰撞点, 对每个碰撞点计算速度改变,
 最后解出每个碰撞的 <span class="math inline">\(j\)</span>.
 考虑下面三个兔子与地面碰撞的场景:</p>
@@ -504,20 +504,20 @@ K_{a10} &amp; K_{a11}+K_{c11} &amp;  &amp; -K_{c13} \\
 桌子上的物体在重力作用下具有向下的动量 <span class="math inline">\(mv_0\)</span>, 然而桌子只能为其提供 <span class="math inline">\(cmv_0\)</span> (恢复系数 <span class="math inline">\(c\in[0,1]\)</span>) 的冲量, 导致物体穿模、下陷,
 不能稳定在桌子上. 如果设定 <span class="math inline">\(c=1\)</span>,
 尽管可以解决穿模问题, 但容易导致能量爆炸.</p>
-<h3 id="基于位置的动力学">2.3  基于位置的动力学</h3>
+<h2 id="基于位置的动力学">4  基于位置的动力学</h2>
 <p>基于位置的方法 (PBD, position-based dynamics)
 尽管不能产生准确的物理模拟, 但具高效性与鲁棒性.</p>
 <p>PBD 的想法是, 我们先让每个粒子自由地运动, 有自己的位置和速度,
 然后再施加刚体约束, 把零散的点恢复成刚体, 如下图.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/2-pbd.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
-<h4 id="粒子碰撞">2.3.1  粒子碰撞</h4>
+<h3 id="粒子碰撞">4.1  粒子碰撞</h3>
 <p>设粒子当前的位置和速度分别为 <span class="math inline">\(x_i,v_i\)</span>, 则下一步的位置预测值为 <span class="math inline">\(\tilde{y}_i=x_i+hv_i\)</span>. 如果 <span class="math inline">\(\tilde{y}_i\)</span> 与在 SDF 外部,
 则没有发生碰撞, 无需任何额外操作.</p>
 <p>如果 <span class="math inline">\(\tilde{y}_i\)</span> 在边界或内部,
 则需要对其进行修正. 首先将位置沿着法向量投影到 SDF 表面, 得到 <span class="math inline">\(y_i\)</span> 作为位置的更新值.
 速度的更新则考虑恢复力 <span class="math inline">\(-k\phi(\tilde{y}_i)n\)</span> 和摩擦力 <span class="math inline">\(-av_T\)</span>, 如下图.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/2-pbd-step.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
-<h4 id="刚体碰撞">2.3.2  刚体碰撞</h4>
+<h3 id="刚体碰撞">4.2  刚体碰撞</h3>
 <p>首先, 按照如上规则独立地更新每个粒子的速度 <span class="math inline">\(v_i\)</span> 和位置 <span class="math inline">\(x_i\)</span>,
 然后根据目前顶点的位置还原出刚体的质心 <span class="math inline">\(x_c\)</span> 和旋转矩阵 <span class="math inline">\(A\)</span>. 记更新后的位置为 <span class="math inline">\(y_i\)</span>. 具体来说, 我们求解如下优化问题:
 <span class="math display">\[
@@ -568,7 +568,7 @@ x_i^+ \leftarrow x_c+Rr_i.
 <p>PBD 的优点是计算过程简单, 稳定性高, 且高效、可并行化, 因此它 PBD
 适用于刚体数量多、对效率要求高但对精度要求不高的场合. NVIDIA FLeX
 模拟引擎采用的就是 PBD.</p>
-<h3 id="基于约束的动力学">2.4  基于约束的动力学</h3>
+<h2 id="基于约束的动力学">5  基于约束的动力学</h2>
 <div class="note note-secondary">
 <p><em>Contact and Friction Simulation for Computer Graphics</em>
 (SIGGRAPH 2022 Courses) 是介绍该方法的一篇详实的讲义.</p>
@@ -589,7 +589,7 @@ u^+ \leftarrow u + hM^{-1}f.
 来保证约束条件满足. 与 impluse-based 方法不同的是,
 后者事先计算好了刚体的速度改变量 <span class="math inline">\(\Delta
 u\)</span>, 然后再来求解冲量; 而基于约束的方法通过约束条件来求解 <span class="math inline">\(\Delta u\)</span>.</p>
-<h4 id="约束力">2.4.1  约束力</h4>
+<h3 id="约束力">5.1  约束力</h3>
 <p>假设系统的状态量 <span class="math inline">\(q\in\R^n\)</span>,
 则它在不受任何约束条件下可以在 <span class="math inline">\(\R^n\)</span>
 中自由运动. 对于 (连续可微) 约束函数 <span class="math inline">\(G:\R^n\to\R^m\)</span>, 施加约束 <span class="math inline">\(G(q)=0\)</span> 等价于将 <span class="math inline">\(q\)</span> 限制在子流形 <span class="math inline">\(M=G^{-1}(0)\)</span> 上运动.</p>
@@ -623,7 +623,7 @@ Mu - \orange{J\T\lambda^+} = Mu + hf
 \]</span> 从中解出 <span class="math inline">\(\lambda^+\)</span>,
 再代回第一行解出 <span class="math inline">\(u^+\)</span>
 就完成了一个时间步的求解.</p>
-<h4 id="碰撞约束">2.4.2  碰撞约束</h4>
+<h3 id="碰撞约束">5.2  碰撞约束</h3>
 <p>刚体碰撞约束指的是两个物体不能互相穿透, 称为 non-interpenetration
 contact constraint. 不同于上面提到的双边约束 <span class="math inline">\(G(q)=0\)</span>, 它是一个单边约束 <span class="math inline">\(\phi(q)\geq0\)</span>. 函数 <span class="math inline">\(\phi(q)\)</span> 表示两个刚体之间的符号距离, <span class="math inline">\(\phi(q)&lt;0\)</span> 时两者相互穿透, <span class="math inline">\(\phi(q)=0\)</span> 时刚好接触, <span class="math inline">\(\phi(q)&gt;0\)</span> 时分离.</p>
 <p>当 <span class="math inline">\(\phi(q)&lt;0\)</span> 时,
@@ -648,8 +648,8 @@ v_n =
 }_u
 \]</span> 这就得到了 <span class="math inline">\(J\)</span>
 的解析式.</p>
-<h4 id="coulomb-摩擦">2.4.3  Coulomb 摩擦</h4>
-<h4 id="数值求解">2.4.4  数值求解</h4>
+<h3 id="coulomb-摩擦">5.3  Coulomb 摩擦</h3>
+<h3 id="数值求解">5.4  数值求解</h3>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
@@ -757,6 +757,12 @@ https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem<a href="#fnref1" cla
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Note/CG/proc-4-parameterization/" title="参数化与纹理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">参数化与纹理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
