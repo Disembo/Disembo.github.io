@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/morera-thm.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/schwarz-reflection-principle.png">
 <meta property="article:published_time" content="2025-02-25T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-26T03:47:18.321Z">
+<meta property="article:modified_time" content="2025-03-25T07:59:10.580Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="复分析">
@@ -341,10 +341,10 @@ f(z) = \sum_{n=0}^\infty c_n(z-a)^n,\quad\forall z\in U,
 <ul>
 <li>全纯也称为<strong>解析 (anylatic)</strong>.
 注意应与实变函数的解析性做区分.</li>
+<li>根据 Section 3 中复幂级数的理论, 若 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上全纯, 则它在 <span class="math inline">\(\Omega\)</span> 上无穷阶复可微.</li>
 </ul>
 <p>在 Section 1.2 中, 我们将用一组方程 (Cauchy-Riemann 方程)
-刻画复可微性. 在 Section 1.3 中, 我们将证明全纯性蕴含复可微性; 而在
-Section 2 中, 我们将证明复可微性蕴含全纯性.</p>
+刻画复可微性. 而在 Section 2 中, 我们将证明复可微性蕴含全纯性.</p>
 <h3 id="characterizing-c-differentiability">1.2  Characterizing <span class="math inline">\(\C\)</span>-differentiability</h3>
 <p>根据 <span class="math inline">\(\C\)</span> 与 <span class="math inline">\(\R^2\)</span> 的同构, 复变函数 <span class="math inline">\(f(z)\)</span> (<span class="math inline">\(z\in\C\)</span>) 可以视作 <span class="math inline">\(f(x,y)\)</span> (<span class="math inline">\(x,y\in\R\)</span>).
 复可微性蕴含着关于两个实变量的实可微性,
@@ -500,57 +500,6 @@ map)</strong> 定义为线性映射 <span class="math display">\[
 的矩阵具有 <span class="math inline">\(\pmqty{A&amp;-B\\B&amp;A}\)</span> 的形式,
 容易发现这等价于 Cauchy-Riemann 方程 (式 <span class="math inline">\((\text{b})\)</span>).</p>
 </div>
-<h3 id="holomorphy-implies-c-differentiability">1.3  Holomorphy implies <span class="math inline">\(\C\)</span>-differentiability</h3>
-<p>为了证明全纯函数的复可微性, 我们先研究一些幂级数理论.</p>
-<div class="note note-success">
-<p><u>Lemma 1.4</u> (Abel 引理) 设复数列 <span class="math inline">\(\{c_n\}_{n\geq0}\)</span>, 存在 <span class="math inline">\(0\leq R\leq+\infty\)</span>, 使得幂级数 <span class="math display">\[
-\sum_{n=0}^\infty c_nz^n
-\]</span> 在 <span class="math inline">\(|z|&lt;R\)</span> 时收敛, 在
-<span class="math inline">\(|z|&gt;R\)</span> 时发散. 并且该幂级数在
-<span class="math inline">\(D(0,R)\)</span> 的任意紧子集上一致收敛.</p>
-</div>
-<div class="note note-light">
-<p><u>Pf</u> 令 <span class="math inline">\(R=\sup\{r\geq0\mid\exists
-M,\textsf{使得 }|c_n|r^n\leq M,\forall n\geq0\}\)</span>. 如果 <span class="math inline">\(|z|&gt;R\)</span>, 则数列 <span class="math inline">\(|c_n||z|^n\)</span> 无界, 幂级数不收敛.</p>
-<p>任取紧子集 <span class="math inline">\(K\subset D(0,R)\)</span>, 取
-<span class="math inline">\(0&lt;\rho&lt;R\)</span> 满足 <span class="math inline">\(K\subset D(0,\rho)\)</span>. 取 <span class="math inline">\(r\)</span> 满足 <span class="math inline">\(\rho&lt;r&lt;R\)</span>. 因为 <span class="math inline">\(r&lt;R\)</span>, 所以存在 <span class="math inline">\(M\)</span> 使得 <span class="math inline">\(|c_n|r^n\leq M\)</span>; 于是对于 <span class="math inline">\(z\in K\)</span>, 有 <span class="math display">\[
-|c_nz^n| = |c_n||z|^n
-\leq |c_n| \rho^n
-\leq M \pqty{\frac{\rho}{r}}^n.
-\]</span> 因为 <span class="math inline">\(0&lt;\rho/r&lt;1\)</span>,
-级数 <span class="math inline">\(\sum_{n=0}^\infty(\rho/r)^n\)</span>
-收敛, 根据 Weierstrass 判别法, 原幂级数在 <span class="math inline">\(K\)</span> 一致收敛.</p>
-</div>
-<p>Abel 引理中的常数 <span class="math inline">\(0\leq
-R\leq+\infty\)</span> 称为幂级数 <span class="math inline">\(\sum_{n=0}^\infty c_nz^n\)</span>
-的<strong>收敛半径 (radius of convergence)</strong>, 开圆盘 <span class="math inline">\(D(0,R)\)</span> 称为<strong>收敛圆盘 (disc of
-convergence)</strong>. 需要注意的是, 幂级数在圆盘边界 (<span class="math inline">\(|z|=R\)</span> 处) 的敛散性不能保证, 需要具体分析.
-类似地, 可以定义中心不在原点的幂级数 <span class="math inline">\(\sum_{n=0}^\infty c_n(z-a)^n\)</span>
-的收敛半径和收敛圆盘.</p>
-<p>根据一致收敛的性质, 可以得到:</p>
-<div class="note note-success">
-<p><u>Corollary 1.5</u> (全纯 <span class="math inline">\(\Rightarrow\)</span> 连续) 设复变函数 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上全纯, 则 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上连续.</p>
-</div>
-<p>下面的定理告诉我们, 幂级数在收敛圆盘上可以逐项微分.</p>
-<div class="note note-success">
-<p><u>Proposition 1.6</u> (幂级数的复可微性) 设幂级数 <span class="math inline">\(\sum_{n=0}^\infty c_n(z-a)^n\)</span> 的收敛半径
-<span class="math inline">\(R&gt;0\)</span>, 且在 <span class="math inline">\(D(a,R)\)</span> 上收敛到 <span class="math inline">\(f(z)\)</span>, 则 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(D(a,R)\)</span> 上复可微, 且 <span class="math display">\[
-f'(z) = \sum_{n=1}^\infty nc_n(z-a)^{n-1},\quad z\in D(a,R).
-\]</span></p>
-</div>
-<p>幂级数 (在收敛圆盘内) 是复可微的, 且其导数是收敛半径相同的幂级数,
-故其导数也全纯. 立刻得到推论:</p>
-<div class="note note-success">
-<p><u>Corollary 1.7</u> (全纯 <span class="math inline">\(\Rightarrow\)</span> 无穷复可微) 设复变函数 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上全纯, 则 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上无穷阶复可微.</p>
-</div>
-<p>根据幂级数的逐项可微性, 我们能得到:</p>
-<div class="note note-success">
-<p><u>Proposition 1.8</u> (幂级数展开的唯一性) 设 <span class="math inline">\(f:\Omega\to\C\)</span> 在 <span class="math inline">\(a\in\Omega\)</span> 的邻域上展开为幂级数 <span class="math inline">\(\sum_{n=0}^\infty c_n(z-a)^n\)</span>, 则 <span class="math inline">\(c_n\)</span> 是唯一确定的. 具体来说, <span class="math display">\[
-c_n = \frac{1}{n!}f^{(n)}(a).
-\]</span> 其中 <span class="math inline">\(f^{(n)}\)</span> 为 <span class="math inline">\(f\)</span> 的 <span class="math inline">\(n\)</span> 阶导数.</p>
-</div>
-<p>定理中的幂级数 <span class="math inline">\(\sum_{n=0}^\infty
-\frac{1}{n!}f^{(n)}(a)(z-a)^n\)</span> 称为 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处的 <strong>Taylor 级数</strong>.</p>
 <h2 id="integration-along-curves">2  Integration Along Curves</h2>
 <h3 id="curves">2.1  Curves</h3>
 <p>回顾拓扑学中曲线的相关概念. 设拓扑空间 <span class="math inline">\(X\)</span>, 则 <span class="math inline">\(X\)</span> 上的一条<strong>曲线 (curve)</strong>
@@ -605,7 +554,7 @@ L(\gamma) := \int_a^b |\gamma'(t)|\dd{t}.
 <span class="math inline">\(R\)</span> 为半径的圆 (逆时针方向) 为曲线
 <span class="math inline">\(\gamma:[0,1]\to\C\)</span>, <span class="math display">\[
 \gamma(t) = a + R\cdot\exp(2\pi\i t).
-\]</span></p></li>
+\]</span> (参考 Section 3.3.)</p></li>
 <li><p>(矩形) 矩形 <span class="math inline">\(R=[a,b]\times[c,d]\)</span> 的边界 <span class="math inline">\(\partial R\)</span> (逆时针方向) 为四条边 <span class="math inline">\(\gamma_1,\gamma_2,\gamma_3,\gamma_4\)</span>
 拼接而成.</p></li>
 </ul>
@@ -851,7 +800,7 @@ Lemma 可知结论成立.</p>
   \textstyle\textsf{矩形的边界复积分为零}}
   \ar@2{-&gt;}[r]_(.55){\textsf{Morera}} &amp;
 \textsf{$f$ 在 $\Omega$ 全纯}
-  \ar@2{-&gt;}@&lt;0.0ex&gt;[d]^{\textsf{Cor. 1.7}} &amp;
+  \ar@2{-&gt;}@&lt;0.0ex&gt;[d]^{\textsf{Cor. 3.6}} &amp;
 \substack{
   \textstyle\textsf{$f$ 在 $\Omega$ 连续,可偏导} \\
   \textstyle\textsf{并满足 C-R 方程}}
@@ -905,6 +854,266 @@ R}F\dd{z}=0\)</span>.</p>
 </ul>
 <p>这对于 <span class="math inline">\(\R\)</span> 或者 <span class="math inline">\(\R^2\)</span> 上的实变函数显然是不可思议的.
 这也反映出, 全纯性是比光滑性、实解析性等强的多的性质.</p>
+<h2 id="power-series">3  *Power Series</h2>
+<p>这个 Section 补充一些复幂级数的内容, 很大程度上和实幂级数是平行的.
+这一部分可以单独拎出来, 几乎不需要复变函数的前置知识.</p>
+<h3 id="radius-of-convergence">3.1  Radius of convergence</h3>
+<div class="note note-success">
+<p><u>Lemma 3.1</u> (Abel 引理) 设复数列 <span class="math inline">\(\{c_n\}_{n\geq0}\)</span>, 存在 <span class="math inline">\(0\leq R\leq+\infty\)</span>, 使得幂级数 <span class="math display">\[
+\sum_{n=0}^\infty c_nz^n
+\]</span> 在 <span class="math inline">\(|z|&lt;R\)</span> 时收敛, 在
+<span class="math inline">\(|z|&gt;R\)</span> 时发散. 并且该幂级数在
+<span class="math inline">\(D(0,R)\)</span> 的任意紧子集上一致收敛.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 令 <span class="math inline">\(R=\sup\{r\geq0\mid\exists
+M,\textsf{使得 }|c_n|r^n\leq M,\forall n\geq0\}\)</span>. 如果 <span class="math inline">\(|z|&gt;R\)</span>, 则数列 <span class="math inline">\(|c_n||z|^n\)</span> 无界, 幂级数不收敛.</p>
+<p>任取紧子集 <span class="math inline">\(K\subset D(0,R)\)</span>, 取
+<span class="math inline">\(0&lt;\rho&lt;R\)</span> 满足 <span class="math inline">\(K\subset D(0,\rho)\)</span>. 取 <span class="math inline">\(r\)</span> 满足 <span class="math inline">\(\rho&lt;r&lt;R\)</span>. 因为 <span class="math inline">\(r&lt;R\)</span>, 所以存在 <span class="math inline">\(M\)</span> 使得 <span class="math inline">\(|c_n|r^n\leq M\)</span>; 于是对于 <span class="math inline">\(z\in K\)</span>, 有 <span class="math display">\[
+|c_nz^n| = |c_n||z|^n
+\leq |c_n| \rho^n
+\leq M \pqty{\frac{\rho}{r}}^n.
+\]</span> 因为 <span class="math inline">\(0&lt;\rho/r&lt;1\)</span>,
+级数 <span class="math inline">\(\sum_{n=0}^\infty(\rho/r)^n\)</span>
+收敛, 根据 Weierstrass 判别法, 原幂级数在 <span class="math inline">\(K\)</span> 一致收敛.</p>
+</div>
+<p>Abel 引理中的常数 <span class="math inline">\(0\leq
+R\leq+\infty\)</span> 称为幂级数 <span class="math inline">\(\sum_{n=0}^\infty c_nz^n\)</span>
+的<strong>收敛半径 (radius of convergence)</strong>, 开圆盘 <span class="math inline">\(D(0,R)\)</span> 称为<strong>收敛圆盘 (disc of
+convergence)</strong>. 需要注意的是, 幂级数在圆盘边界 (<span class="math inline">\(|z|=R\)</span> 处) 的敛散性不能保证, 需要具体分析.
+类似地, 可以定义中心不在原点的幂级数 <span class="math inline">\(\sum_{n=0}^\infty c_n(z-a)^n\)</span>
+的收敛半径和收敛圆盘.</p>
+<p>根据一致收敛的性质, 可以得到:</p>
+<div class="note note-success">
+<p><u>Corollary 3.2</u> (全纯 <span class="math inline">\(\Rightarrow\)</span> 连续) 设复变函数 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上全纯, 则 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上连续.</p>
+</div>
+<p>两个判断复级数是否收敛的方法:</p>
+<div class="note note-success">
+<p><u>Proposition 3.3</u> 设复数列 <span class="math inline">\(\{c_n\}_{n\geq0}\)</span>.</p>
+<ol type="1">
+<li>(Ratio test) 记 <span class="math inline">\(l_1=\limsup_{n\to\infty}\dfrac{|c_{n+1}|}{|c_n|}\)</span>.
+若 <span class="math inline">\(l_1&lt;1\)</span>, 则级数 <span class="math inline">\(\sum_{n=0}^\infty c_n\)</span> 绝对收敛.</li>
+<li>(Root test) 记 <span class="math inline">\(l_2=\limsup_{n\to\infty}\sqrt[n]{|c_n|}\)</span>.
+若 <span class="math inline">\(l_2&lt;1\)</span>, 则级数 <span class="math inline">\(\sum_{n=0}^\infty c_n\)</span> 绝对收敛; 若 <span class="math inline">\(l_2&gt;1\)</span>, 则级数发散; 若 <span class="math inline">\(l_2=1\)</span>, 不能确定敛散性.</li>
+<li>若上面的 <span class="math inline">\(l_1,l_2\)</span> 都存在
+(不为无穷大), 则 <span class="math inline">\(l_1=l_2\)</span>.</li>
+</ol>
+</div>
+<p>上面两个 test 分别给出了两种收敛半径的计算公式:</p>
+<div class="note note-success">
+<p><u>Proposition 3.4</u> 设复幂级数 <span class="math inline">\(\sum_{n=0}^\infty c_n(z-a)^n\)</span>.</p>
+<ol type="1">
+<li>若 <span class="math inline">\(R=\dfrac{1}{\limsup|c_{n+1}|/|c_n|}\)</span> 存在
+(可为无穷大), 则级数在 <span class="math inline">\(D(a,R)\)</span>
+收敛.</li>
+<li>若 <span class="math inline">\(R=\dfrac{1}{\limsup\sqrt[n]{|c_n|}}\)</span> 存在
+(可为无穷大), 则级数的收敛半径为 <span class="math inline">\(R\)</span>.</li>
+</ol>
+</div>
+<h3 id="c-differentiability">3.2  <span class="math inline">\(\C\)</span>-Differentiability</h3>
+<p>下面的定理告诉我们, 幂级数在收敛圆盘上可以逐项微分 / 积分.</p>
+<div class="note note-success">
+<p><u>Proposition 3.5</u> 设幂级数 <span class="math inline">\(\sum_{n=0}^\infty c_n(z-a)^n\)</span> 的收敛半径
+<span class="math inline">\(R&gt;0\)</span>, 且在 <span class="math inline">\(D(a,R)\)</span> 上收敛到 <span class="math inline">\(f(z)\)</span>.</p>
+<ol type="1">
+<li><p>(幂级数的复可微性) <span class="math inline">\(f\)</span> 在
+<span class="math inline">\(D(a,R)\)</span> 上复可微, 且 <span class="math display">\[
+f'(z) = \sum_{n=1}^\infty nc_n(z-a)^{n-1},\quad z\in D(a,R).
+\]</span></p></li>
+<li><p>(幂级数的原函数) <span class="math inline">\(f\)</span> 在 <span class="math inline">\(D(a,R)\)</span> 上存在原函数, 它的一个原函数为
+<span class="math display">\[
+F(z) = \sum_{n=0}^\infty \frac{c_n}{n+1}(z-a)^{n+1},
+\quad z\in D(a,R).
+\]</span></p></li>
+</ol>
+</div>
+<p>幂级数 (在收敛圆盘内) 是复可微的, 且其导数是收敛半径相同的幂级数,
+故其导数也全纯. 立刻得到推论:</p>
+<div class="note note-success">
+<p><u>Corollary 3.6</u> (全纯 <span class="math inline">\(\Rightarrow\)</span> 无穷复可微) 设复变函数 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上全纯, 则 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上无穷阶复可微.</p>
+</div>
+<p>根据幂级数的逐项可微性, 我们还能得到:</p>
+<div class="note note-success">
+<p><u>Proposition 3.7</u> (幂级数展开的唯一性) 设 <span class="math inline">\(f:\Omega\to\C\)</span> 在 <span class="math inline">\(a\in\Omega\)</span> 的邻域上展开为幂级数 <span class="math inline">\(\sum_{n=0}^\infty c_n(z-a)^n\)</span>, 则 <span class="math inline">\(c_n\)</span> 是唯一确定的. 具体来说, <span class="math display">\[
+c_n = \frac{1}{n!}f^{(n)}(a).
+\]</span> 其中 <span class="math inline">\(f^{(n)}\)</span> 为 <span class="math inline">\(f\)</span> 的 <span class="math inline">\(n\)</span> 阶导数.</p>
+</div>
+<p>定理中的幂级数 <span class="math inline">\(\sum_{n=0}^\infty
+\frac{1}{n!}f^{(n)}(a)(z-a)^n\)</span> 称为 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处的 <strong>Taylor 级数</strong>.</p>
+<h3 id="the-complex-expsincos">3.3  The complex <span class="math inline">\(\exp,\sin,\cos\)</span></h3>
+<p>我们之前用初等的方法定义并研究过 (实变) 三角函数 <span class="math inline">\(\sin(x),\cos(x)\)</span>,
+这种定义具有良好的几何直观, 却不够严格, 也难以推广到复变函数.
+下面我们用幂级数给出复变三角函数与指数函数的严格定义,
+并反过来导出其几何直观.</p>
+<p>复变指数、正弦、余弦函数定义为 <span class="math display">\[
+\Align{
+\exp(z) &amp;:= \sum_{n=0}^\infty \frac{z^n}{n!}, \\
+\sin(z) &amp;:= \sum_{n=0}^\infty \frac{(-1)^nz^{2n+1}}{(2n+1)!}, \\
+\cos(z) &amp;:= \sum_{n=0}^\infty \frac{(-1)^nz^{2n}}{(2n)!}. \\
+}
+\]</span> (规定 <span class="math inline">\(0^0=1\)</span>)
+可知其收敛半径都为无穷大, 换言之, 它们都是 <span class="math inline">\(\C\)</span> 上的全纯函数.</p>
+<div class="note note-success">
+<p><u>Proposition 3.8</u> (指数函数的性质)</p>
+<ol type="1">
+<li><p><span class="math inline">\(\exp'(z)=\exp(z)\)</span>.</p></li>
+<li><p><span class="math inline">\(\exp(z+w)=\exp(z)\exp(w)\)</span>.</p></li>
+<li><p><span class="math inline">\(\exp(z)\neq0\)</span>, 且 <span class="math inline">\(\exp(-z)=1/\exp(z)\)</span>.</p></li>
+<li><p>定义 <span class="math inline">\(\operatorname{cis}:\R\to\C\)</span>, <span class="math inline">\(\operatorname{cis}(t):=\exp(\i t)\)</span>, 则
+<span class="math inline">\(\operatorname{cis}(\R)=S^1\)</span>
+(单位圆), 并且 <span class="math inline">\(\operatorname{cis}\)</span>
+是一个周期函数.</p>
+<p>设 <span class="math inline">\(\operatorname{cis}\)</span>
+的最小正周期为 <span class="math inline">\(T\)</span>, 定义 <span class="math inline">\(\pi:=T/2\)</span>
+称为<strong>圆周率</strong>.</p></li>
+<li><p><span class="math inline">\(\exp\)</span> 以 <span class="math inline">\(2\pi\i\)</span> 为周期.</p></li>
+<li><p><span class="math inline">\(\exp(\R)=(0,+\infty)\)</span>.</p></li>
+<li><p><span class="math inline">\(\exp(\C)=\C^*:=\C-\{0\}\)</span>.</p></li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1 由逐项可微得到; 2 由 Cauchy 乘积得到; 3 是 2 的推论.</p>
+<p><strong>第 4 条</strong>. 证明分为几步.</p>
+<p><u>第一步</u>, 证明 <span class="math inline">\(\operatorname{cis}(t)\in S^1\)</span>.</p>
+<ul>
+<li>由 2, <span class="math display">\[
+\overline{\exp(\i t)}
+= \exp(\overline{\i t})
+= \exp(-\i t)
+= 1/\exp(\i t),
+\]</span> 即 <span class="math inline">\(|\exp(\i
+t)|\equiv1\)</span>.</li>
+</ul>
+<p><u>第二步</u>, 证明 <span class="math inline">\(\operatorname{cis}(\R)=\Bbb{S}^1\)</span>,
+需要用一些拓扑群的知识.</p>
+<ul>
+<li><p>由 2, <span class="math display">\[
+\operatorname{cis}(s+t)
+= \exp(\i s+\i t)
+= \exp(\i s)\exp(\i t)
+= \operatorname{cis}(s)\operatorname{cis}(t).
+\]</span> 换言之, <span class="math inline">\(\operatorname{cis}\)</span> 是 <span class="math inline">\(\R\to\Bbb{S}^1\)</span> 的群同态, <span class="math inline">\(\operatorname{cis}(\R)\)</span> 是拓扑群 <span class="math inline">\(\Bbb{S}^1\)</span> 的子群.</p></li>
+<li><p>因为 <span class="math inline">\(|\operatorname{cis}'(t)|=1\neq0\)</span>,
+由逆映射定理, <span class="math inline">\(\operatorname{cis}:\R\to\Bbb{S}^1\)</span>
+是局部微分同胚, 进而是开映射, 有 <span class="math inline">\(\operatorname{cis}(\R)\)</span> 开.
+因为拓扑群的开子群也是闭的, 故 <span class="math inline">\(\operatorname{cis}(\R)\)</span> 既开又闭. 由 <span class="math inline">\(\Bbb{S}^1\)</span> 的连通性, <span class="math inline">\(\operatorname{cis}(\R)=\Bbb{S}^1\)</span>.</p></li>
+</ul>
+<p><u>第三步</u>, 证明周期性.</p>
+<ul>
+<li><p>设 <span class="math inline">\(T\in\R\)</span> 满足 <span class="math display">\[
+\operatorname{cis}(t+T)
+= \operatorname{cis}(t)\operatorname{cis}(T)
+= \operatorname{cis}(t),
+\]</span> 故 <span class="math inline">\(T\)</span> 是 <span class="math inline">\(\operatorname{cis}\)</span> 的周期当且仅当 <span class="math inline">\(\operatorname{cis}(T)=1\)</span>.
+考虑所有周期的集合 <span class="math inline">\(K=\{t\in\R\mid\operatorname{cis}(t)=1\}\)</span>,
+则 <span class="math inline">\(0\in K\)</span> 且 <span class="math inline">\(K\)</span> 为 <span class="math inline">\(\R\)</span> 的子群.</p></li>
+<li><p>(<span class="math inline">\(K\)</span> 非平凡) 假若 <span class="math inline">\(K=\{0\}\)</span>, 则任取 <span class="math inline">\(s,t\in\R\)</span> 满足 <span class="math inline">\(\operatorname{cis}(s)=\operatorname{cis}(t)\)</span>,
+即 <span class="math display">\[
+\operatorname{cis}(s-t) = 1,
+\]</span> 有 <span class="math inline">\(s-t\in K=\{0\}\)</span>, 故
+<span class="math inline">\(s=t\)</span>. 这说明 <span class="math inline">\(\operatorname{cis}\)</span> 是双射. 又 <span class="math inline">\(\operatorname{cis}\)</span> 为局部同胚, 则 <span class="math inline">\(\operatorname{cis}\)</span> 为同胚. 然而 <span class="math inline">\(\R\)</span> 非紧, <span class="math inline">\(\Bbb{S}^1\)</span> 紧, 与同胚矛盾. 因此 <span class="math inline">\(K\)</span> 至少有两个元素, 即 <span class="math inline">\(\operatorname{cis}\)</span> 是周期函数.</p></li>
+<li><p>(<span class="math inline">\(K\)</span> 的离散性) 我们证明 <span class="math inline">\(K\)</span> 中的每个点都是孤立点.</p>
+<ul>
+<li><p>由于 <span class="math inline">\(\operatorname{cis}\)</span>
+是局部微分同胚, 存在开区间 <span class="math inline">\(I=(-\varepsilon,\varepsilon)\)</span> 使得 <span class="math inline">\(\operatorname{cis}|_I\)</span> 是单射, 有 <span class="math inline">\(K\cap I=\{0\}\)</span>.</p></li>
+<li><p>对任意 <span class="math inline">\(t\in T\)</span>, 记平移映射
+<span class="math inline">\(\tau_t:\R\to\R\)</span>, <span class="math inline">\(x\mapsto x+t\)</span>, 则 <span class="math inline">\(\tau_t(I)\)</span> 是 <span class="math inline">\(t\)</span> 在 <span class="math inline">\(\R\)</span> 中的邻域. 任取 <span class="math inline">\(s\in\tau_t(I)\cap K\)</span>, 则 <span class="math display">\[
+\Align{
+\tau_t^{-1}(s) \in \tau_t^{-1}(\tau_t(I)\cap K)
+&amp;\xlongequal{\tau_t\textsf{ 单}}
+  (\tau_t^{-1}\tau_t)(I) \cap \tau_t^{-1}(K) \\
+&amp;= I\cap K \\
+&amp;= \{0\},
+}
+\]</span> 即 <span class="math inline">\(s=t\)</span>, 于是 <span class="math inline">\(\tau_t(I)\cap K=\{t\}\)</span>.</p></li>
+</ul></li>
+<li><p>结合以上两点, <span class="math inline">\(K\)</span> 是 <span class="math inline">\(\R\)</span> 的离散子集. 取 <span class="math inline">\(T:=\inf(K\cap(0,+\infty))\)</span>, 由离散性得
+<span class="math inline">\(T\in K\)</span>, 故 <span class="math inline">\(T\)</span> 即是最小正周期.</p></li>
+</ul>
+<p><strong>第 5 条</strong>. 结合 2 和 4, 有 <span class="math display">\[
+\exp(z+2\pi\i)
+= \exp(z)\exp(2\pi\i)
+= \exp(z)\operatorname{cis}(2\pi)
+= \exp(z).
+\]</span> <strong>第 6 条</strong>. 因为 <span class="math inline">\(\exp(x)\neq0\)</span>, 由连续性, <span class="math inline">\(\exp(x)\)</span> 恒正或恒负. 注意到 <span class="math inline">\(\exp(0)=1\)</span>, 有 <span class="math inline">\(\exp(x)&gt;0\)</span>. 又由连续性, <span class="math inline">\(\exp(\R)\)</span> 是 <span class="math inline">\((0,+\infty)\)</span> 的子区间.</p>
+<p>记 <span class="math inline">\(\e=\exp(1)\)</span>, 则 <span class="math inline">\(\e=\sum_{n=0}^\infty\frac{1}{n!}&gt;2\)</span>. 由
+2 可以归纳得到 <span class="math display">\[
+\exp(n) = \e^n, \quad n\in\Z.
+\]</span> 令上式中 <span class="math inline">\(n\to+\infty\)</span>,
+<span class="math inline">\(\exp(n)\to+\infty\)</span>; 令 <span class="math inline">\(n\to-\infty\)</span>, <span class="math inline">\(\exp(n)\to0\)</span>. 又因为 <span class="math inline">\(\exp(\R)\)</span> 是 <span class="math inline">\((0,+\infty)\)</span> 的子区间, 只能有 <span class="math inline">\(\exp(\R)=(0,+\infty)\)</span>.</p>
+<p><strong>第 7 条</strong>. 任取 <span class="math inline">\(z\in\C^*\)</span>, 则存在 <span class="math inline">\(s\in\R\)</span> 使得 <span class="math inline">\(|z|=\exp(s)\)</span>. 又因为 <span class="math inline">\(z/|z|\in S^1\)</span>, 根据 4, 存在 <span class="math inline">\(t\in\R\)</span> 使得 <span class="math inline">\(\exp(\i t)=z/|z|\)</span>. 于是 <span class="math display">\[
+\exp(s+\i t)
+= \exp(s) \exp(\i t)
+= |z| \cdot \frac{z}{|z|}
+= z.
+\]</span></p>
+</div>
+<p>指数函数的性质推出三角函数的性质.</p>
+<div class="note note-success">
+<p><u>Proposition 3.9</u> (三角函数的性质)</p>
+<ol type="1">
+<li><p>指数函数和三角函数的关系: 对 <span class="math inline">\(t\in\R\)</span>, 有 <span class="math display">\[
+\Align{
+\cos(t) &amp;= \Re(\exp(\i t)) = \Re(\operatorname{cis}(t)) \\
+\sin(t) &amp;= \Im(\exp(\i t)) = \Im(\operatorname{cis}(t)) \\
+}
+\]</span></p></li>
+<li><p>指数函数和三角函数的关系: 对 <span class="math inline">\(z\in\C\)</span>, 有 <span class="math display">\[
+\Align{
+\cos(z) &amp;= \frac{\exp(\i z)+\exp(-\i z)}{2}, \\
+\sin(z) &amp;= \frac{\exp(\i z)-\exp(-\i z)}{2\i}. \\
+}
+\]</span></p></li>
+<li><p><span class="math inline">\(\sin(-z)=-\sin(z)\)</span>, <span class="math inline">\(\cos(-z)=\cos(z)\)</span>.</p></li>
+<li><p>和差角公式: 对 <span class="math inline">\(z,w\in\C\)</span>, 有
+<span class="math display">\[
+\Align{
+\cos(z+w) &amp;= \cos(z)\cos(w) - \sin(z)\sin(w), \\
+\sin(z+w) &amp;= \sin(z)\cos(w) + \cos(z)\sin(w).
+}
+\]</span></p></li>
+<li><p><span class="math inline">\(\sin^2(z)+\cos^2(z)=1\)</span>.</p></li>
+<li><p><span class="math inline">\(\sin'(z)=\cos(z)\)</span>, <span class="math inline">\(\cos'(z)=-\sin(z)\)</span>.</p></li>
+<li><p><span class="math inline">\(\cos(z)\)</span> 和 <span class="math inline">\(\sin(z)\)</span> 都以 <span class="math inline">\(2\pi\)</span> 为最小正周期.</p></li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1 和 2 由幂级数的运算得到. 3 ~ 5 是 2 的推论. 5
+用幂级数的逐项可微性证明.</p>
+<p><strong>第 6 条</strong>. 这里只证明 <span class="math inline">\(\cos(z)\)</span> 的周期性, 另一个是类似的. 任取
+<span class="math inline">\(z=a+b\i\in\C\)</span>, 由 1 以及 <span class="math inline">\(\operatorname{cis}\)</span> 的周期性可得 <span class="math inline">\(\cos(a+2\pi)=\cos(a)\)</span> 以及 <span class="math inline">\(\sin(a+2\pi)=\sin(a)\)</span>, 进而 <span class="math display">\[
+\Align{
+\cos(z+2\pi)
+&amp;= \cos((a+2\pi)+b\i) \\
+&amp;= \cos(a+2\pi)\cos(b\i) - \sin(a+2\pi)\sin(b\i) \\
+&amp;= \cos(a)\cos(b\i) - \sin(a)\sin(b\i) \\
+&amp;= \cos(z).
+}
+\]</span></p>
+</div>
+<p>Proposition 3.8 中定义的 <span class="math inline">\(\pi\)</span>
+就是我们熟悉的那个 <span class="math inline">\(3.14\dots\)</span>,
+它是圆的周长与直径的比值: 设半径为 <span class="math inline">\(R\)</span> 的圆 <span class="math display">\[
+\gamma(t)=a+R\cdot\exp(2\pi\i t) = a+R\operatorname{cis}(2\pi t),
+\quad 0\leq t\leq 1,
+\]</span> 则 <span class="math display">\[
+\frac{L(\gamma)}{2R}
+= \frac{1}{2R}\int_0^1
+    \abs{\gamma'(t)}\dd{t}
+= \frac{1}{2R}\int_0^1 2\pi R\dd{t}
+= \pi.
+\]</span> 此外, 考虑从点 <span class="math inline">\((1,0)\)</span>
+开始的单位圆弧 <span class="math inline">\(\gamma(t)=\operatorname{cis}(t)\)</span>, <span class="math inline">\(0\leq t\leq \alpha\)</span>, 则 <span class="math inline">\(\alpha\)</span> 就是 <span class="math inline">\(\gamma\)</span> 的弧长, 而 <span class="math display">\[
+\gamma(\alpha) = (\cos\alpha,\sin\alpha),
+\]</span> 这恰恰是实变三角函数的初等定义.</p>
+<p>指数函数 / 三角函数的一个应用是复平面上的极坐标.</p>
+<div class="note note-success">
+<p><u>Proposition 3.10</u> (极坐标)</p>
+<ol type="1">
+<li>对任意 <span class="math inline">\(z\in\C^*\)</span>, 存在 <span class="math inline">\(\rho&gt;0\)</span> 和 <span class="math inline">\(\theta\in[0,2\pi)\)</span> 使得 <span class="math inline">\(z=\rho\exp(\i\theta)=\rho\cdot(\cos\theta,\sin\theta)\)</span>.</li>
+<li>对任意可微曲线 <span class="math inline">\(\gamma:[0,1]\to\C^*\)</span>, 存在可微函数 <span class="math inline">\(\rho:[0,1]\to(0,+\infty)\)</span> 和 <span class="math inline">\(\theta:[0,1]\to\R\)</span> 使得 <span class="math inline">\(\gamma(t)=\rho(t)\exp[\i\theta(t)]=\rho(t)\cdot(\cos\theta(t),\sin\theta(t))\)</span>.</li>
+</ol>
+</div>
 </body></html>
                 
               </div>
