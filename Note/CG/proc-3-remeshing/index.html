@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-posy.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-posy-result.png">
 <meta property="article:published_time" content="2025-03-15T09:30:00.000Z">
-<meta property="article:modified_time" content="2025-03-15T09:46:28.766Z">
+<meta property="article:modified_time" content="2025-03-26T01:53:09.050Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="计算几何">
@@ -589,7 +589,7 @@ E_{\sf e}(O,k) := \sum_{(i,j)\in E({\cal K})}
 \]</span> 其中 <span class="math inline">\((k_{ij},k_{ji})\in\Z^2\)</span>,
 记录夹角最小的代表元. 要确定 <span class="math inline">\((k_{ij},k_{ji})\)</span>, 只需枚举 <span class="math inline">\(4\times4\)</span> 种情况.</p></li>
 </ul>
-<p>优化方法采用 Gauss-Seidel 迭代. 类似于 Laplacian Smoothing,
+<p>优化方法采用 Gauss-Seidel 迭代. 类似于 Laplace 平滑,
 它让每个点的场趋向于附近点的平均值. 因为 intrinsic smoothness
 总是将网格局部展平, 所以它并不能捕捉 <span class="math inline">\({\cal
 K}\)</span> 在空间中的嵌入信息, 只能捕捉 <span class="math inline">\({\cal K}\)</span> 的整体拓扑. Extrinsic

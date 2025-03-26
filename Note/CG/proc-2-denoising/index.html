@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/2-cascaded-clustering.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/2-cascaded-regression-results.png">
 <meta property="article:published_time" content="2025-03-05T12:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-11T10:48:56.399Z">
+<meta property="article:modified_time" content="2025-03-26T01:53:51.281Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="计算几何">
@@ -362,10 +362,9 @@ Freeform Modeling</em>.</hcontent><a href="#fn4" class="footnote-ref" id="fnref4
 <div class="note note-secondary">
 <p>原论文: <em>Bilateral Mesh Denoising</em>, SIGGRAPH 2003.</p>
 </div>
-<p>Laplacian 算法可以把噪音去除, 但是也会抹去几何体原本的细节信息
-(如果用 uniform formula, Laplace
-平滑实际上就是让顶点坐标趋于附近顶点的均值, 类似于 Gauss 模糊).
-为此引入双边滤波, 避免过度平滑.</p>
+<p>Laplace 平滑可以把噪音去除, 但是也会抹去几何体原本的细节信息 (如果用
+uniform formula, Laplace 平滑实际上就是让顶点坐标趋于附近顶点的均值,
+类似于 Gauss 模糊). 为此引入双边滤波, 避免过度平滑.</p>
 <p>先从图像的双边滤波讲起. 设图像 <span class="math inline">\(I\)</span>,
 它的双边滤波可以在去除噪声的同时保持边缘: <span class="math display">\[
 I'(x) := \frac1{K_x} \sum_{y\in N(x)}
@@ -495,7 +494,7 @@ SIGGRAPH Asia 2016.</p>
 我们当然可以对其做出一些假设 (例如线性回归假设噪音服从正态分布),
 前人的方法或多或少都有一些假设:</p>
 <ul>
-<li>Laplacian 平滑和 <span class="math inline">\(L_1\)</span>-analysis
+<li>Laplace 平滑和 <span class="math inline">\(L_1\)</span>-analysis
 (Wang et al. 2015) 都假设噪音是独立同分布的.</li>
 <li>法向双边滤波和 <span class="math inline">\(L_0\)</span>
 稀疏优化都假设三角形网格是逐片平滑的 (片与片有清晰的边界).</li>
