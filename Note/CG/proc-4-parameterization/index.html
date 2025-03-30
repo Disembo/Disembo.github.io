@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/4-mesh-colors-editing.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/4-mesh-colors-non-uniform.png">
 <meta property="article:published_time" content="2025-03-21T14:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-21T14:20:00.584Z">
+<meta property="article:modified_time" content="2025-03-29T10:23:10.151Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="计算几何">
@@ -140,7 +140,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -152,7 +152,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -164,7 +164,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+                <span>分类</span>
               </a>
             </li>
           
@@ -176,7 +176,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -188,7 +188,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -200,7 +200,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
+                <span>友链</span>
               </a>
             </li>
           
@@ -356,19 +356,30 @@ D_{ij}\|u_i-u_j\|^2.
 0 = \pdv{E}{u_i} &amp;= \sum_{j\in{\cal N}(i)} D_{ij} (u_i-u_j) \\
 \iff u_i &amp;= \sum_{j\in{\cal N}(i)} \lambda_{ij} u_j.
 }
-\]</span> 也就是求解下面的线性系统 (Laplace 方程): <span class="math display">\[
-LU = 0, \quad\textsf{边界点}\; u_i\in\partial{A} \;\textsf{给定}.
-\]</span> 其中 <span class="math inline">\(U=\pmqty{u_1\T\\\vdots\\u_n\T}\)</span>, <span class="math inline">\(L_{ij}=\Cases{1,&amp;i=j,\\-\lambda_{ij},&amp;j\in{\cal
-N}(i),\\0,&amp;\textsf{otherwise},}\)</span> 这是一个稀疏的对称矩阵.</p>
+\]</span> 为了方便, 不妨设前 <span class="math inline">\(m\)</span>
+个点为内部点 (未知量), 后面的点为边界点 (已知量). 将已知与未知分离, 得到
+<span class="math display">\[
+u_i - \sum_{\substack{j\in{\cal N}(i)\\j\leq m}} \lambda_{ij}u_j
+= \sum_{\substack{j\in{\cal N}(i)\\j&gt;m}} \lambda_{ij}u_j.
+\]</span> 也就是求解下面的线性系统 (带边界条件的 Laplace 方程): <span class="math display">\[
+LX = B,
+\]</span> 其中:</p>
 <ul>
-<li>取 uniform <span class="math inline">\(D_{ij}=1\)</span> 的话, <span class="math inline">\(L\)</span> 就是图的 Laplace 矩阵.
+<li><span class="math inline">\(X=\pmqty{u_1&amp;\cdots&amp;u_m}\T\)</span>,</li>
+<li><span class="math inline">\(B_i=\sum_{j\in{\cal
+N}(i),j&gt;m}\lambda_{ij}u_j\T\)</span>,</li>
+<li>稀疏的 <span class="math inline">\(m\times m\)</span> 对称矩阵 <span class="math inline">\(L_{ij}=\Cases{1,&amp;i=j,\\-\lambda_{ij},&amp;j\in{\cal
+N}(i),\\0,&amp;\textsf{otherwise}.}\)</span>
+<ul>
+<li>若取 uniform <span class="math inline">\(D_{ij}=1\)</span>, <span class="math inline">\(L\)</span> 就是图的 Laplace 矩阵.
 此时的优化只考虑网格的拓扑连接, 不考虑几何.</li>
-<li>取 cotangent <span class="math inline">\(D_{ij}=\frac{1}{2A_{i}}(\cot\alpha_{ij}+\cot\beta_{ij})\)</span>
-的话, <span class="math inline">\(L\)</span> 就是三角形网格的离散
+<li>若取 cotangent <span class="math inline">\(D_{ij}=\frac12(\cot\alpha_{ij}+\cot\beta_{ij})\)</span>,
+<span class="math inline">\(L\)</span> 就是三角形网格的离散
 Laplace-Beltrami 算子.</li>
+</ul></li>
 </ul>
-<p>上面的方程 <span class="math inline">\(LU=0\)</span> 其实是求解 <span class="math inline">\(U\)</span>, 使得它的 Laplace-Beltrami 为零, 即
-<span class="math inline">\(U\)</span> (或者 <span class="math inline">\(\varphi\)</span>) 为调和映射. 这类似于网格去噪的
+<p>上面的方程 <span class="math inline">\(LX=B\)</span> 的解使得 uv
+坐标的 Laplace-Beltrami 为零, 即 <span class="math inline">\(\varphi\)</span> 为调和映射. 这类似于网格去噪的
 Laplace 平滑, 即给定初始温度 (边界点的 uv 坐标) 之后让温度梯度 <span class="math inline">\(\int_{|{\cal K}|}\|\nabla u\|^2\dd{V}\)</span> (即
 Dirichlet 能量) 尽可能小.</p>
 <p>Tutte 映射可以保证 uv-map 没有翻转 (直观来看,
