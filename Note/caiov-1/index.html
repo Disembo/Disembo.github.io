@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/morera-thm.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/schwarz-reflection-principle.png">
 <meta property="article:published_time" content="2025-02-25T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-26T03:39:37.151Z">
+<meta property="article:modified_time" content="2025-03-28T01:55:32.931Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="复分析">
@@ -341,7 +341,10 @@ f(z) = \sum_{n=0}^\infty c_n(z-a)^n,\quad\forall z\in U,
 <ul>
 <li>全纯也称为<strong>解析 (anylatic)</strong>.
 注意应与实变函数的解析性做区分.</li>
-<li>根据 Section 3 中复幂级数的理论, 若 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 上全纯, 则它在 <span class="math inline">\(\Omega\)</span> 上无穷阶复可微.</li>
+<li>现在可以阅读 Section 3 的复幂级数理论了,
+它主要探讨了复幂级数的收敛半径、复可微性, 并定义了复指数函数和三角函数.
+其中关于复可微性的结论是: 若 <span class="math inline">\(f\)</span> 在
+<span class="math inline">\(\Omega\)</span> 上全纯, 则它在 <span class="math inline">\(\Omega\)</span> 上无穷阶复可微.</li>
 </ul>
 <p>在 Section 1.2 中, 我们将用一组方程 (Cauchy-Riemann 方程)
 刻画复可微性. 而在 Section 2 中, 我们将证明复可微性蕴含全纯性.</p>
@@ -572,7 +575,7 @@ L(\gamma) := \int_a^b |\gamma'(t)|\dd{t}.
 \]</span> 此外, 容易证明重参数化不改变沿曲线积分的值.</p>
 <p>简单的放缩还可以得到如下结论: 设开集 <span class="math inline">\(\Omega\subset\C\)</span>, 连续函数 <span class="math inline">\(f:\Omega\to\C\)</span>, 分段可微曲线 <span class="math inline">\(\gamma:[a,b]\to\Omega\)</span>. 设 <span class="math inline">\(M=\sup_{z\in\im\gamma}|f(z)|\)</span>, 则 <span class="math display">\[
 \abs{\int_\gamma f\dd{z}} \leq M\cdot L(\gamma).
-\]</span> 下面的定理等价于曲线积分的 Green 公式.</p>
+\]</span> 下面的定理等价于曲线积分的 Green 公式 (对于矩形).</p>
 <div class="note note-success">
 <p><u>Proposition 2.1</u> 设开集 <span class="math inline">\(\Omega\subset\C\)</span>, 复变函数 <span class="math inline">\(f\in C^1(\Omega)\)</span> (实可微), 闭矩形 <span class="math inline">\(R\subset\Omega\)</span>, 则 <span class="math display">\[
 \iint_R \pdv{f}{\bar{z}} \dd{x}\dd{y}
@@ -675,7 +678,7 @@ f(a) = \frac{1}{2\pi\i} \int_{\partial R} \frac{f(z)}{z-a}\dd{z}.
 <div class="note note-light">
 <p><u>Pf</u> 令 <span class="math display">\[
 g(z) = \Cases{
-  \dfrac{f(z)-f(a)}{z-a}, &amp; z\in\Omega-\{a\}, \\
+  \dfrac{f(z)-f(a)}{z-a}, &amp; z\in\Omega\setminus\{a\}, \\
   f'(a), &amp; z=a.
 }
 \]</span> 则 <span class="math inline">\(g(z)\)</span> 在 <span class="math inline">\(\Omega\)</span> 连续, 在 <span class="math inline">\(\Omega-\{a\}\)</span> 复可微. 应用 Theorem 2.3,
@@ -740,8 +743,9 @@ c_n = \frac1{2\pi\i} \int_{\partial R}\frac{f(z)}{(z-a)^{n+1}}\dd{z}.
 \]</span></p>
 </div>
 <p>注意以上证明中的半径 <span class="math inline">\(r\)</span>
-并不是最优的. 最优的 <span class="math inline">\(r\)</span> 在 Section 3
+并不是最优的. 最优的 <span class="math inline">\(r\)</span> 在 Section 4
 中给出.</p>
+<h3 id="moreras-theorem">2.4  Morera's theorem</h3>
 <div class="note note-success">
 <p><u>Theorem 2.6</u> (Morera 定理) 设开集 <span class="math inline">\(\Omega\subset\C\)</span> 上的复变函数 <span class="math inline">\(f\)</span> 连续. 若对任意矩形 <span class="math inline">\(R\subset\Omega\)</span>, 有 <span class="math display">\[
 \int_{\partial R}f\dd{z} = 0,
