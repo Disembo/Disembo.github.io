@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-posy.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-posy-result.png">
 <meta property="article:published_time" content="2025-03-15T09:30:00.000Z">
-<meta property="article:modified_time" content="2025-03-26T01:53:09.050Z">
+<meta property="article:modified_time" content="2025-04-06T14:13:21.876Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="计算几何">
@@ -302,7 +302,7 @@
 </ul>
 <p>三角形网格的重网格化主要基于下面几个基本操作:</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-remeshing-operations.png" cloud-img="" style="zoom:40%;" lazyload="true"></p>
-<h2 id="网格简化">4  网格简化</h2>
+<h2 id="网格简化">5  网格简化</h2>
 <p>Marching cubes 算法重建出的三角形网格是均匀的,
 在平滑的地方和细节之处都有相同的分辨率. 这就带来一个问题, 如果在
 marching cubes 时想要保留 SDF 的细节, 就需要很大的分辨率,
@@ -317,14 +317,14 @@ marching cubes 时想要保留 SDF 的细节, 就需要很大的分辨率,
 <li>选择哪一对边坍缩?</li>
 <li>坍缩后的新顶点应该在哪?</li>
 </ol>
-<h3 id="基于顶点聚类">4.1  基于顶点聚类</h3>
+<h3 id="基于顶点聚类">5.1  基于顶点聚类</h3>
 <p>顶点聚类 (vertex clustering) 方法很简单, 用一个包围盒包住三角形网格,
 将包围盒切分成若干个小立方体, 然后让处于同一个立方体内的顶点坍缩为一个
 (如下图, 图自课程 PPT).</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-simplification-clustering.png" cloud-img="" style="zoom:35%;" lazyload="true"></p>
 <p>在坍缩位置的选择上, 最简单的方法是取坍缩点的平均值,
 但这样会导致几何体的边界变得扭曲. 有没有更好的办法?</p>
-<h3 id="qem">4.2  QEM</h3>
+<h3 id="qem">5.2  QEM</h3>
 <div class="note note-secondary">
 <p>原论文: Michael Garland, Paul S. Heckbert, <em>Surface Simplification
 Using Quadric Error Metrics</em> (SIGGRAPH, 1997).</p>
@@ -382,7 +382,7 @@ I+A)^{-1}b\)</span>.</p>
 应当是在几何体较平缓的区域进行简化 (比如飞机顶部),
 在几何体棱角和细节的地方尽量不简化 (比如机翼和尾翼前缘).
 这就要请出增量式算法了.</p>
-<h3 id="progressive-mesh">4.3  Progressive mesh</h3>
+<h3 id="progressive-mesh">5.3  Progressive mesh</h3>
 <div class="note note-secondary">
 <p>原论文: Hugues Hoppe, <em>Progressive Meshes</em> (SIGGRAPH
 1996).</p>
@@ -421,7 +421,7 @@ Mesh. 下面的视频是原论文作者给出的一个 demo<span class="hint--ht
 <video controls="" style="width:600px;">
 <source src="https://hhoppe.com/proj/pm/pm_clip.mp4" type="video/mp4">
 </video>
-<h3 id="应用">4.4  应用</h3>
+<h3 id="应用">5.4  应用</h3>
 <p>图神经网络的 pooling 层实际上就是基于顶点聚类的边坍缩, 它的效率很高,
 但是效果不如增量式算法. 为什么图神经网络不使用后者? 一方面,
 增量式算法无法并行, 效率很低. 另一方面, 尽管基于聚类的算法的效果不够好,
@@ -440,7 +440,7 @@ Mesh. 下面的视频是原论文作者给出的一个 demo<span class="hint--ht
 也不需要等到接受完所有数据才能在屏幕上显示了.</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-pm.png" cloud-img="" style="zoom:35%;" lazyload="true"></p>
-<h2 id="提升网格的质量">5  提升网格的质量</h2>
+<h2 id="提升网格的质量">6  提升网格的质量</h2>
 <p>增量式算法还可以用于提升网格的质量,
 使得网格边长更均一、顶点分布更均匀. 该算法输入一个目标边长,
 通过迭代的方法让网格边长逐渐靠近目标边长.</p>
@@ -475,10 +475,10 @@ Mesh. 下面的视频是原论文作者给出的一个 demo<span class="hint--ht
 (如下图, 图自 Polygon mesh processing).</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-progressive-remeshing.png" cloud-img="" style="zoom:50%;" lazyload="true"></p>
-<h2 id="网格细分">6  网格细分</h2>
+<h2 id="网格细分">7  网格细分</h2>
 <p>Loop 细分和 <span class="math inline">\(\sqrt3\)</span>
 细分的本质都是向网格中加入新的顶点.</p>
-<h3 id="loop-细分">6.1  Loop 细分</h3>
+<h3 id="loop-细分">7.1  Loop 细分</h3>
 <div class="note note-secondary">
 <p>原论文: Charles Teorell Loop 的硕士论文 <em>Smooth Subdivision
 Surfaces Based on Triangles</em> (1987).</p>
@@ -512,7 +512,7 @@ Mathematica Stack Exchange<span class="hint--html hint--top hint--hoverable hint
 的平滑参数和顶点权重都是经过理论计算的).</p>
 <p>在 Loop 算法提出之前, 还有四边形网格上类似的细分算法——Catmull–Clark
 细分算法 (1978).</p>
-<h3 id="sqrt3-细分">6.2  <span class="math inline">\(\sqrt{3}\)</span>
+<h3 id="sqrt3-细分">7.2  <span class="math inline">\(\sqrt{3}\)</span>
 细分</h3>
 <div class="note note-secondary">
 <p>原论文: Leif Kobbel, <em><span class="math inline">\(\sqrt3\)</span>-Subdivision</em> (SIGGRAPH
@@ -528,7 +528,7 @@ v' = (1-n\alpha)v + \sum_{i=1}^n \alpha w_i,
 \]</span> 其中权重 <span class="math inline">\(\alpha=\dfrac{4-2\cos(2\pi/n)}{9}\)</span>.</p></li>
 </ol>
 <p>每次更新后, 网格的边长缩小为原来的 <span class="math inline">\(1/\sqrt3\)</span>, 故得名 <span class="math inline">\(\sqrt{3}\)</span> 细分. 该算法每次细分仅生成 <span class="math inline">\(3\)</span> 倍个三角形, 比 Loop 细分 (生成 <span class="math inline">\(4\)</span> 倍) 更高效.</p>
-<h2 id="四边形化">7  四边形化</h2>
+<h2 id="四边形化">8  四边形化</h2>
 <p>四边形网格在实际中用得比较多, 比如孟买的 Cybertecture Egg 和电影 Big
 Buck Bunny 的兔子模型 (左图自网络<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">https://cybertecture.io/portfolio/cybertecture-egg/</hcontent><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" style="text-decoration: none;"><sup>[4]</sup></a></span>, 右图自课程 PPT):</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-meshes.png" cloud-img="" style="zoom:40%;" lazyload="true"></p>
@@ -536,7 +536,7 @@ Buck Bunny 的兔子模型 (左图自网络<span class="hint--html hint--top hin
 <p>网格四边形化是一个高度非平凡的问题, 目前仍是研究前沿之一.
 这里主要介绍一种基于方向场和位置场的局部优化算法,
 并简略地提及一些整体优化算法.</p>
-<h3 id="局部优化算法">7.1  局部优化算法</h3>
+<h3 id="局部优化算法">8.1  局部优化算法</h3>
 <div class="note note-secondary">
 <p>原论文: Wenzel Jakob et al, <em>Instant Field-Aligned Meshes</em>
 (SIGGRAPH Asia 2011).</p>
@@ -546,7 +546,7 @@ Buck Bunny 的兔子模型 (左图自网络<span class="hint--html hint--top hin
 再抽取四面体网格, 如下图 (图自课程 PPT, 原图自原论文).</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-steps.png" cloud-img="" style="zoom:35%;" lazyload="true"></p>
 <p>本节的图片均取自原论文.</p>
-<h4 id="方向场">7.1.1  方向场</h4>
+<h4 id="方向场">8.1.1  方向场</h4>
 <p>方向场就是在三角形网格 <span class="math inline">\({\cal K}\)</span>
 的每个顶点都放一个 "十字", 指向两个正交的方向. 设顶点 <span class="math inline">\(v\)</span> 处的单位法向量为 <span class="math inline">\(n\)</span>, 则 <span class="math inline">\(v\)</span> 处的 "十字"
 指的是四个单位向量组成的集合 <span class="math display">\[
@@ -600,7 +600,7 @@ K}\)</span> 在空间中的嵌入信息, 只能捕捉 <span class="math inline">
 "十字" 对齐主曲率方向<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Bommes, D., Zimmer, H., and Kobbelt, L. 2009. <em>Mixed
 integer quadrangulation</em>. ACM Trans. Graph. 28, 3.</hcontent><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref" style="text-decoration: none;"><sup>[6]</sup></a></span>. 然而该方法在较为平坦的区域不适合,
 需要人为调整一个曲率阈值, 曲率绝对值小于该阈值的区域不施加对齐约束.</p>
-<h4 id="位置场">7.1.2  位置场</h4>
+<h4 id="位置场">8.1.2  位置场</h4>
 <p>有了位置场, 正方形网格便在相差一个平移的意义下确定 (边长 <span class="math inline">\(\rho\)</span> 预先给定). 每个顶点 <span class="math inline">\(v\)</span> 附近都有一个正方形网格,
 我们需要让这些网格对齐. 设 <span class="math inline">\(v\)</span>
 处网格的原点是 <span class="math inline">\(p\)</span>, 则格点的集合为
@@ -632,7 +632,7 @@ E_{\sf e}(P,t) := \sum_{(i,j)\in E({\cal K})} \|
 </ul>
 <p>Intrinsic 和 extrinsic 的优化结果如下:</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-posy-result.png" cloud-img="" style="zoom:30%;" lazyload="true"></p>
-<h4 id="迭代与网格抽取">7.1.3  迭代与网格抽取</h4>
+<h4 id="迭代与网格抽取">8.1.3  迭代与网格抽取</h4>
 <p>为了避免 GS 迭代陷入局部最小值, 论文采用由粗到细的优化策略.
 算法首先把输入的三角形网格按照逐渐简化, 得到不同分辨率的网格. 接着,
 算法首先在最低分辨率的网格上进行 GS 迭代,
@@ -653,7 +653,7 @@ E_{\sf e}(P,t) := \sum_{(i,j)\in E({\cal K})} \|
 <li>若 <span class="math inline">\(p_i,p_j\)</span> 不相连, 则将 <span class="math inline">\(p_i,p_j\)</span> 合并.</li>
 </ol></li>
 </ol>
-<h3 id="整体优化算法">7.2  整体优化算法</h3>
+<h3 id="整体优化算法">8.2  整体优化算法</h3>
 <p>上面提到的局部优化算法的原理和实现都不困难, 运行效率也很高.
 但局部优化的一个缺点是会产生较多的奇点 (singularity, 即度数不为 <span class="math inline">\(4\)</span> 的顶底). 为了得到质量更高的四边形网格,
 可以采用整体优化算法.</p>
@@ -748,9 +748,15 @@ integer quadrangulation</em>. ACM Trans. Graph. 28, 3.<a href="#fnref6" class="f
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
                   </span>
                 </a>
               

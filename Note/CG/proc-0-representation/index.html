@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="几种几何表示的方法 (体素, 点云, 三角形网格, SDF, 样条曲线与曲面).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几何表示">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/proc-0-representation/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="几种几何表示的方法 (体素, 点云, 三角形网格, SDF, 样条曲线与曲面).">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-bunny.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-representations.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-bunny-sdf.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-local-avg-regions.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-barycentric-coordinates.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-halfedge.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-halfedge-N1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-point-cloud-registration.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-point-cloud-normal.png">
+<meta property="article:published_time" content="2025-03-03T13:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-06T14:12:04.879Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="计算几何">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-bunny.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>几何表示 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="几何表示"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-03 21:00" pubdate>
+          2025年3月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">几何表示</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="几何表示的几种方法">1  几何表示的几种方法</h2>
+<p>如何在计算机内表示/存储一个三维的几何体? 比如下面的 <a target="_blank" rel="noopener" href="https://graphics.stanford.edu/data/3Dscanrep/">Stanford
+Bunny</a>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-bunny.jpg" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<p>在数学上, 我们可以用函数的水平集 (比如方程 <span class="math inline">\(F=0\)</span> 的解集) 或者参数曲面来表达一个几何体.
+然而现实中的几何体一般都复杂到难以写出具体的解析式. 因此,
+我们只能利用一些近似手段, 将几何体 (或者其表面)
+的近似形态存储在计算机里.</p>
+<p>最直接的办法是用若干固定大小的小立方体, 像搭积木一样砌成几何体形状.
+这被称为<strong>体素表示 (voxel representation)</strong> (下图最中间,
+图源 Research Gate<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">3D Vision with Transformers: A Survey - Scientific
+Figure on ResearchGate. Available from:
+https://www.researchgate.net/figure/arious-3D-representations-of-the-Stanford-bunny-22-The-projection-based-3D_fig1_362567752
+[accessed 25 Feb 2025]</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>).</p>
+<p>另一种比较直接的方法是在几何体表面采样很多很多点, 称为<strong>点云
+(point cloid)</strong>, 用这些点拟合几何体的表面 (下图左).</p>
+<p>为了表示几何体的表面, 还可以采用<strong>多边形网格 (polygon
+mesh)</strong>, 即用若干多边形 (一般是三角形) 组成的一张 "网"
+拟合几何体的表面 (下图右, 三角形网格).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-representations.jpg" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>受到隐函数曲面 (比如球面 <span class="math inline">\(x^2+y^2+z^2-r^2=0\)</span>) 的启发,
+我们可以用<strong>符号距离场 (signed distance field, SDF)</strong>
+表示几何体的表面. 对于空间中的每一点 <span class="math inline">\(x\)</span>, SDF 给出了 <span class="math inline">\(x\)</span> 到几何体表面的有符号距离
+(几何体内部为负, 外部为正, 表面上为零; 当然内外也可以反过来). 下图是
+bunny 的 SDF (图源课程 PPT).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-bunny-sdf.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<p>上面四种表示方法中,
+体素、点云、多边形网格称为<strong>显式表达</strong>,
+符号距离场称为<strong>隐式表达</strong>. 它们对应了不同的应用场景,
+并且可以相互转换.</p>
+<p>Polygon mesh processing (Mario Botsch et al.) Section 1.6
+中总结显式表达和隐式表达如下:</p>
+<div class="note note-secondary">
+<p>Parametric surfaces can capture even the finest detail, are easy to
+sample, and can be modified intuitively but it is diﬃcult to answer
+distance queries and topological changes require a major restructuring.
+On the other hand, topological changes and distance queries are easy for
+implicit surfaces but sampling and shape editing is not straightforward
+and the geometric detail resolution depends on the voxel size.</p>
+</div>
+<p>我们目前只介绍一些最基本的表示方法. 一些先进的方法, 比如八叉树
+(体素的升级版, 实现自适应分辨率), radiance field, 3D Gaussian
+等将在之后特定 topic 中介绍.</p>
+<h3 id="三角形网格">1.1  三角形网格</h3>
+<p>严格地说, 一个多边形网格指的是 <span class="math inline">\(\R^3\)</span> 中有限个多边形的集合 <span class="math inline">\({\cal K}\)</span>, 满足:</p>
+<ul>
+<li><span class="math inline">\({\cal K}\)</span>
+中任意两个多边形或者不交 (交集为空), 或者有公共边/公共顶点.</li>
+</ul>
+<p>多边形 <span class="math inline">\(P\in{\cal K}\)</span> 也称为一个
+"多边形面片 (polygon facet)". 三角形是最基本的多边形, 任意多边形网格
+<span class="math inline">\({\cal K}\)</span>
+可以通过切割面片的方式化为一个三角形网格.
+下面我们主要研究三角形网格.</p>
+<p>三角形网格的表达能力很强, 任意二维拓扑流形都能表达为三角形网格
+(当然也能表示一些非流形的几何体), 而且三角形网格能表达细致的几何信息,
+也容易编辑.
+三角形网格的另一个好处是经典微分几何中的曲面理论能直接推广到三角形网格.</p>
+<h4 id="local-averaging-region">1.1.1  Local averaging region</h4>
+<p>由于三角形网格是分片线性的, 在交界处不可微, 故顶点 <span class="math inline">\(v\)</span> 处的微分量不能直接计算.
+一种办法是计算微分量在 <span class="math inline">\(v\)</span>
+的一个邻域内的平均值. 这样的邻域称为<strong>局部平均区域 (local
+averaging region)</strong>. 下图展示了几种不同的 local averaging
+regions: (图源 Polygon mesh processing, Figure 3.7)</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-local-avg-regions.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<ul>
+<li>Barycentric cell: 顶点 <span class="math inline">\(v\)</span>
+周围一圈三角形的重心和边的中点连成的多边形.</li>
+<li>Voronoi cell: 顶点 <span class="math inline">\(v\)</span>
+周围一圈三角形的外心连成的多边形. (该区域内任意一点 <span class="math inline">\(p\)</span> 到 <span class="math inline">\(v\)</span> 的距离不大于 <span class="math inline">\(p\)</span> 到其他顶点的距离).</li>
+<li>Mixed Voronoi cell: 和 Voronoi cell 差不多,
+只不过如果外心在三角形外, 则用边的中点代替.</li>
+</ul>
+<p>在近似精度上, mixed Voronoi cell 最佳, Voronoi cell 次之.</p>
+<h4 id="法向量">1.1.2  法向量</h4>
+<p>顶点 <span class="math inline">\(v\)</span>
+处的单位法向量定义为周围一圈三角形的法向量之平均值: <span class="math display">\[
+n(v) := \frac{
+    \sum_{T\in{\cal N}_1(v)}\alpha_T n(T)
+}{
+    \|\sum_{T\in{\cal N}_1(v)}\alpha_T n(T)\|
+},
+\]</span> 其中 <span class="math inline">\({\cal N}_1(v)\)</span> 是以
+<span class="math inline">\(v\)</span> 为顶点的三角形的集合, <span class="math inline">\(\alpha_T\)</span> 为三角形 <span class="math inline">\(T\)</span> 的权重, 通常有如下几种选择:</p>
+<ul>
+<li>常值 <span class="math inline">\(\alpha_T\equiv1\)</span>,
+方便计算但并未考虑网格的几何.</li>
+<li>面积 <span class="math inline">\(\alpha_T=|T|\)</span>, 比较方便,
+但仍会导致一些反直觉结果.</li>
+<li>顶角 <span class="math inline">\(\alpha_T=\theta_T\)</span> (即
+<span class="math inline">\(T\)</span> 在 <span class="math inline">\(v\)</span> 处的内角), 需要反三角函数, 计算量大,
+但是效果很好.</li>
+</ul>
+<p>对大多数应用场景, <span class="math inline">\(\alpha_T=\theta_T\)</span> 都是不错的选择.</p>
+<h4 id="梯度">1.1.3  梯度</h4>
+<p>记三角形 <span class="math inline">\(T\)</span> 的三个顶点为 <span class="math inline">\(v_i,v_j,v_k\)</span>, 分片线性函数 <span class="math inline">\(f\)</span> (在每个三角形上是线性的) 在顶点处的值
+<span class="math inline">\(f_i,f_j,f_k\)</span>,
+则函数值在三角形内的值为 <span class="math display">\[
+f(x) = \frac{A_i(x)f_i + A_j(x)f_j + A_k(x)f_k}{A},\quad x\in T,
+\]</span> 其中 <span class="math inline">\(A_i(x),A_j(x),A_k(x)\)</span>
+为三个小三角形的面积, <span class="math inline">\(A\)</span>
+为整个三角形的面积, 如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-barycentric-coordinates.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<ul>
+<li>实际上, <span class="math inline">\(x=(A_i/A)v_i+(A_j/A)v_j+(A_k/A)v_k\)</span>. 系数
+<span class="math inline">\((A_i/A,A_j/A,A_k/A)\)</span> 称为 <span class="math inline">\(x\)</span> 的<strong>重心坐标 (barycentric
+coordinates)</strong>.</li>
+</ul>
+<p>三角形面积等于底边长乘以高, <span class="math display">\[
+\Align{
+B_i(x)
+&amp;= \frac{
+    \lr{(x-v_j),\frac{(v_k-v_j)^\perp}{\|v_k-v_j\|}}
+    \|v_k-v_j\|
+}{2A} \\
+&amp;= \frac{ \lr{(x-v_j),(v_k-v_j)^\perp} }{2A},
+}
+\]</span> (其中 <span class="math inline">\((\cdot)^\perp\)</span> 表示
+<span class="math inline">\((\cdot)\)</span> 逆时针旋转 <span class="math inline">\(\pi/2\)</span> 得到的向量) 有 <span class="math inline">\(\nabla B_i(x) =
+\frac{(v_k-v_j)^\perp}{2A}\)</span>, 于是 <span class="math inline">\(f\)</span> 的梯度为 <span class="math display">\[
+\nabla f(x)
+= \sum_{\sf cyc} f_i \nabla B_i(x)
+= \frac1{2A} \sum_{\sf cyc} f_i (v_k-v_j)^\perp.
+\]</span> 可以发现 <span class="math inline">\(\nabla f\)</span> 与
+<span class="math inline">\(x\)</span> 无关, 即在三角形 <span class="math inline">\(T\)</span> 上是常数. 这是 <span class="math inline">\(f\)</span> 的分片线性性的必然结果.</p>
+<h4 id="laplace-beltrami-算子">1.1.4  Laplace-Beltrami 算子</h4>
+<h4 id="数据结构">1.1.5  数据结构</h4>
+<p>最后说说怎么把三角形网格存储在计算机里.</p>
+<p><strong>面表</strong>: 需要一个顶点列表 <span class="math inline">\(\{(x_1,y_1,z_1),(x_2,y_2,z_2),\dots\}\)</span>
+和三角形列表 <span class="math inline">\(\{(i_1,j_1,k_1),(i_2,j_2,k_2),\dots\}\)</span>.
+顶点列表记录每个顶点的坐标, 三角形列表记录每个三角形由哪些顶点组成
+(顶点索引). 使用面表存储 mesh 的文件格式有 <code>.obj</code>,
+<code>.off</code> 等.</p>
+<p><strong>半边</strong>: 将每条边拆成两条有向半边 (halfedge), 方向相反.
+每条半边只属于一个面片, 并且我们要求每个面片中的三条半边首尾相接
+(呈顺时针/逆时针方向)<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">这实际上要求 mesh 是<strong>可定向的
+(orientable)</strong>, 即曲面有正反两个面. 大部分常见曲面 (如平面, 球面,
+环面) 都可定向. Möbius 带和 Klein 瓶都只有一个面, 是不可定向的.
+可定向等价于曲面拥有连续的单位法向量场.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span>.</p>
+<p>下图中, 每个三角形的三条半边都呈现逆时针方向 (蓝色箭头).
+我们规定三角形<strong>法向量的方向</strong>应当与蓝色箭头满足
+"右手螺旋定则" (右手握拳并竖起大拇指, 四指的方向与蓝色箭头相同,
+则拇指指向法向; 在下图中, 法向量指向屏幕外).</p>
+<p>每条半边 (以下图橙色边为例) 存储了如下数据:</p>
+<ul>
+<li>它指向的顶点, 下图 1.</li>
+<li>它的另一半, 下图 2.</li>
+<li>它相邻的面, 下图左边的三角形.</li>
+<li>它在该三角形中的下一条边, 下图 3.</li>
+<li>它在该三角形中的上一条边, 下图 4 (非必需,
+因为可通过上述操作组合得到, 比如下下条边).</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-halfedge.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<p>此外, 每个顶点还保存了它的坐标以及从它出发的某一条半边.
+每个面保存了它的某一条半边.</p>
+<p>从顶点 <span class="math inline">\(v\)</span> 出发,
+可以在常数时间内遍历其 <span class="math inline">\(1\)</span>-邻域
+(所有与 <span class="math inline">\(v\)</span> 相邻的三角形) <span class="math inline">\({\cal N}_1(v)\)</span>:</p>
+<ol type="1">
+<li>获取从 <span class="math inline">\(v\)</span> 出发的某条半边 <span class="math inline">\(e_1\)</span>. (半边 <span class="math inline">\(e_1\)</span> 的相邻面便是 <span class="math inline">\({\cal N}_1(v)\)</span> 的第一个元素.)</li>
+<li>获取 <span class="math inline">\(e_1\)</span> 的另一半 <span class="math inline">\(e_2\)</span>.</li>
+<li>获取 <span class="math inline">\(e_2\)</span> 的下一条边 <span class="math inline">\(e_3\)</span>. (半边 <span class="math inline">\(e_3\)</span> 的相邻面便是 <span class="math inline">\({\cal N}_1(v)\)</span> 的第二个元素.)</li>
+<li>以此类推, 获取 <span class="math inline">\(e_4,e_5,\dots\)</span>,
+直到回到 <span class="math inline">\(e_1\)</span>.</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-halfedge-N1.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<h3 id="点云">1.2  点云</h3>
+<p>点云是最容易表示与存储的, 只需列出每个点的坐标即可.
+点云也是最容易获得的, 使用一个深度传感器获取深度图,
+再根据相机参数将点的深度转化为点坐标即可.
+一般会对物体的各个侧面分别构建点云, 然后将它们合并起来.
+将几个小点云合成一个大点云的过程称为<strong>点云配准
+(registration)</strong>. 下图展示了将两个点云 (黑色和蓝色) 对齐的过程
+(图源 <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Registration_outdoor.png">Wikimedia</a>).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-point-cloud-registration.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
+<h4 id="icp">1.2.1  ICP</h4>
+<p>ICP (iterative closest point) 是一种迭代的点云配准算法.
+算法假设两个点云 <span class="math inline">\(P=\{p_i\}\)</span> 和 <span class="math inline">\(Q=\{q_i\}\)</span> 可以用刚体变换 (平移, 旋转,
+反射) 对齐. 设刚体变换为 <span class="math inline">\(p\mapsto
+Rp+t\)</span> (<span class="math inline">\(R\)</span> 为正交阵).
+算法迭代地优化 <span class="math inline">\(R,t\)</span>,
+具体流程如下:</p>
+<ol type="1">
+<li>利用 PCA 初始化 <span class="math inline">\(R,t\)</span>.</li>
+<li>将 <span class="math inline">\(p_i'=Rp_i+t\)</span> 与离它最近的
+<span class="math inline">\(q_i\)</span> 匹配.</li>
+<li>丢弃距离大于 <span class="math inline">\(k\)</span> 倍中位距离的点对
+(outliers).</li>
+<li>构造误差函数 <span class="math inline">\(E=\sum_i\|Rp_i+t-q_i\|^2\)</span>
+(点对距离的平方和).</li>
+<li>利用 SVD 分解最小化 <span class="math inline">\(E\)</span>, 解出新的
+<span class="math inline">\(R,t\)</span>.</li>
+</ol>
+<p>重复以上 2-5 步, 直到误差 <span class="math inline">\(E\)</span>
+足够小, 便得到了我们想要的 <span class="math inline">\(R,t\)</span>.</p>
+<p>ICP 的可视化见<a target="_blank" rel="noopener" href="https://laempy.github.io/pyoints/tutorials/icp.html">此网站</a>.</p>
+<h4 id="法向量-1">1.2.2  法向量</h4>
+<p>由于传感器生成的点云具有很规则的空间排布, 即在成像平面为矩形点列,
+我们可以据此直接构建一个三角形网格 (如下图, 图源课程 PPT),
+为每个三角形计算法向量, 再插值得到顶点法向量.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/0-point-cloud-normal.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>另一种比较通用的计算点云法向量的方法见 "SDF 曲面重建" 中的 MLS
+方法.</p>
+<h3 id="样条曲线与曲面">1.3  样条曲线与曲面</h3>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>3D Vision with Transformers: A Survey - Scientific
+Figure on ResearchGate. Available from:
+https://www.researchgate.net/figure/arious-3D-representations-of-the-Stanford-bunny-22-The-projection-based-3D_fig1_362567752
+[accessed 25 Feb 2025]<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>这实际上要求 mesh 是<strong>可定向的
+(orientable)</strong>, 即曲面有正反两个面. 大部分常见曲面 (如平面, 球面,
+环面) 都可定向. Möbius 带和 Klein 瓶都只有一个面, 是不可定向的.
+可定向等价于曲面拥有连续的单位法向量场.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/CG/" class="category-chain-item">CG</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" class="print-no-link">#计算几何</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>几何表示</div>
+      <div>https://disembo.github.io/Note/CG/proc-0-representation/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/CG/proc-1-reconstruction/" title="几何重建">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">几何重建</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/caiov-1/" title="CAIOV | 1 全纯函数初步理论">
+                        <span class="hidden-mobile">CAIOV | 1 全纯函数初步理论</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

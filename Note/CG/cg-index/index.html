@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/index-cg-fields.png">
 <meta property="article:published_time" content="2025-02-19T03:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-26T03:32:23.278Z">
+<meta property="article:modified_time" content="2025-04-06T14:13:01.766Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta name="twitter:card" content="summary_large_image">
@@ -304,9 +304,11 @@
 </div>
 <p><strong>几何表示与处理</strong>.</p>
 <ul>
-<li><a href="/Note/CG/proc-1-representation">几何表示</a>:
-几种几何表示的方法 (体素, 点云, 三角形网格, SDF) 及其转换 (Marching
-cubes, 曲面重建).</li>
+<li><a href="/Note/CG/proc-0-representation">几何表示</a>:
+几种几何表示的方法 (体素, 点云, 三角形网格, SDF, 样条曲线与曲面).</li>
+<li><a href="/Note/CG/proc-1-reconstruction">曲面重建</a>: 隐式曲面重建
+(SDF 重建与 Poisson 重建) 与显示曲面重建 (Marching cubes, alpha shape 与
+power crust).</li>
 <li><a href="/Note/CG/proc-2-denoising">网格去噪与光顺</a>: Laplace
 平滑, 双边滤波, 稀疏优化和数据驱动的算法.</li>
 <li><a href="/Note/CG/proc-3-remeshing">重网格化</a>: 网格简化,
@@ -319,6 +321,10 @@ cubes, 曲面重建).</li>
 基于空间变形的网格变形 (FFD, 蒙皮动画, deformation graphs).</li>
 </ul>
 <p><strong>几何理解</strong>.</p>
+<ul>
+<li><a href="/Note/CG/undst-1-representation">几何表示前沿</a>:</li>
+<li></li>
+</ul>
 <p><strong>几何生成</strong>.</p>
 <p><strong>物理仿真</strong>.</p>
 <ul>
@@ -326,7 +332,8 @@ cubes, 曲面重建).</li>
 运动方程与时间积分法.</li>
 <li><a href="/Note/CG/simu-2-rigid">刚体模拟</a>: 刚体的运动方程,
 冲量动力学, 位置动力学与约束动力学.</li>
-<li>流体模拟</li>
+<li>流体模拟: 流体模拟的两种视角, Eulerian 网格法.</li>
+<li>流体模拟: PIC 与 FLIP 法.</li>
 <li><a href="/Note/CG/simu-sph-simulator">一个简单的 SPH
 流体模拟器</a>.</li>
 </ul>
@@ -409,9 +416,15 @@ cubes, 曲面重建).</li>
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
                   </span>
                 </a>
               

@@ -16,42 +16,33 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="几种几何表示的方法 (体素, 点云, 三角形网格, SDF) 及其转换 (Marching cubes, 曲面重建).">
+    <meta name="description" content="隐式曲面重建 (SDF 重建与 Poisson 重建) 与显示曲面重建 (Marching cubes, alpha shape 与 power crust).">
 <meta property="og:type" content="article">
-<meta property="og:title" content="几何表示">
-<meta property="og:url" content="https://disembo.github.io/Note/CG/proc-1-representation/index.html">
+<meta property="og:title" content="几何重建">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/proc-1-reconstruction/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="几种几何表示的方法 (体素, 点云, 三角形网格, SDF) 及其转换 (Marching cubes, 曲面重建).">
+<meta property="og:description" content="隐式曲面重建 (SDF 重建与 Poisson 重建) 与显示曲面重建 (Marching cubes, alpha shape 与 power crust).">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://graphics.stanford.edu/data/3Dscanrep/stanford-bunny-cebal-ssh.jpg">
-<meta property="og:image" content="https://www.researchgate.net/publication/362567752/figure/fig1/AS:1187002741469184@1660014915120/arious-3D-representations-of-the-Stanford-bunny-22-The-projection-based-3D.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-bunny-sdf.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-local-avg-regions.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-barycentric-coordinates.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-halfedge.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-halfedge-N1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-point-cloud-registration.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-point-cloud-normal.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-octree-bases.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-mesh-reconstruction.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-idea.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-15-cases.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-results.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-octree-bases.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-mesh-reconstruction.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-voronoi-and-delaunay.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-alpha-shape.png">
 <meta property="article:published_time" content="2025-03-03T14:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-12T06:50:03.234Z">
+<meta property="article:modified_time" content="2025-04-06T14:12:53.918Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="计算几何">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://graphics.stanford.edu/data/3Dscanrep/stanford-bunny-cebal-ssh.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-octree-bases.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>几何表示 | Jin&#39;s Blog</title>
+  <title>几何重建 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -234,7 +225,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="几何表示"></span>
+            <span id="subtitle" data-typed-text="几何重建"></span>
           
         </div>
 
@@ -289,217 +280,16 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">几何表示</h1>
+            <h1 id="seo-header">几何重建</h1>
             
             
               <div class="markdown-body">
                 
                 <html><head></head><body>
-<h2 id="几何表示的几种方法">1  几何表示的几种方法</h2>
-<p>如何在计算机内表示/存储一个三维的几何体? 比如下面的 <a target="_blank" rel="noopener" href="https://graphics.stanford.edu/data/3Dscanrep/">Stanford
-Bunny</a>.</p>
-<p><img src="https://graphics.stanford.edu/data/3Dscanrep/stanford-bunny-cebal-ssh.jpg" srcset="/img/loading.gif" lazyload style="zoom:30%;"></p>
-<p>在数学上, 我们可以用函数的水平集 (比如方程 <span class="math inline">\(F=0\)</span> 的解集) 或者参数曲面来表达一个几何体.
-然而现实中的几何体一般都复杂到难以写出具体的解析式. 因此,
-我们只能利用一些近似手段, 将几何体 (或者其表面)
-的近似形态存储在计算机里.</p>
-<p>最直接的办法是用若干固定大小的小立方体, 像搭积木一样砌成几何体形状.
-这被称为<strong>体素表示 (voxel representation)</strong> (下图最中间,
-图源 Research Gate<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">3D Vision with Transformers: A Survey - Scientific
-Figure on ResearchGate. Available from:
-https://www.researchgate.net/figure/arious-3D-representations-of-the-Stanford-bunny-22-The-projection-based-3D_fig1_362567752
-[accessed 25 Feb 2025]</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>).</p>
-<p>另一种比较直接的方法是在几何体表面采样很多很多点, 称为<strong>点云
-(point cloid)</strong>, 用这些点拟合几何体的表面 (下图左).</p>
-<p>为了表示几何体的表面, 还可以采用<strong>多边形网格 (polygon
-mesh)</strong>, 即用若干多边形 (一般是三角形) 组成的一张 "网"
-拟合几何体的表面 (下图右, 三角形网格).</p>
-<p><img src="https://www.researchgate.net/publication/362567752/figure/fig1/AS:1187002741469184@1660014915120/arious-3D-representations-of-the-Stanford-bunny-22-The-projection-based-3D.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;"></p>
-<p>受到隐函数曲面 (比如球面 <span class="math inline">\(x^2+y^2+z^2-r^2=0\)</span>) 的启发,
-我们可以用<strong>符号距离场 (signed distance field, SDF)</strong>
-表示几何体的表面. 对于空间中的每一点 <span class="math inline">\(x\)</span>, SDF 给出了 <span class="math inline">\(x\)</span> 到几何体表面的有符号距离
-(几何体内部为负, 外部为正, 表面上为零; 当然内外也可以反过来). 下图是
-bunny 的 SDF (图源课程 PPT).</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-bunny-sdf.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
-<p>上面四种表示方法中,
-体素、点云、多边形网格称为<strong>显式表达</strong>,
-符号距离场称为<strong>隐式表达</strong>. 它们对应了不同的应用场景,
-并且可以相互转换.</p>
-<p>Polygon mesh processing (Mario Botsch et al.) Section 1.6
-中总结显式表达和隐式表达如下:</p>
-<div class="note note-secondary">
-<p>Parametric surfaces can capture even the finest detail, are easy to
-sample, and can be modified intuitively but it is diﬃcult to answer
-distance queries and topological changes require a major restructuring.
-On the other hand, topological changes and distance queries are easy for
-implicit surfaces but sampling and shape editing is not straightforward
-and the geometric detail resolution depends on the voxel size.</p>
-</div>
-<p>我们目前只介绍一些最基本的表示方法. 一些先进的方法, 比如八叉树
-(体素的升级版, 实现自适应分辨率), radiance field, 3D Gaussian
-等将在之后特定 topic 中介绍.</p>
-<h3 id="三角形网格">1.1  三角形网格</h3>
-<p>严格地说, 一个多边形网格指的是 <span class="math inline">\(\R^3\)</span> 中有限个多边形的集合 <span class="math inline">\({\cal K}\)</span>, 满足:</p>
-<ul>
-<li><span class="math inline">\({\cal K}\)</span>
-中任意两个多边形或者不交 (交集为空), 或者有公共边/公共顶点.</li>
-</ul>
-<p>多边形 <span class="math inline">\(P\in{\cal K}\)</span> 也称为一个
-"多边形面片 (polygon facet)". 三角形是最基本的多边形, 任意多边形网格
-<span class="math inline">\({\cal K}\)</span>
-可以通过切割面片的方式化为一个三角形网格.
-下面我们主要研究三角形网格.</p>
-<p>三角形网格的表达能力很强, 任意二维拓扑流形都能表达为三角形网格
-(当然也能表示一些非流形的几何体), 而且三角形网格能表达细致的几何信息,
-也容易编辑.
-三角形网格的另一个好处是经典微分几何中的曲面理论能直接推广到三角形网格.</p>
-<h4 id="local-averaging-region">1.1.1  Local averaging region</h4>
-<p>由于三角形网格是分片线性的, 在交界处不可微, 故顶点 <span class="math inline">\(v\)</span> 处的微分量不能直接计算.
-一种办法是计算微分量在 <span class="math inline">\(v\)</span>
-的一个邻域内的平均值. 这样的邻域称为<strong>局部平均区域 (local
-averaging region)</strong>. 下图展示了几种不同的 local averaging
-regions: (图源 Polygon mesh processing, Figure 3.7)</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-local-avg-regions.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
-<ul>
-<li>Barycentric cell: 顶点 <span class="math inline">\(v\)</span>
-周围一圈三角形的重心和边的中点连成的多边形.</li>
-<li>Voronoi cell: 顶点 <span class="math inline">\(v\)</span>
-周围一圈三角形的外心连成的多边形. (该区域内任意一点 <span class="math inline">\(p\)</span> 到 <span class="math inline">\(v\)</span> 的距离不大于 <span class="math inline">\(p\)</span> 到其他顶点的距离).</li>
-<li>Mixed Voronoi cell: 和 Voronoi cell 差不多,
-只不过如果外心在三角形外, 则用边的中点代替.</li>
-</ul>
-<p>在近似精度上, mixed Voronoi cell 最佳, Voronoi cell 次之.</p>
-<h4 id="法向量">1.1.2  法向量</h4>
-<p>顶点 <span class="math inline">\(v\)</span>
-处的单位法向量定义为周围一圈三角形的法向量之平均值: <span class="math display">\[
-n(v) := \frac{
-    \sum_{T\in{\cal N}_1(v)}\alpha_T n(T)
-}{
-    \|\sum_{T\in{\cal N}_1(v)}\alpha_T n(T)\|
-},
-\]</span> 其中 <span class="math inline">\({\cal N}_1(v)\)</span> 是以
-<span class="math inline">\(v\)</span> 为顶点的三角形的集合, <span class="math inline">\(\alpha_T\)</span> 为三角形 <span class="math inline">\(T\)</span> 的权重, 通常有如下几种选择:</p>
-<ul>
-<li>常值 <span class="math inline">\(\alpha_T\equiv1\)</span>,
-方便计算但并未考虑网格的几何.</li>
-<li>面积 <span class="math inline">\(\alpha_T=|T|\)</span>, 比较方便,
-但仍会导致一些反直觉结果.</li>
-<li>顶角 <span class="math inline">\(\alpha_T=\theta_T\)</span> (即
-<span class="math inline">\(T\)</span> 在 <span class="math inline">\(v\)</span> 处的内角), 需要反三角函数, 计算量大,
-但是效果很好.</li>
-</ul>
-<p>对大多数应用场景, <span class="math inline">\(\alpha_T=\theta_T\)</span> 都是不错的选择.</p>
-<h4 id="梯度">1.1.3  梯度</h4>
-<p>记三角形 <span class="math inline">\(T\)</span> 的三个顶点为 <span class="math inline">\(v_i,v_j,v_k\)</span>, 分片线性函数 <span class="math inline">\(f\)</span> (在每个三角形上是线性的) 在顶点处的值
-<span class="math inline">\(f_i,f_j,f_k\)</span>,
-则函数值在三角形内的值为 <span class="math display">\[
-f(x) = \frac{A_i(x)f_i + A_j(x)f_j + A_k(x)f_k}{A},\quad x\in T,
-\]</span> 其中 <span class="math inline">\(A_i(x),A_j(x),A_k(x)\)</span>
-为三个小三角形的面积, <span class="math inline">\(A\)</span>
-为整个三角形的面积, 如下图.</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-barycentric-coordinates.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
-<ul>
-<li>实际上, <span class="math inline">\(x=(A_i/A)v_i+(A_j/A)v_j+(A_k/A)v_k\)</span>. 系数
-<span class="math inline">\((A_i/A,A_j/A,A_k/A)\)</span> 称为 <span class="math inline">\(x\)</span> 的<strong>重心坐标 (barycentric
-coordinates)</strong>.</li>
-</ul>
-<p>三角形面积等于底边长乘以高, <span class="math display">\[
-\Align{
-B_i(x)
-&amp;= \frac{
-    \lr{(x-v_j),\frac{(v_k-v_j)^\perp}{\|v_k-v_j\|}}
-    \|v_k-v_j\|
-}{2A} \\
-&amp;= \frac{ \lr{(x-v_j),(v_k-v_j)^\perp} }{2A},
-}
-\]</span> (其中 <span class="math inline">\((\cdot)^\perp\)</span> 表示
-<span class="math inline">\((\cdot)\)</span> 逆时针旋转 <span class="math inline">\(\pi/2\)</span> 得到的向量) 有 <span class="math inline">\(\nabla B_i(x) =
-\frac{(v_k-v_j)^\perp}{2A}\)</span>, 于是 <span class="math inline">\(f\)</span> 的梯度为 <span class="math display">\[
-\nabla f(x)
-= \sum_{\sf cyc} f_i \nabla B_i(x)
-= \frac1{2A} \sum_{\sf cyc} f_i (v_k-v_j)^\perp.
-\]</span> 可以发现 <span class="math inline">\(\nabla f\)</span> 与
-<span class="math inline">\(x\)</span> 无关, 即在三角形 <span class="math inline">\(T\)</span> 上是常数. 这是 <span class="math inline">\(f\)</span> 的分片线性性的必然结果.</p>
-<h4 id="laplace-beltrami-算子">1.1.4  Laplace-Beltrami 算子</h4>
-<h4 id="数据结构">1.1.5  数据结构</h4>
-<p>最后说说怎么把三角形网格存储在计算机里.</p>
-<p><strong>面表</strong>: 需要一个顶点列表 <span class="math inline">\(\{(x_1,y_1,z_1),(x_2,y_2,z_2),\dots\}\)</span>
-和三角形列表 <span class="math inline">\(\{(i_1,j_1,k_1),(i_2,j_2,k_2),\dots\}\)</span>.
-顶点列表记录每个顶点的坐标, 三角形列表记录每个三角形由哪些顶点组成
-(顶点索引). 使用面表存储 mesh 的文件格式有 <code>.obj</code>,
-<code>.off</code> 等.</p>
-<p><strong>半边</strong>: 将每条边拆成两条有向半边 (halfedge), 方向相反.
-每条半边只属于一个面片, 并且我们要求每个面片中的三条半边首尾相接
-(呈顺时针/逆时针方向)<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">这实际上要求 mesh 是<strong>可定向的
-(orientable)</strong>, 即曲面有正反两个面. 大部分常见曲面 (如平面, 球面,
-环面) 都可定向. Möbius 带和 Klein 瓶都只有一个面, 是不可定向的.
-可定向等价于曲面拥有连续的单位法向量场.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span>.</p>
-<p>下图中, 每个三角形的三条半边都呈现逆时针方向 (蓝色箭头).
-我们规定三角形<strong>法向量的方向</strong>应当与蓝色箭头满足
-"右手螺旋定则" (右手握拳并竖起大拇指, 四指的方向与蓝色箭头相同,
-则拇指指向法向; 在下图中, 法向量指向屏幕外).</p>
-<p>每条半边 (以下图橙色边为例) 存储了如下数据:</p>
-<ul>
-<li>它指向的顶点, 下图 1.</li>
-<li>它的另一半, 下图 2.</li>
-<li>它相邻的面, 下图左边的三角形.</li>
-<li>它在该三角形中的下一条边, 下图 3.</li>
-<li>它在该三角形中的上一条边, 下图 4 (非必需,
-因为可通过上述操作组合得到, 比如下下条边).</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-halfedge.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
-<p>此外, 每个顶点还保存了它的坐标以及从它出发的某一条半边.
-每个面保存了它的某一条半边.</p>
-<p>从顶点 <span class="math inline">\(v\)</span> 出发,
-可以在常数时间内遍历其 <span class="math inline">\(1\)</span>-邻域
-(所有与 <span class="math inline">\(v\)</span> 相邻的三角形) <span class="math inline">\({\cal N}_1(v)\)</span>:</p>
-<ol type="1">
-<li>获取从 <span class="math inline">\(v\)</span> 出发的某条半边 <span class="math inline">\(e_1\)</span>. (半边 <span class="math inline">\(e_1\)</span> 的相邻面便是 <span class="math inline">\({\cal N}_1(v)\)</span> 的第一个元素.)</li>
-<li>获取 <span class="math inline">\(e_1\)</span> 的另一半 <span class="math inline">\(e_2\)</span>.</li>
-<li>获取 <span class="math inline">\(e_2\)</span> 的下一条边 <span class="math inline">\(e_3\)</span>. (半边 <span class="math inline">\(e_3\)</span> 的相邻面便是 <span class="math inline">\({\cal N}_1(v)\)</span> 的第二个元素.)</li>
-<li>以此类推, 获取 <span class="math inline">\(e_4,e_5,\dots\)</span>,
-直到回到 <span class="math inline">\(e_1\)</span>.</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-halfedge-N1.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
-<h3 id="点云">1.2  点云</h3>
-<p>点云是最容易表示与存储的, 只需列出每个点的坐标即可.
-点云也是最容易获得的, 使用一个深度传感器获取深度图,
-再根据相机参数将点的深度转化为点坐标即可.
-一般会对物体的各个侧面分别构建点云, 然后将它们合并起来.
-将几个小点云合成一个大点云的过程称为<strong>点云配准
-(registration)</strong>. 下图展示了将两个点云 (黑色和蓝色) 对齐的过程
-(图源 <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Registration_outdoor.png">Wikimedia</a>).</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-point-cloud-registration.png" style="zoom:80%;" cloud-img="" lazyload="true"></p>
-<h4 id="icp">1.2.1  ICP</h4>
-<p>ICP (iterative closest point) 是一种迭代的点云配准算法.
-算法假设两个点云 <span class="math inline">\(P=\{p_i\}\)</span> 和 <span class="math inline">\(Q=\{q_i\}\)</span> 可以用刚体变换 (平移, 旋转,
-反射) 对齐. 设刚体变换为 <span class="math inline">\(p\mapsto
-Rp+t\)</span> (<span class="math inline">\(R\)</span> 为正交阵).
-算法迭代地优化 <span class="math inline">\(R,t\)</span>,
-具体流程如下:</p>
-<ol type="1">
-<li>利用 PCA 初始化 <span class="math inline">\(R,t\)</span>.</li>
-<li>将 <span class="math inline">\(p_i'=Rp_i+t\)</span> 与离它最近的
-<span class="math inline">\(q_i\)</span> 匹配.</li>
-<li>丢弃距离大于 <span class="math inline">\(k\)</span> 倍中位距离的点对
-(outliers).</li>
-<li>构造误差函数 <span class="math inline">\(E=\sum_i\|Rp_i+t-q_i\|^2\)</span>
-(点对距离的平方和).</li>
-<li>利用 SVD 分解最小化 <span class="math inline">\(E\)</span>, 解出新的
-<span class="math inline">\(R,t\)</span>.</li>
-</ol>
-<p>重复以上 2-5 步, 直到误差 <span class="math inline">\(E\)</span>
-足够小, 便得到了我们想要的 <span class="math inline">\(R,t\)</span>.</p>
-<p>ICP 的可视化见<a target="_blank" rel="noopener" href="https://laempy.github.io/pyoints/tutorials/icp.html">此网站</a>.</p>
-<h4 id="法向量-1">1.2.2  法向量</h4>
-<p>由于传感器生成的点云具有很规则的空间排布, 即在成像平面为矩形点列,
-我们可以据此直接构建一个三角形网格 (如下图, 图源课程 PPT),
-为每个三角形计算法向量, 再插值得到顶点法向量.</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-point-cloud-normal.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
-<p>另一种比较通用的计算点云法向量的方法见下文 "SDF 曲面重建" 中的 MLS
-方法.</p>
-<h2 id="几种表示的转换">2  几种表示的转换</h2>
-<p><span class="math display">\[
+<p>要想在计算机中对真实场景进行建模, 最常用的方法是先用 3D
+传感器等设备得到点云, 然后把点云转化为表达能力更强 / 更易处理的 3D
+表示方法, 比如三角形网格和 SDF. 这两种转换分别称为显示 / 隐式曲面重建,
+如下所示. <span class="math display">\[
 \xymatrix@!{
 &amp;&amp;&amp;
 *[F-,]{\textsf{三角形网格}} \\
@@ -513,77 +303,12 @@ Rp+t\)</span> (<span class="math inline">\(R\)</span> 为正交阵).
     \ar@&lt;0.0ex&gt;[uu]^{\substack{\textsf{Marching}\\\textsf{cubes}}}
 }
 \]</span></p>
-<h3 id="marching-cubes">2.1  Marching Cubes</h3>
-<p>Marching cubes 算法将空间中的 SDF 转化为三角形网格.</p>
-<div class="note note-secondary">
-<p>原论文: <em>Marching cubes: A high resolution 3D surface construction
-algorithm</em>.</p>
-</div>
-<h4 id="想法">2.1.1  想法</h4>
-<p>我们首先将空间离散化为 <span class="math inline">\(n^3\)</span>
-个边长为 <span class="math inline">\(d\)</span> 的正方体 grid (下图左).
-如果正方体足够小, 且曲面 <span class="math inline">\(\Sigma\)</span>
-足够光滑, 那么曲面 <span class="math inline">\(\Sigma\)</span>
-与每个正方体的交集应可以用若干三角面片近似 (下图右,
-橙色的球面和正方体的交集近似为一个梯形, 可由两个三角形拼成).</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-idea.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
-<p>具体来说, 对于一条边 <span class="math inline">\(e=(p_0,p_1)\)</span>, 如果 <span class="math inline">\({\sf SDF}(p_0)\cdot{\sf SDF}(p_1)\leq0\)</span>,
-我们就认为曲面 <span class="math inline">\(\Sigma\)</span> 与边 <span class="math inline">\(e\)</span> 有一个交点. 由于每个顶点的 SDF
-都有两种情况 (正或负), 一个正方体一共有 <span class="math inline">\(2^8=256\)</span> 种情况; 模去对称性后剩下 <span class="math inline">\(15\)</span> 种情况: (图源 <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:MarchingCubesEdit.svg">Wikimedia</a>)</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-15-cases.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
-<p>我们不妨假设 SDF 在边 <span class="math inline">\(e\)</span>
-上近似为线性函数, 则交点的坐标为 <span class="math display">\[
-v = \frac{-F_1}{F_0-F_1} p_0 + \frac{F_0}{F_0-F_1} p_1,
-\]</span> 其中 <span class="math inline">\(F_i={\sf SDF}(p_i)\)</span>,
-<span class="math inline">\(i=0,1\)</span>.</p>
-<p>该算法逐个遍历每个正方体, 计算完一个后行进到下一个, 故得名
-"行进立方体" (marching cubes).</p>
-<h4 id="查表">2.1.2  查表</h4>
-<p>在实现上, 如何快速确定哪些边上有交点/哪些交点属于同一个三角形?
-答案是查表.</p>
-<ul>
-<li><p>构造一个 <span class="math inline">\(8\)</span> 位二进制数 <span class="math inline">\(\sf vertexState\)</span>, 其第 <span class="math inline">\(i\)</span> 位表示第 <span class="math inline">\(i\)</span> 顶点的 SDF 是否大于零. 用 <span class="math inline">\(\sf vertexState\)</span> 作为索引查表, 得到一个
-<span class="math inline">\(12\)</span> 位的二进制数 <span class="math inline">\(\sf edgeState\)</span>, 它的第 <span class="math inline">\(i\)</span> 位表示第 <span class="math inline">\(i\)</span> 条边上是否有要生成顶点.</p></li>
-<li><p>计算出交点坐标后, 再次利用 <span class="math inline">\(\sf
-vertexState\)</span> 作为索引, 查另一张表, 得到一个集合 <span class="math display">\[
-\{(i_1,j_1,k_1),(i_2,j_2,k_2),\dots\},
-\]</span> 集合的每一个元素 <span class="math inline">\((i,j,k)\)</span>
-代表一个三角形, <span class="math inline">\(i,j,k=1,\dots,12\)</span>
-分别表示三角形顶点所在的边.
-由此便得到了该正方体中的所有三角形面片.</p></li>
-</ul>
-<p>因此, 算法需要两张长度为 <span class="math inline">\(2^8=256\)</span>
-的表, 分别给出 edge state 和 set of triangles.</p>
-<h4 id="法向量-2">2.1.3  法向量</h4>
-<p>最后, 我们还需要计算三角形顶点处的法向量. 因为有 SDF,
-我们可以直接利用 SDF 的梯度计算法向量, 而无需在 mesh 上进行插值.</p>
-<p>首先计算 cube 顶点 <span class="math inline">\(p=(i,j,k)\)</span>
-处的梯度 <span class="math inline">\(G(i,j,k)\)</span>. 由 central
-difference 公式, 梯度的三个分量分别为 <span class="math display">\[
-\Align{
-G_x(i,j,k) &amp;= \frac{G(i+1,j,k)-G(i-1,j,k)}{2d}, \\
-G_y(i,j,k) &amp;= \frac{G(i,j+1,k)-G(i,j-1,k)}{2d}, \\
-G_z(i,j,k) &amp;= \frac{G(i,j,k+1)-G(i,j,k-1)}{2d}.
-}
-\]</span></p>
-<p>因为三角形顶点 <span class="math inline">\(v\)</span> 是 cube
-顶点的线性组合 <span class="math inline">\(v=(1-t)p_0+tp_1\)</span>,
-我们认为其梯度也是线性组合 <span class="math display">\[
-G(v) = (1-t)G(p_0) + tG(p_1).
-\]</span></p>
-<h4 id="结果与改进">2.1.4  结果与改进</h4>
-<p>在不同分辨率 <span class="math inline">\(n\)</span> 下运行的结果 (VCI
-的 lab):</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-results.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
-<p>传统的 marching cubes 算法存在一些不足, 比如遍历 <span class="math inline">\(n^3\)</span> 个立方体的巨大时间开销, 以及对 SDF
-的细节还原不足等等. 改进的办法包括利用八叉树等结构实现非均匀采样,
-减少空白区域的无效计算; 考虑交点处 SDF 的梯度来提高精度...</p>
-<h3 id="隐式曲面重建">2.2  隐式曲面重建</h3>
+<h2 id="隐式曲面重建">2  隐式曲面重建</h2>
 <p>隐式曲面重建将点云转化为 SDF.</p>
-<h4 id="sdf-曲面重建">2.2.1  SDF 曲面重建</h4>
+<h3 id="sdf-曲面重建">2.1  SDF 曲面重建</h3>
 <p>这是一个很直接的算法, 将点云 <span class="math inline">\(P=\{p_i\}\)</span> 重建成符号距离场 <span class="math inline">\(F:\R^3\to\R\)</span>, 满足 <span class="math inline">\(F(x)\)</span> 是 <span class="math inline">\(x\)</span> 到点云的最近的点 <span class="math inline">\(p_i\)</span> 的带符号距离: <span class="math display">\[
 F(x) = \lr{x-p_i,n_i},
-\]</span> 其中 <span class="math inline">\(n_i\)</span> 是 <span class="math inline">\(p_i\)</span> 处的法向量. 如此得到的 <span class="math inline">\(F\)</span> 的零点集代表了曲面<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">这也要求曲面可定向.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>.
+\]</span> 其中 <span class="math inline">\(n_i\)</span> 是 <span class="math inline">\(p_i\)</span> 处的法向量. 如此得到的 <span class="math inline">\(F\)</span> 的零点集代表了曲面<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">这要求曲面可定向.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>.
 但是这种方法对噪声很敏感, 而且可能算出错误的距离.</p>
 <p>一个更鲁棒的方法是移动最小二乘法 (MLS, moving least square). 它利用
 <span class="math inline">\(p_i\)</span> 的临近点集,
@@ -599,7 +324,7 @@ F(x) = \lr{x-p_i,n_i},
 f(x) := \frac{\sum_j\omega_j(x)f_j(x)}{\sum_j \omega_j(x)},
 \]</span> 其中权重函数 <span class="math inline">\(\omega_j\)</span> 在
 <span class="math inline">\(C_j\)</span> 附近为正, 其余地方为零.</p>
-<h4 id="poisson-曲面重建">2.2.2  Poisson 曲面重建</h4>
+<h3 id="poisson-曲面重建">2.2  Poisson 曲面重建</h3>
 <p>MLS 法是一个局部的方法. 为了达到更优效果, 可以使用全局的优化方法,
 比如 Poisson 曲面重建.</p>
 <p>设点云 <span class="math inline">\(P=\{p_i\}\)</span> 表示了空间区域
@@ -646,17 +371,83 @@ n(x) &amp;\approx \sum_{o\in O}n_o B_o(x), \\
 \]</span> 解出 <span class="math inline">\(\chi_o\)</span> 即可.</p>
 <p>Poisson 曲面重建是目前应用最广泛的重建算法之一, 其优点是鲁棒性高,
 质量好; 缺点是需要法向量, 且无法处理极度稀疏的点云.</p>
-<h3 id="显式曲面重建">2.3  显式曲面重建</h3>
+<h2 id="显式曲面重建">3  显式曲面重建</h2>
 <p>显式曲面重建将点云转化为三角形网格.</p>
 <p>实际上, 可以先将点云转化为 SDF (如 Poisson 曲面重建), 再用 marching
-cubes 转化为 mesh. 而本节介绍一些直接将点云转化为 mesh 的方法.</p>
+cubes 转化为 mesh. 除此之外, 本节还会介绍一些直接将点云转化为 mesh
+的方法.</p>
 <p>下图展示了使用 Mathematica 中的 <code>ReconstructionMesh</code>
 函数进行 mesh 重建的结果. 输入是 bunny 上随机采样的 <span class="math inline">\(10^4\)</span> 个点, 分别使用 Poisson 曲面重建
 (法向量用 MLS 方法计算; 用 marching cubes 提取三角形网格) 和 <span class="math inline">\(\alpha\)</span>-shape 方法 (采用了不同的 <span class="math inline">\(\alpha\)</span> 值).</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-mesh-reconstruction.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
-<h4 id="voronoi-图与-delaunay-三角剖分">2.3.1  Voronoi 图与 Delaunay
-三角剖分</h4>
-<p>几种显式曲面重建都基于 Voronoi 图与 Delaunay 三角剖分的概念.
+<h3 id="marching-cubes">3.1  Marching Cubes</h3>
+<p>Marching cubes 算法将空间中的 SDF 转化为三角形网格.</p>
+<div class="note note-secondary">
+<p>原论文: <em>Marching cubes: A high resolution 3D surface construction
+algorithm</em>.</p>
+</div>
+<h4 id="想法">3.1.1  想法</h4>
+<p>我们首先将空间离散化为 <span class="math inline">\(n^3\)</span>
+个边长为 <span class="math inline">\(d\)</span> 的正方体 grid (下图左).
+如果正方体足够小, 且曲面 <span class="math inline">\(\Sigma\)</span>
+足够光滑, 那么曲面 <span class="math inline">\(\Sigma\)</span>
+与每个正方体的交集应可以用若干三角面片近似 (下图右,
+橙色的球面和正方体的交集近似为一个梯形, 可由两个三角形拼成).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-idea.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<p>具体来说, 对于一条边 <span class="math inline">\(e=(p_0,p_1)\)</span>, 如果 <span class="math inline">\({\sf SDF}(p_0)\cdot{\sf SDF}(p_1)\leq0\)</span>,
+我们就认为曲面 <span class="math inline">\(\Sigma\)</span> 与边 <span class="math inline">\(e\)</span> 有一个交点. 由于每个顶点的 SDF
+都有两种情况 (正或负), 一个正方体一共有 <span class="math inline">\(2^8=256\)</span> 种情况; 模去对称性后剩下 <span class="math inline">\(15\)</span> 种情况: (图源 <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:MarchingCubesEdit.svg">Wikimedia</a>)</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-15-cases.png" style="zoom:60%;" cloud-img="" lazyload="true"></p>
+<p>我们不妨假设 SDF 在边 <span class="math inline">\(e\)</span>
+上近似为线性函数, 则交点的坐标为 <span class="math display">\[
+v = \frac{-F_1}{F_0-F_1} p_0 + \frac{F_0}{F_0-F_1} p_1,
+\]</span> 其中 <span class="math inline">\(F_i={\sf SDF}(p_i)\)</span>,
+<span class="math inline">\(i=0,1\)</span>.</p>
+<p>该算法逐个遍历每个正方体, 计算完一个后行进到下一个, 故得名
+"行进立方体" (marching cubes).</p>
+<h4 id="查表">3.1.2  查表</h4>
+<p>在实现上, 如何快速确定哪些边上有交点/哪些交点属于同一个三角形?
+答案是查表.</p>
+<ul>
+<li><p>构造一个 <span class="math inline">\(8\)</span> 位二进制数 <span class="math inline">\(\sf vertexState\)</span>, 其第 <span class="math inline">\(i\)</span> 位表示第 <span class="math inline">\(i\)</span> 顶点的 SDF 是否大于零. 用 <span class="math inline">\(\sf vertexState\)</span> 作为索引查表, 得到一个
+<span class="math inline">\(12\)</span> 位的二进制数 <span class="math inline">\(\sf edgeState\)</span>, 它的第 <span class="math inline">\(i\)</span> 位表示第 <span class="math inline">\(i\)</span> 条边上是否有要生成顶点.</p></li>
+<li><p>计算出交点坐标后, 再次利用 <span class="math inline">\(\sf
+vertexState\)</span> 作为索引, 查另一张表, 得到一个集合 <span class="math display">\[
+\{(i_1,j_1,k_1),(i_2,j_2,k_2),\dots\},
+\]</span> 集合的每一个元素 <span class="math inline">\((i,j,k)\)</span>
+代表一个三角形, <span class="math inline">\(i,j,k=1,\dots,12\)</span>
+分别表示三角形顶点所在的边.
+由此便得到了该正方体中的所有三角形面片.</p></li>
+</ul>
+<p>因此, 算法需要两张长度为 <span class="math inline">\(2^8=256\)</span>
+的表, 分别给出 edge state 和 set of triangles.</p>
+<h4 id="法向量">3.1.3  法向量</h4>
+<p>最后, 我们还需要计算三角形顶点处的法向量. 因为有 SDF,
+我们可以直接利用 SDF 的梯度计算法向量, 而无需在 mesh 上进行插值.</p>
+<p>首先计算 cube 顶点 <span class="math inline">\(p=(i,j,k)\)</span>
+处的梯度 <span class="math inline">\(G(i,j,k)\)</span>. 由 central
+difference 公式, 梯度的三个分量分别为 <span class="math display">\[
+\Align{
+G_x(i,j,k) &amp;= \frac{G(i+1,j,k)-G(i-1,j,k)}{2d}, \\
+G_y(i,j,k) &amp;= \frac{G(i,j+1,k)-G(i,j-1,k)}{2d}, \\
+G_z(i,j,k) &amp;= \frac{G(i,j,k+1)-G(i,j,k-1)}{2d}.
+}
+\]</span></p>
+<p>因为三角形顶点 <span class="math inline">\(v\)</span> 是 cube
+顶点的线性组合 <span class="math inline">\(v=(1-t)p_0+tp_1\)</span>,
+我们认为其梯度也是线性组合 <span class="math display">\[
+G(v) = (1-t)G(p_0) + tG(p_1).
+\]</span></p>
+<h4 id="结果与改进">3.1.4  结果与改进</h4>
+<p>在不同分辨率 <span class="math inline">\(n\)</span> 下运行的结果 (VCI
+的 lab):</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-marching-cubes-results.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<p>传统的 marching cubes 算法存在一些不足, 比如遍历 <span class="math inline">\(n^3\)</span> 个立方体的巨大时间开销, 以及对 SDF
+的细节还原不足等等. 改进的办法包括利用八叉树等结构实现非均匀采样,
+减少空白区域的无效计算; 考虑交点处 SDF 的梯度来提高精度...</p>
+<h3 id="voronoi-图与-delaunay-三角剖分">3.2  Voronoi 图与 Delaunay
+三角剖分</h3>
+<p>后面的几种显式曲面重建都基于 Voronoi 图与 Delaunay 三角剖分的概念.
 它们一般先进行 Delaunay 三角剖分,
 然后选取三角剖分的一个子集作为三角形网格.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/1-voronoi-and-delaunay.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
@@ -666,7 +457,7 @@ V(p_i) := \{x\in\R^3 \mid \|x-p_i\|\leq\|x-p_j\|,\forall j\neq i \},
 的距离不大于到其他点的距离. Voronoi 区域的边界是一个凸多边形.
 <strong>Voronoi 图 (diagram)</strong>指的是所有 <span class="math inline">\(V(p_i)\)</span> 的并 (上图左), 记作 <span class="math inline">\(V(P)\)</span>.</p>
 <p><strong>Delaunay 三角剖分 (triangulation)</strong><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">点云 <span class="math inline">\(P\)</span>
-的一个<strong>三角剖分</strong>指的是以 <span class="math inline">\(P\)</span> 为顶点集的三角形网格.</hcontent><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" style="text-decoration: none;"><sup>[4]</sup></a></span> 是
+的一个<strong>三角剖分</strong>指的是以 <span class="math inline">\(P\)</span> 为顶点集的三角形网格.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span> 是
 Voronoi 图的对偶图, 即相邻的 Voronoi cell 的点相连形成的图 (上图中),
 记作 <span class="math inline">\(D(P)\)</span>. Delaunay
 三角剖分满足一些性质:</p>
@@ -682,7 +473,7 @@ Voronoi 图的对偶图, 即相邻的 Voronoi cell 的点相连形成的图 (上
 定义为所有内角按照单调递增顺序排列得到的向量. 则在字典序下, <span class="math inline">\(D(P)\)</span> 的角度向量是所有三角剖分中最大的.
 特别地, <span class="math inline">\(D(P)\)</span> 的最小内角最大.</li>
 </ul>
-<h4 id="alpha-shape">2.3.2  Alpha shape</h4>
+<h3 id="alpha-shape">3.3  Alpha shape</h3>
 <p>Alpha shape 是凸包的推广. 对于 <span class="math inline">\(\alpha=0\)</span>, 定义 <span class="math inline">\(\alpha\)</span>-闭球为一个点; 对于 <span class="math inline">\(\alpha=+\infty\)</span>, 定义 <span class="math inline">\(\alpha\)</span>-闭球为闭半空间; 对于 <span class="math inline">\(0&lt;\alpha&lt;+\infty\)</span>, 定义 <span class="math inline">\(\alpha\)</span>-闭球为半径为 <span class="math inline">\(\alpha\)</span> 的闭球.</p>
 <p>点云 <span class="math inline">\(P\)</span> 的 <span class="math inline">\(\alpha\)</span>-shape 是 <span class="math inline">\(\R^3\)</span> 中的一个以 <span class="math inline">\(P\)</span> 中某些点为顶点的多面体,
 其表面是三角形网格 <span class="math inline">\({\cal K}\)</span>,
@@ -704,7 +495,7 @@ K}\)</span> 的交集为 <span class="math inline">\(T\)</span>.</li>
 <p>然而构建点云的 <span class="math inline">\(\alpha\)</span>-形的计算量很大, 而且需要选择合适的
 <span class="math inline">\(\alpha\)</span>,
 因此它不适合大规模的点云曲面重建.</p>
-<h4 id="power-crust">2.3.3  Power crust</h4>
+<h3 id="power-crust">3.4  Power crust</h3>
 <div class="note note-secondary">
 <p>原论文: Nina Amenta, Sunghee Choi, Ravi Krishna Kolluri, <em>The
 Power Crust</em>.</p>
@@ -714,17 +505,9 @@ Power Crust</em>.</p>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>3D Vision with Transformers: A Survey - Scientific
-Figure on ResearchGate. Available from:
-https://www.researchgate.net/figure/arious-3D-representations-of-the-Stanford-bunny-22-The-projection-based-3D_fig1_362567752
-[accessed 25 Feb 2025]<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>这实际上要求 mesh 是<strong>可定向的
-(orientable)</strong>, 即曲面有正反两个面. 大部分常见曲面 (如平面, 球面,
-环面) 都可定向. Möbius 带和 Klein 瓶都只有一个面, 是不可定向的.
-可定向等价于曲面拥有连续的单位法向量场.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>这也要求曲面可定向.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>点云 <span class="math inline">\(P\)</span>
-的一个<strong>三角剖分</strong>指的是以 <span class="math inline">\(P\)</span> 为顶点集的三角形网格.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>这要求曲面可定向.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>点云 <span class="math inline">\(P\)</span>
+的一个<strong>三角剖分</strong>指的是以 <span class="math inline">\(P\)</span> 为顶点集的三角形网格.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body></html>
@@ -781,8 +564,8 @@ https://www.researchgate.net/figure/arious-3D-representations-of-the-Stanford-bu
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>几何表示</div>
-      <div>https://disembo.github.io/Note/CG/proc-1-representation/</div>
+      <div>几何重建</div>
+      <div>https://disembo.github.io/Note/CG/proc-1-reconstruction/</div>
     </div>
     <div class="license-meta">
       
@@ -805,9 +588,15 @@ https://www.researchgate.net/figure/arious-3D-representations-of-the-Stanford-bu
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
                   </span>
                 </a>
               
@@ -836,8 +625,8 @@ https://www.researchgate.net/figure/arious-3D-representations-of-the-Stanford-bu
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Note/caiov-1/" title="CAIOV | 1 全纯函数初步理论">
-                        <span class="hidden-mobile">CAIOV | 1 全纯函数初步理论</span>
+                      <a href="/Note/CG/proc-0-representation/" title="几何表示">
+                        <span class="hidden-mobile">几何表示</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

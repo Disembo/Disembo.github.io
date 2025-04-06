@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cube-2.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/sph-simulator/cube-3.png">
 <meta property="article:published_time" content="2025-02-14T14:30:00.000Z">
-<meta property="article:modified_time" content="2025-02-19T07:20:58.802Z">
+<meta property="article:modified_time" content="2025-04-06T14:20:28.982Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="物理">
@@ -427,24 +427,26 @@ operators</h3>
 \nabla A_i
 \approx
 \nabla \lr{A_i} = \sum_j A_j \frac{m_j}{\rho_j} \nabla W_{ij}.
-\]</span> &gt; 该式的误差分析. 将 <span class="math inline">\(A\)</span>
-的 Taylor 展开代入上式, 得到 &gt; <span class="math display">\[
-&gt; \Align{
-&gt; \nabla \lr{A_i}
-&gt; &amp;= A_i \sum_j \frac{m_j}{\rho_j} \nabla W_{ij} \\
-&gt; &amp;\hspace{1em}{}+ \orange{\nabla A(p_i)}
-&gt;   \cdot \sum_j (p_j-p_i) \frac{m_j}{\rho_j} \nabla W_{ij} \\
-&gt; &amp;\hspace{1em}{}+ \mathcal{O}(\|p_j-p_i\|^2).
-&gt; }
-&gt; \]</span> &gt; 为了达到零阶 (一阶) 精度, 应成立下面左式 (两式) &gt;
-<span class="math display">\[
-&gt; \Align{
-&gt; \lr{\nabla1}\equiv
-&gt; \sum_j \frac{m_j}{\rho_j} \nabla W_{ij} &amp;= 0, &amp;
-&gt; \sum_j \frac{m_j}{\rho_j} (p_j-p_i) \otimes \nabla W_{ij}
-&gt;   &amp;= {\rm id}_d.
-&gt; }
-&gt; \]</span></p>
+\]</span></p>
+<div class="note note-secondary">
+<p>该式的误差分析. 将 <span class="math inline">\(A\)</span> 的 Taylor
+展开代入上式, 得到 <span class="math display">\[
+\Align{
+\nabla \lr{A_i}
+&amp;= A_i \sum_j \frac{m_j}{\rho_j} \nabla W_{ij} \\
+&amp;\hspace{1em}{}+ \orange{\nabla A(p_i)}
+  \cdot \sum_j (p_j-p_i) \frac{m_j}{\rho_j} \nabla W_{ij} \\
+&amp;\hspace{1em}{}+ \mathcal{O}(\|p_j-p_i\|^2).
+}
+\]</span> 为了达到零阶 (一阶) 精度, 应成立下面左式 (两式) <span class="math display">\[
+\Align{
+\lr{\nabla1}\equiv
+\sum_j \frac{m_j}{\rho_j} \nabla W_{ij} &amp;= 0, &amp;
+\sum_j \frac{m_j}{\rho_j} (p_j-p_i) \otimes \nabla W_{ij}
+  &amp;= {\rm id}_d.
+}
+\]</span></p>
+</div>
 <p>这种 "直接近似" 一般误差比较大, 且会导致模拟不稳定.
 下面我们给出在实际中常用的两种梯度公式.</p>
 <p>梯度的<strong>差分公式 (difference formula)</strong> 为 <span class="math display">\[
@@ -754,9 +756,15 @@ particles 后新旧流体接触时).</p>
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
                   </span>
                 </a>
               
