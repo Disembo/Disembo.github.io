@@ -1,0 +1,1076 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="流体模拟的两种视角, Eulerian 网格法.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="流体模拟">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/simu-3-fluid/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="流体模拟的两种视角, Eulerian 网格法.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints-lag.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints-eul.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-staggered-grid.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-advection-semi-lag.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-advection-semi-lag-subdivide.png">
+<meta property="article:published_time" content="2025-03-24T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-07T05:49:55.225Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="物理">
+<meta property="article:tag" content="模拟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>流体模拟 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="流体模拟"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-24 23:00" pubdate>
+          2025年3月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">流体模拟</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="流体模拟">6  流体模拟</h2>
+<h3 id="两种视角">6.1  两种视角</h3>
+<p>流体的难点在于, 其在空间中连续分布, 因此需要选择合适的空间离散化方法.
+流体的空间离散化有两种视角: Lagrangian 和 Eulerian.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<ul>
+<li>Lagrangian: 在流体上采样若干粒子 (类似于流体中的小船),
+用粒子的运动代表流体的运动.</li>
+<li>Eulerian: 将空间离散化为网格 (类似与固定的木桩),
+记录格点处流体的速度以代表流体的运动.</li>
+</ul>
+<p>两者孕育了不同的仿真方法, 适合不同的场景 (下左为 Lagrangian
+的粒子流体模拟; 右为 Eulerian 的烟雾模拟).</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints-lag.png" style="height:300px;" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints-eul.png" style="height:300px;" cloud-img="" lazyload="true"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h3 id="运动方程">6.2  运动方程</h3>
+<p>设流体的密度场为 <span class="math inline">\(\rho(x,t)\)</span>,
+速度场为 <span class="math inline">\(v(x,t)\)</span>, 则流体的运动由
+Navier-Stokes 方程描述: <span class="math display">\[
+\rho \frac{Dv}{Dt} =
+\underbrace{-\nabla p}_{\sf pressure} {} + {}
+\underbrace{\rho g}_{\sf gravity} {}+{}
+\underbrace{\mu\Delta v}_{\sf viscosity}.
+\]</span> 其本质是 Newton 第二定律. 其中,</p>
+<ul>
+<li><p>左侧的 <span class="math inline">\(D/Dt\)</span> 是速度的
+material derivative, 指的是流体的一个粒子处 (该粒子可能在运动)
+的物理量随时间的变化, 属于 Lagrangian 视角. 而偏导数 <span class="math inline">\(\partial/\partial t\)</span> 指的在某个固定点上,
+某个物理量随时间的变化, 属于 Eulerian 视角. 两者有关联: <span class="math display">\[
+\Align{
+\frac{Dq}{Dt}
+&amp;= \pdv{q}{t} + \pdv{q}{x}\pdv{x}{t} \\
+&amp;= \pdv{q}{t} + \underbrace{(v\cdot\nabla)q}_{\textsf{advective
+term}}.
+}
+\]</span></p></li>
+<li><p>粘滞阻力 <span class="math inline">\(\mu\Delta v\)</span> 关于
+<span class="math inline">\(v\)</span> 是线性的.
+这是当流体粘性较低时的合理近似. 对于很粘的流体 (比如蜂蜜),
+粘滞阻力是非线性的.</p></li>
+</ul>
+<p>光 N-S 方程还不足以完全描述流体. 我们还需要一个质量守恒方程: <span class="math display">\[
+\pdv{\rho}{t} = -\nabla\cdot (\rho v).
+\]</span> 上式右边展开为 <span class="math inline">\(-\rho\nabla\cdot
+v-(v\cdot\nabla)\rho\)</span>. 其中速度的散度 <span class="math inline">\(\nabla\cdot v\)</span> 对于不可压缩
+(imcompressible) 流体来说等于零. 借助质量守恒方程,
+不可压缩的几种等价说法是 <span class="math display">\[
+\nabla\cdot v = 0,\quad\textsf{或者}\quad
+\pdv{\rho}{t} = -(v\cdot\nabla)\rho,\quad\textsf{或者}\quad
+\frac{D\rho}{Dt} = 0.
+\]</span></p>
+<ul>
+<li>大部分流体, 甚至某些气体都几乎是不可压缩的, 为了方便模拟,
+我们认为它们就是不可压缩的. 但对于高速流体就要考虑它的压缩了.</li>
+</ul>
+<p>总之, 我们得到了两个方程 <span class="math display">\[
+\left\{\Align{
+\rho \frac{Dv}{Dt} &amp;= -\nabla p + \rho g + \mu\Delta v, \\
+\nabla\cdot v &amp;= 0.
+}\right.
+\]</span> 下面列出了偏微分方程的三种边界条件:</p>
+<ul>
+<li>(Dirichlet) 边界处的值给定 <span class="math inline">\(f_{\partial\Omega}(x,t)=C(x,t)\)</span>.</li>
+<li>(Neumann) 边界处的方向导数给定 <span class="math inline">\(\displaystyle\pdv{f_{\partial\Omega}}{n}(x,t)=\lr{n,\nabla
+f_{\partial\Omega}(x,t)}=C(x,t)\)</span>.</li>
+<li>(Robin) 结合两者 <span class="math inline">\(af_{\partial\Omega}(x,t)+b\displaystyle\pdv{f_{\partial\Omega}}{n}(x,t)=C(x,t)\)</span>.</li>
+</ul>
+<h2 id="eulerian-网格法">7  Eulerian 网格法</h2>
+<h3 id="网格表示与有限差分">7.1  网格表示与有限差分</h3>
+<p>Eulerian 视角将物理量 (密度、压强、温度、速度等) 存储在一个网格里.
+这里以二维为例, 网格边长为 <span class="math inline">\(d\)</span>,
+物理量 <span class="math inline">\(f\)</span> 在 <span class="math inline">\((i,j)\)</span> 单元处的值记作 <span class="math inline">\(f_{i,j}\)</span>.</p>
+<p>物理量的偏导数可以用 central differencing 公式得到: <span class="math display">\[
+\pdv{f_{i,j}}{x} = \frac{f_{i+1,j}-f_{i-1,j}}{2d}
+\mod{\mathcal{O}(d^2)}.
+\]</span> Laplace 算子为 <span class="math display">\[
+\Delta f_{i,j}
+= \frac{f_{i+1,j}+f_{i-1,j}+f_{i,j+1}+f_{i,j-1}-4f_{i,j}}{d^2}.
+\]</span> 网格上的 Dirichlet 边界条件是很简单的,
+只需把网格边界处的物理量值固定下来 (作为已知) 即可; Neumann
+条件则是额外给出了一些 (关于边界附近物理量的) 方程.</p>
+<p>求解 <span class="math inline">\(\Delta f=0\)</span>
+等价于在网格上求解线性系统: <span class="math display">\[
+L f = b,
+\]</span> 其中 <span class="math inline">\(f\)</span>
+是未知物理量组成的矩阵, <span class="math inline">\(L\)</span> 是代表
+Laplace 算子的已知矩阵, <span class="math inline">\(b\)</span>
+是边界条件给出的已知物理量.</p>
+<p>求解扩散方程 <span class="math inline">\(\partial f/\partial
+t=a\Delta f\)</span> 可以用迭代法: <span class="math display">\[
+(I+ah L) f^{(k+1)} = f^{(k)} + ahb.
+\]</span> Staggered grid 将速度存储在网格的边上, 可以达到更高精度. 其中,
+标量密度、压强仍存储在网格中心; 水平速度 <span class="math inline">\(U\)</span> 存储在网格的竖边上; 竖直速度 <span class="math inline">\(V\)</span> 存储在网格的横边上, 如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-staggered-grid.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>任意一点的物理量通过双线性插值得到.</p>
+<ul>
+<li>后文中, 小写 <span class="math inline">\(v\)</span> 代表速度向量;
+大写 <span class="math inline">\(U,V\)</span> 代表速度的横竖分量,
+有下标的 <span class="math inline">\(U_{i,j},V_{i,j}\)</span> 代表
+staggered grid 上的速度分量. (课程 PPT 中用小写的 <span class="math inline">\(u,v\)</span> 代表速度分量.)</li>
+</ul>
+<h3 id="不可压缩粘性流的模拟">7.2  不可压缩粘性流的模拟</h3>
+<p>Eulerian 视角下的运动方程化为 <span class="math display">\[
+\left\{\Align{
+\rho\pdv{v}{t} &amp;= -\rho(v\cdot\nabla)v -\nabla p + \rho g +
+\mu\Delta v, \\
+\nabla\cdot v &amp;= 0.
+}\right.
+\]</span> 将这个大的 PDF 分成几步求解:</p>
+<ol type="1">
+<li>Update <span class="math inline">\(v\)</span> by solving <span class="math inline">\(\partial v/\partial t=(v\cdot\nabla)v\)</span>
+(advection)</li>
+<li>Update <span class="math inline">\(v\)</span> by solving <span class="math inline">\(\partial v/\partial t=g\)</span> (external
+acceleration)</li>
+<li>Update <span class="math inline">\(v\)</span> by solving <span class="math inline">\(\partial v/\partial t=\mu/\rho\cdot\Delta
+v\)</span> (viscosity or diffusion)</li>
+<li>Update <span class="math inline">\(v\)</span> by solving <span class="math inline">\(\partial v/\partial t=-1/\rho\cdot\nabla
+p\)</span>, such that <span class="math inline">\(\nabla\cdot
+v=0\)</span> (pressure projection)</li>
+</ol>
+<h4 id="advection">7.2.1  Advection</h4>
+<p>Update <span class="math inline">\(v\)</span> by solving <span class="math inline">\(\partial v/\partial
+t=(v\cdot\nabla)v\)</span>.</p>
+<p>不幸的是, 用 Eulerian 视角求解该式是 unconditionally unstable 的.
+我们需要采用 semi-Lagrangian 视角.
+注意到对流项是由于其他地方的粒子带着物理量运动到此处产生的.
+我们追溯粒子上一步的位置以取得速度: <span class="math display">\[
+\Align{
+x_0 &amp;\leftarrow (i-0.5,j), \\
+x_1 &amp;\leftarrow x_0 - hU(x_0), \\
+U_{i,j} &amp;\leftarrow U(x_1),
+}
+\]</span> (其中 <span class="math inline">\(u(x_1)\)</span>
+是双线性插值得到的) 示意图为如下左侧. 对于 <span class="math inline">\(V_{i,j}\)</span> 同理.</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-advection-semi-lag.png" style="zoom:40%;" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-advection-semi-lag-subdivide.png" style="zoom:40%;" cloud-img="" lazyload="true"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>我们也可以对时间步 <span class="math inline">\(h\)</span>
+进行细分来达到更高精度, 如上图右侧, <span class="math display">\[
+\Align{
+x_0 &amp;\leftarrow (i-0.5,j), \\
+x_1 &amp;\leftarrow x_0 - \tfrac{h}{3} U(x_0), \\
+x_2 &amp;\leftarrow x_1 - \tfrac{h}{3} U(x_1), \\
+x_3 &amp;\leftarrow x_2 - \tfrac{h}{3} U(x_2), \\
+U_{i,j} &amp;\leftarrow U(x_3).
+}
+\]</span> Semi-Lagrangian 法在计算时可能遇到追溯到的点 <span class="math inline">\(x^{\sf old}\)</span> 不在流体中的情形.
+这可能由两方面原因导致:</p>
+<ul>
+<li>流体从外部流入.</li>
+<li>数值误差.</li>
+</ul>
+<p>解决办法:</p>
+<ul>
+<li>使用已知的边界条件.</li>
+<li>从流体中最近的点外推 (extrapolate).
+<ul>
+<li>Can do this extrapolation before advection at all grid points in the
+domain that aren't fluid.</li>
+<li>If fluid can move to a grid point that didn’t used to be fluid, make
+sure to do semi-Lagrangian advection there using the extrapolated
+velocity</li>
+</ul></li>
+</ul>
+<p>Semi-Lagrangian 法会引入一种系统误差, 称为数值粘性 (numerical
+viscosity). 考虑一维的对流方程 <span class="math display">\[
+\pdv{q}{t} - v\pdv{q}{x} = 0.
+\]</span> Euler 法的格子边长为 <span class="math inline">\(d\)</span>,
+格点处的位置记作 <span class="math inline">\(x_i\)</span>, 物理量记作
+<span class="math inline">\(q_i\)</span>. 不妨设 <span class="math inline">\(h&lt;d/|v|\)</span><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">对流方程数值求解收敛性的一个必要条件是 CFL 条件
+(Courant–Friedrichs–Lewy), 即 <span class="math inline">\(h\leq
+Cd/|v|\)</span>. 其中 <span class="math inline">\(C\)</span> 是常数,
+显式方法中一般取 <span class="math inline">\(C=1\)</span>.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>
+以及 <span class="math inline">\(v&gt;0\)</span>. 我们用 semi-Lagrangian
+法求解: (双线性插值)</p>
+<p><span class="math display">\[
+\Align{
+q_i^{\sf new}
+&amp;= \frac{hv}{d} q_{i-1} + \pqty{1-\frac{hv}{d}} q_i, \\
+\textsf{即 }
+q_i^{\sf new}
+&amp;= q_i - hv \frac{q_i - q_{i-1}}{d},
+}
+\]</span> 将 <span class="math inline">\(q_i\)</span> 在 <span class="math inline">\(x_i\)</span> 处 Taylor 展开, <span class="math inline">\(q_{i-1}=q_i-d\pdv{q}{x}+\frac{d}{2}\pdv[2]{q}{x}+\mathcal{O}(d^3)\)</span>,
+代入上式得到 <span class="math display">\[
+q_i^{\sf new}
+= q_i -hv \pdv{q}{x} + h\frac{vd}{2} \pdv[2]{q}{x} + \mathcal{O}(d^2),
+\]</span> 复原到对流方程的形式, 我们有 <span class="math display">\[
+\underbrace{\frac{q_i^{\sf new} - q_i}{h}}_{\approx\partial q/\partial
+t}
++ v\pdv{q}{x}
+= \frac{vd}{2} \orange{\pdv[2]{q}{x}},
+\]</span> 方程右边的项非零, 即数值粘性. 关于数值粘性, <em>Fluid
+Simulation</em> (SIGGRAPH 2006 Course Notes) 这样说道:</p>
+<div class="note note-secondary">
+<p>So how bad is it? It depends on what we’re trying to simulate. If
+we’re trying to simulate a viscous fluid, which has plenty of natural
+dissipation already, then the extra numerical dissipation will hardly be
+noticed—and more importantly, looks plausibly like real dissipation.
+But, most often we’re trying to simulate nearly inviscid fluids, and
+this is a serious annoyance which keeeps smoothing the interesting
+features like small vortices from our flow. As bad as this is for
+velocity, in chapter 6 we’ll see it can be much much worse for other
+fluid variables.</p>
+</div>
+<h4 id="external-acceleration">7.2.2  External acceleration</h4>
+<p>Update <span class="math inline">\(v\)</span> by solving <span class="math inline">\(\partial v/\partial t=g\)</span>.</p>
+<p>直接把重力加速度累加到速度上: <span class="math display">\[
+V_{i,j} \leftarrow V_{i,j} + hg.
+\]</span></p>
+<h4 id="viscosity-or-diffusion">7.2.3  Viscosity or diffusion</h4>
+<p>Update <span class="math inline">\(v\)</span> by solving <span class="math inline">\(\partial v/\partial t=\mu/\rho\cdot\Delta
+v\)</span>.</p>
+<p>可以直接把 Laplacian 加到速度上: <span class="math display">\[
+U_{i,j} \leftarrow U_{i,j} + h\frac{\mu}{\rho}
+\frac{U_{i-1,j}+U_{i+1,j}+U_{i,j-1}+U_{i,j+1} - 4U_{i,j}}{d^2}.
+\]</span> (对 <span class="math inline">\(V_{i,j}\)</span> 同理) 如果
+<span class="math inline">\(h\mu/\rho\)</span> 比较大的话,
+上式可能不稳定. 此时可以把时间步 <span class="math inline">\(h\)</span>
+细分, 比如 <span class="math display">\[
+\Align{
+U_{i,j}^{\sf temp} &amp;\leftarrow U_{i,j} + \frac{h}{2}\frac{\mu}{\rho}
+\frac{U_{i-1,j}+U_{i+1,j}+U_{i,j-1}+U_{i,j+1} - 4U_{i,j}}{d^2}, \\
+U_{i,j}^{\sf new} &amp;\leftarrow U_{i,j} + \frac{h}{2}\frac{\mu}{\rho}
+\frac{U_{i-1,j}^{\sf temp}+
+    U_{i+1,j}^{\sf temp}+
+    U_{i,j-1}^{\sf temp}+
+    U_{i,j+1}^{\sf temp}-
+    4U_{i,j}^{\sf temp}
+}{d^2}. \\
+}
+\]</span></p>
+<h4 id="pressure-projection">7.2.4  Pressure projection</h4>
+<p>Update <span class="math inline">\(v\)</span> by solving <span class="math inline">\(\partial v/\partial t=-1/\rho\cdot\nabla
+p\)</span>, such that <span class="math inline">\(\nabla\cdot
+v=0\)</span>.</p>
+<p>换言之, 求出 <span class="math inline">\(v^{\sf new}\)</span> 满足
+<span class="math inline">\(v^{\sf new}-v=-h/\rho\cdot\nabla p\)</span>
+且 <span class="math inline">\(\nabla\cdot v^{\sf new}=0\)</span>. 也即
+<span class="math display">\[
+\nabla\cdot\pqty{v - \frac{h}{\rho}\nabla p} = 0,
+\]</span> 或 Poisson 方程 <span class="math display">\[
+\Delta p = \frac{\rho}{h} \nabla v.
+\]</span> 将其离散化, <span class="math display">\[
+4p_{i,j} - p_{i-1,j} - p_{i+1,j} - p_{i,j-1} - p_{i,j+1} =
+\frac{\rho d}{h}(U_{i,j} - U_{i-1,j} + V_{i,j} - V_{i,j-1}),
+\]</span> 等式右边是已知的, 由此得到关于 <span class="math inline">\(p\)</span> 的线性方程组, 形如 <span class="math inline">\(Lx=b\)</span>. 其中:</p>
+<ul>
+<li>向量 <span class="math inline">\(x\)</span> 包含了所有流体点的压力
+<span class="math inline">\(p_{i,j}\)</span>, 向量 <span class="math inline">\(b\)</span> 包含了速度分量 <span class="math inline">\(U_{i,j},V_{i,j}\)</span> 的线性组合.
+需要注意如下边界条件:
+<ul>
+<li>邻居为空气. 表面处的压力为常值, 由于我们只关心压力梯度,
+不妨设该常值为零. 故得到 Dirichlet 边界条件, 边界点 <span class="math inline">\(p_{i,j}=0\)</span>[^tension-bd]. 在向量 <span class="math inline">\(x\)</span> 中删去边界点的压力.</li>
+<li>邻居为固体. 比如 <span class="math inline">\((i-1,j)\)</span>
+为固体. 对于无粘性流, 法向相对速度 <span class="math inline">\(U_{i,j}-U_{\sf solid}=0\)</span> (no-stick).
+对于粘性流, 相对速度 <span class="math inline">\((U_{i,j},V_{i,j})-(U_{\sf solid},V_{\sf
+solid})=0\)</span> (no-slip). 这是一个 Neumann 边界条件. 在实现上,
+<ul>
+<li>Drop <span class="math inline">\(p_{i-1,j}\)</span> and reduce
+coefficient of <span class="math inline">\(p_{i,j}\)</span> by <span class="math inline">\(1\)</span> (<span class="math inline">\(4\)</span>
+to <span class="math inline">\(3\)</span>),</li>
+<li>"No−stick": Only replace <span class="math inline">\(U_{i,j}\)</span> (the right-hand side) with <span class="math inline">\(U_{\sf solid}\)</span>,</li>
+<li>"No−slip": Also replace <span class="math inline">\(V_{i,j}\)</span>
+(the right-hand side) with <span class="math inline">\(V_{\sf
+solid}\)</span>.</li>
+</ul></li>
+</ul></li>
+<li>Laplace 矩阵 <span class="math inline">\(L\)</span>
+是半正定的稀疏矩阵, 可以使用预条件共轭梯度法 (PCG, preconditioned
+conjugate gradient), 预条件为 incomplete Cholesky preconditioner.
+[^tension-bd]: 若考虑表面张力, 则表面处的压力与表面的平均曲率有关.</li>
+</ul>
+<p>最终, 解出 <span class="math inline">\(p\)</span> 后更新 <span class="math inline">\(v\)</span>: <span class="math display">\[
+\Align{
+U_{i,j} &amp;\leftarrow U_{ij} - \frac{h}{\rho d}(p_{i,j} - p_{i-1,j}),
+\\
+V_{i,j} &amp;\leftarrow V_{ij} - \frac{h}{\rho d}(p_{i,j} - p_{i,j-1}).
+}
+\]</span></p>
+<h3 id="颜料与烟雾">7.3  颜料与烟雾</h3>
+<p>水中的颜料 / 空中的烟雾, 额外受水的浮力. 此外要考虑浓度的对流: <span class="math display">\[
+\pdv{c}{t} = -(v\cdot\nabla)c.
+\]</span> 浮力与温度有关, 经验公式为 <span class="math display">\[
+f_b = -\alpha c + \beta(T-T_{\sf amb}),
+\]</span></p>
+<h3 id="水">7.4  水</h3>
+<p>水的特点是它有一个明显的界面 / 自由表面 (free surface).</p>
+<h4 id="标记点">7.4.1  标记点</h4>
+<ul>
+<li>Simplest approach is to use marker particles.</li>
+<li>Sample fluid volume with particles <span class="math inline">\(\{x_p\}\)</span></li>
+<li>At each time step, mark grid cells containing any marker particles
+as Fluid, rest as Empty or Solid.</li>
+<li>Move particles in incompressible grid velocity field (interpolating
+as needed):
+<ul>
+<li><span class="math inline">\(\dd{x_p}/\dd{t}=v(x_p)\)</span>, we can
+use Euler update (with Runge-Kutta 2)</li>
+</ul></li>
+</ul>
+<h4 id="水平集">7.4.2  水平集</h4>
+<p>在模拟的过程中维护一个 SDF 的水平集, 作为水的表面.</p>
+<ol type="1">
+<li>Initialization <span class="math inline">\(\phi(x)\)</span> (for
+e.g., Fast Sweeping Method [Zhao H 2005, A fast sweeping method for
+eikonal equations]).</li>
+<li>Advection: <span class="math inline">\(\partial\phi/\partial
+t=(u\cdot\nabla)c\)</span>.</li>
+<li>Reinitialization <span class="math inline">\(\|\nabla\phi(x)\|=1\)</span>.</li>
+</ol>
+<p>然而水平集对数粘性性十分敏感. Level set advection is very sensitive
+to numerical diffusion, Over time, sharp features are smoothed away and
+even disappear: small holes can fill in, thin structures can vanish.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>对流方程数值求解收敛性的一个必要条件是 CFL 条件
+(Courant–Friedrichs–Lewy), 即 <span class="math inline">\(h\leq
+Cd/|v|\)</span>. 其中 <span class="math inline">\(C\)</span> 是常数,
+显式方法中一般取 <span class="math inline">\(C=1\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/CG/" class="category-chain-item">CG</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
+      
+        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
+      
+        <a href="/tags/%E6%A8%A1%E6%8B%9F/" class="print-no-link">#模拟</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>流体模拟</div>
+      <div>https://disembo.github.io/Note/CG/simu-3-fluid/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/CG/proc-5-deformation/" title="网格变形">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">网格变形</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/CG/proc-4-parameterization/" title="参数化与纹理">
+                        <span class="hidden-mobile">参数化与纹理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
