@@ -16,27 +16,32 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Differential Geometry: Connections, Curvature, and Characteristic Classes (Loring W. Tu) 的笔记合集.">
+    <meta name="description" content="体素神经网络, 点云神经网络, 八叉树神经网络, 三角形网格神经网络.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTM275 | 微分几何笔记">
-<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275-index/index.html">
+<meta property="og:title" content="三维深度学习">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/undst-2-3d-deep-learning/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="Differential Geometry: Connections, Curvature, and Characteristic Classes (Loring W. Tu) 的笔记合集.">
+<meta property="og:description" content="体素神经网络, 点云神经网络, 八叉树神经网络, 三角形网格神经网络.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-19T15:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-13T13:03:07.704Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-3d-dl.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-mvcnn.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-pointnet-vanilla.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-pointnet.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-pointnet++.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-meshcnn-conv.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-meshcnn-pool.png">
+<meta property="article:published_time" content="2025-04-08T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-08T14:49:32.738Z">
 <meta property="article:author" content="jin">
-<meta property="article:tag" content="数学">
-<meta property="article:tag" content="微分几何">
-<meta property="article:tag" content="示性类">
-<meta property="article:tag" content="黎曼几何">
+<meta property="article:tag" content="计算机图形学">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-3d-dl.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>GTM275 | 微分几何笔记 | Jin&#39;s Blog</title>
+  <title>三维深度学习 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,7 +224,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GTM275 | 微分几何笔记"></span>
+            <span id="subtitle" data-typed-text="三维深度学习"></span>
           
         </div>
 
@@ -230,8 +235,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-19 23:00" pubdate>
-          2024年7月19日 晚上
+        <time datetime="2025-04-08 23:00" pubdate>
+          2025年4月8日 晚上
         </time>
       </span>
     
@@ -274,95 +279,201 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GTM275 | 微分几何笔记</h1>
+            <h1 id="seo-header">三维深度学习</h1>
             
             
               <div class="markdown-body">
                 
                 <html><head></head><body>
-<div class="note note-secondary">
-<p><em>Differential Geometry: Connections, Curvature, and Characteristic
-Classes</em> by Loring W. Tu (GTM275)</p>
-</div>
-<p>这本书写得非常清楚, 作者在每章前会介绍概念的来龙去脉和动机,
-学的时候容易抓住主线. 书的内容很细致, 逻辑链很完整, 适合自学.</p>
-<p>作者从欧氏空间中的经典微分几何讲起, 前几章的核心是证明 Gauss
-绝妙定理, 并将曲率高斯曲率推广到一般的流形. 接下来一部分的核心是测地线与
-Gauss-Bonnet 定理. Gauss-Bonnet 定理自然引出了向量丛上的示性类. 最终,
-导向主丛上的联络和示性类. 本书的一个缺憾可能是主线之外的内容介绍较少,
-习题也少有拓展/挑战性的内容.</p>
-<p>曲率是黎曼几何最基本的不变量. 从几何直观上讲,
-<strong>截面曲率</strong>的概念是 Gauss 曲率的直接推广
-(在此之前有曲线曲率的概念), 第 3 篇笔记的 9.3 节进行了一些简单的介绍.
-从代数上看, 联络的<strong>曲率张量</strong>反映了平行移动的某种非对称性,
-可以衡量一个黎曼流形局部上与平直空间的 "差距".</p>
-<p>黎曼流形的局部度量 (黎曼度量) 可以给出整体的<strong>距离</strong>结构
-(距离函数). 局部上看, 两点间距离由测地线实现. 测地线既是 "最直" 的线,
-即切向量关于自身求导为零, 又是线长取极值的曲线. Hopf-Rinow 定理表明,
-黎曼流形在分析上的<strong>完备性</strong> (测地完备)
-和拓扑上的<strong>完备性</strong> (完备距离空间) 是等价的.</p>
-<p>另一个联系几何与拓扑的定理是 Gauss-Bonnet 定理,
-即高斯曲率在流形上的积分给出欧拉数.
-这引出了向量丛上的<strong>示性类</strong>理论, 即局部几何量 (曲率)
-可以构造出整体的拓扑量 (示性类). 示性类在流形上的积分称为示性数,
-它们也是拓扑不变量. 示性类反映了向量丛整体的 "非平凡性", 是它们
-"扭曲程度" 的衡量.</p>
-<p>向量丛的联络可以推广到主丛上, 但是由于主丛没有向量丛那样的线性结构,
-所以定义会比较复杂抽象. 若将主丛看作若干竖直纤维组成的,
-那么<strong>联络</strong>给出了一个 "水平" 的结构 (每一点的水平子空间).
-李群传递地作用于每一根竖直的纤维; 而水平结构将不同的纤维联系起来,
-因此称为<strong>联络</strong>.
-联络的<strong>曲率</strong>给出主丛的示性类.
-主丛的<strong>示性类</strong>将主丛与上同调类联系起来, 是一个拓扑不变量,
-衡量了主丛与平凡丛的差距.</p>
-<p>主丛部分很抽象, 逻辑链挺长, 各种符号满天飞,
-我学的时候费了很大劲才搞懂 (大概).</p>
-<p><strong>第一部分: 向量丛上的联络与曲率, Gauss 绝妙定理.</strong></p>
-<ol type="1">
-<li><a href="/Note/dg-gtm275-1">曲率与向量场</a>: 黎曼流形,
-欧氏空间的方向导数, 曲面的曲率 (法曲率, 形状算子, 基本形式).</li>
-<li><a href="/Note/dg-gtm275-2">曲率与向量场</a>: 仿射联络, 黎曼联络
-(黎曼几何基本定理), 拉回联络; 向量丛 (点算子和局部算子);
-高斯绝妙定理的证明和推广.</li>
-<li><a href="/Note/dg-gtm275-3">曲率与微分形式</a>: 向量丛上的联络,
-联络与曲率形式, 高斯曲率与曲率形式的关系 (绝妙定理),
-截面曲率和常曲率流形.</li>
-</ol>
-<p><strong>第二部分: 黎曼流形的测地线与完备性, Gauss-Bonnet
-定理.</strong></p>
-<ol start="4" type="1">
-<li><a href="/Note/dg-gtm275-4">测地线</a>: 克氏符, 沿曲线的协变导数,
-测地线, 指数映射.
+<p>与 CV 类似, 三维深度学习的基本任务包括:</p>
 <ul>
-<li><a href="/Note/dg-gtm275-4-Lie">李群上的指数映射</a>:
-李群的指数映射, 双不变度量. (under construction)</li>
+<li>三维理解: 分类、分割、检测...</li>
+<li>三维生成: 从图像 / 文本等生成三维模型.</li>
+</ul>
+<p>与二维深度学习相比, 三维深度学习有一些挑战:</p>
+<ul>
+<li>计算代价高: 三维模型的数据量与 <span class="math inline">\(N^3\)</span> (<span class="math inline">\(N\)</span> 为分辨率) 成正比.</li>
+<li>表达的多样性: 二维表达基本只有图像一种, 而三维表达方式多种多样
+(体素、三角形网格、SDF、点云、样条...).</li>
+</ul>
+<p>本文介绍三种 3D 深度学习中最主要的几种神经网络.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-3d-dl.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<h2 id="体素神经网络">3  体素神经网络</h2>
+<h3 id="voxcnn">3.1  VoxCNN</h3>
+<p>体素是图像的自然推广. 图像是 <span class="math inline">\(H\times
+W\)</span> 个像素 (pixel) 组成的表格, 而体素是 <span class="math inline">\(H\times W\times D\)</span> 个体素 (voxel)
+组成的三维网格. 而体素卷积神经网络则是图像的卷积神经网络 (CNN) 的推广,
+其卷积核是三维的.</p>
+<p>体素 CNN 的优点是通用性强, 而缺点是三维卷积的计算量太大,
+一般分辨率不超过 <span class="math inline">\(\sim60\)</span>. 体素 CNN
+是最早的 3D 神经网络, 它证明了 3D 深度学习的可行性.
+后续的工作集中在对体素 CNN 的改进上.</p>
+<h3 id="multiview-cnn">3.2  *Multiview CNN</h3>
+<div class="note note-secondary">
+<p>原论文: <em>Multi-view Convolutional Neural Networks for 3D Shape
+Recognition</em> (ICCV 2015).</p>
+</div>
+<p>为了提升体素 CNN 的效率, 我们将三维物体表达为 <span class="math inline">\(n\)</span> 个视角下的图像, 然后应用图像 CNN
+对每个照片进行理解, 由此得到了得到 Multiview CNN (MVCNN).
+为了将多个视角下图像 CNN 的输出 <span class="math inline">\(z_1,\dots,z_n\)</span> 融合起来, 作者提出了 "view
+pooling" 层, 即取多视角输出的最大值 <span class="math inline">\(\max\{z_1,\dots,z_n\}\)</span>, 再将结果过一遍 CNN
+得到分类结果. 下图展示了 MVCNN 的完整结构 (图自原论文).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-mvcnn.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<p>MVCNN 的优点是高效, 它有效利用了图像卷积神经网络. 它的缺点也很明显:
+三维到二维的投影损失了许多信息, 可能存在自遮挡;
+另外也很难确定最优视点.</p>
+<p>Multiview Diffusion 在 MVCNN 的基础上做 3D 生成.
+它首先利用扩散模型生成若干视角的图片, 然后利用 CV
+中的三维重建算法构建一个三维模型 (比如利用二维草图进行三维建模).</p>
+<h2 id="点云神经网络">4  点云神经网络</h2>
+<h3 id="pointnet">4.1  PointNet</h3>
+<div class="note note-secondary">
+<p>原论文: <em>PointNet: Deep Learning on Point Sets for 3D
+Classification and Segmentation</em> (CVPR 2017).</p>
+</div>
+<p>点云 <span class="math inline">\({\cal P}=\{x_i\}_{i=1}^n\)</span>
+有三个特点: 散乱、无序、旋转与平移不变性. 无序性要求神经网络 <span class="math inline">\(F\)</span> 关于点云满足:</p>
+<ul>
+<li>(对称性) <span class="math inline">\(F(x_1,\dots,x_n)=F(x_{\sigma(1)},\dots,x_{\sigma(n)})\)</span>,
+对任意 <span class="math inline">\(\sigma\in S_n\)</span>.</li>
+</ul>
+<p>这样的对称函数有很多, 比如求和, max, min 等.
+如果我们能找到一个对称函数 <span class="math inline">\(g\)</span>,
+那么就能设计出一个点云神经网络 <span class="math display">\[
+F := \gamma \circ g \circ (\underbrace{h \oplus\dots\oplus h}_n),
+\]</span> (其中 <span class="math inline">\(h\)</span>, <span class="math inline">\(\gamma\)</span> 为任意神经网络) 则 <span class="math inline">\(F\)</span> 自动满足对称性. 具体来说, PointNet
+的朴素版 (vanilla) 取 <span class="math inline">\(g=\operatorname{MAX}\)</span> (element-wise
+maximum), 并将 <span class="math inline">\(h,\gamma\)</span> 设为 MLP,
+如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-pointnet-vanilla.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<ul>
+<li>基于 MLP 的无穷逼近能力 (universal approximation thm.), 论文还证明了
+PointNet vanilla 的无穷逼近能力.</li>
+</ul>
+<p>点云还具有旋转和平移不变性, 一个点云 <span class="math inline">\({\cal P}\)</span>
+实际上代表了它被三维欧氏群作用所得的轨道 <span class="math inline">\({\cal O}\)</span>. 我们希望神经网络可以自动学习出
+<span class="math inline">\({\cal O}\)</span> 最佳的代表元
+(点云的最佳姿态), 即欧氏变换 <span class="math inline">\((R,t)\)</span>.
+由此我们引入 T-Net 用于学习最佳欧氏变换, 再将欧氏变换应用到点云 <span class="math inline">\({\cal P}\)</span> 得到最佳姿态,
+继而作为点云网络的输入.</p>
+<p>将这些基本单元组合起来, 就可以得到用于分类 / 分割的 PointNet
+(图自原论文).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-pointnet.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<ul>
+<li>分类: 由若干 T-Net 和 vanilla 模块组合而成.</li>
+<li>分割: 分割需要对每个点输出一个 feature, 因此 Segmentation Net
+的输入既包含 global feature, 又包含每个点的 feature.</li>
+</ul>
+<h3 id="点云的卷积">4.2  点云的卷积</h3>
+<p>PointNet 没有层次结构, 无法提取多尺度的特征.
+注意到卷积是有层级结构的, 我们能否为点云引入卷积操作?</p>
+<p>图像卷积可以写作 <span class="math inline">\(f'(x)=\sum_{y\in{\cal
+N}(x)}w(x,y)f(x)\)</span>, 我们将其抽象为如下的 "抽象卷积" 操作: <span class="math display">\[
+\phi(x) = \bigodot_{y\in{\cal N}(x)} w(x,y,f(x),f(y)),
+\]</span> 其中:</p>
+<ul>
+<li><span class="math inline">\(\odot\)</span> 是一种运算 (比如求和
+<span class="math inline">\(\sum\)</span> 或者 element-wise maximum
+<span class="math inline">\(\operatorname{MAX}\)</span>).</li>
+<li><span class="math inline">\({\cal N}(x)\)</span> 是 <span class="math inline">\(x\)</span> 的邻域 (对于图像来说是 <span class="math inline">\(x\)</span> 附近的 <span class="math inline">\(d\times d\)</span> 像素, 对于图 (graph)
+来说是邻居节点).</li>
+<li><span class="math inline">\(w(x,y,f(x),f(y))\)</span> 是权重函数,
+它与 <span class="math inline">\(x,y\)</span> 以及其上的 feature 都有关
+(比如 bilateral filter 的权重与空间和特征都有关).</li>
+</ul>
+<p>要把卷积引入点云, 重点在于选择合适的邻域 <span class="math inline">\({\cal N}(x)\)</span> 与权重 <span class="math inline">\(w(x,y,f(x),f(y))\)</span>.</p>
+<ul>
+<li><p>KPConv / SplineConv 使用样条基函数 <span class="math inline">\(\phi\)</span> 作为权重函数: <span class="math display">\[
+w(x,y,f(x),f(y)) = \phi(y-x) \cdot f(y).
+\]</span> 这是图卷积 / 图像卷积一个很自然的推广.</p></li>
+<li><p>NNConv 用一个 MLP 来学习出一个权重函数: <span class="math display">\[
+w(x,y,f(x),f(y)) = {\sf MLP}(y-x) \cdot f(y).
+\]</span></p></li>
+<li><p>PointNet++ 把 <span class="math inline">\(f(y)\)</span> 也作为
+MLP 的输入: <span class="math display">\[
+w(x,y,f(x),f(y)) = {\sf MLP}[(x-y)\oplus f(y)].
+\]</span> (直和 <span class="math inline">\(\oplus\)</span>
+表示将两个向量拼接起来, 即 concatenate.) 运算 <span class="math inline">\(\odot\)</span> 为 <span class="math inline">\(\operatorname{MAX}\)</span>. PointNet++
+的具体结构在下一小节介绍, 该 MLP 与 <span class="math inline">\(\operatorname{MAX}\)</span> 合起来其实是一个
+PointNet.</p></li>
+<li><p>DGCNN 考虑特征的差异而非点坐标的差异: <span class="math display">\[
+w(x,y,f(x),f(y)) = {\sf MLP}[f(x)\oplus (f(y)-f(x))].
+\]</span> 运算 <span class="math inline">\(\odot\)</span> 为 <span class="math inline">\(\operatorname{MAX}\)</span>.</p></li>
+</ul>
+<h3 id="pointnet-1">4.3  PointNet++</h3>
+<div class="note note-secondary">
+<p>原论文: <em>PointNet++: Deep Hierarchical Feature Learning on Point
+Sets in a Metric Space</em> (NeurIPS 2017).</p>
+</div>
+<p>PointNet++ 是 PointNet 的升级版, 它的核心是上面提到的 "点云卷积".
+卷积 + 降采样操作可以让网络学习到不同尺度的特征. PointNet++
+的具体流程如下图 (图自原论文).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-pointnet++.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<ul>
+<li>Feature learning 由若干 set abstraction 模块组成,
+每个模块都让点云更抽象化:
+<ul>
+<li>Sampling: 利用最远点采样, 将点云降采样. (后续的研究表明,
+效率更高的均匀格点采样也可以达到类似的效果.)</li>
+<li>Grouping: 以上面降采样得到的点作为中心点构造若干 local regions
+(所有到中心点的距离不超过某个半径的点) 为后面的 "卷积" 做准备.</li>
+<li>PointNet: 让每个 local region 分别过一遍 PointNet,
+输出的特征作为中心点的特征. 将不是中心点的点删掉.</li>
 </ul></li>
-<li><a href="/Note/dg-gtm275-5">测地线</a>: 黎曼流形的距离结构, 完备性
-(Hopf-Rinow 定理); 体积形式, Gauss-Bonnet 定理.</li>
-</ol>
-<p><strong>第三部分: 代数与拓扑工具.</strong></p>
-<ol start="6" type="1">
-<li><a href="/Note/dg-gtm275-6">代数与拓扑工具</a>:
-模的张量积和楔积.</li>
-<li><a href="/Note/dg-gtm275-7">代数与拓扑工具</a>: 向量丛的构造 (子丛,
-商丛, 拉回丛, 光滑函子), 张量场和向量值微分形式.</li>
-</ol>
-<p><strong>第四部分: 向量丛上的示性类.</strong></p>
-<ol start="8" type="1">
-<li><a href="/Note/dg-gtm275-8">向量丛与示性类</a>: 张量场的协变导数,
-曲率张量与 Bianchi 恒等式, 向量丛的示性类.</li>
-<li><a href="/Note/dg-gtm275-9">向量丛与示性类</a>: Pontrjagin, Euler 和
-Chern 类简介, 一点应用.</li>
-</ol>
-<p><strong>第五部分: 主丛上的联络与示性类.</strong></p>
-<ol start="10" type="1">
-<li><a href="/Note/dg-gtm275-10">主丛与示性类</a>: 李群作用和基本向量场,
-主丛, 标架丛, 竖直子丛, 水平分布.</li>
-<li><a href="/Note/dg-gtm275-11">主丛与示性类</a>: 主丛上的联络
-(两种定义的等价性), 标架丛上的诱导联络, 联络的曲率.</li>
-<li><a href="/Note/dg-gtm275-12">主丛与示性类</a>: 配丛,
-张量性形式的协变导数, 主丛上的示性类.</li>
-</ol>
+<li>Segmentation: 将稀疏的点云特征上采样,
+最终得到原始点云中每个点的特征, 其中 unit PointNet 还接收来自
+abstraction 模块的输入 (类似 ResNet).</li>
+<li>Classification: 一个 PointNet 加上一个全连接神经网络.</li>
+</ul>
+<h2 id="八叉树神经网络">5  八叉树神经网络</h2>
+<p>八叉树集稀疏性、层级性、序列性 (z-order curve) 于一体,
+天然适合卷积、Transformer 等运算.</p>
+<h3 id="o-cnn">5.1  O-CNN</h3>
+<div class="note note-secondary">
+<p>原论文: Wang et al, <em>O-CNN: Octree-based Convolutional Neural
+Networks for 3D Shape Analysis</em> (SIGGRAPH 2017).</p>
+</div>
+<p>基于八叉树的稀疏卷积 O-CNN 用八叉树存储稀疏的曲面信号,
+并把神经网络的运算限制在非空信号上.</p>
+<ul>
+<li>稀疏卷积: 八叉树的每个层级都有一些大小相同的正方体组成,
+在上面可以进行三维卷积. 残缺不全的格子补零即可.</li>
+<li>池化: 由于八叉树具有层级结构, 只需将八个子节点的特征取平均 /
+最大值即可, 比图像的池化还方便.</li>
+</ul>
+<p>稀疏卷积还可以基于别的数据结构——SparseConvNet 和 MinkowskiNet
+在哈希表上进行稀疏卷积.</p>
+<h3 id="octformer">5.2  OctFormer</h3>
+<h2 id="三角形网格神经网络">6  三角形网格神经网络</h2>
+<p>最后我们介绍一下比较具有图形学特色的 mesh 上的神经网络.</p>
+<h3 id="meshcnn">6.1  MeshCNN</h3>
+<div class="note note-secondary">
+<p>原论文: <em>MeshCNN: A Network with an Edge</em> (SIGGRAPH 2019).</p>
+</div>
+<p>点云 CNN 和图 CNN 都围绕着顶点定义了卷积, MeshCNN
+则在边上定义卷积.</p>
+<ul>
+<li><p>卷积: 如下图左 (图自原论文), 对于一个定向三角形网格, 一条边 <span class="math inline">\(e\)</span> 的四个邻边有两种排列: <span class="math inline">\(abcd\)</span> 或者 <span class="math inline">\(cdab\)</span>. 为了让特征与排列无关, 我们构造出
+<span class="math display">\[
+(f_1,f_2,f_3,f_4) := (f_a+f_c,|f_a-f_c|,f_b+f_d,|f_b-f_d|).
+\]</span> 有了如上的特征, 再配以可学习的权重 <span class="math inline">\((w_1,w_2,w_3,w_4)\)</span>,
+就可以进行边卷积操作了: <span class="math display">\[
+\phi_i := \sum w_i f_i.
+\]</span></p></li>
+<li><p>池化: 删除激活函数值最小的边, 下图右展示了 average pooling 操作
+(图自原论文).</p></li>
+</ul>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-meshcnn-conv.png" style="height:200px;" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-meshcnn-pool.png" style="height:200px;" cloud-img="" lazyload="true"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 </body></html>
                 
               </div>
@@ -384,6 +495,13 @@ Chern 类简介, 一点应用.</li>
   <a href="/categories/Note/" class="category-chain-item">Note</a>
   
   
+    <span>></span>
+    
+  <a href="/categories/Note/CG/" class="category-chain-item">CG</a>
+  
+  
+
+  
 
       </span>
     
@@ -396,13 +514,7 @@ Chern 类简介, 一点应用.</li>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
-      
-        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
-      
-        <a href="/tags/%E7%A4%BA%E6%80%A7%E7%B1%BB/" class="print-no-link">#示性类</a>
-      
-        <a href="/tags/%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95/" class="print-no-link">#黎曼几何</a>
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
       
     </div>
   
@@ -414,8 +526,8 @@ Chern 类简介, 一点应用.</li>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>GTM275 | 微分几何笔记</div>
-      <div>https://disembo.github.io/Note/dg-gtm275-index/</div>
+      <div>三维深度学习</div>
+      <div>https://disembo.github.io/Note/CG/undst-2-3d-deep-learning/</div>
     </div>
     <div class="license-meta">
       
@@ -427,7 +539,7 @@ Chern 类简介, 一点应用.</li>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月19日</div>
+          <div>2025年4月8日</div>
         </div>
       
       
@@ -465,18 +577,12 @@ Chern 类简介, 一点应用.</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Note/tp-gtm202-1/" title="GTM202 | 1 拓扑空间">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GTM202 | 1 拓扑空间</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Note/dg-gtm275-12/" title="GTM275 | 12 主丛与示性类">
-                        <span class="hidden-mobile">GTM275 | 12 主丛与示性类</span>
+                      <a href="/Note/caiov-2/" title="CAIOV | 2 全纯函数初步理论">
+                        <span class="hidden-mobile">CAIOV | 2 全纯函数初步理论</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
