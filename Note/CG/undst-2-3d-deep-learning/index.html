@@ -16,12 +16,12 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="体素神经网络, 点云神经网络, 八叉树神经网络, 三角形网格神经网络.">
+    <meta name="description" content="3D CNNs (VoxCNN, PointNets, O-CNN 和 MeshCNN) 和 3D Transformers (点云 transformer 和 OctFormer).">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三维深度学习">
 <meta property="og:url" content="https://disembo.github.io/Note/CG/undst-2-3d-deep-learning/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="体素神经网络, 点云神经网络, 八叉树神经网络, 三角形网格神经网络.">
+<meta property="og:description" content="3D CNNs (VoxCNN, PointNets, O-CNN 和 MeshCNN) 和 3D Transformers (点云 transformer 和 OctFormer).">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-3d-dl.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-mvcnn.png">
@@ -30,8 +30,20 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-pointnet++.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-meshcnn-conv.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-meshcnn-pool.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-transformer-attention.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-transformer.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans2d-vit.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans2d-swin.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-pct.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-stratified-transformer.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-fast-point-transformer.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-knn.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-octformer.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-octformer-attention.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-octformer-dilated-attention.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-point-transformer-v3.png">
 <meta property="article:published_time" content="2025-04-08T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-08T14:49:32.738Z">
+<meta property="article:modified_time" content="2025-04-16T07:10:08.192Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta name="twitter:card" content="summary_large_image">
@@ -296,10 +308,12 @@
 <li>表达的多样性: 二维表达基本只有图像一种, 而三维表达方式多种多样
 (体素、三角形网格、SDF、点云、样条...).</li>
 </ul>
-<p>本文介绍三种 3D 深度学习中最主要的几种神经网络.</p>
+<p>本文介绍几种 3D 深度学习中最主要的几种神经网络, 它们可以大致分为 CNN
+和 Transformer.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-3d-dl.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
-<h2 id="体素神经网络">3  体素神经网络</h2>
-<h3 id="voxcnn">3.1  VoxCNN</h3>
+<h2 id="d-cnns">3  3D CNNs</h2>
+<h3 id="体素网络">3.1  体素网络</h3>
+<h4 id="voxcnn">3.1.1  VoxCNN</h4>
 <p>体素是图像的自然推广. 图像是 <span class="math inline">\(H\times
 W\)</span> 个像素 (pixel) 组成的表格, 而体素是 <span class="math inline">\(H\times W\times D\)</span> 个体素 (voxel)
 组成的三维网格. 而体素卷积神经网络则是图像的卷积神经网络 (CNN) 的推广,
@@ -308,7 +322,7 @@ W\)</span> 个像素 (pixel) 组成的表格, 而体素是 <span class="math inl
 一般分辨率不超过 <span class="math inline">\(\sim60\)</span>. 体素 CNN
 是最早的 3D 神经网络, 它证明了 3D 深度学习的可行性.
 后续的工作集中在对体素 CNN 的改进上.</p>
-<h3 id="multiview-cnn">3.2  *Multiview CNN</h3>
+<h4 id="multiview-cnn">3.1.2  *Multiview CNN</h4>
 <div class="note note-secondary">
 <p>原论文: <em>Multi-view Convolutional Neural Networks for 3D Shape
 Recognition</em> (ICCV 2015).</p>
@@ -325,8 +339,8 @@ pooling" 层, 即取多视角输出的最大值 <span class="math inline">\(\max
 <p>Multiview Diffusion 在 MVCNN 的基础上做 3D 生成.
 它首先利用扩散模型生成若干视角的图片, 然后利用 CV
 中的三维重建算法构建一个三维模型 (比如利用二维草图进行三维建模).</p>
-<h2 id="点云神经网络">4  点云神经网络</h2>
-<h3 id="pointnet">4.1  PointNet</h3>
+<h3 id="点云网络">3.2  点云网络</h3>
+<h4 id="pointnet">3.2.1  PointNet</h4>
 <div class="note note-secondary">
 <p>原论文: <em>PointNet: Deep Learning on Point Sets for 3D
 Classification and Segmentation</em> (CVPR 2017).</p>
@@ -364,7 +378,7 @@ PointNet vanilla 的无穷逼近能力.</li>
 <li>分割: 分割需要对每个点输出一个 feature, 因此 Segmentation Net
 的输入既包含 global feature, 又包含每个点的 feature.</li>
 </ul>
-<h3 id="点云的卷积">4.2  点云的卷积</h3>
+<h4 id="点云的卷积">3.2.2  点云的卷积</h4>
 <p>PointNet 没有层次结构, 无法提取多尺度的特征.
 注意到卷积是有层级结构的, 我们能否为点云引入卷积操作?</p>
 <p>图像卷积可以写作 <span class="math inline">\(f'(x)=\sum_{y\in{\cal
@@ -400,7 +414,7 @@ PointNet.</p></li>
 w(x,y,f(x),f(y)) = {\sf MLP}[f(x)\oplus (f(y)-f(x))].
 \]</span> 运算 <span class="math inline">\(\odot\)</span> 为 <span class="math inline">\(\operatorname{MAX}\)</span>.</p></li>
 </ul>
-<h3 id="pointnet-1">4.3  PointNet++</h3>
+<h4 id="pointnet-1">3.2.3  PointNet++</h4>
 <div class="note note-secondary">
 <p>原论文: <em>PointNet++: Deep Hierarchical Feature Learning on Point
 Sets in a Metric Space</em> (NeurIPS 2017).</p>
@@ -425,10 +439,9 @@ Sets in a Metric Space</em> (NeurIPS 2017).</p>
 abstraction 模块的输入 (类似 ResNet).</li>
 <li>Classification: 一个 PointNet 加上一个全连接神经网络.</li>
 </ul>
-<h2 id="八叉树神经网络">5  八叉树神经网络</h2>
+<h3 id="o-cnn">3.3  O-CNN</h3>
 <p>八叉树集稀疏性、层级性、序列性 (z-order curve) 于一体,
 天然适合卷积、Transformer 等运算.</p>
-<h3 id="o-cnn">5.1  O-CNN</h3>
 <div class="note note-secondary">
 <p>原论文: Wang et al, <em>O-CNN: Octree-based Convolutional Neural
 Networks for 3D Shape Analysis</em> (SIGGRAPH 2017).</p>
@@ -443,10 +456,8 @@ Networks for 3D Shape Analysis</em> (SIGGRAPH 2017).</p>
 </ul>
 <p>稀疏卷积还可以基于别的数据结构——SparseConvNet 和 MinkowskiNet
 在哈希表上进行稀疏卷积.</p>
-<h3 id="octformer">5.2  OctFormer</h3>
-<h2 id="三角形网格神经网络">6  三角形网格神经网络</h2>
-<p>最后我们介绍一下比较具有图形学特色的 mesh 上的神经网络.</p>
-<h3 id="meshcnn">6.1  MeshCNN</h3>
+<h3 id="meshcnn">3.4  MeshCNN</h3>
+<p>最后我们介绍一个比较具有图形学特色的 mesh 上的神经网络.</p>
 <div class="note note-secondary">
 <p>原论文: <em>MeshCNN: A Network with an Edge</em> (SIGGRAPH 2019).</p>
 </div>
@@ -474,6 +485,194 @@ Networks for 3D Shape Analysis</em> (SIGGRAPH 2017).</p>
 <tbody>
 </tbody>
 </table>
+<h2 id="d-transformers">4  3D Transformers</h2>
+<p>Transformers 以其捕捉长距离依赖和多模态能力已经在语言、视觉、3D
+多个领域广泛应用.</p>
+<h3 id="d-transformers-1">4.1  2D Transformers</h3>
+<p>Transformer 的核心是注意力 (attention) 模块, 它可以视作一种
+"可微分的检索" (在上下文中检索信息). 输入 tokens 序列 <span class="math inline">\(X\)</span>, 该序列分别通过三个线性层 <span class="math inline">\(W_q,W_k,W_v\)</span> 得到:</p>
+<ul>
+<li><span class="math inline">\(Q=XW_q\)</span> (query,
+检索关键字),</li>
+<li><span class="math inline">\(K=XW_k\)</span> (key, 键),</li>
+<li><span class="math inline">\(V=XW_v\)</span> (value, 值),</li>
+</ul>
+<p>注意力操作计算 query 和 key 的匹配程度, 并输出对应的 value: <span class="math display">\[
+\operatorname{attention}(X)
+:= \operatorname{softmax}\pqty{
+    \frac1{\sqrt{D}}
+    QK\T
+}V,
+\]</span> (其中 <span class="math inline">\(1/\sqrt{D}\)</span>
+是归一化项, <span class="math inline">\(D\)</span> 为 key 的维数)
+这也称作 scaled dot-product attention (下图左<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Ashish Vaswani et al, <em>Attention Is All You
+Need</em>.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>).
+多头注意力 (multihead attention) 是多个 scaled dot-product attention
+的并行, 可以捕捉多种依赖关系 (下图中). Transformer
+是若干层叠加的多头注意力 (下图右). 由于 attention 模块关于 token
+的重排不变, 额外的位置编码 (positional encoding) 是必需的.</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-transformer-attention.png" style="height:200px;" cloud-img="" lazyload="true"></th>
+<th style="text-align: left;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-transformer.png" style="height:200px;" cloud-img="" lazyload="true"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Vision Transformer (ViT)<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Alexey Dosovitskiy et al, <em>An Image is Worth 16x16
+Words: Transformers for Image Recognition at Scale</em>.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span> 将 transformer
+引入图像识别. 先把图片切成若干个 <span class="math inline">\(P\times
+P\)</span> 的小块 (patches), 让每个 patch 经过一个线性层 (linear
+embedding), 并和位置编码 (position embedding) 一起进入 transformer,
+如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans2d-vit.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<p>有趣的是, ViT 的作者认为该结构已完全抛弃了卷积, 只依赖 Transformer.
+而 CNN 的发明者 Yann Le Cun 则指出, patch 上的线性层本质上还是一种卷积
+(卷积核 <span class="math inline">\(P\times P\)</span>, 步长 <span class="math inline">\(P\)</span>). 实际上,
+卷积和线性层几乎是同一个东西:</p>
+<ul>
+<li>全连接 <span class="math inline">\(\rightsquigarrow\)</span>
+核很大的卷积.</li>
+<li>卷积 <span class="math inline">\(\rightsquigarrow\)</span>
+patch-wise 共享权重的全连接.</li>
+</ul>
+<p>设 token 序列长度为 <span class="math inline">\(N\)</span>, 则
+attention 的矩阵乘法时间复杂度与 <span class="math inline">\(N^2\)</span> 成正比, 导致 ViT 的序列长度 (即 patch
+的数量 <span class="math inline">\(N=HW/P^2\)</span>) 不能太长,
+否则计算量和内存需求急剧增长.</p>
+<p>Swin Transformer<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Ze Liu et al, <em>Swin Transformer: Hierarchical Vision
+Transformer using Shifted Windows</em>.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span> (shifted window / 移位窗口)
+将整个图像的 tokens (patch 序列) 分割若干份, 每一份包含 <span class="math inline">\(M^2\)</span> 个 tokens (即 <span class="math inline">\(M\times M\)</span> 个 patch, 称为一个局部窗口).
+在每个窗口内部执行 attention. 为了解决不同 window 间的信息交互,
+将窗口划分进行一个固定的 "移位" (shift):</p>
+<ul>
+<li>第一层采用标准窗口划分.</li>
+<li>下一层将窗口划分整体平移一个固定距离 (通常为窗口大小的一半),
+让原来处于不同窗口的 token 现在被归入同一个窗口.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans2d-swin.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<h3 id="点云-transformers">4.2  点云 Transformers</h3>
+<p>点云 transformer 需要解决两个任务:</p>
+<ul>
+<li>Scalable: overcome the <span class="math inline">\(\mathcal{O}(N^2)\)</span> complexity in matrix
+multiplication.</li>
+<li>Unified: solve all 3D understanding tasks.</li>
+</ul>
+<p><strong>Global Transformers for Point Clouds</strong>:</p>
+<ul>
+<li>Related works: PCT [Guo et al. 2021]; Point-BERT [Yu et al. 2022];
+Point-MAE [Pang et al. 2022]
+<ul>
+<li>下图 (PCT): Each point attends to all the other points.</li>
+</ul></li>
+<li>Low efficiency: only process point clouds containing several
+thousands points.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-pct.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p><strong>Window Transformers for Point Clouds</strong>:</p>
+<ul>
+<li>Related works: Stratified Transformer [Lai et al. 2022]; SWFormer
+[Sun et al. 2022]; SST [Fan et al. 2022]
+<ul>
+<li>下图 (Stratified Transformer): Each point attends to the points in
+the same window.</li>
+</ul></li>
+<li>3D 点云和图像有本质区别: 后者稠密, 各个窗口内的 token 数量相同;
+而前者是稀疏的, 不同窗口的点云数量差别很大. 这让该算法很难并行化.
+<ul>
+<li>ScanNet, window size 7
+<ul>
+<li>Average point number: 48</li>
+<li>Maximum point number: 343</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-stratified-transformer.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p><strong>Downsampled Transformers for Point Clouds</strong>:</p>
+<ul>
+<li>Related works: Fast Point Transformer [Park et al. 2022];
+PatchFormer [Cheng et al. 2021]
+<ul>
+<li>下图 (Fast Point Transformer): Apply attentions in downsampled
+feature maps.</li>
+</ul></li>
+<li>Weaken the network capability.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-fast-point-transformer.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p><strong>Neighborhood Transformers for Point Clouds</strong>:</p>
+<ul>
+<li>Point Transformer [Zhao et al. 2021]; Point Transformer V2 [Wu et
+al. 2022]
+<ul>
+<li>下图 (自 PPT): Apply attentions to k-nearest neighbors of each
+point.</li>
+</ul></li>
+<li>丧失了一些 transformer 本质上的优势: 全局信息共享.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-knn.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<h3 id="octformer">4.3  OctFormer</h3>
+<div class="note note-secondary">
+<p>原论文: Peng-Shuai Wang, <em>OctFormer: Octree-based Transformers for
+3D Point Clouds</em> (TOG 2023).</p>
+</div>
+<p>脱离思维定势, 不要画正方形 / 正方体的窗口, 而是用不规则窗口,
+让每个窗口内的点数一样.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-octformer.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>这带来两个问题:</p>
+<ol type="1">
+<li>Transformer 能否在不规则窗口上运行?</li>
+<li>如何快速画出不规则窗口?</li>
+</ol>
+<p>问题一:</p>
+<ul>
+<li>想法: 由于 attention 是基于对 token 特征做加权平均 (归一化后的
+softmax 权重), 它对窗口中 token 的排列形状应该不太敏感.</li>
+<li>Swin 的长方形窗口提示我们不规则窗口是可能的.</li>
+<li>实验: 使用一个在 <span class="math inline">\(16\times16\)</span>
+的正方形窗口上训练的 ViT, 对每个窗口随机 mask 掉 <span class="math inline">\(20\%\)</span> 的 image patch (每个窗口内剩下的
+patch 位置就不再构成规则的正方形, 形成 "高度不规则" 的局部窗口). ViT 在
+ImageNet 验证集上的准确率仅从 <span class="math inline">\(85.1\%\)</span> 降低到 <span class="math inline">\(84.2\%\)</span>, 表明 attention
+仍然可以有效聚合信息.</li>
+</ul>
+<p>问题二的答案还是八叉树.</p>
+<ul>
+<li>将所有点按照 z-order curve 排序, 然后让连续的 <span class="math inline">\(N\)</span> 个点作为一个窗口.</li>
+<li>得益于 z-order curve 良好的空间局部性,
+一个窗口内的点在空间上排列紧密 (如下图, 图自 PPT).</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-octformer-attention.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>为了实现全局的信息交互, 可以应用 dilated attention ("膨胀注意力"),
+即按照一定间隔选择 token.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-octformer-dilated-attention.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>OctFormer 用稀疏卷积作为位置编码 (一种 conditional positional
+encoding), 与传统的位置编码相比在减少参数量的同时提升了表现.</p>
+<p>Point Transformer V3 [Wu et al. 2024] 在 OctFormer 的基础上进行改进,
+其核心思想是使用不同的空间填充曲线来划分窗口.</p>
+<ul>
+<li>使用两种空间填充曲线 (z-order 和 Hilbert) 和两种排列方向 (如下图),
+使得 attention 可以捕捉各种上下文信息.
+<ul>
+<li>一个缺点是适合做理解, 不方便做生成.</li>
+</ul></li>
+<li>Scale up receptive fields with Flash Attentions!</li>
+<li>Achieved the best performance on over 20 3D benchmarks with one
+unified network!</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/undst/2-trans3d-point-transformer-v3.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Ashish Vaswani et al, <em>Attention Is All You
+Need</em>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Alexey Dosovitskiy et al, <em>An Image is Worth 16x16
+Words: Transformers for Image Recognition at Scale</em>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Ze Liu et al, <em>Swin Transformer: Hierarchical Vision
+Transformer using Shifted Windows</em>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 </body></html>
                 
               </div>
