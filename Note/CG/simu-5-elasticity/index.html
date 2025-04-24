@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/5-linear-fem-stress-tensors.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/5-1d-stvk-nh.png">
 <meta property="article:published_time" content="2025-04-19T02:30:00.000Z">
-<meta property="article:modified_time" content="2025-04-19T02:40:34.999Z">
+<meta property="article:modified_time" content="2025-04-24T14:53:46.940Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="物理">
@@ -129,7 +129,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
+                <span>Home</span>
               </a>
             </li>
           
@@ -141,7 +141,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
+                <span>Archives</span>
               </a>
             </li>
           
@@ -153,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
+                <span>Categories</span>
               </a>
             </li>
           
@@ -165,7 +165,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
+                <span>Tags</span>
               </a>
             </li>
           
@@ -177,7 +177,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
+                <span>About</span>
               </a>
             </li>
           
@@ -189,7 +189,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
+                <span>Links</span>
               </a>
             </li>
           
@@ -557,15 +557,24 @@ III}_C:=\det(C)=(\lambda_1\lambda_2\lambda_3)^2\)</span>.
 的能量密度是这三种不变量的函数: (假定 <span class="math inline">\(\det{F}&gt;0\)</span>)</p>
 <p><span class="math display">\[
 \Psi(F)
-= \frac\lambda2 \ln^2\!\pqty{{\rm III}_C^{1/2}}
+= \frac\lambda8 [\ln({\rm III}_C)]^2
 + \frac\mu2 ({\rm I}_C-3)
-- \mu \ln\!\pqty{{\rm III}_C^{1/2}},
+- \frac\mu2 \ln({\rm III}_C),
 \]</span> 第二 PK 应力为 <span class="math display">\[
 P^{iJ}
 = g^{ij} \pdv{\Psi}{F^j_J}
+= \mu\!\bqty{ F^i_I g^{IJ} - F^i_I (C^{-1})^{IJ} }
++ \frac\lambda2 (\ln\det{C}) F^i_J (C^{-1})^{IJ}.
+\]</span></p>
+<div class="note note-secondary">
+<p>把 <span class="math inline">\(C\)</span> 展开, 上式可化简为 <span class="math display">\[
+P^{iJ}
 = \mu[ F^i_I g^{IJ} - (F^{-1})^J_j g^{ij} ]
 + \lambda (\ln\det{F}) (F^{-1})^J_j g^{ij}.
-\]</span> Neohookean 可以比较好的保持体积; 一个缺点是 <span class="math inline">\(\det{F}\leq0\)</span> (定向翻转) 时未定义.</p>
+\]</span> 如果要模拟嵌入在三维空间中的二维物体 (比如布料), 则张量 <span class="math inline">\(F:\R^2\to\R^3\)</span> 不可逆, 则应按照原始形式
+(包含张量 <span class="math inline">\(C\)</span>) 计算.</p>
+</div>
+<p>Neohookean 可以比较好的保持体积; 一个缺点是 <span class="math inline">\(\det{F}\leq0\)</span> (定向翻转) 时未定义.</p>
 <p>一维情形的可视化: 我们把 Neohookean 和 StVK 的第二 PK 应力 <span class="math inline">\(P\)</span> 随着 <span class="math inline">\(F\in\R\)</span> 的图像画出来:</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/5-1d-stvk-nh.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
 <p>它们在 <span class="math inline">\(F=1\)</span> 处是相切的
@@ -614,33 +623,37 @@ P^{iJ}
 Fung...</p>
 <h3 id="linear-fem-框架">11.4  Linear FEM 框架</h3>
 <p>把上面的推导总结一下 (将分量式转化为矩阵乘法),
-可以得到如下的模拟时间步.</p>
-<p>对每个四面体 <span class="math inline">\({\cal T}\)</span>:</p>
+可以得到如下的模拟框架.</p>
+<ul>
+<li><p>(初始化) 预计算每个四面体局部标架的逆 <span class="math inline">\(E^{-1}=\pmqty{X_1-X_0&amp;X_2-X_0&amp;X_3-X_0}^{-1}\)</span>
+和体积 <span class="math inline">\(\mathrm{Vol}(\mathcal{T})=\det(E)/6\)</span>.</p></li>
+<li><p>(时间步) 对每个四面体 <span class="math inline">\({\cal
+T}\)</span>:</p>
 <ol type="1">
-<li><p>计算局部标架 <span class="math inline">\(E=\pmqty{X_1-X_0&amp;X_2-X_0&amp;X_3-X_0}\)</span>.</p></li>
-<li><p>计算形变梯度 <span class="math inline">\(F=\pmqty{x_1-x_0&amp;x_2-x_0&amp;x_3-x_0}E^{-1}\)</span>.</p></li>
+<li><p>计算当前局部标架 <span class="math inline">\(e=\pmqty{x_1-x_0&amp;x_2-x_0&amp;x_3-x_0}\)</span>.</p></li>
+<li><p>计算形变梯度 <span class="math inline">\(F=eE^{-1}\)</span>.</p></li>
 <li><p>计算第一 PK 应力 <span class="math inline">\(P\)</span>.</p>
 <ul>
 <li>StVK 模型:
 <ol type="1">
-<li>Green 应变 <span class="math inline">\(G=\dfrac12(F\T
-F-I)\)</span>.</li>
+<li>Green 应变 <span class="math inline">\(G=(F\T F-I)/2\)</span>.</li>
 <li>第二 PK 应力 <span class="math inline">\(S=2\mu
 G+\lambda\tr(G)I\)</span>.</li>
 <li>第一 PK 应力 <span class="math inline">\(P=FS\)</span>.</li>
 </ol></li>
 <li>Neohookean 模型:
 <ol type="1">
-<li>形变 Jacobian <span class="math inline">\(J=\det{F}\)</span>.</li>
-<li>第一 PK 应力 <span class="math inline">\(P=\mu(F-F^{\sf
--T})+\lambda(\ln{J})F^{\sf -T}\)</span>.</li>
+<li><p>右 Cauchy-Green 张量 <span class="math inline">\(C=F\T
+F\)</span>.</p></li>
+<li><p>第一 PK 应力 <span class="math inline">\(P=\mu(F-FC^{-1})+\lambda(\ln\det{C})FC^{-1}/2\)</span>.</p>
+<p>或者, 当 <span class="math inline">\(F\)</span> 为方阵时, <span class="math inline">\(P=\mu(F-F^\mathsf{-T})+\lambda(\ln\det{F})F^\mathsf{-T}\)</span>.</p></li>
 </ol></li>
 </ul></li>
 <li><p>计算内力 <span class="math inline">\(\pmqty{f_1&amp;f_2&amp;f_3}=-{\rm Vol}({\cal
-T})PE^{\sf-T}=-\dfrac{\det{E}}{6}PE^{\sf-T}\)</span>.</p>
-<p>以及 <span class="math inline">\(f_0=-f_1-f_2-f_3\)</span>.</p></li>
+T})PE^{\sf-T}\)</span> 以及 <span class="math inline">\(f_0=-f_1-f_2-f_3\)</span>.</p></li>
 <li><p>时间积分.</p></li>
-</ol>
+</ol></li>
+</ul>
 </body></html>
                 
               </div>
