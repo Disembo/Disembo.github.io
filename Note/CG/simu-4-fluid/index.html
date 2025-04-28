@@ -16,26 +16,33 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="计算机图形学几门课程的笔记.">
+    <meta name="description" content="PIC 与 FLIP 法.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机图形学笔记">
-<meta property="og:url" content="https://disembo.github.io/Note/CG/cg-index/index.html">
+<meta property="og:title" content="流体模拟">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/simu-4-fluid/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="计算机图形学几门课程的笔记.">
+<meta property="og:description" content="PIC 与 FLIP 法.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/index-cg-fields.png">
-<meta property="article:published_time" content="2025-02-19T03:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-25T12:19:44.212Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-pic-procedure.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-pic-dissipation.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-flip-procedure.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-flip-drift.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-flip-result-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-flip-result-2.png">
+<meta property="article:published_time" content="2025-04-25T11:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-26T15:25:41.659Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="物理">
+<meta property="article:tag" content="模拟">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/index-cg-fields.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-pic-procedure.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>计算机图形学笔记 | Jin&#39;s Blog</title>
+  <title>流体模拟 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -218,7 +225,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="计算机图形学笔记"></span>
+            <span id="subtitle" data-typed-text="流体模拟"></span>
           
         </div>
 
@@ -229,8 +236,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-19 11:00" pubdate>
-          2025年2月19日 上午
+        <time datetime="2025-04-25 19:00" pubdate>
+          2025年4月25日 晚上
         </time>
       </span>
     
@@ -273,81 +280,172 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">计算机图形学笔记</h1>
+            <h1 id="seo-header">流体模拟</h1>
             
             
               <div class="markdown-body">
                 
                 <html><head></head><body>
-<p><strong>计算机视觉 (Computer Vision, CV)</strong>
-和<strong>计算机图形学 (Computer Graphics, CG)</strong>
-是计算机领域两个密切相关的学科. CV 的重点在于让计算机 "看到" 并 "理解"
-世界, 即从图像、视频等资料中提取有关真实世界的信息
-(比如检测物体、识别人脸、从图像重建三维场景等), 而 CG
-的重点在于用计算机处理、生成可视化的信息 (比如 3D
-建模、流体模拟、渲染电影和游戏场景、VR 等). CG
-大致可以分为下面几个领域:</p>
-<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/index-cg-fields.png" style="zoom:65%;" cloud-img="" lazyload="true"></p>
+<p>如无特殊说明, 本文图片均取自课程 PPT.</p>
+<h2 id="pic-flip-方法">8  PIC &amp; FLIP 方法</h2>
 <div class="note note-secondary">
-<p>这个笔记系列主要基于下面三门课:</p>
-<ul>
-<li>图形学的引论课《可视计算与交互概论》(陈宝权, 楚梦瑜; <a target="_blank" rel="noopener" href="https://vcl.pku.edu.cn/course/vci/">课程网站</a>)</li>
-<li>《几何计算前沿》(王鹏帅)</li>
-<li>《图形学中的物理仿真》(楚梦瑜)</li>
-</ul>
-<p>参考书:</p>
-<ul>
-<li>Botsch et al, <em>Polygon Mesh Processing</em>.</li>
-<li>鲍虎军等, 《离散几何处理与应用》.</li>
-<li>Matt et al, <em>Physically Based Rendering</em> (PBRT, <a target="_blank" rel="noopener" href="https://www.pbrt.org/">官网</a>).</li>
-</ul>
+<p>参考资料: Ten Minute Physics 的 <a target="_blank" rel="noopener" href="https://matthias-research.github.io/pages/tenMinutePhysics/18-flip.pdf">FLIP
+流体模拟</a>.</p>
 </div>
-<p><strong>几何表示与处理</strong>.</p>
+<h3 id="pic">8.1  PIC</h3>
+<p>由于 Euler 网格法 advection 步的 semi-Lagrange
+方法会导致较大的数值误差, 这是因为我们并没有真正地采用 Lagrange
+视角去模拟粒子, 而是用网格上的速度近似粒子速度.
+但网格的精度肯定不如自由粒子. 我们不妨更进一步,
+在网格系统中引入粒子来提高精度.</p>
+<p>PIC (particle in cell) 方法结合了 Euler 和 Lagrange 视角.
+它既包含了一个固定网格, 也包含了固定网格中的粒子. 网格通常比较稀疏,
+因此性能比 Euler 网格法高 (因为需要在网格上求解线性系统).
+粒子并行性比较好, 一个网格可以包含多个粒子.</p>
+<p>PIC 方法同时维护一个粒子列表和一个 staggered grid.</p>
+<ol type="1">
+<li>粒子时间积分: 用 Euler 积分法更新每个粒子的位置和速度.
 <ul>
-<li><a href="/Note/CG/proc-0-representation">几何表示</a>:
-几种几何表示的方法 (体素, 点云, 三角形网格, SDF, 样条曲线与曲面).</li>
-<li><a href="/Note/CG/proc-1-reconstruction">曲面重建</a>: 隐式曲面重建
-(SDF 重建与 Poisson 重建) 与显示曲面重建 (Marching cubes, alpha shape 与
-power crust).</li>
-<li><a href="/Note/CG/proc-2-denoising">网格去噪与光顺</a>: Laplace
-平滑, 双边滤波, 稀疏优化和数据驱动的算法.</li>
-<li><a href="/Note/CG/proc-3-remeshing">重网格化</a>: 网格简化,
-提升网格的质量, 网格细分和四边形化.</li>
-<li><a href="/Note/CG/proc-4-parameterization">参数化与纹理</a>:
-参数化的几种方法, 参数化的应用 (纹理映射, 几何图像), 表示纹理的其他方法
-(八叉树, mesh colors).</li>
-<li><a href="/Note/CG/proc-5-deformation">网格变形</a>:
-基于曲面变形的网格变形 (变形传播, 多尺度与微分域变形),
-基于空间变形的网格变形 (FFD, 蒙皮动画, deformation graphs).</li>
-</ul>
-<p><strong>几何理解, 生成与重建</strong>.</p>
+<li>Particles carry velocity <span class="math inline">\(\to\)</span>
+can skip grid advection!</li>
+</ul></li>
+<li>P2G: 将粒子的速度转移到网格上.</li>
+<li>不可压缩求解: 在网格上求解速度的不可压缩方程 (类似于网格法的
+pressure projection).</li>
+<li>G2P: 将网格的速度转移回粒子上.</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-pic-procedure.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>PIC 方法的关键步骤是网格与粒子间的速度转移 P2G 和 G2P.
+它们都采用线性插值:</p>
 <ul>
-<li><a href="/Note/CG/undst-1-representation">几何表示前沿</a>: 八叉树,
-哈希表以及基于 MLP 的几何表示.</li>
-<li><a href="/Note/CG/undst-2-3d-deep-learning">三维深度学习</a>: 3D
-CNNs (VoxCNN, PointNets, O-CNN 和 MeshCNN) 和 3D Transformers (点云
-transformer 和 OctFormer).</li>
-<li>形状分析.</li>
-<li>形状生成.</li>
+<li>P2G: 对于每个粒子的每个速度分量, 计算它在 staggered grid
+上的八个相邻顶点, 将速度分量按照三线性插值分配到八个顶点上.</li>
+<li>G2P: 对于每个粒子的每个速度分量, 它的值为 staggered grid
+八个相邻顶点三线性插值的结果.</li>
 </ul>
-<p><strong>物理仿真</strong>.</p>
+<p>PIC 方法的速度转移是稳定的, 然而 G2P 插值会使得同一个 cell
+内的粒子速度趋同, 粒子失去了原有的速度. 这会导致流体的能量耗散
+(dissipation), 如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-pic-dissipation.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<h3 id="flip">8.2  FLIP</h3>
+<p>FLIP (fluid implicit particles) 可以解决 PIC 中的能量耗散问题.
+与后者不同的是, FLIP 在进行 G2P 时只转移<em>速度改变量</em>.
+其基本流程和 PIC 相似:</p>
+<ol type="1">
+<li>粒子时间积分: 用 Euler 积分法更新每个粒子的位置和速度.</li>
+<li>P2G: 将粒子的速度转移到网格上.
 <ul>
-<li><a href="/Note/CG/simu-1-intro">物理模拟简介</a>:
-运动方程与时间积分法.</li>
-<li><a href="/Note/CG/simu-2-rigid">刚体模拟</a>: 刚体的运动方程,
-冲量动力学, 位置动力学与约束动力学.</li>
-<li><a href="/Note/CG/simu-3-fluid">流体模拟</a>: 流体模拟的两种视角,
-Euler 网格法.</li>
-<li><a href="/Note/CG/simu-4-fluid">流体模拟</a>: PIC 与 FLIP 法.</li>
-<li><a href="/Note/CG/simu-sph-simulator">一个简单的 SPH
-流体模拟器</a>.</li>
-<li><a href="/Note/CG/simu-5-elasticity">弹性体模拟</a>: 弹性体模拟,
-弹簧质点系统法与线性 FEM.</li>
-<li>布料模拟</li>
+<li>将 grid 速度复制一份, 以便 G2P 使用.</li>
+</ul></li>
+<li>不可压缩求解: 在网格上求解速度的不可压缩方程.</li>
+<li>G2P: 将网格的速度转移回粒子上.
+<ul>
+<li>令当前的 grid 速度减去之前复制的 grid 速度, 得到速度改变量.
+将速度改变量叠加到粒子速度上.</li>
+</ul></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-flip-procedure.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>FLIP 方法没有能量耗散, 但是不是很稳定. 因此在实际应用中我们通常融合
+PIC 和 FLIP 两种方法, 在 G2P 时按照如下公式计算粒子速度: <span class="math display">\[
+v^{\sf new} :=
+(1-\lambda) \orange{v^{\sf PIC}} +
+\lambda(v^{\sf old} + \blue{\Delta v^{\sf FLIP}}),
+\]</span> 其中 <span class="math inline">\(\orange{v^{\sf PIC}}\)</span>
+和 <span class="math inline">\(\blue{\Delta v^{\sf FLIP}}\)</span>
+分别是按照 PIC 方法和 FLIP 方法计算得到的速度和速度改变量, 系数 <span class="math inline">\(0\leq\lambda\leq1\)</span>, 通常取 <span class="math inline">\(\lambda=0.95\)</span>.</p>
+<h3 id="making-the-velocity-field-incompressible">8.3  Making the velocity
+field incompressible</h3>
+<p>这一步的目的让网格上的速度场不可压缩, 即 <span class="math inline">\(\nabla\cdot v=0\)</span>, 离散化为 <span class="math display">\[
+U_{i+1,j}-U_{i,j}+V_{i,j+1}-V_{i,j} = 0.
+\]</span></p>
+<p>可以采用 Gauss-Seidel 迭代法:</p>
+<ul>
+<li><p>重复执行 <span class="math inline">\(T\)</span> 次:</p>
+<ul>
+<li><p>对每个网格单元 <span class="math inline">\((i,j)\)</span>:</p>
+<ul>
+<li><p>计算散度和分母: <span class="math display">\[
+\left\{\Align{
+d &amp;\leftarrow U_{i+1,j}-U_{i,j}+V_{i,j+1}-V_{i,j}, \\
+s &amp;\leftarrow s_{i+1,j}+s_{i-1,j}+s_{i,j+1}+s_{i,j-1}. \\
+}\right.
+\]</span> 其中 <span class="math inline">\(s_{i,j}=0\)</span>
+代表固体单元; <span class="math inline">\(s_{i,j}=1\)</span>
+代表流体或者空气单元.</p></li>
+<li><p>更新速度:</p></li>
 </ul>
-<p><strong>动画原理</strong>.</p>
-<p><strong>光照与渲染</strong>.</p>
-<p><strong>人机交互</strong>.</p>
+<p><span class="math display">\[
+\left\{\Align{
+\rlap{U_{i,j}}\hphantom{U_{i+1,j}}
+  &amp;\leftarrow \hphantom{U_{i+1,j}}\llap{U_{i,j}}
+  + d\,s_{i-1,j}/s, \\
+\rlap{U_{i+1,j}}\hphantom{U_{i+1,j}}
+  &amp;\leftarrow \hphantom{U_{i+1,j}}\llap{U_{i+1,j}}
+  + d\,s_{i+1,j}/s, \\
+\rlap{V_{i,j}}\hphantom{U_{i+1,j}}
+  &amp;\leftarrow \hphantom{U_{i+1,j}}\llap{V_{i,j}}
+  + d\,s_{i,j-1}/s, \\
+\rlap{V_{i,j+1}}\hphantom{U_{i+1,j}}
+  &amp;\leftarrow \hphantom{U_{i+1,j}}\llap{V_{i,j+1}}
+  + d\,s_{i,j+1}/s.
+}\right.
+\]</span></p></li>
+</ul></li>
+</ul>
+<p>Overrelaxation 技巧可以加速 G-S 的收敛: <span class="math display">\[
+d \leftarrow \orange{o} \cdot (U_{i+1,j}-U_{i,j}+V_{i,j+1}-V_{i,j}),
+\]</span> 其中系数 <span class="math inline">\(o\in(1,2)\)</span>,
+可以取 <span class="math inline">\(o=1.9\)</span>.</p>
+<h3 id="compensate-drifts">8.4  Compensate drifts</h3>
+<p>基于速度的流体模拟方法 (velocity-based) 都存在一个问题——漂移
+(drifting). 如果两个粒子有逐渐靠近的趋势 (速度), 那么 pressure solve
+是可以正确地把粒子推开的 (下图左, 图自参考资料).
+然而如果两个粒子已经贴上了, 相对速度为零, 那么 pressure solve 也无能为力
+(下图右).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-flip-drift.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>第一, 新增模拟步骤 "push particles apart": 遍历每一对粒子,
+如果它们的距离 <span class="math inline">\(d\)</span> 小于 <span class="math inline">\(2r\)</span> (其中 <span class="math inline">\(r\)</span> 为粒子半径), 则把它们格推离 <span class="math inline">\((d-2r)/2\)</span>. 有时需要多次迭代
+(通常是性能瓶颈).</p>
+<ul>
+<li>朴素的遍历方法很慢. 可以以略大于 <span class="math inline">\(2r\)</span> 为边长构造一个网格 (hash 表),
+将粒子放入网格中, 对一个粒子只需搜寻邻居网格内的粒子即可.</li>
+</ul>
+<p>第二, 在 pressure solve 的散度中加入漂移修正项 (drift compensaiton):
+<span class="math display">\[
+d \leftarrow
+o(U_{i+1,j}-U_{i,j}+V_{i,j+1}-V_{i,j})
+\orange{{}-k(\rho-\rho_0)},
+\]</span> 其中 <span class="math inline">\(\rho_0\)</span>
+是初始状态的所有格子的平均密度, <span class="math inline">\(\rho\)</span> 是当前密度, <span class="math inline">\(k\)</span> 是修正系数 (可取 <span class="math inline">\(k=1\)</span>).
+网格上的密度由粒子上的密度插值得到.</p>
+<h3 id="an-implementation">8.5  An implementation</h3>
+<p>参考 Ten Minute Physics 的思路, 我们采用如下的模拟框架:</p>
+<ul>
+<li>对每个时间步 (可进一步分为若干 substeps):
+<ul>
+<li>Time integration (Symplectic Euler)</li>
+<li>Collisions handling (处理粒子与边界和障碍物的碰撞)</li>
+<li>Pushing particles apart</li>
+<li>Collisions handling (处理粒子与边界和障碍物的碰撞)</li>
+<li>P2G</li>
+<li>Updating particle density (把网格上的密度插值到粒子上)</li>
+<li>Solving incompressibility</li>
+<li>G2P</li>
+</ul></li>
+</ul>
+<p>当网格分辨率比较小 (<span class="math inline">\(24^3\sim32^3\)</span>, 粒子数量 <span class="math inline">\(\sim10^4\)</span>) 时,
+在笔记本电脑下可以做到实时模拟 (帧率约为 <span class="math inline">\(25\sim70\)</span> fps). 下面是模拟的截图.</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-flip-result-1.png" style="zoom:30%;" cloud-img="" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/4-flip-result-2.png" style="zoom:30%;" cloud-img="" lazyload="true"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 </body></html>
                 
               </div>
@@ -390,6 +488,10 @@ Euler 网格法.</li>
       
         <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
       
+        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
+      
+        <a href="/tags/%E6%A8%A1%E6%8B%9F/" class="print-no-link">#模拟</a>
+      
     </div>
   
 </div>
@@ -400,8 +502,8 @@ Euler 网格法.</li>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>计算机图形学笔记</div>
-      <div>https://disembo.github.io/Note/CG/cg-index/</div>
+      <div>流体模拟</div>
+      <div>https://disembo.github.io/Note/CG/simu-4-fluid/</div>
     </div>
     <div class="license-meta">
       
@@ -413,7 +515,7 @@ Euler 网格法.</li>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年2月19日</div>
+          <div>2025年4月25日</div>
         </div>
       
       
@@ -451,18 +553,12 @@ Euler 网格法.</li>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Note/caiov-index/" title="CAIOV | 复分析笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CAIOV | 复分析笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/Note/CG/simu-sph-simulator/" title="一个简单的 SPH 流体模拟器">
-                        <span class="hidden-mobile">一个简单的 SPH 流体模拟器</span>
+                      <a href="/Note/CG/simu-5-elasticity/" title="弹性体模拟">
+                        <span class="hidden-mobile">弹性体模拟</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

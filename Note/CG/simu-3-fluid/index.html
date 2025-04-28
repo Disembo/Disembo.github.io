@@ -16,12 +16,12 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="流体模拟的两种视角, Eulerian 网格法.">
+    <meta name="description" content="流体模拟的两种视角, Euler 网格法.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="流体模拟">
 <meta property="og:url" content="https://disembo.github.io/Note/CG/simu-3-fluid/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="流体模拟的两种视角, Eulerian 网格法.">
+<meta property="og:description" content="流体模拟的两种视角, Euler 网格法.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints-lag.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-advection-semi-lag.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-advection-semi-lag-subdivide.png">
 <meta property="article:published_time" content="2025-03-24T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-07T05:49:55.225Z">
+<meta property="article:modified_time" content="2025-04-25T02:51:14.185Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="物理">
@@ -286,19 +286,20 @@
               <div class="markdown-body">
                 
                 <html><head></head><body>
+<p>如无特殊说明, 本文图片均取自课程 PPT.</p>
 <h2 id="流体模拟">6  流体模拟</h2>
 <h3 id="两种视角">6.1  两种视角</h3>
 <p>流体的难点在于, 其在空间中连续分布, 因此需要选择合适的空间离散化方法.
-流体的空间离散化有两种视角: Lagrangian 和 Eulerian.</p>
+流体的空间离散化有两种视角: Lagrange 和 Euler.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/3-viewpoints.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <ul>
-<li>Lagrangian: 在流体上采样若干粒子 (类似于流体中的小船),
+<li>Lagrange: 在流体上采样若干粒子 (类似于流体中的小船),
 用粒子的运动代表流体的运动.</li>
-<li>Eulerian: 将空间离散化为网格 (类似与固定的木桩),
+<li>Euler: 将空间离散化为网格 (类似与固定的木桩),
 记录格点处流体的速度以代表流体的运动.</li>
 </ul>
-<p>两者孕育了不同的仿真方法, 适合不同的场景 (下左为 Lagrangian
-的粒子流体模拟; 右为 Eulerian 的烟雾模拟).</p>
+<p>两者孕育了不同的仿真方法, 适合不同的场景 (下左为 Lagrange
+的粒子流体模拟; 右为 Euler 的烟雾模拟).</p>
 <table>
 
 <thead>
@@ -322,8 +323,8 @@ Navier-Stokes 方程描述: <span class="math display">\[
 <ul>
 <li><p>左侧的 <span class="math inline">\(D/Dt\)</span> 是速度的
 material derivative, 指的是流体的一个粒子处 (该粒子可能在运动)
-的物理量随时间的变化, 属于 Lagrangian 视角. 而偏导数 <span class="math inline">\(\partial/\partial t\)</span> 指的在某个固定点上,
-某个物理量随时间的变化, 属于 Eulerian 视角. 两者有关联: <span class="math display">\[
+的物理量随时间的变化, 属于 Lagrange 视角. 而偏导数 <span class="math inline">\(\partial/\partial t\)</span> 指的在某个固定点上,
+某个物理量随时间的变化, 属于 Euler 视角. 两者有关联: <span class="math display">\[
 \Align{
 \frac{Dq}{Dt}
 &amp;= \pdv{q}{t} + \pdv{q}{x}\pdv{x}{t} \\
@@ -362,11 +363,12 @@ v-(v\cdot\nabla)\rho\)</span>. 其中速度的散度 <span class="math inline">\
 f_{\partial\Omega}(x,t)}=C(x,t)\)</span>.</li>
 <li>(Robin) 结合两者 <span class="math inline">\(af_{\partial\Omega}(x,t)+b\displaystyle\pdv{f_{\partial\Omega}}{n}(x,t)=C(x,t)\)</span>.</li>
 </ul>
-<h2 id="eulerian-网格法">7  Eulerian 网格法</h2>
+<h2 id="euler-网格法">7  Euler 网格法</h2>
 <h3 id="网格表示与有限差分">7.1  网格表示与有限差分</h3>
-<p>Eulerian 视角将物理量 (密度、压强、温度、速度等) 存储在一个网格里.
+<p>Euler 视角将物理量 (密度、压强、温度、速度等) 存储在一个网格里.
 这里以二维为例, 网格边长为 <span class="math inline">\(d\)</span>,
-物理量 <span class="math inline">\(f\)</span> 在 <span class="math inline">\((i,j)\)</span> 单元处的值记作 <span class="math inline">\(f_{i,j}\)</span>.</p>
+物理量 <span class="math inline">\(f\)</span> 在 <span class="math inline">\((i,j)\)</span> 单元处的值记作 <span class="math inline">\(f_{i,j}\)</span> (这里以二维情形为例,
+三维的是类似的).</p>
 <p>物理量的偏导数可以用 central differencing 公式得到: <span class="math display">\[
 \pdv{f_{i,j}}{x} = \frac{f_{i+1,j}-f_{i-1,j}}{2d}
 \mod{\mathcal{O}(d^2)}.
@@ -397,7 +399,7 @@ t=a\Delta f\)</span> 可以用迭代法: <span class="math display">\[
 staggered grid 上的速度分量. (课程 PPT 中用小写的 <span class="math inline">\(u,v\)</span> 代表速度分量.)</li>
 </ul>
 <h3 id="不可压缩粘性流的模拟">7.2  不可压缩粘性流的模拟</h3>
-<p>Eulerian 视角下的运动方程化为 <span class="math display">\[
+<p>Euler 视角下的运动方程化为 <span class="math display">\[
 \left\{\Align{
 \rho\pdv{v}{t} &amp;= -\rho(v\cdot\nabla)v -\nabla p + \rho g +
 \mu\Delta v, \\
@@ -418,8 +420,8 @@ v=0\)</span> (pressure projection)</li>
 <h4 id="advection">7.2.1  Advection</h4>
 <p>Update <span class="math inline">\(v\)</span> by solving <span class="math inline">\(\partial v/\partial
 t=(v\cdot\nabla)v\)</span>.</p>
-<p>不幸的是, 用 Eulerian 视角求解该式是 unconditionally unstable 的.
-我们需要采用 semi-Lagrangian 视角.
+<p>不幸的是, 用 Euler 视角求解该式是 unconditionally unstable 的.
+我们需要采用 semi-Lagrange 视角.
 注意到对流项是由于其他地方的粒子带着物理量运动到此处产生的.
 我们追溯粒子上一步的位置以取得速度: <span class="math display">\[
 \Align{
@@ -449,7 +451,7 @@ x_2 &amp;\leftarrow x_1 - \tfrac{h}{3} U(x_1), \\
 x_3 &amp;\leftarrow x_2 - \tfrac{h}{3} U(x_2), \\
 U_{i,j} &amp;\leftarrow U(x_3).
 }
-\]</span> Semi-Lagrangian 法在计算时可能遇到追溯到的点 <span class="math inline">\(x^{\sf old}\)</span> 不在流体中的情形.
+\]</span> Semi-Lagrange 法在计算时可能遇到追溯到的点 <span class="math inline">\(x^{\sf old}\)</span> 不在流体中的情形.
 这可能由两方面原因导致:</p>
 <ul>
 <li>流体从外部流入.</li>
@@ -463,11 +465,11 @@ U_{i,j} &amp;\leftarrow U(x_3).
 <li>Can do this extrapolation before advection at all grid points in the
 domain that aren't fluid.</li>
 <li>If fluid can move to a grid point that didn’t used to be fluid, make
-sure to do semi-Lagrangian advection there using the extrapolated
+sure to do semi-Lagrange advection there using the extrapolated
 velocity</li>
 </ul></li>
 </ul>
-<p>Semi-Lagrangian 法会引入一种系统误差, 称为数值粘性 (numerical
+<p>Semi-Lagrange 法会引入一种系统误差, 称为数值粘性 (numerical
 viscosity). 考虑一维的对流方程 <span class="math display">\[
 \pdv{q}{t} - v\pdv{q}{x} = 0.
 \]</span> Euler 法的格子边长为 <span class="math inline">\(d\)</span>,
@@ -476,7 +478,7 @@ viscosity). 考虑一维的对流方程 <span class="math display">\[
 (Courant–Friedrichs–Lewy), 即 <span class="math inline">\(h\leq
 Cd/|v|\)</span>. 其中 <span class="math inline">\(C\)</span> 是常数,
 显式方法中一般取 <span class="math inline">\(C=1\)</span>.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>
-以及 <span class="math inline">\(v&gt;0\)</span>. 我们用 semi-Lagrangian
+以及 <span class="math inline">\(v&gt;0\)</span>. 我们用 semi-Lagrange
 法求解: (双线性插值)</p>
 <p><span class="math display">\[
 \Align{
@@ -600,8 +602,8 @@ as Fluid, rest as Empty or Solid.</li>
 <li>Move particles in incompressible grid velocity field (interpolating
 as needed):
 <ul>
-<li><span class="math inline">\(\dd{x_p}/\dd{t}=v(x_p)\)</span>, we can
-use Euler update (with Runge-Kutta 2)</li>
+<li><span class="math inline">\({\dd{x_p}}/{\dd{t}}=v(x_p)\)</span>, we
+can use Euler update (with Runge-Kutta 2)</li>
 </ul></li>
 </ul>
 <h4 id="水平集">7.4.2  水平集</h4>
@@ -615,7 +617,7 @@ t=(u\cdot\nabla)c\)</span>.</li>
 <li>Reinitialization <span class="math inline">\(\|\nabla\phi(x)\|=1\)</span>.</li>
 </ol>
 <p>然而水平集对数粘性性十分敏感. Level set advection is very sensitive
-to numerical diffusion, Over time, sharp features are smoothed away and
+to numerical diffusion. Over time, sharp features are smoothed away and
 even disappear: small holes can fill in, thin structures can vanish.</p>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
