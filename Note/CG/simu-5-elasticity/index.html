@@ -16,19 +16,19 @@
   <meta name="author" content="jin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="弹性体模拟, 弹簧质点系统法与线性 FEM.">
+    <meta name="description" content="弹性体模拟的线性 FEM 方法.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="弹性体模拟">
 <meta property="og:url" content="https://disembo.github.io/Note/CG/simu-5-elasticity/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
-<meta property="og:description" content="弹性体模拟, 弹簧质点系统法与线性 FEM.">
+<meta property="og:description" content="弹性体模拟的线性 FEM 方法.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/5-linear-fem-approx.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/5-linear-fem-tetrahedra.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/5-linear-fem-stress-tensors.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/5-1d-stvk-nh.png">
 <meta property="article:published_time" content="2025-04-19T02:30:00.000Z">
-<meta property="article:modified_time" content="2025-04-24T14:53:46.940Z">
+<meta property="article:modified_time" content="2025-04-29T08:35:14.901Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="物理">
@@ -327,60 +327,7 @@ body}\)</span>.</li>
 <li>Implicit Time Integration.</li>
 </ul></li>
 </ul>
-<h2 id="弹簧质点系统">10  弹簧质点系统</h2>
-<h3 id="弹簧质点系统-1">10.1  弹簧质点系统</h3>
-<p>一种简单但没什么物理含义的方法.</p>
-<p>用一个弹簧质点网格模拟弹性物体 (布料等). 设一共有 <span class="math inline">\(n\)</span> 个支点, 位置为 <span class="math inline">\(x_i\)</span>, 速度为 <span class="math inline">\(v_i\)</span>, 受力为 <span class="math inline">\(f_i\)</span>, 质量为 <span class="math inline">\(m_i\)</span>. 一些质点间连有弹簧, 质点 <span class="math inline">\(i\)</span> 收到的来自质点 <span class="math inline">\(j\)</span> 的力为 <span class="math display">\[
-f_{ij}
-= k(\|x_i-x_j\| - l_0) \cdot \frac{x_i-x_j}{\|x_i-x_j\|}
-= -f_{ji}.
-\]</span> 质点 <span class="math inline">\(i\)</span> 所受合力为 <span class="math display">\[
-f_i = f_{\sf ext} + \sum_{j\in{\cal N}(i)} f_{ij}.
-\]</span> 组装矩阵 <span class="math display">\[
-\Align{
-x &amp;= \pmqty{x_1\\\vdots\\x_n}, &amp;
-v &amp;= \pmqty{v_1\\\vdots\\v_n}, &amp;
-f &amp;= \pmqty{f_1\\\vdots\\f_n}, &amp;
-M &amp;= \pmqty{m_1I_3\\&amp;\ddots\\&amp;&amp;m_nI_3}.
-}
-\]</span> 则有微分方程 <span class="math display">\[
-\left\{\Align{
-x' &amp;= v, \\
-v' &amp;= M^{-1} f = M^{-1} (f_{\sf int} + f_{\sf ext}).
-}\right.
-\]</span></p>
-<h3 id="时间积分">10.2  时间积分</h3>
-<p>显式 Euler 法实现简单, 效率高, 但是数值不稳定, 容易导致能量爆炸.
-一般考虑隐式方法. 隐式 Euler 方法的方程为: <span class="math display">\[
-\left\{\Align{
-x^+ &amp;= x + hv^+, \\
-v^+ &amp;= v + hM^{-1} (f_{\sf int}(x^+) + f_{\sf ext}).
-}\right.
-\]</span> 消去 <span class="math inline">\(v^+\)</span> 得到关于 <span class="math inline">\(x^+\)</span> 的方程 <span class="math display">\[
-x^+
-= \underbrace{[x + h(v + hM^{-1} f_{\sf ext})]}
-  _{\textsf{$y$ (independent of $x^+$)}}
-+ h^2M^{-1}f_{\sf int}(x^+).
-\]</span> 该 <span class="math inline">\(x^+\)</span>
-实际上是如下能量函数的极值点: <span class="math display">\[
-g(x) = \frac1{2h^2} \|x - y\|_M^2 + E(x),
-\]</span> 其中 <span class="math inline">\(\|z\|_M:=z\T Mz\)</span>,
-内力是弹性势能的负梯度 <span class="math inline">\(f_{\sf
-int}(x^+)=-\partial E/\partial x|_{x^+}\)</span>. 可以使用 Newton
-迭代法求出极值点:</p>
-<ul>
-<li>Init <span class="math inline">\(x^{(1)}=x\)</span>.</li>
-<li>Update with <span class="math inline">\(x^{(k+1)}=x^{(k)} -
-H^{-1}(x^{(k)})\nabla g(x^{(k)})\)</span>.
-<ul>
-<li>求 Hessian 的逆 (求解线性系统) 是性能瓶颈.</li>
-</ul></li>
-</ul>
-<p>当能量函数为凸函数时, Newton 法可以收敛到极值点 (对于二次的能量函数,
-一次迭代就可以达到). 对于非凸的能量函数, 往往需要一些手段避免
-overshooting (错过极值点), 比如回溯线搜索 (backtracking line
-search).</p>
-<h2 id="linear-fem">11  Linear FEM</h2>
+<h2 id="linear-fem">10  Linear FEM</h2>
 <div class="note note-secondary">
 <p>参考资料: <em>FEM Simulation of 3D Deformable Solids: A
 practitioner’s guide to theory, discretization and model reduction</em>
@@ -398,7 +345,7 @@ Einstein 求和约定. 在欧氏空间 <span class="math inline">\(\R^3\)</span>
 \textsf{内力} \longrightarrow
 \textsf{时间积分}.
 \]</span></p>
-<h3 id="形变场">11.1  形变场</h3>
+<h3 id="形变场">10.1  形变场</h3>
 <p>设 <span class="math inline">\(\R^3\)</span> 中的物体 <span class="math inline">\(\Omega\)</span> 经过了连续可微的形变 <span class="math inline">\(\varphi:\Omega\to\Omega'\)</span>, <span class="math inline">\(X\mapsto\varphi(X)=x\)</span>. 变形前的 <span class="math inline">\(\Omega\)</span> 称为参考状态 (reference state),
 变形后的 <span class="math inline">\(\Omega'\)</span> 称为当前状态
 (current state).</p>
@@ -419,7 +366,7 @@ F\underbrace{\pmqty{E_1 &amp; E_2 &amp; E_3}}_E =
 F = eE^{-1},
 \]</span> 其中 <span class="math inline">\(E_I=X_I-X_0,e_i=x_i-x_0\)</span> 为边向量, <span class="math inline">\(E,e\)</span> 称为局部标架矩阵.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/5-linear-fem-tetrahedra.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
-<h3 id="应力张量">11.2  应力张量</h3>
+<h3 id="应力张量">10.2  应力张量</h3>
 <p>下面介绍几个应力张量.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/5-linear-fem-stress-tensors.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
 <ul>
@@ -456,7 +403,7 @@ T_I = \underbrace{
 }_{S^{IJ}} \cdot N_J.
 \]</span></p>
 </div>
-<h3 id="超弹性模型">11.3  超弹性模型</h3>
+<h3 id="超弹性模型">10.3  超弹性模型</h3>
 <p>超弹性模型 (hyperelastic model) 认为物体的形变总是弹性形变,
 不论形变有多大. 超弹性模型假设应力张量 (<span class="math inline">\(S,P\)</span> 等) 可以由应变能量密度 <span class="math inline">\(\Psi\)</span> 的导数给出.</p>
 <p>应变能量密度是关于形变 <span class="math inline">\(F\)</span>
@@ -482,7 +429,7 @@ f^i_j
 &amp;= -{\rm Vol}({\cal T}) g_{ij} (E^{-1})^i_I P^{jI},
 }
 \]</span> 其中 <span class="math inline">\(f^i_j\)</span> 表示第 <span class="math inline">\(i\)</span> 个力的第 <span class="math inline">\(j\)</span> 个分量, <span class="math inline">\(e_i^j\)</span> 表示第 <span class="math inline">\(i\)</span> 个基向量的第 <span class="math inline">\(j\)</span> 个分量.</p>
-<h4 id="st.-venant-kirchhoff-模型">11.3.1  St. Venant-Kirchhoff 模型</h4>
+<h4 id="st.-venant-kirchhoff-模型">10.3.1  St. Venant-Kirchhoff 模型</h4>
 <p>Saint Venant-Kirchhoff 模型 (StVK) 的能量密度 <span class="math inline">\(\Psi\)</span> 与 Green 应变张量有关.</p>
 <p>Green 应变张量 (Green strain tensor) 是一个对称的 <span class="math inline">\((0,2)\)</span> 型张量, 定义为 <span class="math display">\[
 G(X,Y) = \frac12(g(FX,FY) - g(X,Y)).
@@ -527,7 +474,7 @@ resistance), 则 <span class="math display">\[
 }
 \]</span></p>
 </div>
-<h4 id="neohookean-模型">11.3.2  Neohookean 模型</h4>
+<h4 id="neohookean-模型">10.3.2  Neohookean 模型</h4>
 <p>StVK 在大形变以及翻转的情形下效果不够好. 考虑一维的情形 (形变 <span class="math inline">\(\tilde\varphi:\R\to\R\)</span>, 形变梯度 <span class="math inline">\(F\in\R\)</span>), 则 StVK 的第一 PK 应力为 <span class="math display">\[
 P(F)
 = \frac12F[\lambda(F^2-1) + 2\mu(F^2-1)]
@@ -588,7 +535,7 @@ P^{iJ}
 右 Cauchy-Green 不变量不是各向同性的, 但 <span class="math inline">\({\rm I}_C,{\rm II}_C,{\rm III}_C\)</span>
 是各向同性的. 由此衍生出的 Neohookean 等超弹性模型也是各向同性的.</p>
 </div>
-<h4 id="more...">11.3.3  More...</h4>
+<h4 id="more...">10.3.3  More...</h4>
 <p>一些常用的超弹性模型的能量密度, in terms of invariants:</p>
 <ul>
 <li><p>StVK: <span class="math display">\[
@@ -621,7 +568,7 @@ P^{iJ}
 </ul>
 <p>小形变常用 StVK (快), 橡胶常用 Neohookean, 人体组织常用 MR 或
 Fung...</p>
-<h3 id="linear-fem-框架">11.4  Linear FEM 框架</h3>
+<h3 id="linear-fem-框架">10.4  Linear FEM 框架</h3>
 <p>把上面的推导总结一下 (将分量式转化为矩阵乘法),
 可以得到如下的模拟框架.</p>
 <ul>

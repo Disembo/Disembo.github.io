@@ -1,0 +1,1147 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="布料模拟 (弹簧质点系统的 PBD 和 Implicit Euler 法).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="弹性体模拟">
+<meta property="og:url" content="https://disembo.github.io/Note/CG/simu-6-elasticity/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="布料模拟 (弹簧质点系统的 PBD 和 Implicit Euler 法).">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-cloth-internal-forces.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-spring-system.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-spring-bending-issue.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-spring-dihedral-angle-model.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-pbd.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-strain-limiting-application.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-iter-methods-comparison.png">
+<meta property="article:published_time" content="2025-04-29T08:30:00.000Z">
+<meta property="article:modified_time" content="2025-04-29T10:18:56.452Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="物理">
+<meta property="article:tag" content="模拟">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-cloth-internal-forces.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>弹性体模拟 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="弹性体模拟"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-29 16:30" pubdate>
+          2025年4月29日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">弹性体模拟</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<p>如无特殊说明, 本文图片均取自课程 PPT.</p>
+<h2 id="布料模拟">11  布料模拟</h2>
+<p>布料是一种特殊的二维弹性体, 可以考虑弹簧质点法或者 FEM. 线性 FEM
+在上一篇文章已经详细讨论, 这里主要讲解弹簧质点法.</p>
+<h3 id="弹簧系统">11.1  弹簧系统</h3>
+<p>弹簧质点系统的重点是根据布料的受力设计弹簧的连接方式. 分析受力:</p>
+<ul>
+<li>内力 (如下图):
+<ul>
+<li>Tension: 抵抗正拉伸</li>
+<li>Shearing: 抵抗剪切 (斜着拉伸)</li>
+<li>Bending: 抵抗弯曲</li>
+</ul></li>
+<li>外力: Contact, Friction, Collision, Gravity, Environmental force
+(wind), Tearable Cloth…</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-cloth-internal-forces.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>使用特殊设计的弹簧网格模拟 tension, shearing 和 bending 力
+(structured vs unstructured).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-spring-system.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>但这两种网格系统不能很好的模拟 bending. 当布料的弯曲很小的时候,
+弹簧长度几乎不变, 几乎不产生回复力.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-spring-bending-issue.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>一种解决办法是使用二面角模型, 即 bending 与二面角的大小有关.
+在下图所示的二面角中, 四个顶点的受力 <span class="math inline">\(f_i=f(\theta)u_i\)</span>, 其中实值函数 <span class="math inline">\(f(\theta)\)</span> 控制力的大小, 向量 <span class="math inline">\(u_i\)</span> 同时控制大小和方向, 应当满足:</p>
+<ul>
+<li>向量 <span class="math inline">\(u_1,u_2\)</span> 分别指向法向 <span class="math inline">\(n_1,n_2\)</span>.</li>
+<li>因为弯曲不会改变边 <span class="math inline">\(\overline{x_3x_4}\)</span> 的长度, 所以 <span class="math inline">\(u_4-u_3\)</span> 应垂直于 <span class="math inline">\(\overline{x_3x_4}\)</span>, 即由 <span class="math inline">\(n_1,n_2\)</span> 张成.</li>
+<li>动量守恒 <span class="math inline">\(u_1+u_2+u_3+u_4=0\)</span>.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-spring-dihedral-angle-model.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>它们的具体公式如下: <span class="math display">\[
+\Align{
+u_1 &amp;= \frac{\|E\|}{\|N_1\|} n_1, &amp;
+u_3 &amp;= \hphantom-
+       \frac{\lr{x_1-x_4,E}}{\|E\|\cdot\|N_1\|}n_1 +
+       \frac{\lr{x_2-x_4,E}}{\|E\|\cdot\|N_2\|}n_2. \\
+u_2 &amp;= \frac{\|E\|}{\|N_2\|} n_2, &amp;
+u_4 &amp;= -
+       \frac{\lr{x_1-x_3,E}}{\|E\|\cdot\|N_1\|}n_1 -
+       \frac{\lr{x_2-x_3,E}}{\|E\|\cdot\|N_2\|}n_2. \\
+}
+\]</span> 其中 <span class="math inline">\(E=x_4-x_3\)</span>, <span class="math inline">\(N_1=(x_1-x_3)\times(x_1-x_4)\)</span>, <span class="math inline">\(N_2=(x_2-x_4)\times(x_2-x_3)\)</span>, 单位向量
+<span class="math inline">\(n_1,n_2\)</span>.
+下面给出了两种受力模型:</p>
+<ul>
+<li><p>Planar material: 稳定状态为 <span class="math inline">\(\theta=\pi\)</span> (完全展平), <span class="math display">\[
+f(\theta) = \frac{k \|E\|^2}{\|N_1\|+\|N_2\|}
+\sin(\frac{\pi-\theta}{2}).
+\]</span></p></li>
+<li><p>Non-planar material: 稳定状态为 <span class="math inline">\(\theta=\theta_0\)</span>, <span class="math display">\[
+f(\theta) = \frac{k \|E\|^2}{\|N_1\|+\|N_2\|} \left[
+  \sin(\frac{\pi-\theta}{2}) -
+  \sin(\frac{\pi-\theta_0}{2})
+\right].
+\]</span></p></li>
+</ul>
+<h3 id="the-locking-issue">11.2  The locking issue</h3>
+<p>真实布料的平面形变 (tension 和 shearing) 与弯曲 (bending) 是独立的.
+然而弹簧系统的 stretch 和 bend 是耦合的.</p>
+<ul>
+<li>下面矩形更倾向于沿着左边的虚线弯曲, 而不容易沿着右边的虚线弯曲,
+破坏了布料的各向同性.</li>
+<li>真实布料容易 bend, 难以 stretch. 然而如果我们增大 stretch
+弹簧的劲度系数, 同时也会增加 bend 的难度.</li>
+</ul>
+<p>核心原因是系统自由度太小了. 系统 (在稳定状态下)
+的状态完全由网格边界点的位置确定.</p>
+<h2 id="position-based-methods">12  Position-Based Methods</h2>
+<h3 id="position-based-dynamics">12.1  Position based dynamics</h3>
+<p>PBD 可以解决 locking issue. 之前刚体模拟就介绍过 PBD 方法,
+其思想如下:</p>
+<ol type="1">
+<li>让每个点按照自己的速度自由运动.</li>
+<li>强制施加约束条件, 恢复物体的形状.</li>
+</ol>
+<h4 id="两个质点的情形">12.1.1  两个质点的情形</h4>
+<p>先考虑两个质点的弹簧质点系统. 设质点 <span class="math inline">\(x_i,x_j\)</span> 的质量分别为 <span class="math inline">\(m_i,m_j\)</span>, 弹簧原长 <span class="math inline">\(L\)</span>, 则约束条件为 <span class="math display">\[
+0 = \phi(x) := \|x_i - x_j\| - L.
+\]</span> 假设 <span class="math inline">\(x_i,x_j\)</span>
+按照其各自的速度移动了一段距离, 现在要它们满足约束 <span class="math inline">\(\phi(x)=0\)</span>. 这就相当于将点 <span class="math inline">\(x=(x_i,x_j)\)</span> 投射到约束子流形 <span class="math inline">\(\phi(x)=0\)</span> 上. 我们希望投影点 <span class="math inline">\(x^{\textsf{new}}=(x_i^{\textsf{new}},x_j^{\textsf{new}})\)</span>
+满足能量最小化: <span class="math display">\[
+\min_{x^{\textsf{new}}} \underbrace{\frac12 \Bigl[
+    m_i \| x_i^{\textsf{new}} - x_i \|^2 +
+    m_j \| x_j^{\textsf{new}} - x_j \|^2
+\Bigr]}_{\textsf{energy } J(x^{\textsf{new}})},
+\qquad \textsf{s.t.}\; \phi(x^{\textsf{new }})=0.
+\]</span> &gt; 当 <span class="math inline">\(m_i=m_j\)</span> 时,
+能量函数 <span class="math inline">\(J(x^{\textsf{new}})=\frac12\|x^{\textsf{new}}-x\|^2\)</span>,
+也就是将 <span class="math inline">\(x\)</span> 投射到子流形上的最近点.
+加权可以保证投射过程中动量和角动量守恒. 若投射过程中动量/角动量不守恒,
+就会导致物体像是被某个看不见的力 (ghost force) 推了一下,
+产生不真实的效果.</p>
+<p>能量函数是凸的, 使用 Lagrange 乘子法可以解得 <span class="math display">\[
+\Align{
+x_i^{\textsf{new}}
+&amp;= x_i - \frac{m_j}{m_i+m_j} \phi(x) \cdot \hat{v}_{ij}, \\
+x_j^{\textsf{new}}
+&amp;= x_j + \frac{m_i}{m_i+m_j} \phi(x) \cdot \hat{v}_{ij},
+}
+\]</span> 其中单位向量 <span class="math inline">\(\hat{v}_{ij}=(x_i-x_j)/\|x_i-x_j\|\)</span>.</p>
+<p>PBD 要强制保证约束条件, 似乎与之前相比更加限制了自由度? 非也.
+在每个点自由移动的时候自由度是极大的. 如下图, 蓝色的为约束子流形,
+红色的区域为 locking 区域, 黄色的向量为粒子各自的速度. PBD
+先自由移动再投射, 使得粒子避开了 locking 区域.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-pbd.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<h4 id="多个质点的情形">12.1.2  多个质点的情形</h4>
+<p>现在考虑一般的弹簧质点系统. 位置向量 <span class="math inline">\(x=(x_1,\dots,x_n)\)</span>, 方便起见,
+所有质点的质量都为 <span class="math inline">\(m\)</span>. 无向边集
+<span class="math inline">\(E=\{\textsf{all edges }\{i,j\}\}\)</span>
+记录了所有的弹簧, 边 <span class="math inline">\(\{i,j\}\)</span>
+的弹簧原长为 <span class="math inline">\(L_{ij}\)</span>. 现在, 每条边
+<span class="math inline">\(\{i,j\}\in E\)</span> 都对应一个约束条件
+<span class="math display">\[
+0 = \phi_{ij}(x) := \|x_i - x_j\| - L_{ij}.
+\]</span> 我们采用一个类似 Jacobi 迭代的办法优化这些约束.
+在每次迭代步中, 依次投射每个约束条件, 然后将这些投射点取平均:</p>
+<ol type="1">
+<li><p>迭代 <span class="math inline">\(T\)</span> 次:</p>
+<ul>
+<li>对所有顶点 <span class="math inline">\(i\)</span>, 初始化 <span class="math inline">\(\overline{x_i^{\textsf{new}}}\leftarrow0\)</span>,
+<span class="math inline">\(n_i\leftarrow0\)</span>.</li>
+<li>对所有边 <span class="math inline">\(\{i,j\}\in E\)</span>:
+<ul>
+<li><span class="math inline">\(\overline{x_i^{\textsf{new}}}\leftarrow\overline{x_i^{\textsf{new}}}+x_i-\frac12\phi_{ij}(x)\hat{v}_{ij}\)</span>.</li>
+<li><span class="math inline">\(\overline{x_j^{\textsf{new}}}\leftarrow\overline{x_j^{\textsf{new}}}+x_i+\frac12\phi_{ij}(x)\hat{v}_{ij}\)</span>.</li>
+<li><span class="math inline">\(n_i\leftarrow n_i+1\)</span>.</li>
+<li><span class="math inline">\(n_j\leftarrow n_j+1\)</span>.</li>
+</ul></li>
+<li>对所有顶点 <span class="math inline">\(i\)</span>,
+<ul>
+<li><span class="math inline">\(\overline{x_i^{\textsf{new}}}\leftarrow\overline{x_i^{\textsf{new}}}/n_i\)</span>.</li>
+<li><span class="math inline">\(x_i\leftarrow(\overline{x_i^{\textsf{new}}}+\alpha
+x_i)/(1+\alpha)\)</span>.</li>
+</ul></li>
+</ul></li>
+<li><p>输出 <span class="math inline">\(\overline{x_i^{\textsf{new}}}\)</span>.</p></li>
+</ol>
+<p>PBD 完整的时间步为</p>
+<ol type="1">
+<li>(自由运动) 时间积分.</li>
+<li>(约束投射)
+<ul>
+<li><span class="math inline">\(x^{\textsf{new}}\leftarrow\mathsf{Projection}(x)\)</span>.</li>
+<li><span class="math inline">\(v\leftarrow
+v+(x^{\textsf{new}}-x)/h\)</span>.</li>
+<li><span class="math inline">\(x\leftarrow
+x^{\textsf{new}}\)</span>.</li>
+</ul></li>
+</ol>
+<h4 id="pbd-的优缺点">12.1.3  PBD 的优缺点</h4>
+<p>Pros</p>
+<ul>
+<li>Parallelable on GPUs (PhysX)</li>
+<li>Easy to implement</li>
+<li>Fast in low resolutions</li>
+<li>Generic, can handle other coupling and constraints, including
+fluids</li>
+</ul>
+<p>Cons</p>
+<ul>
+<li>Not physically correct</li>
+<li>Low performance in high resolutions
+<ul>
+<li>Hierarchical approaches (can cause oscillation and other
+issues…)</li>
+<li>Acceleration approaches, like Chebyshev</li>
+</ul></li>
+</ul>
+<h3 id="strain-limiting">12.2  Strain limiting</h3>
+<p>应变约束类似于 PBD. 不同的是, SL 约束的是应变 <span class="math inline">\(\sigma\)</span>, 并且约束条件是不等式 <span class="math inline">\(\sigma_{\textsf{min}}\leq\sigma\leq\sigma_{\textsf{max}}\)</span>.</p>
+<p>对于弹簧质点系统, 我们约束弹簧的应变 <span class="math display">\[
+\sigma = \frac1{L} \|x_i-x_j\|
+\]</span> 到一个范围 <span class="math inline">\([\sigma_{\textsf{min}},\sigma_{\textsf{max}}]\)</span>
+内 (PBD 就是约束 <span class="math inline">\(\sigma=1\)</span>). 过程和
+PBD 几乎一样, 只是加了一步计算 target strain <span class="math inline">\(\sigma_0\)</span>: <span class="math display">\[
+\Align{
+\sigma_0
+&amp;=
+\operatorname{clip}(\sigma,\sigma_{\textsf{min}},\sigma_{\textsf{max}})
+\\
+x_i^{\textsf{new}}
+&amp;= x_i - \frac{m_j}{m_i+m_j} (\|x_i-x_j\|-\sigma_0 L) \cdot
+\hat{v}_{ij}, \\
+x_j^{\textsf{new}}
+&amp;= x_j - \frac{m_i}{m_i+m_j} (\|x_i-x_j\|-\sigma_0 L) \cdot
+\hat{v}_{ij}.
+}
+\]</span> 我们也可以约束弹簧质点系统中三角形的面积. 考虑三角形 <span class="math inline">\((x_i,x_j,x_k)\)</span>, 面积约束为 <span class="math inline">\(A_{\textsf{min}}\leq A\leq
+A_{\textsf{max}}\)</span>. 记自由移动后的三角形面积为 <span class="math inline">\(A=\|(x_j-x_i)\times(x_k-x_i)\|/2\)</span>,
+则首先计算 target ratio <span class="math display">\[
+s = \sqrt{
+\frac{\operatorname{clip}(A,A_{\textsf{min}},A_{\textsf{max}})}{A}
+},
+\]</span> 然后将面积约束为 <span class="math inline">\(s^2A\)</span>,
+即求解优化问题 <span class="math display">\[
+\min_{x^{\textsf{new}}} \frac12 \Bigl[
+    m_i \| x_i^{\textsf{new}} - x_i \|^2 +
+    m_j \| x_j^{\textsf{new}} - x_j \|^2 +
+    m_k \| x_k^{\textsf{new}} - x_k \|^2
+\Bigr], \qquad \textsf{s.t. new area is }s^2A.
+\]</span> 由于投射过程中动量守恒, 新旧三角形的质心重合, 为 <span class="math inline">\(c=(m_ix_i+m_jx_j+m_kx_k)/(m_i+m_j+m_k)\)</span>.
+解得 <span class="math display">\[
+\Align{
+x_i^{\textsf{new}} &amp;= c + s(x_i - c), \\
+x_j^{\textsf{new}} &amp;= c + s(x_j - c), \\
+x_k^{\textsf{new}} &amp;= c + s(x_k - c). \\
+}
+\]</span> 应变约束在物理模拟中广泛应用:</p>
+<ul>
+<li>to avoid instability</li>
+<li>to avoid artifacts (due to large deformation)</li>
+<li>for nonlinear effects</li>
+<li>to address the locking issue</li>
+</ul>
+<p>一般来说, 当应变比较小的时候可以使用弹性模型进行模拟;
+当应变大于一个阈值, 就使用应变约束, 防止应变过大, 如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-strain-limiting-application.png" style="zoom:30%;" cloud-img="" lazyload="true"></p>
+<h2 id="implicit-euler-methods">13  Implicit Euler Methods</h2>
+<p>设一共有 <span class="math inline">\(n\)</span> 个质点, 位置为 <span class="math inline">\(x_i\)</span>, 速度为 <span class="math inline">\(v_i\)</span>, 受力为 <span class="math inline">\(f_i\)</span>, 质量为 <span class="math inline">\(m_i\)</span>. 一些质点间连有弹簧, 质点 <span class="math inline">\(i\)</span> 收到的来自质点 <span class="math inline">\(j\)</span> 的力为 <span class="math display">\[
+f_{ij}
+= k(\|x_i-x_j\| - l_0) \cdot \frac{x_i-x_j}{\|x_i-x_j\|}
+= -f_{ji}.
+\]</span> 质点 <span class="math inline">\(i\)</span> 所受合力为 <span class="math display">\[
+f_i = f_{\sf ext} + \sum_{j\in{\cal N}(i)} f_{ij}.
+\]</span> 组装矩阵 <span class="math display">\[
+\Align{
+x &amp;= \pmqty{x_1\\\vdots\\x_n}, &amp;
+v &amp;= \pmqty{v_1\\\vdots\\v_n}, &amp;
+f &amp;= \pmqty{f_1\\\vdots\\f_n}, &amp;
+M &amp;= \pmqty{m_1I_3\\&amp;\ddots\\&amp;&amp;m_nI_3}.
+}
+\]</span> 则有微分方程 <span class="math display">\[
+\left\{\Align{
+x' &amp;= v, \\
+v' &amp;= M^{-1} f = M^{-1} (f_{\sf int} + f_{\sf ext}).
+}\right.
+\]</span></p>
+<h3 id="时间积分">13.1  时间积分</h3>
+<p>显式 Euler 法实现简单, 效率高, 但是数值不稳定, 容易导致能量爆炸.
+一般考虑隐式方法. 隐式 Euler 方法的方程为: <span class="math display">\[
+\left\{\Align{
+x^+ &amp;= x + hv^+, \\
+v^+ &amp;= v + hM^{-1} (f_{\sf int}(x^+) + f_{\sf ext}).
+}\right.
+\]</span> 消去 <span class="math inline">\(v^+\)</span> 得到关于 <span class="math inline">\(x^+\)</span> 的方程 <span class="math display">\[
+x^+
+= \underbrace{[x + h(v + hM^{-1} f_{\sf ext})]}
+  _{\textsf{$y$ (independent of $x^+$)}}
++ h^2M^{-1}f_{\sf int}(x^+).
+\]</span> 该 <span class="math inline">\(x^+\)</span>
+实际上是如下能量函数的极值点: <span class="math display">\[
+g(x) = \frac1{2h^2} \|x - y\|_M^2 + E(x),
+\]</span> 其中 <span class="math inline">\(\|z\|_M:=z\T Mz\)</span>,
+内力是弹性势能的负梯度 <span class="math inline">\(f_{\sf
+int}(x^+)=-\partial E/\partial x|_{x^+}\)</span>.</p>
+<h3 id="newtons-method">13.2  Newton's method</h3>
+<p>可以使用 Newton 迭代法求出 <span class="math inline">\(g(x)\)</span>
+的极值点:</p>
+<ul>
+<li>Init <span class="math inline">\(x^{(1)}=x\)</span>.</li>
+<li>Update with <span class="math inline">\(x^{(k+1)}=x^{(k)} -
+H^{-1}|_{x^{(k)}}\nabla g|_{x^{(k)}}\)</span>.
+<ul>
+<li>Hessian <span class="math inline">\(H=\nabla^2g\)</span>.</li>
+<li>求 Hessian 的逆 (求解线性系统) 是性能瓶颈.</li>
+</ul></li>
+</ul>
+<p>当能量函数为凸函数时, Newton 法可以收敛到极值点 (对于二次的能量函数,
+一次迭代就可以达到). 对于非凸的能量函数, 往往需要一些手段避免
+overshooting (错过极值点), 比如回溯线搜索 (backtracking line
+search).</p>
+<h3 id="projective-dynamics">13.3  Projective dynamics</h3>
+<div class="note note-secondary">
+<p>参考文献: Tiantian Liu et al, <em>Fast Simulation of Mass-Spring
+Systems</em> (SIGGRAPH Asia 2013).</p>
+</div>
+<p>弹簧系统 Newton 法的缺陷: Hessian 不一定可逆 / 不一定正定
+(能量函数非凸), Newton 法只能找到局部极大/极小值, 而非全局最小值.
+Projective dynamics 方法可以保证找到全局最小值.</p>
+<h4 id="问题转化">13.3.1  问题转化</h4>
+<p>将能量函数 <span class="math inline">\(g(x)\)</span> 展开: <span class="math display">\[
+g(x)
+= \underbrace{\frac1{2h^2} \|x - y\|_M^2 \vphantom{\sum_{e\in E}}}
+    _{\textsf{inertia}}
++ \underbrace{\sum_{e\in E} \frac12 k_e (\|x_{e_1}-x_{e_2}\| - L_e)^2}
+    _{\textsf{potential}} ,
+\]</span> (其中弹簧 <span class="math inline">\(e\)</span> 的两个顶点为
+<span class="math inline">\(e_1,e_2\)</span>.) 注意到势能中的 <span class="math inline">\((\|x_{e_1}-x_{e_2}\|-L_e)^2\)</span> 关于 <span class="math inline">\(x_{e_1},x_{e_2}\)</span> 不是二次的, 导致势能非凸,
+这是 Newton 法无法找到全局最小值的原因. Projective dynamics
+的关键观察是将势能转化为一个 (二次) 优化问题的极值点:</p>
+<p><span class="math display">\[
+(\|x_{e_1}-x_{e_2}\| - L_e)^2
+\equiv \min_{\|\orange{z}\|=L_e} \|(x_{e_1}-x_{e_2})-\orange{z}\|^2.
+\]</span> 右式取最小值时, <span class="math inline">\(z\)</span> 就是从
+<span class="math inline">\(x_{e_2}\)</span> 指向 <span class="math inline">\(x_{e_1}\)</span> 的长度为 <span class="math inline">\(L_e\)</span> 的向量. 将右式代入 <span class="math inline">\(g(x)\)</span>, 得到 <span class="math display">\[
+\min_{x}g(x) = \min_{
+    \substack{\|\orange{z_e}\|=L_e \\ \blue{x}\in\R^{3n}}
+}
+\biggl[
+    \frac1{2h^2} \|\blue{x} - y\|_M^2 +
+    \sum_{e\in E} \frac12 k_e
+        \|(\blue{x_{e_1}}-\blue{x_{e_2}}) - \orange{z_e}\|^2
+\biggr]. \tag{$\spadesuit$}
+\]</span></p>
+<h4 id="local-and-global-steps">13.3.2  Local and global steps</h4>
+<p>Projective dynamics 和 ARAP 优化类似. 它将 <span class="math inline">\((\spadesuit)\)</span> 式分为 local 和 global
+两步交替优化, 其中 local 步分开优化每个弹簧的能量, global
+步优化系统整体的能量.</p>
+<p><strong>Local</strong>: 固定 <span class="math inline">\(x\)</span>
+不变, 优化 <span class="math inline">\(z_{ij}\)</span>. 由于各个 <span class="math inline">\(z_{ij}\)</span> 是无关的 (没有交叉项),
+所以可以分别优化每个 <span class="math inline">\(z_{ij}\)</span>,
+该过程是纯粹 local 的.</p>
+<p><strong>Global</strong>: 固定 <span class="math inline">\(z_{ij}\)</span> 不变, 优化 <span class="math inline">\(x\)</span>. 我们将 <span class="math inline">\((\spadesuit)\)</span> 式转化为矩阵乘法形式
+(略去常数项): <span class="math display">\[
+\min_{x} g(x)
+\rightsquigarrow
+\min_{x} \biggl[
+    \frac12 \blue{x} \T \Bigl( \frac1{h^2}M + L \Bigr) \blue{x} -
+    \blue{x}\T \Bigl( \frac1{h^2} My + Jz \Bigr)
+\biggr], \tag{$\clubsuit$}
+\]</span></p>
+<div class="note note-secondary">
+<p>上式中 <span class="math inline">\(L\)</span> 和 <span class="math inline">\(J\)</span> 为: <span class="math display">\[
+\Align{
+L &amp;= \left( \sum_{e\in E} k_e A_e A_e\T \right) \otimes I_3, &amp;
+J &amp;= \left( \sum_{e\in E} k_e A_e S_e\T \right) \otimes I_3,
+}
+\]</span> 其中,</p>
+<ul>
+<li><span class="math inline">\(A_e\in\R^{n}\)</span> 是弹簧的关联向量
+(第 <span class="math inline">\(e_1\)</span> 分量为 <span class="math inline">\(1\)</span>, 第 <span class="math inline">\(e_2\)</span> 分量为 <span class="math inline">\(-1\)</span>, 其余为零); 矩阵 <span class="math inline">\(\sum_ek_eA_eA_e\T\)</span> 其实就是图的 Laplace
+矩阵 (以 <span class="math inline">\(k_e\)</span> 为边权重).</li>
+<li><span class="math inline">\(S_e\in\R^{|E|}\)</span> 是弹簧的指示向量
+(第 <span class="math inline">\(e\)</span> 分量为 <span class="math inline">\(1\)</span>, 其余为零).</li>
+</ul>
+</div>
+<p>可以发现 <span class="math inline">\((\clubsuit)\)</span>
+式是一个关于 <span class="math inline">\(x\)</span> 的二次函数!
+可以直接求出最小值点的解析解: <span class="math display">\[
+x =
+\Bigl(\frac1{h^2}M + L\Bigr)^{-1}
+\Bigl(\frac1{h^2} My + Jz \Bigr).
+\]</span> 二次项系数 <span class="math inline">\(\frac1{h^2}M+L\)</span>
+严格正定, 并且是常数 (若网格的拓扑不改变), 可以预计算其 Cholesky
+分解.</p>
+<p>综上所述, projective dynamics 时间步为:</p>
+<ul>
+<li><p>初始化 <span class="math inline">\(x^{(1)}\leftarrow
+y\)</span>.</p></li>
+<li><p>重复执行 <span class="math inline">\(K\)</span> 次:</p>
+<ul>
+<li><p>(Local) <span class="math inline">\(z_e \leftarrow
+L_e(x_{e_1}-x_{e_2})/\|x_{e_1}-x_{e_2}\|\)</span> (对每个弹簧 <span class="math inline">\(e\)</span>).</p></li>
+<li><p>(Global) 求解线性系统 <span class="math display">\[
+\left(\frac1{h^2}M + L\right) x^{(k+1)}
+= \frac1{h^2}My + Jz.
+\]</span></p></li>
+<li><p>当 <span class="math inline">\(\|x^{(k+1)}-x^{(k)}\|\)</span>
+小于某阈值时停止.</p></li>
+</ul></li>
+<li><p><span class="math inline">\(x^+\leftarrow
+x^{(K+1)}\)</span>.</p></li>
+<li><p><span class="math inline">\(v^+\leftarrow(x^+-x)/h\)</span>.</p></li>
+</ul>
+<h4 id="pd-的优缺点">13.3.3  PD 的优缺点</h4>
+<p>Pros:</p>
+<ul>
+<li>By building constraints into energy, the simulation now has a
+theoretical solution with physical meaning.</li>
+<li>Fast on CPUs with a direct solver. No more factorization!</li>
+<li>Fast convergence in the first few iterations.</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Slow on GPUs (direct solver is not well supported).</li>
+<li>Slow convergence over time (fails to consider Hessian caused by
+projection).
+<ul>
+<li>Still suffering from high stiffness</li>
+</ul></li>
+<li>Cannot easily handle changes.
+<ul>
+<li>Remeshing due to fracture, etc</li>
+</ul></li>
+</ul>
+<h3 id="不同的迭代方法比较">13.4  不同的迭代方法比较</h3>
+<p>隐式 Euler 积分法的核心是求解 <span class="math display">\[
+x^+ = \argmin_x g(x),
+\]</span> 抽象地讲, 迭代优化方法 (如 Newton, PD, 梯度下降) 的更新策略为
+<span class="math display">\[
+x^{(k+1)} \leftarrow x^{(k)} -
+    \underbrace{a^{(k)} \mathstrut}_{\textsf{step size}}
+    \underbrace{(A^{(k)})^{-1} \mathstrut}_{\textsf{matrix}} \,
+    \underbrace{\nabla g|_{x^{(k)}} \mathstrut}_{\textsf{gradient}}.
+\]</span></p>
+<ul>
+<li>Newton: 步长 <span class="math inline">\(a^{(k)}\equiv1\)</span>,
+矩阵 <span class="math inline">\(A^{(k)}\)</span> 为 <span class="math inline">\(g\)</span> 的 Hessian.
+<ul>
+<li>The convergence is quadratic</li>
+</ul></li>
+<li>PD: 步长 <span class="math inline">\(a^{(k)}\equiv1\)</span>, 矩阵
+<span class="math inline">\(A^{(k)}\)</span> 为近似的 Hessian <span class="math inline">\(\frac1{h^2}M+H\)</span>.
+<ul>
+<li>The convergence is linear</li>
+</ul></li>
+<li>梯度下降: 步长 <span class="math inline">\(a^{(k)}\)</span>
+是一个可调参数, 矩阵 <span class="math inline">\(A^{(k)}\)</span>
+为单位阵.
+<ul>
+<li>The convergence is linear</li>
+<li>Needs parameter finetuning</li>
+</ul></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-iter-methods-comparison.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/CG/" class="category-chain-item">CG</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="print-no-link">#计算机图形学</a>
+      
+        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
+      
+        <a href="/tags/%E6%A8%A1%E6%8B%9F/" class="print-no-link">#模拟</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>弹性体模拟</div>
+      <div>https://disembo.github.io/Note/CG/simu-6-elasticity/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/CG/simu-4-fluid/" title="流体模拟">
+                        <span class="hidden-mobile">流体模拟</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
