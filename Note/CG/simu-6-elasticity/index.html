@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-strain-limiting-application.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-iter-methods-comparison.png">
 <meta property="article:published_time" content="2025-04-29T08:30:00.000Z">
-<meta property="article:modified_time" content="2025-04-29T10:18:56.452Z">
+<meta property="article:modified_time" content="2025-04-30T03:18:50.591Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="物理">
@@ -676,7 +676,7 @@ projection).
 <h3 id="不同的迭代方法比较">13.4  不同的迭代方法比较</h3>
 <p>隐式 Euler 积分法的核心是求解 <span class="math display">\[
 x^+ = \argmin_x g(x),
-\]</span> 抽象地讲, 迭代优化方法 (如 Newton, PD, 梯度下降) 的更新策略为
+\]</span> 抽象地讲, 迭代优化方法 (如梯度下降, Newton, PD) 的更新策略为
 <span class="math display">\[
 x^{(k+1)} \leftarrow x^{(k)} -
     \underbrace{a^{(k)} \mathstrut}_{\textsf{step size}}
@@ -684,22 +684,25 @@ x^{(k+1)} \leftarrow x^{(k)} -
     \underbrace{\nabla g|_{x^{(k)}} \mathstrut}_{\textsf{gradient}}.
 \]</span></p>
 <ul>
-<li>Newton: 步长 <span class="math inline">\(a^{(k)}\equiv1\)</span>,
-矩阵 <span class="math inline">\(A^{(k)}\)</span> 为 <span class="math inline">\(g\)</span> 的 Hessian.
-<ul>
-<li>The convergence is quadratic</li>
-</ul></li>
-<li>PD: 步长 <span class="math inline">\(a^{(k)}\equiv1\)</span>, 矩阵
-<span class="math inline">\(A^{(k)}\)</span> 为近似的 Hessian <span class="math inline">\(\frac1{h^2}M+H\)</span>.
-<ul>
-<li>The convergence is linear</li>
-</ul></li>
 <li>梯度下降: 步长 <span class="math inline">\(a^{(k)}\)</span>
 是一个可调参数, 矩阵 <span class="math inline">\(A^{(k)}\)</span>
 为单位阵.
 <ul>
-<li>The convergence is linear</li>
-<li>Needs parameter finetuning</li>
+<li>线性收敛</li>
+<li>需要调节超参数</li>
+<li>可能陷入局部极小值</li>
+</ul></li>
+<li>Newton: 步长 <span class="math inline">\(a^{(k)}\equiv1\)</span>,
+矩阵 <span class="math inline">\(A^{(k)}\)</span> 为 <span class="math inline">\(g\)</span> 的 Hessian.
+<ul>
+<li>平方收敛</li>
+<li>可能陷入局部极小值</li>
+</ul></li>
+<li>PD: 步长 <span class="math inline">\(a^{(k)}\equiv1\)</span>, 矩阵
+<span class="math inline">\(A^{(k)}\)</span> 为近似的 Hessian <span class="math inline">\(\frac1{h^2}M+H\)</span>.
+<ul>
+<li>线性收敛</li>
+<li>收敛到全局最小值</li>
 </ul></li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/simu/6-iter-methods-comparison.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
