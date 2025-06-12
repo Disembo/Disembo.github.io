@@ -1,0 +1,1300 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="配丛, 张量性形式的协变导数, 主丛上的示性类.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM275 | 12 主丛与示性类">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275/12/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="配丛, 张量性形式的协变导数, 主丛上的示性类.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/associate-bundle-sketch.png">
+<meta property="article:published_time" content="2024-07-19T10:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.702Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分几何">
+<meta property="article:tag" content="示性类">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/associate-bundle-sketch.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM275 | 12 主丛与示性类 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM275 | 12 主丛与示性类"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-19 18:00" pubdate>
+          2024年7月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM275 | 12 主丛与示性类</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and
+Characteristic Classes</em>) 第 31-32 节的笔记.</p>
+</div>
+<h2 id="covariant-derivative-on-a-principal-bundle">31  Covariant Derivative
+on a Principal Bundle</h2>
+<h3 id="the-associated-bundle">31.1  The associated bundle</h3>
+<p>设 <span class="math inline">\(G\)</span>-主丛 <span class="math inline">\(\pi:P\to M\)</span>. 李群 <span class="math inline">\(G\)</span>
+的一个(有限维)<strong>表示(representation)</strong>指的是 <span class="math inline">\(G\)</span> 到有限维线性空间 <span class="math inline">\(V\)</span> 的一般线性群 <span class="math inline">\({\rm GL}(V)\)</span> 的李群同态 <span class="math display">\[
+\rho:G\to{\rm GL}(V).
+\]</span> 此时, <span class="math inline">\(G\)</span> 在 <span class="math inline">\(V\)</span> 上自然地有左作用 <span class="math inline">\(g\cdot v:=\rho(g)v\)</span>.
+<strong>配丛(associated bundle)</strong> <span class="math inline">\(E:=P\times_\rho V\)</span> 指的是 <span class="math inline">\(P\times V\)</span> 商去等价关系 <span class="math display">\[
+(p,v)\sim(pg,g^{-1}\cdot v),\quad\forall g\in G,(p,v)\in P\times V.
+\]</span> 记 <span class="math inline">\((p,v)\)</span> 所在等价类为
+<span class="math inline">\([p,v]\)</span>. 配丛有自然投射 <span class="math inline">\(\beta:E\to M\)</span>, <span class="math inline">\(\beta([p,v])=\pi(p)\)</span>. 这是良定义的, 因为
+<span class="math display">\[
+\beta([pg,g^{-1}\cdot v])=\pi(pg)=\pi(p)=\beta([p,v]).
+\]</span> 配丛 <span class="math inline">\(\beta:E\to M\)</span>
+上的线性结构定义为 <span class="math display">\[
+[p,v_1]+\lambda[p,v_2]=[p,v_1+\lambda v_2].
+\]</span> 因为 <span class="math inline">\(G\)</span> 在 <span class="math inline">\(V\)</span> 上的作用是线性的 (即 <span class="math inline">\(g\cdot(v_1+\lambda v_2)=g\cdot v_1+\lambda g\cdot
+v_2\)</span>), 显然上式是良定义的. 在这个线性结构下,
+配丛成为了一个向量丛.</p>
+<div class="note note-success">
+<p><u>Claim 31.1</u> 设 <span class="math inline">\(G\)</span>-主丛
+<span class="math inline">\(\pi:P\to M\)</span> 与有限维表示 <span class="math inline">\(\rho:G\to{\rm GL}(V)\)</span>, 则配丛 <span class="math inline">\(\beta:E\to M\)</span> 是向量丛.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(P\)</span> 局部同构于 <span class="math inline">\(U\times G\)</span>, 考虑映射 <span class="math display">\[
+\Align{
+\phi:(U\times G)\times_\rho V &amp;\to U\times V \\
+[(x,g),v] &amp;\mapsto (x,g\cdot v).
+}
+\]</span> 这是良定义的, 因为 <span class="math display">\[
+\phi\Big([(x,g)h,h^{-1}\cdot v]\Big)
+= \Big( x, (gh)h^{-1}v \Big)
+= (x, gv)
+= \phi\Big( [(x,g),v] \Big).
+\]</span> 并且 <span class="math inline">\(\psi:U\times V\to(U\times
+G)\times_\rho V\)</span>, <span class="math inline">\(\psi(x,v)=[(x,e),v]\)</span> 显然是 <span class="math inline">\(\phi\)</span> 的逆映射. <span class="math inline">\(\phi,\psi\)</span> 都是光滑的, 且保持纤维, 因此
+<span class="math inline">\(\beta:E\to M\)</span> 局部同构于 <span class="math inline">\(U\times V\)</span>.</p>
+<p>容易验证, <span class="math inline">\(\phi\)</span> 在纤维上的限制
+<span class="math inline">\(\phi_x:(\{x\}\times G)\times_\rho
+V\to\{x\}\times V\)</span> 是一个线性映射.</p>
+</div>
+<p>从证明过程可以发现, 配丛 <span class="math inline">\(\beta:E\to
+M\)</span> 的纤维同构于线性空间 <span class="math inline">\(V\)</span>.
+实际上, 任意 <span class="math inline">\(x\in M\)</span> 和 <span class="math inline">\(p\in P_x\)</span> 都能给出一个同构 <span class="math display">\[
+\Align{
+f_p : V &amp;\to E_x, \\
+v &amp;\mapsto [p,v].
+}
+\]</span> (证明中的同构是由 <span class="math inline">\((x,e)\)</span>
+给出的.)</p>
+<div class="note note-success">
+<p><u>Claim 31.2</u> 记号承上. 则 <span class="math inline">\(f_p:V\to
+E_x\)</span> 是线性同构. 此外, 若 <span class="math inline">\(g\in
+G\)</span>, 则 <span class="math inline">\(f_{pg}=f_p\circ\rho(g)\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 单射性. 若 <span class="math inline">\([p,v]=[p,w]\)</span>, 则 <span class="math inline">\((p,v)=(pg,g^{-1}\cdot w)\)</span> 对于某 <span class="math inline">\(g\in G\)</span>. 因为 <span class="math inline">\(G\)</span> 自由地作用于 <span class="math inline">\(P\)</span>, <span class="math inline">\(p=pg\)</span> 导致 <span class="math inline">\(g=e\)</span>, 于是也有 <span class="math inline">\(v=w\)</span>.</p>
+<p>满射性. 任给 <span class="math inline">\([q,w]\in E_x\)</span>, 则
+<span class="math inline">\(q\in P_x\)</span>, 于是 <span class="math inline">\(q=pg\)</span> 对于某 <span class="math inline">\(g\in G\)</span>. 进而 <span class="math display">\[
+[q,w]=[pg,w]=[p,g\cdot w]=f_p(g\cdot w).
+\]</span> 最后, 注意上式左边等于 <span class="math inline">\(f_q(w)=f_{pg}(w)\)</span>, 右边等于 <span class="math inline">\(f_p(g\cdot w)=f_p(\rho(g)w)\)</span>. 两边相等给出
+<span class="math inline">\(f_{pg}=f_p\circ\rho(g)\)</span>.</p>
+</div>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/diffgeom-gtm275/associate-bundle-sketch.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>平凡表示 <span class="math inline">\(\rho:G\to{\rm GL}(V)\)</span>
+给出的配丛是平凡丛. 因为此时 <span class="math display">\[
+[p,v]=[pg,g^{-1}\cdot v]=[pg,v],
+\]</span> 当 <span class="math inline">\(g\)</span> 取遍 <span class="math inline">\(G\)</span>, <span class="math inline">\(pg\)</span> 也取遍纤维 <span class="math inline">\(P_{\pi(p)}\)</span>,
+这导致同一个纤维中的点全部认同. 具体的同构由下面的映射给出: <span class="math display">\[
+P\times_\rho V\to M\times V,\quad [p,v]\mapsto(\pi(p),v).
+\]</span> 此时, <span class="math inline">\(f_p:V\to E_x=V\)</span>,
+<span class="math inline">\(v\mapsto[p,v]\)</span> 是恒等映射.</p>
+<p>伴丛是一种特殊的配丛. 若 <span class="math inline">\(G\)</span>
+的表示取为伴随表示 <span class="math inline">\(\operatorname{Ad}:G\to{\rm GL}({\frak
+g})\)</span>, 则配丛 <span class="math inline">\({\rm Ad}P:=P\times_{\rm
+Ad}{\frak g}\)</span> 称为 <span class="math inline">\(P\)</span>
+的<strong>伴丛(adjoint bundle)</strong>.</p>
+<p>补充:</p>
+<div class="note note-success">
+<p><u>Claim 31.3</u> (配丛的转移函数) 设主丛 <span class="math inline">\(P\)</span> 的平凡化开覆盖 <span class="math inline">\(\{(U_\alpha,\phi_\alpha)\}\)</span> 具有转移函数
+<span class="math inline">\(g_{\alpha\beta}:U_{\alpha\beta}\to
+G\)</span>, 则存在配丛的开覆盖 <span class="math inline">\(\{(U_\alpha,\psi_\alpha)\}\)</span> 具有转移函数
+<span class="math inline">\(\rho\circ
+g_{\alpha\beta}:U_{\alpha\beta}\to{\rm GL}(V)\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 主丛的平凡化 <span class="math inline">\(\phi_\alpha:P|_{U_\alpha}\to U_\alpha\times
+G\)</span>, <span class="math inline">\(p\mapsto(x,\bar{\phi}_{\alpha,x}(p))\)</span>
+诱导出配丛的平凡化 <span class="math display">\[
+\Align{
+\psi_\alpha:P|_{U_\alpha}\times_\rho V &amp;\to U_\alpha\times V \\
+[p,v] &amp;\mapsto (x,\bar\phi_{\alpha,x}(p)\cdot v),
+}
+\]</span> 根据 Claim 31.1 的证明, <span class="math inline">\(\psi_\alpha\)</span> 是良定义的. 于是 <span class="math display">\[
+(\psi_\alpha\circ\psi_\beta^{-1})(x,w) =
+(x, (\bar\phi_{\alpha,x}\circ\bar\phi_{\beta,x}^{-1})\cdot w),
+\]</span> 转移函数 <span class="math inline">\(\rho(\bar\phi_{\alpha,x}\circ\bar\phi_{\beta,x}^{-1})=\rho\circ
+g_{\alpha\beta}\)</span>.</p>
+</div>
+<div class="note note-info">
+<p><u>Example</u> 标架丛的配丛.</p>
+<p>设秩 <span class="math inline">\(r\)</span> 的向量丛 <span class="math inline">\(E\to M\)</span>, 标架丛 <span class="math inline">\({\rm Fr}(E)\to M\)</span>. 任取表示 <span class="math inline">\(\rho:{\rm GL}(r,\R)\to{\rm GL}(r,\R)\)</span>,
+给出的配丛为 <span class="math inline">\(F:={\rm
+Fr}(E)\times_\rho\R^r\)</span>, 配丛的纤维是 <span class="math inline">\(\R^r\)</span>.</p>
+<p>实际上, <span class="math inline">\(F\)</span> 自然地同构于 <span class="math inline">\(E\)</span>. 定义 <span class="math display">\[
+\Align{
+\psi: F={\rm Fr}(E)\times_\rho\R^r &amp;\to E \\
+F_x \ni [e_x,v] &amp;\mapsto \rho(e_x)v \in E_x
+}
+\]</span> 我们断言这是一个丛同构.</p>
+<ul>
+<li><p>单射: 设 <span class="math inline">\(\rho(e_x)v=\rho(\bar{e}_x)\bar{v}\in E_x\)</span>,
+则 <span class="math inline">\(\bar{v}=\rho(\bar{e}_x^{-1})\rho(e_x)v\)</span>,
+进而 <span class="math display">\[
+[\bar{e}_x,\bar{v}]
+= [\bar{e}_x,\rho(\bar{e}_x^{-1})\rho(e_x)v]
+= [e_x,v],
+\]</span></p></li>
+<li><p>满射: 任给 <span class="math inline">\(x\in M\)</span> 和 <span class="math inline">\(w\in E_x=\R^r\)</span>, 显然 <span class="math display">\[
+\psi([{\rm id}_x,w]) = \rho({\rm id}_x)w = {\rm id}\cdot w = w.
+\]</span></p></li>
+</ul>
+</div>
+<h3 id="tensorial-forms">31.2  Tensorial forms</h3>
+<p>主丛 <span class="math inline">\(P\)</span> 上的 <span class="math inline">\(V\)</span> 值 <span class="math inline">\(k\)</span>-形式 <span class="math inline">\(\varphi\)</span> 称为<strong>关于 <span class="math inline">\(\rho\)</span> 右等变的 (right-equivariant w.r.t.
+<span class="math inline">\(\rho\)</span>)</strong>, 如果 <span class="math display">\[
+r_g^*\varphi = \rho(g^{-1})\cdot\varphi,\quad\forall g\in G.
+\]</span></p>
+<ul>
+<li>换言之, 对任意 <span class="math inline">\(p\in P\)</span> 和 <span class="math inline">\(v_1,\dots,v_k\in T_pP\)</span>, <span class="math display">\[
+(r_g^*\varphi)(v_1,\dots,v_k) =
+\rho(g^{-1})\cdot\varphi_p(v_1,\dots,v_k).
+\]</span></li>
+</ul>
+<p>主丛 <span class="math inline">\(P\)</span> 上的 <span class="math inline">\(V\)</span> 值 <span class="math inline">\(k\)</span>-形式 <span class="math inline">\(\varphi\)</span>
+称为<strong>水平的(horizontal)</strong>, 如果当任意一个输入为竖直向量时,
+<span class="math inline">\(\varphi\)</span> 给出零.</p>
+<p>主丛 <span class="math inline">\(P\)</span> 上的 <span class="math inline">\(V\)</span> 值 <span class="math inline">\(k\)</span>-形式 <span class="math inline">\(\varphi\)</span>
+称为<strong>张量性的(tensorial)</strong>, 如果它关于 <span class="math inline">\(\rho\)</span> 右等变且水平. <span class="math inline">\(\rho\)</span> 称为 <span class="math inline">\(\varphi\)</span> 的类型(type).</p>
+<ul>
+<li>主丛 <span class="math inline">\(P\)</span> 上的所有 <span class="math inline">\(\rho\)</span> 型 <span class="math inline">\(V\)</span> 值光滑 <span class="math inline">\(k\)</span>-形式的集合记作 <span class="math inline">\(\Omega^k_\rho(P,V)\)</span>, 是一个 <span class="math inline">\(C^\infty(P)\)</span>-模.</li>
+<li>联络 <span class="math inline">\(\omega\)</span> 关于 <span class="math inline">\({\rm Ad}\)</span> 右等变, 但不是水平的. 曲率 <span class="math inline">\(\Omega\)</span> 关于 <span class="math inline">\({\rm Ad}\)</span> 右等变, 并且是水平的, 所以是
+<span class="math inline">\({\rm Ad}\)</span> 型张量性形式.</li>
+</ul>
+<p>张量性形式可以视作 <span class="math inline">\(M\)</span> 上的 <span class="math inline">\(E=P\times_\rho V\)</span> 值形式.</p>
+<p>给定张量性形式 <span class="math inline">\(\varphi\in\Omega^k_\rho(P,V)\)</span>,
+我们按如下方法定义 <span class="math inline">\(\varphi^\flat\in\Omega^k(M,E)\)</span>. 设 <span class="math inline">\(x\in M\)</span>, <span class="math inline">\(v_1,\dots,v_k\in T_xM\)</span>, 任给 <span class="math inline">\(p\in P_x\)</span>, <span class="math display">\[
+\varphi^\flat_x(v_1,\dots,v_k) := f_p(\varphi_p(u_1,\dots,u_k)) \in E_x,
+\]</span> 其中 <span class="math inline">\(u_i\)</span> 是 <span class="math inline">\(v_i\)</span> 任意的提升, 即满足 <span class="math inline">\(\pi_*(u_i)=v_i\)</span>; 映射 <span class="math inline">\(f_p:V\to E_x\)</span> 是前一小节定义的同构.</p>
+<p>反过来, 给定 <span class="math inline">\(\psi\in\Omega^k(M,E)\)</span>, 能够定义 <span class="math inline">\(\psi^\sharp\in\Omega^k_\rho(P,V)\)</span>. 设
+<span class="math inline">\(p\in P\)</span>, <span class="math inline">\(u_1,\dots,u_k\in T_pP\)</span>, 令 <span class="math inline">\(x=\pi(p)\)</span>, <span class="math display">\[
+\psi^\sharp_p(u_1,\dots,u_k) :=
+f^{-1}_p(\psi(\pi_*u_1,\dots,\pi_*u_k)) \in V.
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 31.4</u> 映射 <span class="math display">\[
+\Omega^k_\rho(P,V) \to \Omega^k(M,E),\quad \varphi\mapsto\varphi^\flat
+\]</span> 是线性同构, 逆映射为 <span class="math inline">\(\psi\mapsto\psi^\sharp\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> (一) 我们要证明 <span class="math inline">\(\phi^\flat\)</span> 良定义,
+就要说明如上定义不依赖于 ① <span class="math inline">\(p\in P_x\)</span>
+的选择, ② 提升 <span class="math inline">\(u_i\in T_pP\)</span> 的选择.
+先证明 ②. 设 <span class="math inline">\(u_1',\dots,u_k'\in
+T_pP\)</span> 是另一组提升 <span class="math inline">\(v_i\)</span>
+的向量, 则 <span class="math inline">\(\pi_*(u_i-u_i')=0\)</span>,
+即 <span class="math inline">\(u_i-u_i'\)</span> 是竖直向量, 利用
+<span class="math inline">\(\varphi\)</span> 的水平性和 <span class="math inline">\(\R\)</span>-线性性, <span class="math display">\[
+\Align{
+\varphi_p(u_1',\dots,u_k')
+&amp;= \varphi_p(u_1+\textsf{vertical},\dots,u_k+\textsf{vertical}) \\
+&amp;= \varphi_p(u_1,\dots,u_k).
+}
+\]</span> 这说明 <span class="math inline">\(\varphi^\flat\)</span>
+不依赖于 <span class="math inline">\(u_i\)</span> 的选择. 再证明 ①,
+选择另一个点 <span class="math inline">\(pg\in P_x\)</span>. 因为 <span class="math inline">\(\pi\circ r_g=\pi\)</span>, <span class="math display">\[
+\pi_*(r_{g*}u_i) = \pi_*u_i = v_i,
+\]</span> 因此 <span class="math inline">\(r_{g*}u_i\in T_{pg}P\)</span>
+是 <span class="math inline">\(v_i\)</span> 的提升, <span class="math display">\[
+\Align{
+f_{pg}\big(\varphi_{pg}(r_{g*}u_1\dots)\big)
+&amp;= f_{pg}\big((r_g^*\varphi)_p(u_1\dots)\big) \\
+&amp;= f_{pg}\big(\rho(g^{-1})\circ\varphi_p(u_1\dots)\big) \\
+&amp;= f_p\circ\rho(g)\circ\rho(g^{-1})\circ\varphi_p(u_1\dots) \\
+&amp;= f_p(\varphi_p(u_1\dots)).
+}
+\]</span> (其中第二个等号利用 <span class="math inline">\(\varphi\)</span> 的等变性; 第三个等号利用 Claim
+31.2) 这证明了 <span class="math inline">\(\varphi^\flat\)</span> 不依赖
+<span class="math inline">\(p\in P_x\)</span> 的选取. 总之, <span class="math inline">\(\varphi^\flat\)</span> 是良定义的.</p>
+<p>(二) 对于 <span class="math inline">\(\psi^\sharp\)</span>,
+只需要说明其右等变性, 水平性即可. 水平性是显然的: 若 <span class="math inline">\(u_i\)</span> 水平, 则 <span class="math inline">\(\pi_*u_i=0\)</span>, 由 <span class="math inline">\(\psi\)</span> 的多重线性性, 结果为 <span class="math inline">\(0\)</span>. 右等变性: (其中第三个等号利用 Claim
+31.2) <span class="math display">\[
+\Align{
+(r_g^*\psi^\sharp)_p(u_1\dots)
+&amp;= \psi^\sharp_{pg}(r_{g*}u_1\dots) \\
+&amp;= f_{pg}^{-1}(\psi(\pi_*r_{g*}u_1\dots)) \\
+&amp;= \rho(g^{-1})\cdot f_p^{-1}(\psi(\pi_*u_1\dots)) \\
+&amp;= \rho(g^{-1})\cdot \psi_p^\sharp(u_1\dots).
+}
+\]</span> (三) 互逆性比较好证. 例如, 取 <span class="math inline">\(u_i\in T_pP\)</span>, 直接由定义, <span class="math display">\[
+\Align{
+\varphi^{\flat\sharp}_p(u_1\dots)
+&amp;= f_p^{-1}(\varphi^\flat_x(\pi_*u_1\dots)) \\
+&amp;= f_p^{-1}(f_p(\varphi_p(u_1\dots))) \\
+&amp;= \varphi_p(u_1\dots).
+}
+\]</span> 同样有 <span class="math inline">\(\psi^{\sharp\flat}=\psi\)</span>.</p>
+</div>
+<p>Claim 31.4 中, 令 <span class="math inline">\(k=0\)</span>, 可以得到
+<span class="math display">\[
+\Omega^0_\rho(P,V) \cong \Omega^0(M,E).
+\]</span> 左边是所有 <span class="math inline">\(\rho\)</span>-右等变的光滑函数 <span class="math inline">\(f:P\to V\)</span>, 这等价于 <span class="math inline">\(G\)</span>-等变性: <span class="math display">\[
+f(pg) = (r_g^*f)(p) = \rho(g^{-1})f(p) = g^{-1}\cdot f(p).
+\]</span> 右边是 <span class="math inline">\(E\)</span>
+的所有光滑截面的全体. 因此有推论:</p>
+<div class="note note-success">
+<p><u>Claim 31.5</u> 存在一一对应关系 <span class="math display">\[
+\{ G\textsf{-等变映射 } f:P\to V \} \longleftrightarrow
+\{ \textsf{配丛 }P\times_\rho V\to M \textsf{ 的截面} \}.
+\]</span></p>
+</div>
+<p>主丛 <span class="math inline">\(\pi:P\to M\)</span> 的投射 <span class="math inline">\(\pi\)</span> 是淹没, 因此拉回映射 <span class="math inline">\(\pi^*:\Omega^*(M)\to\Omega^*(P)\)</span> 是单射.
+主丛 <span class="math inline">\(P\)</span> 上的微分形式 <span class="math inline">\(\varphi\)</span>
+称为<strong>基本的(basic)</strong>, 如果它是 <span class="math inline">\(M\)</span> 上微分形式 <span class="math inline">\(\psi\)</span> 的拉回 <span class="math inline">\(\pi^*\psi\)</span>; <span class="math inline">\(\varphi\)</span> 称为 <strong><span class="math inline">\(G\)</span>-不变的 (<span class="math inline">\(G\)</span>-invariant)</strong>, 如果 <span class="math inline">\(r_g^*\varphi=\varphi\)</span> 对任意 <span class="math inline">\(g\in G\)</span>.</p>
+<ul>
+<li>注意区分右等变性 <span class="math inline">\(r_g^*\varphi=\rho(g^{-1})\cdot\varphi\)</span>
+和不变性 <span class="math inline">\(r_g^*\varphi=\varphi\)</span>.
+特别地, 如果 <span class="math inline">\(\rho:G\to{\rm GL}(V)\)</span>
+是平凡表示, 即 <span class="math inline">\(\rho(g)\equiv{\rm
+id}\)</span>, 则等变性和不变性是等价的.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 31.6</u> 主丛 <span class="math inline">\(P\)</span> 上的
+<span class="math inline">\(V\)</span> 值形式是基本的, 当且仅当它是
+<span class="math inline">\(G\)</span>-不变的水平形式.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 取平凡表示 <span class="math inline">\(\rho\)</span>,
+则所有的 <span class="math inline">\(G\)</span>-不变水平形式就是 <span class="math inline">\(G\)</span>-等变水平形式 <span class="math inline">\(\Omega^k_\rho(P,V)\)</span>. 因此我们只需证明
+<span class="math inline">\(\Omega^k_\rho(P,V)\)</span> 中的形式都形如
+<span class="math inline">\(\pi^*\psi\)</span> (<span class="math inline">\(\psi\in\Omega^k(M,V)\)</span>).</p>
+<p>平凡表示对应的 <span class="math inline">\(E=P\times_\rho V\)</span>
+是平凡丛 <span class="math inline">\(M\times V\)</span>, <span class="math inline">\(f_p:V\to E_x=V\)</span> 是恒等映射. 此时, 同构映射
+<span class="math display">\[
+\Align{
+\Omega^k(M,E)=\Omega^k(M,M\times V)=\Omega^k(M,V)
+&amp;\to\Omega^k_\rho(P,V), \\
+\psi &amp;\mapsto \psi^\sharp,
+}
+\]</span> 由下式给出: <span class="math display">\[
+\psi^\sharp_p(u_1,\dots,u_k)
+= \psi_x(\pi_*u_1,\dots,\pi_*u_k)
+= (\pi^*\psi)_p(u_1,\dots,u_k).
+\]</span> 即 <span class="math inline">\(\psi^\sharp=\pi^*\psi\)</span>.</p>
+</div>
+<h3 id="covariant-derivative">31.3  Covariant derivative</h3>
+<p>现在我们设主丛 <span class="math inline">\(\pi:P\to M\)</span>
+上有联络的概念. 此时可以对切向量 <span class="math inline">\(X_p\in
+T_pP\)</span> 作分解 <span class="math inline">\(X_p=vX_p+hX_p\)</span>.
+这使得我们可以定义张量性形式的协变导数.</p>
+<p>一个 <span class="math inline">\(V\)</span> 值 <span class="math inline">\(k\)</span>-形式 <span class="math inline">\(\alpha\in\Omega^k(P,V)\)</span>
+的<strong>水平分量(horizontal component)</strong> 指的是 <span class="math inline">\(\alpha^h\in\Omega^k(P,V)\)</span> 满足 <span class="math display">\[
+\alpha^h_p(v_1,\dots,v_k) = \alpha_p(hv_1,\dots,hv_k),
+\quad\forall v_i\in T_pP,
+\]</span> 这显然是一个水平形式.</p>
+<div class="note note-success">
+<p><u>Claim 31.7</u> 设 <span class="math inline">\(\varphi\in\Omega^k(P,V)\)</span> 是 <span class="math inline">\(\rho\)</span>-右等变的, 则 <span class="math inline">\(\dd\varphi\)</span> 和 <span class="math inline">\(\varphi^h\)</span> 都是 <span class="math inline">\(\rho\)</span>-右等变的.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 给定 <span class="math inline">\(g\in G\)</span>. 因为
+<span class="math inline">\(r_{g*}\varphi=\rho(g^{-1})\cdot\varphi\)</span>,
+有 <span class="math display">\[
+\Align{
+r_{g*}\dd\varphi
+= \dd(r_{g*}\varphi)
+= \dd(\rho(g^{-1})\cdot\varphi)
+= \rho(g^{-1})\dd\varphi.
+}
+\]</span> (注意 <span class="math inline">\(\rho(g^{-1})\)</span>
+对于给定的 <span class="math inline">\(g\)</span> 是一个常数.) 对于
+<span class="math inline">\(\varphi^h\)</span>, 有 <span class="math display">\[
+\Align{
+(r_g^*\varphi^h)_p(v_1\dots)
+&amp;= \varphi_{pg}^h(r_{g*}v_1\dots) \\
+&amp;= \varphi_{pg}(hr_{g*}v_1\dots) \\
+&amp;= \varphi_{pg}(r_{g*}hv_1\dots) \\
+&amp;= (r_g^*\varphi)_p(hv_1\dots) \\
+&amp;= \rho(g^{-1})\varphi_p^h(v_1\dots). \\
+}
+\]</span> 其中第三个等号根据 Claim 28.3.</p>
+</div>
+<p>由 Claim 31.7, 若 <span class="math inline">\(\varphi\in\Omega^k(P,V)\)</span> 是 <span class="math inline">\(\rho\)</span>-右等变的形式, 则 <span class="math inline">\((\dd\varphi)^h\in\Omega^{k+1}(P,V)\)</span> 是
+<span class="math inline">\(\rho\)</span>-右等变的水平形式,
+即张量性形式, 称它为 <span class="math inline">\(\varphi\)</span>
+的<strong>协变导数(covariant derivative)</strong>. 记作 <span class="math inline">\(D\varphi=(\dd\varphi)^h\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 31.8</u> (协变导数是反导子) 协变导数作用于张量性形式 <span class="math inline">\(D:\Omega^k_\rho(P,V)\to\Omega^{k+1}_\rho(P,V)\)</span>
+满足 <span class="math display">\[
+D(\omega\wedge\tau)=D\omega\wedge\tau+(-1)^{\deg\omega}\omega\wedge
+D\tau.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为 <span class="math inline">\(\omega,\tau\)</span>
+是张量性形式, 所以 <span class="math inline">\(\omega^h=\omega\)</span>,
+<span class="math inline">\(\tau^h=\tau\)</span>. <span class="math display">\[
+\Align{
+D(\omega\wedge\tau)
+&amp;= (\dd(\omega\wedge\tau))^h \\
+&amp;= (\dd\omega\wedge\tau+(-1)^{\deg\omega}\omega\wedge\dd\tau)^h \\
+&amp;=
+(\dd\omega)^h\wedge\tau^h+(-1)^{\deg\omega}\omega^h\wedge(\dd\tau)^h\\
+&amp;= D\omega\wedge\tau+(-1)^{\deg\omega}\omega\wedge D\tau.
+}
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 31.9</u> 对于 <span class="math inline">\(P\)</span>
+上的基本形式 <span class="math inline">\(\varphi\)</span>, <span class="math inline">\(\dd\varphi=D\varphi\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为投射 <span class="math inline">\(\pi:T_pP\to
+T_xM\)</span> 将竖直向量映到零, 所以 <span class="math inline">\(\pi_*h=\pi_*\)</span>.</p>
+<p>设 <span class="math inline">\(\varphi=\pi^*\tau\)</span> 对于 <span class="math inline">\(\tau\in\Omega^k(M,E)\)</span>, 则 <span class="math display">\[
+\Align{
+D\varphi(\cdots)
+&amp;= (\dd\varphi)(h\cdots) \\
+&amp;= (\dd\pi^*\tau)(h\cdots) \\
+&amp;= (\pi^*\dd\tau)(h\cdots) \\
+&amp;= (\dd\tau)(\pi_*h\cdots) \\
+&amp;= (\dd\tau)(\pi_*\cdots) \\
+&amp;= (\pi^*\dd\tau)(\cdots) \\
+&amp;= \dd\varphi(\cdots).
+}
+\]</span></p>
+</div>
+<h3 id="a-formula-of-covariant-derivative">31.4  A formula of covariant
+derivative</h3>
+<p>李群表示 <span class="math inline">\(\rho:G\to{\rm GL}(V)\)</span>
+给出了李代数表示 <span class="math inline">\(\rho_*:{\frak g}\to{\frak
+gl}(V)\)</span>, 诱导出了 <span class="math inline">\(V\)</span>
+值形式的乘积的概念. 设 <span class="math inline">\(\tau\in\Omega^k(P,V)\)</span>, <span class="math inline">\(\varphi\in\Omega^l(P,V)\)</span>, 定义 <span class="math display">\[
+(\tau\cdot\varphi)_p(v_1,\dots,v_{k+l}) :=
+\frac1{k!l!}\sum_{\sigma\in S_{k+l}} (\sgn\sigma)
+\rho_*\Big(
+  \tau_p(v_{\sigma(1)},\dots,v_{\sigma(k)})
+\Big)
+\varphi_p(v_{\sigma(k+1)},\dots,v_{\sigma(k+l)}),
+\]</span> 对于 <span class="math inline">\(p\in P\)</span>, <span class="math inline">\(v_1,\dots,v_{k+l}\in T_pP\)</span>. 容易验证 <span class="math inline">\(\tau\cdot\varphi\)</span> 的交错性和多重线性性,
+因此 <span class="math inline">\(\tau\cdot\varphi\in\Omega^{k+l}(P,V)\)</span>.</p>
+<p>特别地, 对于伴随表示 <span class="math inline">\({\rm Ad}:G\to{\rm
+GL}({\frak g})\)</span> 以及李代数的伴随表示 <span class="math inline">\({\rm ad}:{\frak g}\to{\frak gl}({\frak
+g})\)</span>, 有 <span class="math inline">\({\rm ad}_AB=[A,B]\)</span>.
+于是 <span class="math display">\[
+(\tau\cdot\varphi)_p(v_1,\dots,v_{k+l}) :=
+\frac1{k!l!}\sum_{\sigma\in S_{k+l}} (\sgn\sigma)
+\Big[
+  \tau_p(v_{\sigma(1)},\dots,v_{\sigma(k)}),
+  \varphi_p(v_{\sigma(k+1)},\dots,v_{\sigma(k+l)})
+\Big],
+\]</span> 此时将 <span class="math inline">\(\tau\cdot\varphi\)</span>
+记作 <span class="math inline">\([\tau,\varphi]\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 31.10</u> (协变导数公式) 设主丛 <span class="math inline">\(P\to M\)</span> 上有联络 <span class="math inline">\(\omega\)</span>. 张量性形式 <span class="math inline">\(\varphi\in\Omega^k_\rho(P,V)\)</span> 的协变导数
+<span class="math display">\[
+D\varphi = \dd\varphi + \omega\cdot\varphi.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 见书 p. 283.</p>
+</div>
+<div class="note note-warning">
+<p><u>Note</u> 主丛上的联络和曲率.</p>
+<p>设 <span class="math inline">\(G\)</span>-主丛 <span class="math inline">\(\pi:P\to M\)</span>, 取 <span class="math inline">\(\rho\)</span> 为 <span class="math inline">\(G\)</span> 的伴随表示, 则 <span class="math inline">\(\omega\cdot\varphi=[\omega,\varphi]\)</span>. 根据
+Claim 31.9, 对任意张量性形式 <span class="math inline">\(\varphi\in\Omega^k_{\rm Ad}(P,{\frak g})\)</span>,
+<span class="math display">\[
+D\varphi = \dd\varphi + [\omega,\varphi].
+\]</span> 注意曲率形式 <span class="math inline">\(\Omega\in\Omega^2_{\rm Ad}(P,{\frak g})\)</span>
+是一个张量性形式, 但是联络形式 <span class="math inline">\(\omega\in\Omega^1(P,{\frak g})\)</span>
+不是张量性形式 (不具有水平性), 所以 Claim 31.10 的求导公式不适用于 <span class="math inline">\(D\omega\)</span>.实际上, 根据曲率 <span class="math inline">\(\Omega\)</span> 的定义, <span class="math display">\[
+\Omega=\dd\omega+\frac12[\omega,\omega],
+\]</span> 由 Claim 30.3, <span class="math display">\[
+\Omega=(\dd\omega)^h=D\omega,\Omega=(\dd\omega)^h=D\omega,
+\]</span> 结合以上两式得到 <span class="math display">\[
+D\omega=\dd\omega + \frac12[\omega,\omega].
+\]</span> 系数 <span class="math inline">\(1/2\)</span> 意味着 <span class="math inline">\(\omega\)</span> 不适用 Claim 31.10 的求导公式.</p>
+<p>利用 <span class="math inline">\(D\Omega=\dd\Omega+[\omega,\Omega]\)</span>,
+曲率的第二 Bianchi 恒等式 <span class="math inline">\(\dd\Omega=[\Omega,\omega]\)</span> 等价于 <span class="math display">\[
+D\Omega = 0.
+\]</span></p>
+</div>
+<h2 id="characteristic-classes-of-principal-bundles">32  Characteristic
+Classes of Principal Bundles</h2>
+<h3 id="invariant-polynomials">32.1  Invariant polynomials</h3>
+<p>设 <span class="math inline">\(n\)</span> 维线性空间 <span class="math inline">\(V\)</span>. 对称空间 <span class="math inline">\(S_k(V)\cong{\rm Sym}^k(V^\vee)\)</span>
+中的元素称为 <span class="math inline">\(V\)</span> 上的 <span class="math inline">\(k\)</span> 次<strong>多项式</strong> (即对称的
+<span class="math inline">\(k\)</span> 重线性映射). 记对称代数 <span class="math inline">\(S(V)=\bigoplus_{i=0}^\infty S_k(V)\)</span>,
+有可交换的乘法 <span class="math display">\[
+\Align{
+(\alpha\cdot\beta)(v_1,\dots,v_{k+l}) = \sum_{\sigma\in S_{k+l}}
+\alpha(v_{\sigma(1)},\dots,v_{\sigma(k)})
+\beta(v_{\sigma(k+1)},\dots,v_{\sigma(k+l)}), \\
+\alpha\in S_k(V),\beta\in S_l(V).
+}
+\]</span> 设 <span class="math inline">\(V^\vee\)</span> 的基底 <span class="math inline">\(\alpha^1,\dots,\alpha^n\)</span>. 函数 <span class="math inline">\(f:V\to\R\)</span> 称为<strong>多项式函数</strong>,
+若 <span class="math inline">\(f\)</span> 可以展开为关于 <span class="math inline">\(\alpha^1,\dots,\alpha^n\)</span> 的 <span class="math inline">\(k\)</span> 次单项式之和: <span class="math display">\[
+f = \sum a_I \alpha^{i_1}\cdots\alpha^{i_k}.
+\]</span> 换言之, 对于 <span class="math inline">\(v\in V\)</span>,
+<span class="math display">\[
+f(v) = \sum a_I\alpha^{i_1}(v)\cdots\alpha^{i_k}(v),
+\]</span> 是一个关于 <span class="math inline">\(v\)</span> 的 <span class="math inline">\(k\)</span> 次齐次式. <span class="math inline">\(V\)</span> 上 <span class="math inline">\(k\)</span> 次多项式函数的全体记作 <span class="math inline">\(P_k(V)\)</span>. 记 <span class="math inline">\(P(V)=\bigoplus_{i=0}^\infty P_k(V)\)</span> 为
+<span class="math inline">\(V\)</span> 上的多项式代数,
+它是一个分次交换代数.</p>
+<ul>
+<li>多项式函数的定义不依赖基底. 若 <span class="math inline">\(f\)</span> 在对偶基底 <span class="math inline">\(\{\alpha^i\}\)</span> 下是多项式函数, 则在对偶基底
+<span class="math inline">\(\{\beta^i\}\)</span> 下也是多项式函数.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 32.1</u> (多项式 <span class="math inline">\(=\)</span>
+多项式函数) 有分次代数同构 <span class="math display">\[
+\phi: S(V) \to P(V), \quad
+\phi(\alpha)(v) := \alpha(v,\dots,v).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 显然 <span class="math inline">\(\phi\)</span>
+是分次代数同态. 可以验证, 其逆映射为 <span class="math display">\[
+\psi(f)(v_1,\dots,v_k) = \frac1{k!}
+\frac{\partial^k}{\partial t_1\cdots\partial t_k}
+f(t_1v_1+\dots+t_kv_k).
+\]</span></p>
+</div>
+<p>因此, 可以将 <span class="math inline">\(V\)</span> 上的 <span class="math inline">\(k\)</span> 次齐次函数 (多项式函数) 与对称的 <span class="math inline">\(k\)</span> 重线性映射 (多项式) 认同.</p>
+<p>设李群 <span class="math inline">\(G\)</span> 的李代数 <span class="math inline">\(\frak g\)</span>. 多项式 <span class="math inline">\(f:{\frak g}\to\R\)</span> 称为 <strong><span class="math inline">\({\rm Ad}_G\)</span>-不变的</strong>, 若 <span class="math display">\[
+f({\rm Ad}_gX) = f(X),\quad\forall X\in{\frak g},g\in G.
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\tr{X}\)</span> 是 <span class="math inline">\({\frak gl}(n,\R)\)</span> 上的 <span class="math inline">\(1\)</span> 次多项式, <span class="math inline">\(\det{X}\)</span> 是 <span class="math inline">\({\frak gl}(n,\R)\)</span> 上的 <span class="math inline">\(n\)</span> 次多项式. 它们都是 <span class="math inline">\({\rm Ad}_{{\rm GL}(n,\R)}\)</span>
+不变多项式.</li>
+</ul>
+<h3 id="the-chern-weil-homomorphism">32.2  The Chern-Weil homomorphism</h3>
+<p>设 <span class="math inline">\(G\)</span>-主丛 <span class="math inline">\(\pi:P\to M\)</span> 上的联络 <span class="math inline">\(\omega\)</span> 与曲率 <span class="math inline">\(\Omega\)</span>. 给定 <span class="math inline">\({\frak g}\)</span> 的基底 <span class="math inline">\(e_1,\dots,e_n\)</span> 和对偶基底 <span class="math inline">\(\alpha^1,\dots,\alpha^n\)</span>, 则曲率可以展开为
+<span class="math display">\[
+\Omega = \sum\Omega^ie_i,
+\]</span> 其中 <span class="math inline">\(\Omega^i\in\Omega^2(P,\R)\)</span>. 设 <span class="math inline">\(k\)</span> 次多项式 <span class="math inline">\(f:{\frak g}\to\R\)</span>, <span class="math inline">\(f=\sum a_I\alpha^{i_i}\cdots\alpha^{i_k}\)</span>,
+则 <span class="math display">\[
+f(\Omega) = \sum a_I\Omega^{i_1}\wedge\cdots\wedge\Omega^{i_k},
+\]</span> 这是 <span class="math inline">\(P\)</span> 上的一个 <span class="math inline">\({\frak g}\)</span> 值 <span class="math inline">\(2k\)</span> 次形式, 称为 <strong>Chern-Weil
+形式</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 32.2</u> 如上定义的 <span class="math inline">\(f(\Omega)\)</span> 不依赖 <span class="math inline">\(\frak g\)</span> 的基底的选取.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\({\frak g}\)</span>
+的另一个基底 <span class="math inline">\(u_j\)</span> 和对偶基底 <span class="math inline">\(\beta^j\)</span>, 与原基底的变换关系 <span class="math display">\[
+u_j = e_iA^i_j,\quad \beta^i=(A^{-1})^i_j\alpha^j.
+\]</span> 将上式分别代入 <span class="math inline">\(f=\sum
+b_I\beta^{i_1}\cdots\beta^{i_k}\)</span> 和 <span class="math inline">\(\Omega=\sum\Psi^ju_j\)</span>, 得到 <span class="math display">\[
+b_I = A^{j_1}_{i_1}\cdots A^{j_k}_{i_k} a_J
+\quad\textsf{和}\quad
+\Omega^i=A^i_j\Psi^j.
+\]</span> 因此 <span class="math display">\[
+\Align{
+\sum a_I\Omega^{i_1}\wedge\cdots\wedge\Omega^{i_k}
+&amp;= \sum a_I(A^{i_1}_{j_1}\Psi^{j_1})\wedge\cdots\wedge
+   (A^{i_k}_{j_k}\Psi^{j_k}) \\
+&amp;= \sum (a_IA^{i_1}_{j_1}\cdots A^{i_k}_{j_k})
+   \Psi^{j_1}\wedge\cdots\wedge\Psi^{j_k} \\
+&amp;= \sum b_J \Psi^{j_1}\wedge\cdots\wedge\Psi^{j_k}.
+}
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 32.3</u> 设 <span class="math inline">\(G\)</span>-主丛
+<span class="math inline">\(\pi:P\to M\)</span> 上的联络 <span class="math inline">\(\omega\)</span> 与曲率 <span class="math inline">\(\Omega\)</span>, 以及 <span class="math inline">\(\frak g\)</span> 上的 <span class="math inline">\(k\)</span> 次 <span class="math inline">\({\rm
+Ad}_G\)</span>-不变多项式 <span class="math inline">\(f\)</span>, 则</p>
+<ol type="1">
+<li><span class="math inline">\(f(\Omega)\)</span> 是基本形式, 即存在
+<span class="math inline">\(\Lambda\in\Omega^{2k}(M,{\frak g})\)</span>,
+使得 <span class="math inline">\(f(\Omega)=\pi^*\Lambda\)</span>.</li>
+<li><span class="math inline">\(\Lambda\)</span> 是闭形式.</li>
+<li>de Rham 上同调类 <span class="math inline">\([\Lambda]\)</span>
+不依赖联络的选取.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1 的证明见书 p. 288. 书上 2, 3 的证明是错的, 可参考 S.
+Kobayashi and K. Nomizu, <em>Foundations of Differential Geometry</em>,
+John Wiley and Sons, 1963 的 vol. 2, p. 295.</p>
+</div>
+<p>上同调类 <span class="math inline">\([\Lambda]\in H^{2k}(M)\)</span>
+称为主丛 <span class="math inline">\(P\)</span>
+的一个<strong>示性类(characteristic class)</strong>. 记 <span class="math inline">\({\frak g}\)</span> 上的所有 <span class="math inline">\({\rm Ad}_G\)</span>-不变多项式的全体组成的代数为
+<span class="math inline">\({\rm Inv}({\frak g})\)</span>, 则映射 <span class="math display">\[
+\Align{
+w_P(-):{\rm Inv}({\frak g}) &amp;\to H^*(M) \\
+f &amp;\mapsto [\Lambda],\quad f(\Omega)=\pi^*\Lambda,
+}
+\]</span> 是一个代数同态, 称为 <strong>Chern-Weil 同态</strong>.</p>
+<div class="note note-success">
+<p><u>Claim 32.4</u> 映射 <span class="math inline">\(w\)</span>
+是代数同态.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(f,g\in{\rm Inv}({\frak
+g})\)</span>, <span class="math inline">\(w(f)=[\Lambda_1]\)</span>,
+<span class="math inline">\(w(g)=[\Lambda_2]\)</span>, 则 <span class="math display">\[
+f(\Omega) = \pi^*\Lambda_1,\quad
+g(\Omega) = \pi^*\Lambda_2.
+\]</span> 两式相乘得到 <span class="math display">\[
+(fg)(\Omega)
+= f(\Omega)\wedge g(\Omega)
+= (\pi^*\Lambda_1)\wedge(\pi^*\Lambda_2)
+= \pi^*(\Lambda_1\wedge\Lambda_2),
+\]</span> 即 <span class="math inline">\(w(fg)=w(f)w(g)\)</span>.</p>
+</div>
+<p>任给 <span class="math inline">\(G\)</span>-主丛同态 <span class="math display">\[
+\xymatrix{
+P \ar[r]^\phi \ar[d]_\pi &amp; P' \ar[d]^{\pi'} \\
+M \ar[r]_{\underline\phi} &amp; M',
+}
+\]</span> 主丛 <span class="math inline">\(\pi:P\to M\)</span> 上的联络
+<span class="math inline">\(\omega\)</span> 的拉回 <span class="math inline">\(\phi^*\omega\)</span> 是 <span class="math inline">\(\pi':P'\to M'\)</span> 上的联络
+(可以验证它满足联络的性质). 拉回联络的曲率为 <span class="math display">\[
+\Omega'
+= \dd(\phi^*\omega) + \frac12[\phi^*\omega,\phi^*\omega]
+= \phi^*\Omega.
+\]</span> 设多项式 <span class="math inline">\(f\in{\rm Inv}({\frak
+g})\)</span>. 因为 <span class="math inline">\(\phi\)</span> 是主丛同态,
+<span class="math inline">\(\pi'\circ\phi=\underline\phi\circ\pi\)</span>,
+进而 <span class="math inline">\(\phi^*\pi'^*=\pi^*\underline\phi^*\)</span>,
+有 <span class="math display">\[
+\Align{
+f(\Omega')
+&amp;= f(\phi^*\Omega) \\
+&amp;= \phi^*f(\Omega) \\
+&amp;= (\phi^*\pi^*)\Lambda = \pi^*(\underline\phi^*\Lambda),
+}
+\]</span> 即 <span class="math inline">\(f(\Omega')\)</span> 对应的
+<span class="math inline">\(M\)</span> 上的闭形式是 <span class="math inline">\(\underline\phi^*\Lambda\)</span>. 因此 <span class="math display">\[
+w_{P'}(f) = \underline{\phi}^* w_P(f),
+\]</span> 这称为示性类的<strong>自然性</strong>. 总结为如下定理.</p>
+<div class="note note-success">
+<p><u>Claim 32.5</u> (自然性) 记 <span class="math inline">\({\rm
+PBund}_G(M)\)</span> 为 <span class="math inline">\(M\)</span> 上的
+<span class="math inline">\(G\)</span>-主丛组成的范畴. 给定 <span class="math inline">\(f\in{\rm Inv}({\frak g})\)</span>, 定义 <span class="math display">\[
+\Align{
+c_M:{\rm PBund}_G(M) &amp;\to H^*(M) \\
+(\pi:P\to M) &amp;\mapsto [\Lambda],\quad f(\Omega)=\pi^*\Lambda.
+}
+\]</span> 则有自然变换 <span class="math inline">\(c:{\rm
+PBund}_G(\cdot)\to H^*(\cdot)\)</span>, 即 <span class="math inline">\(c\)</span> 使得下图交换: <span class="math display">\[
+\xymatrix{
+M &amp;
+{{\rm PBund}_k(M)} \ar[r]^(.55){c_M} \ar[d]_{\phi^*} &amp;
+H^*(M) \ar[d]^{\underline\phi^*} \\
+N \ar[u]^{\underline\phi} &amp;
+{{\rm PBund}_k(N)} \ar[r]_(.55){c_N} &amp; H^*(N),
+}
+\]</span> 其中 <span class="math inline">\(\phi\)</span> 是任意覆盖
+<span class="math inline">\(\underline\phi\)</span> 的映射.</p>
+</div>
+<div class="note note-info">
+<p><u>Example</u> 主丛上的示性类.</p>
+<p>若 <span class="math inline">\(G={\rm GL}(r,\C)\)</span>, 则 <span class="math inline">\({\rm Inv}({\frak g})\)</span>
+由所有的特征多项式系数 <span class="math inline">\(f_k(X)\)</span> 生成.
+由 <span class="math inline">\(f_k(X)\)</span> 确定的示性类称为
+<strong>Chern 类</strong>.</p>
+<p>对于实数的情形 <span class="math inline">\(G={\rm GL}(r,\R)\)</span>,
+<span class="math inline">\(f_k(X)\)</span> 确定的示性类称为
+<strong>Pontrjagin 类</strong>. 对于标架丛来说, 若 <span class="math inline">\(k\)</span> 为奇数, 则 <span class="math inline">\(f_k(\Omega)=0\)</span>.</p>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+        <a href="/tags/%E7%A4%BA%E6%80%A7%E7%B1%BB/" class="print-no-link">#示性类</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM275 | 12 主丛与示性类</div>
+      <div>https://disembo.github.io/Note/dg-gtm275/12/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275/index/" title="GTM275 | 微分几何笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 微分几何笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275/11/" title="GTM275 | 11 主丛与示性类">
+                        <span class="hidden-mobile">GTM275 | 11 主丛与示性类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

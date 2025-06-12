@@ -1,0 +1,1188 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="全纯函数的性质 (零点, 原函数, 收敛半径, 最大模原理与 Cauchy 不等式), Weierstrass 和 Montel 定理.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAIOV | 2 全纯函数初步理论">
+<meta property="og:url" content="https://disembo.github.io/Note/caiov/2/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="全纯函数的性质 (零点, 原函数, 收敛半径, 最大模原理与 Cauchy 不等式), Weierstrass 和 Montel 定理.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/maximum-modulus-examples.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/open-mapping-thm.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/maximum-modulus-principle.png">
+<meta property="article:published_time" content="2025-04-07T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-01T07:50:30.250Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="复分析">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/maximum-modulus-examples.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>CAIOV | 2 全纯函数初步理论 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CAIOV | 2 全纯函数初步理论"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-07 16:00" pubdate>
+          2025年4月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CAIOV | 2 全纯函数初步理论</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p><em>Complex Analysis in One Variable</em> - Chapter 1 的笔记.</p>
+</div>
+<h2 id="fundamental-properties-of-holomorphic-functions">4  Fundamental
+Properties of Holomorphic Functions</h2>
+<p>设开集 <span class="math inline">\(\Omega\subset\C\)</span>, 记 <span class="math inline">\({\cal H}(\Omega)\)</span> 为 <span class="math inline">\(\Omega\)</span> 上所有全纯函数组成的集合.
+在复数乘法、函数的加法和乘法之下, <span class="math inline">\({\cal
+H}(\Omega)\)</span> 构成一个 <span class="math inline">\(\C\)</span>-代数.</p>
+<h3 id="zeros">4.1  Zeros</h3>
+<p>本小节给出一些关于全纯函数的零点分布的结论.</p>
+<div class="note note-success">
+<p><u>Theorem 4.1</u> (解析延拓的唯一性) 设连通开集 <span class="math inline">\(\Omega\subset\C\)</span>, <span class="math inline">\(f\in{\cal H}(\Omega)\)</span>. 若存在非空开集
+<span class="math inline">\(U\subset\Omega\)</span> 使得 <span class="math inline">\(f|_U\equiv0\)</span>, 则 <span class="math inline">\(f\equiv0\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 记 <span class="math inline">\(f^{(n)}\)</span> 为 <span class="math inline">\(f\)</span> 的 <span class="math inline">\(n\)</span> 阶导数, 规定 <span class="math inline">\(f^{(0)}=f\)</span>. 考虑 <span class="math inline">\(\Omega\)</span> 的子集 <span class="math display">\[
+\Align{
+E_n &amp;= \{z\in\Omega\mid f^{(n)}(z)=0\}, &amp;
+E &amp;= \bigcap_{n\geq0} E_n.
+}
+\]</span> 我们将证明 <span class="math inline">\(E\)</span>
+既开又闭且非空, 进而由 <span class="math inline">\(\Omega\)</span>
+的连通性, 有 <span class="math inline">\(E=\Omega\)</span>, 进而 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 恒为零.</p>
+<p>一方面, 因为 <span class="math inline">\(f^{(n)}\)</span> 连续, <span class="math inline">\(E_n=(f^{(n)})^{-1}(0)\)</span>
+作为闭集的原像是闭集, 进而 <span class="math inline">\(E\)</span>
+是闭集.</p>
+<p>另一方面, 因为 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(\Omega\)</span> 全纯, 取 <span class="math inline">\(a\in\Omega\)</span>, 它在 <span class="math inline">\(a\)</span> 的邻域 <span class="math inline">\(D\subset\Omega\)</span> 能展开为 Taylor 级数 <span class="math display">\[
+f(z) = \sum_{n=0}^\infty \frac{1}{n!}f^{(n)}(a)(z-a)^n, \quad z\in D.
+\]</span> 特别地, 令 <span class="math inline">\(a\in
+E\subset\Omega\)</span>, 有 <span class="math inline">\(f^{(n)}(a)=0\)</span>, 于是 <span class="math inline">\(f(z)\equiv0\)</span> (<span class="math inline">\(z\in D\)</span>), 进而 <span class="math inline">\(f^{(n)}\)</span> 在 <span class="math inline">\(D\)</span> 上处处为零, 即有 <span class="math inline">\(D\subset E\)</span>. 有 <span class="math inline">\(E\)</span> 开.</p>
+<p>总之, <span class="math inline">\(E\)</span> 既开又闭. 又有 <span class="math inline">\(f|_U\equiv0\)</span>, 有 <span class="math inline">\(U\subset E\)</span>, <span class="math inline">\(E\)</span> 非空. 得到 <span class="math inline">\(E=\Omega\)</span>.</p>
+</div>
+<p>设 <span class="math inline">\(\C\)</span> 的连通开子集 <span class="math inline">\(U,V\)</span> 满足 <span class="math inline">\(U\subset V\)</span>, 全纯函数 <span class="math inline">\(f\in{\cal H}(U)\)</span>, <span class="math inline">\(F\in{\cal H}(V)\)</span>. 如果 <span class="math inline">\(F|_U=f\)</span>, 则称 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(f\)</span> 的一个<strong>解析延拓 (analytic
+continuation)</strong>. Theorem 4.1 保证了 (当 <span class="math inline">\(V\)</span> 连通时) 解析延拓如果存在则是唯一的.</p>
+<p>一个比 Theorem 4.1 更强的结论是:</p>
+<div class="note note-success">
+<p><u>Theorem 4.2</u> (全纯函数的零点集) 设连通开集 <span class="math inline">\(\Omega\subset\C\)</span>, <span class="math inline">\(f\in{\cal H}(\Omega)\)</span>. 记零点集 <span class="math display">\[
+Z_f := \{z\in\Omega\mid f(z)=0\}.
+\]</span> 若 <span class="math inline">\(f\)</span> 不恒为零, 则 <span class="math inline">\(Z_f\)</span> 是离散集 (即 <span class="math inline">\(Z_f\)</span> 闭且每一点都是孤立点).</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 由连续性, <span class="math inline">\(Z_f\)</span> 闭. 任取
+<span class="math inline">\(a\in Z_f\)</span>, 则在邻域 <span class="math inline">\(U\)</span> 内有 <span class="math display">\[
+f(z) = \sum_{n=0}^\infty c_n(z-a)^n,\quad z\in U.
+\]</span> 因为 <span class="math inline">\(f\)</span> 不恒为零, 由
+Theorem 4.1, <span class="math inline">\(f|_U\)</span> 不恒为零, 所以
+<span class="math inline">\(\{c_n\}\)</span> 不恒为零. 设 <span class="math inline">\(k\)</span> 是使得 <span class="math inline">\(c_k\neq0\)</span> 的最小整数, 则有 <span class="math display">\[
+\Align{
+f(z)
+&amp;= \sum_{n=k}^\infty c_n(z-a)^n \\
+&amp;= (z-a)^k \sum_{n=0}^\infty c_{k+n}(z-a)^n \\
+&amp;= (z-a)^k g(z),
+}
+\]</span> 其中 <span class="math inline">\(g(z)=\sum_{n=0}^\infty
+c_{k+n}(z-a)^n\)</span> 是 <span class="math inline">\(D\)</span>
+上的全纯函数. 因为 <span class="math inline">\(g(a)=c_k\neq0\)</span>,
+由连续性, 存在 <span class="math inline">\(a\)</span> 的邻域 <span class="math inline">\(V\subset U\)</span> 使得 <span class="math inline">\(g|_V(z)\neq0\)</span>. 因此 <span class="math display">\[
+Z_f\cap V = \{a\},
+\]</span> 即 <span class="math inline">\(a\)</span> 是 <span class="math inline">\(Z_f\)</span> 的孤立点.</p>
+</div>
+<p>Theorem 4.2 表明, 连通开集 <span class="math inline">\(\Omega\)</span> 上的全纯函数 <span class="math inline">\(f\in{\cal H}(\Omega)\)</span>
+的零点只有两种情形:</p>
+<ol type="1">
+<li>零点集不存在极限点, 即零点离散分布.</li>
+<li>零点集存在极限点 (特别地, 若 <span class="math inline">\(f\)</span>
+在某非空开子集上为零), 则 <span class="math inline">\(f\)</span> 在
+<span class="math inline">\(\Omega\)</span> 恒为零.
+<ul>
+<li>推论: 若 <span class="math inline">\(f,g\in{\cal H}(\Omega)\)</span>
+满足 <span class="math inline">\(\{z\in\Omega\mid f(z)=g(z)\}\)</span>
+有极限点, 则 <span class="math inline">\(f\equiv g\)</span>.</li>
+</ul></li>
+</ol>
+<p>需要注意的是, 以上两个命题都要求 <span class="math inline">\(\Omega\)</span> 连通, 因为对于非连通集 <span class="math inline">\(\Omega\)</span> 上的全纯函数 <span class="math inline">\(f\)</span>,
+其在每个连通分量上的取值是彼此无关的.</p>
+<h3 id="primitives">4.2  Primitives</h3>
+<div class="note note-success">
+<p><u>Lemma 4.3</u> (原函数相差常数) 设连通开集 <span class="math inline">\(\Omega\)</span>, 全纯函数 <span class="math inline">\(f\in{\cal H}(\Omega)\)</span> 的两个原函数 <span class="math inline">\(F,G\)</span>, 则 <span class="math inline">\(F-G\)</span> 是常函数.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(H=F-G\)</span>, 则 <span class="math inline">\(H'=F'-G'=0\)</span>, 进而 <span class="math inline">\(H^{(n)}=0\)</span> <span class="math inline">\((n\geq1)\)</span>. 任取 <span class="math inline">\(a\in\Omega\)</span>, 设 <span class="math inline">\(H\)</span> 的 Taylor 级数在 <span class="math inline">\(a\)</span> 的邻域 <span class="math inline">\(U\)</span> 收敛到 <span class="math inline">\(H\)</span>, 则对任意 <span class="math inline">\(z\in U\)</span> 有 <span class="math display">\[
+H(z)
+= \sum_{n=0}^\infty \frac1{n!} H^{(n)}(a) (z-a)^n
+= H(a),
+\]</span> 因此 <span class="math inline">\(H|_U\)</span> 为常数.
+根据解析延拓的唯一性, <span class="math inline">\(H\)</span> 在 <span class="math inline">\(\Omega\)</span> 上为常数.</p>
+</div>
+<p>下面我们将讨论一个一般性的问题, 即对任意开集 <span class="math inline">\(\Omega\)</span>, 函数 <span class="math inline">\(f\in{\cal H}(\Omega)\)</span> 原函数的存在性.
+与可微性不同, 原函数的存在性是一个非常复杂的问题——任何全纯函数 <span class="math inline">\(f\)</span> 都是无穷可微的, 然而 <span class="math inline">\(f\)</span> 可能不存在原函数. 实际上这与 <span class="math inline">\(\Omega\)</span> 的拓扑有关.</p>
+<ul>
+<li><p>对于拓扑平凡的开圆盘来说, 其上任意全纯函数都存在原函数 (Morera
+定理证明过程的推论).</p></li>
+<li><p>对于 <span class="math inline">\(\C\setminus\{0\}\)</span>
+(非单连通), 全纯函数 <span class="math inline">\(f(z)=1/z\)</span>
+不存在原函数, 因为它在单位圆上的积分非零: <span class="math display">\[
+\int_\gamma \frac1z\dd{z}
+= \int_0^1 \frac1{\e^{2\pi\i t}} \dv{t}(\e^{2\pi\i t})\dd{t}
+= \int_0^1 2\pi\i
+= 2\pi\i.
+\]</span></p></li>
+</ul>
+<p>让我们回到一般的情形.</p>
+<div class="note note-secondary">
+<p>想法: 设开集 <span class="math inline">\(\Omega\)</span> 有一个开覆盖
+<span class="math inline">\({\frak U}=\{U_i\}_{i\in I}\)</span> (即满足
+<span class="math inline">\(\bigcup_{i\in I} U_i=\Omega\)</span>).
+如果在每个 <span class="math inline">\(U_i\)</span>
+上都可以局部地构造一个 <span class="math inline">\(F\)</span> 的原函数
+<span class="math inline">\(F_i\)</span> (假设 <span class="math inline">\(U_i\)</span> 的拓扑足够平凡), 如果我们能把这些
+<span class="math inline">\(F_i\)</span> 以一种相容的方式 "拼合起来"
+得到一个 <span class="math inline">\(\Omega\)</span> 上整体定义的 <span class="math inline">\(F\)</span>, 岂不妙哉?</p>
+<p>根据 Lemma, <span class="math inline">\(U_i\)</span>
+上的所有原函数都可以写成 <span class="math inline">\(F_i+c_i\)</span>
+的形式, 其中 <span class="math inline">\(c_i\)</span> 是 <span class="math inline">\(U_i\)</span> 上的局部常值函数
+(即在每个连通分量上常值), <span class="math inline">\(F_i\)</span>
+是一个确定的函数, 满足 <span class="math inline">\(F_i'=f|_{U_i}\)</span>.</p>
+<p>于是我们的问题就转化为了, 能否找到一族 <span class="math inline">\((c_i)_{i\in I}\)</span>, 使得这些 <span class="math inline">\((F_i+c_i)_{i\in I}\)</span> 彼此相容? 即对任意的
+<span class="math inline">\(U_i\cap U_j\neq\emptyset\)</span>, 在 <span class="math inline">\(U_i\cap U_j\)</span> 上成立 <span class="math display">\[
+F_i + c_i = F_j + c_j.
+\]</span> 下面先给出一些定义.</p>
+</div>
+<p>对任意开集 <span class="math inline">\(V\subset\C\)</span>, 记 <span class="math inline">\(\C(V)\)</span> 为 <span class="math inline">\(V\)</span> 上所有局部常值 (locally constant)
+函数的集合.</p>
+<p>设开集 <span class="math inline">\(\Omega\subset\C\)</span> 的开覆盖
+<span class="math inline">\({\frak U}=\{U_i\}_{i\in I}\)</span>. 设
+<span class="math inline">\(J\subset I\times I\)</span> 满足 <span class="math inline">\((i,j)\in J\)</span> 当且仅当 <span class="math inline">\(U_i\cap U_j\neq\emptyset\)</span>.</p>
+<ul>
+<li><p>记 <span class="math inline">\(C^0({\frak U},\C):=\prod_{i\in
+I}\C(U_i)\)</span>. 其中的元素称为 <strong><span class="math inline">\({\frak U}\)</span> 的复值 <span class="math inline">\(0\)</span>-余链 (<span class="math inline">\(0\)</span>-cochain)</strong>.</p></li>
+<li><p>记 <span class="math inline">\(C^1({\frak U},\C):=\prod_{(i,j)\in
+J}\C(U_i\cap U_j)\)</span>. 其中的元素称为 <strong><span class="math inline">\(1\)</span>-余链 (<span class="math inline">\(1\)</span>-cochain)</strong>.</p></li>
+<li><p>记 <span class="math inline">\(Z^1({\frak U},\C)\)</span> 为
+<span class="math inline">\(C^1({\frak U},\C)\)</span> 的一个子集,
+定义如下: <span class="math display">\[
+Z^1({\frak U},\C)
+:= \{(c_{ij})_{(i,j)\in J}\in C^1({\frak U},\C) \mid
+  \textsf{在}\;
+  U_i\cap U_j\cap U_k\neq\emptyset\;\textsf{上有}\;
+  c_{ij}+c_{jk}+c_{ki}=0
+\}.
+\]</span> 其中的元素称为 <strong><span class="math inline">\(1\)</span>-余圈 (<span class="math inline">\(1\)</span>-cocycle)</strong>.</p></li>
+<li><p>容易证明 <span class="math inline">\(C^0({\frak U},\C),C^1({\frak
+U},\C),Z^1({\frak U},\C)\)</span> 都是是复线性空间, 且 <span class="math inline">\(Z^1({\frak U},\C)\)</span> 是 <span class="math inline">\(C^1({\frak U},\C)\)</span> 的子空间.</p></li>
+</ul>
+<p>定义映射 <span class="math inline">\(\delta:C^0({\frak U},\C) \to
+C^1({\frak U},\C)\)</span> 如下: 对于 <span class="math inline">\((c_i)_{i\in I}\in C^0({\frak U},\C)\)</span> (其中
+<span class="math inline">\(c_i\in\C(U_0)\)</span>), 令 <span class="math display">\[
+(\delta c)_{ij}
+:= (c_i|_{U_i\cap U_j}) - (c_j|_{U_i\cap U_j})
+= c_i - c_j
+\quad\textsf{在}\;U_i\cap U_j\;\textsf{上},
+\]</span> 对于 <span class="math inline">\((i,j)\in J\)</span>. 可以验证
+<span class="math inline">\(\delta c\in Z^1({\frak U},\C)\)</span>, 并且
+<span class="math inline">\(\delta\)</span> 为复线性映射,
+称为<strong>余微分 (codifferential)</strong>. 记 <span class="math display">\[
+B^1({\frak U},\C) := \im\delta \subset Z^1({\frak U},\C).
+\]</span> 线性空间 <span class="math inline">\(B^1({\frak
+U},\C)\)</span> 中的元素称为 <strong><span class="math inline">\(1\)</span>-余边界 (<span class="math inline">\(1\)</span>-coboundary)</strong>. 商空间 <span class="math display">\[
+H^1({\frak U},\C) := \frac{Z^1({\frak U},\C)}{B^1({\frak U},\C)}
+\]</span> 称为 <span class="math inline">\({\frak U}\)</span>
+的复系数<strong>一阶上同调群 (first coholomology group)</strong>.</p>
+<div class="note note-success">
+<p><u>Theorem 4.4</u> (原函数存在的上同调条件) 设开集 <span class="math inline">\(\Omega\subset\C\)</span> 的开覆盖 <span class="math inline">\({\frak U}=\{U_i\}_{i\in I}\)</span>, 其中 <span class="math inline">\(U_i\)</span> 为圆盘. 若 <span class="math inline">\(H^1({\frak U},\C)=0\)</span>, 则任意 <span class="math inline">\(f\in{\cal H}(\Omega)\)</span> 存在原函数.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 全纯函数 <span class="math inline">\(f\)</span> 在每个圆盘
+<span class="math inline">\(U_i\)</span> 上都存在原函数 <span class="math inline">\(F_i\)</span>. 下面我们要做的就是把它们 "拼合"
+起来.</p>
+<p>对于 <span class="math inline">\((i,j)\in J\)</span>, 在 <span class="math inline">\(U_i\cap U_j\)</span> 上定义 <span class="math inline">\(c_{ij}:=F_i-F_j\)</span>. 因为 <span class="math inline">\(U_i\cap U_j\)</span> 连通, 由上面的 Lemma, <span class="math inline">\(c_{ij}\)</span> 是常函数. 并且对于 <span class="math inline">\(U_i\cap U_j\cap U_k\neq\emptyset\)</span>, 有
+<span class="math display">\[
+c_{ij}+c_{jk}+c_{ki} = (F_i-F_j) + (F_j-F_k) + (F_k - F_i) = 0.
+\]</span> 因此函数族 <span class="math display">\[
+\xi = (c_{ij})_{(i,j)\in J} \in Z^1({\frak U},\C).
+\]</span> 由于 <span class="math inline">\(H^1({\frak U},\C)=0\)</span>
+也即 <span class="math inline">\(Z^1({\frak U},\C)=B^1({\frak
+U},\C)\)</span>, 存在 <span class="math inline">\(c=(c_i)_{i\in I}\in
+C^0({\frak U},\C)\)</span> 使得 <span class="math inline">\(\xi=\delta
+c\)</span>. 换言之, <span class="math inline">\((c_i)_{i\in I}\)</span>
+满足 <span class="math display">\[
+c_i - c_j = F_i - F_j,\quad\textsf{对任意}\;(i,j)\in J.
+\]</span> 定义 <span class="math inline">\(\Omega\)</span> 上的函数
+<span class="math inline">\(F\)</span> 满足 <span class="math inline">\(F|_{U_i}:=F_i-c_i\)</span>. 我们有 <span class="math inline">\(F_i-c_i=F_j-c_j\)</span> 只要 <span class="math inline">\(U_i\cap U_j\neq\emptyset\)</span>, 因此 <span class="math inline">\(F\)</span> 是良定义的. 由于 <span class="math inline">\(c_i\)</span> 为常函数, 在每个 <span class="math inline">\(U_i\)</span> 上都有 <span class="math inline">\(F'=F_i'=f\)</span>, 即 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(f\)</span> 的原函数.</p>
+</div>
+<h3 id="radius-of-convergence">4.3  Radius of convergence</h3>
+<p>在 Section 2 中我们通过矩形的 Cauchy 积分定理、矩形的 Cauchy
+公式推出了开集上的复可微函数可以做 Taylor 展开,
+但它给出的收敛半径并非最优. 在本小节中, 我们将沿着相似的道路,
+推出最优收敛半径.</p>
+<div class="note note-success">
+<p><u>Theorem 4.5</u> (圆盘的 Cauchy 积分公式) 设开集 <span class="math inline">\(\Omega\subset\C\)</span>, <span class="math inline">\(f\in{\cal H}(D)\)</span>, 开圆盘 <span class="math inline">\(D=D(a,r)\)</span> 满足 <span class="math inline">\(\overline{D}\subset\Omega\)</span>, 则对任意 <span class="math inline">\(w\in D\)</span>, <span class="math display">\[
+f(w) = \frac{1}{2\pi\i} \int_{\gamma} \frac{f(z)}{z-w}\dd{z},
+\]</span> 其中 <span class="math inline">\(\gamma(t)=a+r\exp(2\pi\i
+t)\)</span> (<span class="math inline">\(0\leq t\leq 1\)</span>)
+是圆盘的边界.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 令 <span class="math display">\[
+g(z) = \Cases{
+  \dfrac{f(z)-f(w)}{z-w}, &amp; z\in\Omega\setminus\{w\}, \\
+  f'(w), &amp; z=w.
+}
+\]</span> 我们断言 <span class="math inline">\(g\)</span> 在 <span class="math inline">\(\Omega\)</span> 全纯. 只需证明 <span class="math inline">\(g\)</span> 在 <span class="math inline">\(w\)</span> 附近全纯. 设 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(w\)</span> 的邻域展开为幂级数 <span class="math inline">\(\sum_{n\geq0}c_n(z-w)^n\)</span>, 则 <span class="math inline">\(g\)</span> 在该邻域内等于 <span class="math inline">\(\sum_{n\geq1}c_n(z-w)^{n-1}\)</span>.</p>
+<p>取 <span class="math inline">\(\rho&gt;r\)</span> 满足 <span class="math inline">\(D(a,\rho)\subset\Omega\)</span>, 则 <span class="math inline">\(g\)</span> 在 <span class="math inline">\(D(a,\rho)\)</span> 上存在原函数 (Morera
+定理证明过程的推论). 又由 Propisition 2.7, <span class="math display">\[
+\int_{\gamma} \frac{f(z)}{z-a}\dd{z}{}
+= f(a) \int_{\gamma} \frac{1}{z-a}\dd{z}.
+\]</span> 类似于 "矩形的 Cauchy 积分公式" 的证明, 可以算出 <span class="math inline">\(\int_\gamma1/(z-a)\dd{z}=2\pi\i\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Theorem 4.6</u> 设开圆盘 <span class="math inline">\(D=D(a,r)\)</span>, <span class="math inline">\(f\in{\cal H}(D)\)</span>, 则 <span class="math inline">\(f\)</span> 在在 <span class="math inline">\(a\)</span> 处的 Taylor 级数在 <span class="math inline">\(D\)</span> 上收敛到 <span class="math inline">\(f\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 取 <span class="math inline">\(0&lt;\rho&lt;r\)</span>. 在
+<span class="math inline">\(D(a,\rho)\)</span> 上应用 Cauchy 积分公式,
+<span class="math display">\[
+f(w) = \frac1{2\pi\i} \int_{\gamma}\frac{f(z)}{z-w}\dd{z},\quad
+w\in D(a,\rho).
+\]</span> (其中 <span class="math inline">\(\gamma(t)=a+\rho\exp(2\pi\i
+t)\)</span>, <span class="math inline">\(0\leq t\leq 1\)</span>.) 将
+<span class="math inline">\((z-w)^{-1}\)</span> 展开为幂级数: <span class="math display">\[
+\Align{
+\frac1{z-w}
+&amp;= \frac1{z-a}\pqty{1-\frac{w-a}{z-a}}^{-1}
+= \frac1{z-a}\sum_{n=0}^\infty\pqty{\frac{w-a}{z-a}}^n,
+}
+\]</span> 上式要求 <span class="math inline">\(|w-a|&lt;|z-a|\)</span>.
+注意到 <span class="math inline">\(w\in D(a,\rho)\)</span> 而 <span class="math inline">\(z\in\partial D(a,\rho)\)</span>, 因此存在 <span class="math inline">\(0&lt;\theta&lt;1\)</span> 使得 <span class="math inline">\(|w-a|\leq\theta|z-a|\)</span>, 故该级数一致收敛.
+代入积分中并交换积分与求和, 得到 <span class="math display">\[
+\Align{
+f(w) &amp;= \sum_{n=0}^\infty c_n(w-a)^n, &amp;
+c_n &amp;= \frac1{2\pi\i} \int_{\gamma}\frac{f(z)}{(z-a)^{n+1}}\dd{z}.
+}
+\]</span> 根据幂级数展开的唯一性, 有 <span class="math inline">\(c_n=f^{(n)}(a)/n!\)</span>. 因此 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处的 Taylor 级数在 <span class="math inline">\(D(a,\rho)\)</span> 收敛到 <span class="math inline">\(f\)</span>. 由 <span class="math inline">\(\rho&lt;r\)</span> 的任意性, <span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处的 Taylor 级数在整个 <span class="math inline">\(D(a,r)\)</span> 收敛到 <span class="math inline">\(f\)</span>.</p>
+</div>
+<p>立刻可以得到推论:</p>
+<div class="note note-success">
+<p><u>Corollary 4.7</u> (全纯函数 Taylor 级数的收敛半径) 设开集 <span class="math inline">\(\Omega\subset\C\)</span>, 点 <span class="math inline">\(a\in\Omega\)</span>. 任 <span class="math inline">\(\Omega\)</span> 上的全纯函数 <span class="math inline">\(f\)</span>, 则 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处的 Taylor 级数在包含于 <span class="math inline">\(\Omega\)</span> 的最大圆盘 <span class="math inline">\(D=D(a,r)\)</span> 上收敛到 <span class="math inline">\(f\)</span> (换言之, <span class="math inline">\(r\)</span> 是 <span class="math inline">\(a\)</span> 到 <span class="math inline">\(\partial\Omega\)</span> 的距离).</p>
+</div>
+<h3 id="the-maximum-modulus-principle">4.4  The maximum modulus
+principle</h3>
+<p>下面的两个小节给出了一些有关 <span class="math inline">\(f\)</span>
+及其各阶导数的模 <span class="math inline">\(|f|,|f'|,\dots\)</span>
+的结论.</p>
+<p>我们首先给出几个极值点与二阶导数关系的结论. 设开集 <span class="math inline">\(\Omega\subset\C\)</span>, <span class="math inline">\(\Omega\)</span> 上的实值/复值函数 <span class="math inline">\(u\)</span> 二阶连续可微, 定义 <span class="math display">\[
+\Delta u:= \pdv{^2u}{x^2} + \pdv{^2u}{y^2}.
+\]</span> 算子 <span class="math inline">\(u\mapsto\Delta u\)</span>
+称为 <strong>Laplace 算子</strong>. 此外, <span class="math display">\[
+\Delta^cu := \pdv[2]{u}{z}{\bar{z}},
+\]</span> 算子 <span class="math inline">\(u\mapsto\Delta^cu\)</span>
+称为<strong>复 Laplace 算子</strong>. 由 <span class="math inline">\(\partial/\partial z\)</span> 和 <span class="math inline">\(\partial/\partial\bar z\)</span> 的定义容易推出
+<span class="math display">\[
+\Delta^c u = \frac14 \Delta u.
+\]</span></p>
+<div class="note note-success">
+<p><u>Proposition 4.8</u> (极小值点处 Hessian 半负定)</p>
+<ol type="1">
+<li>设开集 <span class="math inline">\(I\subset\R\)</span>, 函数 <span class="math inline">\(\phi:I\to\R\)</span> 二阶可导. 若存在 <span class="math inline">\(t_0\in I\)</span> 使得 <span class="math inline">\(\phi(t_0)\leq\phi(t)\)</span> 对任意 <span class="math inline">\(t\in I\)</span>, 则 <span class="math inline">\(\phi''(t)\leq0\)</span>.</li>
+<li>设开集 <span class="math inline">\(\Omega\subset\R^2\)</span>, 函数
+<span class="math inline">\(u:\Omega\to\R\)</span> 二阶连续可微. 若存在
+<span class="math inline">\((x_0,y_0)\in\Omega\)</span> 使得 <span class="math inline">\(\phi(x_0,y_0)\leq\phi(x,y)\)</span> 对任意 <span class="math inline">\((x,y)\in\Omega\)</span>, 则 <span class="math inline">\((\Delta u)(x_0,y_0)\leq0\)</span>.</li>
+</ol>
+<p>实际上, 2 可以推广为</p>
+<ol start="3" type="1">
+<li>设开集 <span class="math inline">\(\Omega\subset\R^n\)</span>, 函数
+<span class="math inline">\(u:\Omega\to\R\)</span> 二阶连续可微. 若存在
+<span class="math inline">\(p_0\in\Omega\)</span> 使得 <span class="math inline">\(\phi(p_0)\leq\phi(p)\)</span> 对任意 <span class="math inline">\(p\in\Omega\)</span>, 则 Hessian <span class="math inline">\(Hu(p_0):=(\partial^2 u/\partial x_i\partial
+x_j(p_0))_{ij}\)</span> 是半负定的.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 只证明 1, 3.</p>
+<p>对于 1, 注意到 <span class="math display">\[
+\phi''(t)
+= \lim_{h\to0}\frac{\phi(t+h)+\phi(t-h)-2\phi(t)}{h^2}
+\leq 0,
+\]</span> 其中 <span class="math inline">\(\phi(t\pm
+h)\leq\phi(t)\)</span>.</p>
+<p>对于 3, 即证明对任意 <span class="math inline">\(v=(v_1,\dots,v_n)\in\R^n\)</span>, 有 <span class="math display">\[
+\sum_{ij} \pdv{^2u}{x_i\partial x_j}(p_0) \cdot v_iv_j\leq0.
+\]</span> 令 <span class="math inline">\(\phi(t)=u(p_0+tv)\)</span>,
+<span class="math inline">\(-\varepsilon&lt;t&lt;\varepsilon\)</span>.
+注意到 <span class="math inline">\(\phi(0)\leq\phi(t)\)</span>, 应用 1
+即得.</p>
+</div>
+<p>最大模原理 (the maximum modulus principle) 的大致意思是, 全纯函数
+<span class="math inline">\(f\)</span> 在有界闭集 <span class="math inline">\(U\)</span> 上模长 <span class="math inline">\(|f(z)|\)</span> 的最大值在边界 <span class="math inline">\(\partial U\)</span> 上取到.
+它基于实值函数的最大值原理 (the maximum principle).</p>
+<p>最大模原理的一个加强版本 (强最大模原理) 进一步表明, 如果 <span class="math inline">\(|f(z)|\)</span> 的最大值同时在 <span class="math inline">\(U\)</span> 内部取到, 则 <span class="math inline">\(f\)</span> 必然是常函数.</p>
+<div class="note note-success">
+<p><u>Theorem 4.9</u> (最大值原理) 设开集 <span class="math inline">\(\Omega\subset\C\)</span>, 实值函数 <span class="math inline">\(u\in C^2(\Omega)\)</span>. 如果 <span class="math inline">\((\Delta u)(z)\geq0\)</span> 对任意 <span class="math inline">\(z\in\Omega\)</span> 成立, 则对任意预紧开集 <span class="math inline">\(U\Subset\Omega\)</span>, <span class="math display">\[
+u(z) \leq \sup_{w\in\partial U} u(w),
+\quad z\in U.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 先假设 <span class="math inline">\((\Delta
+u)(z)&gt;0\)</span> 对任意 <span class="math inline">\(z\in\Omega\)</span> 成立, 记 <span class="math inline">\(z_0\in\overline{U}\)</span> 满足 <span class="math inline">\(u(z_0)=\sup_{w\in\overline{U}}(w)\)</span>.
+反证法, 假设结论不成立, 则 <span class="math inline">\(z_0\in
+U\)</span>, 且 <span class="math inline">\(u(z_0)\geq u(z)\)</span>
+对任意 <span class="math inline">\(z\in\overline{U}\)</span>. 由
+Proposition 4.7 的 2, <span class="math inline">\((\Delta
+u)(z_0)\leq0\)</span> 矛盾.</p>
+<p>再考虑 <span class="math inline">\((\Delta u)(z)\geq0\)</span>
+的情形. 取 <span class="math inline">\(\varepsilon&gt;0\)</span>, 令
+<span class="math display">\[
+u_\varepsilon(z) := u(z) + \varepsilon|z|^2,\quad z\in\Omega.
+\]</span> 则 <span class="math inline">\(\Delta u_\varepsilon=\Delta
+u+4\varepsilon&gt;0\)</span> 在 <span class="math inline">\(\Omega\)</span> 上成立. 由上面的讨论, <span class="math display">\[
+u_\varepsilon(z)\leq\sup_{w\in\partial U} u_\varepsilon(w),\quad z\in U.
+\]</span> 两边取极限 <span class="math inline">\(\varepsilon\to0\)</span> 得到.</p>
+</div>
+<p>最大值原理中, <span class="math inline">\(U\)</span>
+预紧的条件是至关重要的. 比如取 <span class="math inline">\(U={\rm
+Int}H_+\)</span> (上半平面). 对于 <span class="math inline">\(u(x,y):=y\)</span>. 有 <span class="math inline">\(\Delta u\equiv0\)</span>. 然而 <span class="math inline">\(u\)</span> 在 <span class="math inline">\(\partial
+U\)</span> 上恒为零, 在 <span class="math inline">\(U\)</span>
+上无界.</p>
+<div class="note note-success">
+<p><u>Corollary 4.10</u> (弱最大模原理) 设开集 <span class="math inline">\(\Omega\subset\C\)</span>, <span class="math inline">\(f\in{\cal H}(\Omega)\)</span>, 则对任意预紧开集
+<span class="math inline">\(U\Subset\Omega\)</span>, <span class="math display">\[
+|f(z)| \leq \sup_{w\in\partial U} |f(w)|, \quad z\in U.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 对 <span class="math inline">\(u(z):=|f(z)|^2=f(z)\overline{f(z)}\)</span>
+应用最大值原理即可.</p>
+</div>
+<p>下图分别展示了 <span class="math inline">\(|\cos{z}|,|\sin{z}|,|z^3-2z^2+1|\)</span>
+在单位圆盘上的图像, 我们能直观地看到其最大值都在边界处取到.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/maximum-modulus-examples.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<div class="note note-success">
+<p><u>Theorem 4.11</u> (开映射定理) 设连通开集 <span class="math inline">\(\Omega\subset\C\)</span>, <span class="math inline">\(f\in{\cal H}(\Omega)\)</span>. 若 <span class="math inline">\(f\)</span> 不是常函数, 则 <span class="math inline">\(f\)</span> 是开映射 (将开集映到开集).</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 任取开集 <span class="math inline">\(V\subset\Omega\)</span>, 点 <span class="math inline">\(a\in V\)</span>. 通过将 <span class="math inline">\(f\)</span> 换成 <span class="math inline">\(f-f(a)\)</span>, 不妨设 <span class="math inline">\(f(a)=0\)</span>. 取开圆盘 <span class="math inline">\(D=D(a,r)\)</span> 满足 (1) <span class="math inline">\(\overline{D}(a,r)\subset V\)</span>, (2) 对 <span class="math inline">\(z\in\overline{D}\)</span>, <span class="math inline">\(z\neq a\)</span> 有 <span class="math inline">\(f(z)\neq0\)</span>. (根据零点的孤立性, 这样的
+<span class="math inline">\(D\)</span> 存在.)</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/open-mapping-thm.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>取 <span class="math inline">\(\delta=\inf\{|f(z)|\mid|z-a|=r\}\)</span>. 则
+<span class="math inline">\(\delta&gt;0\)</span>. 取点 <span class="math inline">\(w\in\C\)</span>, <span class="math inline">\(w\notin f(V)\)</span>, 我们断言 <span class="math inline">\(|w|\geq\delta/2\)</span>. 考虑函数 <span class="math inline">\(\phi(z)=1/(f(z)-w)\)</span>. 由 <span class="math inline">\(w\)</span> 的取法, <span class="math inline">\(\phi\in{\cal H}(\Omega)\)</span>. 对 <span class="math inline">\(\phi\)</span> 在 <span class="math inline">\(D\)</span> 上应用弱最大模原理, <span class="math display">\[
+\frac{1}{|w|}
+= |\phi(a)|
+\leq \sup_{|z-a|=r} |\phi(z)|
+= \frac{1}{\inf_{|z-a|=r}|f(z)-w|}.
+\]</span> 上式中 <span class="math inline">\(|f(z)-w|\geq|f(z)|-|w|\geq\delta-|w|\)</span>.
+现在假设 <span class="math inline">\(|w|&lt;\delta\)</span>, 则 <span class="math inline">\(|f(z)-w|\geq\delta-|w|&gt;0\)</span>, 于是 <span class="math display">\[
+\frac{1}{|w|} \leq \frac{1}{\delta-|w|},
+\]</span> 即 <span class="math inline">\(|w|\geq\delta/2\)</span>. 因此,
+或者有 <span class="math inline">\(|w|\geq\delta/2\)</span>, 或者有
+<span class="math inline">\(|w|\geq\delta\)</span>.</p>
+<p>总之我们证明了, 如果 <span class="math inline">\(w\notin
+f(V)\)</span>, 则 <span class="math inline">\(|w|\geq\delta/2\)</span>.
+换言之, 开集 <span class="math inline">\(\{w\in\C\mid|w|&lt;\delta/2\}\subset
+f(V)\)</span>. 注意这个开集是 <span class="math inline">\(f(a)=0\)</span> 的邻域. 由 <span class="math inline">\(a\)</span> 的任意性, <span class="math inline">\(f(V)\)</span> 是开集.</p>
+</div>
+<div class="note note-success">
+<p><u>Theorem 4.12</u> (强最大模原理) 设有界连通开集 <span class="math inline">\(\Omega\subset\C\)</span>, <span class="math inline">\(f\in{\cal H}(\Omega)\)</span>. 设 <span class="math display">\[
+M := \sup_{\zeta\in\partial\Omega} \pqty{
+  \limsup\limits_{\substack{z\to\zeta\\z\in\Omega}}
+  |f(z)|
+}.
+\]</span> 如果存在 <span class="math inline">\(z\in\Omega\)</span>, 使得
+<span class="math inline">\(|f(z)|\geq M\)</span>, 则 <span class="math inline">\(f\)</span> 是常函数.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 不妨设 <span class="math inline">\(M&lt;\infty\)</span>
+(不然就没什么好证的了). 我们只需证明 <span class="math inline">\(|f(z)|\leq M\)</span> 对任意 <span class="math inline">\(z\in\Omega\)</span> 成立, 因为由开映射定理, <span class="math inline">\(f(\Omega)\)</span> 是 <span class="math inline">\(\overline{D}(0,M)\)</span> 开子集, 进而必然是
+<span class="math inline">\(D(0,M)\)</span> 的子集. 对此, 我们只用证明
+<span class="math inline">\(|f(z)|\leq M+\varepsilon\)</span> 对任意
+<span class="math inline">\(\varepsilon&gt;0\)</span> 成立.</p>
+<p>因为 <span class="math inline">\(\limsup_{z\to\zeta,z\in\Omega}|f(z)|\leq
+M\)</span>, 对任意 <span class="math inline">\(\zeta\in\partial\Omega\)</span>, 存在邻域 <span class="math inline">\(U_\zeta\)</span>, 使得 <span class="math inline">\(|f(z)|\leq M+\varepsilon\)</span> 对任意 <span class="math inline">\(z\in U_\zeta\)</span>. 令 <span class="math inline">\(U=\bigcup_{\zeta\in\partial\Omega}U_\zeta\)</span>,
+<span class="math inline">\(K=\Omega-U\)</span>. 因为 <span class="math inline">\(\Omega\)</span> 有界, <span class="math inline">\(K\)</span> 闭, 故 <span class="math inline">\(K\)</span> 紧.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/complex-analysis-caiov/maximum-modulus-principle.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>取开集 <span class="math inline">\(W\)</span> 满足 <span class="math inline">\(K\subset W\Subset\Omega\)</span> (如图), 则 <span class="math inline">\(\partial W\subset U\)</span>, 有 <span class="math inline">\(f(\zeta)\leq M+\varepsilon\)</span> 对任意 <span class="math inline">\(\zeta\in\partial W\)</span> 成立. 另一方面, 对
+<span class="math inline">\(f\)</span> 在 <span class="math inline">\(W\)</span> 上应用弱最大模原理, 有 <span class="math display">\[
+|f(z)| \leq \sup_{\zeta\in\partial W} |f(\zeta)|
+\leq M+\varepsilon,
+\quad z\in W.
+\]</span> 综上, <span class="math inline">\(|f(z)|\leq
+M+\varepsilon\)</span> 在 <span class="math inline">\(U\)</span> 和
+<span class="math inline">\(W\)</span> 上分别成立. 因为 <span class="math inline">\(\Omega\subset U\cup W\)</span>, 即证.</p>
+</div>
+<h3 id="cauchys-inequalities">4.5  Cauchy's inequalities</h3>
+<div class="note note-success">
+<p><u>Theorem 4.13</u> (Cauchy 不等式) 设 <span class="math inline">\(f\)</span> 在圆盘 <span class="math inline">\(D(a,r)\)</span> 上全纯, <span class="math inline">\(0&lt;\rho&lt;r\)</span>, 记 <span class="math inline">\(M(\rho)=\sup_{|z-a|=\rho}|f(z)|\)</span>, 则 <span class="math display">\[
+|f^{(n)}(a)| \leq n! M(\rho) \cdot \rho^{-n}
+\]</span> 对 <span class="math inline">\(n\in\N\)</span>. 等价地, 若
+<span class="math inline">\(f\)</span> 在 <span class="math inline">\(a\)</span> 处的 Taylor 级数为 <span class="math inline">\(\sum_{n\geq0}c_n(z-a)^n\)</span>, 则 <span class="math display">\[
+|c_n| \leq M(\rho)\cdot\rho^{-n}.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 在 Theorem 4.11 的证明中, 我们得到了 <span class="math display">\[
+\Align{
+c_n
+&amp;= \frac1{2\pi\i} \int_{\gamma}\frac{f(z)}{(z-a)^{n+1}}\dd{z} \\
+&amp;= \frac1{2\pi\i} \int_0^1
+  f(a+\rho\e^{2\pi\i t}) (\rho\e^{2\pi\i t})^{-n-1}
+  \dv{t}(\rho\e^{2\pi\i t})\dd{t} \\
+&amp;= \rho^{-n} \int_0^1 f(a+\rho\e^{2\pi\i t}) (\rho\e^{-2\pi\i nt})
+  \dd{t},
+}
+\]</span> 因此 <span class="math display">\[
+|c_n|
+\leq \rho^{-n} \int_0^1 \abs{f(a+\rho\e^{2\pi\i t})} \dd{t}
+\leq M(\rho)\rho^{-n}.
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Theorem 4.14</u> (Liouville 定理) 设 <span class="math inline">\(\C\)</span> 上的全纯函数 <span class="math inline">\(f\)</span>. 若 <span class="math inline">\(f\)</span> 有界, 则 <span class="math inline">\(f\)</span> 为常函数.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 记 <span class="math inline">\(M(\rho)=\sup_{|z|=\rho}|f(z)|\)</span>. 如果 <span class="math inline">\(f\)</span> 有界, 则存在常数 <span class="math inline">\(M\)</span>, 使得 <span class="math inline">\(M(\rho)\leq M\)</span> 对任意 <span class="math inline">\(r\geq0\)</span>. 根据 Cauchy 不等式, 有 <span class="math display">\[
+|c_n|
+\leq M(\rho) \cdot \rho^{-n}
+\leq \frac{M}{\rho^n},\quad n\geq 1.
+\]</span> 固定 <span class="math inline">\(n\geq 1\)</span>, 令 <span class="math inline">\(\rho\to\infty\)</span>, 得到 <span class="math inline">\(|c_n|=0\)</span>. 故 <span class="math inline">\(f(z)=c_0\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Theorem 4.15</u> (代数基本定理) 复数域 <span class="math inline">\(\C\)</span> 上的非常数多项式存在零点.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设非常数多项式 <span class="math inline">\(P(z)=a_0z^n+a_1z^{n-1}+\dots+a_n\)</span> (<span class="math inline">\(a_0\neq0\)</span>, <span class="math inline">\(n\geq1\)</span>). 对于 <span class="math inline">\(|z|=r\geq1\)</span>, 有 <span class="math display">\[
+\Align{
+|P(z)|
+&amp;= r^n\abs{a_0 + \frac{a_1}{z} + \dots + \frac{a_n}{z^n}} \\
+&amp;\geq r^n \pqty{|a_0| - \frac{|a_1|+\dots+|a_n|}{r}} \\
+&amp;\geq \frac12|a_0|r^n\quad(r\;\textsf{充分大}).
+}
+\]</span> 如果 <span class="math inline">\(P\)</span> 非零, 则 <span class="math inline">\(1/P\in{\cal H}(\C)\)</span>, 且对充分大的 <span class="math inline">\(|z|\)</span> 有 <span class="math display">\[
+\frac{1}{|P(z)|} \leq \frac{2}{|a_0|r^n} \leq \frac{2}{|a_0|},
+\]</span> 则 <span class="math inline">\(1/P\)</span> 有界. 由 Liouville
+定理, <span class="math inline">\(1/P\)</span> 为常数, 矛盾.</p>
+</div>
+<p>也可以利用开映射定理证明:</p>
+<div class="note note-light">
+<p><u>Pf</u> 我们已经证明了当 <span class="math inline">\(r=|z|\to\infty\)</span>, 有 <span class="math inline">\(|P(z)|\to\infty\)</span>. 这实际上蕴涵了 <span class="math inline">\(P(\C)\)</span> 是 <span class="math inline">\(\C\)</span> 的闭集. (在第一可数空间中, <span class="math inline">\(A\)</span> 是闭子集等价于 <span class="math inline">\(A\)</span> 包含其中任意收敛序列的极限.) 如果 <span class="math inline">\(w_n=P(z_n)\)</span>, <span class="math inline">\(w_n\to w\in\C\)</span>, 则 <span class="math inline">\(z_n\)</span> 有界 (否则根据 <span class="math inline">\(|P(z)|\to\infty\)</span>, <span class="math inline">\(|z|\to\infty\)</span> 得到矛盾). 设 <span class="math inline">\(\{z_n\}\)</span> 的子序列 <span class="math inline">\(\{z_{n_k}\}\)</span> 收敛到 <span class="math inline">\(z\in\C\)</span>, 则 <span class="math display">\[
+P(z) = \lim P(z_{n_k}) = \lim w_{n_k} = w,
+\]</span> 有 <span class="math inline">\(w\in P(\C)\)</span>.</p>
+<p>开映射定理表明 <span class="math inline">\(P(\C)\)</span> 既开又闭,
+故 <span class="math inline">\(P(\C)=\C\)</span>.</p>
+</div>
+<h3 id="roots-of-polynomials">4.6  *Roots of polynomials</h3>
+<h2 id="the-theorems-of-weierstrass-and-montel">5  The theorems of
+Weierstrass and Montel</h2>
+<p>本节我们介绍复分析中两个比较基本的定理. Weierstrass 定理表明,
+全纯函数列的一致极限仍为全纯函数 (注意与光滑函数不同). Montel 定理表明,
+一致有界的函数列有一致收敛子列.</p>
+<div class="note note-success">
+<p><u>Theorem 5.1</u> (Weierstrass) 设开集 <span class="math inline">\(\Omega\subset\C\)</span> 上的全纯函数序列 <span class="math inline">\(\{f_n\}_{n\geq1}\)</span>. 如果 <span class="math inline">\(\{f_n\}\)</span> 在 <span class="math inline">\(\Omega\)</span> 内闭一致收敛到 <span class="math inline">\(f\)</span>, 则 <span class="math inline">\(f\in{\cal H}(\Omega)\)</span>. 此外, 导数序列
+<span class="math inline">\(\{f_n'\}\)</span> 在 <span class="math inline">\(\Omega\)</span> 内闭一致收敛到 <span class="math inline">\(f'\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Theorem 5.2</u> (Montel) 设开集 <span class="math inline">\(\Omega\subset\C\)</span>, 全纯函数族 <span class="math inline">\({\cal F}\subset{\cal H}(\Omega)\)</span> 满足:</p>
+<ul>
+<li>(内闭一致有界) 对任意紧子集 <span class="math inline">\(K\subset\Omega\)</span>, 存在 <span class="math inline">\(M_K&gt;0\)</span>, 使得对任意 <span class="math inline">\(f\in{\cal F}\)</span> 有 <span class="math display">\[
+\abs{f(z)} \leq M_K,\quad \forall z\in K.\abs{f(z)} \leq M_K,\quad
+\forall z\in K.
+\]</span></li>
+</ul>
+<p>则任给 <span class="math inline">\({\cal F}\)</span> 中的函数列 <span class="math inline">\(\{f_p\}_{p\geq1}\)</span>, 存在子列 <span class="math inline">\(\{f_{p_k}\}_{k\geq1}\)</span> 在 <span class="math inline">\(\Omega\)</span> 内闭一致收敛.</p>
+</div>
+<p>Montel 定理的一个推论如下 (其实和 Montel 定理等价).</p>
+<div class="note note-success">
+<p><u>Theorem 5.3</u> (Vitali) 设连通开集 <span class="math inline">\(\Omega\subset\C\)</span>, 子集 <span class="math inline">\(A\subset\Omega\)</span> 含有 <span class="math inline">\(\Omega\)</span> 的极限点. 如果 <span class="math inline">\(\Omega\)</span> 上的全纯函数序列 <span class="math inline">\(\{f_n\}_{n\geq1}\)</span> 在 <span class="math inline">\(\Omega\)</span> 内闭一致有界, 并且在 <span class="math inline">\(A\)</span> 上逐点收敛, 则 <span class="math inline">\(\{f_n\}\)</span> 在 <span class="math inline">\(\Omega\)</span> 内闭一致收敛.</p>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%A4%8D%E5%88%86%E6%9E%90/" class="print-no-link">#复分析</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CAIOV | 2 全纯函数初步理论</div>
+      <div>https://disembo.github.io/Note/caiov/2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/CG/undst-2-3d-deep-learning/" title="三维深度学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">三维深度学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/Course/info-theory/1/" title="信息论 | 1 信源编码">
+                        <span class="hidden-mobile">信息论 | 1 信源编码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

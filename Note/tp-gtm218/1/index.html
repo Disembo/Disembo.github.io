@@ -1,0 +1,1079 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="光滑流形的定义与例子.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM218 | 1 光滑流形">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm218/1/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="光滑流形的定义与例子.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-22T05:30:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.709Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="拓扑">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM218 | 1 光滑流形 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM218 | 1 光滑流形"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-22 13:30" pubdate>
+          2024年8月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM218 | 1 光滑流形</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM218 (<em>Introduction to Smooth Manifolds</em>) Chapter 1
+的笔记.</p>
+</div>
+<p>我们已经学习了拓扑流形的相关理论. 对于拓扑流形,
+人们关注的是其在同胚映射 (甚至同伦等价) 下不变的性质, 即
+"拓扑不变性质".</p>
+<p>为了在流形上运用强大的分析工具, 我们首先把 "光滑性" 的概念搬到流形上,
+于是有了 "光滑流形" 和 "光滑映射" 的概念. 为了在流形上做微积分,
+我们又发展出 "切空间" 与 "切映射" (分别是空间与映射的线性近似) 的概念...
+利用分析学工具研究拓扑的学科叫做<strong>微分拓扑</strong>, 即研究流形在
+"微分同胚" (光滑范畴中的同构) 甚至 "光滑形变" 下不变的性质.
+和<strong>一般拓扑</strong>或者<strong>代数拓扑</strong>一样,
+它们研究的都是空间的整体性质.</p>
+<p>流形上还可以定义各种 "附加结构". 例如, 流形上的黎曼度量使得流形有了
+"距离", "体积" 和 "曲率" 等概念; 拥有伪黎曼度量的流形则是广义相对论中的
+"时空"; 拥有辛结构的流形则在经典力学中有大用处.
+流形上不同的附加结构导向了不同的数学分支, 粗略地说,
+它们统称<strong>微分几何学</strong>.</p>
+<h2 id="smooth-manifolds">1  Smooth Manifolds</h2>
+<h3 id="a-brief-review-of-topological-manifolds">1.1  A Brief review of
+topological manifolds</h3>
+<p>回顾拓扑流形的定义: 一个 <strong><span class="math inline">\(n\)</span> 维拓扑流形</strong>指的是 Hausdorff,
+第二可数, 局部 <span class="math inline">\(\R^n\)</span> 的拓扑空间
+<span class="math inline">\(M\)</span>. 根据维数不变性, <span class="math inline">\(M\)</span> 的维数 <span class="math inline">\(n\)</span> 是良定义的.</p>
+<p>拓扑流形 <span class="math inline">\(M\)</span> 的一个<strong>坐标卡
+(coordinate chart)</strong> 指的是 <span class="math inline">\((U,\varphi)\)</span>, 其中 <span class="math inline">\(U\subset M\)</span> 是开子集, <span class="math inline">\(\varphi:U\overset\sim\to\hat{U}\)</span> 是同胚,
+<span class="math inline">\(\hat{U}\)</span> 是 <span class="math inline">\(\R^n\)</span> 的开子集.</p>
+<ul>
+<li><span class="math inline">\(U\)</span> 称为<strong>坐标域
+(coordinate domain)</strong> 或点 <span class="math inline">\(p\in
+U\)</span> 的<strong>坐标邻域 (coordinate neighborhood)</strong>.</li>
+<li>若 <span class="math inline">\(\varphi(U)\)</span> 是 <span class="math inline">\(\R^n\)</span> 中的开球, 则称 <span class="math inline">\(U\)</span> 是<strong>坐标球</strong>.</li>
+<li>若 <span class="math inline">\(\varphi(U)\)</span> 是 <span class="math inline">\(\R^n\)</span> 中的开立方体, 则称 <span class="math inline">\(U\)</span> 是<strong>坐标立方体</strong>.</li>
+</ul>
+<p>根据拓扑流形的定义, 每一点 <span class="math inline">\(p\in
+M\)</span> 都包含于某个 <span class="math inline">\((U,\varphi)\)</span>
+的坐标域. 如果 <span class="math inline">\(\varphi(p)=0\)</span>, 则称
+<span class="math inline">\((U,\varphi)\)</span> 是<strong>以 <span class="math inline">\(p\)</span> 为中心的坐标卡</strong>. 通过平移,
+每一点 <span class="math inline">\(p\in M\)</span>
+都存在以之为中心的坐标卡.</p>
+<ul>
+<li><span class="math inline">\(\varphi\)</span> 称为 (局部)
+<strong>坐标映射 (coordinate map)</strong>. 记 <span class="math inline">\((r^1,\dots,r^n)\)</span> 是 <span class="math inline">\(\R^n\)</span> 上的标准坐标函数, 则 <span class="math display">\[
+x^i := r^i\circ\varphi : U\to\R
+\]</span> 称为 <span class="math inline">\(U\)</span>
+上的<strong>坐标函数 (coordinate functions)</strong>.</li>
+</ul>
+<p>拓扑流形 <span class="math inline">\(M\)</span> 的一个<strong>图册
+(chart)</strong> <span class="math inline">\({\cal A}\)</span>
+指的是坐标开覆盖 <span class="math inline">\(\{(U_\alpha,\varphi_\alpha)\}_{\alpha\in
+A}\)</span>.</p>
+<p>拓扑流形的拓扑性质见拓扑流形笔记. 这里简要整理一些结论: 设 <span class="math inline">\(M\)</span> 是拓扑流形,</p>
+<ol type="1">
+<li><span class="math inline">\(M\)</span> 局部道路连通.</li>
+<li><span class="math inline">\(M\)</span> 连通当且仅当 <span class="math inline">\(M\)</span> 道路连通.</li>
+<li><span class="math inline">\(M\)</span> 有可数个分量, 每个分量都是
+<span class="math inline">\(n\)</span> 维拓扑流形.</li>
+<li><span class="math inline">\(M\)</span> 具有可数正则坐标球基.</li>
+<li><span class="math inline">\(M\)</span> 局部紧, 仿紧.</li>
+<li><span class="math inline">\(M\)</span> 的基本群是可数集.</li>
+</ol>
+<p>一个 <strong><span class="math inline">\(n\)</span>
+维带边拓扑流形</strong>指的是 Hausdorff, 第二可数, 局部 <span class="math inline">\(\H^n\)</span> 的拓扑空间.</p>
+<ul>
+<li><span class="math inline">\(\H^n=\{x\in\R^n\mid x^n\geq0\}\)</span>
+是闭上半平面, 定义 <span class="math inline">\(\H^n\)</span> 的流形边界
+<span class="math inline">\(\partial\H^n=\{x\in\R^n\mid
+x^n=0\}\)</span>, 流形内部 <span class="math inline">\({\rm
+Int}\H^n=\{x\in\R^n\mid x^n&gt;0\}\)</span>. 特别地, 当 <span class="math inline">\(n=0\)</span>, <span class="math inline">\(\H^0=\R^0=\{0\}\)</span>, <span class="math inline">\(\partial\H^0=\emptyset\)</span>.</li>
+<li>若坐标系 <span class="math inline">\((\varphi,U)\)</span> 满足 <span class="math inline">\(\varphi(U)\subset{\rm Int}\H^n\)</span>,
+则称之为<strong>内部坐标系</strong>, 此时 <span class="math inline">\(\varphi\)</span> 也可视作到 <span class="math inline">\(\R^n\)</span> 的映射, <span class="math inline">\(U\)</span> 中的点称为<strong>内部点</strong>. 若
+<span class="math inline">\(\varphi(U)\cap\partial\H^n\neq\emptyset\)</span>,
+则称之为<strong>边界坐标系</strong>, <span class="math inline">\(\varphi^{-1}(\partial\H^n)\)</span>
+中的点称为<strong>边界点</strong>.</li>
+</ul>
+<p>根据边界不变性, 一个点不能既是内部点, 也是边界点. 因此,
+我们定义<strong>流形边界</strong> <span class="math inline">\(\partial{M}\)</span> 为边界点的集合.
+<strong>流形内部</strong>为内部点的集合.</p>
+<ul>
+<li>区分 "拓扑边界" 与 "流形边界": <span class="math inline">\(\H^n\)</span> 作为拓扑空间来说, 它的拓扑边界为空;
+然而其流形边界为 <span class="math inline">\(\R^{n-1}\)</span>.</li>
+<li>一般来说, 带边流形<em>不是</em>流形. 为了区分,
+后者有时也称为<strong>无边流形</strong>.</li>
+<li>带边流形上<strong>坐标球</strong>的定义同拓扑流形;
+<strong>坐标半球</strong>指的是满足 <span class="math inline">\(\varphi(U)=B_r(0)\cap\H^n\)</span> 的坐标域 <span class="math inline">\(U\)</span>.</li>
+</ul>
+<p>带边流形的一些基本结论: 设 <span class="math inline">\(M\)</span> 是
+<span class="math inline">\(n\)</span> 维带边流形</p>
+<ol type="1">
+<li><span class="math inline">\({\rm Int}M\)</span> 是 <span class="math inline">\(M\)</span> 的开子集, 是 <span class="math inline">\(n\)</span> 维无边流形.</li>
+<li><span class="math inline">\(\partial{M}\)</span> 是 <span class="math inline">\(M\)</span> 的闭子集, 是 <span class="math inline">\((n-1)\)</span> 维无边流形.</li>
+<li><span class="math inline">\(M\)</span> 是无边流形当且仅当 <span class="math inline">\(\partial{M}=\emptyset\)</span>. 特别地, <span class="math inline">\(0\)</span> 维带边流形都是无边流形.</li>
+</ol>
+<p>带边流形的拓扑性质几乎同无边流形, 此处不再赘述.</p>
+<p>下面的两小节, 我们给出 (带边) 光滑流形的定义, 出发点是尝试在 <span class="math inline">\(M\)</span> 上定义函数 "光滑性" 的概念.</p>
+<h3 id="smooth-manifolds-1">1.2  Smooth manifolds</h3>
+<p>设 <span class="math inline">\(M\)</span> 是拓扑流形, 连续函数 <span class="math inline">\(f:M\to\R\)</span>. 我们给出 <span class="math inline">\(f\)</span> 的 "光滑性" 的定义? 一个自然的想法是取
+<span class="math inline">\(M\)</span> 的一个图册 <span class="math inline">\({\cal A}=\{(U_\alpha,\varphi_\alpha)\}_{\alpha\in
+A}\)</span>, 这样 <span class="math inline">\(f:M\to\R\)</span>
+局部地体现为 <span class="math inline">\(f\circ\varphi_\alpha^{-1}\)</span>, 这是一个 <span class="math inline">\(\R^n\supset\hat{U}\to\R\)</span> 的函数.
+由此我们可以借 <span class="math inline">\(f\circ\varphi_\alpha^{-1}\)</span> 的光滑性来定义
+<span class="math inline">\(f\)</span> 的光滑性.</p>
+<p>这里有两个问题:</p>
+<ol type="1">
+<li><span class="math inline">\(f\)</span> 的 "光滑性" 是否依赖坐标卡
+<span class="math inline">\((U_\alpha,\varphi_\alpha)\)</span> 的选择?
+换言之, 若 <span class="math inline">\((U,\varphi)\)</span> 和 <span class="math inline">\((V,\psi)\)</span> 是 <span class="math inline">\({\cal A}\)</span> 中相交的坐标卡, 则 <span class="math inline">\(f\circ\varphi^{-1}\)</span> 与 <span class="math inline">\(f\circ\psi^{-1}\)</span>
+是否具有相同的光滑性?</li>
+<li><span class="math inline">\(f\)</span> 的 "光滑性" 是否依赖图册
+<span class="math inline">\({\cal A}\)</span> 的选择?</li>
+</ol>
+<p>对于一般的 <span class="math inline">\(\cal A\)</span>, 问题 1
+显然不能保证. 为此, 我们给出相容坐标卡的定义.</p>
+<p>设坐标卡 <span class="math inline">\((U,\varphi)\)</span> 和 <span class="math inline">\((V,\psi)\)</span> 满足 <span class="math inline">\(U\cap V\neq\emptyset\)</span>, 映射 <span class="math inline">\(\psi\circ\varphi^{-1}:\varphi(U\cap
+V)\to\psi(U\cap V)\)</span> 称为从 <span class="math inline">\(\varphi\)</span> 到 <span class="math inline">\(\psi\)</span> 的<strong>转移映射 (transition
+map)</strong>. 作为同胚的复合, 转移映射是同胚. 两个坐标卡 <span class="math inline">\((U,\varphi)\)</span> 和 <span class="math inline">\((V,\psi)\)</span> 称为 <strong><span class="math inline">\(C^k\)</span> 相容的 (<span class="math inline">\(C^r\)</span> compatible)</strong>, 如果 <span class="math inline">\(U\cap V=\emptyset\)</span>, 或者转移映射 <span class="math inline">\(\psi\circ\varphi^{-1}\)</span> 是 <span class="math inline">\(C^k\)</span> 映射 (<span class="math inline">\(k\)</span> 阶连续可微).</p>
+<p>对于图册 <span class="math inline">\({\cal A}\)</span>,
+若其中任意两个坐标卡都是 <span class="math inline">\(C^k\)</span>
+相容的, 则称 <span class="math inline">\({\cal A}\)</span> 是 <span class="math inline">\(C^k\)</span> 坐标卡. 一个 <span class="math inline">\(C^k\)</span> 图册 <span class="math inline">\(\cal
+A\)</span> 称为<strong>极大的 (maximal)</strong>, 如果任意与 <span class="math inline">\(\cal A\)</span> 相容 (即与 <span class="math inline">\(\cal A\)</span> 中所有坐标卡相容) 的坐标卡都属于
+<span class="math inline">\(\cal A\)</span>.</p>
+<ul>
+<li>若 <span class="math inline">\(\cal A\)</span> 是 <span class="math inline">\(C^k\)</span> 图册, 则转移映射 <span class="math inline">\(\psi\circ\varphi^{-1}\)</span> 是 <span class="math inline">\(C^k\)</span> 的, 其逆映射 <span class="math inline">\(\varphi\circ\psi^{-1}\)</span> (也是个转移映射)
+也是 <span class="math inline">\(C^k\)</span> 的.</li>
+</ul>
+<p>拓扑流形 <span class="math inline">\(M\)</span> 上的一个极大 <span class="math inline">\(C^k\)</span> 图册 <span class="math inline">\(\cal
+A\)</span> 称为一个 <strong><span class="math inline">\(C^k\)</span>
+结构 (<span class="math inline">\(C^k\)</span> structure)</strong>. 拥有
+<span class="math inline">\(C^k\)</span> 微分结构的拓扑流形 <span class="math inline">\((M,{\cal A})\)</span> 称为 <strong><span class="math inline">\(C^k\)</span> 流形 (<span class="math inline">\(C^k\)</span> manifold)</strong>.</p>
+<ul>
+<li><span class="math inline">\(C^0\)</span> 流形就是拓扑流形.</li>
+<li><span class="math inline">\(C^\infty\)</span>
+流形称为<strong>光滑流形 (smooth manifold)</strong>, <span class="math inline">\(C^\infty\)</span>
+图册称为<strong>光滑图册</strong>.</li>
+<li><span class="math inline">\(C^\omega\)</span>
+流形称为<strong>实解析流形</strong>. 若 <span class="math inline">\(n=2m\)</span>, 认同 <span class="math inline">\(\R^n\cong\C^m\)</span>, 若转移映射都是复解析的,
+则称为<strong>复流形</strong>.</li>
+</ul>
+<p>本书研究的都是光滑流形, 通常将其简称为 "流形". 根据定义,
+为了确定一个流形, 我们需要指定一个<em>极大</em>相容图册, 这显然很不方便.
+幸运的是, 下面的定理表明, 我们只需要给出一个相容图册 (不必极大)
+就够了.</p>
+<div class="note note-success">
+<p><u>Proposition 1.1</u> 设拓扑流形 <span class="math inline">\(M\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(M\)</span> 的任一光滑图册 <span class="math inline">\(\cal A\)</span> 包含于唯一一个极大图册中, 称为
+<strong><span class="math inline">\(\cal A\)</span>
+确定的光滑结构</strong>.</li>
+<li><span class="math inline">\(M\)</span>
+的两个光滑图册确定同一个光滑结构, 当且仅当它们的并是光滑图册.</li>
+</ol>
+</div>
+<ul>
+<li>对于能够由单一坐标卡 <span class="math inline">\(\{(U,\varphi)\}\)</span> 覆盖的拓扑流形 <span class="math inline">\(M\)</span>, 相容性是平凡的, <span class="math inline">\(M\)</span> 自动是 <span class="math inline">\(C^k\)</span> 流形.</li>
+</ul>
+<p>现在可以给出函数 <span class="math inline">\(f\)</span>
+光滑性的定义了. 若 <span class="math inline">\((M,{\cal A})\)</span>
+是光滑流形, 我们称 <span class="math inline">\(f:M\to\R\)</span>
+<strong>光滑</strong>, 若对任意坐标卡 <span class="math inline">\((U,\varphi)\)</span>, 都有 <span class="math inline">\(f\circ\varphi^{-1}\)</span> 光滑. <span class="math inline">\(\cal A\)</span> 的 <span class="math inline">\(C^\infty\)</span> 相容性保证光滑性是良定义的.
+之后我们还会定义光滑流形间映射 <span class="math inline">\(f:M\to
+N\)</span> 的光滑性.</p>
+<p>对于问题 2, 实际上, 拓扑流形 <span class="math inline">\(M\)</span>
+上可以有许多不相容的光滑结构, 比如:</p>
+<ul>
+<li><span class="math inline">\({\cal A}_1=\{(\R,{\rm id}_\R)\}\)</span>
+和 <span class="math inline">\({\cal A}_2=\{(\R,\psi)\}\)</span>, 其中
+<span class="math inline">\(\psi:\R\to\R\)</span>, <span class="math inline">\(\psi(x)=x^3\)</span>. 因为 <span class="math inline">\({\rm id}_\R\circ\psi^{-1}\)</span> 是三次根号
+<span class="math inline">\(x\mapsto x^{1/3}\)</span>, 在原点处不光滑,
+所以 <span class="math inline">\({\cal A}_1,{\cal A}_2\)</span>
+给出了不同的光滑结构. 恒等映射 <span class="math inline">\({\rm
+id}_\R\)</span> 在 <span class="math inline">\((\R,{\cal A}_1)\)</span>
+上是光滑函数, 在 <span class="math inline">\((\R,{\cal A}_2)\)</span>
+上却不是.</li>
+</ul>
+<p>拓扑流形上有正则坐标球的概念, 光滑流形上也有相应的光滑版本. 子集
+<span class="math inline">\(B\subset M\)</span>
+称为<strong>正则坐标球</strong>, 若存在光滑坐标球 <span class="math inline">\(B'\supset\overline{B}\)</span> 和光滑坐标映射
+<span class="math inline">\(\varphi:B'\to\R^n\)</span>, 使得 <span class="math display">\[
+\varphi(B)=B_{r}(0),\quad \varphi(\overline{B})=\overline{B_r(0)},\quad
+\varphi(B')=B_{r'}(0),
+\]</span> 其中 <span class="math inline">\(0&lt;r&lt;r'\)</span>.
+此时 <span class="math inline">\(\overline{B}\cong\overline{B_r(0)}\)</span> 紧,
+于是 <span class="math inline">\(B\)</span> 预紧.</p>
+<div class="note note-success">
+<p><u>Proposition 1.2</u> 光滑流形存在正则坐标球组成的可数拓扑基.</p>
+</div>
+<h3 id="smooth-manifolds-with-boundary">1.3  Smooth manifolds with
+boundary</h3>
+<p>光滑结构的概念可以自然地推广到带边流形上. 设带边拓扑流形 <span class="math inline">\(M\)</span> 上有极大光滑图册 (转移函数是光滑的),
+则称之为<strong>带边光滑流形 (smooth manifold with
+boundary)</strong>.</p>
+<ul>
+<li><p>设坐标卡 <span class="math inline">\((U,\varphi)\)</span>, <span class="math inline">\((V,\psi)\)</span>, 如果 <span class="math inline">\(\psi(U\cap
+V)\cap\partial\H^n\neq\emptyset\)</span> , 则转移映射 <span class="math inline">\(\varphi\circ\psi^{-1}\)</span> 的定义域不是 <span class="math inline">\(\R^n\)</span> 中的开集. 我们称映射 <span class="math inline">\(F:A\to\R^k\)</span> (<span class="math inline">\(A\)</span> 是 <span class="math inline">\(\R^n\)</span> 的任意子集)
+是<strong>光滑的</strong>, 如果对 <span class="math inline">\(A\)</span>
+中任意一点 <span class="math inline">\(a\)</span>, <span class="math inline">\(F\)</span> 都能延拓到 <span class="math inline">\(a\)</span> 的某个邻域上的光滑映射.</p>
+<p>例如, 对于 <span class="math inline">\(f:\mathbb{B}^2\cap\H^2\to\R\)</span>, <span class="math inline">\(f(x,y)=\sqrt{1-x^2-y^2}\)</span>,
+它能够光滑地延拓到整个 <span class="math inline">\(\mathbb{B}^2\)</span>
+上, 因此是光滑函数. 但是 <span class="math inline">\(g:\H^2\to\R\)</span>, <span class="math inline">\(g(x,y)=\sqrt{y}\)</span> 不是光滑函数, 因为 <span class="math inline">\(g\)</span> 在 <span class="math inline">\(\partial\H^2\)</span>
+中的任意一点不存在光滑延拓.</p></li>
+</ul>
+<p>带边光滑流形上的<strong>正则坐标半球</strong>指的是光滑坐标半球 <span class="math inline">\(B\subset M\)</span>, 满足存在光滑坐标半球 <span class="math inline">\(B'\supset\overline{B}\)</span> 和光滑坐标映射
+<span class="math inline">\(\varphi:B'\to\H^n\)</span>, 使得 <span class="math display">\[
+\varphi(B)=B_{r}(0)\cap\H^n,\quad
+\varphi(\overline{B})=\overline{B_r(0)}\cap\H^n,\quad
+\varphi(B')=B_{r'}(0)\cap\H^n,
+\]</span> 其中 <span class="math inline">\(0&lt;r&lt;r'\)</span>.</p>
+<div class="note note-success">
+<p><u>Proposition 1.3</u> 带边光滑流形存在正则坐标球,
+正则坐标半球组成的可数拓扑基.</p>
+</div>
+<h3 id="examples">1.4  Examples</h3>
+<p>光滑流形的简单例子:</p>
+<ul>
+<li>(<span class="math inline">\(0\)</span> 维流形) <span class="math inline">\(0\)</span> 维拓扑流形是可数的离散空间, 点 <span class="math inline">\(p\)</span> 的欧氏邻域就是 <span class="math inline">\(\{p\}\cong\R^0\)</span>. 这些坐标邻域互不相交,
+自然构成了相容图册.</li>
+<li>(欧氏空间) 单个坐标卡 <span class="math inline">\((\R^n,{\rm
+id}_{\R^n})\)</span> 确定的光滑结构称为 <span class="math inline">\(\R^n\)</span>
+的<strong>标准光滑结构</strong>.</li>
+<li>(另一种光滑结构) 在前一小节我们考虑了 <span class="math inline">\(\R\)</span> 上两种不同的光滑结构: <span class="math inline">\((\R,{\rm id}_{\R})\)</span> 和 <span class="math inline">\((\R,\psi)\)</span>, <span class="math inline">\(\psi(x)=x^3\)</span>. 利用这种思路,
+可以为任意光滑流形构造不同的光滑结构.</li>
+<li>(有限维线性空间) <span class="math inline">\(n\)</span> 维线性空间
+<span class="math inline">\(V\)</span> 上的任何范数诱导出相同拓扑.
+在这种拓扑下, <span class="math inline">\(V\)</span> 构成 <span class="math inline">\(n\)</span> 维光滑流形. 任取基底 <span class="math inline">\(\{E_1,\dots,E_n\}\)</span>, 定义同胚 <span class="math inline">\(E:\R^n\to V\)</span>, <span class="math inline">\(E(x)=x^iE_i\)</span>, 于是 <span class="math inline">\((V,E^{-1})\)</span> 是一个坐标卡.
+对于任意两个基底对应的坐标卡 <span class="math inline">\((V,E)\)</span>,
+<span class="math inline">\((W,F)\)</span>, 其转移映射 <span class="math inline">\(E\circ F^{-1}\)</span> 是一个可逆线性映射,
+因此两个坐标卡 <span class="math inline">\(C^\infty\)</span> 相容.
+这些坐标卡确定的光滑结构称为 <span class="math inline">\(V\)</span>
+上的<strong>标准光滑结构</strong>.</li>
+<li>(矩阵空间) <span class="math inline">\(m\times n\)</span>
+的实矩阵组成的集合 <span class="math inline">\(M_{m,n}(\R)\)</span>
+认同于 <span class="math inline">\(\R^{mn}\)</span>, 而 <span class="math inline">\(m\times n\)</span> 复矩阵组成的集合 <span class="math inline">\(M_{m,n}(\C)\)</span> 认同于 <span class="math inline">\(\R^{2mn}\)</span>, 因此它们都是光滑流形.</li>
+</ul>
+<p>光滑流形的一些构造:</p>
+<ul>
+<li><p>(开子流形) 光滑 (带边) 流形 <span class="math inline">\((M,{\cal
+A})\)</span> 的开子集 <span class="math inline">\(U\)</span> 自然的继承
+<span class="math inline">\(M\)</span> 的光滑结构: <span class="math display">\[
+{\cal A}_U:=\{(V,\varphi)\in{\cal A}\mid V\subset U\}
+\]</span> 根据 <span class="math inline">\({\cal A}\)</span> 的极大性,
+所有形如 <span class="math inline">\((W\cap U,\varphi|_V)\)</span>
+的坐标卡都在 <span class="math inline">\({\cal A}_U\)</span> 中 (其中
+<span class="math inline">\((W,\varphi)\)</span> 是 <span class="math inline">\(M\)</span> 的坐标卡), 因此 <span class="math inline">\({\cal A}_U\)</span> 是一个极大图册.
+在这个光滑结构下, <span class="math inline">\(U\)</span> 称为 <span class="math inline">\(M\)</span> 的 <strong>(带边)
+开子流形</strong>.</p></li>
+<li><p>(积流形) 设 <span class="math inline">\(M_1,\dots,M_k\)</span>
+分别是 <span class="math inline">\(n_1,\dots,n_k\)</span> 维光滑流形, 则
+<span class="math inline">\(M_1\times\dots\times M_k\)</span> 是 <span class="math inline">\(n_1+\dots+n_k\)</span> 维拓扑流形, 其图册形如
+<span class="math inline">\((U_1\times\dots\times
+U_k,\varphi_1\times\dots\times\varphi_k)\)</span>,
+容易验证它们是相容图册.
+其确定的光滑结构称为<strong>积光滑结构</strong>.</p></li>
+<li><p>(带边流形的积) 带边流形的积一般不是带边流形, 因为 <span class="math inline">\(\H^n\times\H^m\)</span> 不是带边流形 (它是一个带
+"角" 的流形). 但是, 若 <span class="math inline">\(M_i\)</span>
+是无边流形, <span class="math inline">\(N\)</span> 是带边流形, 则 <span class="math inline">\(M_1\times\dots\times M_k\times N\)</span>
+是一个带边流形, 其流形边界为 <span class="math inline">\(M_1\times\dots\times
+M_k\times\partial{N}\)</span>.</p></li>
+</ul>
+<p>光滑流形的更多例子:</p>
+<ul>
+<li><p>(一般线性群) <strong>一般线性群 (general linear group)</strong>
+<span class="math inline">\({\rm GL}(n,\R)\)</span> 为 <span class="math inline">\(n\)</span> 阶可逆实方阵乘法群.
+作为行列式函数的原像集 <span class="math inline">\(\det^{-1}((-\infty,0)\cup(0,+\infty))\)</span>,
+<span class="math inline">\({\rm GL}(n,\R)\)</span> 是 <span class="math inline">\(M_{n}(\R)\)</span> 的开子流形.</p></li>
+<li><p>(满秩矩阵空间) 作为前例的推广, 考虑 <span class="math inline">\(M_{m,n}(\R)\)</span> 中满秩矩阵组成的集合. 对于
+<span class="math inline">\(m&gt;n\)</span>, 记 <span class="math inline">\(M_{m,n}^m(\R)\)</span> 是秩为 <span class="math inline">\(m\)</span> 的满秩矩阵组成的集合. 若 <span class="math inline">\(A\in M^m_{m,n}(\R)\)</span>, 则 <span class="math inline">\(A\)</span> 有一个可逆的 <span class="math inline">\(m\times m\)</span> 子矩阵. 根据 <span class="math inline">\(\det\)</span> 的连续性, 存在 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(M_{m,n}(\R)\)</span> 中的邻域 <span class="math inline">\(U\)</span>, 使得对 <span class="math inline">\(U\)</span> 中的矩阵 <span class="math inline">\(B\)</span>, 其相同位置上的子矩阵是可逆的. 因此
+<span class="math inline">\(A\in U\subset M^m_{m,n}(\R)\)</span>, 说明
+<span class="math inline">\(M^m_{m,n}(\R)\)</span> 是开集, 进而是 <span class="math inline">\(M_{m,n}(\R)\)</span> 的开子流形. 类似地, 对于
+<span class="math inline">\(m&lt;n\)</span>, <span class="math inline">\(M^n_{m,n}(\R)\)</span> 也是开子流形.</p></li>
+<li><p>(光滑映射的图像) 设开集 <span class="math inline">\(U\subset\R^n\)</span>, 光滑函数 <span class="math inline">\(f:U\to\R^k\)</span> 的<strong>图像
+(graph)</strong> 定义为 <span class="math display">\[
+\Gamma(f)=\{(x,y)\in U\times\R^k\mid y=f(x)\}.
+\]</span> 在 <span class="math inline">\(\R^{n+k}\)</span>
+的子空间拓扑下, <span class="math inline">\(\Gamma(f)\)</span> 是一个
+<span class="math inline">\(n\)</span> 维拓扑流形. 它可以被单一坐标卡
+<span class="math inline">\((\Gamma(f),\pi_1)\)</span> 覆盖, 这使得
+<span class="math inline">\(\Gamma(f)\)</span>
+成为一个光滑流形.</p></li>
+<li><p>(光滑函数的水平集) 设开集 <span class="math inline">\(U\subset\R^n\)</span>, 光滑函数 <span class="math inline">\(\Phi:U\to\R\)</span>. 对于 <span class="math inline">\(c\in\R\)</span>, 原像集 <span class="math inline">\(\Phi^{-1}(c)\)</span> 称作 <span class="math inline">\(f\)</span> 的<strong>水平集 (level set)</strong>.
+记 <span class="math inline">\(M=\Phi^{-1}(c)\)</span>, 如果对于任意
+<span class="math inline">\(a\in M\)</span>, 全微分 <span class="math inline">\(Df(a)\)</span> (作为 <span class="math inline">\(n\times1\)</span> 矩阵) 不为零. 因此, 任给 <span class="math inline">\(a\in M\)</span>, 某偏导数 <span class="math inline">\(\partial\Phi/\partial x^i(a)\neq0\)</span>.
+根据隐函数定理 (见 7.5 节), 存在 <span class="math inline">\(a\)</span>
+的邻域 <span class="math inline">\(U_0\)</span>, 使得 <span class="math inline">\(U_0\cap M\)</span> 是某个光滑 <span class="math inline">\(f\)</span> 函数的图像: <span class="math display">\[
+x^i = f(x^1,\dots,\widehat{x^i},\dots,x^n).
+\]</span></p>
+<p>记投影映射 <span class="math inline">\(\varphi:\Gamma(f)\to\R^{n-1}\)</span>. 如果 <span class="math inline">\(\psi\)</span> 是另一个这样的投影映射, 则转移函数
+<span class="math display">\[
+(\varphi\circ\psi^{-1})(u^1,\dots,u^{n-1})
+=(u^1,\dots,\widehat{u^i},\dots,f(u^1,\dots,u^{n-1}),\dots,u^{n-1})
+\]</span> 是光滑的. 因此, 坐标映射族 <span class="math inline">\(\{\varphi\}\)</span> 使得 <span class="math inline">\(M\)</span> 成为 <span class="math inline">\((n-1)\)</span> 维光滑流形.</p></li>
+<li><p>(<strong>球面</strong>) <span class="math inline">\(\mathbb{S}^n\)</span> 是光滑函数 <span class="math inline">\(\Phi(x^0,\dots,x^n)=(x^0)^2+\dots+(x^n)^2-1\)</span>
+的水平集 <span class="math inline">\(\Phi^{-1}(0)\)</span>, 并且 <span class="math inline">\(D\Phi\)</span> 在水平集上恒不为零, 因此 <span class="math inline">\(\mathbb{S}^n\)</span> 是一个光滑 <span class="math inline">\(n\)</span> 维流形. 特别地, 我们考虑光滑图册 <span class="math inline">\(\{(U_i^\pm,\varphi_i^\pm)\}\)</span>, 其中 <span class="math display">\[
+\Align{
+\varphi_i^+:U_i^+ &amp;\to \R^n, \\
+(x^0,\dots,x^n) &amp;\mapsto (x^0,\dots,\widehat{x^i},\dots,x^n),
+}
+\]</span> 坐标域 <span class="math inline">\(U_i^+=\{(x^0,\dots,x^n)\in\mathbb{S}^n\mid
+x^i&gt;0\}\)</span>. (对于 <span class="math inline">\((U_i^-,\varphi_i^-)\)</span> 同理.) 转移函数
+(不妨设 <span class="math inline">\(i&lt;j\)</span>) <span class="math display">\[
+\varphi_i^\pm\circ(\varphi_j^\pm)^{-1}(u^1,\dots,u^n)
+= \pqty{u^1,\dots,\widehat{u^i},\dots,
+  \pm\sqrt{1-\|u\|^2},\dots,u^n}
+\]</span> 是光滑的. <span class="math inline">\(\{(U_i^\pm,\varphi_i^\pm)\}\)</span>
+确定的光滑结构称为 <span class="math inline">\(\mathbb{S}^n\)</span>
+的<strong>标准光滑结构</strong>.</p>
+<ul>
+<li><strong>球极投影</strong>也可以给出相同的光滑结构.</li>
+</ul></li>
+<li><p>(<strong>实射影空间</strong>) 实射影空间 <span class="math inline">\(\mathbb{RP}^n\)</span> 定义为 <span class="math inline">\(\R^{n+1}\setminus\{0\}\)</span> 的商空间,
+等价关系为 <span class="math inline">\(x\sim\lambda x\)</span> (<span class="math inline">\(\lambda\neq0\)</span>). <span class="math inline">\(\mathbb{RP}^n\)</span> 是一个 <span class="math inline">\(n\)</span> 维拓扑流形, 它的一个图册是 <span class="math inline">\(\{(U_i,\varphi_i)\}\)</span>, 其中坐标映射 <span class="math display">\[
+\Align{
+\varphi_i: U_i &amp;\to \R^n, \\
+[x^0,\dots,x^n] &amp;\mapsto
+\pqty{ \frac{x^0}{x^i},\dots,\frac{x^{n+1}}{x^i} },
+}
+\]</span> 坐标域 <span class="math inline">\(U_i=\{[x^0,\dots,x^n]\in\mathbb{RP}^n\mid
+x^i\neq0\}\)</span>. 这个图册的转移函数是 (不妨设 <span class="math inline">\(i&lt;j\)</span>) <span class="math display">\[
+(\varphi_j^{-1}\circ\varphi_i)(u_1,\dots,u_n)
+= \pqty{
+  \frac{u^1}{u^j},\dots,\frac{u^{j-1}}{u^j},\frac{u^{j+1}}{u^j},
+  \dots,
+  \frac{u^{i-1}}{u^j},\frac1{u^j},\frac{u^i}{u^j},
+  \dots,
+  \frac{u^n}{u^j}
+},
+\]</span> 显然是 <span class="math inline">\(\varphi_i(U_i\cap
+U_j)\to\varphi_j(U_i\cap U_j)\)</span> 的光滑双射. 因此 <span class="math inline">\({\cal A}=\{(U_i,\varphi_i)\}\)</span>
+是一个光滑图册, 其确定的光滑结构成为 <span class="math inline">\(\mathbb{RP}^n\)</span>
+的<strong>标准光滑结构</strong>.</p></li>
+<li><p>(环面) 光滑积流形 <span class="math inline">\(\mathbb{T}^n=\mathbb{S}^1\times\dots\times\mathbb{S}^1\)</span>.</p></li>
+</ul>
+<p>以上的例子中, 我们要证明一个拓扑空间是光滑流形,
+我们得先证明它是拓扑流形, 再构造一个光滑图册. 实际上,
+这两步可以合二为一. 根据下面的引理,
+我们只需构造一个合适的相容图册即可.</p>
+<div class="note note-success">
+<p><u>Lemma 1.4</u> (光滑流形坐标卡引理) 设集合 <span class="math inline">\(M\)</span>, 给定 <span class="math inline">\(M\)</span> 的子集族 <span class="math inline">\(\{U_\alpha\}\)</span> 与映射 <span class="math inline">\(\varphi_\alpha:U_\alpha\to\R^n\)</span>, 满足</p>
+<ol type="1">
+<li><span class="math inline">\(\varphi_\alpha\)</span> 是到 <span class="math inline">\(\varphi_\alpha(U_\alpha)\subset\R^n\)</span>
+的双射.</li>
+<li>集合 <span class="math inline">\(\varphi_\alpha(U_\alpha\cap
+U_\beta)\)</span> 和 <span class="math inline">\(\varphi_\beta(U_\alpha\cap U_\beta)\)</span> 是
+<span class="math inline">\(\R^n\)</span> 的开子集.</li>
+<li>若 <span class="math inline">\(U_\alpha\cap
+U_\beta\neq\emptyset\)</span>, 则 <span class="math inline">\(\varphi_\beta\circ\varphi_\alpha^{-1}:\varphi_\alpha(U_\alpha\cap
+U_\beta)\to\varphi_\beta(U_\alpha\cap U_\beta)\)</span> 是光滑的.</li>
+<li>至多可数个 <span class="math inline">\(U_\alpha\)</span> 覆盖 <span class="math inline">\(M\)</span>.</li>
+<li>若 <span class="math inline">\(p,q\in M\)</span> 是不同的点,
+则它们或者包含于同一个 <span class="math inline">\(U_\alpha\)</span> 中,
+或者被不交的 <span class="math inline">\(U_\alpha,U_\beta\)</span>
+分离.</li>
+</ol>
+<p>则 <span class="math inline">\(M\)</span> 上存在唯一光滑结构使得
+<span class="math inline">\(\{(U_\alpha,\varphi_\alpha)\}\)</span>
+是光滑图册.</p>
+</div>
+<ul>
+<li>将引理中的 <span class="math inline">\(\R^n\)</span> 换成 <span class="math inline">\(\H^n\)</span>, 就得到了光滑带边流形 <span class="math inline">\(M\)</span>.</li>
+</ul>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM218 | 1 光滑流形</div>
+      <div>https://disembo.github.io/Note/tp-gtm218/1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm218/2/" title="GTM218 | 2 光滑映射与单位分解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM218 | 2 光滑映射与单位分解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202/15/" title="GTM202 | 15 覆叠映射">
+                        <span class="hidden-mobile">GTM202 | 15 覆叠映射</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

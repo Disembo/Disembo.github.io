@@ -1,0 +1,1122 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="覆叠映射的定义, 提升性质与一般提升问题.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM202 | 15 覆叠映射">
+<meta property="og:url" content="https://disembo.github.io/Note/tp-gtm202/15/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="覆叠映射的定义, 提升性质与一般提升问题.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/unique-lifting-pf.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/homotopy-lifting-pf.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/lifting-criterion-pf.png">
+<meta property="article:published_time" content="2024-08-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.708Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="拓扑">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/unique-lifting-pf.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM202 | 15 覆叠映射 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM202 | 15 覆叠映射"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-17 00:00" pubdate>
+          2024年8月17日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM202 | 15 覆叠映射</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM202 (<em>Introduction to Topological Manifolds</em>) Chapter 11
+的笔记.</p>
+</div>
+<h2 id="covering-maps">33  Covering Maps</h2>
+<h3 id="basic-properties">33.1  Basic properties</h3>
+<p>设 <span class="math inline">\(X,E\)</span> 是拓扑空间, <span class="math inline">\(q:E\to X\)</span> 是连续映射. 开子集 <span class="math inline">\(U\subset X\)</span> 被称为<strong>均匀覆叠的
+(evenly covered)</strong>, 如果</p>
+<ul>
+<li><span class="math inline">\(q^{-1}(U)=\coprod_\alpha
+V_\alpha\)</span>, 其中 <span class="math inline">\(V_\alpha\subset
+E\)</span> 是连通集.</li>
+<li>对于每个<span class="math inline">\(V_\alpha\)</span>, <span class="math inline">\(q|_{V_\alpha}:V_\alpha\overset\sim\to U\)</span>
+是同胚.</li>
+</ul>
+<p>注意到, 此时 <span class="math inline">\(U=q|_{V_\alpha}(V_\alpha)\)</span> 也是连通的.
+几何上, <span class="math inline">\(q^{-1}(U)\)</span> 可以想象成 "叠在
+<span class="math inline">\(U\)</span> 上的一摞纸", 通过 <span class="math inline">\(q\)</span> 投射到 <span class="math inline">\(U\)</span>. 容易验证,
+均匀覆叠集合的连通开子集也是均匀覆叠的.</p>
+<p>一个<strong>覆叠映射 (covering map)</strong> 是一个连续的满射 <span class="math inline">\(q:E\to X\)</span>, 其中 <span class="math inline">\(E\)</span> 连通且局部道路连通, 且 <span class="math inline">\(X\)</span> 中的每一点存在一个均匀覆叠的邻域. 此时,
+我们称 <span class="math inline">\(E\)</span> 是 <span class="math inline">\(X\)</span> 的<strong>覆叠空间 (covering
+space)</strong>, <span class="math inline">\(X\)</span>
+是覆叠的<strong>底 (base)</strong>. 点 <span class="math inline">\(x\in
+X\)</span> 的原像集 <span class="math inline">\(q^{-1}(x)\)</span> 称为
+<span class="math inline">\(x\)</span> 处的<strong>纤维
+(fiber)</strong>.</p>
+<ul>
+<li><span class="math inline">\(E\)</span> 连通, 局部道路连通 <span class="math inline">\(\Rightarrow E\)</span> 道路连通 <span class="math inline">\(\Rightarrow X\)</span> 道路连通. 此外, <span class="math inline">\(X,E\)</span> 的子集连通, 当且仅当道路连通.</li>
+</ul>
+<div class="note note-success">
+<p><u>Claim 33.1</u> (覆叠映射的基本性质) 设 <span class="math inline">\(q:E\to X\)</span> 是覆叠映射.</p>
+<ol type="1">
+<li><span class="math inline">\(q\)</span> 是局部同胚, 开映射,
+商映射.</li>
+<li>若 <span class="math inline">\(q\)</span> 单, 则是同胚.</li>
+<li>若 <span class="math inline">\(V\subset E\)</span>
+是连通的饱和开子集, 则 <span class="math inline">\(q|_V:V\to
+q(V)\)</span> 是覆叠映射.</li>
+<li>覆叠映射的有限积是覆叠映射.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 任给 <span class="math inline">\(y\in E\)</span>, 取
+<span class="math inline">\(q(y)\)</span> 的均匀覆叠邻域 <span class="math inline">\(U\)</span>, 记 <span class="math inline">\(q^{-1}(U)\)</span> 的包含 <span class="math inline">\(y\)</span> 的分量为 <span class="math inline">\(V\)</span>, 则 <span class="math inline">\(q|_V:V\overset\sim\to U\)</span> 是 <span class="math inline">\(y\)</span> 附近的局部同胚. 局部同胚是开映射;
+开的连续满射是商映射.</p>
+<p>2, 若 <span class="math inline">\(q\)</span> 单, 则 <span class="math inline">\(q\)</span> 是双射. 双射的局部同胚是同胚.</p>
+<p>3, 显然 <span class="math inline">\(V\)</span> 连通且局部连通. 任给
+<span class="math inline">\(x\in q(V)\)</span>, 取 <span class="math inline">\(x\)</span> 关于 <span class="math inline">\(q\)</span> 的均匀覆叠邻域 <span class="math inline">\(U\)</span>, <span class="math inline">\(q^{-1}(U)=\coprod V_\alpha\)</span>, 则 <span class="math inline">\(W:=q(V)\cap U\)</span> 是 <span class="math inline">\(x\)</span> 的邻域, 且 <span class="math inline">\((q|_V)^{-1}(W)=\coprod(V_\alpha\cap V)\)</span>.
+由 <span class="math inline">\(V\)</span> 的饱和性, <span class="math inline">\(q(V_\alpha\cap V)=W\)</span>, 因此 <span class="math inline">\(q|_V\)</span> 在 <span class="math inline">\(V_\alpha\cap V\)</span> 上的限制是到 <span class="math inline">\(W\)</span> 的同胚. 故 <span class="math inline">\(W\)</span> 是 <span class="math inline">\(x\)</span> 关于 <span class="math inline">\(q|_V\)</span> 的均匀覆叠邻域.</p>
+<p>4, 设覆叠映射 <span class="math inline">\(q_i:E_i\to X_i\)</span>,
+积映射 <span class="math inline">\(q=q_1\times\dots\times q_n:\prod
+E_i\to\prod X_i\)</span>, 其中乘积保持连通性, 局部道路连通性. 对于 <span class="math inline">\((x_1,\dots,x_n)\in\prod X_i\)</span>, 每个 <span class="math inline">\(x_i\)</span> 存在均匀覆叠邻域 <span class="math inline">\(U_i\subset X_i\)</span>. 实际上, <span class="math inline">\(\prod_iU_i\)</span> 就是 <span class="math inline">\((x_1,\dots,x_n)\)</span> 的均匀覆叠邻域: <span class="math display">\[
+q^{-1}\pqty{\prod_i U_i}
+= \prod_i q_i^{-1}(U_i)
+= \prod_i \pqty{\coprod_\alpha V_{i,\alpha}}
+= \coprod_\alpha \pqty{\prod_i V_{i,\alpha}},
+\]</span> 其中 <span class="math inline">\(\prod_iV_{i,\alpha}\)</span>
+作为连通集的有限积, 是连通的; 并且 <span class="math inline">\(q\)</span> 在 <span class="math inline">\(\prod
+V_{i,\alpha}\)</span> 上的限制 <span class="math display">\[
+q|_{\prod_i V_{i,\alpha}}
+= q_1|_{V_{1,\alpha}}\times\dots\times q_n|_{V_{n,\alpha}}
+\]</span> 是同胚的乘积, 故为同胚.</p>
+</div>
+<p>覆叠映射的例子:</p>
+<ul>
+<li><p>(圆的指数商映射) 根据 Claim 29.1, <span class="math inline">\(\varepsilon:\R\to\mathbb{S}^1\)</span>, <span class="math inline">\(\varepsilon(x)=\e^{2\pi\i x}\)</span>
+是覆叠映射.</p>
+<ul>
+<li>然而, <span class="math inline">\(\varepsilon:(0,2)\to\mathbb{S}^1\)</span>, <span class="math inline">\(\varepsilon(x)=\e^{2\pi\i x}\)</span>
+不是覆叠映射, 因为 <span class="math inline">\(1\)</span>
+没有均匀覆叠邻域.</li>
+</ul></li>
+<li><p>(环面的指数商映射) 作为覆叠映射的有限积 <span class="math display">\[
+\Align{
+\varepsilon^n: \R^n &amp;\to \mathbb{T}^n \\
+(x_1,\dots,x^n)&amp;\mapsto(\varepsilon(x_1),\dots,\varepsilon(x_n))
+}
+\]</span> 是覆叠映射.</p></li>
+<li><p>(圆上的幂映射) <span class="math inline">\(p_n:\mathbb{S}^1\to\mathbb{S}^1\)</span>, <span class="math inline">\(p_n(z)=z^n\)</span>. 点 <span class="math inline">\(z_0\in\mathbb{S}^1\)</span> 的均匀覆叠邻域是 <span class="math inline">\(U=\mathbb{S}^1\setminus\{-z_0\}\)</span>,
+它的原像集 <span class="math inline">\(\{z\in\mathbb{S}^1\mid
+z^n\neq-z_0\}\)</span> 由 <span class="math inline">\(n\)</span>
+段不交的弧组成, 每段弧同胚地映到 <span class="math inline">\(U\)</span>.</p></li>
+<li><p>(实射影空间) <span class="math inline">\(q:\mathbb{S}^n\to\mathbb{RP}^n\)</span> (<span class="math inline">\(n\geq1\)</span>), <span class="math inline">\(x\mapsto[x]\)</span>. 任取 <span class="math inline">\([x_0]\in\mathbb{RP}^n\)</span>, 记 <span class="math inline">\(x_0,-x_0\)</span> 所在开半球分别为 <span class="math inline">\(V_1,V_2\)</span>, 则 <span class="math inline">\(V_1,V_2\)</span> 是饱和开集. 令 <span class="math inline">\(U=q(V_1)=q(V_2)\)</span> 为开集, 则 <span class="math inline">\(q\)</span> 将 <span class="math inline">\(V_1,V_2\)</span> 分别同胚地映到 <span class="math inline">\(U\)</span>. 因此 <span class="math inline">\(U\)</span> 是 <span class="math inline">\([x_0]\)</span> 的均匀覆叠邻域.</p></li>
+</ul>
+<p>回忆: 连续映射 <span class="math inline">\(q:E\to X\)</span> 在 <span class="math inline">\(U\subset X\)</span>
+上的<strong>局部截面</strong>指的是连续映射 <span class="math inline">\(\sigma:U\to E\)</span> 满足 <span class="math inline">\(q\circ\sigma={\rm id}_U\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 33.2</u> (局部截面存在性) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span>, 任给均匀覆叠开集 <span class="math inline">\(U\subset X\)</span>, <span class="math inline">\(x\in U\)</span>, <span class="math inline">\(e_0\in q^{-1}(U)\)</span>, 则存在局部截面 <span class="math inline">\(\sigma:U\to E\)</span> 满足 <span class="math inline">\(\sigma(x)=e_0\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(\tilde{U}_0\)</span> 是
+<span class="math inline">\(q^{-1}(U)\)</span> 的包含 <span class="math inline">\(e_0\)</span> 的分量. 因为 <span class="math inline">\(q\)</span> 在 <span class="math inline">\(\tilde{U}_0\)</span> 上的限制是同胚, 只需取 <span class="math inline">\(\sigma=(q|_{\tilde{U}_0})^{-1}\)</span>.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 33.3</u> (纤维有相同基数) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span>, 对任意 <span class="math inline">\(x\in X\)</span>, <span class="math inline">\(q^{-1}(x)\)</span> 有相同基数.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 定义 <span class="math inline">\(X\)</span> 上的等价关系:
+<span class="math inline">\(x\sim x'\)</span> 当切记的 <span class="math inline">\(q^{-1}(x),q^{-1}(x')\)</span> 有相同的基数. 取
+<span class="math inline">\(x\)</span> 的均匀覆叠邻域 <span class="math inline">\(U\)</span>, 任取 <span class="math inline">\(x'\in U\)</span>, 则 <span class="math inline">\(q^{-1}(U)\)</span> 的每个分量恰好包含 <span class="math inline">\(q^{-1}(x),q^{-1}(x')\)</span> 中的各一个点,
+因此有一一对应 <span class="math display">\[
+q^{-1}(x)
+\leftrightarrow\{q^{-1}(U)\textsf{ 的分量}\}
+\leftrightarrow q^{-1}(x'),
+\]</span> 说明 <span class="math inline">\(x\sim x'\)</span>. 故
+<span class="math inline">\(U\)</span> 包含于 <span class="math inline">\([x]\)</span>, 说明等价类是开的. 连通空间 <span class="math inline">\(X\)</span> 上的开等价关系只能有一个等价类
+(否则不同等价类间断 <span class="math inline">\(X\)</span>), 因此 <span class="math inline">\(X\)</span> 中所有点都等价, 即证.</p>
+</div>
+<p>我们称纤维的基数为覆叠的<strong>叶数 (number of sheets)</strong>.
+若基数是正整数 <span class="math inline">\(n\)</span>, 则称 <span class="math inline">\(q\)</span> 为 <strong><span class="math inline">\(n\)</span> 重覆叠 (<span class="math inline">\(n\)</span>-fold covering)</strong>.</p>
+<ul>
+<li><span class="math inline">\(q:\mathbb{S}^n\to\mathbb{RP}^n\)</span>
+是 <span class="math inline">\(2\)</span> 重覆叠.</li>
+<li>幂映射 <span class="math inline">\(p_n:\mathbb{S}^1\to\mathbb{S}^1\)</span> 是 <span class="math inline">\(n\)</span> 重覆叠.</li>
+<li>指数商映射 <span class="math inline">\(\varepsilon:\R\to\mathbb{S}^1\)</span>
+的叶数是可数无穷.</li>
+</ul>
+<h3 id="lifting-properties">33.2  Lifting properties</h3>
+<p>设 <span class="math inline">\(q:E\to X\)</span> 是覆叠映射, 连续映射
+<span class="math inline">\(\varphi:Y\to X\)</span> 的一个<strong>提升
+(lift)</strong> 指的是连续映射 <span class="math inline">\(\tilde\varphi:Y\to E\)</span>, 使得 <span class="math inline">\(q\circ\tilde\varphi=\varphi\)</span>: <span class="math display">\[
+\xymatrix{
+&amp; E \ar[d]^q \\
+Y \ar[ru]^{\tilde\varphi} \ar[r]_\varphi &amp; X.
+}
+\]</span> - 局部截面 <span class="math inline">\(\sigma:U\to E\)</span>
+可以将 <span class="math inline">\(\varphi\)</span> "局部地提升".
+如果某个子集 <span class="math inline">\(W\subset Y\)</span> 满足 <span class="math inline">\(\varphi(W)\subset U\)</span>, 则 <span class="math inline">\(\sigma\circ\varphi|_W\)</span> 是 <span class="math inline">\(\varphi|_W\)</span> 的一个提升.</p>
+<p>以下两个定理是研究覆叠映射的关键.</p>
+<div class="note note-success">
+<p><u>Claim 33.4</u> (唯一提升性质) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span>, 连通空间 <span class="math inline">\(Y\)</span>, 连续映射 <span class="math inline">\(\varphi:Y\to X\)</span> 的两个提升 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi}_2:Y\to
+E\)</span>. 若 <span class="math inline">\(\tilde{\varphi}_1,\tilde{\varphi_2}\)</span> 在
+<span class="math inline">\(Y\)</span> 中某点取值相同, 则它们恒相等.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 我们使用 "连通性论证". 令 <span class="math inline">\({\cal
+A}=\{y\in Y\mid\tilde\varphi_1(y)=\tilde\varphi_2(y)\}\)</span>.
+根据假设 <span class="math inline">\({\cal A}\)</span> 非空.
+我们只需证明 <span class="math inline">\({\cal A}\)</span> 既开又闭,
+则由 <span class="math inline">\(Y\)</span> 的连通性, <span class="math inline">\({\cal A}=Y\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/unique-lifting-pf.png" style="zoom:50%;" cloud-img="" lazyload="true"></p>
+<p>开性: 取 <span class="math inline">\(y\in{\cal A}\)</span>. 如图, 记
+<span class="math inline">\(e=\tilde\varphi_1(y)=\tilde\varphi_2(y)\)</span>,
+<span class="math inline">\(x=\varphi(y)=q(e)\)</span>. 取 <span class="math inline">\(x\)</span> 的均匀覆叠邻域 <span class="math inline">\(U\)</span>, 记 <span class="math inline">\(\tilde{U}\)</span> 为 <span class="math inline">\(q^{-1}(U)\)</span> 的包含 <span class="math inline">\(e\)</span> 的分量. 令 <span class="math inline">\(V=\tilde\varphi_1^{-1}(\tilde{U})\cap\tilde\varphi_2^{-1}(\tilde{U})\)</span>,
+则 <span class="math inline">\(V\)</span> 是 <span class="math inline">\(y\)</span> 的邻域, 且 <span class="math inline">\(\tilde{\varphi}_1,\tilde\varphi_2\)</span> 在
+<span class="math inline">\(V\)</span> 上的像都包含于 <span class="math inline">\(\tilde{U}\)</span>. 根据提升的定义, <span class="math inline">\(q\circ\tilde\varphi_1|_V=q\circ\tilde\varphi_2|_V\)</span>,
+注意 <span class="math inline">\(q\)</span> 在 <span class="math inline">\(\tilde{U}\)</span> 上是单射 (左可消), 得到 <span class="math inline">\(\tilde\varphi_1|_V=\tilde\varphi_2|_V\)</span>, 故
+<span class="math inline">\(V\subset{\cal A}\)</span>. 因此 <span class="math inline">\({\cal A}\)</span> 开.</p>
+<p>闭性: 我们证明 <span class="math inline">\({\cal A}^C\)</span> 开. 取
+<span class="math inline">\(y\notin{\cal A}\)</span>. 记 <span class="math inline">\(e_i=\tilde\varphi_i(y)\)</span>, <span class="math inline">\(x=\varphi(y)=q(e_i)\)</span>, 有 <span class="math inline">\(e_1\neq e_2\)</span>. 取 <span class="math inline">\(x\)</span> 的均匀覆叠邻域 <span class="math inline">\(U\)</span>, 记 <span class="math inline">\(\tilde{U}_i\)</span> 为 <span class="math inline">\(q^{-1}(U)\)</span> 的包含 <span class="math inline">\(e_i\)</span> 的分量, 则 <span class="math inline">\(\tilde U_1\cap\tilde U_2=\emptyset\)</span>. 令
+<span class="math inline">\(V=\tilde\varphi_1^{-1}(\tilde{U})\cap\tilde\varphi_2^{-1}(\tilde{U})\)</span>,
+则 <span class="math inline">\(V\)</span> 是 <span class="math inline">\(y\)</span> 的邻域, 并且 <span class="math inline">\(\tilde\varphi_i(V)\subset\tilde{U}_i\)</span>, 故
+<span class="math inline">\(\tilde\varphi_1|_V,\tilde\varphi_2|_V\)</span>
+像集的交集为空. 故 <span class="math inline">\(V\subset{\cal
+A}^C\)</span>, <span class="math inline">\({\cal A}^C\)</span> 开.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 33.5</u> (同伦提升性质) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span>, 局部连通空间 <span class="math inline">\(Y\)</span>, 连续映射 <span class="math inline">\(\varphi_0,\varphi_1:Y\to X\)</span> 间有同伦 <span class="math inline">\(H:Y\times I\to X\)</span>. 若 <span class="math inline">\(\tilde{\varphi}_0:Y\to E\)</span> 是 <span class="math inline">\(\varphi_0\)</span> 的一个提升, 则 <span class="math inline">\(H\)</span> 有唯一提升 <span class="math inline">\(\tilde{H}:Y\times I\to E\)</span>, 满足 <span class="math inline">\(\tilde{H}_0=\tilde\varphi_0\)</span>. 若 <span class="math inline">\(H\)</span> 保持子集 <span class="math inline">\(A\subset Y\)</span> 不动, 则 <span class="math inline">\(\tilde{H}\)</span> 也保持 <span class="math inline">\(A\)</span> 不动.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 证明分为 4 步.</p>
+<p><u>步骤 1</u>: <span class="math inline">\(\tilde{H}\)</span>
+的唯一性.</p>
+<ul>
+<li><p>任给 <span class="math inline">\(Y\)</span> 的子集 <span class="math inline">\(W\)</span>, 设 <span class="math inline">\(\tilde{H},\tilde{H}'\)</span> 是 <span class="math inline">\(H\)</span> 在 <span class="math inline">\(W\times
+I\)</span> 上的提升, 且 <span class="math inline">\(\tilde{H}|_{W\times\{0\}}=\tilde{H}'|_{W\times\{0\}}\)</span>.</p>
+<p>任取 <span class="math inline">\(y\in Y\)</span>, 有 <span class="math inline">\(I\to E\)</span> 的映射 <span class="math inline">\(t\mapsto\tilde{H}(y,t)\)</span> 和 <span class="math inline">\(t\mapsto\tilde{H}'(y,t)\)</span>,
+可以发现它们都是 <span class="math inline">\(I\to X\)</span> 的映射
+<span class="math inline">\(t\mapsto H(y,t)\)</span> 的提升, 并且起点在
+<span class="math inline">\(t=0\)</span> 取值相同. 根据唯一提升性质,
+两个在 <span class="math inline">\(I\)</span> 上相等. 进而 <span class="math inline">\(\tilde{H}\)</span> 和 <span class="math inline">\(\tilde{H}'\)</span> 在 <span class="math inline">\(W\times I\)</span> 上相等.</p></li>
+<li><p>特别地, 取 <span class="math inline">\(W=Y\)</span>, 有满足 <span class="math inline">\(\tilde{H}_0=\tilde\varphi_0\)</span> 的提升唯一
+(如果存在的话).</p></li>
+</ul>
+<p><u>步骤 2</u>: 在局部定义 <span class="math inline">\(\tilde{H}\)</span>.</p>
+<ul>
+<li><p>任取 <span class="math inline">\(y_0\in Y\)</span>, 我们在 <span class="math inline">\(W\times I\)</span> 上定义 <span class="math inline">\(\tilde{H}\)</span>, 其中 <span class="math inline">\(W\)</span> 是 <span class="math inline">\(y_0\)</span> 的某邻域.
+因为局部截面可以给出局部提升, 我们的想法是将 <span class="math inline">\(W\times I\)</span> "细分", 使得每一段在 <span class="math inline">\(H\)</span> 下映到某均匀覆叠邻域内, 进而可以提升到
+<span class="math inline">\(\tilde{H}\)</span>, 再利用 gluing lemma
+拼起来即可.</p></li>
+<li><p>任给 <span class="math inline">\(s\in I\)</span>, 存在 <span class="math inline">\(H(y_0,s)\in X\)</span> 的均匀覆叠邻域 <span class="math inline">\(U\)</span>. 因为 <span class="math inline">\(H^{-1}(U)\)</span> 是 <span class="math inline">\((y_0,s)\)</span> 的邻域, 而开集的乘积组成 <span class="math inline">\(Y\times I\)</span> 的拓扑基, 所以存在开集 <span class="math inline">\(V\subset Y\)</span>, <span class="math inline">\(J\subset I\)</span> 使得 <span class="math inline">\((y_0,s)\in V\times J\subset H^{-1}(U)\)</span>. 当
+<span class="math inline">\(s\)</span> 取遍 <span class="math inline">\(I\)</span>, 所有这些 <span class="math inline">\(V\times J\)</span> 构成 <span class="math inline">\(\{y_0\}\times I\)</span> 的开覆盖. 由紧性, <span class="math inline">\(\{y_0\}\times I\)</span> 可以被有限个这样的开集
+<span class="math inline">\(V_1\times J_1,\dots,V_m\times J_m\)</span>
+覆盖.</p></li>
+<li><p>设 <span class="math inline">\(W\)</span> 是 <span class="math inline">\(y_0\)</span> 的包含于 <span class="math inline">\(V_1\cap\dots\cap V_m\)</span> 的连通邻域 (由 <span class="math inline">\(Y\)</span> 的局部连通性, 这样的邻域存在). 由
+Lebesgue 数引理, <span class="math inline">\(I\)</span> 的开覆盖 <span class="math inline">\(\{J_1,\dots,J_k\}\)</span> 有 Lebesgue 数 <span class="math inline">\(\delta\)</span>. 设正整数 <span class="math inline">\(n\)</span> 满足 <span class="math inline">\(1/n&lt;\delta\)</span>. 此时, 对任意 <span class="math inline">\(j=1,\dots,n\)</span>, 集合 <span class="math inline">\(W\times[(j-1)/n,j/n]\)</span> 在 <span class="math inline">\(H\)</span>
+下的像包含于一个均匀覆叠开集中.</p></li>
+<li><p>现在可以开始定义 <span class="math inline">\(\tilde{H}\)</span>
+了. 用归纳法.</p>
+<ul>
+<li><p>取包含 <span class="math inline">\(H(W\times[0,1/n])\)</span>
+的均匀覆叠开集 <span class="math inline">\(U_1\subset X\)</span>. 令
+<span class="math inline">\(\sigma_1:U_1\to E\)</span> 是 <span class="math inline">\(q\)</span> 的局部截面, 且满足 <span class="math inline">\(\sigma_1(\varphi_0(y_0))=\tilde\varphi_0(y_0)\)</span>.
+对于 <span class="math inline">\((y,s)\in W\times[0,1/n]\)</span>, 定义
+<span class="math display">\[
+\tilde{H}(y,s) := (\sigma_1\circ H)(y,s).
+\]</span> 作为连续映射的复合, <span class="math inline">\(\tilde{H}\)</span> 连续. 注意到映射 <span class="math inline">\(\tilde{H}_0:W\to E\)</span>, <span class="math inline">\(\tilde{H}_0(y)=\tilde{H}(y,0)\)</span> 是 <span class="math inline">\(H_0=\varphi_0\)</span> 的一个提升, 且与 <span class="math inline">\(\tilde\varphi_0\)</span> 在 <span class="math inline">\(b_0\)</span> 取值相同, 根据唯一提升性质, <span class="math inline">\(\tilde{H}_0=\tilde\varphi_0\)</span>.</p></li>
+<li><p>假设我们已经定义了 <span class="math inline">\(\tilde{H}:W\times[0,(j-1)/n]\)</span> 对于某 <span class="math inline">\(j\in\{1,\dots,n\}\)</span>.</p>
+<p>令 <span class="math inline">\(U_j\)</span> 是包含 <span class="math inline">\(H(W\times[(j-1)/n,j/n])\)</span> 的均匀覆叠开集,
+<span class="math inline">\(\sigma_j:U_j\to E\)</span> 是满足 <span class="math inline">\(\sigma_j(H(y_0,(j-1)/n))=\tilde{H}(y_0,(j-1)/n)\)</span>
+的局部截面. 定义连续映射 <span class="math display">\[
+\tilde{H}(y,s)=(\sigma_j\circ H)(y,s)
+\]</span> 对于 <span class="math inline">\((y,s)\in
+W\times[(j-1)/n,j/n]\)</span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/homotopy-lifting-pf.png" style="zoom:55%;" cloud-img="" lazyload="true"></p>
+<p>需说明这与之前的定义相容. 对重叠部分 <span class="math inline">\(W\times\{(j-1)/n\}\)</span> (这是连通集, 因为
+<span class="math inline">\(W\)</span> 连通), 注意新旧 <span class="math inline">\(\tilde{H}\)</span> 在该集合上的限制都是 <span class="math inline">\(H\)</span> 的提升, 并且在 <span class="math inline">\((y_0,(j-1)/n)\)</span> 取值相同, 根据唯一提升性质,
+新旧 <span class="math inline">\(\tilde{H}\)</span> 在该集合上恒等. 由
+gluing lemma, 我们成功将 <span class="math inline">\(\tilde{H}\)</span>
+连续延拓到 <span class="math inline">\(W\times[0,j/n]\)</span>.</p></li>
+</ul></li>
+<li><p>总之, 我们定义了 <span class="math inline">\(H\)</span> 在 <span class="math inline">\(W\times I\)</span> 上的连续提升.</p></li>
+</ul>
+<p><u>步骤 3</u>: 整体定义 <span class="math inline">\(\tilde{H}\)</span>.</p>
+<ul>
+<li><span class="math inline">\(Y\)</span> 中的任意一点都存在邻域 <span class="math inline">\(W\)</span>, 使得 <span class="math inline">\(\tilde{H}\)</span> 可以定义在 <span class="math inline">\(W\times I\)</span> 上. 若 <span class="math inline">\(W,W'\)</span> 是两个这样的邻域, 根据步骤 1,
+两个提升 <span class="math inline">\(\tilde{H},\tilde{H}'\)</span>
+在 <span class="math inline">\((W\cap W')\times I\)</span> 上恒相等.
+根据 gluing lemma, <span class="math inline">\(\tilde{H}\)</span>
+能够连续地定义在整个 <span class="math inline">\(Y\times I\)</span> 上.
+根据构造, <span class="math inline">\(\tilde{H}_0=\tilde\varphi_0\)</span>.</li>
+</ul>
+<p><u>步骤 4</u>: 若 <span class="math inline">\(H\)</span> 保持子集
+<span class="math inline">\(A\subset Y\)</span> 不动, 则 <span class="math inline">\(\tilde{H}\)</span> 也保持 <span class="math inline">\(A\)</span> 不动.</p>
+<ul>
+<li>任给 <span class="math inline">\(a\in A\)</span>, 映射 <span class="math inline">\(I\to X\)</span>, <span class="math inline">\(t\mapsto H(a,t)\)</span> 是常映射 <span class="math inline">\(t\mapsto\varphi_0(a)\)</span>, 其唯一提升是常映射
+<span class="math inline">\(t\mapsto\tilde\varphi_0(a)\)</span>. 然而
+<span class="math inline">\(t\mapsto\tilde{H}(a,t)\)</span>
+也是它的一个提升, 只能有 <span class="math inline">\(\tilde{H}(a,t)\equiv\tilde\varphi_0(a)\)</span>.
+故 <span class="math inline">\(\tilde{H}\)</span> 保持 <span class="math inline">\(A\)</span> 不动.</li>
+</ul>
+</div>
+<p>同伦提升性质的一个推论是:</p>
+<div class="note note-success">
+<p><u>Claim 33.6</u> (道路提升性质) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span>, 道路 <span class="math inline">\(f:I\to X\)</span>, 点 <span class="math inline">\(e\in q^{-1}(f(0))\)</span>, 则存在唯一提升 <span class="math inline">\(\tilde{f}:I\to E\)</span>, 满足 <span class="math inline">\(\tilde{f}(0)=e\)</span>.</p>
+</div>
+<ul>
+<li>我们将满足初值 <span class="math inline">\(\tilde{f}(0)=e\)</span>
+的提升记作 <span class="math inline">\(\tilde{f}_e\)</span>.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 道路 <span class="math inline">\(f:I\to X\)</span> 可以视作
+<span class="math inline">\(\{*\}\to X\)</span> 的两个映射 <span class="math inline">\(*\mapsto f(0)\)</span> 和 <span class="math inline">\(*\mapsto f(1)\)</span> 间的同伦. 因为 <span class="math inline">\(*\mapsto e\)</span> 是前者的一个提升,
+由同伦提升性质, <span class="math inline">\(f\)</span> 唯一地提升到
+<span class="math inline">\(\tilde{f}:I\to E\)</span>, 满足 <span class="math inline">\(\tilde{f}(0)=e\)</span>.</p>
+</div>
+<p>在研究 <span class="math inline">\(\mathbb{S}^1\)</span> 的时候,
+我们还给出了 Claim 29.6, 大致思想是: 两条道路同伦,
+当且仅当其提升具有相同的终点. 证明利用了 <span class="math inline">\(\R\)</span> 的单连通性,
+所以难以推广到一般的覆叠映射. 然而, 我们有如下较弱的版本:</p>
+<div class="note note-success">
+<p><u>Claim 33.7</u> (单值性定理) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span>, 道路 <span class="math inline">\(f,g:I\to X\)</span> 有相同的起点和终点, 设 <span class="math inline">\(\tilde{f}_e,\tilde{g}_e\)</span>
+是两个起点相同的提升.</p>
+<ol type="1">
+<li><span class="math inline">\(\tilde{f}_e\sim\tilde{g}_e\)</span>
+当且仅当 <span class="math inline">\(f\sim g\)</span>.
+(都是道路同伦)</li>
+<li>若 <span class="math inline">\(f\sim g\)</span>, 则 <span class="math inline">\(\tilde{f}_e(1)=\tilde{g}_e(1)\)</span>.</li>
+</ol>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 1, 若 <span class="math inline">\(\tilde f_e\sim\tilde
+g_e\)</span>, 则 <span class="math inline">\(f\sim g\)</span>,
+因为复合保持道路同伦. 反之, 若 <span class="math inline">\(f\sim
+g\)</span>, 则同伦 <span class="math inline">\(H:I\times I\to X\)</span>
+提升到 <span class="math inline">\(\tilde{H}:I\times I\to E\)</span>,
+<span class="math inline">\(\tilde{H}\)</span> 是 <span class="math inline">\(\tilde{f}_e\)</span> 与 <span class="math inline">\(g\)</span> 的某个提升 <span class="math inline">\(\tilde{g}\)</span> 之间的同伦. 因为 <span class="math inline">\(\tilde{H}\)</span> 保持 <span class="math inline">\(\{0,1\}\)</span> 不变, 所以 <span class="math inline">\(\tilde{g}(0)=e\)</span>, 根据唯一性, <span class="math inline">\(\tilde{g}=\tilde{g}_e\)</span>.</p>
+<p>2, 若 <span class="math inline">\(f\sim g\)</span>, 根据 1, <span class="math inline">\(\tilde{f}_e\sim\tilde{g}_e\)</span> 道路同伦,
+当然有相同的终点.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 33.8</u> (覆叠映射的诱导同态是单射) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span>. 任给 <span class="math inline">\(e\in E\)</span>, 诱导同态 <span class="math inline">\(q_*:\pi_1(E,e)\to\pi_1(X,q(e))\)</span>
+是单射.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\([f]\in\pi_1(E,e)\)</span>
+满足 <span class="math inline">\(q_*[f]=[c_{q(e)}]\)</span> 映到恒等元,
+即 <span class="math inline">\(q\circ f\sim c_{q(e)}\)</span>.
+根据单值性定理, <span class="math inline">\(q\circ f,c_{q(e)}\)</span>
+的两个起点相同的提升道路同伦. 注意到 <span class="math inline">\(f\)</span> 和 <span class="math inline">\(c_e\)</span> 就是两个起点相同的提升, 有 <span class="math inline">\([f]=[c_e]\)</span> 为恒等元.</p>
+</div>
+<p>因为 <span class="math inline">\(q_*\)</span> 单, 所以 <span class="math inline">\(\pi_1(E,e)\)</span> 同构于 <span class="math inline">\(\pi_1(X,q(e))\)</span> 的子群 <span class="math inline">\(\im{q_*}\)</span>, 它被称为<strong>覆叠的诱导子群
+(subgroup induced by the covering)</strong>.</p>
+<h3 id="the-general-lifting-problem">33.3  The general lifting problem</h3>
+<p>并非所有的连续映射 <span class="math inline">\(\varphi:Y\to
+X\)</span> 都能够提升到覆叠空间 <span class="math inline">\(E\)</span>.
+判断一个映射能否提升的问题叫做<strong>提升问题 (lifting
+problem)</strong>. 下面的定理将提升问题转化为一个代数问题.</p>
+<div class="note note-success">
+<p><u>Claim 33.9</u> (可提升的标准) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span>, 空间 <span class="math inline">\(Y\)</span> 连通且局部道路连通, <span class="math inline">\(\varphi:Y\to X\)</span> 连续. 取 <span class="math inline">\(y_0\in Y\)</span>, <span class="math inline">\(e_0\in E\)</span> 满足 <span class="math inline">\(q(e_0)=\varphi(y_0)\)</span>. 则 <span class="math inline">\(\varphi\)</span> 存在满足 <span class="math inline">\(\tilde\varphi(y_0)=e_0\)</span> 的提升 <span class="math inline">\(\tilde\varphi:Y\to E\)</span>, 当且仅当 <span class="math display">\[
+\varphi_*\pi_1(Y,y_0) \subset q_*\pi_1(E,e_0).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> <span class="math inline">\(\Rightarrow\)</span>
+是容易证明的 (甚至不需要 <span class="math inline">\(Y\)</span>
+的任何连通性). 若 <span class="math inline">\(\tilde\varphi\)</span>
+满足假设, 根据 <span class="math inline">\(\pi_1\)</span>
+的函子性有交换图: <span class="math display">\[
+\xymatrix{
+&amp; \pi_1(E,e_0) \ar[d]^{q_*} \\
+\pi_1(Y,y_0) \ar[ru]^{\tilde\varphi_*} \ar[r]_(.45){\varphi_*} &amp;
+\pi_1(X,\varphi(y_0)).
+}
+\]</span> 因此 <span class="math inline">\(\varphi_*\pi_1(Y,y_0)=q_*\tilde\varphi_*\pi_1(Y,y_0)\subset
+q_*\pi_1(E,e_0)\)</span>.</p>
+<p><span class="math inline">\(\Leftarrow\)</span> 我们利用道路提升性质,
+将 <span class="math inline">\(\varphi\)</span> "沿着道路提升".
+具体来说, 如果 <span class="math inline">\(\tilde\varphi\)</span>
+是存在的, 那么有如下观察:</p>
+<ul>
+<li>对任意 <span class="math inline">\(y\in Y\)</span> 与连接 <span class="math inline">\(y_0,y\)</span> 的道路 <span class="math inline">\(f\)</span>, <span class="math inline">\(\tilde\varphi\circ f\)</span> 是 <span class="math inline">\(\varphi\circ f\)</span> 的提升, 其以 <span class="math inline">\(e_0\)</span> 为起点, 以 <span class="math inline">\(\tilde\varphi(y)\)</span> 为终点.</li>
+</ul>
+<p>这启发我们这样定义 <span class="math inline">\(\tilde\varphi\)</span>: 对任意 <span class="math inline">\(y\in Y\)</span>, 取一条连接 <span class="math inline">\(y_0,y\)</span> 的道路 <span class="math inline">\(f\)</span>, 定义 <span class="math display">\[
+\tilde\varphi(y) := (\widetilde{\varphi\circ f})_{e_0}(1).
+\]</span> 其中 <span class="math inline">\((\widetilde{\varphi\circ
+f})_{e_0}\)</span> 是 <span class="math inline">\(\varphi\circ
+f\)</span> 的以 <span class="math inline">\(e_0\)</span> 为起点的提升.
+我们要证明: ① <span class="math inline">\(\tilde\varphi\)</span> 良定义,
+不依赖道路的选择; ② <span class="math inline">\(\tilde\varphi\)</span>
+连续. 于是根据定义, <span class="math inline">\((q\circ\tilde\varphi)(y)=(q\circ(\widetilde{\varphi\circ
+f})_{e_0})(1)=(\varphi\circ f)(1)=\varphi(y)\)</span>, 即 <span class="math inline">\(\tilde\varphi\)</span> 确实是 <span class="math inline">\(\varphi\)</span> 的提升.</p>
+<p>① <span class="math inline">\(\tilde\varphi\)</span> 良定义.</p>
+<ul>
+<li>任取连接 <span class="math inline">\(y_0,y\)</span> 的道路 <span class="math inline">\(f'\)</span>, 则 <span class="math inline">\(f'*\bar{f}\)</span> 是以 <span class="math inline">\(y_0\)</span> 为基点的环路. 根据假设, <span class="math display">\[
+[\varphi\circ(f'*\bar{f})]
+= \varphi_*[f'*\bar{f}]
+\in \varphi_*\pi_1(Y,y_0)
+\subset q_*\pi_1(E,e_0).
+\]</span> 这说明, 存在 <span class="math inline">\([g]\in\pi_1(E,e_0)\)</span> 满足 <span class="math inline">\(\varphi\circ(f'*\bar{f})\sim q\circ
+g\)</span>, 即 <span class="math display">\[
+(\varphi\circ f')*\overline{(\varphi\circ f)} \sim q\circ g,
+\]</span> 也即 <span class="math display">\[
+(\varphi\circ f') \sim (q\circ g)*(\varphi\circ f).
+\]</span> 根据单值性定理, 这两条道路的以 <span class="math inline">\(e_0\)</span> 为起点的提升具有相同终点. 其中, <span class="math inline">\((q\circ g)*(\varphi\circ f)\)</span> 的提升是
+<span class="math inline">\(g*\widetilde{(\varphi\circ
+f)}_{e_0}\)</span>, 因为 <span class="math inline">\(g\)</span> 是 <span class="math inline">\(q\circ g\)</span> 的一个提升, 而 <span class="math inline">\(g\)</span> 是以 <span class="math inline">\(e_0\)</span> 为基点的环路. 因此, <span class="math display">\[
+\widetilde{(\varphi\circ f')}_{e_0}(1)
+= \pqty{g*\widetilde{(\varphi\circ f)}_{e_0}}(1)
+= \widetilde{(\varphi\circ f)}_{e_0}(1),
+\]</span> 即 <span class="math inline">\(f,f'\)</span> 定义出相同的
+<span class="math inline">\(\tilde\varphi(y)\)</span>.</li>
+</ul>
+<p>② <span class="math inline">\(\tilde\varphi\)</span> 连续.</p>
+<ul>
+<li><p>我们首先证明一个必要条件: <span class="math inline">\(\tilde\varphi\)</span> 将连通集映到连通集.</p>
+<p>设 <span class="math inline">\(V\subset Y\)</span> 连通, 任给 <span class="math inline">\(y_1,y_2\in V\)</span>, 存在连接 <span class="math inline">\(y_0,y_1\)</span> 的道路 <span class="math inline">\(f\)</span> 与连接 <span class="math inline">\(y_1,y_2\)</span> 的道路 <span class="math inline">\(g\)</span>. 因为 <span class="math inline">\(\tilde\varphi\)</span> 是 <span class="math inline">\(\varphi\)</span> 的提升, <span class="math inline">\(\tilde\varphi\)</span> 将 <span class="math inline">\(f*g\)</span> 映到 <span class="math inline">\((\varphi\circ f)*(\varphi\circ g)\)</span> 的提升.
+特别地, <span class="math inline">\(\varphi\circ g\)</span> 的提升是
+<span class="math inline">\(\tilde\varphi(V)\)</span> 中连接 <span class="math inline">\(\tilde\varphi(y_1),\tilde\varphi(y_2)\)</span>
+的道路. 故 <span class="math inline">\(\tilde\varphi(V)\)</span>
+道路连通.</p></li>
+<li><p>最后, 要证明 <span class="math inline">\(\tilde\varphi\)</span>
+连续, 只需要证明 <span class="math inline">\(Y\)</span>
+中每一点存在邻域使得 <span class="math inline">\(\tilde\varphi\)</span>
+连续 (局部 criterion).</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm202/lifting-criterion-pf.png" style="zoom:55%;" cloud-img="" lazyload="true"></p>
+<p>任给 <span class="math inline">\(y\in Y\)</span>, 取 <span class="math inline">\(\varphi(y)\)</span> 的均匀覆叠邻域 <span class="math inline">\(U\)</span>, 令 <span class="math inline">\(\tilde{U}\)</span> 是 <span class="math inline">\(q^{-1}(U)\)</span> 的包含 <span class="math inline">\(\tilde\varphi(y)\)</span> 的一叶. 设 <span class="math inline">\(\sigma:U\to\tilde{U}\)</span> 是满足 <span class="math inline">\(\sigma(\varphi(y))=\tilde\varphi(y)\)</span>
+的局部截面, 有 <span class="math inline">\(q\circ\sigma={\rm
+id}_U\)</span>. 取 <span class="math inline">\(V\subset Y\)</span> 是
+<span class="math inline">\(\varphi^{-1}(U)\)</span> 的包含 <span class="math inline">\(y\)</span> 的道路连通分量, 根据上面的性质, <span class="math inline">\(\tilde\varphi(V)\)</span> 是 <span class="math inline">\(q^{-1}(U)\)</span> 中的连通集, 进而 <span class="math inline">\(q^{-1}(U)\subset\tilde{U}\)</span>.
+于是有下面的等式: <span class="math display">\[
+q\circ\tilde\varphi|_V
+= \varphi|_V
+= q\circ\sigma\circ\varphi|_V.
+\]</span> 因为 <span class="math inline">\(\tilde\varphi|_V\)</span> 和
+<span class="math inline">\(\sigma\circ\varphi|_V\)</span> 的像集包含于
+<span class="math inline">\(\tilde{U}\)</span>, 而 <span class="math inline">\(q\)</span> 在其上单, 消去 <span class="math inline">\(q\)</span> 得到 <span class="math inline">\(\tilde\varphi|_V=\sigma\circ\varphi|_V\)</span>
+是连续映射的复合.</p></li>
+</ul>
+</div>
+<p>分别取 <span class="math inline">\(Y,E\)</span> 为单连通空间,
+得到两个推论:</p>
+<div class="note note-success">
+<p><u>Claim 33.10</u> (把定义域为单连通空间的映射提升) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span>, 空间 <span class="math inline">\(Y\)</span> 单连通且局部道路连通, <span class="math inline">\(\varphi:Y\to X\)</span> 连续. 则 <span class="math inline">\(\varphi\)</span> 存在提升. 此时, 任给 <span class="math inline">\(y_0\in Y\)</span>, 存在以 <span class="math inline">\(\varphi(y_0)\)</span> 的纤维中任意一点作为 <span class="math inline">\(\tilde\varphi(y_0)\)</span> 的提升.</p>
+</div>
+<div class="note note-success">
+<p><u>Claim 33.11</u> (把映射提升到单连通空间) 设覆叠映射 <span class="math inline">\(q:E\to X\)</span> 且 <span class="math inline">\(E\)</span> 单连通. 空间 <span class="math inline">\(Y\)</span> 连通且局部道路连通, <span class="math inline">\(\varphi:Y\to X\)</span> 连续. 则 <span class="math inline">\(\varphi\)</span> 存在提升, 当且仅当 <span class="math inline">\(\varphi_*\)</span> 是平凡同态. 此时, 任给 <span class="math inline">\(y_0\in Y\)</span>, 存在以 <span class="math inline">\(\varphi(y_0)\)</span> 的纤维中任意一点作为 <span class="math inline">\(\tilde\varphi(y_0)\)</span> 的提升.</p>
+</div>
+<p>一个例子:</p>
+<ul>
+<li><p>(圆的 <span class="math inline">\(n\)</span> 重覆叠) 考虑幂映射
+<span class="math inline">\(p_n:\mathbb{S}^1\to\mathbb{S}^1\)</span>
+给出的 <span class="math inline">\(n\)</span> 重覆叠. 容易验证, 覆叠
+<span class="math inline">\(p_n\)</span> 诱导的子群是 <span class="math inline">\([\omega]^n\)</span> 生成的无穷循环群 (<span class="math inline">\([\omega]\)</span> 是 <span class="math inline">\(\pi_1(\mathbb{S}^1,1)\)</span> 的标准生成元).
+<span class="math display">\[
+\xymatrix{
+&amp; \mathbb{S}^1 \ar[d]^{p_n} \\
+\mathbb{S}^1 \ar[r]_{p_m} \ar[ur]^f &amp; \mathbb{S}^1
+}
+\]</span> 因此, 映射 <span class="math inline">\(p_m\)</span> 存在提升
+<span class="math inline">\(f\)</span> 满足 <span class="math inline">\(p_n\circ f=p_m\)</span>, 当且仅当 <span class="math display">\[
+\lr{[\omega]^m} = \im(p_m)_* \subset \im(p_n)_* = \lr{[\omega]^n},
+\]</span> 当且仅当存在 <span class="math inline">\(k\in\Z\)</span>, 满足
+<span class="math inline">\(m=kn\)</span>. 此时, 满足 <span class="math inline">\(1\mapsto1\)</span> 的 <span class="math inline">\(f\)</span> 由 <span class="math inline">\(p_k\)</span> 给出.</p></li>
+<li><p>(圆的可数无穷覆叠) 指数商映射 <span class="math inline">\(\varepsilon:\R\to\mathbb{S}^1\)</span>
+诱导的子群是平凡群 (因为 <span class="math inline">\(\R\)</span>
+的基本群平凡). 因此, <span class="math inline">\(\varphi:X\to\mathbb{S}^1\)</span> 能提升到 <span class="math inline">\(\R\)</span> 当且仅当 <span class="math inline">\(\varphi_*\)</span> 是平凡同态. 特别地, <span class="math inline">\({\rm id}_{\mathbb{S}^1}\)</span> 不能提升;
+而任意单连通空间 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(\mathbb{S}^1\)</span> 的连续映射都能提升.</p></li>
+</ul>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E6%8B%93%E6%89%91/" class="print-no-link">#拓扑</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM202 | 15 覆叠映射</div>
+      <div>https://disembo.github.io/Note/tp-gtm202/15/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm218/1/" title="GTM218 | 1 光滑流形">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM218 | 1 光滑流形</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/tp-gtm202/14/" title="GTM202 | 14 Seifert–Van Kampen 定理">
+                        <span class="hidden-mobile">GTM202 | 14 Seifert–Van Kampen 定理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="纠错码, 线性码与 Hamming 码.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息论 | 2 信道编码">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/info-theory/2/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="纠错码, 线性码与 Hamming 码.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-22T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-12T07:40:15.470Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="信息论">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>信息论 | 2 信道编码 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="信息论 | 2 信道编码"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-22 12:00" pubdate>
+          2025年4月22日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">信息论 | 2 信道编码</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<p>在一个有噪声的信道里, 接收的信息可能和发送的信息有出入.</p>
+<ol type="1">
+<li>设计编码 (source coding 是减少冗余, 而 channel coding
+则是增加冗余).</li>
+<li>编码 (讯息 <span class="math inline">\(\mapsto\)</span> 编码).</li>
+<li>解码 (收到的编码 <span class="math inline">\(\mapsto\)</span>
+还原的讯息).</li>
+</ol>
+<h2 id="channel-coding">5  Channel coding</h2>
+<h3 id="the-nearest-neighbour-method">5.1  The nearest neighbour method</h3>
+<p>重复编码 (repetition code) 就是将讯息重复 <span class="math inline">\(N\)</span> (奇数) 遍, 比如 <span class="math inline">\(0\to000\)</span>, <span class="math inline">\(1\to111\)</span>. 在解码时, 对于每三个连续的比特,
+如果 <span class="math inline">\(0\)</span> 多就解码成 <span class="math inline">\(0\)</span>, 如果 <span class="math inline">\(1\)</span> 多就解码成 <span class="math inline">\(1\)</span> (即与这三个比特的 Hamming 距离最近的
+<span class="math inline">\(000\)</span> or <span class="math inline">\(111\)</span>). 这种方法的缺点是效率太低.</p>
+<p>假设有讯息集合 <span class="math inline">\(\{0,1\}^m\)</span>,
+分别给予编码 <span class="math inline">\(\{c_1,\dots,c_k\}\)</span>.
+我们假设解码采用 nearest neighbour 方法, 即寻找与收到的编码 (Hamming
+距离) 最近的编码 <span class="math inline">\(c_i\)</span>.
+如果我们希望任意一个编码被扰动 <span class="math inline">\(t\)</span>
+比特后, 都能解码出正确的讯息, 则这些编码的 Hamming 距离应当满足 <span class="math display">\[
+d_H(c_i,c_j) \geq 2t+1,\quad\textsf{对任意}\;i\neq j.
+\]</span> 如果编码空间为 <span class="math inline">\(\{0,1\}^n\)</span>
+(即编码长度不超过 <span class="math inline">\(n\)</span>),
+则我们要做的就是找到最小的 <span class="math inline">\(n\)</span>,
+使得存在 <span class="math inline">\(k=2^m\)</span>
+个编码满足上述不等式.</p>
+<ul>
+<li><p>显然有 <span class="math inline">\(n\geq2t+1\)</span> 且 <span class="math inline">\(2^n\geq 2^m\)</span>.</p></li>
+<li><p>(Sphere packing bound) 每个编码 <span class="math inline">\(c_i\)</span> 的 <span class="math inline">\(t\)</span>-闭球 (与它的 Hamming 距离不超过 <span class="math inline">\(t\)</span> 的编码) 的体积为 <span class="math inline">\(\sum_{i=0}^t{n\choose i}\)</span>. 则 <span class="math inline">\(n\)</span> 至少应当满足 <span class="math display">\[
+\frac{2^n}{\sum_{i=0}^t{n\choose i}} \geq 2^m.
+\]</span></p></li>
+</ul>
+<p>下面寻找上界, 即什么样的 <span class="math inline">\(n\)</span>
+一定能构造出满足条件的编码. 稍微改变一下问题: <span class="math inline">\(d_H(c_i,c_j)\geq\delta n\)</span> (常数 <span class="math inline">\(0&lt;\delta&lt;\frac12\)</span>).</p>
+<div class="note note-secondary">
+<p>想法: 从 <span class="math inline">\(\{0,1\}^n\)</span>
+上的一个概率分布中生成 <span class="math inline">\(k=2^m\)</span>
+个编码, 然后计算这些编码满足不等式的概率. 如果该概率严格大于零, 则 <span class="math inline">\(\{0,1\}^n\)</span>
+上一定存在这样的编码满足不等式.</p>
+</div>
+<p>先考虑 <span class="math inline">\(\{0,1\}^n\)</span> 上的均匀分布.
+对于 <span class="math inline">\(k=2\)</span> 的情形, 我们有
+(生成一个编码, 落在 <span class="math inline">\(\delta
+n\)</span>-球外的概率) <span class="math display">\[
+P = 1 - \frac{\sum_{i=0}^{\delta n}{n\choose i}}{2^n} =: 1-p,
+\]</span> 一般地, 对于 <span class="math inline">\(k=2^m\)</span>
+的情形, 有估计</p>
+<ul>
+<li><p>(Chernoff bound) <span class="math inline">\(P(d_H(c_i,c_j)&lt;\delta
+n)&lt;\e^{-\mathcal{O}(n)}\)</span>, 对于给定的 <span class="math inline">\(i\neq j\)</span>.</p></li>
+<li><p>(对立事件 / bad event 的概率) <span class="math display">\[
+\Align{
+P(d_H(c_i,c_j)&lt;\delta n,\textsf{存在}\;i\neq j)
+&amp;&lt; \sum_{i\neq j} P(d_H(c_i,c_j)&lt;\delta n) \\
+&amp;&lt; {2^n\choose 2} \e^{-\mathcal{O}(n)}.
+}
+\]</span> 只要该概率严格小于 <span class="math inline">\(1\)</span>
+即可.</p></li>
+</ul>
+<p>最终解得的上界称为 Gilbert-Varshamov bound, 即 <span class="math display">\[
+n\geq c\cdot m,
+\]</span> 其中 <span class="math inline">\(c\)</span> 为常数.</p>
+<h3 id="hamming-codes">5.2  Hamming codes</h3>
+<p>当 <span class="math inline">\(n\)</span> 比较大时, nearest neighbour
+方法效率极低, 不可接受. 我们需要设计更聪明的编码方式.</p>
+<div class="note note-secondary">
+<p>考虑 <span class="math inline">\(\Bbb{F}_2\)</span> 上的矩阵 (以
+<span class="math inline">\(1,2,\dots,7\)</span> 的二进制作为列向量;
+称为校验矩阵) <span class="math display">\[
+H = \pmqty{
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+}_{3\times7},
+\]</span> 它的零空间的维数为 <span class="math inline">\(\dim\operatorname{Null}(H)=7-\rank{H}=4\)</span>,
+因此 <span class="math inline">\(\operatorname{Null}(H)\subset\Bbb{F}_2^7\)</span>
+一共有 <span class="math inline">\(2^4=16\)</span> 个 <span class="math inline">\(7\)</span> 维的向量.
+下面我们考虑其中任意两个不同向量的 Hamming 距离的下界.</p>
+<ul>
+<li>Hamming 距离是实内积 <span class="math inline">\(\lr{-,-}\)</span>
+诱导的度量, 其取值在 <span class="math inline">\(\R\)</span> 中.</li>
+</ul>
+<p>任取 <span class="math inline">\(v,w\in\operatorname{Null}(H)\)</span>. 注意到
+<span class="math inline">\(d_H(v,w)=d_H(v-w,0)\)</span>, 故只用考虑
+<span class="math inline">\(d_H(v,0)\)</span> (<span class="math inline">\(0\neq v\in\operatorname{Null}(H)\)</span>).</p>
+<ul>
+<li>若 <span class="math inline">\(d_H(v,0)=1\)</span>, 即只有一位是
+<span class="math inline">\(1\)</span>, 这是不可能的, 因为这意味着 <span class="math inline">\(H\)</span> 的某列为零.</li>
+<li>若 <span class="math inline">\(d_H(v,0)=2\)</span>, 即只有两位是
+<span class="math inline">\(1\)</span>, 这也是不可能的, 因为这意味着
+<span class="math inline">\(H\)</span> 的某两列相等.</li>
+<li>因此 <span class="math inline">\(d_H(v,w)\geq3\)</span>.</li>
+</ul>
+<p>因此, 如果用 <span class="math inline">\(\operatorname{Null}(H)\)</span> 中的向量编码的话,
+可以做到任意编码被扰动 <span class="math inline">\(1\)</span>
+位后都能还原正确信息.</p>
+</div>
+<p>这种编码称为 Hamming <span class="math inline">\((7,4)\)</span> 编码,
+其中 <span class="math inline">\(7\)</span> 代表一个编码的长度, <span class="math inline">\(4\)</span> 表示所有编码构成 <span class="math inline">\(4\)</span> 维 <span class="math inline">\(\Bbb{F}_2\)</span>-线性空间.</p>
+<ul>
+<li>Hamming 编码满足 sphere packing bound 的取等条件,
+即它严丝合缝地填满了整个空间, 给出了最优的编码长度.</li>
+<li>使得 sphere packing bound 取等的编码称为完美编码 (perfect
+code).</li>
+</ul>
+<p>一般地, 有 Hamming <span class="math inline">\((n=2^u-1,m=2^u-1-u)\)</span> 编码,
+可以做到任意编码被扰动 <span class="math inline">\(1\)</span>
+位后都能还原正确信息. 此时需要构造校验矩阵 <span class="math inline">\(H\in M_{u\times n}(\Bbb{F}_2)\)</span>.</p>
+<ul>
+<li><p>Encoding 的目的是构造一个同构 <span class="math inline">\(\Bbb{F}_2^m\overset\sim\to\operatorname{Null}(H)\)</span>.
+取 <span class="math inline">\(\operatorname{Null}(H)\)</span> 的基底
+<span class="math inline">\(G=(q_1,\dots,q_m)\)</span>, 考虑映射 <span class="math display">\[
+\Bbb{F}_2^m \ni a \mapsto Ga \in \Bbb{F}_2^n
+\]</span> 即可. 此外, 我们希望编码过程更简单一些, 即 <span class="math inline">\(Ga=\pmqty{a \\ *}\)</span> (<span class="math inline">\(Ga\)</span> 的前 <span class="math inline">\(m\)</span> 行恰好为 <span class="math inline">\(a\)</span>), 只需对 <span class="math inline">\(G\)</span> 进行初等行变换, 变成 <span class="math inline">\(\tilde{G}=\pmqty{I_m \\ A_{u\times m}}\)</span>
+形式即可, 与此同时, <span class="math inline">\(H\)</span> 需要列重排为
+<span class="math inline">\(\tilde{H}=\pmqty{B_{u\times
+m}&amp;I_u}\)</span>. 为了保证 <span class="math inline">\(\tilde{H}\tilde{G}=0\)</span>, 需要有 <span class="math display">\[
+A + B = 0,\;\textsf{即}\; A=B.
+\]</span></p>
+<ul>
+<li>该过程对于任意线性码都成立.</li>
+</ul></li>
+<li><p>Decoding 是非常简单的: 设接收到的编码为 <span class="math inline">\(w\)</span>, 它既可能满足 <span class="math inline">\(w\in\operatorname{Null}(H)\)</span> (正确),
+也可能是 <span class="math inline">\(w=v+e_i\)</span> 其中 <span class="math inline">\(v\in\operatorname{Null}(H)\)</span> (扰动一位).
+编码正确等价于 <span class="math inline">\(Hw=0\)</span>, 而 <span class="math display">\[
+H(v+e_i) = He_i = \textsf{$H$ 的第 $i$ 列},
+\]</span> 根据 <span class="math inline">\(He_i\)</span> 确定 <span class="math inline">\(i\)</span> 便知哪一位错误.</p></li>
+</ul>
+<div class="note note-secondary">
+<p>Hamming <span class="math inline">\((7,4)\)</span> 编码的一个生成矩阵
+(<span class="math inline">\(\mathrm{Null}(H)\)</span> 的基底矩阵) 为
+<span class="math display">\[
+G = \pmqty{
+    1 &amp; 1 &amp; 0 &amp; 1 \\
+&amp;   1 &amp; 1 &amp; 0 &amp; 1 \\
+&amp;&amp;  1 &amp; 1 &amp; 0 &amp; 1 \\
+&amp;&amp;&amp; 1 &amp; 1 &amp; 0 &amp; 1
+},
+\]</span> 这样的编码称为循环码 (cyclic code).</p>
+</div>
+<h3 id="error-correcting-codes">5.3  Error correcting codes</h3>
+<p>下面考虑一般的纠错码.</p>
+<ul>
+<li>线性码 (linear code), 即所有编码构成 <span class="math inline">\(\Bbb{F}_2\)</span> 上的线性空间. 记作 <span class="math inline">\([n,m,d]\)</span>, 其中 <span class="math inline">\(n\)</span> 为编码长度, <span class="math inline">\(m\)</span> 为线性空间维数, <span class="math inline">\(d\)</span> 为任意两个编码的 Hamming 距离的最小值.
+<ul>
+<li>Hamming 码也可以记作 <span class="math inline">\([2^{u}-1,2^{u}-1-u,3]\)</span>.</li>
+<li>Hamming 码是完美码.</li>
+</ul></li>
+<li>一般的编码记作 <span class="math inline">\((n,M,d)\)</span>, 其中
+<span class="math inline">\(n\)</span> 为编码长度, <span class="math inline">\(M\)</span> 为不同编码的数量, <span class="math inline">\(d\)</span> 为任意两个编码的 Hamming
+距离的最小值.</li>
+</ul>
+<p>给一个编码 <span class="math inline">\((n,M,d)\)</span>, 记编码为
+<span class="math inline">\((c_1,\dots,c_M)\)</span>. 将开头为 <span class="math inline">\(0\)</span> 的编码提出来, 再将开头为 <span class="math inline">\(1\)</span> 的编码提出来, 然后将第一位删掉,
+分别记作 <span class="math inline">\((d_1,\dots,d_{M'})\)</span> 和
+<span class="math inline">\((e_1,\dots,e_{M''})\)</span>.
+这两者内部的 Hamming 距离最小值仍旧为 <span class="math inline">\(d\)</span>, 而编码数量总有一个大于等于 <span class="math inline">\(M/2\)</span> 的, 故可以得到编码 <span class="math inline">\((n-1,{\geq}M/2,d)\)</span>.</p>
+<p>给一个编码 <span class="math inline">\((n,M,d)\)</span>, 且 <span class="math inline">\(d\)</span> 为奇数. 设 <span class="math inline">\(1\)</span> 的个数为奇数的编码为 <span class="math inline">\((d_1,\dots,d_{M'})\)</span>,
+个数为偶数的编码为 <span class="math inline">\((e_1,\dots,e_{M''})\)</span>. 由于 Hamming
+距离的最小值为奇数, 该最小值 <span class="math inline">\(d_H(x,y)\)</span> 只能当 <span class="math inline">\(x=d_i\)</span>, <span class="math inline">\(y=e_j\)</span> (一个奇数一个偶数) 时取到. 在所有
+<span class="math inline">\((d_i)\)</span> 前补一个 <span class="math inline">\(1\)</span>, 所有 <span class="math inline">\((e_i)\)</span> 前补一个 <span class="math inline">\(0\)</span>, 则可以得到编码 <span class="math inline">\((n+1,M,d+1)\)</span>.</p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" class="print-no-link">#信息论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>信息论 | 2 信道编码</div>
+      <div>https://disembo.github.io/Note/Course/info-theory/2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/CG/simu-4-fluid/" title="流体模拟">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">流体模拟</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/CG/simu-5-elasticity/" title="弹性体模拟">
+                        <span class="hidden-mobile">弹性体模拟</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

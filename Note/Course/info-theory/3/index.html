@@ -1,0 +1,1063 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="信道容量, Shannon 定理, 典型序列.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息论 | 3 信道容量">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/info-theory/3/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="信道容量, Shannon 定理, 典型序列.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-20T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-12T07:40:18.254Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="信息论">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>信息论 | 3 信道容量 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="信息论 | 3 信道容量"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-20 12:00" pubdate>
+          2025年5月20日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">信息论 | 3 信道容量</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<p>通信的流程: <span class="math display">\[
+\xymatrix@=5em{
+*[F-,]{\hspace{3em}\mathclap{\textsf{Message}}\hspace{3em}\strut}
+    \ar[r]^-{\textsf{source}}_-{\textsf{encoding}}
+&amp;
+*[F-,]{\hspace{3em}\mathclap{\textsf{Source code}}\hspace{3em}\strut}
+    \ar[r]^-{\textsf{channel}}_-{\textsf{encoding}}
+&amp;
+*[F-,]{\hspace{3em}\mathclap{\textsf{Channel code}}\hspace{3em}\strut}
+    \ar@{~&gt;}[d]^-{\textsf{noisy channel}}
+\\
+*[F-,]{\hspace{3em}\mathclap{\textsf{Message}'}\hspace{3em}\strut}
+&amp;
+*[F-,]{\hspace{3em}\mathclap{\textsf{Source
+code}'}\hspace{3em}\strut}
+    \ar[l]_-{\textsf{source}}^-{\textsf{decoding}}
+&amp;
+*[F-,]{\hspace{3em}\mathclap{\textsf{Channel
+code}'}\hspace{3em}\strut}
+    \ar[l]_-{\textsf{channel}}^-{\textsf{decoding}}
+}
+\]</span> Shannon 的一大贡献是建立了有噪信道 (noisy channel) 的数学模型.
+他假设有噪信道的输入和输出分别为随机变量 <span class="math inline">\(X,Y\)</span>, 有噪信道的模型为条件分布 <span class="math inline">\(P(Y\mid X)\)</span>.</p>
+<h2 id="channel-capacity">6  Channel capacity</h2>
+<h3 id="shannons-theorem">6.1  Shannon's theorem</h3>
+<p>给定一个有噪信道 <span class="math inline">\(P(Y\mid X)\)</span>,
+每次传输 <span class="math inline">\(X\)</span>, 得到 <span class="math inline">\(Y\)</span>. 在 <span class="math inline">\(Y\)</span> 中究竟能有多少关于 <span class="math inline">\(X\)</span> 的信息? 一个自然的想法是互信息 <span class="math inline">\(I(X;Y)\)</span> (即 <span class="math inline">\(Y\)</span> 中包含了 <span class="math inline">\(X\)</span> 中的多少信息, 或者 <span class="math inline">\(X\)</span> 中包含了多少关于 <span class="math inline">\(Y\)</span> 的信息). <strong>信道容量 (channel
+capacity)</strong> 定义为互信息的最大值: <span class="math display">\[
+\Align{
+C := \max_{P_X\in\mathcal{P}} I(X;Y).
+}
+\]</span></p>
+<ul>
+<li>集合 <span class="math inline">\(\mathcal{P}\)</span> 表示 <span class="math inline">\(\R\)</span> 上所有离散 / 连续概率分布的集合.</li>
+<li>为什么不直接研究 <span class="math inline">\(H(Y)\)</span>? 因为
+<span class="math inline">\(H(Y)\)</span> 包含了噪声的信息, 可能有 <span class="math inline">\(H(Y)&gt;H(X)\)</span>.</li>
+</ul>
+<p>直观地讲, 输入 / 输出分布 <span class="math inline">\(X,Y\)</span>
+分别可以看作概率向量 <span class="math inline">\(P=(p_1,\dots,p_n)\T\)</span> 和 <span class="math inline">\(Q=(q_1,\dots,q_m)\T\)</span>, 信道就是条件概率
+(转移矩阵) <span class="math display">\[
+p(y\mid x) = \pmqty{
+p{(y_1\mid x_1)} &amp; \cdots &amp; p{(y_1\mid x_n)} \\
+\vdots &amp;  &amp; \vdots \\
+p{(y_m\mid x_1)} &amp; \cdots &amp; p{(y_m\mid x_n)}
+}.
+\]</span> 给定一个输入分布 <span class="math inline">\(P\)</span> 之后,
+输出分布 <span class="math inline">\(Q\)</span> 唯一确定为 <span class="math inline">\(p(y\mid x)P\)</span>, 此时就有一个互信息值 <span class="math inline">\(I(P;Q)\)</span>. 信道容量就是取遍所有 <span class="math inline">\(P\)</span> 后, 互信息的最大值.</p>
+<div class="note note-info">
+<p><u>Example</u> 设随机变量 <span class="math inline">\(X,Y\)</span>
+的取值分别为 <span class="math inline">\(x_1,\dots,x_n\)</span> 和 <span class="math inline">\(y_1,\dots,y_n\)</span>.</p>
+<p>考虑两个例子:</p>
+<ol type="1">
+<li><p>对于无噪声的信道, 即 <span class="math inline">\(P(y_j\mid
+x_i)=\delta_{ij}\)</span>, 有 <span class="math inline">\(H(Y\mid
+X)=0\)</span>, 进而 <span class="math display">\[
+C
+= \sup_{P_X} I(X;Y)
+= \sup_{P_X} H(Y).
+\]</span> 当 <span class="math inline">\(Y\)</span> 为均匀分布时 (比如取
+<span class="math inline">\(X\)</span> 为均匀分布), <span class="math inline">\(H(Y)\)</span> 取到最大值 <span class="math inline">\(\log{n}\)</span>. 故信道容量 <span class="math display">\[
+C = \log{n}.
+\]</span></p></li>
+<li><p>假设 <span class="math inline">\(X\)</span> 的每个取值 <span class="math inline">\(x_i\)</span>, 它可能被扰动到任何一个 <span class="math inline">\(y_i\)</span>, 且满足 <span class="math display">\[
+\Align{
+P(Y=y_i \mid X=x_i) &amp;= 1-\varepsilon, \\
+P(Y=y_j \mid X=x_i) &amp;= \frac{\varepsilon}{n-1}, &amp; j\neq i.
+}
+\]</span> (传输错误率为 <span class="math inline">\(\varepsilon\)</span>) 则条件熵 <span class="math display">\[
+\Align{
+H(Y\mid X)
+&amp;= \sum_{i} P(X=x_i) \cdot
+   \underbrace{H(Y\mid X=x_i)}_{\textsf{constant}} \\
+&amp;= H(Y\mid X=x_1),
+}
+\]</span> 因此 <span class="math display">\[
+\Align{
+C
+&amp;= \max_{P_X} [ H(Y) - H(Y\mid X) ] \\
+&amp;= \max_{P_X} H(Y)
+- H(Y\mid X=x_1),
+}
+\]</span> 当 <span class="math inline">\(Y\)</span> 为均匀分布时, <span class="math inline">\(H(Y)\)</span> 取到最大值 <span class="math inline">\(\log{n}\)</span>. 故信道容量 <span class="math display">\[
+\Align{
+C
+= \log{n}
++ (1-\varepsilon) \log(1-\varepsilon)
++ \varepsilon \log\frac{\varepsilon}{n-1}
+}
+\]</span></p></li>
+</ol>
+</div>
+<p>信道容量只是刻画了 <span class="math inline">\(Y\)</span> 中含有的
+<span class="math inline">\(X\)</span> 的信息量,
+但是并不能反映哪些东西是 <span class="math inline">\(X\)</span> 的,
+哪些东西属于噪声. 如果要还原 <span class="math inline">\(X\)</span>
+的信息, 还得依赖于纠错码, 即加入冗余. 冗余越少, 效率越高,
+那么效率的上限在哪?</p>
+<ul>
+<li>给定有噪信道. 给定效率值. 能否设计出 (效率不低于给定值的一系列)
+纠错码, 使得其错误率可以任意小?</li>
+</ul>
+<div class="note note-success">
+<p><u>Theorem</u> (Shannon) 设有噪信道的信道容量为 <span class="math inline">\(C\)</span>, 纠错码的比特率为 <span class="math inline">\(R\)</span>.</p>
+<ul>
+<li>如果 <span class="math inline">\(R&lt;C\)</span>, 则存在比特率为
+<span class="math inline">\(R\)</span> 的纠错码序列, 其错误率趋于 <span class="math inline">\(0\)</span>.</li>
+<li>若比特率为 <span class="math inline">\(R\)</span>
+的纠错码序列错误率趋于 <span class="math inline">\(0\)</span>, 则 <span class="math inline">\(R\leq C\)</span>.</li>
+</ul>
+</div>
+<p>先做一些准备工作.</p>
+<h3 id="typical-sequences">6.2  Typical sequences</h3>
+<div class="note note-secondary">
+<p>回顾 Chebyshev 弱大数定律: 若随机变量列 <span class="math inline">\(\{X_i\}_{i\geq1}\)</span> 独立同分布 <span class="math inline">\(X\)</span>, 且期望和方差存在, 则 <span class="math display">\[
+\frac1n\sum_{i=1}^n X_i \overset{P}{\to} \operatorname{E}(X),
+\qquad n\to\infty.
+\]</span></p>
+<p>其中依概率收敛的含义是, 对任意 <span class="math inline">\(\varepsilon&gt;0\)</span>, 有 <span class="math display">\[
+P\left(
+  \Biggl| \frac1n\sum_{i=1}^n X_i - \operatorname{E}(X) \Biggr|
+  &gt; \varepsilon
+\right) \to 0,
+\qquad n\to\infty.
+\]</span> 大数定律的推论是对于任意 (性质比较好的) 函数 <span class="math inline">\(g:\R\to\R\)</span>, 有 <span class="math inline">\(\frac1n\sum
+g(X_i)\overset{P}\to\operatorname{E}(g(X))\)</span>.</p>
+</div>
+<p>特别地, 考虑取值为有限字母表 <span class="math inline">\(\mathcal{X}\)</span> 的随机变量 <span class="math inline">\(X\)</span>, 并取 <span class="math inline">\(g(x)=\log\frac1{p(x)}\)</span>, 其中 <span class="math inline">\(p(x)\)</span> 是 <span class="math inline">\(X\)</span> 的概率密度. 则 <span class="math display">\[
+P\Biggl(
+    \Biggl|
+        \frac1n\sum_{i=1}^n \log\frac{1}{p(X_i)} -
+        \underbrace{\operatorname{E}\log\frac{1}{p(X)}}_{H(X)}
+    \Biggr| &gt; \varepsilon
+\Biggr) \to 0,
+\qquad n\to\infty.
+\]</span> 绝对值中的第二项就是 <span class="math inline">\(X\)</span>
+的熵, 所以上式的含义就是随机变量列 <span class="math inline">\(\log\frac1{p(X_i)}\)</span> 的均值收敛到 <span class="math inline">\(H(X)\)</span>. 这称为<strong>渐进均分性
+(asymptotic equipartition property, AEP)</strong>.</p>
+<p>上式化为 <span class="math display">\[
+P\biggl(
+    2^{-n(H(X)+\varepsilon)}
+    \leq p(X_1,\dots,X_n)
+    \leq 2^{-n(H(X)-\varepsilon)}
+\biggr) \to 1, \qquad n\to\infty.
+\]</span> 其中 <span class="math inline">\(p(x_1,\dots,x_n)=p(x_1)\cdots
+p(x_n)\)</span> 是 <span class="math inline">\(X_1,\dots,X_n\)</span>
+的联合分布密度. 考虑 <span class="math inline">\(\mathcal{X}^n\)</span>
+的子集 <span class="math display">\[
+A^{(n)}_\varepsilon := \Bigl\{
+    (x_1,\dots,x_n)\in\mathcal{X}^n \Bigm|
+    2^{-n(H(X)+\varepsilon)}
+        \leq p(x_1,\dots,x_n)
+        \leq 2^{-n(H(X)-\varepsilon)}
+\Bigr\},
+\]</span> 则有 <span class="math inline">\(P(A^{(n)}_\varepsilon)\to1\)</span> (当 <span class="math inline">\(n\to\infty\)</span>). 也就是说, 当 <span class="math inline">\(n\)</span> 增大时, 随机变量列 <span class="math inline">\((X_1,\dots,X_n)\)</span> 的取值 (即长度为 <span class="math inline">\(n\)</span> 的字母序列) 大概率出现在 <span class="math inline">\(A^{(n)}_\varepsilon\)</span> 中,
+不太可能出现在补集中. 集合 <span class="math inline">\(A^{(n)}_\varepsilon\)</span> 称为<strong>典型集
+(typical set)</strong>, 其中的序列称为<strong>典型序列 (typical
+sequence)</strong>.</p>
+<p>典型集中任意序列的概率都约为 <span class="math inline">\(2^{-nH(X)}\)</span>, 而 <span class="math inline">\(P(A^{(n)}_\varepsilon)\approx1\)</span>,
+所以可以猜测 <span class="math inline">\(A^{(n)}_\varepsilon\)</span>
+的元素个数为 <span class="math inline">\(2^{nH(X)}\)</span>.</p>
+<div class="note note-secondary">
+<p>一方面有 <span class="math display">\[
+\Align{
+1
+&amp;= \sum_{(x_i)\in\mathcal{X}^n} p(x_1,\dots,x_n) \\
+&amp;\geq \sum_{(x_i)\in A^{(n)}_\varepsilon} p(x_1,\dots,x_n) \\
+&amp;\geq |A^{(n)}_\varepsilon| \cdot 2^{-n(H(X)+\varepsilon)},
+}
+\]</span> 于是 <span class="math inline">\(|A^{(n)}_\varepsilon|\leq2^{n(H(X)+\varepsilon)}\)</span>.</p>
+<p>另一方面, 因为 <span class="math inline">\(P(A^{(n)}_\varepsilon)\to1\)</span> (<span class="math inline">\(n\to\infty\)</span>), 根据极限的定义, 对于给定的
+<span class="math inline">\(\varepsilon&gt;0\)</span> (该 <span class="math inline">\(\varepsilon\)</span> 就是上面给出的, 这里 “一
+<span class="math inline">\(\varepsilon\)</span> 二用”), 当 <span class="math inline">\(n\)</span> 充分大时就有 <span class="math display">\[
+P( (X_1,\dots,X_n) \in A^{(n)}_\varepsilon ) \geq 1-\varepsilon.
+\]</span> 又因为 <span class="math display">\[
+P((X_1,\dots,X_n) \in A^{(n)}_\varepsilon)
+\leq 2^{-n(H(X)-\varepsilon)} \cdot |A^{(n)}_\varepsilon|,
+\]</span> 所以 <span class="math inline">\(|A^{(n)}_\varepsilon|\geq(1-\varepsilon)2^{n(H(X)-\varepsilon)}\)</span>
+对于充分大的 <span class="math inline">\(n\)</span>.</p>
+</div>
+<p>因此 <span class="math inline">\(|A^{(n)}_\varepsilon|\approx
+2^{nH(X)}\)</span>. 考虑它在 <span class="math inline">\(\mathcal{X}^n\)</span> 中的占比: <span class="math display">\[
+\Align{
+\frac{|A^{(n)}_\varepsilon|}{|\mathcal{X}^n|}
+\leq \frac{n(H(X)+\varepsilon)}{2^{n\log|\mathcal{X}|}}
+= 2^{-n(\log|\mathcal{X}| - H(X) - \varepsilon)},
+}
+\]</span> 注意除了均匀分布之外, 都有 <span class="math inline">\(H(X)&lt;\log|\mathcal{X}|\)</span>,
+此时上式就收敛到零 (<span class="math inline">\(n\to\infty\)</span>), 即
+<span class="math inline">\(A^{(n)}_\varepsilon\)</span>
+的占比可以任意小.</p>
+<ul>
+<li>尽管典型集 <span class="math inline">\(A^{(n)}_\varepsilon\)</span>
+只占到 <span class="math inline">\(\mathcal{X}^n\)</span>
+的很小很小一部分, 但是 iid 随机采样 <span class="math inline">\((x_1,\dots,x_n)\)</span>
+却几乎必定出现在典型集中!</li>
+<li>当 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(\mathcal{X}\)</span> 上的均匀分布时, <span class="math inline">\(p(X)\equiv1/|\mathcal{X}|\)</span>, 有 <span class="math inline">\(A^{(n)}_\varepsilon=\mathcal{X}^n\)</span>.</li>
+</ul>
+<div class="note note-info">
+<p><u>Example</u> 考虑 <span class="math inline">\(\mathcal{X}=\{0,1\}\)</span> 上的 Bernoulli 分布
+<span class="math inline">\(P(X=1)=p\)</span>, <span class="math inline">\(P(X=0)=1-p\)</span>, 其中 <span class="math inline">\(p\neq\frac12\)</span>, 则 <span class="math inline">\(X\)</span> 的熵 <span class="math inline">\(H(X)=-p\log{p}-(1-p)\log(1-p)\)</span>.</p>
+<p>设序列 <span class="math inline">\((x_1,\dots,x_n)\in\mathcal{X}^n\)</span> 中有
+<span class="math inline">\(m\)</span> 个 <span class="math inline">\(1\)</span> 和 <span class="math inline">\((n-m)\)</span> 个 <span class="math inline">\(0\)</span>, 则它的概率为 <span class="math display">\[
+p(x_1,\dots,x_n) = p^m(1-p)^{n-m},
+\]</span> 该序列属于 <span class="math inline">\(A^{(n)}_\varepsilon\)</span> 当且仅当 <span class="math inline">\(\log{p(x_1,\dots,x_n)}\approx-n(H(X)\pm\varepsilon)\)</span>,
+即 <span class="math display">\[
+m\log{p} + (n-m)\log(1-p)
+\approx np\log{p} + n(1-p)\log(1-p) \pm n\varepsilon,
+\]</span> 对比得到 <span class="math inline">\(m\approx np\)</span>.</p>
+<p>例如当 <span class="math inline">\(n=10\)</span> 及 <span class="math inline">\(p=0.7\)</span> 时, <span class="math inline">\(A^{(n)}_\varepsilon\)</span> (<span class="math inline">\(\varepsilon\)</span> 充分小) 中包含了所有恰好有
+<span class="math inline">\(7\)</span> 个 <span class="math inline">\(1\)</span> 的序列. 值得注意的是,
+概率最大的那个序列 <span class="math inline">\((1,1,\dots,1)\)</span>
+并不在 <span class="math inline">\(A^{(n)}_\varepsilon\)</span> 中.</p>
+</div>
+<h3 id="jointly-typical-sequences">6.3  Jointly typical sequences</h3>
+<p>设有限字母表 <span class="math inline">\(\mathcal{X}\times\mathcal{Y}\)</span>
+上的随机向量序列 <span class="math inline">\(\{(X_i,Y_i)\}_{i\geq1}\)</span> 独立同分布 <span class="math inline">\(p(x,y)\)</span>.
+它们的<strong>联合典型集</strong>定义为 <span class="math display">\[
+\Align{
+A^{(n)}_\varepsilon := \Bigl\{
+    (x_1,y_1,\dots,x_n,y_n)\in(\mathcal{X}\times\mathcal{Y})^n \Bigm|{}
+    &amp; p(x_1,y_1,\dots,x_n,y_n)
+        \approx 2^{-n(H(X,Y)\pm\varepsilon)} \\
+    &amp; p(x_1,\dots,x_n)
+        \approx 2^{-n(H(X)\pm\varepsilon)} \\
+    &amp; p(y_1,\dots,y_n)
+        \approx 2^{-n(H(Y)\pm\varepsilon)}
+\Bigr\},
+}
+\]</span> 其中的序列称为<strong>联合典型序列</strong>. 我们同样有结论
+(联合 AEP):</p>
+<ol type="1">
+<li><span class="math inline">\(P(A^{(n)}_\varepsilon)\to1\)</span> (当
+<span class="math inline">\(n\to\infty\)</span>).</li>
+<li><span class="math inline">\(|A^{(n)}_\varepsilon|\approx2^{nH(X,Y)}\)</span>.</li>
+<li>如果 <span class="math inline">\(p(x,y)=p_X(x)p_Y(y)\)</span> 独立,
+且 <span class="math inline">\(X=(X_1,\dots,X_n)\)</span> 和 <span class="math inline">\(Y=(Y_1,\dots,Y_n)\)</span> 独立同分布 <span class="math inline">\(p_X,p_Y\)</span>, 则 <span class="math inline">\(P((X,Y)\in
+A^{(n)}_\varepsilon)\approx2^{-nI(X;Y)}\)</span> (当 <span class="math inline">\(n\)</span> 充分大).</li>
+</ol>
+<div class="note note-secondary">
+<p>直观上看, 一共有 <span class="math inline">\(2^{nH(X)}\)</span> 个
+<span class="math inline">\(X\)</span>-典型序列, 有 <span class="math inline">\(2^{nH(Y)}\)</span> 个 <span class="math inline">\(Y\)</span>-典型序列. 然而在这 <span class="math inline">\(2^{n[H(X)+H(Y)]}\)</span> 个序列对中, 只有 <span class="math inline">\(2^{nH(X,Y)}\)</span> 个<u>联合</u>典型序列. 因此,
+任取一个序列对 <span class="math inline">\((X,Y)\)</span> (根据 AEP,
+<span class="math inline">\(X,Y\)</span> 大概率都是典型序列),
+它是联合典型序列的概率为 <span class="math display">\[
+\frac{2^{nH(X,Y)}}{2^{n[H(X)+H(Y)]}} = 2^{-nI(X;Y)}.
+\]</span> (当 <span class="math inline">\(n\)</span> 充分大且 <span class="math inline">\(p(x,y)=p_X(x)p_Y(y)\)</span>.)</p>
+</div>
+<p>事先给定序列 <span class="math inline">\(Y\)</span>,
+对于任意给定的序列 <span class="math inline">\(X\)</span>, 它与 <span class="math inline">\(Y\)</span> 构成联合典型序列的概率为 <span class="math inline">\(2^{-nI(X;Y)}\)</span>. 因此, 如果所有可能的序列
+<span class="math inline">\(X\)</span> 的数量少于 <span class="math inline">\(2^{nI(X;Y)}\)</span>, 则大概率只有一个 <span class="math inline">\(X\)</span> 能够与 <span class="math inline">\(Y\)</span> 构成联合典型序列, 不会搞混.</p>
+<h3 id="proof-of-shannons-theorem">6.4  Proof of Shannon's theorem</h3>
+<h4 id="achievability">6.4.1  Achievability</h4>
+<div class="note note-secondary">
+<p>假设 <span class="math inline">\(R&lt;C\)</span>,
+我们需要证明存在一系列比特率不低于 <span class="math inline">\(R\)</span> 的纠错码, 使得错误率趋于零.</p>
+</div>
+<p>假设信息集为 <span class="math inline">\(\{m_1,\dots,m_{2^{nR}}\}\)</span>,
+且每条信息概率相等 (<span class="math inline">\(2^{nR}\)</span>
+理解为向上取整). 通讯流程为:</p>
+<ol type="1">
+<li><p>(想法一: 随机编码) 随机生成一个 <span class="math inline">\((2^{nR},n)\)</span> 编码 (编码数量, 编码长度),
+将其写作一个矩阵 <span class="math display">\[
+\mathcal{C} = \pmqty{
+x_1\!\pqty{m_1} &amp; \cdots &amp; x_n\!\pqty{m_1} \\
+\vdots &amp; &amp; \vdots \\
+x_1\!\pqty{m_{2^{nR}}} &amp; \cdots &amp; x_n\!\pqty{m_{2^{nR}}} \\
+},
+\]</span> 其中 <span class="math inline">\(x_i(m_j)\)</span> 独立同分布
+<span class="math inline">\(p(x)\)</span> (某个给定的分布).
+可知该编码的比特率为 <span class="math inline">\(R\)</span>.</p></li>
+<li><p>发送者等概率随机挑选一条信息 <span class="math inline">\(m_i\)</span>.</p></li>
+<li><p>信息编码为 <span class="math inline">\((x_1,\dots,x_n)=(x_1(m_i),\dots,x_n(m_i))\)</span>.</p></li>
+<li><p>信息传输 <span class="math inline">\(P((y_1,\dots,y_n)\mid(x_1,\dots,x_n))=\prod_{k=1}^n
+p(y_k\mid x_k)\)</span>.</p></li>
+<li><p>(想法二: 联合典型序列解码<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">最优的解码策略其实是最大似然估计 (MLE),
+但这分析起来较困难. 所以我们采用渐进最优的策略.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>) 接收方收到 <span class="math inline">\((y_1,\dots,y_n)\)</span>. 他猜测发送的信息为 <span class="math inline">\(m_j\)</span>, 如果</p>
+<ul>
+<li><span class="math inline">\((x_1(m_j),\dots,x_n(m_j),y_1,\dots,y_n)\)</span>
+是联合典型序列.</li>
+<li>没有其他的 <span class="math inline">\(m_j\)</span>
+使得该序列为联合典型序列.</li>
+</ul>
+<p>如果不存在 / 存在多于一个这样的 <span class="math inline">\(m_j\)</span>, 则解码失败.</p></li>
+<li><p>若解码失败或者解码出的 <span class="math inline">\(m_j\neq
+m_i\)</span>, 则发生错误.</p></li>
+</ol>
+<p>分析错误的概率. 错误率是所有随机编码错误率的均值: <span class="math display">\[
+P(\textsf{error})
+= \sum_{\mathcal{C}} P(\mathcal{C})P(\textsf{error}\mid\mathcal{C}).
+\]</span> 取定编码 <span class="math inline">\(\mathcal{C}\)</span>.
+注意到各个 <span class="math inline">\(m_i\)</span> 的概率相等,
+不妨假设发送的是 <span class="math inline">\(m_1\)</span>. 记事件 <span class="math inline">\(E_i\)</span> (<span class="math inline">\(i=1,\dots,2^{nR}\)</span>) 表示 <span class="math display">\[
+(x_1(m_i),\dots,x_n(m_i),y_1,\dots,y_n)
+\]</span> 构成联合典型序列. 则发生错误当且仅当 <span class="math inline">\(E_1^c\)</span> 发生
+(发送的编码与收到的编码不构成联合典型序列) 或者 <span class="math inline">\(E_2\cup\cdots\cup E_{2^{nR}}\)</span> 发生
+(收到的编码与其他编码构成联合典型序列). 错误的概率为 <span class="math display">\[
+\Align{
+P(\textsf{error}\mid\mathcal{C})
+&amp;= P(E_1^c\cup E_2\cup\cdots\cup E_{2^{nR}}) \\
+&amp;\leq P(E_1^c) + \sum_{i=2}^{2^{nR}} P(E_i).
+}
+\]</span> - 由联合 AEP, <span class="math inline">\(P(E_1^c)\to0\)</span> (<span class="math inline">\(n\to\infty\)</span>), 第一项可以任意小.</p>
+<ul>
+<li>由 <span class="math inline">\(\mathcal{C}\)</span> 的定义, <span class="math inline">\((x_1(m_i),\dots,x_n(m_i))\)</span> 与 <span class="math inline">\((x_1(m_1),\dots,x_n(m_1))\)</span> 独立, 进而
+<span class="math inline">\((x_1(m_i),\dots,x_n(m_i))\)</span> 与 <span class="math inline">\((y_1,\dots,y_n)\)</span> 独立. 根据联合 AEP 的
+(3), 有 <span class="math display">\[
+P(E_i) \approx 2^{-nI(X;Y)}.
+\]</span> 因此 <span class="math display">\[
+\Align{
+\sum_{i=2}^{2^{nR}} P(E_i)
+&amp;\approx (2^{nR}-1) 2^{-nI(X;Y)} \\
+&amp;\leq 2^{nR}2^{-nI(X;Y)} \\
+&amp;= 2^{-n(I(X;Y)-R)}. \\
+}
+\]</span> 若取 <span class="math inline">\(\mathcal{C}\)</span> 的分布
+<span class="math inline">\(p=\argmax_{p}I(X;Y)\)</span>, 则上式中 <span class="math inline">\(I(X;Y)=C&gt;R\)</span>, 故当 <span class="math inline">\(n\to\infty\)</span> 时, 第二项也可以任意小.</li>
+</ul>
+<p>总之, 错误率可以任意小. 最后我们将随机编码变成一个确定的编码.
+因为任给 <span class="math inline">\(\varepsilon&gt;0\)</span>,
+对于充分大的 <span class="math inline">\(n\)</span>,
+随机编码的平均错误率小于 <span class="math inline">\(\varepsilon\)</span>. 故存在 <span class="math inline">\((2^{nR},n)\)</span> 编码 <span class="math inline">\(\mathcal{C}^*\)</span>, 其错误率小于 <span class="math inline">\(\varepsilon\)</span>. 这便证明了
+achievability.</p>
+<h4 id="necessity">6.4.2  Necessity</h4>
+<div class="note note-secondary">
+<p>需要证明, 若比特率为 <span class="math inline">\(R\)</span>
+的纠错码序列错误率趋于 <span class="math inline">\(0\)</span>, 则 <span class="math inline">\(R\leq C\)</span>.</p>
+</div>
+<p>思想是对错误率<em>等于</em> <span class="math inline">\(0\)</span>
+的纠错码证明 <span class="math inline">\(R\leq C\)</span>,
+再推广到错误率趋于 <span class="math inline">\(0\)</span> 的纠错码.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>最优的解码策略其实是最大似然估计 (MLE),
+但这分析起来较困难. 所以我们采用渐进最优的策略.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" class="print-no-link">#信息论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>信息论 | 3 信道容量</div>
+      <div>https://disembo.github.io/Note/Course/info-theory/3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/Course/info-theory/4/" title="信息论 | 4 参数估计">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">信息论 | 4 参数估计</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/CG/simu-6-elasticity/" title="弹性体模拟">
+                        <span class="hidden-mobile">弹性体模拟</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

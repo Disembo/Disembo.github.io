@@ -1,0 +1,1069 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Pontrjagin 类, Euler 类, Chern 类, 示性类的一些应用列举.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GTM275 | 9 向量丛与示性类">
+<meta property="og:url" content="https://disembo.github.io/Note/dg-gtm275/9/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="Pontrjagin 类, Euler 类, Chern 类, 示性类的一些应用列举.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-14T14:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:03:07.704Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="微分几何">
+<meta property="article:tag" content="黎曼几何">
+<meta property="article:tag" content="示性类">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GTM275 | 9 向量丛与示性类 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GTM275 | 9 向量丛与示性类"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-14 22:00" pubdate>
+          2024年7月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GTM275 | 9 向量丛与示性类</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<div class="note note-secondary">
+<p>GTM275 (<em>Differential Geometry: Connections, Curvature, and
+Characteristic Classes</em>) 第 24-26 节的笔记.</p>
+</div>
+<h2 id="pontrjagin-classes">22  Pontrjagin Classes</h2>
+<h3 id="vanishing-of-characteristic-classes">22.1  Vanishing of characteristic
+classes</h3>
+<p>我们知道, 黎曼丛 <span class="math inline">\(E\to M\)</span>
+的黎曼联络 <span class="math inline">\(\nabla\)</span>
+在正交归一标架下的曲率矩阵 <span class="math inline">\(\Omega\)</span>
+是反对称的: <span class="math inline">\(\Omega^i_j+\Omega^j_i=0\)</span>.
+通过一些简单的观察可以得出: 对于奇数 <span class="math inline">\(k\)</span>, <span class="math display">\[
+\tr(\Omega^k)=0.
+\]</span> 因为 <span class="math inline">\(\tr(X^k)\)</span> 是 <span class="math inline">\({\frak gl}(r,\R)\)</span> 上的不变多项式,
+所以在任意标架 (不论是否正交归一) 下都有 <span class="math inline">\(\tr(\Omega^k)=0\)</span>. 又因为上同调类 <span class="math inline">\([\tr(\Omega^k)]\)</span> 不依赖于联络的选取
+(不论是否与度量相容), 所以在总有 <span class="math inline">\([\tr(\Omega^k)]=0\)</span>. 这一事实不依赖 <span class="math inline">\(E\)</span> 上的黎曼结构.</p>
+<div class="note note-success">
+<p><u>Claim 22.1</u> 设不变多项式 <span class="math inline">\(P(X)\in{\rm Inv}({\frak gl}(r,\R))\)</span>
+是齐次的, 且 <span class="math inline">\(\deg{P}\)</span> 为奇数,
+则对向量丛 <span class="math inline">\(E\to M\)</span> 上的任意联络
+<span class="math inline">\(\nabla\)</span>, 上同调类 <span class="math inline">\([P(\Omega)]=0\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 因为不变多项式由迹多项式生成, 所以 <span class="math inline">\(P(X)\)</span> 的每一个单项式都是 <span class="math display">\[
+\Sigma_1^{i_1}\cdots\Sigma_r^{i_r}
+\]</span> 的倍数. 因为 <span class="math inline">\(P(X)\)</span>
+是奇数次齐次的, 所以单项式中必含有奇数次因子 <span class="math inline">\(\Sigma_j^{i_j}\)</span> (<span class="math inline">\(j\)</span> 为奇数). 根据前面的讨论, 有 <span class="math display">\[
+[\Sigma_j^{i_j}(\Omega)] = [\tr\Omega^j]^{i_j} = 0
+\]</span> 对任意联络成立, 得到 <span class="math inline">\([P(\Omega)]=0\)</span>.</p>
+</div>
+<h3 id="pontrjagin-classes-1">22.2  Pontrjagin Classes</h3>
+<p>由 Claim 22.1, 对于奇数 <span class="math inline">\(1\leq k\leq
+r\)</span>, 迹多项式 <span class="math inline">\(\Sigma_k(\Omega)\)</span> 和特征多项式系数 <span class="math inline">\(f_k(\Omega)\)</span> 都是零. 因此 <span class="math inline">\(E\)</span> 的示性类只剩下偶数次的生成元: <span class="math display">\[
+\Align{
+[\tr(\Omega^2)],[\tr(\Omega^4)],[\tr(\Omega^6)],\dots
+\quad\textsf{以及}\quad
+[f_2(\Omega)],[f_4(\Omega)],[f_6(\Omega)],\dots
+}
+\]</span> 定义<strong>第 <span class="math inline">\(k\)</span>
+Pontrjagin 类</strong>为 <span class="math display">\[
+p_k(E) := \bqty{ f_{2k}\pqty{\frac{\i}{2\pi}\Omega} } \in H^{4k}(M).
+\]</span></p>
+<ul>
+<li>因为 <span class="math inline">\(f_{2k}\)</span> 是偶数次齐次的,
+所以 <span class="math inline">\(\i\)</span> 会消掉.</li>
+<li><span class="math inline">\(M\)</span> 上的一个闭形式 <span class="math inline">\(\omega\)</span> 称为<strong>整形式(integral
+form)</strong>, 若对任意紧致定向子流形 <span class="math inline">\(S\)</span>, <span class="math inline">\(\int_S\omega\)</span> 是整数. Pontrjagin
+类定义中的 <span class="math inline">\(2\pi\)</span> 保证了 <span class="math inline">\(p_k(E)\)</span> 是整形式.</li>
+<li>多项式 <span class="math inline">\(p_k(X):=f_{2k}(\i/2\pi \cdot
+X)=(-1)^k(2\pi)^{-2k}f_{2k}(X)\)</span> 称为第 <span class="math inline">\(k\)</span> 个 Pontrjagin 多项式.</li>
+</ul>
+<p>可以将所有 Pontrjagin 类写在一个公式里: <span class="math display">\[
+\det\!\pqty{\lambda I + \frac{\i}{2\pi}\Omega}
+= \lambda^r + p_1(\Omega)\lambda^{r-2} + \dots +
+  p_{[r/2]}(\Omega)\lambda^{r-2[r/2]},
+\]</span> 其中 <span class="math inline">\([r/2]\)</span> 表示不超过
+<span class="math inline">\(r/2\)</span> 的最大整数. 令 <span class="math inline">\(\lambda=1\)</span>, 有 <span class="math display">\[
+\det\!\pqty{I + \frac{\i}{2\pi}\Omega}
+= 1 + p_1(\Omega) + \dots + p_{[r/2]}(\Omega),
+\]</span> 称 <span class="math inline">\([\det(I+\i/2\pi\cdot\Omega)]\)</span> 为<strong>总
+Pontrjagin 类(total Pontrjagin class)</strong>, 记作 <span class="math inline">\(p(E)\)</span>.</p>
+<p>设 <span class="math inline">\(4m\)</span> 维紧致定向流形 <span class="math inline">\(M\)</span> 上的秩 <span class="math inline">\(r\)</span> 向量丛. 若形式 <span class="math inline">\(p_1^{a_1}(\Omega)\cdots
+p_{[r/2]}^{a_{[r/2]}}(\Omega)\)</span> 的次数 <span class="math display">\[
+4\pqty{ a_1+2a_2+\dots+\bqty{\frac{r}{2}}a_{[r/2]} } = 4m,
+\]</span> 则它可以在 <span class="math inline">\(M\)</span> 上积分,
+<span class="math display">\[
+\int_M p_1^{a_1}(\Omega)\cdots p_{[r/2]}^{a_{[r/2]}}(\Omega)
+\]</span> 称为 <span class="math inline">\(E\)</span> 的
+<strong>Pontrjagin 数</strong>. 流形 <span class="math inline">\(M\)</span> 的 Pontrjagin 数定义为其切丛 <span class="math inline">\(TM\)</span> 的 Pontrjagin 数.</p>
+<ul>
+<li>实际上, Pontrjagin 数不光是流形的微分同胚不变量,
+还是拓扑不变量.</li>
+</ul>
+<h3 id="the-whitney-product-formula">22.3  The Whitney product formula</h3>
+<div class="note note-success">
+<p><u>Claim 22.2</u> (Whitney 乘积公式) 设 <span class="math inline">\(M\)</span> 上的向量丛 <span class="math inline">\(E',E''\)</span>, 则 <span class="math display">\[
+p(E'\otimes E'')=p(E')p(E'').
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(E',E''\)</span>
+上的联络 <span class="math inline">\(\nabla',\nabla''\)</span>, 它们的直和
+<span class="math inline">\(\nabla:=\nabla'\oplus\nabla''\)</span>
+定义了 <span class="math inline">\(E:=E'\oplus E''\)</span>
+上的联络: <span class="math display">\[
+\nabla_X\pmqty{s'\\s''}=\pmqty{\nabla'_Xs'\\\nabla''_Xs''},
+\quad
+X\in\Gamma(TM),s'\in\Gamma(E'),s''\in\Gamma(E''),
+\]</span> 容易验证 <span class="math inline">\(\nabla\)</span>
+满足联络的定义. 设开集 <span class="math inline">\(U\)</span> 上有 <span class="math inline">\(E',E''\)</span> 的标架 <span class="math inline">\(e',e''\)</span>, 则 <span class="math inline">\(e=[e',e'']\)</span> 是 <span class="math inline">\(E\)</span> 的标架. 此时 <span class="math inline">\(\nabla\)</span> 联络和曲率矩阵是 <span class="math display">\[
+\Align{
+\omega &amp;= \omega'\oplus\omega'' \\
+\Omega &amp;= \dd\omega+\omega\wedge\omega
+= \Omega'\oplus\Omega''.
+}
+\]</span> 其中 <span class="math inline">\(A\oplus
+B:=\diag(A,B)\)</span>. 于是 <span class="math inline">\(p(E)\)</span>
+的 Pontrjagin 类 <span class="math display">\[
+\Align{
+p(E'\oplus E'')
+&amp;= \det\!\pqty{I +
+\frac\i{2\pi}\pqty{\Omega'\oplus\Omega''}} \\
+&amp;= \det\!\pqty{\pqty{I + \frac\i{2\pi}\Omega'}\oplus
+               \pqty{I + \frac\i{2\pi}\Omega''}} \\
+&amp;= p(E')p(E'').
+}
+\]</span></p>
+</div>
+<h2 id="the-euler-class">23  The Euler Class</h2>
+<h3 id="oriented-vector-bundles">23.1  Oriented vector bundles</h3>
+<p><strong>可定向向量丛</strong>.</p>
+<p>秩 <span class="math inline">\(r\)</span> 向量丛 <span class="math inline">\(E\to M\)</span>
+的一个<strong>定向(orientation)</strong>指的是处处不为零的光滑截面 <span class="math inline">\(s\in\Gamma\pqty{\bigwedge\nolimits^rE}\)</span>
+的等价类. 两个这样的截面 <span class="math inline">\(s,s'\)</span>
+是等价的, 当且仅当存在函数 <span class="math inline">\(f&gt;0\)</span>,
+使 <span class="math inline">\(s'=fs\)</span>.
+一个拥有定向的向量丛称为<strong>可定向的(orientable)</strong>.</p>
+<p>因为 <span class="math inline">\(\bigwedge^rE\)</span> 的秩为 <span class="math inline">\(1\)</span>, 所以处处不为零的光滑截面 <span class="math inline">\(s\)</span> 就是 <span class="math inline">\(\bigwedge^rE\)</span> 的一个标架.
+向量丛存在整体标架当且仅当它是平凡丛. 所以 <span class="math inline">\(E\)</span> 可定向当且仅当 <span class="math inline">\(\bigwedge^rE\)</span> 是平凡丛.</p>
+<p>根据流形定向的定义, <span class="math inline">\(M\)</span>
+的定向就是切丛 <span class="math inline">\(TM\)</span> 的定向, <span class="math inline">\(M\)</span> 可定向当且仅当切丛可定向.</p>
+<p><strong>可定向向量丛上的整体形式</strong>.</p>
+<p>在一个黎曼丛 <span class="math inline">\(E\)</span> 上,
+对光滑标架应用 Gram-Schmidt 正交化, 可以得到光滑的正交归一标架. 于是,
+存在平凡化开覆盖 <span class="math inline">\(\{(U,e)\}\)</span>,
+使得每个标架都是正交归一的. 正交归一标架的变换矩阵是正交阵. 因此,
+要定义一个整体形式 <span class="math inline">\(P(\Omega)\)</span>,
+只需要考虑 <span class="math inline">\(\operatorname{Ad}_{{\rm
+O}(r)}\)</span>-不变多项式 <span class="math inline">\(P(X)\)</span>.</p>
+<p>特别地, 若黎曼丛 <span class="math inline">\(E\)</span> 可定向,
+则标架变换矩阵是特殊正交阵, 因此只需要考虑 <span class="math inline">\(\operatorname{Ad}_{{\rm
+SO}(r)}\)</span>-不变多项式: <span class="math display">\[
+P(X)=P(A^{-1}XA)=P(A\T XA),\quad\forall A\in{\rm SO}(r).
+\]</span> 注意到 <span class="math inline">\(\Omega\)</span>
+在正交归一标架下是反对称的, 所以 <span class="math inline">\(P(X)\)</span> 只需要在 <span class="math inline">\({\frak so}(r)\)</span> (所有 <span class="math inline">\(r\times r\)</span> 反对称矩阵) 上有定义. 显然
+<span class="math inline">\({\frak gl}(r,\R)\)</span> 上的所有 <span class="math inline">\(\operatorname{Ad}_{{\rm
+GL}(r,\R)}\)</span>-不变多项式都是 <span class="math inline">\({\frak
+so}(r)\)</span> 上的 <span class="math inline">\(\operatorname{Ad}_{{\rm
+SO}(n)}\)</span>-不变多项式, 我们感兴趣的问题是, <span class="math inline">\({\frak so}(r)\)</span> 上的 <span class="math inline">\(\operatorname{Ad}_{{\rm
+SO}(n)}\)</span>-不变多项式包含了哪些额外的多项式?</p>
+<p>实际上, 当 <span class="math inline">\(r\)</span> 是奇数时, <span class="math inline">\({\rm Inv}({\frak so}(r))={\rm Inv}({\frak
+gl}(r,\R))\)</span>. 当 <span class="math inline">\(r\)</span> 是偶数时,
+<span class="math inline">\({\rm Inv}({\frak so}(r))\)</span>
+有一个额外的生成元, 称为 Pfaff 多项式.</p>
+<h3 id="the-pfaffian-of-a-skew-symmetric-matrix">23.2  The Pfaffian of a
+skew-symmetric matrix</h3>
+<p>两个 <span class="math inline">\(r\times r\)</span> 矩阵 <span class="math inline">\(X,Y\)</span>
+称为<strong>合同的(congruent)</strong>, 若存在 <span class="math inline">\(A\in{\rm GL}(r,F)\)</span>, 使得 <span class="math inline">\(Y=A\T XA\)</span>. 根据线性代数的理论,
+任意反对称矩阵 <span class="math inline">\(X\in{\frak so}(r)\)</span>
+合同于标准型 <span class="math display">\[
+A\T XA=\diag(S,\dots,S,0,\dots,0),
+\quad S:=\pmqty{0&amp;1\\-1&amp;0}.
+\]</span> 因此 <span class="math inline">\(X\)</span> 的秩是偶数; 如果
+<span class="math inline">\(X\)</span> 可逆, 则 <span class="math inline">\(r\)</span> 是偶数. 此外, <span class="math display">\[
+(\det{A})^2\det{X} = \det(A\T XA) = (\det S)\cdots(\det S)=1,
+\]</span> 因此 <span class="math inline">\(\det{X}\)</span>
+是一个完全平方 <span class="math inline">\((1/\det{A})^2\in
+F\)</span>.</p>
+<div class="note note-success">
+<p><u>Claim 23.1</u> 设 <span class="math inline">\(X=[x^i_j]\)</span>
+是 <span class="math inline">\(2m\)</span> 阶反对称不定元矩阵, 则 <span class="math inline">\(\det(X)\in\Z[x^i_j]\)</span> 是完全平方式.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(Q(x^i_j)\)</span> 为在 <span class="math inline">\(\Q\)</span> 中添加 <span class="math inline">\(x^i_j\)</span> 所生成的域. 因为存在 <span class="math inline">\(x^i_j\in\Z\)</span> 使得 <span class="math inline">\(\det(X)\neq0\)</span>, 因此 <span class="math inline">\(\det(X)\in\Z[x^i_j]\)</span> 不是零多项式, 进而
+<span class="math inline">\(\det(X)\)</span> 作为 <span class="math inline">\(Q(x^i_j)\)</span> 上的矩阵是可逆的[?].
+根据前面的讨论, 存在矩阵 <span class="math inline">\(A\in{\rm
+GL}(2m,\Q(x^i_j))\)</span>, 满足 <span class="math display">\[
+\det{X}=\pqty{\frac1{\det{A}}}^2\in\Q(x^i_j).
+\]</span> 这说明 <span class="math inline">\(\det{X}\)</span> 是 <span class="math inline">\(\Q(x^i_j)\)</span> 中的完全平方. 假设 <span class="math display">\[
+\det{X}=\pqty{\frac{p(x)}{q(x)}}^2,
+\]</span> 其中 <span class="math inline">\(p(x),q(x)\in\Z[x^i_j]\)</span> 互素, 则 <span class="math display">\[
+q(x)^2\det{X}=p(x)^2,
+\]</span> 因为 <span class="math inline">\(\Z[x^i_j]\)</span>
+是唯一分解整环, 所以 <span class="math inline">\(p(x)\)</span> 可除
+<span class="math inline">\(q(x)\)</span>, 然而 <span class="math inline">\(p(x),q(x)\)</span> 互素, 只能有 <span class="math inline">\(q(x)=\pm1\)</span>. 因此 <span class="math inline">\(\det{X}=p(x)^2\)</span>.</p>
+</div>
+<p>一个 <span class="math inline">\(2m\)</span> 阶反对称矩阵 <span class="math inline">\(X\)</span> 的 <strong>Pfaffian</strong>, 记作
+<span class="math inline">\(\operatorname{Pf}(X)\)</span>,
+定义为行列式的平方根: <span class="math display">\[
+\det(X)=(\operatorname{Pf}(X))^2.
+\]</span> 多项式 <span class="math inline">\(\operatorname{Pf}(X)\in\Z[x^i_j]\)</span> 称为一个
+<strong>Pfaff 多项式</strong>, 是 <span class="math inline">\({\frak
+so}(2m)\)</span> 上的一个 <span class="math inline">\(m\)</span>
+次齐次多项式. 需要注意的是, 多项式 <span class="math inline">\(\det(X)\)</span> 的平方根有两个,
+我们附加一个额外条件: <span class="math display">\[
+\operatorname{Pf}(J_{2m})=1,\quad
+J_{2m}:=\diag(S,\dots,S).
+\]</span></p>
+<div class="note note-success">
+<p><u>Claim 23.2</u> 设不定元矩阵 <span class="math inline">\(A=[a^i_j]\in{\frak gl}(2m,\R)\)</span>, <span class="math inline">\(X=[x^i_j]\in{\frak s0}(2m)\)</span>, 则 <span class="math display">\[
+\operatorname{Pf}(A\T XA)=\det(A)\operatorname{Pf}(X).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 根据行列式的性质, <span class="math display">\[
+\det(A\T XA)=(\det{A})^2\det{X}.
+\]</span> 因为 <span class="math inline">\(A\T XA\)</span> 和 <span class="math inline">\(X\)</span> 反对称, 上式等价于 <span class="math display">\[
+(\operatorname{Pf}(A\T XA))^2=(\det{A})^2(\det{X})^2,
+\]</span> 即 <span class="math display">\[
+\operatorname{Pf}(A\T XA)=\pm\det(A)\operatorname{Pf}(X).
+\]</span> 因为 <span class="math inline">\(\operatorname{Pf}(A\T
+XA)\)</span> 和 <span class="math inline">\(\det(A)\operatorname{Pf}(X)\)</span> 都是 <span class="math inline">\(\Z[a^i_j,x^i_j]\)</span> 中的多项式,
+让他们在同一处取值即可确定符号. 实际上, 令 <span class="math inline">\(A=I_{2m}\)</span>, <span class="math inline">\(X=J_{2m}\)</span>, 可以确定右边取正号.</p>
+</div>
+<p>命题中, 若 <span class="math inline">\(A\)</span> 是正交阵, 则 <span class="math inline">\(\det{A}=1\)</span>, 有 <span class="math inline">\(\operatorname{Pf}(A\T
+XA)=\operatorname{Pf}(X)\)</span>. 因此, Pfaff 多项式是 <span class="math inline">\({\frak so}(2m)\)</span> 上的 <span class="math inline">\(\operatorname{Ad}_{{\rm
+SO}(2m)}\)</span>-不变多项式.</p>
+<h3 id="the-euler-class-1">23.3  The Euler class</h3>
+<p>设秩 <span class="math inline">\(r=2m\)</span> 的可定向向量丛 <span class="math inline">\(E\to M\)</span>. 在正交归一标架下, 度量联络 <span class="math inline">\(\nabla\)</span> 的曲率矩阵 <span class="math inline">\(\Omega\)</span> 是 <span class="math inline">\(2m\)</span> 阶反对称矩阵. 在标架变换 <span class="math inline">\(a\in\Omega^0(U,{\rm SO}(2m))\)</span> 下, <span class="math display">\[
+\operatorname{Pf}(\bar\Omega)
+= \operatorname{Pf}(a\T\Omega a)
+= \det(a)\operatorname{Pf}(\Omega)
+= \operatorname{Pf}(\Omega),
+\]</span> 所以 <span class="math inline">\(\operatorname{Pf}(\Omega)\)</span>
+不依赖正交归一标架的选择, 是一个整体定义的 <span class="math inline">\(2m\)</span>-形式.</p>
+<p>还可以证明, <span class="math inline">\(\operatorname{Pf}(\Omega)\)</span> 是闭形式, 且
+<span class="math inline">\([\operatorname{Pf}(\Omega)]\in
+H^{2m}(M)\)</span> 不依赖联络的选取. 我们在之后会证明推广的情形.
+定义黎曼丛 <span class="math inline">\(E\)</span> 的 <strong>Euler
+类</strong>为 <span class="math display">\[
+e(E) := \bqty{\operatorname{Pf}\pqty{\frac{1}{2\pi}\Omega}}
+= \bqty{(2\pi)^{-m}\operatorname{Pf}(\Omega)}.
+\]</span> 推广的 Gauss-Bonnet 定理表明, Euler 数就是 Euler
+类在流形上的积分.</p>
+<div class="note note-success">
+<p><u>Claim 23.3</u> (推广的 Gauss-Bonnet 定理) 设 <span class="math inline">\(M\)</span> 是 <span class="math inline">\(2m\)</span> 维紧致可定向黎曼流形, 切丛 <span class="math inline">\(TM\)</span> 的曲率矩阵 <span class="math inline">\(\Omega\)</span>, 则 <span class="math display">\[
+\int_M e(TM) = \chi(M).
+\]</span></p>
+</div>
+<h2 id="chern-classes">24  Chern Classes</h2>
+<h3 id="complex-vector-bundles">24.1  Complex vector bundles</h3>
+<p>Chern 类可以认为是复向量丛上的 Pontrjagin 类.</p>
+<p>光滑流形 <span class="math inline">\(M\)</span>
+上的<strong>复向量丛(complex vector bundle)</strong>指的是以 <span class="math inline">\(\C^r\)</span> 为纤维, 局部微分同胚于 <span class="math inline">\(U\times\C^r\)</span> 的向量丛.</p>
+<ul>
+<li>一个实向量丛 <span class="math inline">\(E\)</span>
+可以构造出一个复向量丛 <span class="math inline">\(E\otimes\C\)</span>,
+称为 <span class="math inline">\(E\)</span>
+的<strong>复化(complexification)</strong>, 其中每一点的纤维 <span class="math inline">\(E_p\otimes_\R\C\)</span> 上有 <span class="math inline">\(\C\)</span>-数量乘法结构 <span class="math inline">\(w(v\otimes z)=v\otimes(zw)\)</span>.</li>
+<li><strong>复流形(complex manifold)</strong>指的是第二可数的, Hausdorff
+的, 局部同胚于 <span class="math inline">\(\C^n\)</span> 的,
+并且转移函数是全纯函数的拓扑流形, 称 <span class="math inline">\(n\)</span> 是 <span class="math inline">\(M\)</span> 的复维数. 复流形 <span class="math inline">\(M\)</span> 显然也具有光滑流形结构, 它的实维数是
+<span class="math inline">\(2n\)</span>.</li>
+<li>复流形 <span class="math inline">\(M\)</span> 的切丛 <span class="math inline">\(TM\)</span> 具有复向量丛结构, 并且投射 <span class="math inline">\(\pi:TM\to M\)</span> 是全纯的.
+称这样的向量丛是<strong>全纯向量丛(holomorphic vector
+bundle)</strong>.</li>
+</ul>
+<p>和流形上的实向量丛一样, 每个复向量丛上都存在 <strong>Hermit
+度量(Hermitian metric)</strong>, 即光滑的复内积场 <span class="math inline">\(p\mapsto\lr{\cdot,\cdot}_p\)</span>.</p>
+<p>复向量丛 <span class="math inline">\(E\)</span>
+上的<strong>联络</strong>指的是 <span class="math inline">\(\R\)</span>-双线性映射 <span class="math inline">\(\nabla:\Gamma(TM)\times\Gamma(E)\to\Gamma(E)\)</span>
+满足对第一个分量的 <span class="math inline">\({\cal
+F}\)</span>-线性性和对第二个分量的 <span class="math inline">\(\C\)</span>-线性性. 任意复向量丛上都存在联络.
+一个<strong>与 Hermit 度量相容</strong>的联络指的是满足下式的联络 <span class="math inline">\(\nabla\)</span>: <span class="math display">\[
+X\lr{s,t}=\lr{\nabla_Xs,t}+\lr{s,\nabla_Xt},
+\quad\forall X\in\Gamma(TM),s,t\in\Gamma(E).
+\]</span> 联络 <span class="math inline">\(\nabla\)</span>
+的曲率的定义和实向量丛完全相同.</p>
+<p>在标架 <span class="math inline">\((U,e)\)</span> 下, <span class="math inline">\(\nabla\)</span> 的联络形式是复值微分形式 <span class="math inline">\(\omega^i_j\in\Omega^1(U,\C)\)</span>, <span class="math display">\[
+\nabla_Xe_j = \sum_{i=1}^r\omega^i_j(X)e_i,\quad
+\nabla e=e\omega.
+\]</span> 曲率形式 <span class="math inline">\(\Omega^i_j\in\Omega^2(U,\C)\)</span>, <span class="math display">\[
+R(X,Y)e_j=\sum_{i=1}^r\Omega^i_j(X,Y) e_i,\quad R(e)=e\Omega,
+\]</span> 满足结构方程 <span class="math inline">\(\Omega=\dd\omega+\omega\wedge\omega\)</span>,
+且有标架变换律 <span class="math inline">\(\bar\Omega=a^{-1}\Omega
+a\)</span>, <span class="math inline">\(a\in\Omega^0(U,{\rm
+GL}(r,\C))\)</span>.</p>
+<h3 id="chern-classes-1">24.2  Chern classes</h3>
+<p>若 <span class="math inline">\({\frak gl}(r,\C)\)</span> 上的多项式
+<span class="math inline">\(Q(X)\)</span> 是 <span class="math inline">\(\operatorname{Ad}_{{\rm
+GL}(r,\C)}\)</span>-不变的, 则 <span class="math inline">\(Q(\Omega)\)</span> 定义了 <span class="math inline">\(M\)</span> 上的整体形式. 能够证明 <span class="math inline">\(Q(\Omega)\)</span> 是闭形式且它的 de Rham
+上同调类不依赖联络的选取. 取 <span class="math inline">\(Q(X)=\det(I+\i/2\pi\cdot X)\)</span>, <span class="math display">\[
+Q(\Omega)
+=\det\pqty{I+\frac\i{2\pi}\Omega}
+=1+c_1(\Omega)+\dots+c_r(\Omega),
+\]</span> 其中 <span class="math inline">\([Q(\Omega)]\)</span>
+为<strong>总 Chern 类</strong>, <span class="math inline">\(c_i(E):=[c_i(\Omega)]\)</span> 称为<strong>第
+<span class="math inline">\(k\)</span> Chern 类</strong>.</p>
+<p>设复维数 <span class="math inline">\(n\)</span> 的复流形 <span class="math inline">\(M\)</span>, 切丛 <span class="math inline">\(TM\)</span> 有 Chern 类 <span class="math inline">\(c_i(\Omega)\)</span>. 若 <span class="math inline">\(c_1^{i_1}(\Omega)\cdots c_n^{i_n}(\Omega)\)</span>
+的次数是 <span class="math inline">\(2(i_1+\dots+i_n)\)</span>.
+若这个数等于实维数 <span class="math inline">\(2n\)</span>, 则积分 <span class="math display">\[
+\int_M c_i^{i_1}(\Omega)\cdots c_n^{i_n}(\Omega)
+\]</span> 称为 <span class="math inline">\(M\)</span> 的 <strong>Chern
+数</strong>. Chern 数是复流形的拓扑不变量.</p>
+<h2 id="some-applications">25  Some Applications</h2>
+<h3 id="the-cobordism-problem">25.1  The cobordism problem</h3>
+<p>定向流形 <span class="math inline">\(M_1,M_2\)</span>
+称为(定向)<strong>配边的(cobordant)</strong>, 若存在定向带边流形 <span class="math inline">\(N\)</span>, 使得 <span class="math display">\[
+\partial{N}=M_1\sqcup(-M_2),
+\]</span> 其中 <span class="math inline">\(-M_2\)</span>
+表示具有相反定向的 <span class="math inline">\(M_2\)</span>.
+定向流形是另一个流形的边界, 当且仅当它与空集配边.
+定向配边是定向流形间的等价关系.</p>
+<p>Pontrjagin 数给出了流形配边的一个必要条件.</p>
+<div class="note note-success">
+<p><u>Claim 25.1</u> 若 <span class="math inline">\(4n\)</span>
+维紧致定向流形 <span class="math inline">\(M\)</span> 与空集配边, 则
+<span class="math inline">\(M\)</span> 的所有 Pontrjagin 数为零.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(M=\partial{N}\)</span>,
+<span class="math inline">\(p_1^{i_1}\cdots p_n^{i_n}\)</span> 次数是
+<span class="math inline">\(4n\)</span>, 根据 Stokes 定理, <span class="math display">\[
+\Align{
+\int_M p_1^{i_1}\cdots p_n^{i_n}
+&amp;= \int_{\partial{N}}p_1^{i_1}\cdots p_n^{i_n} \\
+&amp;= \int_{N}\dd(p_1^{i_1}\cdots p_n^{i_n}) \\
+&amp;= 0.
+}
+\]</span></p>
+</div>
+<div class="note note-success">
+<p><u>Claim 25.2</u> (Pontrjagin 数是配边不变量) 若紧致定向流形 <span class="math inline">\(M_1,M_2\)</span> 配边, 则它们的 Pontrjagin
+数相等.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(M_1\sqcup(-M_2)=\partial{N}\)</span>, 由 Claim
+25.1, <span class="math inline">\(\int_{M_1\sqcup(-M_2)}p_1^{i_1}\cdots
+p_n^{i_n}=0\)</span>, 即 <span class="math display">\[
+\int_{M_1}p_1^{i_1}\cdots p_n^{i_n}=
+\int_{M_2}p_1^{i_1}\cdots p_n^{i_n}.
+\]</span></p>
+</div>
+<h3 id="the-embedding-problem">25.2  The embedding problem</h3>
+<p>Whitney 嵌入定理表明, <span class="math inline">\(n\)</span>
+维光滑流形 <span class="math inline">\(M\)</span> 可以嵌入 <span class="math inline">\(\R^{2n+1}\)</span>. 在某些情况下,
+这个维数是可以改进的.</p>
+<div class="note note-success">
+<p><u>Claim 25.3</u> 若紧致 <span class="math inline">\(4n\)</span>
+维流形 <span class="math inline">\(M\)</span> 可以作为超曲面嵌入 <span class="math inline">\(\R^{4n+1}\)</span>, 则 <span class="math inline">\(M\)</span> 的所有 Pontrjagin 类为零.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设嵌入 <span class="math inline">\(i:M\hookrightarrow\R^{4n+1}\)</span>. 因为 <span class="math inline">\(M\)</span> 可定向, <span class="math inline">\(M\)</span> 有外向单位法向量场 于是 <span class="math inline">\(i(M)\)</span> 的法丛 <span class="math inline">\(N\)</span> 平凡. 根据光滑向量丛的短正合列 <span class="math display">\[
+0\to TM \to T\R^{4n+1}|_{i(M)}\to N\to 0,
+\]</span> 有直和 <span class="math display">\[
+T\R^{4n+1}|_{i(M)} \cong TM \oplus N.
+\]</span> 根据 Whitney 乘积公式, <span class="math display">\[
+1= p(T\R^{4n+1}|_{i(M)}) = p(TM)p(N) = p(TM)
+\]</span> 即 <span class="math inline">\(TM\)</span> 的 Pontrjagin
+类平凡.</p>
+</div>
+<h3 id="the-hirzebruch-signature-formula">25.3  The Hirzebruch signature
+formula</h3>
+<h3 id="the-riemann-roch-problem">25.4  The Riemann-Roch problem</h3>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E5%BE%AE%E5%88%86%E5%87%A0%E4%BD%95/" class="print-no-link">#微分几何</a>
+      
+        <a href="/tags/%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95/" class="print-no-link">#黎曼几何</a>
+      
+        <a href="/tags/%E7%A4%BA%E6%80%A7%E7%B1%BB/" class="print-no-link">#示性类</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GTM275 | 9 向量丛与示性类</div>
+      <div>https://disembo.github.io/Note/dg-gtm275/9/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275/10/" title="GTM275 | 10 主丛与示性类">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GTM275 | 10 主丛与示性类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/dg-gtm275/8/" title="GTM275 | 8 向量丛与示性类">
+                        <span class="hidden-mobile">GTM275 | 8 向量丛与示性类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

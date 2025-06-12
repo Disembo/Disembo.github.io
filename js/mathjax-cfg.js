@@ -3,14 +3,14 @@
 
     window.MathJax = {
         loader: {
-            load: ['[custom]/xypic.js', '[tex]/physics', '[tex]/textcomp'],
+            load: ['[custom]/xypic.js', '[tex]/physics', '[tex]/textcomp', '[tex]/mathtools'],
             paths: {
                 // custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build',
                 custom: '/js',
             }
         },
         tex: {
-            packages: {'[+]': ['physics', 'xypic', 'xcolor', 'amsmath', 'configmacros', 'textcomp']},
+            packages: {'[+]': ['physics', 'xypic', 'xcolor', 'amsmath', 'configmacros', 'textcomp', 'mathtools']},
             inlineMath: [['$', '$'], ['\\(', '\\)']],
             macros: {
                 // environments
@@ -36,17 +36,17 @@
                 
                 // operators
                 T: "^{\\mathsf{T}}",
-                tr: "\\mathop{\\mathrm{tr}}",
-                im: "\\mathop{\\mathrm{im}}",
-                Arg: "\\mathop{\\mathrm{Arg}}",
-                sgn: "\\mathop{\\mathrm{sgn}}",
-                diag: "\\mathop{\\mathrm{diag}}",
-                rank: "\\mathop{\\mathrm{rank}}",
-                supp: "\\mathop{\\mathrm{supp}}",
+                tr: "\\operatorname{tr}",
+                im: "\\operatorname{im}",
+                Arg: "\\operatorname{Arg}",
+                sgn: "\\operatorname{sgn}",
+                diag: "\\operatorname{diag}",
+                rank: "\\operatorname{rank}",
+                supp: "\\operatorname{supp}",
                 argmin: "\\mathop{\\mathrm{arg\\,min}}",
                 argmax: "\\mathop{\\mathrm{arg\\,max}}",
-                rhs: "\\mathop{\\mathrm{RHS}}",
-                lhs: "\\mathop{\\mathrm{LHS}}",
+                rhs: "\\mathrm{RHS}",
+                lhs: "\\mathrm{LHS}",
                 
                 // colors
                 orange: ["{\\color[rgb]{1.0,.50,.00} #1}", 1],

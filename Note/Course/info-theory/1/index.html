@@ -1,0 +1,1325 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="最短编码长度, Huffman 编码; 熵与微分熵; 熵率; 最大熵估计.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息论 | 1 信源编码">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/info-theory/1/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="最短编码长度, Huffman 编码; 熵与微分熵; 熵率; 最大熵估计.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/info-theory/1-mutual-information.png">
+<meta property="article:published_time" content="2025-04-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-12T07:40:12.726Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="信息论">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/info-theory/1-mutual-information.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>信息论 | 1 信源编码 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="信息论 | 1 信源编码"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-01 12:00" pubdate>
+          2025年4月1日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">信息论 | 1 信源编码</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<p>讯息源编码. 讯息源里可能有许多冗余,
+我们需要找到一个尽可能短的讯息编码.</p>
+<div class="note note-secondary">
+<p>对数 <span class="math inline">\(\log\)</span> 是以 <span class="math inline">\(2\)</span> 为底的; <span class="math inline">\(\ln\)</span> 表示以 <span class="math inline">\(\e\)</span> 为底的对数.</p>
+</div>
+<div class="note note-warning">
+<p><u>Note</u> (Jensen 不等式) 设随机变量 <span class="math inline">\(X\)</span>, 函数 <span class="math inline">\(f\)</span> 为下凸函数 (类似 <span class="math inline">\(y=x^2\)</span>), 则 <span class="math display">\[
+f(\operatorname{E}(X)) \leq \operatorname{E}(f(X)).
+\]</span> 对于上凸函数 (类似 <span class="math inline">\(y=-x^2\)</span>), 不等号变为 <span class="math inline">\(\geq\)</span>.</p>
+</div>
+<h2 id="entropy">1  Entropy</h2>
+<h3 id="prefix-codes">1.1  Prefix codes</h3>
+<p>对于 <span class="math inline">\(n\)</span> 元字符集 <span class="math inline">\(\{x_1,\dots,x_n\}\)</span>,
+每个字符出现的概率分别为 <span class="math inline">\((p_1,\dots,p_n)\)</span>.
+我们要寻找平均码长最短的字符编码 <span class="math inline">\(C=(c_1,\dots,c_n)\)</span>.
+平均码长就是编码长度的期望 <span class="math display">\[
+L(C) := \sum_{i=1}^n p_i \ell_i.
+\]</span> 我们考虑的当然不是任意的编码,
+我们希望被编码的信息可以被唯一地还原. 记编码映射 <span class="math display">\[
+C : x_{i_1}\dots x_{i_k} \mapsto
+\underbrace{c_{i_1}\dots c_{i_k}}_{\textsf{concat}}.
+\]</span> 编码 <span class="math inline">\(C\)</span>
+称为<strong>可唯一解码的 (uniquely decodable)</strong>, 若 <span class="math inline">\(C\)</span> 是单射.
+一种特殊的可唯一解码的编码是<strong>前缀码 (prefix code)</strong>,
+即任意的 <span class="math inline">\(c_i\)</span> 都不是 <span class="math inline">\(c_j\)</span> (<span class="math inline">\(j\neq
+i\)</span>) 的前缀.</p>
+<ul>
+<li>二进制 prefix codes 与二叉树一一对应. 对于二叉树的每个非叶子结点,
+它的左右子节点分别取 <span class="math inline">\(0,1\)</span>.
+叶子结点对应字符的编码, 其编码的值为从根节点到该节点经历的 <span class="math inline">\(0,1\)</span> 序列.</li>
+</ul>
+<p>记 <span class="math inline">\(B\)</span> 为所有 uniquely decodable
+codes 的集合, 子集 <span class="math inline">\(A\)</span> 为所有的
+prefix codes 的集合. 我们断言 (证明稍后给出):</p>
+<ul>
+<li>对每个 <span class="math inline">\(C\in B\)</span>, 必然存在 <span class="math inline">\(\tilde{C}\in A\)</span> 使得 <span class="math inline">\(L(\tilde{C})=L(C)\)</span>.</li>
+</ul>
+<p>换言之, <span class="math display">\[
+\min_{C\in A}L(C)
+= \min_{C\in B}L(C),
+\]</span> 我们只需在 <span class="math inline">\(A\)</span> 中寻找. 而
+<span class="math inline">\(A\)</span> 中的码长满足如下不等式.</p>
+<div class="note note-success">
+<p><u>Theorem</u> (Kraft 不等式) 设二进制 prefix code <span class="math inline">\(C=(c_1,\dots,c_n)\)</span>, 其长度分别为 <span class="math inline">\((\ell_1,\dots,\ell_n)\)</span>, 则 <span class="math display">\[
+\sum_{i=1}^n 2^{-\ell_i} \leq 1.
+\]</span> 取等当且仅当编码对应的二叉树中, 每个节点都有 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(2\)</span> 个子节点.</p>
+<p>反之, 若非负整数列 <span class="math inline">\((\ell_1,\dots,\ell_n)\)</span> 满足 Kraft 不等式,
+则存在 prefix code <span class="math inline">\(C\)</span> 以其为长度——以
+<span class="math inline">\(\ell_i\)</span>
+为叶节点深度构造二叉树即可.</p>
+</div>
+<p><span class="math display">\[
+\xymatrix@=5em{
+*[F-,]{\hspace{3em}\mathclap{\textsf{Prefix code}}\hspace{3em}\strut}
+    \ar@1{&lt;-&gt;}[r]
+&amp;
+*[F-,]{\hspace{3em}\mathclap{\textsf{二叉树}}\hspace{3em}\strut}
+    \ar@1{&lt;-&gt;}[r]
+&amp;
+*[F-,]{\hspace{3em}\mathclap{\textsf{Kraft 不等式}}\hspace{3em}\strut}
+}
+\]</span></p>
+<p>现在我们给出断言的证明, 它实际上是 Kraft 不等式的推广.</p>
+<div class="note note-success">
+<p><u>Theorem</u> (Kraft-McMillan 不等式) 设二进制 uniquely decodable
+编码 <span class="math inline">\(C=(c_1,\dots,c_n)\)</span>,
+其长度分别为 <span class="math inline">\((\ell_1,\dots,\ell_n)\)</span>,
+则 <span class="math display">\[
+\sum_{i=1}^n 2^{-\ell_i} \leq 1.
+\]</span> 进而存在 prefix code <span class="math inline">\(\tilde{C}\)</span>, 使得其长度也为 <span class="math inline">\((\ell_1,\dots,\ell_n)\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 设 <span class="math inline">\(a_L\)</span> 表示 <span class="math inline">\(C\)</span> 可以编码成 (“拼成”) 的长度为 <span class="math inline">\(L\)</span> 的 0/1 序列的个数.
+由于不同拼接方式得到的 0/1 序列不同, 有 <span class="math inline">\(a_L\leq2^L\)</span> (所有长度为 <span class="math inline">\(L\)</span> 的 0/1 的序列的个数). 下面考虑 <span class="math inline">\(\{a_L\}\)</span> 的生成函数.</p>
+<p>记 <span class="math inline">\(S(x) = \sum_{i=1}^n
+x^{\ell_i}\)</span>, 则 “从 <span class="math inline">\(C\)</span>
+中选择 <span class="math inline">\(m\)</span> 个码字 (可重复)”
+的生成函数是乘积 <span class="math inline">\([S(x)]^m\)</span>, 其 <span class="math inline">\(L\)</span> 次项系数就是得到长度 <span class="math inline">\(L\)</span> 序列的方法数. 故 <span class="math display">\[
+\sum_{L=0}^\infty a_L x^L = \sum_{m=0}^\infty [S(x)]^m.
+\]</span> 注意 <span class="math inline">\(a_L\leq2^L\)</span>, 级数在
+<span class="math inline">\(|x|&lt;1/2\)</span> 时绝对收敛, 此时 <span class="math display">\[
+\Align{
+\frac{1}{1-S(x)}
+= \sum_{m=0}^\infty [S(x)]^m
+= \sum_{L=0}^\infty a_Lx^L
+\leq \sum_{L=0}^\infty (2x)^L
+= \frac{1}{1-2|x|},
+}
+\]</span> 两遍取倒数并令 <span class="math inline">\(x\to(1/2)^-\)</span> 即得.</p>
+</div>
+<h3 id="entropy-1">1.2  Entropy</h3>
+<p>讯息集 (或字符集) <span class="math inline">\({\cal
+M}=\{m_1,\dots,m_n\}\)</span>, 每个讯息的概率为 <span class="math inline">\(p_i\)</span>. 对于编码 <span class="math inline">\(C=(c_1,\dots,c_n)\)</span>, 码长分别为 <span class="math inline">\(\ell_i\)</span>, 则平均码长为 <span class="math inline">\(\sum p_i\ell_i\)</span>. 根据以上的讨论,
+我们只需在 prefix 编码中寻找. 换言之, 我们只需要找到一组满足 Kraft
+不等式的非负整数. 为了让平均编码长度尽可能小, 需要 Kraft 不等式取等.
+总之, 我们的优化问题为 <span class="math display">\[
+\min_{\ell_1,\dots,\ell_n} \sum_{i=1}^n p_i\ell_i,
+\quad \textsf{s.t.} \quad
+\sum_{i=1}^n 2^{-\ell_i}=1, \quad
+\ell_i\geq0.
+\]</span> 注意我们把 <span class="math inline">\(\ell_i\in\N\)</span>
+的条件删去了.</p>
+<p>令 <span class="math inline">\(q_i=2^{-\ell_i}\)</span>, 则 <span class="math inline">\((q_1,\dots,q_n)\)</span> 也是一个概率分布.
+优化问题变为 <span class="math display">\[
+\max_{q_1,\dots,q_n} \sum p_i\log q_i.
+\]</span> 注意到</p>
+<div class="note note-success">
+<p><u>Theorem</u> 设概率分布 <span class="math inline">\((p_1,\dots,p_n)\)</span>, <span class="math inline">\((q_1,\dots,q_n)\)</span>, 则 <span class="math display">\[
+\sum p_i\log(\frac{p_i}{q_i})\geq0,
+\]</span> 也即 <span class="math display">\[
+\sum p_i\log p_i \geq \sum p_i\log q_i.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 记 <span class="math inline">\(f(x):=\log{x}\)</span>, 则
+<span class="math inline">\(f''(x)&lt;0\)</span>, 即 <span class="math inline">\(f\)</span> 为上凸函数. 由 Jensen 不等式, <span class="math display">\[
+\sum p_i \log\!\pqty{\frac{q_i}{p_i}}
+\leq \log\!\pqty{ \sum p_i\frac{q_i}{p_i} }
+= 0.
+\]</span></p>
+</div>
+<p>因此当 <span class="math inline">\(p_i=q_i\)</span> 即 <span class="math inline">\(\ell_i=-\log p_i\)</span> 时取到最大值, 平均码长为
+<span class="math inline">\(- \sum p_i\log p_i\)</span>.</p>
+<p>设讯息源 <span class="math inline">\(X\)</span>
+给出的各条讯息的概率为 <span class="math inline">\((p_1,\dots,p_n)\)</span>, 则它的<strong>熵
+(entropy)</strong> 定义为 <span class="math display">\[
+H(X) := -\sum_{i=1}^n p_i \log p_i.
+\]</span></p>
+<ul>
+<li>编码该讯息源的讯息, 所需的平均编码长度.
+衡量了该讯息源的信息量的大小.</li>
+<li>均匀分布的熵最大, 确定分布 (某 <span class="math inline">\(p_i=1\)</span>) 的熵最小.</li>
+<li>一条以 <span class="math inline">\(p_i\)</span> 为概率的讯息的信息量
+(最短平均码长) 为 <span class="math inline">\(-\log{p_i}\)</span>.
+概率越小, 信息量越大.</li>
+<li><span class="math inline">\(H(X)\)</span> 的单位是 bit. 当然也可以以
+<span class="math inline">\(n\)</span> 进制编码, 需将 <span class="math inline">\(\log\)</span> 换为以 <span class="math inline">\(n\)</span> 为底, 单位也不再是 bit.</li>
+</ul>
+<div class="note note-success">
+<p><u>Theorem</u> (熵的可加性) 设随机变量 <span class="math inline">\(X,Y,Z\)</span> 的概率分布分别为 <span class="math display">\[
+\Align{
+(p_1,\dots,p_n,a+b),\quad
+\pqty{\frac{a}{a+b},\frac{b}{a+b}},\quad
+(p_1,\dots,p_n,a,b),
+}
+\]</span> 其中 <span class="math inline">\(a+b\neq0\)</span>. 则 <span class="math display">\[
+H(X) + (a+b) H(Y) = H(Z).
+\]</span></p>
+</div>
+<h3 id="constructing-the-optimal-code">1.3  Constructing the optimal
+code</h3>
+<p>以上的讨论只是纯理论上的, 因为熵不要求编码长度是整数.
+下面我们来构造实际上的最优编码.</p>
+<p>根据以上讨论, 随机变量 <span class="math inline">\((p_1,\dots,p_n)\)</span> 的最优编码 <span class="math inline">\((c_1,\dots,c_n)\)</span> (平均码长最小)
+应满足:</p>
+<ol type="1">
+<li>如果 <span class="math inline">\(p_1\leq\cdots\leq p_n\)</span>, 则
+<span class="math inline">\(|c_1|\geq\cdots\geq|c_n|\)</span>.</li>
+<li>(Kraft) <span class="math inline">\(\sum_i
+2^{-|c_i|}=1\)</span>.</li>
+<li>由 1, 2, 必然有 <span class="math inline">\(|c_{n-1}|=|c_n|\)</span>, 不妨设 <span class="math inline">\(c_{n-1},c_n\)</span> 是兄弟节点.</li>
+<li>由 3, 如果 <span class="math inline">\((c_1,\dots,c_n)\)</span> 是
+<span class="math inline">\((p_1,\dots,p_n)\)</span> 的最优编码 (<span class="math inline">\(p_1\geq\dots\geq p_n\)</span>), 记 <span class="math inline">\(\tilde{c}_{n-1}\)</span> 是 <span class="math inline">\(c_{n-1},c_n\)</span> 的父节点对应的编码
+(即两者的公共前缀), 则 <span class="math inline">\((c_1,\dots,c_{n-2},\tilde{c}_{n-1})\)</span> 是
+<span class="math inline">\((p_1,\dots,p_{n-2},p_{n-1}+p_n)\)</span>
+的最优编码.</li>
+</ol>
+<p>由此构造出来的最优编码称为 Huffman 编码.</p>
+<div class="note note-success">
+<p><u>Theorem</u> (最优编码的平均码长) 设 <span class="math inline">\(C^*\)</span> 是随机变量 <span class="math inline">\(X\)</span> 的最优 prefix-free 编码, 则 <span class="math display">\[
+H(X) \leq L(C^*) &lt; H(X)+1.
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 考虑编码 <span class="math inline">\(C\)</span>, 其码长​
+<span class="math inline">\(\ell_i=\lceil\log\frac{1}{p_i}\rceil\)</span>,
+注意到 <span class="math display">\[
+\sum_{i=1}^n 2^{-\ell_i}
+= \sum_{i=1}^n 2^{-\lceil\log\frac{1}{p_i}\rceil}
+\leq \sum_{i=1}^n 2^{-\log\frac{1}{p_i}}
+= \sum_{i=1}^n p_i = 1,
+\]</span> 故可以构造以 <span class="math inline">\(\ell_i\)</span>
+为长度的 prefix-free 编码. 利用 <span class="math inline">\(-\log{p_i}\leq\ell_i&lt;-\log{p_i}+1\)</span>,
+容易得到 <span class="math display">\[
+H(X) \leq L(C) &lt; H(X)+1
+\]</span> 由于 <span class="math inline">\(L(C^*)&lt;L(C)\)</span>, 有
+<span class="math inline">\(L(C^*)&lt;H(X)+1\)</span>.
+下界由熵的定义直接得到.</p>
+</div>
+<h2 id="joint-entropy-conditional-entropy-mutual-information-and-kl-divergence">2  Joint
+entropy, conditional entropy, mutual information and KL-divergence</h2>
+<h3 id="joint-entropy">2.1  Joint entropy</h3>
+<p>设 (有限支) 随机变量 <span class="math inline">\(X,Y\)</span>
+的联合分布为 <span class="math inline">\((p_{ij})_{n\times m}\)</span>,
+则<strong>联合熵 (joint entropy)</strong> 定义为 <span class="math display">\[
+H(X,Y) = -\sum_{i,j} p_{ij} \log{p_{ij}}.
+\]</span></p>
+<ul>
+<li>与各个随机变量的熵的关系: <span class="math display">\[
+H(X,Y) \leq H(X) + H(Y).
+\]</span> 取等当且仅当 <span class="math inline">\(X,Y\)</span> 独立.
+特别地, 若 <span class="math inline">\(X=Y\)</span>, 则 <span class="math inline">\(H(X,Y)=H(X)=H(Y)\)</span>.</li>
+</ul>
+<h3 id="conditional-entropy">2.2  Conditional entropy</h3>
+<p>在 <span class="math inline">\(Y=y\)</span> 的条件下, <span class="math inline">\(X\)</span> 有条件分布. 定义 <span class="math display">\[
+H(X\mid Y=y)
+:= -\sum_i P(X=x_i\mid Y=y) \log{P(X=x_i\mid Y=y)}.
+\]</span> <strong>条件熵 (conditional entropy)</strong> 定义为 <span class="math display">\[
+\Align{
+H(X\mid Y)
+:=&amp;\; \sum_j P(Y=y_j) H(X\mid Y=y_j) \\
+=&amp;\; -\sum_{i,j} P(X=x_i,Y=y_j)\log{P(X=x_i\mid Y=y_j)}.
+}
+\]</span></p>
+<ul>
+<li><p>如果 <span class="math inline">\(X,Y\)</span> 独立, 则 <span class="math inline">\(H(X\mid Y)=H(X)\)</span>. 如果 <span class="math inline">\(X=Y\)</span>, 则 <span class="math inline">\(H(X\mid Y)=0\)</span>.</p></li>
+<li><p>条件熵的含义是, 知道其中一个随机变量,
+则另一个随机变量的信息量大小. 条件熵与联合熵的关系: <span class="math display">\[
+\Align{
+H(X,Y)
+&amp;= H(Y\mid X) + H(X)
+= H(X\mid Y) + H(Y).
+}
+\]</span></p>
+<p>于是我们有 <span class="math display">\[
+\Align{
+H(Y)&amp;\geq H(Y\mid X), &amp;
+H(X)&amp;\geq H(X\mid Y).
+}
+\]</span> 即 conditioning reduces entropy. 并且有 <span class="math display">\[
+H(Y) - H(Y\mid X) = H(X) - H(X\mid Y),
+\]</span> 左边可以看作 "<span class="math inline">\(Y\)</span> 中包含
+<span class="math inline">\(X\)</span> 的信息量", 右边可以看作 "<span class="math inline">\(X\)</span> 中包含 <span class="math inline">\(Y\)</span> 的信息量". 两者相等.</p></li>
+</ul>
+<div class="note note-success">
+<p><u>Theorem</u> (链式法则) 对于随机变量列 <span class="math inline">\(\{X_i\}_{i=1}^n\)</span>, 有 <span class="math display">\[
+H(X_1,\dots,X_n)=\sum_{i=1}^n H(X_i\mid X_1,\dots,X_{i-1}).
+\]</span> 特别地, 若 <span class="math inline">\(\{X_i\}\)</span>
+相互独立, 则 <span class="math display">\[
+H(X_1,\dots,X_n) = \sum_{i=1}^n H(X_i).
+\]</span></p>
+</div>
+<h3 id="mutual-information">2.3  Mutual information</h3>
+<p><strong>互信息 (mutual information)</strong> 就定义为 <span class="math display">\[
+\Align{
+I(X;Y)
+:=&amp;\; H(Y) - H(Y\mid X) \\
+=&amp;\; \sum_{i,j} P(X=x_i,Y=y_i)
+\log\frac{P(X=x_i,Y=y_i)}{P(X=x_i)P(Y=y_i)}.
+}
+\]</span> 它是对称的, 衡量了 <span class="math inline">\(X,Y\)</span>
+相互包含的信息量的大小. 有 <span class="math display">\[
+\Align{
+I(X;Y)
+&amp;= H(Y) - H(Y\mid X) \\
+&amp;= H(X) - H(X\mid Y) \\
+&amp;= H(X) + H(Y) - H(X,Y).
+}
+\]</span></p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/info-theory/1-mutual-information.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<h3 id="kullback-leibler-divergence">2.4  Kullback-Leibler divergence</h3>
+<p>假设随机变量 <span class="math inline">\(X\)</span> 真正的概率分布为
+<span class="math inline">\(P=(p_1,\dots,p_n)\)</span> (未知).
+我们用另一个分布 <span class="math inline">\(Q=(q_1,\dots,q_n)\)</span>
+来估计它. 故我们实际采取的编码长度为 <span class="math inline">\((-\log{q_1},\dots,-\log{q_n})\)</span>,
+实际的平均编码长度为 <span class="math inline">\(-\sum_i
+p_i\log{q_i}\)</span>. 而理论最优编码长度为 <span class="math inline">\(-\sum_ip_i\log{p_i}\)</span>. 两者的差值为 <span class="math display">\[
+\sum_i p_i \log\frac{p_i}{q_i} \geq 0,
+\]</span> (回顾第 1 节中的不等式) 它称为 <span class="math inline">\(P\)</span> 与 <span class="math inline">\(Q\)</span> 的 <strong>KL 散度 (Kullback-Leibler
+divergence)</strong>, 记作 <span class="math inline">\(D(P\parallel
+Q)\)</span> 或者 <span class="math inline">\(\operatorname{KL}(P\parallel Q)\)</span>.</p>
+<ul>
+<li>KL 散度也称为相对熵 (relative entropy).</li>
+<li>互信息实际上是联合分布 <span class="math inline">\(P((X,Y)=(x_i,y_i))\)</span> 与乘积分布 <span class="math inline">\(P(X=x_i)P(Y=y_i)\)</span> 间的 KL 散度.</li>
+</ul>
+<p>记 <span class="math inline">\(n\)</span> 元概率分布列的空间 <span class="math inline">\({\cal P}_n:=\{x\in\R^n\mid\sum
+x_i=1,x_i&gt;0\}\)</span>. 这是 <span class="math inline">\(\R^n\)</span> 中的 <span class="math inline">\((n-1)\)</span> 维凸流形.</p>
+<div class="note note-success">
+<p><u>Theorem</u> (熵和 KL 散度的凹凸性) 设 <span class="math inline">\(P,Q\in{\cal P}_n\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(H(P)\)</span> 关于 <span class="math inline">\(P\)</span> 是上凸函数 (类似 <span class="math inline">\(y=-x^2\)</span>).</li>
+<li><span class="math inline">\(D(P\parallel Q)\)</span> 关于 <span class="math inline">\(P\)</span> 和 <span class="math inline">\(Q\)</span> 以及 <span class="math inline">\((P,Q)\)</span> 都是下凸函数 (类似 <span class="math inline">\(y=x^2\)</span>).</li>
+</ol>
+<p>注: “凹凸性” 的术语一直没有固定的标准, 这里的 “上凸” / “下凸”
+的意思是函数图像向上 / 向下弯曲.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 求出其 Hessian 即可. 正定为下凸, 负定为上凸. 实际上有 <span class="math display">\[
+\Align{
+\pqty{\pdv[2]{H}{p_i}{p_j}} &amp;= -\delta_{ij} \frac{1}{p_i}, &amp;
+\pqty{\pdv[2]{D}{x_i}{x_j}} &amp;= \pmqty{
+  \pqty{\delta_{ij}\frac{1}{p_i}} &amp;
+  \pqty{-\delta_{ij}\frac{1}{q_i}} \\
+  \pqty{-\delta_{ij}\frac{1}{q_i}} &amp;
+  \pqty{\delta_{ij}\frac{p_i}{q_i^2}}
+}.
+}
+\]</span> 熵 <span class="math inline">\(H(P)\)</span> 的 Hessian
+显然是负定的. 对于 KL 散度的 Hessian, 注意到对角线上的两个块都是正定的,
+故 <span class="math inline">\(D\)</span> 关于 <span class="math inline">\(P\)</span> 和 <span class="math inline">\(Q\)</span> 是下凸函数; 而整个 Hessian 是半正定的
+(Schur 补定理), 故 <span class="math inline">\(D\)</span> 关于 <span class="math inline">\((P,Q)\)</span> 是下凸函数.</p>
+<p>期末考试的参考答案提供了另一种证明方法.</p>
+</div>
+<p>向量范数与 KL 散度的关系:</p>
+<div class="note note-success">
+<p><u>Theorem</u> (<span class="math inline">\(\ell^1\)</span> 范数被 KL
+散度控制) 设 <span class="math inline">\(P,Q\in{\cal P}_n\)</span>, 则
+<span class="math display">\[
+\frac1{2\ln2}\|P-Q\|_1^2 \leq D(P\parallel Q).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 首先考虑最简单的分布, 即 Bernoulli 分布的情况. 设 <span class="math inline">\(P=(p,1-p)\)</span>, <span class="math inline">\(Q=(q,1-q)\)</span>, 不妨有 <span class="math inline">\(p\geq q\)</span>. 则 <span class="math display">\[
+\Align{
+D(P\parallel Q) - \frac1{2\ln2}\|P-Q\|_1^2
+&amp;= \pqty{p\log\frac{p}{q} + (1-p)\log\frac{1-p}{1-q}}
+  - \frac{2}{\ln2}(p-q)^2, \\
+&amp;=: f(p,q).
+}
+\]</span> 只需证明 <span class="math inline">\(f(p,q)\geq0\)</span>.
+关于 <span class="math inline">\(q\)</span> 求导得到 <span class="math display">\[
+\pdv{f}{q} = \frac{q-p}{q(1-q)\ln2} - \frac{4}{\ln2}(q-p) \leq 0,
+\]</span> (注意 <span class="math inline">\(q(1-q)\leq\frac14\)</span>
+以及 <span class="math inline">\(q\leq p\)</span>) 于是 <span class="math inline">\(f\)</span> 关于 <span class="math inline">\(q\)</span> 递减. 当 <span class="math inline">\(q=p\)</span> 时, <span class="math inline">\(f(p,q)=0\)</span>, 即证.</p>
+<p>接着考虑一般的分布 <span class="math inline">\(P=(p_i)\)</span>,
+<span class="math inline">\(Q=(q_i)\)</span>. 构造 <span class="math display">\[
+\tilde{P} = \pqty{ \sum_{i:p_i\geq q_i} p_i,\sum_{i:p_i&lt;q_i}p_i },
+\]</span> 则 <span class="math inline">\(\tilde{P}\)</span>, <span class="math inline">\(\tilde{Q}\)</span> 都是 Bernoulli 分布, 并且 <span class="math inline">\(\|P-Q\|_1=\|\tilde{P}-\tilde{Q}\|_1\)</span>. 注意
+KL 散度关于 <span class="math inline">\(P,Q\)</span> 都是下凸的, 有
+<span class="math display">\[
+D(P\parallel Q)
+\geq D(\tilde{P}\parallel\tilde{Q})
+\geq \frac{1}{2\ln2}\|\tilde{P}-\tilde{Q}\|_1^2
+= \frac{1}{2\ln2}\|P-Q\|_1^2.
+\]</span></p>
+</div>
+<h2 id="entropy-rate">3  Entropy Rate</h2>
+<p>考虑这样一个随机变量 <span class="math inline">\(X\sim
+P=(0.01,0.99)\)</span>, 它的熵 <span class="math inline">\(H(X)\approx0.08\)</span>,
+然而最短一次传输的平均编码长度 (需要是正整数) 为 <span class="math inline">\(1\)</span> bit. 它的编码效率是 <span class="math inline">\(0.08/1=0.08\)</span>.</p>
+<p>如果有无穷长度的讯息序列 <span class="math inline">\((X_1,X_2,\dots,X_t,\dots)\sim{\sf
+iid}\,P\)</span>, 能否有一种编码长度更短的方式? 我们考虑将相邻的 <span class="math inline">\(T\)</span> 个讯息源一起编码: <span class="math inline">\((X_1,\dots,X_T)\)</span>, 则它们的联合熵 <span class="math inline">\(H(X_1,\dots,X_T)=T\cdot H(X_1)\)</span>,
+进而最短平均编码长度小于等于 <span class="math inline">\(T\cdot
+H(X)+1\)</span> bit. 它的编码效率是 <span class="math display">\[
+\frac{T\cdot H(X) + 1}{T\cdot H(X)} = 1+\mathcal{O}\!\pqty{\frac1T},
+\]</span> 平均到每个 <span class="math inline">\(X_i\)</span>
+的最短平均码长是 <span class="math display">\[
+\frac{T\cdot H(X)+1}{T} = H(X) + \mathcal{O}\!\pqty{\frac1T}.
+\]</span></p>
+<div class="note note-secondary">
+<p>Huffman 编码是固定一次编码的随机变量个数 <span class="math inline">\(T=1\)</span> 情况下的最优解; 而熵给出了 <span class="math inline">\(T\)</span> 可变时的理论最优解.</p>
+</div>
+<p>下面给出熵率的严格定义. 将讯息源 <span class="math inline">\(\mathcal{X}\)</span> 建模为<strong>随机过程
+(stochastic process)</strong>, 即随机变量序列 <span class="math inline">\(\{X_i\}_{i\in\N}\)</span>. 讯息源 <span class="math inline">\({\cal X}\)</span> 的<strong>熵率 (entropy
+rate)</strong> 为 <span class="math display">\[
+H({\cal X}) := \lim_{T\to\infty} \frac1T H(X_1,X_2,\dots,X_T).
+\]</span> 随机过程 <span class="math inline">\(\mathcal{X}\)</span>
+称为<strong>平稳的 (stationary)</strong>, 若联合分布在平移下不变: <span class="math display">\[
+p(x_1,\dots,x_n) = p(x_{t+1},\dots,x_{t+n}),\quad \forall t,n\geq1.
+\]</span> 特别地, 此时 <span class="math inline">\(X_i\)</span> 同分布.
+如果 <span class="math inline">\(X_i\)</span> <em>独立</em>同分布,
+也可以推出 <span class="math inline">\(\mathcal{X}\)</span>
+是平稳的.</p>
+<div class="note note-success">
+<p><u>Theorem</u> (等价定义) <em>平稳过程</em> <span class="math inline">\(\{X_i\}\)</span> 的熵率等于条件熵的极限, <span class="math display">\[
+H(\mathcal{X}) =
+\lim_{T\to\infty} H(X_T\mid X_1,\dots,X_{T-1}).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 首先注意到 <span class="math display">\[
+\Align{
+H(X_T\mid X_1,\dots,X_{T-1})
+&amp;\leq H(X_T\mid X_2,\dots,X_{T-1}) \\
+&amp;= H(X_{T-1}\mid X_1,\dots,X_{T-1}),
+}
+\]</span> (第二个步利用了平稳性) 因此序列 <span class="math inline">\(a_T:=H(X_T\mid X_1,\dots,X_{T-1})\)</span>
+递减且有下界 <span class="math inline">\(0\)</span>, 极限存在.
+根据链式法则, <span class="math display">\[
+\frac{H(X_1,X_2,\dots,X_T)}{T}
+= \frac{1}{T}\sum_{i=1}^T H(X_i\mid X_1,\dots,X_{i-1})
+= \frac{1}{T}\sum_{i=1}^T a_i,
+\]</span> 由于收敛序列的算术平均值序列收敛原序列的极限, 定理得证.</p>
+</div>
+<h2 id="differential-entropy">4  Differential Entropy</h2>
+<h3 id="differential-entropy-1">4.1  Differential entropy</h3>
+<p>对连续的随机变量也可以定义熵.</p>
+<p>然而, 连续的随机变量有无穷大的信息量. 比如, 我们将一个连续随机变量
+<span class="math inline">\(X\sim U[0,1]\)</span> 离散化: <span class="math display">\[
+X_n \sim U\bqty{\frac1n,\frac2n,\dots,\frac{n-1}n,1},
+\]</span> 其中 <span class="math inline">\(n\in\N^*\)</span>. 它的熵
+<span class="math inline">\(H(X_n)=-\sum_{i=0}^n\frac1{n}\log\frac1{n}=-\log\frac1{n}\)</span>.
+当 <span class="math inline">\(n\to\infty\)</span> 时, <span class="math inline">\(H(X_n)\to+\infty\)</span>.</p>
+<p>那我们只好先放弃熵的物理含义, 从形式上定义随机变量的熵. 在形式上,
+只需要把离散的求和改为积分. 设连续随机变量 <span class="math inline">\(X\)</span> 的密度为 <span class="math inline">\(p(x)\)</span>, 则 <span class="math inline">\(X\)</span> 的<strong>微分熵 (differential
+entropy)</strong>定义为 <span class="math display">\[
+h(X) := -\int_\R p(x) \log p(x) \dd{x}.
+\]</span></p>
+<ul>
+<li>对数可以是以 <span class="math inline">\(2\)</span> 为底的 <span class="math inline">\(\log\)</span>, 也可以是自然对数 <span class="math inline">\(\ln\)</span>, 没有本质区别.</li>
+</ul>
+<p>微分熵和离散化 <span class="math inline">\(X_n\)</span> 有如下关系.
+设 <span class="math inline">\(X\)</span> 是 <span class="math inline">\([0,1]\)</span> 上的连续随机变量, 密度为 <span class="math inline">\(p(x)\)</span>, 定义 <span class="math display">\[
+X_n \sim Q=\pqty{ q_i }_{i\in\Z},
+\]</span> 其中 <span class="math display">\[
+q_i
+= P\!\pqty{\frac{i}{n} \leq X &lt; \frac{i+1}{n}}
+= \int_{i/n}^{(i+1)/n} p(x)\dd{x}.
+\]</span> 根据中值定理, 存在 <span class="math inline">\(x_i\in[i/n,(i+1)/n]\)</span> 使得 <span class="math inline">\(q_i=p(x_i)\cdot1/n\)</span>, 于是有 <span class="math display">\[
+\Align{
+H(X_n)
+&amp;= -\sum_{i\in\Z} q_i \log{q_i} \\
+&amp;= -\sum_{i\in\Z} \frac{p(x_i)}{n} [\log{p(x_i)} - \log(n)] \\
+&amp;= -\frac{1}{n} \sum_{i\in\Z} p(x_i) \log{p(x_i)}
+    + \sum_{i\in\Z} q_i \log(n) \\
+&amp;= \blue{-\frac{1}{n} \sum_{i\in\Z} p(x_i) \log{p(x_i)}}
+    + \log(n).
+}
+\]</span> 另一方面, 连续随机变量 <span class="math inline">\(X\)</span>
+的熵为 <span class="math display">\[
+h(X)
+= \lim_{n\to\infty} \biggl[
+    \blue{-\frac{1}{n}\sum_{i\in\Z} p(x_i) \log p(x_i)}
+\biggr],
+\]</span> 我们得到了如下定理.</p>
+<div class="note note-success">
+<p><u>Theorem</u> (微分熵与熵的关系) 记号承上, 则 <span class="math display">\[
+h(X) = \lim_{n\to\infty}[ H(X_n) - \log(n) ].
+\]</span></p>
+</div>
+<h3 id="properties">4.2  Properties</h3>
+<p>离散的随机变量的熵在非退化变换下不变: 设 <span class="math inline">\(a,b\in\R\)</span>, <span class="math inline">\(a\neq0\)</span>, 则 <span class="math display">\[
+H(aX+b) = H(X).
+\]</span> 这是符合熵的实际含义的.</p>
+<p>对于连续随机变量 <span class="math inline">\(X\)</span>,
+平移不改变其熵: <span class="math display">\[
+h(X+b) = h(X).
+\]</span> 然而, 它的熵随 <span class="math inline">\(X\)</span>
+的缩放而改变 (<span class="math inline">\(a&gt;0\)</span>): <span class="math display">\[
+\Align{
+h(aX)
+= -\int_\R \frac{1}{a} p\!\pqty{\frac{x}{a}}
+    \log\bqty{ \frac{1}{a} p\!\pqty{\frac{x}{a}} } \dd{x}
+= h(X) + \log{a},
+}
+\]</span> 主要是因为微分熵只是形式上的定义, 不具有明确的物理含义.</p>
+<div class="note note-info">
+<p><u>Example</u> 多元正态分布 <span class="math inline">\(X\sim
+N(0,\Sigma)\)</span> 的熵: <span class="math display">\[
+\Align{
+h(X)
+&amp;= -\int_{\R^n} p(x) \ln{p(x)}\dd{x} \\
+&amp;= \frac12\int_{\R^n} p(x) \bqty{
+  \ln((2\pi)^n\det\Sigma) +
+  x\T\Sigma^{-1}x
+} \dd{x} \\
+&amp;= \frac12 \bqty{
+  \ln((2\pi)^n\det\Sigma) +
+  \operatorname{E}(X\T\Sigma^{-1}X)
+}.
+}
+\]</span> 只需求出 <span class="math inline">\(\operatorname{E}(X\T\Sigma^{-1}X)\)</span>.
+设正定矩阵分解为 <span class="math inline">\(\Sigma=CC\T\)</span>, 令
+<span class="math inline">\(Y:=C^{-1}Z\)</span>, 则 <span class="math inline">\(Y\)</span> 的期望为零, 协方差为单位阵 <span class="math inline">\(I_n\)</span>. 于是 <span class="math display">\[
+\operatorname{E}(X\T\Sigma^{-1}X)
+= \operatorname{E}(Y\T Y)
+= \sum_{i=1}^n \operatorname{E}(Y_i^2)
+= \sum_{i=1}^n \operatorname{Var}(Y_i)
+= n.
+\]</span> 因此 <span class="math display">\[
+h(X) = \frac12 \bigl[
+  \ln((2\pi)^n\det\Sigma) +
+  n
+\bigr] = \frac12 \ln((2\pi\e)^n\det\Sigma).
+\]</span> 由于微分熵关于平移不变, 正态分布 <span class="math inline">\(N(\mu,\Sigma)\)</span> 的熵也等于它.</p>
+</div>
+<h3 id="joint-conditional-differential-entropy-mutual-information-and-kl-divergence">4.3  Joint
+/ conditional differential entropy, mutual information and
+KL-divergence</h3>
+<p>联合微分熵和联合条件熵的定义是很直接的: <span class="math display">\[
+\Align{
+h(X,Y) &amp;:= -\int_{\R^2}
+    p_{X,Y}(x,y) \log{p_{X,Y}(x,y)} \dd{x}\dd{y}, \\
+h(X\mid Y) &amp;:= -\int_{\R^2}
+    p_{X,Y}(x,y) \log{p_{X\mid Y}(x\mid y)} \dd{x}\dd{y}. \\
+}
+\]</span> 互信息定义为 <span class="math display">\[
+\Align{
+I(X;Y)
+:=&amp;\; h(X) - h(X\mid Y) \\
+=&amp;\; h(Y) - h(Y\mid X) \\
+=&amp;\; h(X) + h(Y) - h(X,Y) \\
+=&amp;\; \int_{\R^2} p_{X,Y}(x,y) \log\frac{p_{X,Y}(x,y)}{p_X(x)p_Y(y)}
+    \dd{x}\dd{y}.
+}
+\]</span> 概率密度函数 <span class="math inline">\(f,g\)</span> 的 KL
+散度定义为 <span class="math display">\[
+D(f\parallel g) := \int_{\R} f(x)\log\frac{f(x)}{g(x)} \dd{x}.
+\]</span></p>
+<div class="note note-success">
+<p><u>Theorem</u> (离散与连续随机变量的 KL 散度) 将 <span class="math inline">\(f,g\)</span> 对应的随机变量 <span class="math inline">\(X,Y\)</span> 离散化, 得到 <span class="math inline">\(X_n,Y_n\)</span> 概率分布 <span class="math inline">\(P_n,Q_n\)</span>, 则 <span class="math display">\[
+D(f\parallel g) = \lim_{n\to\infty} D(P_n,Q_n).
+\]</span> 特别地, 有 <span class="math display">\[
+I(X;Y) = \lim_{n\to\infty} I(X_n,Y_n).
+\]</span></p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> (这里以一维随机向量为例) KL 散度的 <span class="math inline">\(\log\)</span> 中 <span class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span>
+作比, 把 <span class="math inline">\(n\)</span> 消掉了: <span class="math display">\[
+\Align{
+D(P_n,Q_n)
+&amp;= \frac{1}{n} \sum_{i\in\Z} f(x_i) [\log{f(x_i)} - \log{g(y_i)}] \\
+&amp;\to D(f\parallel g).
+}
+\]</span></p>
+</div>
+<p>可见, KL 散度或者互信息这种相对的 (relative)
+度量比熵这种绝对的度量更本质.</p>
+<h3 id="max-entropy-estimation">4.4  *Max entropy estimation</h3>
+<p>给出一个概率分布 PDF <span class="math inline">\(p(x)\)</span>
+的矩的信息, 比如 <span class="math display">\[
+\int_\R g_k(x)p(x)\dd{x} = r_k,
+\]</span> (其中 <span class="math inline">\(g_k(x)=x^k\)</span>)
+如何估计 <span class="math inline">\(p(x)\)</span>?
+这当然是一个欠定问题. 我们加一个额外的条件, 即选择熵 / 微分熵最大的
+<span class="math inline">\(p(x)\)</span>.</p>
+<ul>
+<li>给定的条件可以减少 <span class="math inline">\(p\)</span>
+的不确定性. 而 <span class="math inline">\(p\)</span>
+的不确定性可以用熵衡量, 故 "最大熵解" 就是除了给定条件外,
+不附加任何其他条件, 所得到的 <span class="math inline">\(p\)</span>.</li>
+</ul>
+<div class="note note-secondary">
+<p>将 max entropy estimation 形式化为条件极值问题 <span class="math display">\[
+\Align{
+\min_{p\geq0} \pqty{\int_\R p(x)\ln{p(x)}\dd{x}}, \quad
+\textsf{s.t.}\; \Cases{
+\int_\R p(x)\dd{x} = 1, \\
+\int_\R g_k(x)p(x)\dd{x} = r_k,\textsf{for some}\;k\in\N^*.
+}
+}
+\]</span> 我们使用 Lagrange 乘子法. 定义能量泛函 <span class="math display">\[
+J(p)
+:= \int_\R p(x)\ln{p(x)}{\dd{x}}
+- \mu \pqty{\int_\R p(x){\dd{x}} - 1}
+- \sum_k\lambda_k \pqty{\int_\R g_k(x)p(x) {\dd{x}} - r_k},
+\]</span> 其极值点满足变分为零, 即 <span class="math display">\[
+0
+= \frac{\delta J}{\delta p}
+= \ln{p} + 1 - \mu - \sum_k \lambda_k g_k,
+\]</span> 得到 <span class="math display">\[
+p(x) = \exp(\mu - 1)\cdot\exp(\sum_k\lambda_kg_k),
+\]</span> 代入约束条件解出 <span class="math inline">\(\mu\)</span> 和
+<span class="math inline">\(\lambda_k\)</span> 即可.</p>
+</div>
+<p>特别地, 对于 <span class="math inline">\(r_1=\mu\)</span>, <span class="math inline">\(r_2=\mu^2+\sigma^2\)</span> 的情况
+(即均值和方差分别为 <span class="math inline">\(\mu,\sigma^2\)</span>),
+可以解得 <span class="math display">\[
+p(x) = \frac1{\sqrt{2\pi}\sigma} \exp(-\frac{(x-\mu)^2}{2\sigma^2})
+\]</span> 恰恰是正态分布. 换言之,
+正态分布是给定均值和方差后熵最大的分布.</p>
+<p>该结论可以推广到 <span class="math inline">\(n\)</span> 维.</p>
+<div class="note note-success">
+<p><u>Theorem</u> 设 <span class="math inline">\(n\)</span> 维随机向量
+<span class="math inline">\(X\)</span> 满足 <span class="math display">\[
+\operatorname{E}(X)=\mu,\qquad\operatorname{Cov}(X)=\Sigma,
+\]</span> 则熵最大的满足条件的分布为 <span class="math inline">\(X\sim
+N(\mu,\Sigma)\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 由于微分熵关于平移不变, 不妨设 <span class="math inline">\(\mu=0\)</span>. 设 <span class="math inline">\(X\sim f(x)\)</span> 服从 <span class="math inline">\(N(0,\Sigma)\)</span>, 任取分布 <span class="math inline">\(Y\sim g(x)\)</span> 满足上述条件, 我们只需要证明
+<span class="math inline">\(h(Y)\leq h(X)\)</span>. 一个技巧是计算
+KL-散度 <span class="math display">\[
+\Align{
+D(g\parallel f)
+&amp;= \int_{\R^n} g(x) \ln\frac{g(x)}{f(x)} \dd{x} \\
+&amp;= \int_{\R^n} g(x)\ln{g(x)}\dd{x}
+- \int_{\R^n} g(x)\ln{f(x)}\dd{x} \\
+&amp;= -h(Y) - \biggl[
+    -\frac{n}{2}\ln(2\pi\det\Sigma)
+    \underbrace{\int_{\R^n}g(x)\,{\dd{x}}}_{1}
+    -\frac{1}{2}
+    \underbrace{\int_{\R^n} (x\T\Sigma^{-1} x)g(x)\dd{x}}
+        _{\operatorname{E}(Y\T\Sigma^{-1}Y)}
+\biggr].
+}
+\]</span> 仿照前文的方法可得 <span class="math inline">\(\operatorname{E}(Y\T\Sigma^{-1}Y)=n\)</span>, 于是
+<span class="math display">\[
+D(g\parallel f)
+= -h(Y) - \biggl[
+    -\frac{n}{2}\ln(2\pi\det\Sigma)
+    -\frac{n}{2}
+\biggr]
+= -h(Y) + h(X).
+\]</span> 由 KL-散度的非负性, 有 <span class="math inline">\(h(Y)\leq
+h(X)\)</span>.</p>
+</div>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" class="print-no-link">#信息论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>信息论 | 1 信源编码</div>
+      <div>https://disembo.github.io/Note/Course/info-theory/1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/caiov/2/" title="CAIOV | 2 全纯函数初步理论">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CAIOV | 2 全纯函数初步理论</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/CG/proc-5-deformation/" title="网格变形">
+                        <span class="hidden-mobile">网格变形</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

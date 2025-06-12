@@ -1,0 +1,913 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Kolmogorov 复杂度与通信复杂度.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息论 | 5 复杂度理论">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/info-theory/5/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="Kolmogorov 复杂度与通信复杂度.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-03T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-12T07:52:17.995Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="信息论">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>信息论 | 5 复杂度理论 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="信息论 | 5 复杂度理论"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-03 12:00" pubdate>
+          2025年6月3日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">信息论 | 5 复杂度理论</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;">Concept</th>
+<th style="text-align: center;">Object</th>
+<th style="text-align: center;">Consideration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">entropy</td>
+<td style="text-align: center;">random object</td>
+<td style="text-align: center;">minimun description length (bits)</td>
+</tr>
+<tr>
+<td style="text-align: center;">Kolmogorov complexity</td>
+<td style="text-align: center;">deterministic object</td>
+<td style="text-align: center;">minimun description length (bits)</td>
+</tr>
+<tr>
+<td style="text-align: center;">Communication complexity</td>
+<td style="text-align: center;">boolean functions</td>
+<td style="text-align: center;">minimum communication length (bits)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="kolmogorov-complexity">8  Kolmogorov Complexity</h2>
+<p>Entropy 将研究限制在 (离散) 随机变量上, Kolmogorov
+复杂度将研究限制在字符串空间 (string space) 上: <span class="math display">\[
+\{0,1\}^* := \bigcup_{n=0}^\infty \qty{0,1}^n.
+\]</span> 想法是用一个算法生成该字符串, 然后去分析该算法.</p>
+<h3 id="decision-problems">8.1  Decision problems</h3>
+<p>考虑一个问题: 给定一个子集 <span class="math inline">\(L\in2^{\{0,1\}^*}\)</span> 和任意字符串 <span class="math inline">\(x\in\{0,1\}^*\)</span>, 问: 是否有 <span class="math inline">\(x\in L\)</span>? 这称为<strong>判定问题 (decision
+problem)</strong>. 假设我们有一个算法来解决该问题, 则算法 <span class="math inline">\(a\)</span> 也是一个字符串, <span class="math inline">\(a\in\{0,1\}^*\)</span>.</p>
+<p>然而, 算法的数量要比问题的数量少得多. 注意到: <span class="math display">\[
+\operatorname{\rm card}(2^{\{0,1\}^*}) &gt;
+\operatorname{\rm card}(\{0,1\}^*),
+\]</span> 换言之, 几乎所有问题都是不可计算的. (实际上, <span class="math inline">\(\operatorname{\rm
+card}(\{0,1\}^*)=\aleph_0\)</span>, 而 <span class="math inline">\(\operatorname{\rm
+card}(2^{\{0,1\}^*})=2^{\aleph_0}\)</span>.)</p>
+<h3 id="kolmogorov-complexity-1">8.2  Kolmogorov complexity</h3>
+<p>字符串 <span class="math inline">\(x\in\{0,1\}^*\)</span> 的
+(关于通用图灵机 <span class="math inline">\({\cal U}\)</span> 的)
+Kolmogorov 复杂度 (K-复杂度) 定义为输出 <span class="math inline">\(x\)</span> 的最短代码 (算法) 长度: <span class="math display">\[
+K_{\cal U}(x) := \min_{\substack{p\in\{0,1\}^*\\{\cal U}(p)=x}} \abs{p}.
+\]</span> 该 universal Turing maching <span class="math inline">\({\cal
+U}\)</span> 可以理解为一种程序设计语言. 实际上, 我们有如下结论:</p>
+<ul>
+<li>对任意 UTM <span class="math inline">\({\cal U},{\cal
+U}'\)</span>, 存在常数 <span class="math inline">\(C\)</span>,
+使得对任意字符串 <span class="math inline">\(x\in\{0,1\}^*\)</span>,
+成立 <span class="math display">\[
+K_{\cal U}(x) \leq K_{\cal U'}(x) + C.
+\]</span> 常数 <span class="math inline">\(C\)</span> 就是用 <span class="math inline">\({\cal U}\)</span> 实现 <span class="math inline">\({\cal U}'\)</span> 的代码长度.</li>
+</ul>
+<div class="note note-success">
+<p><u>Theorem</u> Kolmogorov 复杂度 <span class="math inline">\(K_{\cal
+U}(x)\)</span> 不可计算.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 假设存在一个算法 <span class="math inline">\(p_0\)</span>
+可以计算 <span class="math inline">\(K_{\cal U}(x)\)</span>, 不妨设
+<span class="math inline">\(|p_0|=1000\)</span>. 我们构造一个这样的程序
+<span class="math inline">\(p_0'\)</span>, 使得它的长度和 <span class="math inline">\(p_0\)</span> 相似, 比如 <span class="math inline">\(|p_0'|\approx1050\)</span>, 但是却可以输出一个
+K-复杂度很大, 比如 <span class="math inline">\(\geq10^{10}\)</span>
+的字符串 <span class="math inline">\(x\)</span>, 这样就得到了矛盾: <span class="math inline">\(1050\approx|p_0'|\geq K(x)\geq
+10^{10}\)</span>.</p>
+<p>程序 <span class="math inline">\(p_0'\)</span> 可以构造如下:</p>
+<ul>
+<li>从长度为零开始, 枚举所有字符串 <span class="math inline">\(x\in\{0,1\}^*\)</span>:
+<ul>
+<li>利用 <span class="math inline">\(p_0\)</span> 判断, 如果 <span class="math inline">\(K(x)\geq10^{10}\)</span>, 则输出 <span class="math inline">\(x\)</span>.</li>
+</ul></li>
+</ul>
+<p>该程序比 <span class="math inline">\(p_0\)</span> 长不了多少.</p>
+</div>
+<h2 id="communication-complexity">9  Communication Complexity</h2>
+<p>考虑布尔函数 <span class="math inline">\(f:\{0,1\}^{2n}\to\{0,1\}\)</span>, Alice 和 Bob
+分别拥有 <span class="math inline">\(x\in\{0,1\}^n\)</span> 和 <span class="math inline">\(y\in\{0,1\}^n\)</span> (<span class="math inline">\(n\)</span> bit 字符串), 他们想要计算 <span class="math inline">\(f(x,y)\)</span>. 在最糟糕的情况下,
+两人至少需要通信的 bit 数称为 <span class="math inline">\(f\)</span>
+<strong>通信复杂度 (communication complexity)</strong>.</p>
+<h3 id="partition">9.1  Partition</h3>
+<p>例如 <span class="math inline">\(f_{\textsf{eq}}(x,y):=\Cases{1,&amp;x=y,\\0,&amp;x\neq
+y.}\)</span> 将 <span class="math inline">\(f\)</span>
+的所有取值排成一张 <span class="math inline">\(2^n\times2^n\)</span>
+的表 (这里以 <span class="math inline">\(n=2\)</span> 为例): <span class="math display">\[
+\begin{array}{c|cccc}
+   &amp; 00 &amp; 01 &amp; 10 &amp; 11 \\ \hline
+00 &amp; \orange{1} &amp;          0 &amp;          0 &amp;          0
+\\
+01 &amp;          0 &amp; \orange{1} &amp;          0 &amp;          0
+\\
+10 &amp;          0 &amp;          0 &amp; \orange{1} &amp;          0
+\\
+11 &amp;          0 &amp;          0 &amp;          0 &amp; \orange{1}
+\\
+\end{array}
+\]</span> 每次通信传递 1 bit 信息, 者相当于将矩阵 (沿若干横线 /
+若干竖线) 分成两部分 (分别对应该 bit 为 <span class="math inline">\(0\)</span> 和 <span class="math inline">\(1\)</span> 的情形, 两部分不一定一样大,
+也不一定连续, 但须由矩形组成. 划分方式是事先约定好的 protocol),
+只保留其中一个部分. 经过若干次划分后, 若剩下的矩形中全为 <span class="math inline">\(0\)</span> 或全为 <span class="math inline">\(1\)</span> (等值矩形), 便计算好了 <span class="math inline">\(f(x,y)\)</span>.</p>
+<p>设某个通信协议的等值矩形数量为 <span class="math inline">\(R\)</span>, 则该协议在最差情况下所需的通信 bit
+数至少为 <span class="math inline">\(\log{R}\)</span>.
+最优的通信协议应当是等值矩形数量最少的: <span class="math display">\[
+\chi(f) := \min_{\textsf{all protocols}} R.
+\]</span> 因此, 通信复杂度 (最优协议下的最差情况) 的下界为:</p>
+<div class="note note-success">
+<p><u>Theorem</u> (通信复杂度下界) <span class="math inline">\(\operatorname{CC}(f) \geq
+\log\chi(f)\)</span>.</p>
+</div>
+<p>观察上面的矩阵, 可以发现对角线的元素 (一共 <span class="math inline">\(2^n\)</span> 个),
+任意两者都不能属于同一个等值矩形, 因此 <span class="math inline">\(R\geq2^n\)</span>, 通信复杂度 <span class="math display">\[
+\operatorname{CC}(f_{\textsf{eq}}) \geq \log\chi(f) \geq \log(2^n) = n.
+\]</span> 很容易构造出传输 <span class="math inline">\(n\)</span> bit
+的通信协议 (传输 <span class="math inline">\(x\)</span> 的每个 bit
+即可), 因此 <span class="math inline">\(\operatorname{CC}(f_{\textsf{eq}})=n\)</span>.</p>
+<p>看另外一个例子, <span class="math inline">\(f_{\textsf{disjoint}}:=\Cases{1,&amp;x\wedge
+y=0,\\0,&amp;\textsf{otherwise}.}\)</span> (判断 <span class="math inline">\(1\)</span> 的位置是否不交.) 将矩阵画出来 (以 <span class="math inline">\(n=2\)</span> 为例), <span class="math display">\[
+\begin{array}{c|cccc}
+   &amp; 00 &amp; 01 &amp; 10 &amp; 11 \\ \hline
+00 &amp;          1 &amp;          1 &amp;          1 &amp; \orange{1}
+\\
+01 &amp;          1 &amp;          0 &amp; \orange{1} &amp;          0
+\\
+10 &amp;          1 &amp; \orange{1} &amp;          0 &amp;          0
+\\
+11 &amp; \orange{1} &amp;          0 &amp;          0 &amp;          0
+\\
+\end{array}
+\]</span> 副对角线的元素 (共 <span class="math inline">\(2^n\)</span>
+个), 任意两者不能处于同一个等值矩形中, 同上有 <span class="math inline">\(\operatorname{CC}(f_{\textsf{disjoint}})=n\)</span>.</p>
+<h3 id="rank">9.2  Rank</h3>
+<p>下面我们来计算一般的 <span class="math inline">\(f\)</span>
+的等值矩形的数量. 记 <span class="math inline">\(f\)</span> 对应的矩阵为
+<span class="math inline">\(M(f)\in M_{2^n}(\Bbb{F}_2)\)</span>.</p>
+<div class="note note-success">
+<p><u>Theorem</u> 最小等值矩形数量 <span class="math inline">\(\chi(f)
+\geq \rank M(f)\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 将 <span class="math inline">\(M(f)\)</span> 分成若干矩阵
+<span class="math inline">\(M_i\)</span> 的和, 其中 <span class="math inline">\(M_i\)</span> 只包含一个 <span class="math inline">\(1\)</span>-等值矩阵 (<span class="math inline">\(i=1,2,\dots,\chi(f)\)</span>). 则 <span class="math display">\[
+\rank M(f)
+= \rank\!\pqty{\sum M_i}
+\leq \sum\rank{M_i}
+= \chi(f).
+\]</span></p>
+</div>
+<h3 id="randomized-algorithms">9.3  Randomized algorithms</h3>
+<p>承接上面的 <span class="math inline">\(f_{\textsf{eq}}\)</span>
+的计算问题.</p>
+<p>Alice 和 Bob 分别有二进制序列 <span class="math inline">\(x=(x_0,\dots,x_{n-1})\)</span> 和 <span class="math inline">\(y=(y_0,\dots,y_{n-1})\)</span>, 它们想要知道 <span class="math inline">\(x,y\)</span> 是否相等. 我们已经证明,
+在最糟糕的情况下, 两人至少需要通信 <span class="math inline">\(n\)</span> bit. 下面我们介绍一种<strong>随机算法
+(randomized algorithm)</strong>, 它有一定 (很小) 的概率发生错误,
+但可以达到比理论值好得多的传输效率.</p>
+<p>随机算法:</p>
+<ul>
+<li><p>取素数 <span class="math inline">\(p\in[n^{100},n^{101}]\)</span>.</p></li>
+<li><p>随机 (uniform) 挑选 <span class="math inline">\(t\in\Bbb{F}_q\equiv\{0,1,\dots,p-1\}\)</span>.</p></li>
+<li><p>通信过程:</p>
+<ol type="1">
+<li><p>Alice 构造多项式 <span class="math inline">\(f(T):=x_0+x_1T+\cdots+x_{n-1}T^{n-1}\in\Bbb{F}_p[T]\)</span>.</p></li>
+<li><p>Alice 计算 <span class="math inline">\(f(t)\)</span>.</p></li>
+<li><p>Alice 将 <span class="math inline">\(t\)</span> 和 <span class="math inline">\(f(t)\)</span> 传输给 Bob.</p>
+<ul>
+<li>只需要传输 <span class="math display">\[
+2\times\log(n^{101}) = \mathcal{O}(\log{n})\;\textsf{bit},
+\]</span> 远远小于 <span class="math inline">\(n\)</span> bit.</li>
+</ul></li>
+<li><p>Bob 构造多项式 <span class="math inline">\(g(T):=y_0+y_1T+\cdots+y_{n-1}T^{n-1}\in\Bbb{F}_p[T]\)</span>.</p></li>
+<li><p>Bob 计算 <span class="math inline">\(g(t)\)</span>.</p></li>
+<li><p>Bob 比较 <span class="math inline">\(f(t)\)</span> 和 <span class="math inline">\(g(t)\)</span>.</p>
+<ul>
+<li>若 <span class="math inline">\(f(t)\neq g(t)\)</span>, 则当然有
+<span class="math inline">\(x\neq y\)</span>.</li>
+<li>若 <span class="math inline">\(f(t)=g(t)\)</span>, 我们认为有 <span class="math inline">\(x=y\)</span>. (有一定的概率发生错误.)</li>
+</ul></li>
+</ol></li>
+</ul>
+<p>下面分析错误的概率. 发生错误当且仅当 <span class="math inline">\(x\neq y\)</span> 且 <span class="math inline">\(f(t)=g(t)\)</span>, 也就是我们挑选的 <span class="math inline">\(t\)</span> 刚好是多项式 <span class="math display">\[
+h(T) := f(T) - g(T)
+\]</span> 的根. 因为 <span class="math inline">\(h(T)\)</span> 至多有
+<span class="math inline">\(n-1\)</span> 个根 (可能有重根), 所以恰好选中
+<span class="math inline">\(h(T)\)</span> 的根的概率不超过 <span class="math display">\[
+\frac{n-1}{p} \leq \frac{n-1}{n^{100}} \approx n^{-99}.
+\]</span></p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
+      
+        <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" class="print-no-link">#信息论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>信息论 | 5 复杂度理论</div>
+      <div>https://disembo.github.io/Note/Course/info-theory/5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/Course/course-index/" title="课程笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">课程笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/Course/info-theory/4/" title="信息论 | 4 参数估计">
+                        <span class="hidden-mobile">信息论 | 4 参数估计</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
