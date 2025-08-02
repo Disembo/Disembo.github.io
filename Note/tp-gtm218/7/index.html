@@ -25,8 +25,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/slice-charts-compatibility.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/regular-level-set-counterexamples.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/tangent-space-at-boundary.png">
 <meta property="article:published_time" content="2024-09-18T06:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-13T13:03:07.710Z">
+<meta property="article:modified_time" content="2025-08-02T06:22:02.626Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="拓扑">
@@ -126,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
+                <span>首页</span>
               </a>
             </li>
           
@@ -138,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
+                <span>归档</span>
               </a>
             </li>
           
@@ -150,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
+                <span>分类</span>
               </a>
             </li>
           
@@ -162,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
+                <span>标签</span>
               </a>
             </li>
           
@@ -174,7 +175,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
+                <span>关于</span>
               </a>
             </li>
           
@@ -186,7 +187,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>Links</span>
+                <span>友链</span>
               </a>
             </li>
           
@@ -293,9 +294,10 @@
 "浸入子流形", 它不要求两种拓扑相同. 浸入子流形恰好是单射浸入的像;
 其在局部和嵌入子流形一样, 但整体上与子空间拓扑不同.</p>
 <p>需要注意的是, 在有些书中, "光滑子流形" 特指 "嵌入子流形".</p>
-<h2 id="embedded-submanifolds">9  Embedded Submanifolds</h2>
-<h3 id="embedded-submanifolds-1">9.1  Embedded submanifolds</h3>
-<p>设光滑流形 <span class="math inline">\(M\)</span> 的子集 <span class="math inline">\(S\subset M\)</span>. 若 <span class="math inline">\(S\)</span>
+<h2 id="submanifolds">9  Submanifolds</h2>
+<h3 id="embedded-submanifolds">9.1  Embedded submanifolds</h3>
+<p>设 (带边) 光滑流形 <span class="math inline">\(M\)</span> 的子集
+<span class="math inline">\(S\subset M\)</span>. 若 <span class="math inline">\(S\)</span>
 在子空间拓扑以及适当光滑结构下构成无边光滑流形, 使得包含映射 <span class="math inline">\(S\hookrightarrow M\)</span> 是光滑嵌入, 则称 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(M\)</span> 的一个<strong>嵌入子流形 (embedded
 submanifold)</strong> 或<strong>正则子流形 (regular
 submanifold)</strong>. 此时, 称 <span class="math inline">\(\dim M-\dim
@@ -534,7 +536,7 @@ f_{*,x}(v) = 2\sum_i x^iv^i,
 </ul>
 <p>还有一些反例:</p>
 <ul>
-<li>(X 形曲线) 方程 <span class="math inline">\(x^2-y^2=0\)</span>
+<li>(X 形空间) 方程 <span class="math inline">\(x^2-y^2=0\)</span>
 的图像是 <span class="math inline">\(\R^2\)</span> 中的两条相交直线,
 它可以视作 <span class="math inline">\(f(x,y)=x^2-y^2\)</span> 的水平集
 <span class="math inline">\(f^{-1}(0)\)</span>. 计算 Jacobi 矩阵: <span class="math inline">\(DF|_{(x,y)}=(2x,-2y)\)</span>, 因此 <span class="math inline">\(DF\)</span> 在 <span class="math inline">\((0,0)\)</span> 处为零, 故原点是不是正则点, <span class="math inline">\(f^{-1}(0)\)</span> 不是正则水平集.</li>
@@ -558,7 +560,285 @@ S\)</span> 是某光滑淹没 <span class="math inline">\(\Phi:U\to\R^{m-k}\)</s
 根据常秩水平集定理, <span class="math inline">\(S\cap U\)</span> 是
 <span class="math inline">\(U\)</span> 的 <span class="math inline">\(k\)</span> 维嵌入子流形, 因而满足局部 <span class="math inline">\(k\)</span>-切片条件, 进而也在 <span class="math inline">\(M\)</span> 中满足局部 <span class="math inline">\(k\)</span>-切片条件 (关键, <span class="math inline">\(U\)</span> 是 <span class="math inline">\(M\)</span> 的开子集).</p>
 </div>
-<h2 id="immersed-submanifolds">10  Immersed Submanifolds</h2>
+<h3 id="immersed-submanifolds">9.4  Immersed Submanifolds</h3>
+<p>有时我们会遇到更广的一类子流形, 即浸入子流形. 设 (带边) 光滑流形
+<span class="math inline">\(M\)</span> 的子集 <span class="math inline">\(S\)</span>. 若 <span class="math inline">\(S\)</span> 在适当的拓扑 (不要求是子空间拓扑)
+以及适当光滑结构下构成无边光滑流形, 使得包含映射 <span class="math inline">\(S\hookrightarrow M\)</span> 是光滑浸入, 则称 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(M\)</span> 的一个<strong>浸入子流形 (immersed
+submanifold)</strong>, 称 <span class="math inline">\(\dim M-\dim
+S\)</span> 为 <span class="math inline">\(S\)</span> 在 <span class="math inline">\(M\)</span> 中的<strong>余维数
+(codimension)</strong>.</p>
+<ul>
+<li>嵌入子流形是特殊的浸入子流形. 以后 “光滑子流形” 指
+“浸入子流形”.</li>
+<li>余维数为 <span class="math inline">\(1\)</span>
+的浸入子流形也称为<strong>光滑超曲面 (smooth
+hypersurface)</strong>.</li>
+</ul>
+<p>浸入子流形是单射浸入的像, 反之亦然.</p>
+<div class="note note-success">
+<p><u>Proposition 9.12</u> (作为单射浸入的像) 设 (带边) 光滑流形 <span class="math inline">\(M\)</span>, 光滑流形 <span class="math inline">\(N\)</span>, 单射光滑浸入 <span class="math inline">\(F:N\to M\)</span>, 记 <span class="math inline">\(S=F(N)\)</span>. 则 <span class="math inline">\(S\)</span> 上存在唯一的拓扑和光滑结构, 使得 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(M\)</span> 的光滑子流形, 且 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(N\to
+S\)</span> 的微分同胚.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 证明和 Proposition 9.2 是类似的, 只不过我们需要先构造 <span class="math inline">\(S\)</span> 的拓扑.</p>
+</div>
+<p>之前研究浸入时我们举了两了例子, <span class="math inline">\(\R^2\)</span> 中的 <span class="math inline">\(8\)</span> 字形空间和 <span class="math inline">\(\Bbb{T}^2\)</span> 上的稠密曲线.
+他们都是单射浸入的像, 故都是光滑子流形.</p>
+<ul>
+<li><span class="math inline">\(8\)</span> 字形空间的像集存在自相交,
+稠密曲线的像集是稠密的, 它们在子空间拓扑下都不构成拓扑流形,
+故它们一定不是嵌入子流形.</li>
+</ul>
+<p>光滑嵌入判定定理 (Proposition 8.1) 给出了一些嵌入子流形的判定定理,
+我们可以得到如下推论:</p>
+<div class="note note-success">
+<p><u>Proposition 9.13</u> (光滑子流形成为嵌入子流形的条件) 设 (带边)
+光滑流形 <span class="math inline">\(M\)</span>, 光滑子流形 <span class="math inline">\(S\subset M\)</span>. 若下列之一成立, 则 <span class="math inline">\(S\)</span> 是嵌入子流形.</p>
+<ol type="1">
+<li><span class="math inline">\(S\)</span> 中的任意开集在 <span class="math inline">\(M\)</span> 中开.
+<ul>
+<li>反之是一定成立的, 由 <span class="math inline">\(\iota:S\hookrightarrow M\)</span>
+的连续性保证.</li>
+</ul></li>
+<li><span class="math inline">\(S\)</span> 的余维数为 <span class="math inline">\(0\)</span>.</li>
+<li>包含映射 <span class="math inline">\(S\subset M\)</span> 逆紧.</li>
+<li><span class="math inline">\(S\)</span> 紧.</li>
+</ol>
+</div>
+<p>根据局部嵌入定理 (Theorem 8.2), 光滑子流形局部是嵌入子流形.</p>
+<div class="note note-success">
+<p><u>Proposition 9.14</u> (光滑子流形局部是嵌入子流形) 设 (带边)
+光滑流形 <span class="math inline">\(M\)</span>, 光滑子流形 <span class="math inline">\(S\subset M\)</span>. 则对任意 <span class="math inline">\(p\in S\)</span>, 存在 <span class="math inline">\(p\)</span> 在 <span class="math inline">\(S\)</span> 中的邻域 <span class="math inline">\(U\)</span>, 使得 <span class="math inline">\(U\)</span> 是 <span class="math inline">\(M\)</span> 的嵌入子流形.</p>
+</div>
+<p>参数化...</p>
+<h2 id="restricting-and-extending-smooth-maps">10  Restricting and Extending
+Smooth Maps</h2>
+<h3 id="restricting-maps-to-submanifolds">10.1  Restricting maps to
+submanifolds</h3>
+<p>本节我们考虑的是, 给定一个光滑映射 <span class="math inline">\(F:M\to
+N\)</span>, 如果限制其定义域 / 陪域为浸入 / 嵌入子流形,
+它的光滑性能否保持?</p>
+<p>对于限制定义域的情形, 答案总是肯定的, 这也与直觉相符.</p>
+<div class="note note-success">
+<p><u>Proposition 10.1</u> (限制定义域) 设 (带边) 光滑流形 <span class="math inline">\(M,N\)</span>, 光滑映射 <span class="math inline">\(F:M\to N\)</span>, 浸入或嵌入子流形 <span class="math inline">\(S\subset M\)</span>, 则 <span class="math inline">\(F|_S:S\to N\)</span> 也是光滑的.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 包含映射 <span class="math inline">\(\iota:S\to M\)</span>
+光滑, 而 <span class="math inline">\(F|_S=F\circ \iota\)</span>.</p>
+</div>
+<p>当限制陪域的时候, 得到的映射可能非光滑. 考虑 8 字形曲线 <span class="math inline">\(\beta:(-\pi,\pi)\to\R^2\)</span>, <span class="math inline">\(\beta(t)=(\sin{2t},\sin{t})\)</span>, 在 <span class="math inline">\(\beta\)</span> 诱导的拓扑下, 曲线的像 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(\R^2\)</span> 的浸入子流形. 考虑映射 <span class="math inline">\(G:\R\to\R^2\)</span>, <span class="math inline">\(G(t)=(\sin{2t},\sin{t})\)</span>, 则 <span class="math inline">\(G\)</span> 作为 <span class="math inline">\(\R\to
+S\)</span> 的映射甚至都不连续, 因为 <span class="math inline">\(\beta^{-1}\circ G\)</span> 在 <span class="math inline">\(\pi\)</span> 处不连续
+(连续映射的复合是连续的).</p>
+<ul>
+<li>直观地看, <span class="math inline">\(G\)</span> 不连续的原因是
+<span class="math inline">\(S\)</span>
+作为浸入子流形的开集比子空间拓扑的开集<em>多一些</em><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">集合 <span class="math inline">\(\beta((-\varepsilon,\varepsilon))\)</span>
+就是一例.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>,
+导致 <span class="math inline">\(G\)</span> 作为到子空间的映射是连续的,
+作为到浸入子流形的映射就是不连续的.</li>
+</ul>
+<div class="note note-success">
+<p><u>Proposition 10.2</u> (限制陪域) 设无边光滑流形 <span class="math inline">\(M\)</span>, 光滑映射 <span class="math inline">\(F:N\to M\)</span>, 浸入或嵌入子流形 <span class="math inline">\(S\subset M\)</span>, 且 <span class="math inline">\(F(N)\subset S\)</span>. 如果 <span class="math inline">\(F\)</span> 作为 <span class="math inline">\(N\to
+S\)</span> 的映射是连续的, 则 <span class="math inline">\(F:N\to
+S\)</span> 也是光滑的.</p>
+<p>特别地, 若 <span class="math inline">\(S\)</span> 是嵌入子流形,
+则根据子空间拓扑的特征性质, <span class="math inline">\(F:N\to
+S\)</span> 连续, 进而光滑.</p>
+</div>
+<p>考虑另一个例子: 环面上的稠密曲线. 设环面 <span class="math inline">\(\mathbb{T}^2=\mathbb{S}^1\times\mathbb{S}^1\)</span>,
+曲线 <span class="math display">\[
+\gamma:\R\to\mathbb{T}^2,\qquad
+\gamma(t):=(\e^{2\pi\i t},\e^{2\pi\i\alpha t}),
+\]</span> 其中 <span class="math inline">\(\alpha\)</span> 是无理数, 则
+<span class="math inline">\(\gamma(\R)\)</span> 是 <span class="math inline">\(\mathbb{T}^2\)</span> 的浸入 (且非嵌入) 子流形.
+任给光滑映射 <span class="math inline">\(F:N\to\mathbb{T}^2\)</span> 且
+<span class="math inline">\(F(N)\subset S\)</span>, 我们下面证明 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(N\to
+S\)</span> 的光滑映射. 由 Proposition 10.2, 我们只需证明连续性. 所有形如
+<span class="math display">\[
+I_{t_0,\varepsilon} := \gamma((t_0-\varepsilon,t_0+\varepsilon))
+\]</span> 的子集构成 <span class="math inline">\(S\)</span> 的拓扑基
+(<span class="math inline">\(t_0\in\R\)</span> 且 <span class="math inline">\(\varepsilon\)</span> 充分小), 我们只需证明 <span class="math inline">\(F^{-1}(I_{t_0,\varepsilon})\)</span> 在 <span class="math inline">\(N\)</span> 中开. 设 <span class="math display">\[
+U = \{ (\e^{2\pi\i s}, \e^{2\pi\i t}) \in \Bbb{T}^2
+    \mid s\in(t_0-\varepsilon,t_0+\varepsilon), t\in\R
+\},
+\]</span> 则 <span class="math inline">\(U\cap S\)</span>
+是由无穷多段长度与 <span class="math inline">\(I_{t_0,\varepsilon}\)</span> 相同的弧组成的, 且
+<span class="math inline">\(I_{t_0,\varepsilon}\)</span> 是 <span class="math inline">\(U\)</span> 的一个连通分量. 因为 <span class="math inline">\(F\)</span> 连续且 <span class="math inline">\(U\subset\Bbb{T}^2\)</span> 开, 有 <span class="math inline">\(F^{-1}(U)\subset N\)</span> 开. 又 <span class="math inline">\(F^{-1}(I_{t_0,\varepsilon})\)</span> 由 <span class="math inline">\(F^{-1}(U)\)</span> 的若干连通分量构成, 故 <span class="math inline">\(F^{-1}(I_{t_0,\varepsilon})\)</span> 是开子集
+(流形局部连通; 局部连通空间的分量是开子集).</p>
+<p>总之, 尽管 <span class="math inline">\(S\)</span> 并非 <span class="math inline">\(\Bbb{T}^2\)</span> 的嵌入子流形,
+但光滑映射在其上的限制仍旧是光滑的. 这样的子流形称为<strong>弱嵌入子流形
+(weakly embedded submanifold)</strong>.
+在后面学习分布的时候我们会遇到更多的弱嵌入子流形.</p>
+<h3 id="uniqueness-of-smooth-structures">10.2  Uniqueness of smooth
+structures</h3>
+<div class="note note-success">
+<p><u>Theorem 10.3</u> (子流形上光滑结构的唯一性) 设光滑流形 <span class="math inline">\(M\)</span>.</p>
+<ol type="1">
+<li>对于嵌入子流形 <span class="math inline">\(S\subset M\)</span>,
+使之成为嵌入子流形的拓扑与光滑结构是唯一的 (即子空间拓扑与 Theorem 9.7
+中的 “切片光滑结构”).</li>
+<li>对于弱嵌入子流形 <span class="math inline">\(S\subset M\)</span>,
+使之成为浸入子流形的拓扑与光滑结构是唯一的.</li>
+<li>对于浸入子流形 <span class="math inline">\(S\subset M\)</span>, 给定
+<span class="math inline">\(S\)</span> 的拓扑之后,
+存在唯一的光滑结构使之成为浸入子流形.</li>
+</ol>
+</div>
+<p>值得注意的是, 浸入 (非弱嵌入) 子流形上的拓扑和光滑结构并不唯一. 比如
+8 字形空间有两种旋转的方向, 对应两种拓扑.</p>
+<h3 id="extending-functions-from-submanifolds">10.3  Extending functions from
+submanifolds</h3>
+<div class="note note-success">
+<p><u>Lemma 10.4</u> (光滑子流形上函数的扩张) 设光滑流形 <span class="math inline">\(M\)</span> 的光滑子流形 <span class="math inline">\(S\)</span>, 函数 <span class="math inline">\(f\in
+C^\infty(S)\)</span>.</p>
+<ol type="1">
+<li>若 <span class="math inline">\(S\)</span> 是嵌入子流形, 则存在 <span class="math inline">\(S\)</span> 的邻域 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(\tilde{f}\in C^\infty(U)\)</span>, 使得 <span class="math inline">\(\tilde{f}|_S=f\)</span>.</li>
+<li>若 <span class="math inline">\(S\)</span> 是逆紧嵌入子流形, 则 <span class="math inline">\(U\)</span> 可以取为 <span class="math inline">\(M\)</span>.</li>
+</ol>
+</div>
+<h2 id="the-tangent-space-to-a-submanifold">11  The Tangent Space to a
+Submanifold</h2>
+<h3 id="characterizations">11.1  Characterizations</h3>
+<p>一个很自然的想法, 子流形的切空间应当是原流形切空间的子空间.
+设光滑子流形 <span class="math inline">\(S\subset M\)</span>,
+由于包含映射 <span class="math inline">\(\iota:S\hookrightarrow
+M\)</span> 是光滑浸入, 我们有线性单射 <span class="math inline">\(\iota_{*,p}:T_pS\to T_pM\)</span>. 取切向量 <span class="math inline">\(v\in T_pS\)</span>, 我们将 <span class="math inline">\(v\)</span> 与 <span class="math inline">\(\tilde{v}=\iota_{*,p}v\)</span> 认同, 于是 <span class="math inline">\(T_pS\)</span> 就成了 <span class="math inline">\(T_pM\)</span> 的线性子空间.</p>
+<p>具体来说, <span class="math inline">\(\tilde{v}\)</span> 在 <span class="math inline">\(M\)</span> 上光滑函数的作用为 <span class="math display">\[
+\tilde{v}f = (\iota_{*,p}v)(f) = v(f\circ\iota) = v(f|_S),
+\]</span> 即 <span class="math inline">\(\tilde{v}\)</span> 只关心 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(S\)</span> 上的取值.</p>
+<div class="note note-success">
+<p><u>Proposition 11.1</u> (子流形切空间的曲线刻画) 设 (带边) 光滑流形
+<span class="math inline">\(M\)</span>, 光滑子流形 <span class="math inline">\(S\subset M\)</span>, 点 <span class="math inline">\(p\in S\)</span>. 取 <span class="math inline">\(v\in T_pM\)</span>, 则 <span class="math inline">\(v\in T_pS\)</span> 当且仅当存在光滑曲线 <span class="math inline">\(\gamma:I\to M\)</span>, 满足 <span class="math inline">\(\gamma(I)\subset S\)</span>, 且 <span class="math inline">\(\gamma\)</span> 是 <span class="math inline">\(I\to S\)</span> 的光滑映射, 并且 <span class="math inline">\(\gamma(0)=p\)</span>, <span class="math inline">\(\gamma'(0)=v\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> <span class="math inline">\(\Leftarrow\)</span>
+是平凡的.</p>
+<p><span class="math inline">\(\Rightarrow\)</span>, 取 <span class="math inline">\(S\)</span> 中的光滑曲线 <span class="math inline">\(\gamma:I\to S\)</span>, 满足 <span class="math inline">\(\gamma(0)=p\)</span> 和 <span class="math inline">\(\gamma'(0)=v\)</span> (根据 Proposition 4.13,
+这样的曲线存在), 则 <span class="math inline">\(\tilde\gamma:=\iota\circ\gamma:I\to M\)</span> 是
+<span class="math inline">\(M\)</span> 中的光滑曲线, 且 <span class="math inline">\(\tilde\gamma(0)=p\)</span>, <span class="math display">\[
+\tilde\gamma'(0) = \iota_{*,p}(\gamma'(0)) = v.
+\]</span></p>
+</div>
+<p>关于定理中 “<span class="math inline">\(\gamma\)</span> 是 <span class="math inline">\(I\to S\)</span> 的光滑映射” 的条件:</p>
+<ul>
+<li>如果 <span class="math inline">\(S\)</span> 是嵌入子流形,
+则该条件是多余的 (Proposition 10.2).</li>
+<li>如果 <span class="math inline">\(S\)</span> 仅仅是浸入子流形,
+则该条件是必需的, 不能删去. 反例可由 8 字形曲线构造.</li>
+</ul>
+<p>下面的两个定理只适用于嵌入子流形.</p>
+<div class="note note-success">
+<p><u>Proposition 11.2</u> (嵌入子流形) 设光滑流形 <span class="math inline">\(M\)</span>, 嵌入子流形 <span class="math inline">\(S\subset M\)</span>, 点 <span class="math inline">\(p\in S\)</span>, 则 <span class="math display">\[
+T_pS = \{v\in T_pM \mid
+  vf=0 \,\textsf{只要}\, f\in C^\infty(M) \,\textsf{且}\, f|_S=0
+\}.
+\]</span></p>
+</div>
+<p>对于某些浸入子流形, 该定理不成立. 考虑 <span class="math inline">\(\Bbb{T}^2\)</span> 上的稠密曲线 <span class="math inline">\(S\)</span>, 这是一个一维浸入子流形. 我们取 <span class="math inline">\(v\in T_pM\)</span> 满足 <span class="math inline">\(vf=0\)</span> 只要 <span class="math inline">\(f\in C^\infty(M)\)</span> 且 <span class="math inline">\(f|_S=0\)</span>. 注意 <span class="math inline">\(S\)</span> 是稠密的, 故 <span class="math inline">\(f\equiv0\)</span> 在 <span class="math inline">\(M\)</span> 上恒成立, 因此 <span class="math inline">\(v\)</span> 可以是 <span class="math inline">\(T_pM\)</span> 中的任意向量, 而非仅仅是 <span class="math inline">\(T_pS\)</span> 中的向量.</p>
+<div class="note note-success">
+<p><u>Proposition 11.3</u> (作为局部水平集的嵌入子流形) 设光滑流形 <span class="math inline">\(M\)</span>, 嵌入子流形 <span class="math inline">\(S\subset M\)</span>. 若存在光滑映射 <span class="math inline">\(\Phi:U\to N\)</span> 满足 <span class="math inline">\(S\cap U\)</span> 是 <span class="math inline">\(\Phi\)</span> 的常秩水平集, 则 <span class="math inline">\(T_pS=\ker\Phi_{*,p}\)</span>, 对任意 <span class="math inline">\(p\in S\cap U\)</span>.</p>
+</div>
+<div class="note note-light">
+<p><u>Pf</u> 由于 <span class="math inline">\(\Phi\circ\iota:S\to
+N\)</span> 常值, 切映射 <span class="math inline">\(\Phi_{*,p}\circ\iota_{*,p}=0\)</span>, 即 <span class="math inline">\(\im\iota_{*,p}\subset\ker\Phi_{*,p}\)</span>.
+结合秩-零化度定理以及常秩水平集定理, <span class="math display">\[
+\dim\ker\Phi_{*,p}
+= \dim T_pM - \rank\Phi_{*,p}
+= \dim T_pS
+= \dim \im\iota_{*,p},
+\]</span> 这表明 <span class="math inline">\(\im\iota_{*,p}=\ker\Phi_{*,p}\)</span>, 也即 <span class="math inline">\(T_pS=\ker\Phi_{*,p}\)</span>.</p>
+</div>
+<h3 id="the-tangent-space-at-boundary">11.2  The tangent space at
+boundary</h3>
+<p>下面我们研究带边光滑流形的切空间. 直观地看, 边界点 <span class="math inline">\(p\in\partial M\)</span> 的切向量有三种: 指向 <span class="math inline">\(M\)</span> 内部的, 指向 <span class="math inline">\(M\)</span> 外部的, 和与边界相切的.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/topology-gtm218/tangent-space-at-boundary.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>具体来说, 切向量 <span class="math inline">\(v\in T_pM\setminus
+T_p\partial M\)</span> 称为<strong>指向内部的
+(inward-pointing)</strong>, 若存在光滑曲线 <span class="math inline">\(\gamma:[0,\varepsilon)\to M\)</span> 使得 <span class="math inline">\(\gamma(0)=p\)</span> 且 <span class="math inline">\(\gamma'(0)=v\)</span>. 切向量 <span class="math inline">\(v\)</span> 称为<strong>指向外部的
+(outward-pointing)</strong>, 若 <span class="math inline">\(-v\)</span>
+是指向内部的.</p>
+<ul>
+<li>回顾: 边界坐标系指的是以边界上一点 <span class="math inline">\(p\)</span> 为中心的, 到上半平面 <span class="math inline">\(\Bbb{H}^n\)</span> 的同胚. 在边界坐标系下,
+指向内部的切向量的 <span class="math inline">\(x^n\)</span> 分量 (即
+<span class="math inline">\(v^n=v(x^n)\)</span>) 为正;
+指向外部的切向量的 <span class="math inline">\(x^n\)</span>
+分量为负.</li>
+</ul>
+<p>带边光滑流形 <span class="math inline">\(M\)</span>
+的<strong>边界定义函数 (boundary defining function)</strong>
+指的是光滑函数 <span class="math inline">\(f:M\to[0,+\infty)\)</span>,
+其满足 (1) <span class="math inline">\(f^{-1}(0)=\partial M\)</span>,
+(2) <span class="math inline">\(f_{*,p}\neq0\)</span> 对任意 <span class="math inline">\(p\in\partial M\)</span>.</p>
+<ul>
+<li>闭单位球 <span class="math inline">\(\overline{\Bbb{B}^n}\)</span>
+的一个边界定义函数为 <span class="math inline">\(f(x)=1-\|x\|^2\)</span>.</li>
+</ul>
+<div class="note note-success">
+<p><u>Proposition 11.4</u> 任意带边光滑流形存在边界定义函数.</p>
+</div>
+<p>下面的定理用边界定义函数刻画了边界处的切向量.
+如果将切向量当作方向导数的话, 结论是很直观的.</p>
+<div class="note note-success">
+<p><u>Proposition 11.5</u> 设带边光滑流形 <span class="math inline">\(M\)</span> 的边界定义函数 <span class="math inline">\(f\)</span>, 点 <span class="math inline">\(p\in\partial M\)</span>. 则切向量 <span class="math inline">\(v\in T_pM\)</span> 是指向内部的当且仅当 <span class="math inline">\(vf&gt;0\)</span>; 指向外部的当且仅当 <span class="math inline">\(vf&lt;0\)</span>; 切于 <span class="math inline">\(\partial M\)</span> 当且仅当 <span class="math inline">\(vf=0\)</span>.</p>
+</div>
+<div class="note note-warning">
+<p><u>Note</u> 给定光滑子流形 <span class="math inline">\(M\)</span>
+和子集 <span class="math inline">\(S\subset M\)</span>, 要如何判断 <span class="math inline">\(S\)</span> 是否构成嵌入 / 浸入子流形?</p>
+<p>嵌入子流形的判断是比较简单的. 由于 <span class="math inline">\(S\)</span> 必须在子空间拓扑和 “切片光滑结构”
+下才能构成嵌入子流形, 只需直接验证即可.</p>
+<p>浸入子流形比较棘手. 如果要证明 <span class="math inline">\(S\)</span>
+是浸入子流形, 我们需要构造出合适的拓扑和光滑结构. 如果要证明 <span class="math inline">\(S\)</span> 不能构成浸入子流形,
+我们则需要证明它在<em>任意</em>拓扑和光滑结构下都不构成浸入子流形,
+这显然很困难. 可以考虑反证法, 用如下结论推出矛盾:</p>
+<ul>
+<li>任意一点 <span class="math inline">\(p\)</span> 处的切空间 <span class="math inline">\(T_pS\)</span> 是 <span class="math inline">\(T_pM\)</span> 的线性子空间.</li>
+<li><span class="math inline">\(S\)</span> 的切向量是 <span class="math inline">\(S\)</span> 中光滑曲线的速度.</li>
+<li><span class="math inline">\(S\)</span> 的切向量零化在 <span class="math inline">\(S\)</span> 上常值的光滑函数.</li>
+</ul>
+<p>之后会给出几个例子.</p>
+</div>
+<p>尖尖的曲线. 考虑 <span class="math inline">\(\R^2\)</span> 的子集
+<span class="math inline">\(S=\{(x,y)\mid y=|x|\}\)</span>.</p>
+<ul>
+<li>由于 <span class="math inline">\(S\setminus\{(0,0)\}\)</span> 是
+<span class="math inline">\(\R^2\)</span> 的一维嵌入子流形, 所以如果
+<span class="math inline">\(S\)</span> 构成光滑子流形的话,
+也必定是一维的 (维数的拓扑不变性: 一维情形). 因此 <span class="math inline">\(T_{(0,0)}S\)</span> 是 <span class="math inline">\(T_{(0,0)}\R^2\)</span> 的一维子空间.</li>
+<li>根据 Proposition 11.1, 存在光滑曲线 <span class="math inline">\(\gamma:(-\varepsilon,\varepsilon)\to\R^2\)</span>,
+其像包含于 <span class="math inline">\(S\)</span>, 且 <span class="math inline">\(\gamma(0)=(0,0)\)</span>, <span class="math inline">\(\gamma'(0)\neq0\)</span>. 记 <span class="math inline">\(\gamma(t)=(x(t),y(t))\)</span>, 注意到 <span class="math inline">\(t=0\)</span> 是 <span class="math inline">\(y(t)\)</span> 的极小值点, 有 <span class="math inline">\(y'(0)=0\)</span>. 又因为曲线上的点满足 <span class="math inline">\(x(t)^2=y(t)^2\)</span>, 两边求二阶导数并令 <span class="math inline">\(t=0\)</span> 得到</li>
+</ul>
+<p><span class="math display">\[
+2x'(0)^2=2y'(0)^2=0,
+\]</span></p>
+<p>进而 <span class="math inline">\(\gamma'(0)=(0,0)\)</span> 矛盾.
+因此 <span class="math inline">\(S\)</span> 无法构成 <span class="math inline">\(\R^2\)</span> 的光滑子流形.</p>
+<p>X 形空间. 考虑 <span class="math inline">\(\R^2\)</span> 的子集 <span class="math inline">\(S=\{(x,y)\mid x^2=y^2\}\)</span> (前文的一个反例).
+同上, 它如果构成光滑子流形的话, 也必定是一维的.</p>
+<ul>
+<li><p>首先, <span class="math inline">\(S\)</span> 不是 <span class="math inline">\(\R^2\)</span> 的嵌入子流形, 因为在子空间拓扑下,
+<span class="math inline">\((0,0)\)</span> 的所有邻域都包含了一个 “X”,
+不能与 <span class="math inline">\(\R\)</span>
+的任何开子集同胚.</p></li>
+<li><p>此外, <span class="math inline">\(S\)</span> 也不构成光滑子流形.
+考虑两条曲线 <span class="math display">\[
+\Align{
+\gamma_1:(-\varepsilon,\varepsilon)&amp;\to\R^2, &amp;
+\gamma_1(t)&amp;=(t,t), \\
+\gamma_2:(-\varepsilon,\varepsilon)&amp;\to\R^2, &amp;
+\gamma_2(t)&amp;=(t,-t), \\
+}
+\]</span> 则 <span class="math inline">\(\gamma_1(0)=\gamma_2(0)=(0,0)\)</span>, 且 <span class="math inline">\(\gamma_1'(0)=(1,1)\)</span> 和 <span class="math inline">\(\gamma_2'(0)=(1,-1)\)</span> 都是 <span class="math inline">\(T_{(0,0)}S\)</span> 的元素.
+然而这两个向量线性无关, 与 <span class="math inline">\(\dim
+T_{(0,0)}S=1\)</span> 矛盾.</p></li>
+</ul>
+<h2 id="submanifolds-with-boundary">12  Submanifolds with Boundary</h2>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>集合 <span class="math inline">\(\beta((-\varepsilon,\varepsilon))\)</span>
+就是一例.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 </body></html>
                 
               </div>
