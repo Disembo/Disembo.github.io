@@ -1,0 +1,977 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CFG 解析与依存关系解析.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自然语言处理基础 | 4 语法分析">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/fnlp/4/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="CFG 解析与依存关系解析.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/pcfg-example-rules.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/pcfg-example-dp.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/pcfg-example-tree.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/dep-struct.png">
+<meta property="article:published_time" content="2025-04-12T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-15T02:57:01.720Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="自然语言处理">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/pcfg-example-rules.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>自然语言处理基础 | 4 语法分析 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="自然语言处理基础 | 4 语法分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-12 12:00" pubdate>
+          2025年4月12日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">自然语言处理基础 | 4 语法分析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="syntactic-analysis">6  Syntactic Analysis</h2>
+<div class="note note-secondary">
+<p>We have talked about different levels of analysis word level:</p>
+<ul>
+<li>analyzing the senses of a target word (点)</li>
+<li>sequence of words (线性)
+<ul>
+<li>evaluating a word sequence</li>
+<li>segmenting phrases from a sentence</li>
+<li>tagging each word in a sequence</li>
+</ul></li>
+</ul>
+<p>Beyond sequences, language actually follows/obeys certain implicit
+rules of grammar, which carries meaning. (句法分析, 树和图)</p>
+</div>
+<p>对于一句话 <em>I like eating green apples</em>, 从微观到宏观:</p>
+<ul>
+<li>Constituents (短语结构):
+<ul>
+<li>S, NP, VP, PP, ...</li>
+<li>apples, green apples, eating green apples, ...</li>
+</ul></li>
+<li>Dependency (依存结构):
+<ul>
+<li>I - like</li>
+<li>like - apples</li>
+<li>apples - eating</li>
+<li>apples - green</li>
+<li>...</li>
+</ul></li>
+</ul>
+<h3 id="structured-prediction-problems">6.1  Structured prediction
+problems</h3>
+<p>一般来说, 求解一个结构 (线性, 树, 图等) 有两种思路:</p>
+<ul>
+<li>离散优化: 定义一个 score 函数, 求出 score 最高的结构.
+<ul>
+<li>Viterbi 算法</li>
+<li>CYK 算法</li>
+</ul></li>
+<li>增量式算法: 迭代地构建一个结构.
+<ul>
+<li>基于转移的依存解析 (贪心)</li>
+</ul></li>
+</ul>
+<h3 id="context-free-grammars">6.2  Context-free grammars</h3>
+<h4 id="cfgs">6.2.1  CFGs</h4>
+<p>形式语言 (formal language) <span class="math inline">\(L\)</span>
+指的是有限字母表 <span class="math inline">\(\Sigma\)</span>
+上的一些有限序列的集合 <span class="math inline">\(L\subset\Sigma^*\)</span>.</p>
+<ul>
+<li>Kleene star 定义为 <span class="math inline">\(\Sigma^*:=\bigcup_{n\geq0}\Sigma^n\)</span>.</li>
+</ul>
+<p><strong>上下文无关语法 (context-free grammar)</strong> 指的是四元组
+<span class="math inline">\(G=(V,\Sigma,R,S)\)</span>, 其中:</p>
+<ul>
+<li>非终结符集 <span class="math inline">\(V\)</span>.</li>
+<li>终结符集 <span class="math inline">\(\Sigma\)</span> (字母表 /
+单词表), 与 <span class="math inline">\(V\)</span> 不交.</li>
+<li>有限产生规则 <span class="math inline">\(R\subset
+V\times(V\cup\Sigma)^*\)</span>, 给出了由非终结符生成 (非终结符或终结符)
+序列的关系.</li>
+<li>起始符 <span class="math inline">\(S\in V\)</span>.</li>
+</ul>
+<p>该语法生成的形式语言是 <span class="math inline">\(S\)</span>
+导出的所有可能的非终结符序列的集合: <span class="math display">\[
+L(G) := \{ w\in\Sigma^* \mid S \overset{*}\Rightarrow w \},
+\]</span> 称为上下文无关语言 (CFL).</p>
+<ul>
+<li>Weak Equivalence: 两个 CFG 生成相同的 CFL.</li>
+<li>Strong Equivalence: 两个 CFG 生成相同的 CFL,
+并且对每句话产生结构相同的分析树.</li>
+</ul>
+<p>任何一个 CFG 都可以转化为 Chomsky 范式 (CNF). 在 CNF 下, <span class="math inline">\(R\)</span> 中的元素只有两种形式:</p>
+<ul>
+<li><span class="math inline">\(X\to YZ\)</span> (<span class="math inline">\(X,Y,Z\in V\)</span>).</li>
+<li><span class="math inline">\(X\to x\)</span> (<span class="math inline">\(X\in V\)</span>, <span class="math inline">\(x\in\Sigma\)</span>).</li>
+</ul>
+<p>以后我们都在 CNF 下进行语法分析.</p>
+<h4 id="probabilistic-cfgs">6.2.2  Probabilistic CFGs</h4>
+<p>假设我们有一个 CFG 和一个句子, 如何判断该句子是否能由该 CFG 生成,
+并给出分析树? 一般来说, 语法分析树并不是唯一的,
+我们需要选择概率最大的那个语法分析树.</p>
+<p>Probabilistic CFG 给每个产生规则赋予一个概率. 具体来说, 一个 PCFG
+是五元组 <span class="math inline">\(G=(V,\Sigma,R,S,P)\)</span>,
+其中映射 <span class="math inline">\(P:R\to[0,1]\)</span> 将每个产生规则
+<span class="math inline">\(A\to\beta\)</span> 映到一个条件概率 (即给定
+<span class="math inline">\(A\)</span> 的条件下, <span class="math inline">\(A\)</span> 生成 <span class="math inline">\(\beta\)</span> 的概率), 满足: <span class="math display">\[
+\sum_{\beta} P(A\to\beta) = 1,\quad\textsf{对所有非终结符 $A$}.
+\]</span> 记可以生成 <span class="math inline">\(s\in L(G)\)</span>
+的语法分析树的集合为 <span class="math inline">\({\cal T}(s)\)</span>,
+则 <span class="math inline">\(s\)</span> 最有可能的语法分析树为 <span class="math display">\[
+t^*
+= \argmax_{t\in{\cal T}(s)} p(t)
+= \argmax_{t\in{\cal T}(s)} \prod_{i=1}^n q(A_i\to\beta_i).
+\]</span> 给定一些已经解析好的句子的集合 (即解析树的集合, treebank),
+如何估计 PCFG 的参数? 考虑最大似然估计: <span class="math display">\[
+P_{\sf ML}(A\to\beta) :=
+\frac{\textsf{$A\to\beta$ 出现的次数}}{\textsf{$A$ 出现的次数}}.
+\]</span></p>
+<h4 id="parsing-with-pcfgs">6.2.3  Parsing with PCFGs</h4>
+<p>现在我们已经估计好了 PCFG 的参数, 可以用 PCFG 解析一个新句子了.</p>
+<p>Cocke-Kasami-Younger 算法 (CYK) 是一种动态规划算法.
+该算法维护一个表格 <span class="math inline">\(\pi\)</span>, 其中 <span class="math inline">\(\pi(i,j,X)\)</span> 表示非终结符 <span class="math inline">\(X\)</span> 可以生成句子 <span class="math inline">\(s=(w_i)_{i=1}^n\)</span> 中第 <span class="math inline">\(i\)</span> ~ <span class="math inline">\(j\)</span> 个单词的概率. 自底向上地计算:</p>
+<ul>
+<li><p>对 <span class="math inline">\(i=1,\dots,n\)</span> 和 <span class="math inline">\(X\in V\)</span>, 填入初始条件 <span class="math display">\[
+\pi(i,i,X)=P(X\to w_i).
+\]</span></p></li>
+<li><p>对 <span class="math inline">\(i=1,\dots,n-1\)</span>, <span class="math inline">\(j=i+1,\dots,n\)</span> 和 <span class="math inline">\(X\in V\)</span>, 计算 <span class="math display">\[
+\pi(i,j,X)
+= \max_{\substack{X\to YZ\\i+1\leq m\leq j}} P(X\to YZ)
+  \cdot \pi(i,m,Y)
+  \cdot \pi(m+1,j,Z).
+\]</span></p></li>
+</ul>
+<p>最终的概率是 <span class="math inline">\(\pi(1,n,S)\)</span>
+(如果概率为零, 说明 <span class="math inline">\(s\)</span> 不能由该 PCFG
+生成). 在计算时同时记录 path 可以复原语法分析树.</p>
+<div class="note note-secondary">
+<p>例子: PCFG 参数如下:</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/pcfg-example-rules.png" cloud-img="" style="zoom:35%;" lazyload="true"></p>
+<p>句子为 <em>I saw the boy with a telescope</em>. CYK 的过程为</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/pcfg-example-dp.png" cloud-img="" style="zoom:40%;" lazyload="true"></p>
+<p>最终复原的语法分析树为</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/pcfg-example-tree.png" cloud-img="" style="zoom:45%;" lazyload="true"></p>
+</div>
+<h4 id="evaluation">6.2.4  Evaluation</h4>
+<p>F1: compare the edge set produced by your parser and the gold
+ones.</p>
+<p>这种语法分析方式有一些缺点:</p>
+<ul>
+<li>Lack of sensitivity to lexical information</li>
+<li>Lack of sensitivity to structural frequencies</li>
+</ul>
+<h3 id="dependencies">6.3  Dependencies</h3>
+<h4 id="dependency-structures">6.3.1  Dependency structures</h4>
+<p>Relations to characterize the dependency structures:</p>
+<ul>
+<li>binary relations: head <span class="math inline">\(\to\)</span>
+dependent</li>
+<li>head <span class="math inline">\(H\)</span>: the central organizing
+word</li>
+<li>dependent <span class="math inline">\(D\)</span>: often act as a
+modifier</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/dep-struct.png" cloud-img="" style="zoom:45%;" lazyload="true"></p>
+<p>所有的依存关系可以构成一张有向图 <span class="math inline">\(G\)</span>, 其中的有向边形如 <span class="math inline">\((i,j,k)\)</span> (<span class="math inline">\(i\to
+j\)</span> with type <span class="math inline">\(k\)</span>), 称为依存弧
+(dependency arc). 我们希望 <span class="math inline">\(G\)</span>
+满足:</p>
+<ul>
+<li>弱连通: <span class="math inline">\(G\)</span>
+对应的无向图连通.</li>
+<li>无环: 若 <span class="math inline">\(i\to j\)</span>, 则不存在 <span class="math inline">\(j\)</span> 到 <span class="math inline">\(i\)</span> 的路径.</li>
+<li>单头约束 (single-head): 若 <span class="math inline">\(i\to
+j\)</span>, 则不存在 <span class="math inline">\(k\neq i\)</span> 使得
+<span class="math inline">\(k\to j\)</span>.
+<ul>
+<li>每个词只能依存一个 head.</li>
+</ul></li>
+<li>投射性 (projective): 若 <span class="math inline">\(i\to j\)</span>,
+则对任意 <span class="math inline">\(k\)</span> 满足 <span class="math inline">\(i&lt;k&lt;j\)</span> 或 <span class="math inline">\(j&lt;k&lt;i\)</span>, 有从 <span class="math inline">\(i\)</span> 到 <span class="math inline">\(k\)</span> 的路径.
+<ul>
+<li>结合前面的性质, 投射性保证依存弧不会交叉.
+投射性将单词在句子中的排序与 dep structure 联系起来. 一个非投射句子:
+<em>A hearing is scheduled on the issue today</em>, 其中 on the issue
+修饰 hearing.</li>
+<li>有些时候不要求 projectivity:
+<ul>
+<li>长距离依赖.</li>
+<li>自由词语顺序.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="dependency-parsing">6.3.2  Dependency parsing</h4>
+<p>我们介绍基于转移的 (transition-based) 依存解析算法.
+这是一种贪心思想的增量式算法 (不考虑历史; 不能保证得到全局最优).</p>
+<p>一个转移系统 (transition system) 是一个四元组 <span class="math inline">\(S=(C,T,c_s,C_t)\)</span>, 其中:</p>
+<ul>
+<li>配置集 <span class="math inline">\(C\)</span>,
+即所有状态的集合.</li>
+<li>转移集 <span class="math inline">\(T\)</span>.</li>
+<li>初始状态映射 <span class="math inline">\(c_s\)</span>,
+将一个句子映射到 <span class="math inline">\(C\)</span>
+中的某个状态.</li>
+<li>终止状态集合 <span class="math inline">\(C_t\subset C\)</span>.</li>
+</ul>
+<p>基于转移的依存解析的步骤如下: (输入一个句子 <span class="math inline">\(x=(w_i)_{i=0}^n\)</span>, 其中 <span class="math inline">\(w_0={\sf ROOT}\)</span>)</p>
+<ol type="1">
+<li>初始状态 <span class="math inline">\(c\leftarrow
+c_s(x)\)</span>.</li>
+<li>重复执行直到 <span class="math inline">\(c\in C_t\)</span>:
+<ul>
+<li>取得最佳转移 <span class="math inline">\(t\leftarrow
+o(c)\)</span>.</li>
+<li>状态转移 <span class="math inline">\(c\leftarrow t(c)\)</span>.</li>
+</ul></li>
+</ol>
+<p>其中映射 <span class="math inline">\(o:C\to T\)</span> 称为 oracle
+function, 它给出了每个状态下的最佳转移操作. Oracle 可以由一个分类器近似:
+<span class="math display">\[
+o(c) = \argmax_{t}[ \textsf{ScoreOfTransition}(c,t;\theta) ].
+\]</span></p>
+<h4 id="the-arc-standard-transition-algorithm">6.3.3  The arc-standard
+transition algorithm</h4>
+<p>基于转移的依存解析可以用栈实现. 对于输入句子 <span class="math inline">\(x=(w_i)_{i=0}^n\)</span>, 状态 <span class="math inline">\(c\in C\)</span> 是一个四元组 <span class="math inline">\(c=(x,\sigma,\beta,A)\)</span>, 其中</p>
+<ul>
+<li><span class="math inline">\(\sigma\)</span> 是一个包含 <span class="math inline">\(w_0,\dots,w_m\)</span> 的栈 (<span class="math inline">\(m\leq n\)</span>).</li>
+<li><span class="math inline">\(\beta\)</span> 是一个包含 <span class="math inline">\(w_{m+1},\dots,w_n\)</span> 的队列.</li>
+<li><span class="math inline">\(A\)</span>
+是一个包含了若干依存弧的集合.</li>
+</ul>
+<p>此时转移系统的初始状态为 <span class="math inline">\(c_s(x):=([0],[1,\dots,n],\emptyset)\)</span>.
+终止状态形如 <span class="math inline">\(c=(\sigma,[],A)\)</span>.
+转移集 <span class="math inline">\(T\)</span> 包含如下的元素:</p>
+<ul>
+<li>Shift: <span class="math inline">\((\sigma,i|\beta,A)\to(\sigma|i,\beta,A)\)</span>.
+<ul>
+<li>从队列头移到栈顶.</li>
+</ul></li>
+<li>Left-arc of type <span class="math inline">\(k\)</span>: <span class="math inline">\((\sigma|i,j|\beta,A)\to(\sigma,j|\beta,A\cup\{(j,i,k)\})\)</span>.
+<ul>
+<li><span class="math inline">\(i&lt;j\)</span>, 所以该依存弧从较大的
+<span class="math inline">\(j\)</span> 指向较小的 <span class="math inline">\(i\)</span>, 是向左的.</li>
+<li>将 <span class="math inline">\(i\)</span> 丢掉.</li>
+</ul></li>
+<li>Right-arc of type <span class="math inline">\(k\)</span>: <span class="math inline">\((\sigma|i,j|\beta,A)\to(\sigma|i,\beta,A\cup\{(i,j,k)\})\)</span>.</li>
+</ul>
+<p>其中 <span class="math inline">\(\sigma|i\)</span> 表示栈顶为 <span class="math inline">\(i\)</span> 的栈; <span class="math inline">\(j|\beta\)</span> 表示队列头为 <span class="math inline">\(j\)</span> 的队列.</p>
+<div class="note note-secondary">
+<p>若句子长度为 <span class="math inline">\(n\)</span> (不包含 ROOT), 则
+action 的个数为 <span class="math inline">\(2n\)</span>. 该算法只能生成
+projective 的依存图.</p>
+</div>
+<h4 id="evaluation-1">6.3.4  Evaluation</h4>
+<p>一些特点:</p>
+<ul>
+<li>Greedy algorithm can go wrong, but usually reasonable accuracy.</li>
+<li>No notion of grammaticality (so robust to typos).</li>
+</ul>
+<p>如何评估一个解析结果?</p>
+<ul>
+<li>精确匹配: 图完全一样.</li>
+<li>边集匹配: 有多少条边正确.
+<ul>
+<li>Labeled Attachment Score (LAS): 边一样.</li>
+<li>Unlabeled Attachment Score (UAS): 边和类型都一样.</li>
+</ul></li>
+</ul>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" class="print-no-link">#自然语言处理</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>自然语言处理基础 | 4 语法分析</div>
+      <div>https://disembo.github.io/Note/Course/fnlp/4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/Course/fnlp/5/" title="自然语言处理基础 | 5 语义分析">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">自然语言处理基础 | 5 语义分析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/CG/undst-1-representation/" title="几何表示前沿">
+                        <span class="hidden-mobile">几何表示前沿</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

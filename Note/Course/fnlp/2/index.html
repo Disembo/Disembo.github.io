@@ -1,0 +1,1052 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="N-gram 语言模型与神经网络语言模型.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自然语言处理基础 | 2 语言模型">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/fnlp/2/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="N-gram 语言模型与神经网络语言模型.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-ffnn.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-cnn.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-vanilla-rnn.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-lstm-gru.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-gpt.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-bert.png">
+<meta property="article:published_time" content="2025-03-05T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-15T02:52:04.096Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="自然语言处理">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-ffnn.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>自然语言处理基础 | 2 语言模型 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="自然语言处理基础 | 2 语言模型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-05 12:00" pubdate>
+          2025年3月5日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">自然语言处理基础 | 2 语言模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="language-modeling">2  Language Modeling</h2>
+<p>词汇集为 <span class="math inline">\({\cal V}\)</span>,
+所有可能的句子的集合为 <span class="math inline">\({\cal S}\)</span>,
+则<strong>语言模型 (language model)</strong> 指的是 <span class="math inline">\({\cal S}\)</span> 上的一个概率分布 <span class="math inline">\(p\)</span>, <span class="math display">\[
+\sum_{s\in{\cal S}} p(s)=1,\quad p(s)\geq0.
+\]</span> 它给出了每句话的概率. 比如对于英文语言模型来说, "the dog
+barks" 或者 "the dog laughs" 的概率应该比较高, 而 "dog the laughs bark"
+等不合语法/逻辑或不常用的句子的概率应该比较低.</p>
+<p>Why language models?</p>
+<ul>
+<li><p>Speech Recognition: <span class="math display">\[
+\textsf{words}^* = \argmax_{\textsf{words}} \bqty{
+\textsf{Faithfulness}(\textsf{signal},\textsf{words}) +
+\orange{\textsf{Fluency}(\textsf{words})}
+}.
+\]</span></p></li>
+<li><p>Optical Character Recognition (OCR)</p></li>
+<li><p>Handwriting Recognition</p></li>
+<li><p>Word Segmentation ("whatdoesthismean?")</p></li>
+<li><p>Machine Translation</p>
+<ul>
+<li>Statistical Machine Translation</li>
+</ul></li>
+<li><p>Language Generation</p></li>
+<li><p>Question Answering/Dialogue/Chat</p></li>
+</ul>
+<h3 id="n-gram">2.1  N-gram</h3>
+<p>将一个句子建模成一个随机变量序列 <span class="math inline">\((X_1,\dots,X_n)\)</span>, 则一个具体的句子 <span class="math inline">\((w_1,\dots,w_n)\)</span> (<span class="math inline">\(w_i\in{\cal V}\)</span>) 的概率为 <span class="math display">\[
+P(X_1=w_1,\dots,X_n=w_n).
+\]</span> 一般令 <span class="math inline">\(w_n={\sf STOP}\)</span>
+为一个特殊的标识符. 有时也令 <span class="math inline">\(w_1={\sf
+START}\)</span>.</p>
+<h4 id="markov-assumptions">2.1.1  Markov assumptions</h4>
+<p>将上式按照 product formula 展开: <span class="math display">\[
+\Align{
+&amp;P(X_1=w_1,\dots,X_n=w_n) \\
+&amp;\hspace{1em}=
+    P(X_1=w_1) \prod_{i=2}^n P(X_i=w_i\mid
+X_1=w_1,\dots,X_{i-1}=w_{i-1}).
+}
+\]</span> 然而, 如此长的条件概率是难以计算的.
+大多数时候我们并不需要如此长的 history 来预测新的词.
+为此我们假设当前的词只与前一个词有关 (first-order Markov assumption).
+于是, <span class="math display">\[
+\Align{
+&amp;P(X_1=w_1,\dots,X_n=w_n) \\
+&amp;\hspace{1em}=
+    P(X_1=w_1) \prod_{i=2}^n P(X_i=w_i\mid
+X_1=w_1,\dots,X_{i-1}=w_{i-1}) \\
+&amp;\hspace{1em}=
+    P(X_1=w_1) \prod_{i=2}^n \orange{P(X_i=w_i\mid X_{i-1}=w_{i-1})}.
+}
+\]</span> 如此得到的语言模型称为 <strong>bigram</strong>,
+因为它每次只考虑两个词的依赖关系.</p>
+<ul>
+<li><p>最极端地, 可以假设当前词与历史无关 (no history), 但这样得到的模型
+(<strong>unigram</strong>) 只统计词频, 和 Naïve Bayes 差不多,
+表现比较差; 其最大优势是效率很高.</p></li>
+<li><p>实际上应用最广的是 second-order Markov assumption,
+即每个词只与前两个词有关: <span class="math display">\[
+\Align{
+&amp;P(X_1=w_1,\dots,X_n=w_n) \\
+&amp;\hspace{1em}=
+  P(X_1=w_1)P(X_2=w_2\mid X_1=w_1)
+  \prod_{i=3}^n \orange{P(X_i=w_i\mid X_{i-1}=w_{i-1},X_{i-2}=w_{i-2})}.
+}
+\]</span> 得到 <strong>trigram</strong> 语言模型.</p></li>
+<li><p>一般地, 有 <span class="math inline">\((n+1)\)</span>th-order
+Markov assumption, 得到 <strong><span class="math inline">\(n\)</span>-gram</strong> 语言模型. 当 <span class="math inline">\(n\)</span> 比较大时, 存储和计算开销会急剧增加,
+但是如此长的依赖其实很少见, 故不常用.</p></li>
+</ul>
+<h4 id="parameter-estimations">2.1.2  Parameter estimations</h4>
+<p>N-gram 的核心是计算 <span class="math inline">\(p(w_i\mid
+w_{i-1},\dots,w_{i-n+1})\)</span>. 对于一个较大的词汇表 (corpora),
+可以用频率估计概率: <span class="math display">\[
+p(w_i\mid w_{i-1},\dots,w_{i-n+1})
+= \frac
+    {{\sf count}(w_{i-n+1},\dots,w_{i-1},w_i)}
+    {{\sf count}(w_{i-n+1},\dots,w_{i-1})}.
+\]</span> 尽管单词的排列情况很多很多, 但是大部分单词的排列不会出现, 即
+<span class="math inline">\({\sf count}(w_1,\dots,w_n)=0\)</span>,
+这就是 n-gram 的稀疏性 (sparsity) 特征. 典型模型大小:</p>
+<ul>
+<li>the unigram LM needs to store 716,706 probabilities (at most)</li>
+<li>bigram LM : 12,537,755</li>
+<li>trigram LM : 22,174,483</li>
+<li>bigram 和 trigram 的参数个数远不及 716,706 的二次方/三次方.</li>
+</ul>
+<h4 id="pros-and-cons">2.1.3  Pros and cons</h4>
+<p>优点:</p>
+<ul>
+<li>Really easy to build, on billions of words</li>
+<li>Smoothing helps generalize to new data</li>
+<li>(Probablistic) scoring fits many downstream tasks</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>Synonyms: car, van, vehicle, ...</li>
+<li>Only capture short distance context</li>
+<li>Sparsity</li>
+<li>Storage</li>
+<li>Speed</li>
+</ul>
+<h3 id="evaluation">2.2  Evaluation</h3>
+<p>Intuition: a good LM model should assign a real sentence of that
+language a high probability.</p>
+<p>给出一个测试集 (句子的集合) <span class="math inline">\(\cal
+D\)</span> (一共有 <span class="math inline">\(M\)</span> 个单词),
+计算在该语言模型下的概率 <span class="math inline">\(\prod_{s\in{\cal
+D}}p(s)\)</span>, 开 <span class="math inline">\(M\)</span> 次根号 <span class="math inline">\(\sqrt[M]{\prod_{s\in{\cal D}}p(s)}\)</span>,
+注意到它的负对数 <span class="math display">\[
+-\frac1M \sum_{s\in{\cal D}} \log_2 p(s)
+\]</span> 是交叉熵 (衡量了语言模型的分布 <span class="math inline">\(p\)</span> 和 <span class="math inline">\({\cal
+D}\)</span> 的分布的差异). 取 <span class="math inline">\(2\)</span>
+指数, 得到<strong>困惑度 (perplexity)</strong> <span class="math display">\[
+{\sf Perplexity}({\cal D})
+:= 2^{-\frac1M \sum_{s\in{\cal D}} \log_2 p(s)}
+= \frac1{\sqrt[M]{ {\prod_{s\in{\cal D}}p(s)} }}.
+\]</span></p>
+<ul>
+<li>困惑度越小越好 (词汇表大小相同时). 如果某个句子/单词的概率为零,
+则困惑度为无穷大.</li>
+<li>假设某 trigram 是 <span class="math inline">\(|\cal{V}|\cup\{{\sf
+STOP}\}\)</span> 上的均匀分布, 即 <span class="math inline">\(p(a\mid
+b,c)=1/(1+|{\cal V}|)\)</span>, 则困惑度为 <span class="math inline">\(|{\cal V}|+1\)</span>.</li>
+<li>假设某 trigram 是理想的 (每句话的概率都接近 <span class="math inline">\(1\)</span>), 且训练集和测试集同分布, 则困惑度为
+<span class="math inline">\(1\)</span>.</li>
+</ul>
+<h3 id="unseen-events">2.3  Unseen Events</h3>
+<div class="note note-secondary">
+<p>考虑 bigram 语言模型, 训练集为</p>
+<ul>
+<li>i love pku .</li>
+<li>i like thu .</li>
+<li>you love pku .</li>
+<li>you do not like thu .</li>
+</ul>
+<p>测试集为</p>
+<ul>
+<li>you like pku .</li>
+<li>i hate thu .</li>
+</ul>
+<p>然而由于训练集中没有 "you like", "like pku" 和 "hate",
+故该模型在这两个句子上的概率都为零. 由于 N-gram 的稀疏性,
+这样的情况很常见.</p>
+</div>
+<h4 id="linear-interpolation">2.3.1  Linear interpolation</h4>
+<p>Back-off: 用低级 gram 的概率代替高级 gram: <span class="math display">\[
+p_l(a\mid b,c)
+:= \lambda_1 p(a\mid b,c) + \lambda_2 p(a\mid b) + \lambda_3 p(a),
+\]</span> 其中 <span class="math inline">\(\lambda_i&gt;0\)</span>,
+<span class="math inline">\(\sum\lambda_i=1\)</span>. 如此得到的 <span class="math inline">\(p_l\)</span> 仍旧是概率分布. 参数 <span class="math inline">\(\lambda_i\)</span> 的选取可以通过在验证集上进行
+MLE 得到.</p>
+<p>另一种方法是 stupid back-off (Brants et al. 2007, Google).
+对于一个极大规模的词汇集, <span class="math display">\[
+s(a\mid b,c) := \Cases{
+\dfrac{{\sf count}(b,c,a)}{{\sf count}(b,c)}, &amp; {\sf
+count}(b,c,a)&gt;0, \\
+\orange{0.4}\times s(a\mid b) &amp; {\sf count}(b,c,a) = 0.
+}
+\]</span> 当然这就不是概率了, 而是一种得分 (score).</p>
+<h4 id="smoothing">2.3.2  Smoothing</h4>
+<p>一个朴素的想法是给每个 gram 的频率加一, 即 Laplace 平滑: <span class="math display">\[
+p_{+1}(a\mid b)
+:= \frac{{\sf count}(b,a) + 1}{{\sf count}(b) + |{\cal V}|}.
+\]</span> 我们希望 <span class="math inline">\(+1\)</span>
+之后尽量不影响原本的概率, 同时也不要让 UNSEEN 的概率变得过大.
+这样就要求我们的数据集规模比较大 (即 UNSEEN 的数量比较少).</p>
+<p>Good-Turing discounting 的想法是 use the counts of n-grams that are
+seen once to help estimate the counts of unseen events. 具体来说,
+它假设所有出现 <span class="math inline">\(r\)</span>
+次单词的概率之和等于出现 <span class="math inline">\((r+1)\)</span>
+次的单词的概率. 记 <span class="math inline">\(N_r\)</span> 是出现 <span class="math inline">\(r\)</span> 次的单词的个数, 则调整之后的次数 <span class="math display">\[
+r^* = (r+1)\frac{N_{r+1}}{N_r}.
+\]</span> 换言之, 将 <span class="math inline">\((r+1)\)</span>
+次的频率匀一点儿给 <span class="math inline">\(r\)</span> 次的词.</p>
+<ul>
+<li>在大多数实际情况下, 我们观察到 <span class="math inline">\(r^*\approx r-0.75\)</span>. 于是引出 absolute
+discounting.</li>
+</ul>
+<p>Absolute discounting 的想法是给概率减去一个定值 <span class="math inline">\(d\)</span>, <span class="math display">\[
+p_{\sf abd} (a\mid b) = \frac{{\sf count}(a,b)-d}{{\sf count}(b)}
++ \lambda(b)p(a).
+\]</span></p>
+<h2 id="neural-language-models">3  Neural Language Models</h2>
+<h3 id="lm-as-classification">3.1  LM as classification</h3>
+<p>之前提到的 Naïve Bayes 和 N-gram 本质上都是数数 (counting).
+但我们不想数数了.</p>
+<p>我们希望设计一个类似于分类器的东西, 输入之前的 <span class="math inline">\((n-1)\)</span> 个单词, 让它预测下一个词是什么,
+即拟合函数 <span class="math display">\[
+p(w_i\mid w_{1},\dots,w_{i-1}) =: p(w_i\mid h_{1:i-1})
+\]</span> 直觉上, 可以构建一个 log-linear 模型来预测所有 (label) <span class="math inline">\(w\in{\cal V}\)</span> 作为下一个词的概率,
+再取概率最大的那个作为预测结果 <span class="math inline">\(w_i^*\)</span>. 这个模型称为 NLM-0 (N for New).
+Our NLM-0, is often called maximum entropy language models, in 1990s.
+该模型需要考虑一些问题:</p>
+<ul>
+<li>如何从 <span class="math inline">\(h_{1:i-1}\)</span>
+中抽取特征?</li>
+<li>输出的 labels 数量多大合适? (<span class="math inline">\(|{\cal
+V}|\)</span> 非常大).</li>
+<li>这个模型训练/推理成本是否可接受?</li>
+</ul>
+<p>它的优点:</p>
+<ul>
+<li>(almost) no worry about zero events</li>
+<li>(almost) beyond counting, somehow</li>
+<li>classification means a lot more than counting</li>
+<li>可以避免稀疏化问题, 让模型的大部分参数非零.</li>
+</ul>
+<h3 id="feedforward-networks">3.2  Feedforward networks</h3>
+<p>如何表示一个词?</p>
+<ul>
+<li>One-hot. 处在 <span class="math inline">\(V=|{\cal V}|\)</span>
+维空间中, 十分稀疏.</li>
+<li>Word embeddings. 将 one-hot 向量 (线性) 映射到一个维数 <span class="math inline">\(d\)</span> 比较小的空间中: <span class="math inline">\(m_i:=w_iM\)</span> (相当于取出 <span class="math inline">\(M\)</span> 的第 <span class="math inline">\(i\)</span> 行, 将 <span class="math inline">\(M\)</span> 视作一个 lookup table).
+<ul>
+<li>参数 <span class="math inline">\(M\)</span> 也是学习出来的, word
+representation 也是模型的一部分.</li>
+</ul></li>
+</ul>
+<p>用 feedforward neural network 来拟合概率: <span class="math display">\[
+\Align{
+p(w_n\mid h_{1:t-1})
+= \operatorname{softmax}\!\bqty{
+    b + \blue{\sum_{j=1}^{n-1} m_jA_j} + \tanh\pqty{
+        u + \orange{\sum_{j=1}^{n-1} m_jT_j}
+    }W
+}
+}
+\]</span></p>
+<ul>
+<li>输入 (嵌入行向量) 维数 <span class="math inline">\(d\)</span>;
+隐藏层维数 <span class="math inline">\(H\)</span>; 输出 (概率行向量)
+维数 <span class="math inline">\(V=|{\cal V}|\)</span>.</li>
+<li><span class="math inline">\(T_j\in\R^{d\times H}\)</span>, <span class="math inline">\(u\in\R^{1\times H}\)</span>, <span class="math inline">\(W\in\R^{H\times V}\)</span>.</li>
+<li>蓝色的部分跳过了隐层 (下图虚线箭头), <span class="math inline">\(A_j\in\R^{d\times V}\)</span>, <span class="math inline">\(b\in\R^{1\times V}\)</span>.</li>
+</ul>
+<p>A Neural Probabilistic Language Model [Bengio et al., 2003,
+JMLR],</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-ffnn.png" cloud-img="" style="zoom:35%;" lazyload="true"></p>
+<ul>
+<li><span class="math inline">\(C\)</span> 为词嵌入.</li>
+<li>参数量: 词汇量 <span class="math inline">\(V\approx18000\)</span>,
+嵌入维数 <span class="math inline">\(d\)</span> 为 <span class="math inline">\(30\)</span> 或 <span class="math inline">\(60\)</span>, 隐层维数 <span class="math inline">\(H\)</span> 为 <span class="math inline">\(50\)</span> 或 <span class="math inline">\(100\)</span>, 上下文长度 <span class="math inline">\(n=6\)</span>, 故总参数量在 4M ~ 8M.</li>
+</ul>
+<p>It is still an N-gram LM, but why it works better?</p>
+<ul>
+<li>多层的结构使得特征可以组合</li>
+<li>we can search through a lot more conjunctive features through high
+dimensional feature representations, especially for neural models the
+amazing word embeddings!</li>
+<li>可以同时训练词嵌入和 FFNN</li>
+</ul>
+<p>实际上, 该网络并没有为序列建模, 因为 <span class="math inline">\(h_{1:n-1}\)</span> 中的词汇只是简单地求和,
+并未考虑顺序.</p>
+<h3 id="convolutional-networks">3.3  Convolutional networks</h3>
+<p>设输入词嵌入 (列向量) 序列 <span class="math inline">\(X^{(0)}=(m_1,m_2,\dots,m_{t-1})\in\R^{d\times(t-1)}\)</span>,
+我们用一个滑动窗口扫过整个句子: <span class="math display">\[
+X^{(\ell)}[k,m]
+:= f\pqty{
+    b_k + \sum_{i=1}^{\textsf{$d$ or $K$}} \sum_{j=1}^{{\sf sw}}
+    C_{k}[i,j]\cdot X^{(\ell-1)}[i,m+j-1]
+} \in \R^{K\times(t-1)} .
+\]</span> 每组 <span class="math inline">\((b_k\in\R,C_k\in\R^{(\textsf{\)</span>d$ or <span class="math inline">\(K\)</span>})})$ 都代表一个 filter (<span class="math inline">\(k=1,\dots,K\)</span>); <span class="math inline">\({\sf sw}\)</span> 是滑动窗口的宽.</p>
+<p>我们一共进行 <span class="math inline">\(D\)</span> 次卷积, 得到隐层
+<span class="math inline">\(X^{(1)},\dots,X^{(D)}\)</span>. 最后用一个
+max pool 或 average pool 得到一个向量: <span class="math display">\[
+z_i := \max_j X^{(D)}[i,j],\quad\textsf{or}\quad
+z_i := \frac1{t-1} \sum_{j=1}^{t-1} X^{(D)}[i,j].
+\]</span> 最后用 softmax 得到概率.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-cnn.png" cloud-img="" style="zoom:35%;" lazyload="true"></p>
+<h3 id="recurrent-networks">3.4  Recurrent networks</h3>
+<p>能否更好地建模历史序列?</p>
+<p>在每个词 <span class="math inline">\(m_i\)</span> 处, 用一个隐状态
+<span class="math inline">\(s_{i-1}\)</span> 来编码历史序列 <span class="math inline">\(h_{1:i-1}\)</span>, 并迭代地更新:</p>
+<ol type="1">
+<li><span class="math inline">\(s_0=0\)</span>.</li>
+<li><span class="math inline">\(s_i=\delta(m_iW_m + s_{i-1}W_s +
+b)\)</span>.
+<ul>
+<li>输出 <span class="math inline">\(p(w_{i+1}\mid
+h_{1:i})=\operatorname{softmax}(s_iW_p)\)</span>.</li>
+</ul></li>
+</ol>
+<p>该 RNN 结构如下:</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-vanilla-rnn.png" cloud-img="" style="zoom:35%;" lazyload="true"></p>
+<p>朴素 RNN 的缺点是:</p>
+<ul>
+<li>Gradients decrease rapidly as they get pushed back. (梯度消失)</li>
+<li>Hidden states tend to change a lot on each iteration.
+(快速遗忘)</li>
+</ul>
+<p>Long Short-Term Memory (LSTM, Hochreiter and Schmidhuber 1997)
+引入了一些 gates 和加法连接来保持长期记忆. GRUs (Cho et al., 2014)
+简化了 LSTM 的结构. 它们如下图所示<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Michael Phi, <a target="_blank" rel="noopener" href="https://medium.com/data-science/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21"><em>Illustrated
+Guide to LSTM’s and GRU’s: A step by step explanation</em></a> (<span class="citation" data-cites="medium">@medium</span>, 2018).</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-lstm-gru.png" cloud-img="" style="zoom:40%;" lazyload="true"></p>
+<div class="note note-secondary">
+<p>stronger modeling regarding history <span class="math inline">\(\Rightarrow\)</span> from fixed <span class="math inline">\(t\)</span> to almost all history</p>
+</div>
+<h3 id="contextual-representations">3.5  Contextual representations</h3>
+<p>Words may have multiple distinct meanings,
+因此只用一个向量编码一个单词是不够的.</p>
+<p>Go deeper!</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-gpt.png" cloud-img="" style="height:250px;" lazyload="true"></th>
+<th style="text-align: center;"><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/fnlp/nlm-bert.png" cloud-img="" style="height:250px;" lazyload="true"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Michael Phi, <a target="_blank" rel="noopener" href="https://medium.com/data-science/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21"><em>Illustrated
+Guide to LSTM’s and GRU’s: A step by step explanation</em></a> (<span class="citation" data-cites="medium">@medium</span>, 2018).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" class="print-no-link">#自然语言处理</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>自然语言处理基础 | 2 语言模型</div>
+      <div>https://disembo.github.io/Note/Course/fnlp/2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/CG/proc-2-denoising/" title="网格去噪与光顺">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">网格去噪与光顺</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/CG/proc-1-reconstruction/" title="几何重建">
+                        <span class="hidden-mobile">几何重建</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

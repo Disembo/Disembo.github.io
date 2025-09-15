@@ -1,0 +1,1017 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="词义消歧的 Bayes 方法和基于特征的分类器方法.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自然语言处理基础 | 1 词义消歧">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/fnlp/1/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="词义消歧的 Bayes 方法和基于特征的分类器方法.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-03T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-15T02:51:55.614Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="自然语言处理">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>自然语言处理基础 | 1 词义消歧 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="自然语言处理基础 | 1 词义消歧"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-03 12:00" pubdate>
+          2025年3月3日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">自然语言处理基础 | 1 词义消歧</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="wsd">1  WSD</h2>
+<p><strong>WSD (Word sense disambiguation, 词义消歧)</strong>:
+给定上下文, 确定一个词的语境义 (已知所有可能的意思集合 sense
+inventory).</p>
+<ul>
+<li><p>概率视角: 求出 <span class="math inline">\(p(y\mid x)\)</span>,
+其中 <span class="math inline">\(x\)</span> 为上下文, <span class="math inline">\(y\)</span> 为单词的某条含义, 取映射 <span class="math inline">\(g(x)=\argmax_y p(y\mid x)\)</span>.</p></li>
+<li><p><strong>Discriminative</strong>: 直接学习 <span class="math inline">\(p(y\mid x)\)</span>.</p></li>
+<li><p><strong>Generative</strong>: 先学习 <span class="math inline">\(p(x,y)\)</span>, 然后利用 Bayes 公式: <span class="math display">\[
+\argmax_y p(y\mid x)
+  = \argmax_y \frac{p(x,y)}{\sum_{y'} p(x\mid y')p(y')}
+  = \argmax_y p(x,y),
+\]</span> 其中 <span class="math inline">\(p(x\mid
+y')p(y')=p_X(x)\)</span> 与变量 <span class="math inline">\(y\)</span> 无关.</p></li>
+</ul>
+<p>不同的方法:</p>
+<ul>
+<li><p><strong>Supervised learning</strong>:</p>
+<ul>
+<li>a classification task
+<ul>
+<li>Naïve Bayes, Linear/Logistic Regression, SVM, Neural
+Networks...</li>
+</ul></li>
+<li>sense inventories are known</li>
+<li>annotated data available for training</li>
+</ul></li>
+<li><p><strong>Unsupervised learning</strong>:</p>
+<ul>
+<li>a clustering task (group word usages according to context)</li>
+<li>we do not know/have the complete sense inventories</li>
+<li>plain text data available only</li>
+<li>cluster data instances into groups:
+<ul>
+<li>similar within a group</li>
+<li>discriminative between groups</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Semi-Supervised learning</strong>:</p>
+<div class="note note-secondary">
+<ol type="1">
+<li>obtain a small manually annotated corpus as seeds</li>
+<li>bootstrap more annotated
+<ol type="1">
+<li>samples top <span class="math inline">\(K\)</span> output from
+existing classifier</li>
+<li>design rules to extract more samples, e.g., from naturally aligned
+datasets.</li>
+</ol></li>
+</ol>
+</div>
+<ul>
+<li>limited data with annotations</li>
+<li>indirect supervision: entries or example sentences in WordNet</li>
+<li>a lot more textual resources</li>
+</ul></li>
+</ul>
+<p>Heuristics:</p>
+<ul>
+<li>启发一: (长尾效应) 单词的含义可能有很多, 但是大部分都很罕见.
+Identify the most often used sense and use this sense by default.</li>
+<li>启发二: A word tends to preserve its meaning across all its
+occurrences in a given discourse.</li>
+<li>Lesk 算法: choose the sense with most word overlap between gloss
+(词汇释义 / 例句) and your input context (上下文).</li>
+</ul>
+<h3 id="naïve-bayes">1.1  Naïve Bayes</h3>
+<div class="note note-secondary">
+<p>A generative model.</p>
+</div>
+<p>设单词 <span class="math inline">\(w\)</span> 的含义集合 (sense
+inventory) 为 <span class="math inline">\({\cal
+S}=\{s_k\}_{k=1}^n\)</span>, 上下文为 <span class="math inline">\(C\)</span>, 上下文的词汇表为 <span class="math inline">\({\cal V}=\{v_j\}_{j=1}^m\)</span>. 我们感兴趣的是
+<span class="math display">\[
+\Align{
+s^*
+&amp;= \argmax_{s_k} P(s_k\mid C) \\
+&amp;= \argmax_{s_k} \frac{P(C\mid s_k)P(s_k)}{P(C)} \\
+&amp;= \argmax_{s_k} P(C\mid s_k)P(s_k),
+}
+\]</span> 其中 <span class="math inline">\(P(C)\)</span> 与变量 <span class="math inline">\(s_k\)</span> 无关. 为了简单, 我们做出独立性假设
+(independent assumption), 即 <span class="math display">\[
+P(C\mid s_k) = \prod_{v_x\in C} P(v_x\mid s_k).
+\]</span> 进而有 <span class="math display">\[
+s^* = \argmax \prod_{v_x\in C} P(v_x\mid s_k)P(s_k).
+\]</span> 我们可以通过频率估计概率: <span class="math display">\[
+\Align{
+P(v_x\mid s_k) &amp;= \frac
+    {\textsf{$w$ 以含义 $s_k$ 出现, 且句子中含有 $v_x$ 的次数}}
+    {\textsf{$w$ 以含义 $s_k$ 出现次数}}, \\
+P(s_k) &amp;= \frac
+    {\textsf{$w$ 以含义 $s_k$ 出现次数}}
+    {\textsf{$w$ 出现次数}}.
+}
+\]</span></p>
+<h3 id="evaluation">1.2  Evaluation</h3>
+<p>如何评价模型的好坏?</p>
+<p>考虑一般的多分类问题 (<span class="math inline">\(C\)</span> 个类),
+构造混淆矩阵 (confusion matrix) <span class="math inline">\(M\in\R^{C\times C}\)</span>, 其中 <span class="math inline">\(M_{ij}\)</span> 表示实际为 <span class="math inline">\(i\)</span> 类中预测为 <span class="math inline">\(j\)</span> 类的个数. 对角线上表示分类正确的实例,
+非对角线为错误的实例.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">实例个数</th>
+<th style="text-align: center;">预测 1</th>
+<th style="text-align: center;">预测 2</th>
+<th style="text-align: center;">预测 3</th>
+<th style="text-align: center;">预测 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">实际 1</td>
+<td style="text-align: center;"><span class="math inline">\(M_{11}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{12}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{13}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{14}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">实际 2</td>
+<td style="text-align: center;"><span class="math inline">\(M_{21}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{22}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{23}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{24}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">实际 3</td>
+<td style="text-align: center;"><span class="math inline">\(M_{31}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{32}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{33}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{34}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">实际 4</td>
+<td style="text-align: center;"><span class="math inline">\(M_{41}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{42}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{43}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(M_{44}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>准确率 (accuracy)</strong> 为分类正确的比例: <span class="math display">\[
+{\sf acc} := \frac{\sum_i M_{ii}}{\sum_{i,j} M_{ij}}.
+\]</span> 类别 <span class="math inline">\(k\)</span> 的<strong>精确率
+(precision)</strong> 为在所有预测为类别 <span class="math inline">\(k\)</span> 的样本中, 有多少实际属于类别 <span class="math inline">\(k\)</span> (<em>预测得对不对</em>): <span class="math display">\[
+{\sf pre}_k := \frac{M_{kk}}{\sum_i M_{ik}}.
+\]</span> 类别 <span class="math inline">\(k\)</span> 的<strong>召回率
+(recall)</strong> 为所有实际属于类别 <span class="math inline">\(k\)</span> 的样本中, 有多少被正确预测为 <span class="math inline">\(k\)</span> (<em>预测得全不全</em>): <span class="math display">\[
+{\sf rec}_k := \frac{M_{kk}}{\sum_j M_{kj}}.
+\]</span></p>
+<p>F-beta 指标定义为 precision 和 recall 的加权调和平均: <span class="math display">\[
+F_\beta
+:= \frac{1+\beta^2}{\frac1{\sf pre} + \frac{\beta^2}{\sf rec}}
+= \frac{(\beta^2+1){\sf pre} \cdot {\sf rec}}{\beta^2{\sf pre} + {\sf
+rec}}.
+\]</span></p>
+<ul>
+<li><p>一般取 <span class="math inline">\(\beta=1\)</span>
+(权重相等).</p></li>
+<li><p>Macro F-beta 是不同类别 F1 的平均值
+(适用于关注各类别性能均衡的问题): <span class="math display">\[
+\textsf{Macro-}F_\beta
+:= \frac1C \sum_{k} \textsf{$F_\beta$ of class $k$}.
+\]</span></p></li>
+<li><p>Micro F-beta 是整体样本的平均 F1 (反映整体分类性能,
+对大类别更敏感): <span class="math display">\[
+\Align{
+{\sf pre}_{\sf all} &amp;:=
+\frac{\sum_k M_{kk}}{\sum_k \sum_i M_{ik}}
+\rightsquigarrow {\sf acc}, \\
+{\sf rec}_{\sf all} &amp;:=
+\frac{\sum_k M_{kk}}{\sum_k \sum_j M_{kj}}
+\rightsquigarrow {\sf acc}.
+}
+\]</span> 对于单分类问题来说, micro f-beta 等于 accuracy.</p></li>
+</ul>
+<h3 id="feature-based-discriminative-models">1.3  Feature-based
+discriminative models</h3>
+<h4 id="features-in-nlp">1.3.1  Features in NLP</h4>
+<p>Feature templates:</p>
+<ul>
+<li>前面的词和后面的词分别是什么?</li>
+<li>该词是否出现在句首? 是否大写?</li>
+<li>...</li>
+</ul>
+<p>根据一条训练数据 (一个包含当前单词的句子), 可以构造一个 feature
+vector. 这是一个很长的 0/1 向量, 它的每个分量代表某个特征模版为真 / 假,
+比如:</p>
+<div class="note note-secondary">
+<p>句子: I cash a check in that <em>bank</em> and transfer 100 dollars
+to my mom. 该句中 bank 的释义为 FI (for finance). 一些 feature 的例子:
+<span class="math display">\[
+\Align{
+f_1(x,y) &amp;= \Cases{
+1, &amp; \textsf{$w_{-1}=$ that 且 $y=$ FI}, \\
+0, &amp; \textsf{otherwise},
+} \\
+f_2(x,y) &amp;= \Cases{
+1, &amp; \textsf{$w_{2}=$ hello 且 $y=$ FI}, \\
+0, &amp; \textsf{otherwise},
+} \\
+f_3(x,y) &amp;= \Cases{
+1, &amp; \textsf{大写且 $y=$ FI}, \\
+0, &amp; \textsf{otherwise},
+} \\
+\dots\;\;\;
+}
+\]</span> Feature 的值: <span class="math inline">\(f_1(x,{\sf
+FI})=1\)</span>, <span class="math inline">\(f_2(x,{\sf FI})=0\)</span>,
+<span class="math inline">\(f_3(x,{\sf FI})=0\)</span>.</p>
+<p>假设 bank 的释义数量为 <span class="math inline">\(5\)</span>,
+上下文长度为 <span class="math inline">\(10\)</span> (前后各 <span class="math inline">\(5\)</span> 个词), 词汇表大小为 <span class="math inline">\(1000\)</span>, 除了上下文 feature 外还考虑
+"是否在句首" 和 "是否大写", 则 feature 的数量为 <span class="math display">\[
+5\times(1000\times10 + 2\times 2) = 50020.
+\]</span></p>
+</div>
+<p>假设一共有 <span class="math inline">\(m\)</span> 个 feature.
+对于一个实例 <span class="math inline">\((x,y)\)</span>, 它的 feature
+vectors 为 <span class="math display">\[
+\Align{
+f(x,y_1) &amp;= [f_1(x,y_1),\dots,f_m(x,y_1)], \\
+f(x,y_2) &amp;= [f_1(x,y_2),\dots,f_m(x,y_2)], \\
+\dots\hspace{0.9em}&amp;
+}
+\]</span> 其中 <span class="math inline">\(y_1,y_2,\dots\)</span>
+为所有释义 (label).</p>
+<p>在实际训练中, 一般采用稀疏向量来存储这些特征.</p>
+<div class="note note-secondary">
+<p>TF-IDF: 文章 <span class="math inline">\(d\)</span> 中词语 <span class="math inline">\(t\)</span> 的重要程度,
+等于词语频次减去该词语出现的文章频次: <span class="math display">\[
+\Align{
+\textsf{TF}_{t,d} &amp;:= \Cases{
+  1 + \log_{10}\textsf{($d$ 中 $t$ 出现的次数)}, &amp; \textsf{次数
+$&gt;0$}, \\
+  0, &amp; \textsf{otherwise},
+} \\
+\textsf{IDF}_{t,d} &amp;:= \log_{10}
+  \frac{\textsf{文章总数}}{\textsf{含有 $t$ 的文章数量}}, \\
+\textsf{TF-IDF}_{t,d} &amp;:= \textsf{TF}_{t,d} \cdot \textsf{IDF}_{td}.
+}
+\]</span></p>
+</div>
+<h4 id="the-log-linear-model">1.3.2  The log-linear model</h4>
+<p>构建一个线性分类器, 对于一个输入 <span class="math inline">\(x\)</span>, 构造不同释义下的特征向量 <span class="math inline">\(f(x,y)\)</span>, 分别计算其得分 <span class="math inline">\({\sf score}(x,y)\)</span>, 然后取最大得分的释义
+<span class="math inline">\(y^*\)</span> 作为预测值: <span class="math display">\[
+\Align{
+y^*
+&amp;= \argmax_y \textsf{score}(x,y) \\
+&amp;= \argmax_y \sum_i \lambda_{f_i(x,y)} f_i(x,y) \\
+&amp;= \argmax_y (\lambda \cdot f(x,y))
+}
+\]</span> 其中 <span class="math inline">\(i\)</span> 是特征的下标,
+参数向量 <span class="math inline">\(\lambda=(\lambda_{f_i(x,y)})\)</span>. 通过
+softmax 函数将 score 映到一个 <span class="math inline">\([0,1]\)</span>
+内的值, 进而可以理解为概率 (exponential model): <span class="math display">\[
+p_\lambda(y\mid x)
+= \frac{\exp{\sf score}(x,y)}{\sum_{y'} \exp{\sf score}(x,y')}
+= \frac{\exp(\lambda \cdot f(x,y))}{\sum_{y'}\exp(\lambda \cdot
+f(x,y'))}.
+\]</span> 参数估计采用最大似然法 (MLE). 设训练数据 <span class="math inline">\(\{(x_k,y_k)\}\)</span>, 则似然函数为 <span class="math display">\[
+\Align{
+L(\lambda) = \prod_k p_\lambda(y_k\mid x_k).
+}
+\]</span> 似然越大越好. 为了方便优化, 考虑对数似然函数: <span class="math display">\[
+\ell(\lambda)
+= \log{L(\lambda)}
+= \sum_k \lambda\cdot f(x_k,y_k)
+- \sum_k \log\pqty{\sum_{y'} \exp(\lambda\cdot f(x_k,y'))},
+\]</span> 令其导数为零, <span class="math display">\[
+0
+= \pdv{\ell}{\lambda}
+= \underbrace{\sum_k f(x_k,y_k)}_{\textsf{empirical count}}
+- \underbrace{\sum_k\sum_{y} p_\lambda(y\mid x_k) f(x_k,y)}
+    _{\textsf{expected count}}.
+\]</span> 经验计数 (empirical count) 是特征向量在数据集上的总和;
+期望计数 (expected count) 是对所有数据, 计算它在当前模型下 <span class="math inline">\(f(x_k,y)\)</span> 的期望值, 再求和.</p>
+<p>可以采用梯度上升法来最大化对数似然函数:</p>
+<ol type="1">
+<li>初始化 <span class="math inline">\(\lambda\leftarrow0\)</span>.</li>
+<li>迭代直到收敛:
+<ol type="1">
+<li>计算梯度 <span class="math inline">\(\Delta\leftarrow\partial\ell/\partial\lambda\)</span>.</li>
+<li>计算最优学习率 <span class="math inline">\(\beta^*\leftarrow\argmax_\beta\ell(\lambda+\beta\Delta)\)</span>.</li>
+<li>更新参数 <span class="math inline">\(\lambda\leftarrow\lambda+\beta^*\Delta\)</span>.</li>
+</ol></li>
+</ol>
+<p>也可以采用共轭梯度或者随机梯度上升来加速收敛.</p>
+<p>由于训练数据存在 bias, 直接进行梯度上升可能导致过拟合.
+我们需要进行参数正则化 (regularization), 让参数的模长不要太大: <span class="math display">\[
+\ell(\lambda)
+= \sum_k \lambda\cdot f(x_k,y_k)
+- \sum_k \log\pqty{\sum_{y'} \exp(\lambda\cdot f(x_k,y'))}
+- \orange{\frac\alpha2 \|\lambda\|_2^2}.
+\]</span></p>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" class="print-no-link">#自然语言处理</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>自然语言处理基础 | 1 词义消歧</div>
+      <div>https://disembo.github.io/Note/Course/fnlp/1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/CG/proc-0-representation/" title="几何表示">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">几何表示</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/caiov/1/" title="CAIOV | 1 全纯函数初步理论">
+                        <span class="hidden-mobile">CAIOV | 1 全纯函数初步理论</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
