@@ -1,0 +1,1066 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="自回归模型 (N-gram, NLM, RNN &amp; Transformer), 自回归语言模型的训练与推理.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成模型基础 | 3 自回归模型">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/gen-models/3/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="自回归模型 (N-gram, NLM, RNN &amp; Transformer), 自回归语言模型的训练与推理.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-fixed-window-nlm.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-rnn-ar.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-transformer-ar.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-transformer-ar-shortcut.png">
+<meta property="article:published_time" content="2025-10-13T14:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-17T16:08:23.388Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-fixed-window-nlm.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>生成模型基础 | 3 自回归模型 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="生成模型基础 | 3 自回归模型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-13 22:00" pubdate>
+          2025年10月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">生成模型基础 | 3 自回归模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="自回归模型">7  自回归模型</h2>
+<p>设数据为高维向量 <span class="math inline">\(x=(x_1,\cdots,x_L)\in\R^L\)</span>,
+我们的目的是建模 <span class="math inline">\(p(X=x)\)</span>.
+这是一个很大很大的联合分布, 考虑用链式法则展开: <span class="math display">\[
+\Align{
+p(X=x)
+&amp;= p(X_1=x_1,\dots,X_D=x_D) \\
+&amp;= p(X_1=x_1) \prod_{i=2}^L p(X_i=x_i \mid
+X_1=x_1,\dots,X_{i-1}=x_{i-1}).
+}
+\]</span> 如果我们有一个模型可以建模 <span class="math inline">\(p_\theta(x_i\mid x_2,\dots,x_{i-1})\)</span> 以及
+<span class="math inline">\(p_\theta(x_1)\)</span>, 那么就有了 <span class="math inline">\(p_\theta(x)\)</span>. 这就是<strong>自回归模型
+(autoregressive models)</strong>. “自回归” 指的是将当前步骤的中间结果
+<span class="math inline">\((x_1,\dots,x_i)\)</span> 再送回模型生成
+<span class="math inline">\(x_{i+1}\)</span> 的过程.</p>
+<p>分解 (factorization) 的顺序多种多样, 对于自然语言来说,
+可以是从左到右、从右到左, 甚至是随机顺序. 对于图片来说,
+可以是扫描序、蛇形曲线、Z 字型曲线、随机序……</p>
+<ul>
+<li>一些语言, 比如中文、英语, 一般用使用从左到右顺序建模
+(根据前面的词预测下一个词); 另一些语言, 比如日语,
+可能使用从右到左的顺序建模比较好: <span class="math inline">\(p_\theta(X_i\mid
+X_{i+1}=x_{i+1},\dots,X_L=x_L)\)</span> (根据后面的词预测上一个词).</li>
+</ul>
+<p>自回归模型是目前 NLP 领域最先进、最成功的范式, 后面主要介绍 NLP
+领域的自回归模型.</p>
+<h3 id="n-gram-models">7.1  N-gram models</h3>
+<p>N-gram 是一种远古的非参数化方法<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Non-parametric method, 参数个数不固定,
+随着训练数据而变化.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>,
+是一个从左到右的语言模型. N-gram 有一个非常强的假设 (Markov 假设),
+即当前 token <span class="math inline">\(x_i\)</span> 只依赖于前 <span class="math inline">\(k\)</span> 个 tokens, 即 <span class="math display">\[
+p(x_i\mid x_1,\dots,x_{i-1}) = p(x_i\mid x_{i-1},\dots,x_{i-k}).
+\]</span> 使用条件概率的定义展开右式, <span class="math display">\[
+p(x_i\mid x_{i-1},\dots,x_{i-k})
+= \frac{p(x_{i-k},\dots,x_{i-1},x_i)}{p(x_{i-k},\dots,x_{i-1})},
+\]</span> 连续的 <span class="math inline">\(k\)</span>
+个词组成的片段称为一个 <span class="math inline">\(k\)</span>-gram,
+模型的参数上式右侧的 <span class="math inline">\(k\)</span>-gram 以及
+<span class="math inline">\((k+1)\)</span>-gram 概率, 因此该模型称为
+<span class="math inline">\((k+1)\)</span>-gram 模型.</p>
+<ul>
+<li>一个 <span class="math inline">\((k+1)\)</span>-gram
+模型实际上需要包含所有 <span class="math inline">\(1,2,\dots,(k+1)\)</span>-gram 的出现概率,
+因为链式法则 <span class="math display">\[
+p(x_1,\dots,x_n)
+= \blue{p(x_1)p(x_2\mid x_1)\cdots p(x_k\mid x_{1:k-1})}
+\prod_{i=k+1}^L p(x_i\mid x_{1:i-1})
+\]</span> 需要起始条件.</li>
+</ul>
+<p>使用 MLE 估计参数为 <span class="math display">\[
+p(x_{i:i+k}) = \frac
+{\textsf{数据中 }(x_{i:i+k})\textsf{ 的数量}}
+{\textsf{数据中所有 }k\textsf{-gram 的数量}}
+\]</span> 等等.</p>
+<p>N-gram 的问题:</p>
+<ul>
+<li>当 <span class="math inline">\(N\)</span> 比较小, 上下文长度太短,
+生成的准确率很低.</li>
+<li>当 <span class="math inline">\(N\)</span> 比较大,
+参数个数以及存储空间大幅度上升. 并且因为训练数据有限, N-gram
+的概率非常稀疏, 意味着大部分概率 <span class="math inline">\(p(x_{i:i+k})\)</span> 都为零,
+生成的质量反而可能下降.</li>
+</ul>
+<h3 id="fixed-window-neural-lm">7.2  Fixed-window neural LM</h3>
+<p>自回归建模不变, Markov 假设也不变, 只不过不要数数
+(counting)——而是用参数化的神经网络 <span class="math display">\[
+p_\theta(x_i\mid x_{i-k:i-1}).
+\]</span></p>
+<p>首先将这 <span class="math inline">\(k\)</span> 个 tokens
+转化为嵌入向量 <span class="math inline">\(e_i\in\R^D\)</span>,
+再经过一个隐藏层 (线性映射+激活, 视作上下文整合), 最后经过一个线性层和
+softmax 转化为下一个 token <span class="math inline">\(x_i\)</span>
+的概率分布.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-fixed-window-nlm.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>It is still an N-gram LM, but why it works better?</p>
+<ul>
+<li>多层的结构使得特征可以组合.</li>
+<li>We can search through a lot more conjunctive features through high
+dimensional feature representations, especially for neural models the
+amazing word embeddings!</li>
+<li>可以同时训练词嵌入和 FFNN.</li>
+</ul>
+<p>然而, 该网络并未解决上下文不足的问题.</p>
+<h3 id="rnns">7.3  RNNs</h3>
+<p>能否构造一个神经网络, 其可以处理任意长度的上下文?</p>
+<p><strong>RNN (recurrent neural network)</strong>
+是一个序列到序列的映射 <span class="math inline">\((x_t)\mapsto(y_t)\)</span>, 它用一个隐状态 <span class="math inline">\(\orange{h_t}\)</span> 记忆所有的历史输入,
+并不断地用当前的输入 <span class="math inline">\(x_t\)</span>
+更新这个隐状态: <span class="math display">\[
+\orange{h_t} = f_\theta(\orange{h_{t-1}},x_t),
+\]</span> 更新后的隐状态经过一个映射得到当前输出, <span class="math display">\[
+y_t = g_\theta(\orange{h_t}).
+\]</span> 如何用 RNN 进行自回归建模呢? 首先输入一个特殊的开始标记 <span class="math inline">\(\tilde{x}_0=\texttt{[SOS]}\)</span> (start of
+sequence) 让 RNN 输出 <span class="math inline">\(x_1\)</span>, 再把
+<span class="math inline">\(x_1\)</span> 喂给 RNN 让它生成 <span class="math inline">\(x_2\)</span>, 以此类推…… 便实现了自回归生成.</p>
+<p>如何训练 RNN? 对于一条数据 <span class="math inline">\((\tilde{x}_i)\in\R^L\)</span>, 依次给模型输入
+<span class="math inline">\(\tilde{x}_0,\tilde{x}_1,\dots,\tilde{x}_{L-1}\)</span>,
+RNN 会依次输出 token 概率分布的预测值 <span class="math inline">\(p_\theta(x_1),p_\theta(x_2\mid\tilde{x}_1),\dots,p_\theta(x_L\mid\tilde{x}_{1:L-1})\)</span>,
+如下图所示. 可以使用 MLE 进行参数学习, 即最小化负对数似然 (NLL) <span class="math display">\[
+\Align{
+\operatorname{NLL}(\tilde{x};\theta)
+&amp;= -\log{p_\theta(\tilde{x})} \\
+&amp;= -\log{p_\theta(x_1)}
+    -\sum_{i=2}^L \log{p_\theta(\tilde{x}_i \mid \tilde{x}_{1:i-1})}.
+}
+\]</span>
+<img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-rnn-ar.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>Pros:</p>
+<ul>
+<li>可以用于任意长度的序列</li>
+<li>参数量固定 (parametric model)</li>
+<li>高度非线性</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>训练特别慢, 没办法并行化 (linearly depends on sentence length)</li>
+<li>梯度爆炸、梯度消失等问题 (check papers related to LSTM)</li>
+</ul>
+<h3 id="transformers">7.4  Transformers</h3>
+<p>RNN 面临训练缓慢、长距离依赖建模不足等问题.
+我们能不能构造一种神经网络, 它能一下子输入<em>整个</em>训练序列 <span class="math inline">\((\tilde{x}_0,\tilde{x}_1,\dots,\tilde{x}_{L-1})\)</span>,
+然后对其<em>整体加工</em>, 再一下子输出<em>整个</em>预测序列 <span class="math inline">\((p_\theta(x_1),p_\theta(x_2\mid
+\tilde{x}_1),\dots)\)</span>?</p>
+<p>这不正好就是上一次讲的 Transformer 吗?</p>
+<ul>
+<li>Transformer 让输入序列 <span class="math inline">\((\tilde{x}_0,\tilde{x}_1,\dots,\tilde{x}_{L-1})\)</span>
+经过 embedding 和若干 Transformer block 之后, 输出含有上下文信息的
+latent 序列 <span class="math inline">\((z_0,z_1,\dots,z_{L-1})\)</span>.</li>
+</ul>
+<p>此时只需要再接一个线性层 (linear projection) 就可以将 latent <span class="math inline">\(z_i\)</span> 转化为概率分布 <span class="math inline">\(p(x_{i+1}\mid\tilde{x}_{1:i})\)</span>,
+如下图所示.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-transformer-ar.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>然而原生的 Transformer 不能直接用于自回归任务.
+自回归任务要求模型在预测 <span class="math inline">\(x_i\)</span> 时,
+只能看见<em>前面的</em> tokens <span class="math inline">\(x_1,\dots,x_{i-1}\)</span>, 然而 Transformer 的
+self attention 模块却考虑了<em>每个</em> token <span class="math inline">\(j\)</span> 对 token <span class="math inline">\(i\)</span> 的贡献: <span class="math display">\[
+a_{ij} = \frac{\exp(s_{ij})}{\sum_{k=1}^L \exp(s_{ik})},
+\]</span> 这就导致 Transformer 能找到一条
+shortcut——直接将后一个输入拷贝到输出, 如下图的红色箭头.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-transformer-ar-shortcut.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>这样肯定不行.</p>
+<ul>
+<li>模型在训练 / 测试的时候找到了作弊的捷径, 可以达到很低很低的 loss /
+eval metric.</li>
+<li>但在真实使用的时候, 并没有 GT, 整个序列都是模型从零开始生成的,
+捷径不管用了, 导致生成的结果非常差.</li>
+</ul>
+<p>解决办法很简单——当 <span class="math inline">\(j&gt;i\)</span> 时,
+强行把 <span class="math inline">\(s_{ij}\)</span> 设为 <span class="math inline">\(-\infty\)</span> 即可, 相应的 <span class="math inline">\(\exp(s_{ij})=0\)</span>, 意味着 <span class="math inline">\(a_{ij}=0\)</span>. 用矩阵形式写出来就是 <span class="math display">\[
+A = \operatorname{softmax} \bigl( QK\T/\sqrt{D} + \orange{M} \bigr),
+\]</span></p>
+<p>其中 <span class="math inline">\(M\in\R^{L\times L}\)</span>
+是上三角矩阵, <span class="math display">\[
+M = \pmqty{
+0 &amp; -\infty &amp; -\infty &amp; \cdots &amp; -\infty \\
+0 &amp;       0 &amp; -\infty &amp; \cdots &amp; -\infty \\
+\vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \vdots \\
+0 &amp;       0 &amp; \cdots  &amp;      0 &amp; -\infty \\
+0 &amp;       0 &amp; \cdots  &amp;      0 &amp;       0
+}.
+\]</span></p>
+<p>矩阵 <span class="math inline">\(M\)</span> 也称为 causal mask
+(因果掩码) 或者 teacher forcing mask.</p>
+<div class="note note-warning">
+<p><u>Note</u> 所谓 teacher forcing, 指的就上面提到的 AR 模型的训练方式.
+模型的输入是 GT <span class="math inline">\(\tilde{x}_{1:i}\)</span>
+(正确无误的序列), 根据 GT 预测下一个 token <span class="math inline">\(p_\theta(x_{i+1}\mid\tilde{x}_{1:i})\)</span>.
+因此这种 AR 模型隐含了一个假设:</p>
+<ul>
+<li>模型在生成当前词时, 其所依赖的所有先前词都是 <span class="math inline">\(100\%\)</span> 正确的.</li>
+</ul>
+<p>虽然 teacher forcing 使得我们可以并行化输入, 但也存在问题:</p>
+<ul>
+<li>训练环境 (的输入) 是完美无错误的, 然而在实际推理中,
+模型只能以上一步的预测结果 (很可能是错误的) 作为下一步的输入.</li>
+<li>模型从未在它自己的错误输出上下文下进行训练.
+当推理时模型犯下第一个错误, 这个错误就会累积,
+模型就会进入一个在训练中从未见过的、低概率的输入空间,
+导致生成质量迅速下降或“胡言乱语”.</li>
+</ul>
+<p>这称为<strong>暴露偏差 (exposure bias)</strong>.</p>
+<p>为了缓解暴露偏差, 研究人员提出了各种技巧, 如<strong>计划采样
+(scheduled sampling)</strong>, 它在训练过程中逐渐减少使用 GT 的频率,
+转而使用模型自己的预测作为输入, 从而让模型 “适应”
+真实世界的推理环境.</p>
+</div>
+<h2 id="语言模型">8  语言模型</h2>
+<h3 id="training">8.1  Training</h3>
+<p>语言模型 (LM) 模型的训练目标前文已经给出, 不再赘述.</p>
+<p>基于 Transformer 的 LM 不好训, 需要许多技巧,
+尤其是工业级别的大语言模型.</p>
+<ul>
+<li>混合精度训练:
+<ul>
+<li>除法高精度</li>
+<li>矩阵乘法低精度</li>
+</ul></li>
+<li>Large batch 训练:
+<ul>
+<li>训练数据集 3.4B ~ 4T tokens.</li>
+<li>每个 batch 至少 1M tokens (512 token/seq * 2048 seq).</li>
+<li>显存有限, 没办法一下子加在这么大的 batch, 需要 gradient
+accumulation.</li>
+</ul></li>
+<li>让训练更稳定:
+<ul>
+<li>Small dropout</li>
+<li>学习率 warm up</li>
+<li>Gradient clipping</li>
+</ul></li>
+</ul>
+<h3 id="evaluation">8.2  Evaluation</h3>
+<p>自回归 LM 的训练目标是最小化负对数似然 <span class="math display">\[
+\Align{
+\operatorname{NLL}(\tilde{x};\theta)
+= -\log{p_\theta(x_1)}
+    -\sum_{i=2}^L \log{p_\theta(\tilde{x}_i \mid \tilde{x}_{1:i-1})}.
+}
+\]</span> 但是由于 NLL 依赖于序列长度 <span class="math inline">\(L\)</span> (长的句子 NLL 比较大),
+所以不太适合用来评价一个 NLL 是好是坏. 将其归一化得到 per-word 的 NLL,
+<span class="math display">\[
+\operatorname{WNLL}(x;\theta) := \frac{1}{L}
+\operatorname{NLL}(x;\theta),
+\]</span> 取指数得到<strong>困惑度 (perplexity)</strong> <span class="math display">\[
+\operatorname{ppl}(x;\theta) := \exp(\operatorname{WNLL}(x;\theta)).
+\]</span> 困惑度是一个经典的生成模型指标.</p>
+<ul>
+<li>给定测试集 <span class="math inline">\(\{s_i\}\)</span>,
+计算模型在其上的平均困惑度 <span class="math inline">\(\frac{1}{N}\sum_{i=1}^N\operatorname{ppl}(s_i;\theta)\)</span>.
+困惑度越低, 模型越好.</li>
+<li>自然语言中常用的指标还包括 BLEU (机器翻译), ROUGE (信息检索)...</li>
+</ul>
+<h3 id="inference">8.3  Inference</h3>
+<p>自回归 LM 如何采样生成一个句子?</p>
+<p>最自然的办法:</p>
+<ul>
+<li>输入 <span class="math inline">\(\texttt{[SOS]}\)</span>,
+根据模型的输出 <span class="math inline">\(p_\theta(x_1)\)</span>
+随机采样得到 <span class="math inline">\(\hat{x}_1\)</span>.</li>
+<li>把采样结果 <span class="math inline">\(\hat{x}_1\)</span>
+送进模型中, 再根据输出 <span class="math inline">\(p_\theta(x_2\mid\hat{x}_1)\)</span> 随机采样得到
+<span class="math inline">\(\hat{x}_2\)</span>.</li>
+<li>以此类推, 直到输出特殊 token <span class="math inline">\(\texttt{[EOS]}\)</span> (end of sequence),
+或者达到预定长度等.</li>
+</ul>
+<p>这种方法称为<strong>随机采样 (stochastic sampling)</strong>.
+随机采样的结果有很强的多样性 / 随机性, 但是缺点也很明显: 输出 <span class="math inline">\(\hat{x}_i\)</span> 随机性太强,
+很有可能随机到一个错误的结果, 之后模型在错误的基础上预测, 容易
+“一步错步步错” (见上文 exposure bias).</p>
+<p>为了提升准确性, 可以采用 <strong>top-<span class="math inline">\(k\)</span> 采样</strong>, 即从 <span class="math inline">\(p_\theta(x_i\mid\hat{x}_{1:i-1})\)</span>
+中选取概率最大的 <span class="math inline">\(k\)</span> 个 tokens,
+从中随机采样.</p>
+<ul>
+<li>当 <span class="math inline">\(k=1\)</span> 时, 相当于取概率最大的
+token, 即贪心搜索算法 (没有随机性).</li>
+</ul>
+<p>另一种方法是 <strong>top-<span class="math inline">\(p\)</span>
+采样</strong>, 即从 <span class="math inline">\(p_\theta(x_i\mid\hat{x}_{1:i-1})\)</span>
+中概率大于等于 <span class="math inline">\(p\)</span> 的 tokens
+中采样.</p>
+<p>以上的采样方法都是局部的, 即最大化每个条件概率 <span class="math inline">\(p_\theta(x_i\mid\hat{x}_{1:i-1})\)</span>.
+这样容易陷入局部最优. 一个稍好些的方法是<strong>束搜索 (beam
+search)</strong>, 即每次选取条件概率 <span class="math inline">\(p_\theta(x_i\mid\hat{x}_{1:i-1})\)</span> 前几名的
+tokens 作为候选, 维护一个候选的集合, 最终选择联合概率最大的序列.
+束搜索是贪心算法的一种改进, 但也不能保证得到联合概率 <span class="math inline">\(p_\theta(x_{1:L})\)</span> 的最大值点.</p>
+<ul>
+<li>束搜索在机器翻译中常用.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">采样方法</th>
+<th style="text-align: center;">随机采样</th>
+<th style="text-align: center;">Top-<span class="math inline">\(k\)</span> 采样</th>
+<th style="text-align: center;">贪心搜索</th>
+<th style="text-align: center;">束搜索</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">速度</td>
+<td style="text-align: center;">快</td>
+<td style="text-align: center;">快</td>
+<td style="text-align: center;">快</td>
+<td style="text-align: center;">慢</td>
+</tr>
+<tr>
+<td style="text-align: center;">多样性</td>
+<td style="text-align: center;">😄😄😄</td>
+<td style="text-align: center;">😄😄</td>
+<td style="text-align: center;">🙁</td>
+<td style="text-align: center;">😄</td>
+</tr>
+<tr>
+<td style="text-align: center;">准确度</td>
+<td style="text-align: center;">🙁</td>
+<td style="text-align: center;">😄</td>
+<td style="text-align: center;">😄</td>
+<td style="text-align: center;">😄😄</td>
+</tr>
+</tbody>
+</table>
+<div class="note note-warning">
+<p><u>Note</u> 总结 RNN 和 Transformer 的训练与生成速度.</p>
+<p>考虑在一个序列 <span class="math inline">\((x_1,\dots,x_L)\)</span>
+上训练 / 生成的时间复杂度:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">模型</th>
+<th style="text-align: center;">RNN</th>
+<th style="text-align: center;">Transformer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">训练</td>
+<td style="text-align: center;"><span class="math inline">\(O(L)\)</span> (无法并行)</td>
+<td style="text-align: center;"><span class="math inline">\(O(L^2)\)</span> (可以并行)</td>
+</tr>
+<tr>
+<td style="text-align: center;">推理</td>
+<td style="text-align: center;"><span class="math inline">\(O(L)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(O(L^2)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>在训练时, 尽管 RNN 计算代价低, 但它没法并行化, 效率也很低. 在推理时,
+由于都是从零开始生成, 无法并行化, 所以 Transformer
+计算代价高的弊端就暴露出来了.</p>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Non-parametric method, 参数个数不固定,
+随着训练数据而变化.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>生成模型基础 | 3 自回归模型</div>
+      <div>https://disembo.github.io/Note/Course/gen-models/3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/Course/gen-models/4/" title="生成模型基础 | 4 生成对抗网络">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">生成模型基础 | 4 生成对抗网络</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/Course/gen-models/2/" title="生成模型基础 | 2 Transformers">
+                        <span class="hidden-mobile">生成模型基础 | 2 Transformers</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

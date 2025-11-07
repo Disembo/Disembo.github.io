@@ -1,0 +1,1128 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从 GAN 到 WGAN.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成模型基础 | 4 生成对抗网络">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/gen-models/4/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="从 GAN 到 WGAN.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/4-gan-mode-collapse.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/4-wgan-pushforward.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/4-wgan-loss.png">
+<meta property="article:published_time" content="2025-10-25T09:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-04T06:04:58.374Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/4-gan-mode-collapse.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>生成模型基础 | 4 生成对抗网络 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="生成模型基础 | 4 生成对抗网络"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-25 17:00" pubdate>
+          2025年10月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">生成模型基础 | 4 生成对抗网络</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="gan">9  GAN</h2>
+<p>回顾第一节课对生成模型的引入:</p>
+<div class="note note-secondary">
+<p>什么是生成模型? 考虑一个随机数发生器, 它可以生成出服从 <span class="math inline">\([0,1]\)</span> 上某个分布 <span class="math inline">\(p(x)\)</span> 的伪随机数.</p>
+<ul>
+<li>首先它会生成 <span class="math inline">\([0,1]\)</span>
+上服从均匀分布的伪随机数 <span class="math inline">\(z\)</span>;</li>
+<li>然后通过一个映射 <span class="math inline">\(f:[0,1]\to[0,1]\)</span> 将 <span class="math inline">\(z\)</span> 映到服从分布 <span class="math inline">\(p(x)\)</span> 的伪随机数 <span class="math inline">\(x=f(z)\)</span> (其中 <span class="math inline">\(f=F^{-1}\)</span>, 而 <span class="math inline">\(F\)</span> 是 <span class="math inline">\(p(x)\)</span> 的累积分布函数).</li>
+</ul>
+<p>换言之, 随机数发生器是将随机噪声映射到服从某一 (复杂)
+分布的的东西.</p>
+</div>
+<p><strong>GAN (生成对抗网络)</strong><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Ian J. Goodfellow et al, <em>Generative Adversarial
+Networks</em>.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>
+就模拟了这个过程. 它用一个神经网络拟合 <span class="math inline">\(f:z\mapsto x\)</span>, 这个神经网络叫做生成器
+(generator), 记作 <span class="math inline">\(G_\theta\)</span>.</p>
+<ul>
+<li>VAE 实际上也是将噪声 (Gauss 分布) 映射到给定分布的神经网络,
+然而由于结构上的限制 (VAE 不能太宽太深, 否则会学习到恒等映射),
+它只能学习很简单的分布.</li>
+</ul>
+<div class="note note-warning">
+<p><u>Note</u> 生成模型分为显式 (explicit) 和隐式 (implicit) 两种,
+区别在于是否直接建模了样本分布 <span class="math inline">\(p(x)\)</span>.</p>
+<ul>
+<li>Explicit: 直接建模 <span class="math inline">\(p_\theta(x)\)</span>,
+可以计算每个样本的概率、可以通过 MLE <span class="math inline">\(\argmax_\theta\,p_\theta(\mathcal{D})\)</span>
+优化.
+<ul>
+<li>AR.</li>
+<li>VAE, 优化 ELBO (作为似然函数的下界).</li>
+</ul></li>
+<li>Implicit: 不直接建模 <span class="math inline">\(p_\theta(x)\)</span>, 不能计算样本概率、无法通过
+MLE 优化.
+<ul>
+<li>GAN.</li>
+</ul></li>
+</ul>
+</div>
+<h3 id="metics">9.1  Metics</h3>
+<p>GAN 是一种隐式模型, 它可以采样 <span class="math inline">\(x\)</span>, 但是无法计算 <span class="math inline">\(x\)</span> 的概率. 假设我们有一些生成器生成的数据
+<span class="math inline">\(\{\hat{x}_i\}\)</span> 和真实样本 <span class="math inline">\(\{x_i\}\)</span>, 那么我们该如何衡量 GAN
+生成的好坏? 我们需要衡量 GAN 生成的分布 <span class="math inline">\(p_\theta\)</span> 和真实分布 <span class="math inline">\(p\)</span> 间的距离.</p>
+<p>两个分布 <span class="math inline">\(p(x),q(x)\)</span> 的
+<strong><span class="math inline">\(f\)</span>-散度 (<span class="math inline">\(f\)</span>-divergence)</strong> 定义为 <span class="math display">\[
+\Align{
+D_{f}(p\parallel q)
+:={}&amp; \operatorname{E}_{x\sim q(x)} f\!\pqty{\frac{p(x)}{q(x)}} \\
+={}&amp; \int_{\R^D} f\!\pqty{\frac{p(x)}{q(x)}} q(x)\dd{x},
+}
+\]</span> 其中函数 <span class="math inline">\(f:(0,+\infty)\to\R\)</span> 满足 (1) <span class="math inline">\(f\)</span> 非负, (2) <span class="math inline">\(f\)</span> 下凸, (3) <span class="math inline">\(f(1)=0\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(f\)</span>-散度可以衡量 <span class="math inline">\(p,q\)</span> 间的差异:</p>
+<ul>
+<li>由 Jensen 不等式, <span class="math inline">\(D_f(p\parallel
+q)\geq0\)</span> 且 <span class="math inline">\(D_f(p\parallel
+q)=0\)</span> 当且仅当 <span class="math inline">\(p=q\)</span>.</li>
+</ul></li>
+<li><p>取 <span class="math inline">\(f(t)=t\log{t}\)</span>, 可以得到
+KL 散度 <span class="math inline">\(D_{\textsf{KL}}\)</span>.</p></li>
+<li><p>取 <span class="math inline">\(f(t)=\abs{t-1}/2\)</span>,
+可以得到全变差距离 (total variation distance) <span class="math display">\[
+D_f(p\parallel q) = \frac12 \int_{\R^D} \abs{p(x)-q(x)}\dd{x}.
+\]</span></p></li>
+</ul>
+<p>取 <span class="math inline">\(f(t)=\frac{t}{2}\log{t}-\frac{t+1}{2}\log\frac{t+1}{2}\)</span>,
+可得 <strong>Jensen-Shannon 散度 (JS 散度)</strong> <span class="math display">\[
+D_{\textsf{JS}}(p\parallel q)
+:= D_f(p\parallel q)
+= \frac{D_{\textsf{KL}}(p\parallel m) + D_{\textsf{KL}}(q\parallel
+m)}{2},
+\]</span> 其中 “中间分布” <span class="math inline">\(m(x)=[p(x)+q(x)]/2\)</span>.</p>
+<ul>
+<li>JS 散度的算数平方根 <span class="math inline">\(\sqrt{D_\textsf{JS}(-,-)}\)</span> 是对称、正定的,
+且满足三角不等式, 是一个距离度量.</li>
+</ul>
+<h3 id="the-discriminator">9.2  The discriminator</h3>
+<p>我们用 JS 散度来衡量生成的分布 <span class="math inline">\(p_\theta\)</span> 与真实分布 <span class="math inline">\(p\)</span> 的距离, <span class="math display">\[
+\Align{
+\min_{\theta} D_{\textsf{JS}}(p\parallel p_\theta)
+={}&amp; \min_{\theta} \bqty{
+        D_{\textsf{KL}}(p\parallel m) +
+        D_{\textsf{KL}}(p_\theta\parallel m)
+    } \\
+\rightsquigarrow{}&amp; \min_{\theta}\! \bqty{
+        \operatorname{E}_{x\sim p}\! \pqty{
+            \log \orange{\frac{p(x)}{p(x)+p_\theta(x)}}
+        } + \operatorname{E}_{x\sim p_\theta}\! \pqty{
+            \log \orange{\frac{p_\theta(x)}{p(x)+p_\theta(x)}}
+        }
+    }.
+}
+\]</span> (略去了 <span class="math inline">\(\log\)</span> 分子上的常数
+<span class="math inline">\(2\)</span>.) 但是我们既没法计算 <span class="math inline">\(p_\theta(x)\)</span> (因为 GAN 是一个隐式模型),
+更没法计算 <span class="math inline">\(p(x)\)</span>
+(否则也不需要建模了).</p>
+<ul>
+<li>可以发现两个橙色的分式和为 <span class="math inline">\(1\)</span>.
+我们来分析一下前者, <span class="math inline">\(\dfrac{p(x)}{p(x)+p_\theta(x)}\in(0,1)\)</span>,
+<ul>
+<li>如果 <span class="math inline">\(\dfrac{p(x)}{p(x)+p_\theta(x)}\)</span> 接近 <span class="math inline">\(1\)</span>, 那么 <span class="math inline">\(x\)</span> 就更有可能来自于真实样本, 而非 <span class="math inline">\(G_\theta\)</span>.</li>
+<li>如果 <span class="math inline">\(\dfrac{p(x)}{p(x)+p_\theta(x)}\)</span> 接近 <span class="math inline">\(0\)</span>, 那么 <span class="math inline">\(x\)</span> 就更有可能来自于 <span class="math inline">\(G_\theta\)</span>, 而非真实样本.</li>
+</ul></li>
+</ul>
+<p>我们不妨构造一个二分类器 <span class="math inline">\(D_\phi(x)\)</span>, 它的目的是区分 <span class="math inline">\(x\)</span> 来源于真实样本还是 <span class="math inline">\(G_\theta\)</span> (分别对应 <span class="math inline">\(1/0\)</span>), 它可以近似 <span class="math inline">\(\dfrac{p(x)}{p(x)+p_\theta(x)}\)</span>. 这个
+<span class="math inline">\(D_\phi\)</span> 叫做判别器
+(discriminator).</p>
+<ul>
+<li>引入判别器的目的是计算橙色的分式, 进而计算 JS 散度.</li>
+</ul>
+<p>此时生成器 <span class="math inline">\(G_\theta\)</span>
+的训练目标写作 <span class="math display">\[
+\Align{
+\min_{\theta} D_{\textsf{JS}}(p\parallel p_\theta)
+\rightsquigarrow{}&amp; \min_\theta \Bigl[
+        \operatorname{E}_{x\sim p} \log\orange{D_\phi(x)} +
+        \operatorname{E}_{x\sim p_\theta}
+            \log\bigl(1-\orange{D_\phi(x)}\bigr)
+    \Bigr] \\
+={}&amp; \min_\theta \Bigl[
+        \operatorname{E}_{x\sim p} \log\orange{D_\phi(x)} +
+        \operatorname{E}_{z\sim\mathcal{N}(0,I)}
+            \log\bigl(1-\orange{D_\phi(\purple{G_\theta(z)})}\bigr)
+    \Bigr], \\
+}
+\]</span> 而判别器 <span class="math inline">\(D_\phi\)</span>
+的训练目标是最大化分类效益 (负的交叉熵) <span class="math display">\[
+\max_\phi \Bigl[
+    \operatorname{E}_{x\sim p} \log\orange{D_\phi(x)} +
+    \operatorname{E}_{z\sim\mathcal{N}(0,I)}
+        \log\bigl(1-\orange{D_\phi(\purple{G_\theta(z)})}\bigr)
+\Bigr].
+\]</span> 因此, 生成器和判别器实际上在进行一个对抗 (“minimax game”),
+<span class="math display">\[
+\min_\theta \max_\phi \Bigl[
+    \operatorname{E}_{x\sim p} \log\orange{D_\phi(x)} +
+    \operatorname{E}_{z\sim\mathcal{N}(0,I)}
+        \log\bigl(1-\orange{D_\phi(\purple{G_\theta(z)})}\bigr)
+\Bigr],
+\]</span> 这就是 GAN (生成对抗网络) 名称的来源.</p>
+<h3 id="adversial-training">9.3  Adversial training</h3>
+<p>在实际训练中, 我们交替优化 <span class="math inline">\(D_\phi\)</span> 和 <span class="math inline">\(G_\theta\)</span>. 重复执行:</p>
+<ul>
+<li><p>从生成器中采样 <span class="math inline">\(\hat{x}_i\sim
+G_\theta(z_i)\)</span>, 其中 <span class="math inline">\(z_i\sim\mathcal{N}(0,I)\)</span>.</p></li>
+<li><p>从真实样本中采样 <span class="math inline">\(x_i\)</span>.</p></li>
+<li><p>优化判别器 (梯度上升), <span class="math display">\[
+\max_\phi \Bigl[
+    \sum_i \log\orange{D_\phi(x_i)} +
+    \sum_i \log\bigl(1-\orange{D_\phi(\hat{x}_i)}\bigr)
+\Bigr].
+\]</span></p></li>
+<li><p>优化生成器 (梯度下降), <span class="math display">\[
+\min_\theta \sum_i \log\bigl(1-D_\phi(\purple{G_\theta(z_i)})\bigr).
+\]</span></p></li>
+</ul>
+<p>在训练初期, 生成器比较弱, 判别器能很有信心地对 <span class="math inline">\(G_\theta(z)\)</span> 给出 <span class="math inline">\(0\)</span>, 这就导致生成器的梯度接近零.
+将梯度根据链式法则展开, <span class="math display">\[
+\eval{\pdv{\mathcal{L}}{\theta}}_\theta
+= -\frac{1}{1-D_\phi(G_\theta(z))} \cdot
+    \underbrace{
+        \eval{\pdv{D_\phi}{x}}_{G_\theta(z)}
+    }_{\textsf{saturates}} \cdot
+    \eval{\pdv{G_\theta}{\theta}}_\theta,
+\]</span></p>
+<p>注意 “saturates” 的那一项: 训练初期生成器生成的都是很烂的图, 因此在
+<span class="math inline">\(G_\theta(z)\)</span> 的小邻域内,
+图片的质量都很差、判别器取值几乎恒为 <span class="math inline">\(0\)</span> (饱和), 因此 <span class="math display">\[
+\eval{\pdv{D_\phi}{x}}_{G_\theta(z)} \approx 0,
+\]</span> 进而 <span class="math inline">\(\partial\mathcal{L}/\partial\theta\approx0\)</span>.
+梯度接近零的后果是 <span class="math inline">\(G_\theta\)</span>
+无法得到更新. 所以在训练初期我们转而优化 <span class="math display">\[
+\max_\theta \sum_i \log\bigl(D_\phi(\purple{G_\theta(z_i)})\bigr).
+\]</span></p>
+<p>GAN 很难训练.</p>
+<ul>
+<li>非凸优化问题.</li>
+<li>生成器和判别器要匹配.
+<ul>
+<li>两则必须同步学习, 并且学习速度差不多</li>
+</ul></li>
+<li>模式崩溃 (mode collapse).
+<ul>
+<li>生成器只能生成训练集中很少的一部分样本 (某一个 / 几个 modes),
+如下图.</li>
+<li>例如在 MNIST 数据集上训练 GAN, 结果 GAN 只会生成数字 1,
+尽管生成的很像 (损失很低).</li>
+</ul></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/4-gan-mode-collapse.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<h2 id="wgan">10  WGAN</h2>
+<h3 id="problems-with-gans">10.1  *Problems with GANs</h3>
+<p>在上一节末尾, 我们说了 GAN 很难训练.
+下面我们详细分析一下不好训练的原因. 更细致的讨论可见这篇分析 GAN
+的论文<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Martin Arjovsky, Léon Bottou, <em>Towards Principled
+Methods for Training Generative Adversarial Networks</em>.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span>以及 WGAN 的论文<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Martin Arjovsky, Soumith Chintala, Léon Bottouu.
+<em>Wasserstein GAN</em>.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>.</p>
+<p><strong>梯度消失 &amp; 模式崩溃</strong>. 考虑均匀分布 <span class="math inline">\(p\sim U[0,1]\)</span> 以及 <span class="math inline">\(p_\theta\sim U[\theta,\theta+1]\)</span>, 则两者的
+JS 散度为 <span class="math display">\[
+D_{\textsf{JS}}(p\parallel p_\theta)
+= \Cases{
+\abs{\theta}\ln2, &amp; \abs{\theta}\leq1, \\
+\ln{2}, &amp; \abs{\theta}&gt;1,
+}
+\]</span> 可以发现, 当 <span class="math inline">\(p,p_\theta\)</span>
+的不重叠时, JS 散度饱和到了 <span class="math inline">\(\ln{2}\)</span>,
+无法提供梯度. 对于模式崩溃问题, 如果 <span class="math inline">\(G_\theta\)</span> 坍缩到一个模式, JS
+散度容易像上面的例子中一样饱和.</p>
+<div class="note note-secondary">
+<p>设 <span class="math inline">\(p,p_\theta\)</span> 的支集分别包含于
+<span class="math inline">\(\R^N\)</span> 的子流形 <span class="math inline">\(M,M_\theta\)</span>. 那么, 只要</p>
+<ol type="1">
+<li><span class="math inline">\(M,M_\theta\)</span> 在 <span class="math inline">\(\R^N\)</span> 中是零测的;</li>
+<li>交集 <span class="math inline">\(S=M\cap M_\theta\)</span> 在 <span class="math inline">\(M,M_\theta\)</span> 中都为零测的,</li>
+</ol>
+<p>那么 JS 散度必然是饱和的. 此时存在一个理想的判别器 <span class="math inline">\(D^*\)</span>, 它对于来自 <span class="math inline">\(p_\theta\)</span> 的样本 (几乎) 总是给出 <span class="math inline">\(0\)</span>, 生成器的梯度消失了.</p>
+<ul>
+<li>一般来说, 有意义的数据点组成的子流形 <span class="math inline">\(M\)</span> 维数严格小于 <span class="math inline">\(\R^N\)</span>.</li>
+<li>神经网络 <span class="math inline">\(G_\theta\)</span>
+是分片光滑嵌入. 假设生成器 <span class="math inline">\(G_\theta\)</span>
+的输入 <span class="math inline">\(z\)</span> 是 <span class="math inline">\(Z=\R^D\)</span> 上的随机噪声, 那么当 <span class="math inline">\(D&lt;N\)</span> 时, 像 <span class="math inline">\(G_\theta(Z)\)</span> 由若干维数至多为 <span class="math inline">\(D\)</span> 的子流形组成, 在 <span class="math inline">\(\R^N\)</span> 中零测.</li>
+<li>根据横截相交理论, 两个子流形 <span class="math inline">\(M,M_\theta\)</span> 的交集几乎总是零测的.</li>
+</ul>
+<p>换言之, 条件 1, 2 非常容易满足, 因此 GAN
+的训练非常容易遇到梯度消失.</p>
+</div>
+<p><strong>JS 散度可能不连续</strong>. 考虑一个更特殊的例子, 设 <span class="math inline">\(\eta\sim U[0,1]\)</span>, 考虑 <span class="math inline">\(\R^2\)</span> 上平行于 <span class="math inline">\(y\)</span> 轴的线段 <span class="math inline">\(p=(0,p_\eta)\)</span> 以及 <span class="math inline">\(p_\theta=(\theta,p_\eta)\)</span>. 两者的 JS
+散度为 <span class="math display">\[
+D_{\textsf{JS}}(p\parallel p_\theta) = \Cases{
+\ln2,&amp;\theta=0, \\
+0,&amp;\theta\neq0,
+}
+\]</span> 即只有两者重合时才有非零值, 在原点处不连续.</p>
+<div class="note note-secondary">
+<p>取 <span class="math inline">\(\R^N\)</span> 的一个紧子集 <span class="math inline">\(K\)</span> (比如图像空间 <span class="math inline">\([0,1]^N\)</span>), 考虑 <span class="math inline">\(K\)</span> 上的概率密度组成的集合 <span class="math inline">\(\operatorname{Prob}(K)\)</span>.</p>
+<p>损失函数不连续的原因是 JS 散度诱导的 <span class="math inline">\(\operatorname{Prob}(K)\)</span>
+上的度量拓扑太强了, 导致参数化 <span class="math display">\[
+\theta\mapsto p_\theta
+\]</span> 在 JS 散度意义下不连续. 解决办法是找一个弱一些的度量, 比如
+Wasserstein 距离.</p>
+</div>
+<p><strong>修改后的优化目标不稳定</strong>. 考虑修改后的 <span class="math inline">\(G_\theta\)</span> 的优化目标 <span class="math display">\[
+\max_\theta \operatorname{E}_{z\sim\mathcal{N}(0,I)}
+    \log\bigl(\orange{D_\phi(\purple{G_\theta(z)})}\bigr),
+\]</span> 对 <span class="math inline">\(\log(\cdots)\)</span> 求梯度,
+并根据链式法则展开, <span class="math display">\[
+\Align{
+\eval{\pdv{\mathcal{L}}{\theta}}_\theta
+= \frac{1}{D_\phi(G_\theta(z))} \cdot
+    \eval{\pdv{D_\phi}{x}}_{G_\theta(z)} \cdot
+    \eval{\pdv{G_\theta}{\theta}}_{\theta}.
+}
+\]</span> 当判别器 <span class="math inline">\(D_\phi\)</span>
+比较接近理想判别器 <span class="math inline">\(D^*\)</span> 时,
+可以假设</p>
+<ul>
+<li>差值 <span class="math inline">\(D_\phi-D^*\)</span> 是一个 Gauss
+过程,</li>
+<li>梯度的差值 <span class="math inline">\(\partial{D_\phi}/\partial{x}-\partial{D^*}/\partial{x}\)</span>
+也是一个 Gauss 过程,</li>
+</ul>
+<p>并且这两个随机过程对 <span class="math inline">\(x\)</span>
+的各个分量独立. 此时有</p>
+<ul>
+<li>分母上的 <span class="math inline">\(D_\phi(G_\theta(z))\)</span>
+是一个均值为零的 Gauss 分布,</li>
+<li>第二项 <span class="math inline">\((\partial{D_\phi}/\partial{x})|_{G_\theta(z)}\)</span>
+也是一个均值为零的 Gauss 分布,</li>
+</ul>
+<p>两个 Gauss 分布无关, 因此商 <span class="math inline">\(\partial\mathcal{L}/\partial\theta\)</span> 服从
+Cauchy 分布, 均值和方差均为无穷大, 这带来了数值不稳定性.</p>
+<h3 id="wasserstein-distance">10.2  Wasserstein distance</h3>
+<p>考虑另一种概率分布间的距离度量.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/4-wgan-pushforward.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>设开集 <span class="math inline">\(\Omega\subset\R^N\)</span>
+上的概率分布 <span class="math inline">\(p,q\)</span>.
+一种很直接的方法是将概率密度 <span class="math inline">\(p(x)\)</span>
+全部 “搬” 到概率密度 <span class="math inline">\(q(x)\)</span>,
+好比愚公移山. 考虑这个 “移山” 过程中搬运代价的最小值. 如上图, 设映射
+<span class="math inline">\(T:U\to U\)</span>, 它将 <span class="math inline">\(x\)</span> 处的质量搬到 <span class="math inline">\(T(x)\)</span>. 为了保证质量不增不减, 应有 <span class="math display">\[
+\int_B p(x)\dd{x} = \int_{T(B)}q(x)\dd{x},
+\]</span> 对于任意 Borel 集 <span class="math inline">\(B\subset\Omega\)</span> (即绿色部分面积相等).
+此时记 <span class="math inline">\(q=T_*p\)</span><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">严格来说, 记号 <span class="math inline">\(T_*\)</span>
+(推前) 应当作于概率测度, 而非概率密度. 这里 abuse notation 了.</hcontent><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" style="text-decoration: none;"><sup>[4]</sup></a></span>.
+假设将 <span class="math inline">\(x\in\Omega\)</span> 处的质量搬到
+<span class="math inline">\(y\in\Omega\)</span> 的代价为 <span class="math inline">\(c(x,y)\)</span>, 则 <span class="math inline">\(T\)</span> 的总代价为 <span class="math display">\[
+E(T) := \int_\Omega c(x,T(x)) \, p(x) \dd{x}.
+\]</span> 分布 <span class="math inline">\(p,q\)</span>
+间的距离可以用总代价的最小值刻画: <span class="math display">\[
+W(p,q) := \inf_{q=T_*p} E(T),
+\]</span> 即 <span class="math inline">\(p,q\)</span> 间的
+<strong>Wasserstein 距离</strong>. 取欧氏距离 <span class="math inline">\(c(x,y)=\|x-y\|\)</span> 时, <span class="math inline">\(W(p,q)\)</span> 也称为<strong>推土机距离 (earth
+mover's distance, EMD)</strong>.</p>
+<div class="note note-warning">
+<p><u>Note</u> 我们看看 EMD 是如何解决 JS 散度的几个问题的.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/4-wgan-loss.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<ul>
+<li><p>梯度消失 / 损失函数不连续. 对于上一小节给出的均匀分布 <span class="math inline">\(p,p_\theta\)</span> 的例子, 均有 <span class="math display">\[
+W(p,p_\theta) = \abs{\theta},
+\]</span> 如上图. 实际上, WGAN 的论文证明了 <span class="math inline">\(W(p,p_\theta)\)</span> 关于 <span class="math inline">\(\theta\)</span> 连续, 且几乎处处可微<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">后者成立当 <span class="math inline">\(p_\theta\)</span>
+关于 <span class="math inline">\(\theta\)</span> 是局部 Lipschitz 时.</hcontent><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref" style="text-decoration: none;"><sup>[5]</sup></a></span>.</p></li>
+<li><p>模式崩溃. 当 <span class="math inline">\(G_\theta\)</span>
+坍缩到一个模式时, EMD 会给出较大的惩罚,
+并且这个惩罚与距离分布密度间的欧氏距离相关.</p></li>
+</ul>
+</div>
+<p>从定义来看, EMD 很难算 (满足 <span class="math inline">\(T_*p=q\)</span> 的映射 <span class="math inline">\(T\)</span> 不好找). 好在我们有
+Kantorovich-Rubinstein 对偶, 即 <span class="math display">\[
+W(p,q) = \sup_{f\in\operatorname{Lip}(\Omega)} \Bigl(
+    \operatorname{E}_{x\sim p} [f(x)] -
+    \operatorname{E}_{x\sim q} [f(x)]
+\Bigr),
+\]</span> 其中 <span class="math inline">\(\operatorname{Lip}_1(\Omega)\)</span> 是 <span class="math inline">\(\Omega\)</span> 上所有 <span class="math inline">\(1\)</span>-Lipschitz 函数组成的集合<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">若存在常数 <span class="math inline">\(L&gt;0\)</span>
+使得 <span class="math inline">\(\|f(x)-f(y)\|\leq L\|x-y\|\)</span>
+对任意 <span class="math inline">\(x,y\in\Omega\)</span>, 则 <span class="math inline">\(f\)</span> 称为 <span class="math inline">\(L\)</span>-Lipschitz 的.</hcontent><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref" style="text-decoration: none;"><sup>[6]</sup></a></span>.</p>
+<h3 id="wgan-1">10.3  WGAN</h3>
+<p>我们使用 EMD 衡量生成分布 <span class="math inline">\(p_\theta\)</span> 与真实分布 <span class="math inline">\(p\)</span> 的距离, <span class="math display">\[
+\Align{
+\min_\theta W(p,p_\theta)
+&amp;= \min_\theta \sup_{f\in\operatorname{Lip}(\Omega)} \Bigl(
+    \operatorname{E}_{x\sim p} [f(x)] -
+    \operatorname{E}_{x\sim p_\theta} [f(x)]
+\Bigr) \\
+&amp;= \min_\theta \sup_{f\in\operatorname{Lip}(\Omega)} \Bigl(
+    \operatorname{E}_{x\sim p} [f(x)] -
+    \operatorname{E}_{z\sim\mathcal{N}(0,I)} [f(\purple{G_\theta(z)})]
+\Bigr).
+}
+\]</span> 还有一个问题, 这里要取遍所有 Lipschitz 函数,
+在实现上当然做不到. 所以我们引入另外一个神经网络 <span class="math inline">\(f_\phi\)</span> 来拟合 Lipschitz 函数, <span class="math display">\[
+\Align{
+\min_\theta W(p,p_\theta)
+\rightsquigarrow{}&amp; \min_\theta \max_{\phi} \Bigl(
+    \operatorname{E}_{x\sim p} [\orange{f_\phi(x)}] -
+    \operatorname{E}_{z\sim\mathcal{N}(0,I)} [
+        \orange{f_\phi(\purple{G_\theta(z)})}
+    ]
+\Bigr),
+}
+\]</span> 其中 <span class="math inline">\(f_\phi\)</span>
+的优化目标是最大化括号里的东西, 当 <span class="math inline">\(f_\phi\)</span> 达到最优时, 括号里的东西恰好就是
+EMD. 因此 <span class="math inline">\(f_\phi\)</span>
+的目的就是帮我们计算 EMD. 原论文把 <span class="math inline">\(f_\phi\)</span> 叫做评论家 (critic).</p>
+<p>当然, 我们还需要保证 <span class="math inline">\(f_\phi\)</span> 是
+<span class="math inline">\(1\)</span>-Lipschitz 的<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">实际上, <span class="math inline">\(f\)</span> 也可以是
+<span class="math inline">\(L\)</span>-Lipschitz 函数 (对于任何给定的
+<span class="math inline">\(L&gt;0\)</span>). 此时算出来的 <span class="math inline">\(\sup_f(\cdots)\)</span> 是 <span class="math inline">\(L\)</span> 倍的 EMD, 与 EMD 有相同的极值点. WGAN
+原论文用 weight clipping 粗暴地保证了 <span class="math inline">\(k\)</span>-Lipschitz 性质.</hcontent><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref" style="text-decoration: none;"><sup>[7]</sup></a></span>.</p>
+<ul>
+<li>连续可微函数 <span class="math inline">\(f_\phi\)</span> 是
+Lipschitz 连续的, 当且仅当梯度模长 <span class="math inline">\(\|\nabla_\phi f_\phi\|_2\)</span> 处处不大于 <span class="math inline">\(1\)</span>.</li>
+</ul>
+<p>因此, 可以在优化目标中加入一项梯度惩罚 (gradient penalty)<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Ishaan Gulrajani, Faruk Ahmed, Martin Arjovsky, Vincent
+Dumoulin, Aaron Courville, <em>Improved Training of Wasserstein
+GANs</em>.</hcontent><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref" style="text-decoration: none;"><sup>[8]</sup></a></span>, <span class="math display">\[
+\Align{
+\min_\theta \max_{\phi} \Bigl\{
+    \operatorname{E}_{x\sim p} [\orange{f_\phi(x)}] -
+    \operatorname{E}_{z\sim\mathcal{N}(0,I)} [
+        \orange{f_\phi(\purple{G_\theta(z)})}
+    ] -
+    \underbrace{ \lambda \operatorname{E}_{\zeta\sim p_\zeta} \Bigl[
+        \bigl(
+            \|\orange{\nabla_\phi f_\phi(\zeta)}\|_2 - 1
+        \bigr)^2
+    \Bigr] }_{\textsf{gradient penalty}}
+\Bigr\},
+}
+\]</span> 其中 <span class="math inline">\(\zeta\sim p_\zeta\)</span>
+是随机噪声, 用来估计梯度 <span class="math inline">\(\|\nabla_\phi
+f_\phi\|_2\)</span>. 梯度惩罚项让 <span class="math inline">\(\|\nabla_\phi f_\phi\|_2\)</span> 尽量接近 <span class="math inline">\(1\)</span>.</p>
+<div class="note note-warning">
+<p><u>Note</u> GAN 的设计总结.</p>
+<ul>
+<li>GAN 是一种隐式模型, 用一个神经网络 <span class="math inline">\(G_\theta\)</span> 采样.</li>
+<li>我们需要衡量 <span class="math inline">\(G_\theta\)</span>
+的分布与真实分布的差距, 作为指标.</li>
+<li>引入了概率分布间的距离.</li>
+<li>距离没法直接算, 需要引入另一个神经网络 (<span class="math inline">\(D_\phi,f_\phi,\dots\)</span>)</li>
+<li>两个神经网络对抗训练.</li>
+</ul>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Ian J. Goodfellow et al, <em>Generative Adversarial
+Networks</em>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Martin Arjovsky, Léon Bottou, <em>Towards Principled
+Methods for Training Generative Adversarial Networks</em>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Martin Arjovsky, Soumith Chintala, Léon Bottouu.
+<em>Wasserstein GAN</em>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>严格来说, 记号 <span class="math inline">\(T_*\)</span>
+(推前) 应当作于概率测度, 而非概率密度. 这里 abuse notation 了.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>后者成立当 <span class="math inline">\(p_\theta\)</span>
+关于 <span class="math inline">\(\theta\)</span> 是局部 Lipschitz 时.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>若存在常数 <span class="math inline">\(L&gt;0\)</span>
+使得 <span class="math inline">\(\|f(x)-f(y)\|\leq L\|x-y\|\)</span>
+对任意 <span class="math inline">\(x,y\in\Omega\)</span>, 则 <span class="math inline">\(f\)</span> 称为 <span class="math inline">\(L\)</span>-Lipschitz 的.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>实际上, <span class="math inline">\(f\)</span> 也可以是
+<span class="math inline">\(L\)</span>-Lipschitz 函数 (对于任何给定的
+<span class="math inline">\(L&gt;0\)</span>). 此时算出来的 <span class="math inline">\(\sup_f(\cdots)\)</span> 是 <span class="math inline">\(L\)</span> 倍的 EMD, 与 EMD 有相同的极值点. WGAN
+原论文用 weight clipping 粗暴地保证了 <span class="math inline">\(k\)</span>-Lipschitz 性质.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Ishaan Gulrajani, Faruk Ahmed, Martin Arjovsky, Vincent
+Dumoulin, Aaron Courville, <em>Improved Training of Wasserstein
+GANs</em>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>生成模型基础 | 4 生成对抗网络</div>
+      <div>https://disembo.github.io/Note/Course/gen-models/4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/Course/gen-models/3/" title="生成模型基础 | 3 自回归模型">
+                        <span class="hidden-mobile">生成模型基础 | 3 自回归模型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
