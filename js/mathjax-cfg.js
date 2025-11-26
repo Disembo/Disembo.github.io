@@ -1,6 +1,7 @@
 (function() {
     // if (window.location.pathname == "/") return;
 
+    // Version 2025.11
     window.MathJax = {
         loader: {
             load: ['[custom]/xypic.js', '[tex]/physics', '[tex]/textcomp', '[tex]/mathtools'],
@@ -49,14 +50,15 @@
                 lhs: "\\mathrm{LHS}",
                 
                 // colors
-                orange: ["{\\color[rgb]{1.0,.50,.00} #1}", 1],
-                green:  ["{\\color[rgb]{.00,.70,.30} #1}", 1],
-                pink:   ["{\\color[rgb]{1.0,.00,.60} #1}", 1],
-                blue:   ["{\\color[rgb]{.11,.53,.86} #1}", 1],
-                cyan:   ["{\\color[rgb]{.36,.89,.89} #1}", 1],
-                purple: ["{\\color[rgb]{.61,.04,.62} #1}", 1],
-                lime:   ["{\\color[rgb]{.47,.88,.08} #1}", 1],
-                yellow: ["{\\color[rgb]{1.0,.93,.00} #1}", 1],
+                red   : ["{\\color[rgb]{1.00,0.35,0.35} #1 }", 1],
+                orange: ["{\\color[rgb]{1.00,0.60,0.20} #1 }", 1],
+                yellow: ["{\\color[rgb]{0.95,0.90,0.19} #1 }", 1],
+                lime  : ["{\\color[rgb]{0.52,0.88,0.18} #1 }", 1],
+                green : ["{\\color[rgb]{0.28,0.70,0.46} #1 }", 1],
+                cyan  : ["{\\color[rgb]{0.34,0.85,0.85} #1 }", 1],
+                blue  : ["{\\color[rgb]{0.26,0.60,0.86} #1 }", 1],
+                purple: ["{\\color[rgb]{0.64,0.33,0.65} #1 }", 1],
+                pink  : ["{\\color[rgb]{0.95,0.66,0.84} #1 }", 1],
             }
         },
         svg: {

@@ -1,0 +1,1119 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="归一化流 (NF) 与连续归一化流 (CNF).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成模型基础 | 5 归一化流">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/gen-models/5/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="归一化流 (NF) 与连续归一化流 (CNF).">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/5-normalizing-flow.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/5-residual-flow.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/5-dnf.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/5-cnf.png">
+<meta property="article:published_time" content="2025-11-02T10:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-24T12:24:20.406Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/5-normalizing-flow.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>生成模型基础 | 5 归一化流 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="生成模型基础 | 5 归一化流"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-02 18:00" pubdate>
+          2025年11月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">生成模型基础 | 5 归一化流</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="normalizing-flows">11  Normalizing Flows</h2>
+<p>生成模型是将随机噪声映射到复杂分布的东西. <strong>归一化流</strong><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Danilo Jimenez Rezende, Shakir Mohamed, <em>Variational
+Inference with Normalizing Flows</em>, 2015.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>直接模拟了这一过程.</p>
+<ul>
+<li>GAN 也模拟了将噪声映射到复杂分布的过程. 不同的是, GAN
+将噪声直接映射到样本 <span class="math inline">\(x\)</span>,
+属于隐式模型; 流模型将噪声分布映射到样本分布 <span class="math inline">\(p_\theta(x)\)</span>, 属于显式模型.</li>
+</ul>
+<div class="note note-warning">
+<p><u>Note</u> 显式与隐式生成模型.</p>
+<ul>
+<li>Explicit: 直接建模 <span class="math inline">\(p_\theta(x)\)</span>,
+可以计算每个样本的概率、可以通过 MLE <span class="math inline">\(\argmax_\theta\,p_\theta(\mathcal{D})\)</span>
+优化.
+<ul>
+<li>AR.</li>
+<li>VAE, 优化 ELBO (作为似然函数的下界).</li>
+<li>Normalizing flow.</li>
+</ul></li>
+<li>Implicit: 不直接建模 <span class="math inline">\(p_\theta(x)\)</span>, 不能计算样本概率、无法通过
+MLE 优化.
+<ul>
+<li>GAN, 利用判别器 / 评论家近似优化目标.</li>
+</ul></li>
+</ul>
+</div>
+<h3 id="normalizing-flows-1">11.1  Normalizing flows</h3>
+<p>设 <span class="math inline">\(\R^N\)</span> 的非空开子集 <span class="math inline">\(\Omega\)</span> 上的随机变量 (简单分布) <span class="math inline">\(Z\)</span> 经过微分同胚<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">本文的微分同胚都是 <span class="math inline">\(C^1\)</span> 的, 即 <span class="math inline">\(g\)</span> 可逆且 <span class="math inline">\(g,g^{-1}\)</span> 都连续可微.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span>
+<span class="math inline">\(g:\Omega\to\Omega\)</span> 得到了随机变量
+(复杂分布) <span class="math inline">\(X\)</span>, 则根据变量替换定理,
+它们的概率密度有如下关系, <span class="math display">\[
+p_X(x) = p_Z(g^{-1}(x)) \Bigl| \det(Dg^{-1}|_x) \Bigr|,
+\]</span> 其中,</p>
+<ul>
+<li><span class="math inline">\(D(g^{-1})\)</span> 是 <span class="math inline">\(g^{-1}\)</span> 的 Jacobi 矩阵.</li>
+<li>一般取 <span class="math inline">\(Z\)</span> 为标准 Gauss 分布
+<span class="math inline">\(\mathcal{N}(0,I)\)</span>.</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/5-normalizing-flow.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>整个过程如上图所示:</p>
+<ul>
+<li><span class="math inline">\(g\)</span> 将一个简单分布 <span class="math inline">\(Z\)</span> 映射到一个复杂分布 <span class="math inline">\(X\)</span>, 即生成的过程.</li>
+<li><span class="math inline">\(g^{-1}\)</span> 将一个复杂分布 <span class="math inline">\(X\)</span> “归一化” 到一个标准分布 <span class="math inline">\(Z\)</span>. 因此这个模型也称为<strong>归一化流
+(normalizing flow)</strong>.</li>
+</ul>
+<p>假设我们用一个神经网络 <span class="math inline">\(g_\theta(x)\)</span> 拟合这个微分同胚,
+则我们可以用 MLE 来估计参数: <span class="math display">\[
+\Align{
+\operatorname{NLL}(x;\theta)
+= -\log p_X(x_n;\theta)
+= -\log p_Z(\orange{g_\theta^{-1}}(x)) -\log\Bigl|
+    \det(D\orange{g_\theta^{-1}}|_x)
+\Bigr|,
+}
+\]</span></p>
+<ul>
+<li>在实际操作中, 既可以建模生成过程 <span class="math inline">\(g_\theta\)</span>, 也可以建模归一化过程 <span class="math inline">\(f_\theta\)</span>.</li>
+</ul>
+<p>优化完成后, 生成一个随机噪声 <span class="math inline">\(Z\sim
+p_Z\)</span>, 经过 <span class="math inline">\(g_\theta\)</span>
+即可完成采样, <span class="math display">\[
+X = g_\theta(Z).
+\]</span></p>
+<div class="note note-warning">
+<p><u>Note</u> 归一化流 vs VAE.</p>
+<ul>
+<li>VAE 输入样本 <span class="math inline">\(X\)</span>,
+输出隐空间正态分布 <span class="math inline">\(\mathcal{N}(0,I)\)</span>
+的期望和方差.</li>
+<li>归一化流输入样本 <span class="math inline">\(X\)</span>,
+输出服从正态分布 <span class="math inline">\(\mathcal{N}(z;0,I)\)</span>
+的噪声 <span class="math inline">\(Z\)</span>.</li>
+</ul>
+<p>由于 VAE 是一个隐式模型, 我们不好计算似然函数,
+转而去优化似然函数的下界 ELBO. 这就导致 VAE 必须使用比较浅的网络,
+否则会让模型退化 (见 VAE 节). 归一化流没有这个问题,
+因为它直接优化对数似然, 可以放心地使用大而深的网络.</p>
+</div>
+<h3 id="constructing-flows">11.2  Constructing flows</h3>
+<p>神经网络 <span class="math inline">\(g_\theta\)</span>
+需要是微分同胚. 若 <span class="math display">\[
+g_\theta = g^L_\theta \circ g^{L-1}_\theta \circ \dots \circ g^1_\theta,
+\]</span> 则每一层 <span class="math inline">\(g^l_\theta\)</span>
+都必须是微分同胚. 在实际场景中, 我们对每个 <span class="math inline">\(g^l_\theta\)</span> 的要求是:</p>
+<ul>
+<li>容易计算、容易求逆、容易求 Jacobi 矩阵.</li>
+</ul>
+<p>下面看常见的几类 <span class="math inline">\(g^l_\theta\)</span>.</p>
+<h4 id="mlp">11.2.1  MLP</h4>
+<p><strong>Elementwise flow</strong>. 逐元素映射 <span class="math inline">\(g(z)=(h(z_1),\dots,h(z_D))\)</span>, 其中 <span class="math inline">\(h\)</span> 是 <span class="math inline">\(\R\)</span> 上的微分同胚.</p>
+<ul>
+<li>计算简单, 复杂度为 <span class="math inline">\(O(D)\)</span>,
+<ul>
+<li><span class="math inline">\(g^{-1}(x)=(h^{-1}(x_1),\dots,h^{-1}(x_D))\)</span>,</li>
+<li><span class="math inline">\(\det(Dg^{-1}|_x)=\prod_{i=1}^D\det(Dh^{-1}|_{x_i})\)</span>.</li>
+</ul></li>
+<li>无法提取元素之间的关系.</li>
+</ul>
+<p><strong>Linear flow</strong>. 线性层 <span class="math inline">\(g(z)=Az+b\)</span>, 其中 <span class="math inline">\(A\)</span> 可逆.</p>
+<ul>
+<li><p>自由度为 <span class="math inline">\(D^2\)</span>.</p></li>
+<li><p>计算 <span class="math inline">\(A^{-1}\)</span> 和 <span class="math inline">\(\det{A}\)</span> 的时间复杂度为 <span class="math inline">\(O(D^3)\)</span>, 代价太高了.</p></li>
+<li><p><strong>Linear flow with triangular matrix</strong>: 限制 <span class="math inline">\(A\)</span> 为可逆的上三角矩阵,</p>
+<ul>
+<li>自由度为 <span class="math inline">\(D(D+1)/2\)</span>.</li>
+<li>计算 <span class="math inline">\(\det{A}\)</span> 的时间复杂度为
+<span class="math inline">\(O(D)\)</span>, 然而计算 <span class="math inline">\(A^{-1}\)</span> 的时间复杂度为 <span class="math inline">\(O(D^2)\)</span>, 还是太高.</li>
+</ul></li>
+<li><p><strong>Linear flow with orthogonal matrix</strong>: 限制 <span class="math inline">\(A\)</span> 为正交阵,</p>
+<ul>
+<li><p>自由度为 <span class="math inline">\(D(D-1)/2\)</span>.</p></li>
+<li><p>有 <span class="math inline">\(\det{A}=1\)</span> 以及 <span class="math inline">\(A^{-1}=A\T\)</span>, 转置一般可以实现 <span class="math inline">\(O(1)\)</span> 时间复杂度.</p></li>
+<li><p>然而这是一个带约束的优化, 即在梯度下降过程中必须保证 <span class="math inline">\(A\)</span> 一直是正交阵, 这不太容易.
+一个退而求其次的办法是考虑正交阵的一个子集, 即所有
+“关于超平面的反射变换” (Householder transforms), 形如 <span class="math display">\[
+R(v_1,\dots,v_D)
+= I - \frac{2}{v\T v}vv\T, \qquad v \in \R^D\setminus\{0\}.
+\]</span> 自由度从 <span class="math inline">\(D(D-1)/2\)</span> 变成了
+<span class="math inline">\(D\)</span>, 但是 <span class="math inline">\((v_1,\dots,v_D)\)</span> 可以取 (几乎) 任意向量,
+是一个无约束优化问题.</p></li>
+</ul></li>
+</ul>
+<h4 id="residual-blocks">11.2.2  Residual blocks</h4>
+<p>可逆 MLP 的表达能力有限. 一种更重要的模块是残差模块.</p>
+<p><strong>Residual flow 1</strong>. 形如 <span class="math inline">\(g(z)=z+h(z)\)</span>,</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/5-residual-flow.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<ul>
+<li><p>首先将输入 <span class="math inline">\(z\in\R^D\)</span>
+分为两部分 <span class="math inline">\(z=(z_1,z_2)\)</span>, 其中 <span class="math inline">\(z_1\in\R^{d_1},z_2\in\R^{d_2}\)</span> 且 <span class="math inline">\(d_1+d_2=D\)</span>.</p></li>
+<li><p>任取映射 <span class="math inline">\(h_1:\R^{d_2}\to\R^{d_1}\)</span> 以及 <span class="math inline">\(h_2\in\R^{d_1}\to\R^{d_2}\)</span>, 构造 <span class="math display">\[
+\Align{
+x_1 &amp;= z_1 + h_1(z_2) \in\R^{d_1}, \\
+x_2 &amp;= z_2 + h_2(x_1) \in\R^{d_2},
+}
+\]</span> 令 <span class="math inline">\(g(z):=(x_1,x_2)\)</span> 即可.
+这称为耦合层 (coupling layer), 如上图所示.</p></li>
+<li><p>此时 <span class="math inline">\(g\)</span> 总是可逆的, 且 <span class="math display">\[
+\Align{
+z_2 &amp;= x_2 - h_2(x_1), \\
+z_1 &amp;= x_1 - h_1(z_2) = x_1 - h_1(x_2 - h_2(x_1)).
+}
+\]</span></p></li>
+<li><p>Jacobi 矩阵 <span class="math display">\[
+Dg|_z = \pmqty{
+  I_{d_1} &amp; Dh_1|_{z_2} \\
+  Dh_2|_{x_1} &amp; I_{d_2} + Dh_2|_{x_1} Dh_1|_{z_2}
+},
+\]</span> 以及 <span class="math display">\[
+Dg^{-1}|_x = \pmqty{
+  I_{d_1} + Dh_1|_{z_2} Dh_2|_{x_1} &amp; -Dh_1|_{z_2} \\
+  Dh_2|_{x_1} &amp; I_{d_2}
+}.
+\]</span></p></li>
+</ul>
+<p><strong>Residual flow 2</strong>. 形如 <span class="math inline">\(g(z)=z+h(z)\)</span>,</p>
+<ul>
+<li>我们只需限制 <span class="math inline">\(h\)</span> 的 Lipschitz
+常数 <span class="math inline">\(L&lt;1\)</span> (压缩映射) 即可, 此时
+<span class="math inline">\(g\)</span> 可逆.</li>
+</ul>
+<p>在实操中, 通常对残差模块加入更多设计以确保计算高效. 这里举出一例.</p>
+<p><strong>RealNVP</strong><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Laurent Dinh et al, <em>Density estimation using Real
+NVP</em>, 2017.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>.</p>
+<ul>
+<li><p>仍旧将输入 <span class="math inline">\(z\in\R^D\)</span>
+分为两部分 <span class="math inline">\(z=(z_1,z_2)\)</span>, 其中 <span class="math inline">\(z_1\in\R^{d_1},z_2\in\R^{d_2}\)</span> 且 <span class="math inline">\(d_1+d_2=D\)</span>.</p></li>
+<li><p>任取 <span class="math inline">\(s,t:\R^{d_1}\to\R^{d_2}\)</span>
+(原文中为仿射变换), 定义 <span class="math display">\[
+\Align{
+x_1 &amp;= z_1, \\
+x_2 &amp;= z_2 \odot \exp[s(z_1)] + t(z_1),
+}
+\]</span> (其中 <span class="math inline">\(\odot\)</span>
+是向量逐元素乘法, <span class="math inline">\(\exp\)</span>
+是逐元素指数函数) 令 <span class="math inline">\(g(z):=(x_1,x_2)\)</span>. 这称为仿射耦合层 (affine
+coupling layer).</p></li>
+<li><p>此时 <span class="math inline">\(g\)</span> 总是可逆的, 且 <span class="math display">\[
+\Align{
+z_1 &amp;= x_1, \\
+z_2 &amp;= [x_2-t(x_1)] \odot \exp[-s(x_1)].
+}
+\]</span></p></li>
+<li><p>Jacobi 矩阵 <span class="math display">\[
+Dg|_z = \pmqty{
+I_{d_1} &amp; 0 \\
+* &amp; \diag[\exp\!\pqty{s(z_1)}]
+}, \qquad
+Dg^{-1}|_x = \pmqty{
+I_{d_1} &amp; 0 \\
+* &amp; \diag[\exp\!\pqty{-s(x_1)}]
+}
+\]</span> 是下三角阵! 行列式就是对角元素的乘积, 非常容易计算.</p></li>
+</ul>
+<h2 id="continuous-normalizing-flows">12  Continuous Normalizing Flows</h2>
+<h3 id="from-discrete-to-continuous">12.1  From discrete to continuous</h3>
+<p>上一节我们讲的是一种 “离散” 的流 (discrete normalizing flow, DNF).
+从最初的随机噪声 <span class="math inline">\(Z\)</span> 开始,
+一层一层地应用微分同胚 <span class="math inline">\(g^l(z)\)</span>,
+最终达到目标 <span class="math inline">\(X\)</span>. 层数 <span class="math inline">\(l=1,2,\dots,L\)</span> 可以看作离散的时间维度,
+随着层数增加, 原始分布一点一点被推到目标分布, 如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/5-dnf.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>若以残差块 <span class="math inline">\(g^l(z):=z+h(z;\theta^l)\)</span>
+(其中每一层的结构相同, 但是参数 <span class="math inline">\(\theta^l\)</span> 不同) 作为每一层的映射, 则 DNF
+可以写成一个迭代过程 <span class="math display">\[
+\Cases{
+z^{l+1} = z^l + h(z^l;\theta^l), \\
+z^0 \textsf{ 为给定的初始值},
+}
+\]</span> 当层数 <span class="math inline">\(L\)</span> 足够多且残差映射
+<span class="math inline">\(h\)</span> 的输出足够小,
+则该迭代过程实际上是在求解下面的初值问题: <span class="math display">\[
+\Cases{
+\displaystyle \eval{\dv{z}{t}}_t = V_\theta(z(t),t), \\
+z(t_0)=z_0 \textsf{ 为给定的初始值},
+} \tag{$\clubsuit$}
+\]</span> (使用 Euler 迭代法), 其中 <span class="math inline">\(t\)</span> 的取值范围是区间 <span class="math inline">\(I\subset\R\)</span>, 映射 <span class="math inline">\(V_\theta(z,t)\)</span> 连续可微.</p>
+<div class="note note-secondary">
+<p>这里简单回顾常微分方程 (ODE) 理论. 式 <span class="math inline">\((\clubsuit)\)</span> 是一个一阶非自治常微分方程.
+映射 <span class="math display">\[
+V_\theta(-,-):\Omega\times I\to\R^N
+\]</span> 称为该 ODE <span class="math inline">\((\clubsuit)\)</span>
+的向量场 (vector field), 如下图左侧.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/5-cnf.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>我们有如下定理: 当 <span class="math inline">\(V_\theta\)</span>
+连续可微 (<span class="math inline">\(C^1\)</span>) 时,</p>
+<ul>
+<li><p>(存在性) 任给 <span class="math inline">\(p\in\Omega\)</span> 和
+<span class="math inline">\(t\in I\)</span>, 存在包含 <span class="math inline">\(t\)</span> 的区间 <span class="math inline">\(I_0\subset I\)</span> 以及 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U_0\subset\Omega\)</span>, 使得对任意初值 <span class="math inline">\(z_0\in U_0\)</span> 和初始时刻 <span class="math inline">\(t_0\in I\)</span>, 存在初值问题 <span class="math inline">\((\clubsuit)\)</span> 的解 <span class="math inline">\(z:I\to\Omega\)</span>.</p></li>
+<li><p>(唯一性) 两条积分曲线在公共部分重合.</p></li>
+<li><p>(对初值的光滑依赖性) 记号承上, 定义 <span class="math inline">\(\Phi:I_0\times I_0\times U\to\Omega\)</span>,
+<span class="math display">\[
+\Phi(t,t_0,z_0) := z(t),
+\]</span> 其中 <span class="math inline">\(z\)</span> 是以 <span class="math inline">\(z(t_0)=z_0\)</span> 为初值的唯一积分曲线. 则 <span class="math inline">\(\Phi\)</span> 是 <span class="math inline">\(C^1\)</span> 的.</p></li>
+</ul>
+<p>映射 <span class="math inline">\(\Phi\)</span> 称为向量场 <span class="math inline">\(F_\theta\)</span> 的<strong>流 (flow)</strong>,
+如上图右侧.</p>
+<ul>
+<li>直观上, 固定开始时刻 <span class="math inline">\(t_0\)</span> 不变,
+则随着 <span class="math inline">\(t\)</span> 变化, <span class="math inline">\(\Phi(t,t_0,z_0)\)</span> 让 <span class="math inline">\(U\)</span> 中的所有 <span class="math inline">\(z_0\)</span> 光滑地 “流动” 起来.</li>
+<li>根据初值问题解的唯一性, 映射 <span class="math inline">\(z_0\mapsto\Phi(t_1,t_0,z_0)\)</span> 是可逆的,
+逆为 <span class="math inline">\(z_1\mapsto\Phi(t_0,t_1,z_1)\)</span>.
+正向流表示生成过程; 逆向流表示归一化过程.</li>
+</ul>
+</div>
+<p>现在我们引入<strong>连续归一化流 (CNF)</strong><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Ricky T. Q. Chen et al, <em>Neural Ordinary Differential
+Equations</em>, NeurIPS 2018.</hcontent><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" style="text-decoration: none;"><sup>[4]</sup></a></span>.
+DNF 建模的是 Euler 迭代过程 <span class="math inline">\(h(-,\theta)\)</span>, 而 CNF 直接建模向量场 <span class="math inline">\(F_\theta\)</span>. DNF 和 CNF
+从不同的角度建模了同一个初值问题 <span class="math inline">\((\clubsuit)\)</span>.</p>
+<div class="note note-warning">
+<p><u>Note</u> CNF vs DNF.</p>
+<p>CNF 建模的是迭代过程 <span class="math inline">\(h(-,\theta)\)</span>, 也即流 <span class="math inline">\(\Phi(t,t_0,z_0)\)</span>,
+这要求神经网络必须是可逆的; 而 DNF 建模向量场 <span class="math inline">\(V_\theta\)</span>, 只要它满足适当的光滑性条件,
+根据存在唯一性定理, 对应的流 <span class="math inline">\(\Phi\)</span>
+必定是可逆的, 因此 CNF 的网络比 DNF 灵活得多.</p>
+</div>
+<h3 id="cnfs">12.2  CNFs</h3>
+<p>CNF 的训练和采样流程与 DNF 基本相同:</p>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: left;">DNF</th>
+<th style="text-align: left;">CNF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>训练</strong></td>
+<td style="text-align: left;">① 根据 <span class="math inline">\(p_Z\)</span> 和 <span class="math inline">\(V_\theta\)</span> 计算出 <span class="math inline">\(p_X\)</span></td>
+<td style="text-align: left;">① 根据 <span class="math inline">\(p_Z\)</span> 和 <span class="math inline">\(g_\theta\)</span> 计算出 <span class="math inline">\(p_X\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">② 利用 <span class="math inline">\(p_X\)</span> 计算似然, 用 MLE 优化 <span class="math inline">\(\theta\)</span></td>
+<td style="text-align: left;">② 利用 <span class="math inline">\(p_X\)</span> 计算似然, 用 MLE 优化 <span class="math inline">\(\theta\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>采样</strong></td>
+<td style="text-align: left;">① 从 <span class="math inline">\(p_Z\)</span> 采样噪声 <span class="math inline">\(z_0\in\Omega\)</span></td>
+<td style="text-align: left;">① 从 <span class="math inline">\(p_Z\)</span> 采样噪声 <span class="math inline">\(z_0\in\Omega\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">② 求解初值问题, 得到 <span class="math inline">\(x:=\Phi(t_1,t_0,z_0)\)</span></td>
+<td style="text-align: left;">② 前向传播, 得到 <span class="math inline">\(x:=(g^L_\theta\circ\dots\circ
+g^1_\theta)(z_0)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>对于 CNF, 我们有如下连续版本的 “变量替换定理” (推导见后文): <span class="math display">\[
+\pdv{\log{p_t(z(t))}}{t}
+= -\tr\biggl( \eval{\pdv{V_\theta}{z}}_{z(t),t} \biggr),
+\]</span> 积分得到 <span class="math display">\[
+\Align{
+\log{p_X(x)} = \log{p_{t_1}(z(t_1))}
+&amp;= \log{p_{t_0}(t)} + \int_{t_0}^{t_1}
+    \pdv{\log{p_t(z(t))}}{t} \dd{t} \\
+&amp;= \log{p_{Z}(z_0)} - \int_{t_0}^{t_1}
+    \tr\biggl( \eval{\pdv{V_\theta}{z}}_{z(t),t} \biggr) \dd{t}.
+}
+\]</span> CNF 的训练目标是最大化 <span class="math inline">\(\log
+p_X(x)\)</span>, 即找到一个速度场 <span class="math inline">\(V_\theta\)</span>, 使得:</p>
+<ol type="1">
+<li>起点密度高: <span class="math inline">\(\log p_Z(z_0)\)</span>
+较高.</li>
+<li>体积收缩: 积分项 <span class="math inline">\(\int \dots
+\dd{t}\)</span> 较小, 或最好为负值 (对应于体积收缩).</li>
+</ol>
+<p>积分项中需要代入积分曲线 <span class="math inline">\(z(t)\)</span>
+在每一时刻的值, 我们可以使用 ODE 求解器 (如 Runge-Kutta 方法) 来逼近流线
+<span class="math inline">\(z(t)\)</span>.</p>
+<ul>
+<li>我们还需要计算 <span class="math inline">\(z(t)\)</span> 关于参数
+<span class="math inline">\(\theta\)</span> 的梯度, 然而 <span class="math inline">\(z(t)\)</span> 是 ODE 求解器的输出,
+不好直接进行反向传播. 原文采用了 adjoint sensitivity method.</li>
+</ul>
+<p>CNF 的优势:</p>
+<ul>
+<li>可以使用任何复杂网络拟合向量场 (不必是可逆的, 也不必易于计算
+Jacobian), 表达能力强.</li>
+<li>MLE 中根据 <span class="math inline">\(x\)</span> 计算 <span class="math inline">\(z_0\)</span> 的过程 (归一化)
+与生成过程计算代价相同.</li>
+</ul>
+<div class="note note-light">
+<p><u>Pf</u> 变量替换定理.</p>
+<ul>
+<li>直观: CNF 版本的变量替换定理是 DNF 版本在 “<span class="math inline">\(\Delta t\to0\)</span>” 下的 “极限”,
+可以理解为在无穷小变换下, 概率密度的变化率.</li>
+<li>迹 <span class="math inline">\(\tr\)</span> 是行列式 <span class="math inline">\(\det\)</span> 的 “微分”
+(改变量无穷小时的线性近似), 因此 CNF 版本中是 <span class="math inline">\(\tr\)</span> 而非 <span class="math inline">\(\det\)</span>.</li>
+</ul>
+<p>记 <span class="math inline">\(p_t\)</span> 是 <span class="math inline">\(t_0\)</span> 时刻的初始分布 <span class="math inline">\(p_Z\)</span> 被流 <span class="math inline">\(z\mapsto\Phi(t,t_0,z)\)</span> 推得的分布. 考虑
+<span class="math inline">\(p_t\)</span> 与 <span class="math inline">\(p_{t+\varepsilon}\)</span>, 满足</p>
+<ul>
+<li><span class="math inline">\(p_{t+\varepsilon}\)</span> 是 <span class="math inline">\(p_t\)</span> 被微分同胚 <span class="math inline">\(T_\varepsilon:z\mapsto\Phi(t+\varepsilon,t,z)\)</span>
+推得的.</li>
+</ul>
+<p>根据 (离散) 变量替换定理有 <span class="math display">\[
+\Align{
+\log{p_{t+\varepsilon}(z(t+\varepsilon))} - \log{p_t(z(t))}
+&amp;= \log\Biggl|
+  \biggl(
+      \det \eval{ \pdv{T_\varepsilon}{z} }_{z(t)}
+  \biggr)^{\!\!-1}
+\Biggr| \\
+&amp;= -\log\Biggl|
+    \det \eval{ \pdv{T_\varepsilon}{z} }_{z(t)}
+\Biggr|. \\
+}
+\]</span> 根据定义有 <span class="math display">\[
+\Align{
+T_\varepsilon\bigl[z(t)\bigr]
+&amp;= z(t+\varepsilon) \\
+&amp;= z(t) + \varepsilon V_\theta(z(t),t) + O(\varepsilon^2),
+}
+\]</span> (其中 <span class="math inline">\(\varepsilon\to0\)</span>) 即
+<span class="math inline">\(T_\varepsilon(-)=I+\varepsilon
+V_\theta(-,t)+O(\varepsilon^2)\)</span>. 代入变量替换定理得到 <span class="math display">\[
+\Align{
+\log{p_{t+\varepsilon}(z(t+\varepsilon))} - \log{p_t(z(t))}
+&amp;= -\blue{\log} \,\blue{\det} \biggl[
+  I
+  + \varepsilon \eval{\pdv{V_\theta}{z}}_{z(t),t}
+  + O(\varepsilon^2)
+\biggr] \\
+&amp;= -\blue{\log} \biggl[
+  1
+  + \varepsilon \,\blue{\tr} \eval{\pdv{V_\theta}{z}}_{z(t),t}
+  + O(\varepsilon^2)
+\biggr] \\
+&amp;= -\biggl[
+  \varepsilon \,\blue{\tr} \eval{\pdv{V_\theta}{z}}_{z(t),t}
+  + O(\varepsilon^2)
+\biggr].
+}
+\]</span> 利用导数的定义即得.</p>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Danilo Jimenez Rezende, Shakir Mohamed, <em>Variational
+Inference with Normalizing Flows</em>, 2015.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>本文的微分同胚都是 <span class="math inline">\(C^1\)</span> 的, 即 <span class="math inline">\(g\)</span> 可逆且 <span class="math inline">\(g,g^{-1}\)</span> 都连续可微.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Laurent Dinh et al, <em>Density estimation using Real
+NVP</em>, 2017.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Ricky T. Q. Chen et al, <em>Neural Ordinary Differential
+Equations</em>, NeurIPS 2018.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>生成模型基础 | 5 归一化流</div>
+      <div>https://disembo.github.io/Note/Course/gen-models/5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Note/Course/gen-models/6/" title="生成模型基础 | 6 基于能量的模型">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">生成模型基础 | 6 基于能量的模型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/Course/gen-models/4/" title="生成模型基础 | 4 生成对抗网络">
+                        <span class="hidden-mobile">生成模型基础 | 4 生成对抗网络</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

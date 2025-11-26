@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-transformer-ar.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/3-transformer-ar-shortcut.png">
 <meta property="article:published_time" content="2025-10-13T14:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-17T16:08:23.388Z">
+<meta property="article:modified_time" content="2025-11-24T12:04:42.218Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -377,7 +377,7 @@ y_t = g_\theta(\orange{h_t}).
 \]</span> 如何用 RNN 进行自回归建模呢? 首先输入一个特殊的开始标记 <span class="math inline">\(\tilde{x}_0=\texttt{[SOS]}\)</span> (start of
 sequence) 让 RNN 输出 <span class="math inline">\(x_1\)</span>, 再把
 <span class="math inline">\(x_1\)</span> 喂给 RNN 让它生成 <span class="math inline">\(x_2\)</span>, 以此类推…… 便实现了自回归生成.</p>
-<p>如何训练 RNN? 对于一条数据 <span class="math inline">\((\tilde{x}_i)\in\R^L\)</span>, 依次给模型输入
+<p>如何训练 RNN? 对于一条训练数据 <span class="math inline">\((\tilde{x}_i)\in\R^L\)</span>, 依次给模型输入
 <span class="math inline">\(\tilde{x}_0,\tilde{x}_1,\dots,\tilde{x}_{L-1}\)</span>,
 RNN 会依次输出 token 概率分布的预测值 <span class="math inline">\(p_\theta(x_1),p_\theta(x_2\mid\tilde{x}_1),\dots,p_\theta(x_L\mid\tilde{x}_{1:L-1})\)</span>,
 如下图所示. 可以使用 MLE 进行参数学习, 即最小化负对数似然 (NLL) <span class="math display">\[
@@ -430,7 +430,7 @@ eval metric.</li>
 捷径不管用了, 导致生成的结果非常差.</li>
 </ul>
 <p>解决办法很简单——当 <span class="math inline">\(j&gt;i\)</span> 时,
-强行把 <span class="math inline">\(s_{ij}\)</span> 设为 <span class="math inline">\(-\infty\)</span> 即可, 相应的 <span class="math inline">\(\exp(s_{ij})=0\)</span>, 意味着 <span class="math inline">\(a_{ij}=0\)</span>. 用矩阵形式写出来就是 <span class="math display">\[
+强行把 <span class="math inline">\(s_{ij}\)</span> 设为 <span class="math inline">\(-\infty\)</span> 即可, 相应的 <span class="math inline">\(\exp(s_{ij})=0\)</span>, 也即 <span class="math inline">\(a_{ij}=0\)</span>. 用矩阵形式写出来就是 <span class="math display">\[
 A = \operatorname{softmax} \bigl( QK\T/\sqrt{D} + \orange{M} \bigr),
 \]</span></p>
 <p>其中 <span class="math inline">\(M\in\R^{L\times L}\)</span>
@@ -544,9 +544,10 @@ token, 即贪心搜索算法 (没有随机性).</li>
 中采样.</p>
 <p>以上的采样方法都是局部的, 即最大化每个条件概率 <span class="math inline">\(p_\theta(x_i\mid\hat{x}_{1:i-1})\)</span>.
 这样容易陷入局部最优. 一个稍好些的方法是<strong>束搜索 (beam
-search)</strong>, 即每次选取条件概率 <span class="math inline">\(p_\theta(x_i\mid\hat{x}_{1:i-1})\)</span> 前几名的
-tokens 作为候选, 维护一个候选的集合, 最终选择联合概率最大的序列.
-束搜索是贪心算法的一种改进, 但也不能保证得到联合概率 <span class="math inline">\(p_\theta(x_{1:L})\)</span> 的最大值点.</p>
+search)</strong>, 即每次选取条件概率 <span class="math inline">\(p_\theta(x_i\mid\hat{x}_{1:i-1})\)</span>
+前若干名的 tokens 作为候选, 维护一个候选的集合,
+最终选择联合概率最大的序列. 束搜索是贪心算法的一种改进,
+但也不能保证得到联合概率 <span class="math inline">\(p_\theta(x_{1:L})\)</span> 的最大值点.</p>
 <ul>
 <li>束搜索在机器翻译中常用.</li>
 </ul>
@@ -612,6 +613,9 @@ tokens 作为候选, 维护一个候选的集合, 最终选择联合概率最大
 <p>在训练时, 尽管 RNN 计算代价低, 但它没法并行化, 效率也很低. 在推理时,
 由于都是从零开始生成, 无法并行化, 所以 Transformer
 计算代价高的弊端就暴露出来了.</p>
+<p>*注: Transformer 在生成长度为 <span class="math inline">\(L\)</span>
+的序列时, 由于每次只能生成一个 token, 所以需要逐个生成长度为 <span class="math inline">\(1,2,3\dots,L-1,L\)</span> 的序列, 总复杂度 <span class="math inline">\(O(L^3)\)</span>. 大家一般会使用 key-value cache
+避免重复计算, 将总复杂度降为 <span class="math inline">\(O(L^2)\)</span>.</p>
 </div>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

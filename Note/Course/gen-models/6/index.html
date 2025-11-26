@@ -1,0 +1,1194 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基于能量的模型 (EBM) 及其训练方法 (MLE 和得分匹配).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成模型基础 | 6 基于能量的模型">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/gen-models/6/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="基于能量的模型 (EBM) 及其训练方法 (MLE 和得分匹配).">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-boltzmann-dist.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-ebm-distribution.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-langevin.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-langevin-anneal.png">
+<meta property="article:published_time" content="2025-11-26T03:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-26T03:10:42.777Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-boltzmann-dist.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>生成模型基础 | 6 基于能量的模型 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="生成模型基础 | 6 基于能量的模型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-26 11:00" pubdate>
+          2025年11月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">生成模型基础 | 6 基于能量的模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<p>本系列的最后将讨论<strong>基于能量的模型 (energy-based model,
+EBM)</strong>,
+从这里出发可以得到很多有趣的生成模型——得分匹配、扩散模型、流匹配……</p>
+<p>能量基模型 (EBM) 的灵感源自统计力学. 它用一个函数 <span class="math inline">\(E(x)\)</span> 来为样本空间 <span class="math inline">\(x \in \mathbb{R}^N\)</span>
+中的每一点赋予一个“能量” 值. 根据物理学原理,
+系统中的样本总是趋向于聚集在能量 <span class="math inline">\(E(x)\)</span> 较低的区域.</p>
+<ul>
+<li><p>当系统孤立时, 所有样本都会聚集到 <span class="math inline">\(E(x)\)</span> 的极小值点 (基态), 形成多点分布.
+这是比较无聊的情况.</p></li>
+<li><p>为了模拟更丰富的真实世界分布, 我们需要让系统与一个恒温的 “热浴”
+接触. 热浴给系统提供了温度, 在微观上表现为随机的热噪声:</p>
+<ul>
+<li>一方面, 随机噪声让样本具有能量, 跳出局部极小值;</li>
+<li>另一方面, 样本受梯度力 <span class="math inline">\(-\nabla_x
+E(x)\)</span>, 会不断向能量低处运动;</li>
+</ul></li>
+</ul>
+<p>最终, 这两种力量形成动态平衡, 样本分布密度 <span class="math inline">\(p(x)\)</span> 达到稳定状态. 这个最终稳定的分布
+<span class="math inline">\(p(x)\)</span> 就是 EBM 对真实样本的建模,
+它被称为 Boltzmann 分布, 由能量 <span class="math inline">\(E(x)\)</span> 和热浴温度 <span class="math inline">\(T\)</span> 唯一确定.</p>
+<ul>
+<li>在训练时, EBM 使用 MLE 来优化能量函数 <span class="math inline">\(E(x)\)</span>, 使得 <span class="math inline">\(p(x)\)</span> 尽量接近真实分布.</li>
+<li>在采样时, EBM 模拟了这种弛豫过程. 先从某初始分布 <span class="math inline">\(\pi(x)\)</span> 采样, 再不断执行基于梯度的随机迭代
+(即 LD-MCMC): 一边根据梯度力 <span class="math inline">\(-\nabla_x
+E(x)\)</span> 向能量低处移动, 一边加入随机噪声. 经过充分迭代后,
+得到的样本 <span class="math inline">\(x\)</span> 便可以视为从目标分布
+<span class="math inline">\(p(x)\)</span> 中采样.</li>
+</ul>
+<p>注意到我们在采样中只使用了能量梯度 <span class="math inline">\(\nabla_xE(x)\)</span>, 并未使用 <span class="math inline">\(E(x)\)</span> 本身, 因此训练 EBM 的另一个思路是,
+我们只需要建模 <span class="math inline">\(\nabla_xE(x)\)</span>,
+无需建模 <span class="math inline">\(E(x)\)</span>. 这种方法称为
+“得分匹配”. “扩散模型” 是得分匹配的推广, 它将采样过程 LD-MCMC
+推广到了更一般的形式.</p>
+<p>之后的几节会逐一介绍上面提到的各种模型. 值得注意的是,
+尽管各个模型五花八门, 但它们的核心步骤仍旧是
+“将简单分布<em>推</em>到复杂的数据分布”. 这里使用 “推” 是因为采样的过程
+(LD-MCMC) 需要若干次迭代, 是循序渐进的. 最后我们将看到, 这一采样过程与
+CNF 的 “流” 有着密切联系, 进而可以用一个统一的框架涵盖所有这些模型.</p>
+<h2 id="energy-based-models">13  Energy-based Models</h2>
+<h3 id="modeling">13.1  Modeling</h3>
+<div class="note note-secondary">
+<p>EBM 来自于统计物理中的 Boltzmann 分布. 这里简单介绍一下背景.</p>
+<p>考虑一个由若干分子组成的封闭系统,</p>
+<ul>
+<li>系统的体积 <span class="math inline">\(V\)</span> 和分子数 <span class="math inline">\(N\)</span> 固定. 系统可以与一个巨大的热库 (热浴)
+交换能量. 当系统与热库达到热平衡时, 系统绝对温度 <span class="math inline">\(T\)</span> 和平均能量 <span class="math inline">\(E\)</span> 不变.</li>
+<li>每个分子的能量取值范围是离散的 <span class="math inline">\(\{\varepsilon_1,\dots,\varepsilon_M\}\)</span>,
+一共有 <span class="math inline">\(M\)</span> 个能级. 假设某粒子处于第
+<span class="math inline">\(i\)</span> 个能级的概率为 <span class="math inline">\(p_i\)</span>.</li>
+</ul>
+<p>现在我们想要求出 <span class="math inline">\(p_i\)</span> 具体的分布.
+这看起来是一个欠定的问题, 我们的约束条件只有 <span class="math display">\[
+\sum_{i=1}^M p_i=1, \qquad
+\sum_{i=1}^M p_i\varepsilon_i = E.
+\]</span> 有无穷多个分布 <span class="math inline">\((p_i)_{i=1}^M\)</span> 满足这两个条件.
+此时我们使用 “<strong>最大熵原理</strong>”——在所有满足条件的分布中,
+选择熵最大的那个.</p>
+<ul>
+<li>熵衡量了系统状态的不确定性. 我们选择最大熵分布, 相当于
+(除了两个约束条件外) 给系统施加最少的假设, 得到的那个分布.
+这是在已知信息最少的情况下, “最均匀、最无倾向性、最不武断” 的选择.</li>
+</ul>
+<p>我们要在上面两个约束条件下最大化系统的熵 <span class="math display">\[
+S = -k_B\sum_{i=1}^M p_i\ln{p_i}.
+\]</span> 使用 Lagrange 乘子法 + 一些统计力学求解该约束极值问题, 得到
+<span class="math display">\[
+p_i = \frac{1}{Z} \exp(-\beta \varepsilon_i),
+\]</span> 其中 <span class="math inline">\(\beta=-1/k_BT\)</span>
+与系统温度成反比 (<span class="math inline">\(k_B\)</span> 是 Boltzmann
+常数), 归一化系数 <span class="math inline">\(Z\)</span> 保证所有 <span class="math inline">\(p_i\)</span> 之和为 <span class="math inline">\(1\)</span>, 有 <span class="math inline">\(Z=\sum_{i=1}^N\exp(-\beta\varepsilon_i)\)</span>.</p>
+<p>这个分布也称为 <strong>Boltzmann 分布</strong>. 下图给出了不同温度下
+Boltzmann 分布的图像.</p>
+<ul>
+<li>给定温度 <span class="math inline">\(T\)</span>,
+则分子密度随着能量的增加而下降.</li>
+<li>当温度较低的时候, 密度曲线陡峭, 分子主要集中在能量较低的区域;
+当温度较高时, 密度曲线平缓, 分子向高能量的区域移动.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-boltzmann-dist.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+</div>
+<p>EBM 将样本分布建模为 Boltzmann 分布, <span class="math display">\[
+p_\theta(x) = \frac{1}{Z_\theta} \exp(-\frac{E_\theta(x)}{\tau}),
+\tag{$\clubsuit$}
+\]</span> 其中 <span class="math inline">\(x\)</span> 取值于 <span class="math inline">\(\R^N\)</span> 中的某开集 <span class="math inline">\(\Omega\)</span>,</p>
+<ul>
+<li>函数 <span class="math inline">\(E_\theta:\Omega\to\R\)</span>
+称为能量函数 (给出了样本 <span class="math inline">\(x\)</span> 的
+“能量”). 通常用一个神经网络建模 <span class="math inline">\(E_\theta(x)\)</span>.</li>
+<li>系数 <span class="math inline">\(\tau\)</span> 是系统的 “温度” (类比
+Boltzmann 分布中的温度, 这里略去了常数 <span class="math inline">\(k_B\)</span>).</li>
+<li>归一化系数 <span class="math inline">\(Z_\theta=\int_\Omega\exp(-E_\theta(x)/\tau)\dd{x}\)</span>.</li>
+</ul>
+<p>温度 <span class="math inline">\(\tau\)</span> 控制了概率密度 <span class="math inline">\(p_\theta\)</span> 的形状, 如下图所示.</p>
+<ul>
+<li>在温度较低时, <span class="math inline">\(p_\theta(x)\)</span>
+集中在能量 <span class="math inline">\(E_\theta(x)\)</span> 较低的区域.
+此时采样 <span class="math inline">\(x\sim p_\theta\)</span>
+得到的结果单一.</li>
+<li>当温度逐渐升高时, <span class="math inline">\(p_\theta\)</span>
+会逐渐分散到整个 <span class="math inline">\(\Omega\)</span>. 此时采样
+<span class="math inline">\(x\sim p_\theta\)</span> 得到的结果比较多样,
+随机性强.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-ebm-distribution.png" style="zoom:35%;" cloud-img="" lazyload="true"></p>
+<p>为什么我们选择将样本分布建模为 Boltzmann 分布呢?
+因为很多常见分布都可以写成 <span class="math inline">\((\clubsuit)\)</span> 式的形式, 比如<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">下面列出的分布实际上都属于指数族分布 (exponential
+family).</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span></p>
+<ul>
+<li>Gauss 分布, 指数分布, beta 分布, 类别分布, <span class="math inline">\(\chi^2\)</span> 分布……</li>
+</ul>
+<p>此外, 能量函数 <span class="math inline">\(E_\theta(x)\)</span>
+并无任何限制, 可以灵活使用各种神经网络架构建模. 然而, EMB
+的一个关键缺点是归一化系数 <span class="math inline">\(Z_\theta\)</span>
+这个高维积分难以计算. 对于一般的神经网络, <span class="math inline">\(E_\theta(x)\)</span> 过于复杂, 几乎无法给出 <span class="math inline">\(Z_\theta(x)\)</span> 的闭式解;
+而数值积分的计算代价又随着维度 <span class="math inline">\(N\)</span>
+呈指数增长, 显然不可行.</p>
+<p>由于无法计算 <span class="math inline">\(Z_\theta\)</span>,
+我们就没法使用 “标准” 的 MLE 优化 <span class="math inline">\(\theta\)</span>. 主流的方法都是绕过 <span class="math inline">\(Z_\theta\)</span>, 直接优化 <span class="math inline">\(E_\theta(x)\)</span>, 具体方法在下一小节介绍.</p>
+<div class="note note-warning">
+<p><u>Note</u> Autoregressive as EBM.</p>
+<p>Boltzmann 分布与我们熟知的 softmax 函数本质是同一个东西. 设 <span class="math display">\[
+(p_1,\dots,p_M)
+= \operatorname{softmax}(-\varepsilon_1,\dots,-\varepsilon_M),
+\]</span> 则 <span class="math display">\[
+p_i = \frac
+  {\exp(-\varepsilon_i/\tau)}
+  {\sum_{j=1}^M \exp(-\varepsilon_j/\tau)}
+\]</span> 恰好是 Boltzmann 分布. 我们一般把 softmax 的输入 <span class="math inline">\(-\varepsilon_i\)</span> 称为 logits (对数概率),
+实际上可以理解为负的能量. EMB 中, 负的能量函数 <span class="math inline">\(-E_\theta(x)\)</span> 也可以叫做 logits.</p>
+<p>从这个视角看, 自回归模型也是一种 EBM. 自回归模型对条件概率 <span class="math inline">\(p_\theta(x_l\mid x_{1:l-1})\)</span> 用 softmax
+建模, 相当于一个 Boltzmann 分布. 自回归模型对每个条件概率分别归一化,
+自动保证了联合概率是归一化的, <span class="math display">\[
+\Align{
+&amp;\int_{\R^L} p_\theta(x_1,\dots,x_L) \dd{x_1}\cdots\dd{x_L} \\
+&amp;= \int_{\R^{L-1}}
+  p_\theta(x_1,\dots,x_{L-1}) \dd{x_1}\cdots\dd{x_{L-1}}
+  \underbrace{
+      \int_\R p_\theta(x_L\mid x_{1},\dots,x_{L-1}) \dd{x_L}
+  }_{{}=1\textsf{ by softmax}} \\
+&amp;= \int_{\R^{L-1}}
+  p_\theta(x_1,\dots,x_{L-1}) \dd{x_1}\cdots\dd{x_{L-1}} \\
+&amp;= \cdots \vphantom{\int} \\
+&amp;= 1,
+}
+\]</span> 避免了对高维分布 <span class="math inline">\(p_\theta(x_1,\dots,x_L)\)</span>
+直接进行归一化.</p>
+</div>
+<h3 id="learning-with-mle">13.2  Learning with MLE</h3>
+<p>尽管 <span class="math inline">\(p_\theta(x)\)</span>
+的表达式无法计算, 我们仍然可以使用 MLE 学习参数.</p>
+<p>设真实分布为 <span class="math inline">\(p_\theta\)</span>,
+我们希望最小化负对数似然 <span class="math inline">\(\operatorname{NLL}(\theta):=\operatorname{E}_{x\sim
+p}[-\log p_\theta(x)]\)</span>. 直接计算对数似然是行不通的,
+我们不妨考虑对数似然关于参数 <span class="math inline">\(\theta\)</span>
+的梯度 <span class="math display">\[
+\nabla_\theta \operatorname{NLL}(\theta) =
+\nabla_\theta \operatorname{E}_{x\sim p}\bigl[-\log p_\theta(x)\bigr],
+\]</span> 这一个定义在参数域 <span class="math inline">\(\Theta\)</span>
+(参数 <span class="math inline">\(\theta\)</span> 的取值范围)
+上的向量场, 它永远指向 <span class="math inline">\(\operatorname{NLL}\)</span>
+<em>上升</em>最快的方向; 在 <span class="math inline">\(\operatorname{NLL}\)</span> 的极值点处,
+向量场为零. 因此,
+我们可以采用<strong>梯度下降</strong>的方法——从某个初始点 <span class="math inline">\(\theta_0\in\Theta\)</span> 开始,
+每次沿着梯度场下降一点, <span class="math display">\[
+\theta_{t+1} \leftarrow \theta_t
+- \alpha \nabla_\theta\operatorname{NLL}(\theta),
+\]</span> 最终 (在合适的条件下) 可以收敛到 <span class="math inline">\(\operatorname{NLL}\)</span> 的极小值点 <span class="math inline">\(\theta^*\)</span>.</p>
+<p>将 <span class="math inline">\(\nabla_\theta\operatorname{NLL}(\theta)\)</span>
+展开, <span class="math display">\[
+\Align{
+\nabla_\theta \operatorname{NLL}(\theta)
+&amp;= \nabla_\theta \operatorname{E}_{x\sim p}\bigl[-\log
+p_\theta(x)\bigr] \\
+&amp;= \operatorname{E}_{x\sim p}\bigl[
+        -\orange{\nabla_\theta \log p_\theta(x)}
+    \bigr] \\
+&amp;= \operatorname{E}_{x\sim p}\biggl[
+        \frac{1}{\tau} \nabla_\theta E_\theta(x)
+        + \nabla_\theta \log{Z_\theta}
+    \biggr]. \\
+}
+\]</span> (第二步将积分与偏导数交换顺序.)</p>
+<ul>
+<li>橙色的部分 <span class="math inline">\(\orange{\nabla_\theta \log
+p_\theta(x)}\)</span> 是 (单个样本的) 对数似然关于参数 <span class="math inline">\(\theta\)</span> 的梯度, 表示当观测到特定样本 <span class="math inline">\(x\)</span> 时, 如何改变参数 <span class="math inline">\(\theta\)</span> 才能使该样本的似然 <span class="math inline">\(\log p_\theta(x)\)</span> 增加得最快.
+它也叫做<strong>得分 (score)</strong>.</li>
+</ul>
+<p>回到 <span class="math inline">\(\nabla_\theta\operatorname{NLL}(\theta)\)</span>,
+期望里面的第一项 <span class="math inline">\(\nabla_\theta
+E_\theta(x)\)</span>
+是容易计算的——可以借助神经网络的自动微分器来计算梯度; 第二项与 <span class="math inline">\(x\)</span> 无关, 但计算略微复杂, 最终可以得到
+(过程见后) <span class="math display">\[
+\nabla_\theta\log Z_\theta = -\frac1\tau
+\operatorname{E}_{x\sim p_\theta}\bigl[
+    \nabla_\theta E_\theta(x)
+\bigr],
+\]</span> 因此 <span class="math display">\[
+\nabla_\theta \operatorname{NLL}(\theta)
+= \frac1\tau \Bigl(
+    \underbrace{
+        \operatorname{E}_{x\sim p}[\nabla_\theta E_\theta(x)]
+    }_{\textsf{positive}} -
+    \underbrace{
+        \operatorname{E}_{x\sim p_\theta}[\nabla_\theta E_\theta(x)]
+    }_{\textsf{negative}}
+\Bigr).
+\]</span> 其中,</p>
+<ul>
+<li>第一项 (positive phase) 的含义是, 从真实分布 <span class="math inline">\(p(x)\)</span> 中采样,
+用于<em>降低</em>这些数据点的能量 <span class="math inline">\(E_\theta(x)\)</span>.</li>
+<li>第二项 (negative phase) 的含义是, 从模型 <span class="math inline">\(p_\theta(x)\)</span> 中采样,
+用于<em>提高</em>这些样本点的能量 <span class="math inline">\(E_\theta(x)\)</span>
+(防止模型将所有空间都赋予高概率).</li>
+</ul>
+<p>由于 <span class="math inline">\(p_\theta(x)\)</span> 是未知的,
+且配分函数 <span class="math inline">\(Z(\theta)\)</span> 难以计算, MLE
+训练的核心挑战在于如何高效且准确地估计第二项——也即如何从未知分布 <span class="math inline">\(p_\theta(x)\)</span> 中采样.
+我们将在下面几节展开.</p>
+<div class="note note-light">
+<p><u>Pf</u> 归一化系数 <span class="math inline">\(Z_\theta\)</span>
+关于 <span class="math inline">\(\theta\)</span> 的梯度为 <span class="math display">\[
+\Align{
+\blue{\nabla_\theta} \log{Z_\theta}
+&amp;= \frac{1}{Z_\theta} \blue{\nabla_\theta} Z_\theta \\
+&amp;= \frac{1}{Z_\theta} \blue{\nabla_\theta}
+      \int_\Omega\exp(-\frac{E_\theta(x)}{\tau})\dd{x} \\
+&amp;= \frac{1}{Z_\theta}
+      \int_\Omega \blue{\nabla_\theta}
+      \exp(-\frac{E_\theta(x)}{\tau})\dd{x} \\
+&amp;= -\frac{1}{\tau} \orange{\frac{1}{Z_\theta}}
+      \int_\Omega \orange{\exp(-\frac{E_\theta(x)}{\tau})}
+      \blue{\nabla_\theta} E_\theta(x) \dd{x} \\
+&amp;= -\frac{1}{\tau} \int_\Omega \orange{p_\theta(x)}
+      \blue{\nabla_\theta} E_\theta(x) \dd{x} \\
+&amp;= -\frac{1}{\tau}
+  \operatorname{E}_{z\sim p_\theta}[\nabla_\theta E_\theta(x)].
+}
+\]</span></p>
+</div>
+<h3 id="mcmc-sampling">13.3  MCMC sampling</h3>
+<p>EBM 训练和推理的过程都需要从 <span class="math inline">\(p_\theta(x)\)</span> 中采样. <strong>MCMC (Markov
+chain Monte Carlo)</strong> 是从未知分布中采样的一类方法. MCMC
+构造了一个 Markov 链, 其平稳分布为 <span class="math inline">\(p_\theta(x)\)</span>,
+进而通过多次迭代的方法让采样收敛到 <span class="math inline">\(p_\theta(x)\)</span>.</p>
+<p><strong>Metropolis-Hastings 算法 (MH)</strong> 是最经典的 MCMC 框架.
+它的流程为</p>
+<ul>
+<li><p>从先验分布 <span class="math inline">\(\pi(x)\)</span> 中采样
+<span class="math inline">\(x_0\)</span>.</p></li>
+<li><p>状态转移:</p>
+<ol type="1">
+<li><p>(提议) 从一个提议分布 (proposal distribution) <span class="math inline">\(q(x'\mid x_t)\)</span> 中采样后选状态 <span class="math inline">\(x'\sim q(x'\mid x_t)\)</span>.
+提议分布通常比较简单, 比如以 <span class="math inline">\(x_t\)</span>
+为中心的 Gauss 分布.</p></li>
+<li><p>(计算接受率) 计算接受率 <span class="math display">\[
+A(x'\mid x_t) = \min\biggl\{1,
+   \frac{p_\theta(x')q(x_t\mid x')}{p_\theta(x_t)q(x'\mid
+x_t)}
+\biggr\},
+\]</span> 这个接受率确保了马尔可夫链满足 “细致平衡条件 (detailed
+balance)” , 从而保证 <span class="math inline">\(p_\theta(x)\)</span>
+是平稳分布.</p>
+<p>注意计算 <span class="math inline">\(A\)</span> 时 <span class="math inline">\(p_\theta(x')\)</span> 和 <span class="math inline">\(p_\theta(x_t)\)</span> 的归一化系数 <span class="math inline">\(Z_\theta\)</span> 相互抵消, 因此即使 <span class="math inline">\(Z_\theta\)</span> 未知, 也可以计算这个接受率, 这是
+MCMC 成功的关键.</p></li>
+<li><p>(接受/拒绝) 采样随机数 <span class="math inline">\(u\sim
+U[0,1]\)</span>,</p>
+<ul>
+<li>如果 <span class="math inline">\(u \le A(x'\mid x_t)\)</span>,
+则接受提议, 令 <span class="math inline">\(x_{t+1}\gets
+x'\)</span>.</li>
+<li>如果 <span class="math inline">\(u &gt; A(x'\mid x_t)\)</span>,
+则拒绝提议, 令 <span class="math inline">\(x_{t+1}\gets
+x_t\)</span>.</li>
+</ul></li>
+</ol></li>
+</ul>
+<p>MH 算法虽然通用，但在处理高维 / 复杂分布时存在显著缺点,</p>
+<ul>
+<li>如果提议分布 <span class="math inline">\(q\)</span> 的步长 (如 Gauss
+分布的方差) 太小, 链会像 “随机游走” 一样爬行,
+探索状态空间的速度非常慢.</li>
+<li>如果步长太大, 提议的 <span class="math inline">\(x'\)</span>
+会落到目标分布 <span class="math inline">\(p(x)\)</span> 的低概率区域,
+导致接受率 <span class="math inline">\(A\)</span> 极低,
+大量的提议被拒绝, 链停滞在原地.</li>
+<li>在高维空间中, 找到一个既能快速移动又具有高接受率的提议分布 <span class="math inline">\(q\)</span> 极其困难.</li>
+</ul>
+<h3 id="langevin-mcmc-sampling">13.4  Langevin MCMC sampling</h3>
+<p>MH 算法在探索状态空间 <span class="math inline">\(\Omega\)</span>
+时像 “无头苍蝇” 一样随机走动, 并没有利用 <span class="math inline">\(p_\theta(x)\)</span> 的已知信息 (比如能量 <span class="math inline">\(E_\theta(x)\)</span>). <strong>LD-MCMC (Langevin
+dynamics MCMC)</strong> 的核心思想是使用 <span class="math inline">\(p_\theta(x)\)</span> 的已知信息, 从而克服 MH
+效率低的问题.</p>
+<div class="note note-secondary">
+<p>LD-MCMC 启发自统计物理中的 <strong>Langevin 动力学</strong>.</p>
+<p>EBM 的背景是 Boltzmann 分布, 即系统在平衡态时, 分子位置的分布 <span class="math inline">\(p(x) \propto \exp(-E(x)/k_BT)\)</span>. Langevin
+动力学则定义了系统如何通过随机热运动 (动力学) 达到或维持平衡态.
+从这个角度来说, 使用 LD-MCMC 从 EBM 中采样是非常自然的.</p>
+<p><span class="math display">\[
+\xymatrix@=9em{
+*[F-,]{\hspace{2em}\mathclap{\textsf{初始状态}}\hspace{2em}\strut}
+  \ar@1{-&gt;}[r]^(.42){\large\textsf{Langevin 动力学}}
+&amp;
+*[F-,]{\hspace{4.5em}
+  \mathclap{\textsf{平衡态 (Boltzmann)}}
+  \hspace{4.5em}\strut}
+}
+\]</span> 由于我们刻画的是非平衡态, 分子的分布会随时间变化. 记随机变量
+<span class="math inline">\(x_t\)</span> 表示 <span class="math inline">\(t\)</span> 时刻分子的位置, 其中 <span class="math inline">\(t\)</span> 取值于某区间 <span class="math inline">\(I\)</span>, 则随机变量族 <span class="math inline">\(\{x_t\}_{t\in I}\)</span> 构成一个随机过程
+(stochastic process). 刻画随机过程随时间演化的方程是<strong>随机微分方程
+(SDE)</strong>.</p>
+<p>假设分子系统处于恒温 <span class="math inline">\(T\)</span> 的热浴中,
+则 <span class="math inline">\(x_t\)</span> 的演化由 Langevin
+方程刻画:<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">这里给出的是过阻尼的 (overdamped) Langevin 方程. 具体见
+https://en.wikipedia.org/wiki/Langevin_dynamics. 模仿物理中的 Langevin
+动力学, LD-MCMC 的迭代过程设计为</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span> <span class="math display">\[
+\dd{x_t} =
+- {\frac{1}{\gamma} \nabla_x E(x_t) \dd{t}}
++ {\sqrt{2 D} \dd{w_t}},
+\tag{$\diamondsuit$}
+\]</span> 这是一个 SDE, 其中:</p>
+<ul>
+<li>第一项 <span class="math inline">\(-\nabla_x E(x_t)\)</span>
+为势能梯度力, 它使得系统能量耗散, 将粒子推向低能区域.
+<ul>
+<li><span class="math inline">\(\gamma\)</span> 为摩擦系数.</li>
+</ul></li>
+<li>第二项 <span class="math inline">\(\sqrt{2D}\dd{w_t}\)</span>
+代表了周围介质对分子随机、快速的碰撞, 称为随机热涨落.
+<ul>
+<li>随机过程 <span class="math inline">\(w_t\)</span> 称为 Wiener 过程.
+微分 <span class="math inline">\(\dd{w_t}\)</span> 可以理解为随机 Gauss
+噪声.</li>
+<li><span class="math inline">\(D=k_BT/\gamma\)</span> 为扩散系数
+(diffusion coefficient).</li>
+</ul></li>
+</ul>
+<p>根据物理规律 (“涨落-耗散定理”), 随机过程 <span class="math inline">\(x_t\)</span> 的稳定分布恰好为 Boltzmann 分布 <span class="math display">\[
+p(x) \propto \exp\biggl(-\frac{E(x)}{k_BT}\biggr).
+\]</span> 即经过充分长时间后, <span class="math inline">\(x_t\)</span>
+服从的分布与 <span class="math inline">\(p(x)\)</span>
+的差距可以忽略不计.</p>
+</div>
+<ul>
+<li><p>从先验分布 <span class="math inline">\(\pi(x)\)</span> (例如标准
+Gauss 分布) 中采样 <span class="math inline">\(x_0\)</span>.</p></li>
+<li><p>状态转移: <span class="math display">\[
+x_{t+1} \gets x_t
++ \alpha \nabla_x E_\theta(x_t)
++ \sqrt{2\alpha} \, z_t,
+\]</span> 其中 <span class="math inline">\(z_t\sim\mathcal{N}(0,I)\)</span> 且相互独立, <span class="math inline">\(\alpha&gt;0\)</span> 为步长. 这是一个离散的
+Langevin 过程, 其中梯度项 <span class="math inline">\(\nabla_x(\dots)\)</span> 驱动 <span class="math inline">\(x_t\)</span> 向高概率区域移动, 随机项 <span class="math inline">\(z_t\)</span> 提供了随机探索的能力,
+避免收敛到一个极值点.</p></li>
+</ul>
+<p>LD-MCMC 使用离散的迭代过程求解连续的 SDE <span class="math inline">\((\diamondsuit)\)</span>, 称为 Euler-Maruyama
+迭代法, 类似于使用 Euler 法求解 ODE.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-langevin.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<h2 id="score-matching">14  Score Matching</h2>
+<h3 id="score-matching-1">14.1  Score matching</h3>
+<p>注意 LD-MCMC 迭代过程实际上只使用了能量梯度 <span class="math inline">\(\nabla_x E_\theta(x)\)</span>, 与能量函数本身无关.
+因此我们与其建模 <span class="math inline">\(E_\theta(x)\)</span>,
+不如直接建模 <span class="math inline">\(\nabla_x E_\theta(x)\)</span>.
+我们将能量梯度 <span class="math inline">\(\nabla_x E_\theta(x)\)</span>
+称为<strong>得分 (score)</strong>.</p>
+<ul>
+<li>原论文<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Aapo Hyvärinen, <em>Estimation of Non-Normalized
+Statistical Models by Score Matching</em>, 2005.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>实际上将得分定义为 <span class="math inline">\(\log{p_\theta(x)}\)</span> 关于 <span class="math inline">\(x\)</span> 的梯度. 容易看出这等于 <span class="math inline">\(\nabla_x E_\theta(x)\)</span>.</li>
+<li>实际上, 在统计学中, 得分应当是 <span class="math inline">\(\log{p_\theta(x)}\)</span> 关于 <span class="math inline">\(\theta\)</span> (而非 <span class="math inline">\(x\)</span>) 的梯度 (见前文), 这里 abuse term.</li>
+</ul>
+<p>所谓<strong>得分匹配 (score matching)</strong>, 就是让模型的得分函数
+<span class="math inline">\(\nabla_x\log p_\theta(x)\)</span>
+拟合真实的得分函数 <span class="math inline">\(\nabla_x\log
+p(x)\)</span>. 损失函数是 <span class="math inline">\(\ell^2\)</span>
+距离, <span class="math display">\[
+\mathcal{L}(\theta) := \frac12 \operatorname{E}_{x\sim p} \bigl\Vert
+    \nabla_x{\log p(x)} - \nabla_x{\log p_\theta(x)}
+\bigr\Vert_2^2,
+\]</span> 其中我们用一个神经网络 <span class="math inline">\(s_\theta(x)\)</span> 参数化 <span class="math inline">\(\nabla_x\log{p_\theta(x)}\)</span>.
+这其中有一个问题: 我们并不知道真实分布的梯度 <span class="math inline">\(\nabla_x\log{p(x)}\)</span>.</p>
+<p>假设真实分布满足某些条件<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">包括 <span class="math inline">\(\lim_{\|x\|\to\infty}p(x)s_{\theta}(x)=0\)</span>
+等.</hcontent><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" style="text-decoration: none;"><sup>[4]</sup></a></span>, 利用分部积分的技巧重写
+<span class="math inline">\(\mathcal{L}(\theta)\)</span>, 我们能够得到
+<span class="math display">\[
+\mathcal{L}(\theta) = \operatorname{E}_{x\sim p} \biggl[
+    \tr\bigl(\nabla_x s_\theta(x)\bigr) +
+    \frac12\|s_\theta(x)\|_2^2
+\biggr] + \mathsf{const.},
+\]</span> 其中第一项是向量场 <span class="math inline">\(s_\theta(x)\)</span> 的散度, 第二项为 <span class="math inline">\(s_\theta(x)\)</span> 的 <span class="math inline">\(\ell^2\)</span>-范数. 这两者都是可以计算的.</p>
+<ul>
+<li>得分匹配是一种隐式模型, 它不建模 <span class="math inline">\(p_\theta(x)\)</span>; 然而我们不必像其他的隐式模型
+(比如 GAN) 一样进行对抗学习, 大大增加了稳定性.</li>
+</ul>
+<h3 id="denoising-score-matching">14.2  Denoising score matching</h3>
+<p>朴素的得分匹配在实际中会遇到一些困难. 回顾流形假设 (manifold
+hypothesis):</p>
+<ul>
+<li>真实样本 <span class="math inline">\(X\)</span> 通常在 <span class="math inline">\(\R^N\)</span> 中十分稀疏, 即真实密度 <span class="math inline">\(p(x)\)</span> 的支集 <span class="math inline">\(\supp{p}\)</span> 构成 <span class="math inline">\(\R^N\)</span> 的低维子流形.</li>
+</ul>
+<p>这意味着 <span class="math inline">\(X\)</span> 在 <span class="math inline">\(\R^N\)</span>
+中是非常稀疏的——除开很小的一个区域之外, 密度 <span class="math inline">\(p(x)\)</span> 都为零! 这导致 <span class="math inline">\(s_\theta(x)\)</span>
+的估计值在低样本密度区域非常不准确, 使得 Langevin 迭代初期偏离正轨,
+产生差强人意的结果.</p>
+<p>如何解决? 论文<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Yang Song, Stefano Ermon, <em>Generative Modeling by
+Estimating Gradients of the Data Distribution</em>, 2019.</hcontent><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref" style="text-decoration: none;"><sup>[5]</sup></a></span>使用了 “噪声扰动” 的办法.
+考虑真实分布 <span class="math inline">\(p(x)\)</span> 上叠加一个 Gauss
+分布 <span class="math display">\[
+p_{\sigma}(x) := \int_{\R^N} p(y) \mathcal{N}(x;y,\sigma^2I) \dd{y}.
+\]</span> 若要从 <span class="math inline">\(p_\sigma(x)\)</span>
+中采样, 可以先采样真实样本 <span class="math inline">\(x\sim
+p(x)\)</span>, 再加上 Gauss 分布 <span class="math inline">\(x+\sigma
+z\)</span>, <span class="math inline">\(z\sim\mathcal{N}(0,I)\)</span>.
+这种思想的核心是下面几个观察:</p>
+<ul>
+<li>Gauss 分布支在整个 <span class="math inline">\(\R^N\)</span>,
+这解决了流形假设带来的稀疏性.</li>
+<li>强噪声 (较大的 <span class="math inline">\(\sigma\)</span>) 让 <span class="math inline">\(p_\sigma\)</span> 更加分散, 在迭代过程中,
+可以让遍布整个空间中的点移动到 <span class="math inline">\(p(x)\)</span>
+的支集附近; 弱噪声 (较小的 <span class="math inline">\(\sigma\)</span>)
+对真实分布的扰动较小, 可以让已经处在 <span class="math inline">\(p(x)\)</span> 附近的点收敛到较精确的分布.</li>
+<li>同时使用强噪声和弱噪声, 可以在解决稀疏性的同时提高采样准确率.</li>
+</ul>
+<p>因此, 原论文采用了多个噪声层级 <span class="math inline">\(\sigma_1&gt;\sigma_2&gt;\dots&gt;\sigma_L\)</span>
+(构成等比数列), 并对每个每个 <span class="math inline">\(p_{\sigma_l}\)</span> 进行得分匹配.
+即构造一个神经网络 <span class="math inline">\(s_\theta(x,l)\)</span>
+(第二个参数指示噪声层级), 用来拟合不同层级的得分函数, <span class="math display">\[
+s_\theta(x,l) \approx \nabla_x \log p_{\sigma_l}(x).
+\]</span> 损失函数为各个层级的 <span class="math inline">\(\ell^2\)</span> 损失的加权和, <span class="math display">\[
+\mathcal{L}(\theta) := \sum_{l=1}^L
+\lambda(l) \operatorname{E}_{x\sim p_{\sigma_l}} \bigl\Vert
+    \nabla_x{\log p_{\sigma_l}(x)} - s_\theta(x,l)
+\bigr\Vert_2^2,
+\]</span> 其中权重通常取 <span class="math inline">\(\lambda(l)=\sigma_l^2\)</span>.</p>
+<p>在训练好 <span class="math inline">\(s_\theta(x,l)\)</span> 之后,
+我们使用退火 Langevin 动力学 (annealed Langevin dynamics) 进行采样,
+步骤如下:</p>
+<ul>
+<li><p>从先验分布 <span class="math inline">\(\pi(x)\)</span> (例如标准
+Gauss 分布) 中采样 <span class="math inline">\(x_0\)</span>.</p></li>
+<li><p>对噪声层级 <span class="math inline">\(l=1,2,\dots,L\)</span>,</p>
+<ul>
+<li><p>迭代 <span class="math inline">\(T\)</span> 步: <span class="math display">\[
+x_{t+1} \gets
+x_t + \alpha_l s_\theta(x_t,l) + \sqrt{2\alpha_t}\, z_t,
+\]</span> 其中随机噪声 <span class="math inline">\(z_t\)</span> 从 <span class="math inline">\(\mathcal{N}(0,I)\)</span> 中独立采样, 步长 <span class="math display">\[
+\alpha_l = \alpha_0 \cdot \frac{\sigma_l^2}{\sigma_L^2}.
+\]</span> 注意 <span class="math inline">\(\sigma_l^2\)</span> 是递减的,
+意味着 <span class="math inline">\(\alpha_l\)</span> 也逐级递减,
+也就是所谓 “退火” (anneal).</p></li>
+<li><p>将终点 <span class="math inline">\(x_T\)</span>
+设为下一层级的初始值.</p></li>
+</ul></li>
+<li><p>最终的 <span class="math inline">\(x_T\)</span> 近似服从 <span class="math inline">\(p_{\sigma_L}(x)\)</span>, 当 <span class="math inline">\(\sigma_L\)</span> 充分小时约为 <span class="math inline">\(p(x)\)</span>.</p></li>
+</ul>
+<p>在采样过程中, <span class="math inline">\(x\)</span>
+中的噪声被逐级消除, 因此这个模型也称为<strong>去噪得分匹配 (denoising
+score matching)</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-langevin-anneal.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>下面列出的分布实际上都属于指数族分布 (exponential
+family).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>这里给出的是过阻尼的 (overdamped) Langevin 方程. 具体见
+https://en.wikipedia.org/wiki/Langevin_dynamics. 模仿物理中的 Langevin
+动力学, LD-MCMC 的迭代过程设计为<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Aapo Hyvärinen, <em>Estimation of Non-Normalized
+Statistical Models by Score Matching</em>, 2005.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>包括 <span class="math inline">\(\lim_{\|x\|\to\infty}p(x)s_{\theta}(x)=0\)</span>
+等.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Yang Song, Stefano Ermon, <em>Generative Modeling by
+Estimating Gradients of the Data Distribution</em>, 2019.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>生成模型基础 | 6 基于能量的模型</div>
+      <div>https://disembo.github.io/Note/Course/gen-models/6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/Course/gen-models/5/" title="生成模型基础 | 5 归一化流">
+                        <span class="hidden-mobile">生成模型基础 | 5 归一化流</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

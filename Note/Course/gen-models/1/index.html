@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/1-vqvae.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/1-vqvae-multihead.png">
 <meta property="article:published_time" content="2025-09-23T14:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-04T05:38:47.464Z">
+<meta property="article:modified_time" content="2025-11-24T11:21:07.982Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -324,7 +324,8 @@
 (比如所有 <span class="math inline">\(128\times128\)</span> 的图像中,
 几乎所有图像都是噪声, 只有极少数是有意义的), 即 <span class="math inline">\(p\)</span> 的支集 <span class="math display">\[
 \Sigma := \overline{ \{ x\in{\cal X} \mid p(x)&gt;0 \} }
-\]</span> 是一个 <span class="math inline">\(K\)</span> 维子流形 (<span class="math inline">\(K\ll D\)</span>). <strong>自编码器 (autoencoder,
+\]</span> 是一个 <span class="math inline">\(K\)</span> 维子流形 (<span class="math inline">\(K\ll D\)</span>). 这也称为<strong>流形假设
+(manifold hypothesis)</strong>. <strong>自编码器 (autoencoder,
 AE)</strong> 主要的作用是学习该子流形. AE 包含两部分:</p>
 <ul>
 <li>编码映射 (encoder) <span class="math inline">\(\varphi_\theta:{\cal
@@ -376,22 +377,23 @@ Z}\to\mathcal{X}\)</span> 将压缩的数据还原.</li>
 甚至不知道它的性质.</p>
 <p><strong>变分自编码器 (variational autoencoder, VAE)</strong>
 做的就是对隐空间的概率分布 <span class="math inline">\((\varphi_\theta)_*p\)</span> 做了 “正则化”,
-让它尽量接近一个已知的、好的分布——标准正态分布 <span class="math inline">\(\mathcal{N}(0,I)\)</span>.</p>
+让它尽量接近一个已知的、好的分布——标准 Gauss 分布 <span class="math inline">\(\mathcal{N}(0,I)\)</span>.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/1-vae.png" style="zoom:45%;" cloud-img="" lazyload="true"></p>
-<p>如此一来, 我们就可以从隐空间 <span class="math inline">\(\mathcal{Z}\)</span> 上的正态分布 <span class="math inline">\(\mathcal{N}(0,I)\)</span> 中采样 <span class="math inline">\(z\)</span>, 然后经过 decoder 就可以生成新的数据了:
+<p>如此一来, 我们就可以从隐空间 <span class="math inline">\(\mathcal{Z}\)</span> 上的 Gauss 分布 <span class="math inline">\(\mathcal{N}(0,I)\)</span> 中采样 <span class="math inline">\(z\)</span>, 然后经过 decoder 就可以生成新的数据了:
 <span class="math display">\[
 \psi_\theta(z) \sim p.
 \]</span></p>
 <p>在具体实现上, 我们一般将 “采样” 这个步骤放到 encoder 里: encoder
-<span class="math inline">\(\varphi_\theta\)</span>
-首先估计正态分布的均值和方差 <span class="math inline">\((\mu,\Sigma)\)</span>, 然后再从该正态分布 <span class="math inline">\(\mathcal{N}(\mu,\Sigma)\)</span>
+<span class="math inline">\(\varphi_\theta\)</span> 首先估计 Gauss
+分布的均值和方差 <span class="math inline">\((\mu,\Sigma)\)</span>,
+然后再从该 Gauss 分布 <span class="math inline">\(\mathcal{N}(\mu,\Sigma)\)</span>
 中采样一个样本作为输出的 <span class="math inline">\(z=\varphi_\theta(x)\)</span>. 换言之, encoder
 <span class="math inline">\(\varphi_\theta\)</span>
 并不是一个确定的函数, 而是一个随机函数 (stochastic function),
 其输入是确定的 <span class="math inline">\(x\)</span>,
 输出是服从某一分布的随机变量. 这种表示方法称为随机隐变量表示 (stochastic
 latent representation).</p>
-<p>最后, 如何让 encoder 输出的分布接近于标准正态分布? 答案是用 KL
+<p>最后, 如何让 encoder 输出的分布接近于标准 Gauss 分布? 答案是用 KL
 散度作为 “正则化”: <span class="math display">\[
 \mathcal{L}_{\textsf{reg}}
 := D_\textsf{KL}( \mathcal{N}(\mu,\Sigma) \parallel \mathcal{N}(0,I) ).
@@ -407,7 +409,7 @@ encoder 对于所有的样本 <span class="math inline">\(\{x_i\}\)</span>
 过拟合了.</p>
 </div>
 <div class="note note-success">
-<p><u>Theorem</u> (两个正态分布的 KL 散度) 设 <span class="math inline">\(p,q\)</span> 分别为 <span class="math inline">\(n\)</span> 维正态分布 <span class="math inline">\(\mathcal{N}(\mu_p,\Sigma_p)\)</span> 和 <span class="math inline">\(\mathcal{N}(\mu_q,\Sigma_q)\)</span> 的密度函数,
+<p><u>Theorem</u> (两个 Gauss 分布的 KL 散度) 设 <span class="math inline">\(p,q\)</span> 分别为 <span class="math inline">\(n\)</span> 维 Gauss 分布 <span class="math inline">\(\mathcal{N}(\mu_p,\Sigma_p)\)</span> 和 <span class="math inline">\(\mathcal{N}(\mu_q,\Sigma_q)\)</span> 的密度函数,
 则 KL 散度 <span class="math display">\[
 D_{\textsf{KL}}(p\parallel q) = \frac12\bqty{
   \tr(\Sigma_q^{-1}\Sigma_p)
@@ -416,7 +418,7 @@ D_{\textsf{KL}}(p\parallel q) = \frac12\bqty{
   - n
 }.
 \]</span></p>
-<p>特别地, 若 <span class="math inline">\(q\)</span> 为标准正态分布
+<p>特别地, 若 <span class="math inline">\(q\)</span> 为标准 Gauss 分布
 <span class="math inline">\(\mathcal{N}(0,I)\)</span>, 则 <span class="math display">\[
 D_{\textsf{KL}}(p\parallel q) = \frac12\bqty{
   \tr(\Sigma_p)
@@ -428,12 +430,12 @@ D_{\textsf{KL}}(p\parallel q) = \frac12\bqty{
 </div>
 <h3 id="the-reparameterization-trick">2.2  The reparameterization trick</h3>
 <p>VAE 看起来好极了, 但是如果我们想要用梯度下降法训练一个 VAE,
-就会发现一个致命问题——从正态分布 <span class="math inline">\(\mathcal{N}(\mu,\Sigma)\)</span>
+就会发现一个致命问题——从 Gauss 分布 <span class="math inline">\(\mathcal{N}(\mu,\Sigma)\)</span>
 中采样的过程是非连续的, 导致损失函数关于 encoder 的参数不可微.</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/1-vae-discontinuous.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
 <p>如上图, 问题的关键是 samle 步阻碍了梯度反向传播.
 解决办法也很简单——只要把 sample 步挪到外面即可 (即重参数化技巧).
-即先从标准正态分布采样 <span class="math inline">\(\varepsilon\sim\mathcal{N}(0,I)\)</span>, 然后根据
+即先从标准 Gauss 分布采样 <span class="math inline">\(\varepsilon\sim\mathcal{N}(0,I)\)</span>, 然后根据
 <span class="math inline">\((\mu,\Sigma)\)</span> 缩放: <span class="math display">\[
 z = \sqrt{\Sigma}\cdot\varepsilon + \mu \sim \mathcal{N}(\mu,\Sigma).
 \]</span> 此时计算图为</p>
@@ -448,7 +450,7 @@ z = \sqrt{\Sigma}\cdot\varepsilon + \mu \sim \mathcal{N}(\mu,\Sigma).
 (MLE).</p>
 <p>训练 VAE 就好比一个参数估计问题, 只不过此时 <span class="math inline">\(p(x)\)</span> 并非由参数 <span class="math inline">\(\lambda\)</span> 指导生成, 而是由另一个分布 <span class="math inline">\(p(z)\)</span> 指导生成 (<span class="math inline">\(z\)</span> 就是隐变量):</p>
 <ol type="1">
-<li><p>首先, 从一个已知的、简单的<strong>先验分布</strong> <span class="math inline">\(p(z)\)</span> (比如标准正态分布 <span class="math inline">\(\mathcal{N}(0,I)\)</span>) 中采样一个隐变量 <span class="math inline">\(z\)</span>.</p></li>
+<li><p>首先, 从一个已知的、简单的<strong>先验分布</strong> <span class="math inline">\(p(z)\)</span> (比如标准 Gauss 分布 <span class="math inline">\(\mathcal{N}(0,I)\)</span>) 中采样一个隐变量 <span class="math inline">\(z\)</span>.</p></li>
 <li><p>然后, 利用一个复杂的条件概率分布 <span class="math inline">\(p(x\mid z)\)</span> (即<strong>似然函数</strong>,
 由 decoder 建模) 从隐变量 <span class="math inline">\(z\)</span>
 生成数据 <span class="math inline">\(x\)</span>.</p></li>
@@ -457,14 +459,14 @@ z = \sqrt{\Sigma}\cdot\varepsilon + \mu \sim \mathcal{N}(\mu,\Sigma).
 p(x) = \int_{\R^n} p(x\mid z) p(z) \dd{z}.
 \]</span></p></li>
 </ol>
-<p>这里一大难点是 <span class="math inline">\(p(x)\)</span> 没法算,
-因为这个高维积分不好求. 解决办法是引入一个较简单的分布 <span class="math inline">\(q(z\mid x)\)</span> 来近似 (未知的)
+<p>这里一大难点是 <span class="math inline">\(p(x)\)</span>
+这个高维积分不好求. 解决办法是引入一个较简单的分布 <span class="math inline">\(q(z\mid x)\)</span> 来近似 (未知的)
 <strong>后验分布</strong> <span class="math inline">\(p(z\mid
 x)\)</span>. 分布 <span class="math inline">\(q(z\mid x)\)</span>
 也称为<strong>近似后验分布</strong>, 由 encoder 建模.</p>
 <p>从最大化边缘似然 (证据) 开始: <span class="math display">\[
 \Align{
-\log{p_\theta(x)}
+\log{p(x)}
 &amp;= \log\!\pqty{ \int_{\R^n} p(x\mid z)p(z) \dd{z} } \\
 &amp;= \log\!\pqty{ \int_{\R^n}
     \frac{p(x\mid z)p(z)}{q(z\mid x)} \cdot q(z\mid x) \dd{z} } \\
