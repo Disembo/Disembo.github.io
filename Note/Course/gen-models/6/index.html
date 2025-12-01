@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-langevin.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/6-langevin-anneal.png">
 <meta property="article:published_time" content="2025-11-26T03:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-26T03:10:42.777Z">
+<meta property="article:modified_time" content="2025-11-29T03:47:07.534Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -595,8 +595,7 @@ dynamics MCMC)</strong> 的核心思想是使用 <span class="math inline">\(p_\
 <p>假设分子系统处于恒温 <span class="math inline">\(T\)</span> 的热浴中,
 则 <span class="math inline">\(x_t\)</span> 的演化由 Langevin
 方程刻画:<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">这里给出的是过阻尼的 (overdamped) Langevin 方程. 具体见
-https://en.wikipedia.org/wiki/Langevin_dynamics. 模仿物理中的 Langevin
-动力学, LD-MCMC 的迭代过程设计为</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span> <span class="math display">\[
+https://en.wikipedia.org/wiki/Langevin_dynamics.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span> <span class="math display">\[
 \dd{x_t} =
 - {\frac{1}{\gamma} \nabla_x E(x_t) \dd{t}}
 + {\sqrt{2 D} \dd{w_t}},
@@ -624,6 +623,7 @@ p(x) \propto \exp\biggl(-\frac{E(x)}{k_BT}\biggr).
 服从的分布与 <span class="math inline">\(p(x)\)</span>
 的差距可以忽略不计.</p>
 </div>
+<p>模仿物理中的 Langevin 动力学, LD-MCMC 的迭代过程设计为</p>
 <ul>
 <li><p>从先验分布 <span class="math inline">\(\pi(x)\)</span> (例如标准
 Gauss 分布) 中采样 <span class="math inline">\(x_0\)</span>.</p></li>
@@ -744,8 +744,7 @@ score matching)</strong>.</p>
 <li id="fn1"><p>下面列出的分布实际上都属于指数族分布 (exponential
 family).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>这里给出的是过阻尼的 (overdamped) Langevin 方程. 具体见
-https://en.wikipedia.org/wiki/Langevin_dynamics. 模仿物理中的 Langevin
-动力学, LD-MCMC 的迭代过程设计为<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+https://en.wikipedia.org/wiki/Langevin_dynamics.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Aapo Hyvärinen, <em>Estimation of Non-Normalized
 Statistical Models by Score Matching</em>, 2005.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>包括 <span class="math inline">\(\lim_{\|x\|\to\infty}p(x)s_{\theta}(x)=0\)</span>
