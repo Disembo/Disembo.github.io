@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-posy.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-posy-result.png">
 <meta property="article:published_time" content="2025-03-15T09:30:00.000Z">
-<meta property="article:modified_time" content="2025-04-06T14:13:21.876Z">
+<meta property="article:modified_time" content="2026-03-03T02:39:58.065Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="计算机图形学">
 <meta property="article:tag" content="计算几何">
@@ -623,12 +623,14 @@ p_i - {\sf Rotate}({\cal T}_4(p_j,n_j,o_j,t_{ji}))
 用于记录 <span class="math inline">\({\cal T}_4(p_j,n_j,o_j)\)</span>
 旋转后的哪个格点距离 <span class="math inline">\(p_i\)</span> 最近.
 要确定 <span class="math inline">\(t_{ji}\)</span>, 只需遍历 <span class="math inline">\(p_i\)</span> 所在格子的四个格点即可.</p></li>
-<li><p>(extrinsic) 不旋转, 直接计算最近的两个个点的距离平方: <span class="math display">\[
+<li><p>(extrinsic) 不旋转, 直接计算最近的两个格点的距离平方: <span class="math display">\[
 E_{\sf e}(P,t) := \sum_{(i,j)\in E({\cal K})} \|
 {\cal T}_4(p_i,n_i,o_i,t_{ij}) - {\cal T}_4(p_j,n_j,o_j,t_{ji})
 \|^2,
-\]</span> 其中 <span class="math inline">\((t_{ij},t_{ji})\in\Z^2\)</span>. 要确定 <span class="math inline">\((t_{ij},t_{ji})\)</span>,
-并不需要枚举无穷多种组合, 只需考虑 <span class="math inline">\(v_i,v_j\)</span> 处的切平面以及 <span class="math inline">\(n_i,n_j\)</span> 所确定的平面, 这三者的交点 <span class="math inline">\(q_{ij}\)</span> 所在的格子即可, 共 <span class="math inline">\(4\times4\)</span> 种情况.</p></li>
+\]</span> 其中 <span class="math inline">\(t_{ij},t_{ji}\in\Z^2\)</span>. 要确定 <span class="math inline">\(t_{ij}\)</span> 和 <span class="math inline">\(t_{ji}\)</span>, 并不需要枚举无穷多种组合,
+只需考虑 <span class="math inline">\(v_i,v_j\)</span> 处的切平面以及
+<span class="math inline">\(n_i,n_j\)</span> 所确定的平面, 这三者的交点
+<span class="math inline">\(q_{ij}\)</span> 所在的格子即可, 共 <span class="math inline">\(4\times4\)</span> 种情况.</p></li>
 </ul>
 <p>Intrinsic 和 extrinsic 的优化结果如下:</p>
 <p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/cg/proc/3-quad-posy-result.png" cloud-img="" style="zoom:30%;" lazyload="true"></p>
