@@ -1,0 +1,1041 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基于得分的模型, 正向与逆向过程, 概率流 ODE 以及几种扩散模型.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成模型基础 | 7 基于得分的模型">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/gen-models/7/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="基于得分的模型, 正向与逆向过程, 概率流 ODE 以及几种扩散模型.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/7-sde.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/7-pf-ode.png">
+<meta property="article:published_time" content="2026-03-25T13:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-25T14:20:34.044Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/7-sde.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>生成模型基础 | 7 基于得分的模型 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="生成模型基础 | 7 基于得分的模型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-25 21:00" pubdate>
+          2026年3月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">生成模型基础 | 7 基于得分的模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<p>这篇文章的主要思想来自于原论文作者 Yang Song (宋飏) 的博客: <a target="_blank" rel="noopener" href="https://yang-song.net/blog/2021/score">Generative Modeling by
+Estimating Gradients of the Data Distribution</a>. 基于 SDE
+的生成模型是一个很通用的框架, 许多模型都可以放在这个框架下解释,
+比如上一节的得分匹配与著名的扩散模型.</p>
+<h2 id="score-based-models">15  Score-Based Models</h2>
+<h3 id="continuous-denoising">15.1  Continuous denoising</h3>
+<p>在训练去噪得分匹配模型 (DSM) 的时候,
+我们会向真实分布中添加不同级别的噪声. 其中, 较强的噪声可以让样本分布
+“填充” 整个空间, 适合采样过程的早期; 较弱的噪声更好地保持原本分布的细节,
+适合采样过程的后期.</p>
+<p>如果我们令噪声层级 <span class="math inline">\(L\to\infty\)</span>,
+直观上看,</p>
+<ul>
+<li>我们实际上是向 <span class="math inline">\(p(x)\)</span>
+中连续、逐渐地加入 Gauss 噪声, Gauss 噪声的方差连续增大.</li>
+<li>采样的过程由 “分层” 退火 Langevin 就变成了 “连续” 退火 Langevin,
+其中随机噪声强度逐渐减小.</li>
+</ul>
+<p>加噪过程可以用一个 SDE 描述, 称为<strong>正向过程 (forward
+process)</strong>, <span class="math display">\[
+\dd{x_t} = {f(x_t,t) \dd{t}} + {g(t) \dd{w_t}},
+\]</span> 其中映射 <span class="math inline">\(f(-,t):\R^N\to\R^N\)</span> 称为漂移系数 (drift
+coefficient), 函数值 <span class="math inline">\(g(t)\in\R\)</span>
+称为扩散系数 (diffusion coefficient), 随机过程 <span class="math inline">\(w_t\)</span> 是 Wiener 过程, 时间 <span class="math inline">\(t\in[0,T]\)</span>.</p>
+<ul>
+<li>当 <span class="math inline">\(f(x,t)\equiv0\)</span> 时, <span class="math inline">\(x_t\)</span> 的均值不随时间变化.</li>
+<li><span class="math inline">\(g(t)\)</span> 控制加噪强度.</li>
+</ul>
+<p>令加噪过程 “时间倒流”, 我们就得到了采样 (去噪) 过程. 任何一个 SDE
+都对应一个时间逆转版本. 去噪过程的 SDE 就是加噪过程的 SDE 的逆转版本<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Brian D.O. Anderson, <em>Reverse-time diffusion equation
+models</em>, 1982.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span>, 即<strong>逆向过程 (reverse
+process)</strong>, <span class="math display">\[
+\dd{x}_t
+= {\bigl[ f(x_t,t) - g^2(t) \orange{\nabla_{x_t} \log p_t(x_t)}
+\bigr]\dd{t}}
++ g(t)\dd{\bar{w}_t}.
+\]</span></p>
+<p>其中 <span class="math inline">\(p_t(x)\)</span> 是 <span class="math inline">\(x_t\)</span> 的密度函数, 橙色部分是得分函数.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/7-sde.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<h3 id="score-matching">15.2  Score matching</h3>
+<p>为了求解逆向过程, 我们需要求解 <span class="math inline">\(\nabla_x
+\log p_t(x)\)</span>. 我们仍旧使用得分匹配去训练 <span class="math inline">\(s_\theta(x,t)\approx\nabla_x \log p_t(x)\)</span>.
+损失函数是加权的 <span class="math inline">\(\ell^2\)</span> 损失 <span class="math display">\[
+\mathcal{L}(\theta) := \operatorname{E}_{t\sim U[0,T]}
+\operatorname{E}_{x_t \sim p_t} \Bigl[ \lambda(t) \bigl\Vert
+    \nabla_{x_t}{\log p_t(x_t)} - s_\theta(x_t,t)
+\bigr\Vert_2^2\Bigr],
+\]</span> 其中 <span class="math inline">\(\lambda:[0,T]\to(0,+\infty)\)</span> 是权重函数,
+分布 <span class="math inline">\(p_t(x)\)</span> 通过在真实分布 <span class="math inline">\(p(x)\)</span> 上应用正向过程算得.</p>
+<h3 id="solving-the-reverse-sde">15.3  Solving the reverse SDE</h3>
+<p>当我们训练好了 <span class="math inline">\(s_\theta(x,t)\)</span>,
+就可以把它代入逆向过程 SDE <span class="math display">\[
+\dd{x}_t
+= {\bigl[ f(x_t,t) - g^2(t) \orange{s_\theta(x,t)} \bigr]\dd{t}}
++ g(t)\dd{\bar{w}_t},
+\]</span> 从先验分布采样 <span class="math inline">\(x_T\sim\pi\)</span>, 再求解 SDE 得到 <span class="math inline">\(\hat{x}_0\)</span>. 记 <span class="math inline">\(\hat{x}_0\sim p_\theta\)</span>.
+当模型训练得足够好的时候, <span class="math inline">\(p_\theta(x)\)</span> 近似等于真实分布 <span class="math inline">\(p(x)\)</span>, 此时 <span class="math inline">\(\hat{x}_0\)</span> 便可以视作 <span class="math inline">\(p(x)\)</span> 的一个样本了.</p>
+<p>采样的过程需要求解逆向 SDE. 最简单的办法就是 Euler-Maruyama 法.
+类似于 ODE 的 Euler 法, Euler-Maruyama 法取初始时间 <span class="math inline">\(t=T\)</span> 和初值 <span class="math inline">\(x\sim\pi\)</span> 并进行迭代 <span class="math display">\[
+\Align{
+\Delta x
+&amp;\gets {\bigl[ f(x,t) - g^2(t) \orange{s_\theta(x,t)} \bigr] \Delta
+t}
++ g(t)\sqrt{\smash{|\Delta t|}\vphantom{f}}\,z_t, \\
+x &amp;\gets x + \Delta x, \\
+t &amp;\gets t + \Delta t,
+}
+\]</span> 其中 <span class="math inline">\(\Delta t&lt;0\)</span>
+(时间从 <span class="math inline">\(T\)</span> 到 <span class="math inline">\(0\)</span>), 噪声 <span class="math inline">\(z_t\sim\mathcal{N}(0,I)\)</span> 相互独立.</p>
+<h3 id="probability-flow">15.4  Probability flow</h3>
+<p>在采样时, 我们需要用 Euler-Maruyama 法慢慢迭代, 通产需要上千步.
+有没有快一点的方法?</p>
+<p>可以证明, 逆向过程的 <span class="math inline">\(x_t\)</span>
+的分布密度 <span class="math inline">\(p_t(x)\)</span> 满足如下 ODE,
+<span class="math display">\[
+\eval{\dv{x}{t}}_t = f(x,t) - \frac12 g^2(t) \orange{\nabla_x \log
+p_t(x)}.
+\]</span></p>
+<p>这个 ODE 称为 <strong>probability-flow ODE (PF-ODE)</strong>.</p>
+<div class="note note-warning">
+<p><u>Note</u> SDE vs PF-ODE.</p>
+<p>想象你向一条湍急的河中滴入了一滴墨水 (初始数据分布 <span class="math inline">\(p_0\)</span>).</p>
+<ol type="1">
+<li><strong>SDE (微观视角)</strong>: 如果盯住其中单个墨水分子,
+其轨迹是随机、曲折的. 它既被河水的整体流向 (漂移项)
+带着走，又因为分子间的随机碰撞 (布朗运动 / 扩散项) 而抖动.</li>
+<li><strong>PF-ODE (宏观视角)</strong>: 不看单个分子, 而是退后一步,
+看整滴墨水在水中扩散开来的浓度轮廓 (概率密度 <span class="math inline">\(p_t\)</span>). 随着时间推移,
+高浓度区域向低浓度区域平滑地晕染开, 同时随着河水漂移.
+概率密度的演化平滑且确定.</li>
+</ol>
+<p>PF-ODE 构建了一个确定的流场 <span class="math inline">\(v(x,t)\)</span> (速度场).
+如果让微粒不再做任何随机碰撞, 而是严格沿着 <span class="math inline">\(v(x,t)\)</span> 的流线运动, 那么在任何时刻 <span class="math inline">\(t\)</span>, 这些微粒构成的宏观浓度分布,
+与包含随机碰撞的 SDE 产生的浓度分布完全一模一样.</p>
+<p>简而言之, PF-ODE 是一个剥离了随机性, 却能完美复刻 SDE
+概率密度演化过程的确定性系统.</p>
+</div>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/7-pf-ode.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>逆向 SDE 中的随机噪声决定了其采样步长 <span class="math inline">\(\Delta t\)</span> 不能太大,
+否则随机噪声的方差就会爆炸, 导致样本偏离高密度数据流形,
+生成完全损坏的图像. 而 PF-ODE 的流线比较平滑, 我们可以使用较大的 <span class="math inline">\(\Delta t\)</span>. 此外, 已经有许多成熟的 ODE
+数值求解器, 例如 Runge-Kutta, 可以达到很高阶的精度.</p>
+<ul>
+<li>研究人员针对扩散模型的 PF-ODE 结构, 设计了专用的精确求解器
+(DPM-Solver 系列). 其利用了 Taylor 展开精确抵消高阶误差, 能将原本 <span class="math inline">\(1000\)</span> 步的采样压缩到 <span class="math inline">\(10\)</span> 到 <span class="math inline">\(20\)</span> 步, 且几乎不损失生成质量.</li>
+</ul>
+<div class="note note-warning">
+<p><u>Note</u> Score-based models 总结.</p>
+<ul>
+<li>向真实分布逐渐地、连续地加入噪音, 用 SDE 建模这个过程.</li>
+<li>训练: 使用神经网络拟合加噪分布的对数梯度 (score).</li>
+<li>采样:
+<ul>
+<li>A. 使用逆向过程逐步将噪音推到真实分布.</li>
+<li>B. 求解概率流 ODE, 快速地将噪音推到真实分布.</li>
+</ul></li>
+</ul>
+</div>
+<h2 id="diffusion-models">16  Diffusion Models</h2>
+<p>下面考虑两种特殊的正向 SDE,
+它们分别对应上一篇介绍的去噪得分匹配和扩散模型.</p>
+<h3 id="ve-sde">16.1  VE-SDE</h3>
+<p><strong>Variance-exploding SDE (VE-SDE)</strong>. 取 <span class="math inline">\(g(t)=\sigma(t)\)</span> 为任意递增的正值函数且
+<span class="math inline">\(f(x,t)\equiv0\)</span>, 我们得到 <span class="math display">\[
+\Align{
+&amp;\textsf{(正向)} &amp; \dd{x_t} &amp;= \sigma(t) \dd{w_t}, \\
+&amp;\textsf{(逆向)} &amp; \dd{x_t} &amp;=
+{-\sigma^2(t) \nabla_{x}\log p_t(x_t) \dd{t} }
++ \sigma(t)\dd{\bar{w}_t}.
+}
+\]</span> VE-SDE 之所以被称为 “方差爆炸的 SDE”, 其特点是</p>
+<ul>
+<li>纯扩散: 由于漂移项为零, VE-SDE 描述的是一个纯粹的布朗运动过程 (<span class="math inline">\(\dd{x_t}\propto\dd{w}_t\)</span>),
+没有恢复力或系统性的收缩.</li>
+<li>方差爆炸: 随着时间 <span class="math inline">\(t\)</span> 的推移,
+扩散强度 <span class="math inline">\(g(t)\)</span> 不断增大,
+导致数据分布的方差不断增加, “爆炸” 直到 <span class="math inline">\(t=T\)</span> 时变成一个方差巨大的 Gauss 分布.</li>
+</ul>
+<p>例如, 当 <span class="math inline">\(\sigma(t):=\exp(t)\)</span> 时,
+就得到了类似于去噪得分匹配中等比数列 <span class="math inline">\(\sigma_1&lt;\sigma_2&lt;\dots&lt;\sigma_L\)</span>
+加噪策略. 对逆向过程使用 Euler-Maruyama 离散化,
+就可以得到去噪得分匹配中的 “退火 Langevin 动力学”.</p>
+<h3 id="vp-sde">16.2  VP-SDE</h3>
+<p><strong>Variance-preserving SDE (VP-SDE)</strong>. 取 <span class="math inline">\(f(x,t)=-\frac12\beta(t)x\)</span> 和 <span class="math inline">\(g(t)=\sqrt{\beta(t)}\)</span>, 其中 <span class="math inline">\(\beta(t)&gt;0\)</span>. 此时 <span class="math display">\[
+\Align{
+&amp;\textsf{(正向)} &amp; \dd{x_t} &amp;=
+{- \frac12 \beta(t) x_t \dd{t}}
++ \sqrt{\smash{\beta(t)}\vphantom{f}} \dd{w_t}, \\
+&amp;\textsf{(逆向)} &amp; \dd{x_t} &amp;=
+{\biggl[
+    - \frac12\beta(t)x_t
+    - \beta(t)\nabla_{x}\log p_t(x_t)
+\biggr]\dd{t}}
++ \sqrt{\smash{\beta(t)}\vphantom{f}} \dd{\bar{w}_t}.
+}
+\]</span></p>
+<p>VP-SDE 称为 “方差保持的 SDE”, 的特点是</p>
+<ul>
+<li>既有漂移又有扩散: 在布朗运动的基础上, 漂移项 <span class="math inline">\(-1/2\beta(t)x_t\)</span> 让 <span class="math inline">\(x_t\)</span> 向原点运动.</li>
+<li>方差有界.</li>
+</ul>
+<h3 id="ddpm">16.3  DDPM</h3>
+<h4 id="noising-adding">16.3.1  Noising-adding</h4>
+<p>我们首先来求解 VP-SDE 的正向过程, 这对应了 DDPM 的加噪过程.</p>
+<div class="note note-secondary">
+<p>VP-SDE 是一个线性的 SDE, 我们可以求出它的解析解. 使用积分因子 <span class="math inline">\(\exp(\frac{1}{2}\int_0^t\beta(s)\dd{s})\)</span>,
+解得 <span class="math display">\[
+x_t = x_0 \exp\left(-\frac{1}{2}\int_0^t \beta(s)\dd{s}\right)
++ \int_0^t \exp\left(-\frac{1}{2}\int_s^t \beta(r)\dd{r}\right)
+  \sqrt{\beta(s)} \dd{w_s}.
+\]</span> 为了与 DDPM 的符号对应, 我们定义连续时间下的累积信噪比参数
+<span class="math inline">\(\bar{\alpha}(t):=\exp(-\int_0^t
+\beta(s)\dd{s})\)</span>. 根据 Itô isometry, 上式右侧积分项是一个 Gauss
+随机变量, 其均值为 <span class="math inline">\(0\)</span>, 方差为 <span class="math display">\[
+V
+= \int_0^t \exp\left(-\int_s^t \beta(r)\dd{r}\right) \beta(s) \dd{s}
+= \int_0^t \frac{\bar{\alpha}(t)}{\bar{\alpha}(s)} \beta(s) \dd{s},
+\]</span> 由于 <span class="math inline">\(\dv{s}(\frac{1}{\bar{\alpha}(s)}) =
+\frac{\beta(s)}{\bar{\alpha}(s)}\)</span>, 上述积分刚好等于 <span class="math inline">\(\bar{\alpha}(t)[\frac{1}{\bar{\alpha}(t)} - 1 ] =
+1 - \bar{\alpha}(t)\)</span>.</p>
+</div>
+<p>因此, 连续时间的边缘转移概率 (加噪公式) 为 <span class="math display">\[
+p(x_t\mid x_0) = \mathcal{N} \left(
+    x_t; \sqrt{\bar{\alpha}(t)}x_0, (1 - \bar{\alpha}(t))I
+\right).
+\]</span> 我们可以直接写成重参数化形式, <span class="math display">\[
+x_t = \sqrt{\bar{\alpha}(t)}x_0 + \sqrt{1 -
+\bar{\alpha}(t)}\varepsilon_t,
+\quad \varepsilon_t\sim \mathcal{N}(0, I).
+\]</span> 这与 DDPM 论文中给出的离散版本的加噪公式一致.</p>
+<h4 id="noise-prediction">16.3.2  Noise prediction</h4>
+<p>下面我们推导得分函数的形式.</p>
+<div class="note note-secondary">
+<p>对高斯分布求导得到条件得分函数为 <span class="math display">\[
+\nabla_{x_t} \log p(x_t \mid x_0)
+= -\frac{x_t - \sqrt{\bar{\alpha}(t)}x_0}{1 - \bar{\alpha}(t)},
+\]</span> 代入前面的重参数化公式 <span class="math inline">\(x_t -
+\sqrt{\bar{\alpha}(t)}x_0 = \sqrt{1 -
+\bar{\alpha}(t)}\varepsilon\)</span>, 便得到得分函数与注入噪声 <span class="math inline">\(\varepsilon\)</span> 之间的关系: <span class="math display">\[
+\nabla_{x_t} \log p_t(x_t)
+\approx \nabla_{x_t} \log p(x_t \mid x_0)
+= -\frac{\varepsilon_t}{\sqrt{1 - \bar{\alpha}(t)}}
+\]</span></p>
+</div>
+<p>因此, 训练得分函数估计器 <span class="math inline">\(s_\theta(x_t,t)\)</span>, 即得分匹配,
+本质上等价于训练一个神经网络 <span class="math inline">\(\varepsilon_\theta(x_t, t)\)</span> 去预测噪声:
+<span class="math display">\[
+s_\theta(x_t, t)
+= -\frac{\varepsilon_\theta(x_t, t)}{\sqrt{1 - \bar{\alpha}(t)}}.
+\]</span> 其中 <span class="math inline">\(\varepsilon_\theta(x_t,
+t)\)</span> 正是 DDPM 的训练对象.</p>
+<p>得分匹配的训练目标是加权的 <span class="math inline">\(\ell^2\)</span> 损失, 将 <span class="math inline">\(s_\theta(x_t,t)\)</span> 代入即 <span class="math display">\[
+\mathcal{L}(\theta) := \operatorname{E}_{t\sim U[0,T]}
+\operatorname{E}_{x_t \sim p_t} \Biggl[
+    \frac{\lambda(t)}{\sqrt{1-\bar\alpha(t)}}
+    \bigl\Vert
+        \varepsilon_t - \varepsilon_\theta(x_t,t)
+    \bigr\Vert_2^2
+\Biggr],
+\]</span> (其中 <span class="math inline">\(x_t\)</span>
+需根据加噪公式得到) 这与 DDPM 论文中由 KL 散度推出的损失函数一致.</p>
+<h4 id="denoising">16.3.3  Denoising</h4>
+<p>将逆向过程 SDE 离散化就可以得到 DDPM 的去噪公式.</p>
+<div class="note note-secondary">
+<p>将我们训练的得分网络 <span class="math inline">\(s_\theta(x_t,
+t)\)</span> 代入逆向 SDE, 得到 <span class="math display">\[
+\dd{x_t} = \left[
+  -\frac{1}{2}\beta(t)x_t
+  +\beta(t)
+  \frac{\varepsilon_\theta(x_t, t)}{\sqrt{1 - \bar{\alpha}(t)}}
+\right]\! \dd{t} + \sqrt{\beta(t)} \dd{\bar{w}_t}.
+\]</span> 使用 Euler-Maruyama 法, <span class="math display">\[
+x_{t - \Delta t} = x_t + \left[
+  \frac{1}{2}\beta(t)x_t
+  -\beta(t)
+  \frac{\varepsilon_\theta(x_t, t)}{\sqrt{1 - \bar{\alpha}(t)}}
+\right] \Delta t + \sqrt{\beta(t)\Delta t} \cdot z_t,
+\]</span> 其中噪声 <span class="math inline">\(z_t\sim\mathcal{N}(0,I)\)</span> 相互独立. 在 DDPM
+中, 我们定义时间步 <span class="math inline">\(i = 1, 2, \dots,
+N\)</span>. 令 <span class="math inline">\(\beta_i := \beta(t_i)\Delta
+t\)</span>. 对上式稍加整理, 便得到 <span class="math display">\[
+x_{i-1}
+= \left( 1 + \frac{1}{2}\beta_i \right) x_i
+- \frac{\beta_i}{\sqrt{1 - \bar{\alpha}_i}}
+  \varepsilon_\theta(x_i, i) + \sqrt{\beta_i} z_i
+\]</span> 把 DDPM 的去噪公式拿过来对比, <span class="math display">\[
+x_{i-1}
+= \frac{1}{\sqrt{\alpha_i}}\left(
+  x_i - \frac{\beta_i}{\sqrt{1 - \bar{\alpha}_i}}
+\right) \varepsilon_\theta(x_i, i)
++ \sqrt{\beta_i} z_i,
+\]</span> 两者还略有出入. 为了与 DDPM 保持一致, 我们使用一个 Taylor
+展开技巧. 当时间步长 <span class="math inline">\(\Delta t\to0\)</span>
+时, 每一步的噪声率 <span class="math inline">\(\beta_i=\mathcal{O}(\Delta t)\)</span> 也趋于零,
+我们有 <span class="math display">\[
+1/\sqrt{\alpha_i}
+= (1-\beta_i)^{-1/2}
+= 1-\left(-\frac{1}{2}\beta_i\right) + \mathcal{O}(\Delta t^2),
+\]</span> 代入 DDPM 去噪公式, 得到 <span class="math display">\[
+x_{i-1}
+= \left( 1 + \frac{1}{2}\beta_i + \mathcal{O}(\Delta t^2) \right) x_i
+- \left[
+  \frac
+      {\beta_i + \mathcal{O}(\Delta t^3)}
+      {\sqrt{1 - \bar{\alpha}_i}}
+\right] \varepsilon_\theta(x_i, i)
++ \sqrt{\beta_i} z_i,
+\]</span> 略去高阶无穷小即与 Euler-Maruyama 得到的公式一致.</p>
+<ul>
+<li>Euler-Maruyama 方法是一种一阶数值近似方法. 对于漂移项, 它只保留到
+<span class="math inline">\(\mathcal{O}(\Delta t)\)</span> 的精度, 所有
+<span class="math inline">\(\mathcal{O}(\Delta t^2)\)</span>
+及更高阶的项都会作为截断误差 (truncation error) 被直接舍弃.</li>
+</ul>
+</div>
+<p>总之, 我们可以得到去噪公式 <span class="math display">\[
+x_{i-1}
+= \frac{1}{\sqrt{\alpha_i}}\left(
+    x_i - \frac{\beta_i}{\sqrt{1 - \bar{\alpha}_i}}
+\right) \varepsilon_\theta(x_i, i)
++ \sqrt{\beta_i} z_i.
+\]</span> 至此, 我们已经用 SDE + 得分匹配的框架完整给出了 DDPM
+的训练对象、训练目标以及采样过程.</p>
+<h3 id="ddim">16.4  DDIM</h3>
+<p>DDIM 与 DDPM 在建模与训练上完全相同, 只不过在采样上使用了效率更高的
+PF-ODE.</p>
+<div class="note note-secondary">
+<p>直接写出 VP-SDE 逆向过程的 PF-ODE 为 <span class="math display">\[
+\dd{x_t} = \left[
+  -\frac{1}{2}\beta(t) x_t
+  -\frac{1}{2}\beta(t) \nabla_{x_t} \log p_t(x_t)
+\right] \dd{t},
+\]</span> 将训练好的得分函数 <span class="math inline">\(\nabla_{x_t}
+\log p_t(x_t)=-\frac{\varepsilon_\theta(x_t, t)}{\sqrt{1 -
+\bar{\alpha}(t)}}\)</span> 代入, 可以证明该微分方程等价于 <span class="math display">\[
+\dd{}\!\left( \frac{x_t}{\sqrt{\bar{\alpha}(t)}} \right)
+= \varepsilon_\theta(x_t, t) \, \dd{}\!\left(
+  \frac{\sqrt{1-\bar{\alpha}(t)}}{\sqrt{\bar{\alpha}(t)}}
+\right).
+\]</span></p>
+</div>
+<p>使用显式 Euler 法, 假设在足够小的时间步长 <span class="math inline">\([s, t]\)</span> 内, 神经网络的预测值 <span class="math inline">\(\varepsilon_\theta(x_t, t)\)</span> 是一个常数,
+方程两边同时在 <span class="math inline">\([s,t]\)</span> 上积分, 解得
+<span class="math display">\[
+x_s = \sqrt{\bar{\alpha}(s)} \left(
+    \frac{x_t - \sqrt{1-\bar{\alpha}(t)}\varepsilon_\theta(x_t, t)}
+    {\sqrt{\bar{\alpha}(t)}}
+\right) + \sqrt{1-\bar{\alpha}(s)} \varepsilon_\theta(x_t, t),
+\]</span> 即 DDIM 采样的公式, 其中括号内的 <span class="math inline">\(\frac{x_t -
+\sqrt{1-\bar{\alpha}(t)}\varepsilon_\theta}{\sqrt{\bar{\alpha}(t)}}\)</span>
+正是模型在时刻 <span class="math inline">\(t\)</span> 对原始样本 <span class="math inline">\(x_0\)</span> 的预测. 整个公式的含义就是利用预测的
+<span class="math inline">\(x_0\)</span> 和当前估计的噪声, 按照时刻
+<span class="math inline">\(s\)</span> 的信噪比线性组合, 得到预测的
+<span class="math inline">\(x_s\)</span>.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Brian D.O. Anderson, <em>Reverse-time diffusion equation
+models</em>, 1982.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>生成模型基础 | 7 基于得分的模型</div>
+      <div>https://disembo.github.io/Note/Course/gen-models/7/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/Course/gen-models/6/" title="生成模型基础 | 6 基于能量的模型">
+                        <span class="hidden-mobile">生成模型基础 | 6 基于能量的模型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
