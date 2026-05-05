@@ -18,7 +18,7 @@
   
     <meta name="description" content="基于得分的模型, 正向与逆向过程, 概率流 ODE 以及几种扩散模型.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生成模型基础 | 7 基于得分的模型">
+<meta property="og:title" content="生成模型基础 | 7 基于 SDE 的模型">
 <meta property="og:url" content="https://disembo.github.io/Note/Course/gen-models/7/index.html">
 <meta property="og:site_name" content="Jin&#39;s Blog">
 <meta property="og:description" content="基于得分的模型, 正向与逆向过程, 概率流 ODE 以及几种扩散模型.">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/7-sde.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/7-pf-ode.png">
 <meta property="article:published_time" content="2026-03-25T13:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-25T14:20:34.044Z">
+<meta property="article:modified_time" content="2026-04-03T02:21:07.419Z">
 <meta property="article:author" content="jin">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>生成模型基础 | 7 基于得分的模型 | Jin&#39;s Blog</title>
+  <title>生成模型基础 | 7 基于 SDE 的模型 | Jin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="生成模型基础 | 7 基于得分的模型"></span>
+            <span id="subtitle" data-typed-text="生成模型基础 | 7 基于 SDE 的模型"></span>
           
         </div>
 
@@ -274,7 +274,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">生成模型基础 | 7 基于得分的模型</h1>
+            <h1 id="seo-header">生成模型基础 | 7 基于 SDE 的模型</h1>
             
             
               <div class="markdown-body">
@@ -350,7 +350,7 @@ t &amp;\gets t + \Delta t,
 \]</span> 其中 <span class="math inline">\(\Delta t&lt;0\)</span>
 (时间从 <span class="math inline">\(T\)</span> 到 <span class="math inline">\(0\)</span>), 噪声 <span class="math inline">\(z_t\sim\mathcal{N}(0,I)\)</span> 相互独立.</p>
 <h3 id="probability-flow">15.4  Probability flow</h3>
-<p>在采样时, 我们需要用 Euler-Maruyama 法慢慢迭代, 通产需要上千步.
+<p>在采样时, 我们需要用 Euler-Maruyama 法慢慢迭代, 通常需要上千步.
 有没有快一点的方法?</p>
 <p>可以证明, 逆向过程的 <span class="math inline">\(x_t\)</span>
 的分布密度 <span class="math inline">\(p_t(x)\)</span> 满足如下 ODE,
@@ -481,7 +481,7 @@ x_t = \sqrt{\bar{\alpha}(t)}x_0 + \sqrt{1 -
 \bar{\alpha}(t)}\varepsilon\)</span>, 便得到得分函数与注入噪声 <span class="math inline">\(\varepsilon\)</span> 之间的关系: <span class="math display">\[
 \nabla_{x_t} \log p_t(x_t)
 \approx \nabla_{x_t} \log p(x_t \mid x_0)
-= -\frac{\varepsilon_t}{\sqrt{1 - \bar{\alpha}(t)}}
+= -\frac{\varepsilon_t}{\sqrt{1 - \bar{\alpha}(t)}}.
 \]</span></p>
 </div>
 <p>因此, 训练得分函数估计器 <span class="math inline">\(s_\theta(x_t,t)\)</span>, 即得分匹配,
@@ -653,7 +653,7 @@ models</em>, 1982.<a href="#fnref1" class="footnote-back" role="doc-backlink">�
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>生成模型基础 | 7 基于得分的模型</div>
+      <div>生成模型基础 | 7 基于 SDE 的模型</div>
       <div>https://disembo.github.io/Note/Course/gen-models/7/</div>
     </div>
     <div class="license-meta">
@@ -703,6 +703,12 @@ models</em>, 1982.<a href="#fnref1" class="footnote-back" role="doc-backlink">�
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/Note/Course/gen-models/8/" title="生成模型基础 | 8 流模型">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">生成模型基础 | 8 流模型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

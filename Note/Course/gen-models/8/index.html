@@ -1,0 +1,1020 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/jg-square.png">
+  <link rel="icon" href="/img/jg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="流匹配 (FM) 以及一种从几何角度看待 CNF (包括扩散和流模型) 的视角.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成模型基础 | 8 流模型">
+<meta property="og:url" content="https://disembo.github.io/Note/Course/gen-models/8/index.html">
+<meta property="og:site_name" content="Jin&#39;s Blog">
+<meta property="og:description" content="流匹配 (FM) 以及一种从几何角度看待 CNF (包括扩散和流模型) 的视角.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/8-flow-matching.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/8-rectified-flow.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/8-wasserstein-manifold.png">
+<meta property="article:published_time" content="2026-05-05T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-05T12:13:56.388Z">
+<meta property="article:author" content="jin">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/8-flow-matching.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>生成模型基础 | 8 流模型 | Jin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/additional.css">
+<link rel="stylesheet" href="/css/html-hint.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"disembo.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="/js/mathjax-cfg.js"></script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Jin&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="生成模型基础 | 8 流模型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-05 18:00" pubdate>
+          2026年5月5日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">生成模型基础 | 8 流模型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <html><head></head><body>
+<h2 id="flow-matching">17  Flow Matching</h2>
+<h3 id="cnf-revisited">17.1  CNF revisited</h3>
+<p>先简单地回顾一下连续归一化流 (CNF). 假设我们想要学习一个很复杂的分布
+<span class="math inline">\(X_1\sim\pi_1\)</span>, CNF
+的做法是先取一个简单分布 <span class="math inline">\(X_0\sim\pi_0\)</span> (比如标准正态分布),
+再用一个流 <span class="math inline">\(\Phi:[0,1]\times\R^d\to\R^d\)</span> 将 <span class="math inline">\(X_0\)</span> “推” 到 <span class="math inline">\(X_1\)</span>, 即希望 <span class="math display">\[
+\Phi(0,X_0) \sim \pi_0, \qquad
+\Phi(1,X_0) \sim \pi_1.
+\]</span> 流 <span class="math inline">\(\Phi(t,x)\)</span> <span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">严格来说, 含时向量场的流应该写作 <span class="math inline">\(\Phi(t,t_0,x)\)</span>, 其中包括初始时间 <span class="math inline">\(t_0\)</span>. 这里由于我们假定 <span class="math inline">\(t_0=0\)</span> 故略去.</hcontent><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" style="text-decoration: none;"><sup>[1]</sup></a></span> 本身不太好参数化,
+因为我们需要保证它是可逆的. CNF 参数化的是 <span class="math inline">\(\Phi\)</span> 的 “无穷小生成元”, 即向量场 <span class="math inline">\(V:[0,1]\times\R^d\to\R^d\)</span>.
+流可以由向量场积分得到. 经典的 CNF 使用 MLE 训练, 这需要我们计算 <span class="math inline">\(\pi_0\)</span> 在 <span class="math inline">\(\Phi(1,-)\)</span> 下的 “像”, 通常需要使用 ODE
+求解器, 计算代价很高.</p>
+<h3 id="flow-matching-1">17.2  Flow matching</h3>
+<p><strong>流匹配 (flow matching)</strong> 的思想是类似的,
+仍是用一个神经网络拟合向量场 <span class="math inline">\(V(t,x)\)</span>, 但是它绕过了昂贵的 ODE 模拟,
+是一种高效且稳定的方法. FM 的想法很巧妙:</p>
+<ul>
+<li><p>CNF 设计了一个流 <span class="math inline">\(\Phi\)</span>, 让
+“一团噪声” <span class="math inline">\(\pi_0\)</span> 一下子变成
+“一团数据” <span class="math inline">\(\pi_1\)</span>, 如下图左.
+这么做很困难, 因为这是高度一个欠定的问题 (真实分布 <span class="math inline">\(\pi_1\)</span> 未知).</p></li>
+<li><p>将视角从宏观转向微观, 我们从 <span class="math inline">\(\pi_0\)</span> 和 <span class="math inline">\(\pi_1\)</span> 分别采样 <span class="math inline">\(x_0,x_1\)</span>, 然后根据特定规则 (比如线性插值)
+构造一条路径 <span class="math inline">\(I:[0,1]\to\R^d\)</span>
+把两者连起来, 如下图中.</p></li>
+<li><p>路径 <span class="math inline">\(I\)</span> 上的每个点 <span class="math inline">\(x_t\)</span> 都有切向量 <span class="math inline">\(\partial_t I_t\)</span>, 我们让神经网络 <span class="math inline">\(v_\theta(x,t)\)</span> 拟合切向量, 损失函数为 MSE
+<span class="math display">\[
+\operatorname{E}_t \| v_\theta(I_t,t) - \partial_t I_t \|_2^2.
+\]</span></p></li>
+<li><p>只学习一条路径当然不够, 我们多次采样 <span class="math inline">\(x_0,x_1\)</span>, 然后计算平均损失 <span class="math display">\[
+\operatorname{E}_{t,x_0,x_1} \| v_\theta(I_t,t) - \partial_t I_t \|_2^2,
+\]</span> 这样神经网络 <span class="math inline">\(v_\theta(x,t)\)</span> 就可以学习到 “经过 <span class="math inline">\(x\)</span> 点的所有路径在 <span class="math inline">\(x\)</span> 处切向量的平均值” (下图右), 给出将
+<span class="math inline">\(\pi_0\)</span> 推到 <span class="math inline">\(\pi_1\)</span> 的向量场!</p></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/8-flow-matching.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>下面给出 FM 的严格叙述. 第一步采样 <span class="math inline">\(x_0,x_1\)</span> 时, 我们可以独立采样 <span class="math inline">\(x_0\sim\pi_0\)</span> 和 <span class="math inline">\(x_1\sim\pi_1\)</span>,
+但是一种更好的办法是选取一个联合分布 <span class="math inline">\(\gamma(x_0,x_1)\in\Pi(\pi_0,\pi_1)\)</span><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">集合 <span class="math inline">\(\Pi(\pi_0,\pi_1)\)</span> 中的元素是 <span class="math inline">\(\R^d\times\R^d\)</span> 上的分布, 并且以 <span class="math inline">\(\pi_0,\pi_1\)</span> 为边缘分布.</hcontent><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" style="text-decoration: none;"><sup>[2]</sup></a></span>,
+这样可以更好地建模两个随机变量的关系 (比如采样时倾向于选取距离近的 <span class="math inline">\(x_0,x_1\)</span>, 进而得到更合理的路径 <span class="math inline">\(I\)</span>). 联合分布 <span class="math inline">\(\gamma(x_0,x_1)\)</span> 称为两个分布 <span class="math inline">\(\pi_0(x_0),\pi_1(x_1)\)</span> 的<strong>耦合
+(coupling)</strong>. 在采样时从耦合分布中采样 <span class="math inline">\((x_0,x_1)\sim\gamma\)</span>.</p>
+<p>以 <span class="math inline">\(x_0,x_1\)</span> 为端点的路径记作
+<span class="math inline">\(I_t(x_0,x_1)\)</span>,
+也称为<strong>插值函数 (interpolant)</strong>.
+最简单的插值函数是线性插值, 即 <span class="math inline">\(I_t(x_0,x_1)=(1-t)x_0+tx_1\)</span>.
+插值函数也可以引入随机噪声, 记作 <span class="math inline">\(I_t(x_0,x_1,z)\)</span>, 通常取 <span class="math inline">\(z\sim\mathcal{N}(0,I)\)</span>.
+插值函数对时间的导数 <span class="math inline">\(\partial_t
+I_t(x_0,x_1,z)\)</span> 就是路径的切向量.</p>
+<ul>
+<li>插值函数要满足边界条件 <span class="math inline">\(I_0(x_0,x_1,z)=x_0\)</span> 以及 <span class="math inline">\(I_1(x_0,x_1,z)=x_1\)</span>. 噪声 <span class="math inline">\(z\)</span> 在路径中淡入淡出, 目的通常是把路径
+“吹厚”.</li>
+</ul>
+<p>FM 的损失函数可以写作 <span class="math display">\[
+\mathcal{L}(\theta) =
+\operatorname{E}_t
+\operatorname{E}_{(x_0,x_1)\sim\gamma}
+\operatorname{E}_z
+\Bigl\|
+    v_\theta\bigl( I_t(x_0,x_1,z),t \bigr) -
+    \partial_t I_t(x_0,x_1,z) \big|_t
+\Bigr\|_2^2.
+\]</span> 这可以看作一个速度场的回归问题, FM
+的巧妙之处在于把一个生成任务转化为了回归任务. Ground truth 速度 <span class="math inline">\(\partial_t I_t(x_0,x_1,z)|_t\)</span>
+是我们人工构造出来, 也叫做 <strong>velocity label</strong>.
+注意对于同一个点 <span class="math inline">\(I_t(x_0,x_1,z)\in\R^d\)</span>, 可能有很多不同的
+labels <span class="math inline">\(\partial_t I_t(x_0,x_1,z)|_t\)</span>
+(不同的路径穿过同一点).</p>
+<p>可以证明, 在 MSE 损失下, 神经网络学到的是不同 labels 的条件均值, 即
+<span class="math display">\[
+v_\theta^*(x,t) = \operatorname{E}_{(x_0,x_1)\sim\gamma}
+\operatorname{E}_z
+\Bigl[
+    \partial_t I_t(x_0,x_1,z) \big|_t
+    \Bigm|
+    I_t(x_0,x_1,z)=x
+\Bigr].
+\]</span></p>
+<h3 id="variants">17.3  Variants</h3>
+<p>下面介绍一些 FM 的具体例子.</p>
+<p><strong>Gaussian CFM</strong><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Lipman et al, <em>Flow Matching for Generative
+Modeling</em>, ICLR 2023.</hcontent><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" style="text-decoration: none;"><sup>[3]</sup></a></span>. 取耦合 <span class="math inline">\(\gamma(x_0,x_1)=\pi_0(x_0)\pi_1(x_1)\)</span>
+(相互独立), 插值函数 <span class="math display">\[
+I_t(x_0,x_1,z) = \mu_t(x_1) + \sigma_t x_0,
+\]</span> 其中 <span class="math inline">\(\pi_0\)</span> 为标准正态分布
+<span class="math inline">\(\mathcal{N}(0,I)\)</span>, 均值 <span class="math inline">\(\mu_t(x_1)\)</span> 从原点变化到 <span class="math inline">\(x_t\)</span>, 方差 <span class="math inline">\(\sigma_t\)</span> 从 <span class="math inline">\(1\)</span> 减小到一个很小的正数 <span class="math inline">\(\sigma_{\textsf{min}}&gt;0\)</span>.
+该插值函数的起点是标准正态分布, 终点是以 <span class="math inline">\(x_1\)</span> 为中心的一个很尖的正态分布.</p>
+<ul>
+<li>Gaussian CFM 和扩散模型很接近, 它本质上是在学习一条 Gauss 去噪的
+PF-ODE. 取特定的 <span class="math inline">\(\mu_t(x_1)\)</span> 和
+<span class="math inline">\(\sigma_t\)</span>, 可以分别得到 VE-SDE 和
+VP-SDE 的 PF-ODE 向量场. 所以说, FM 可以看作一种更通用的框架.</li>
+</ul>
+<p><strong>Rectified flow</strong><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Liu et al, <em>Flow Straight and Fast: Learning to
+Generate and Transfer Data with Rectified Flow</em>, ICLR 2023.</hcontent><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" style="text-decoration: none;"><sup>[4]</sup></a></span>. 取耦合 <span class="math inline">\(\gamma(x_0,x_1)=\pi_0(x_0)\pi_1(x_1)\)</span>
+(相互独立), 并取线性插值 <span class="math display">\[
+I_t(x_0,x_1,z) = (1-t)x_0 + tx_1,
+\]</span> 切向量 <span class="math inline">\(\partial_t
+I_t(x_0,x_1,z)|_t\equiv x_1-x_0\)</span> 就是任意两个样本的连线.
+虽然插值路径是直线, 但是最终网络学到的 ODE 流线不一定是直线,
+因为条件平均后方向会变. RF 里常见的 <strong>reflow /
+rectification</strong> 就是为了缓解这个问题,
+即用已学到的流重新生成更一致的耦合, 再训练下一轮, 让轨迹逐渐变直.
+下图展示了 reflow 的过程, 左侧两张图是初始随机配对产生的 <span class="math inline">\(I_t\)</span> 和优化得到的 flow (流线弯曲);
+右侧是在此基础上 reflow 的结果 (流线变直了).</p>
+<ul>
+<li>优点: 形式简单、实现方便、采样路径更短.</li>
+<li>缺点: 独立 <span class="math inline">\(\gamma\)</span>
+会制造大量不合理配对, 网络需要平均大量交叉路径, 通常需要 reflow
+才能得到很直的采样轨迹.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/8-rectified-flow.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p><strong>Optimal-transport CFM</strong><span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">Alexander Tong et al, <em>Improving and generalizing
+flow-based generative models with minibatch optimal transport</em>, TMLR
+2024.</hcontent><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref" style="text-decoration: none;"><sup>[5]</sup></a></span>.
+回顾之前讲的 Wasserstein 距离, 它表示
+“将一个分布的质量搬到另一个分布所需的最小搬运代价”, 即 <span class="math display">\[
+W_2^2(\pi_0,\pi_1) := \inf_{\gamma\in\Pi(\pi_0,\pi_1)}
+\int_{\R^d\times\R^d} \|x_0-x_1\|_2^2\, \gamma(x_0,x_1)
+\dd{x_0}\dd{x_1}.
+\]</span> 所对应的最优搬运方式 <span class="math inline">\(\gamma\)</span> 称为<strong>最优传输 (optimal
+transport, OT)</strong>. 一个很自然的想法是, 取耦合 <span class="math inline">\(\gamma\)</span> 为 <span class="math inline">\(\pi_0,\pi_1\)</span> 间的最优传输, 并取 <span class="math inline">\(I_t\)</span> 为线性插值,
+这样可以保证路径的平均长度最短. 需要注意的是, OT-CFM 的优势主要来自耦合,
+而不是 velocity label 的形式 (后者和 RF 一样).</p>
+<ul>
+<li>优点：路径几何更好, 采样步数更少.</li>
+<li>缺点: 需求解最优传输, 计算成本更高. 实现中通常用 minibatch OT 近似,
+质量依赖 batch size 和 cost 设计. 另外, 在高维图像空间中,
+欧氏距离不一定是语义合理的最优传输代价函数.</li>
+</ul>
+<h2 id="a-geometric-view-for-cnf">18  *A Geometric View for CNF</h2>
+<p>CNF 是一个很通用的框架, 给出了将一个分布 <span class="math inline">\(\pi_0\)</span> 变成另一个分布 <span class="math inline">\(\pi_1\)</span> 的数学模型. 本章我们用一种更 “几何”
+的方式来看 CNF. 我们会略去严谨复杂的证明, 尽量直观地呈现理论脉络<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">更多细节可以参考 Otto calculus 的文献.</hcontent><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref" style="text-decoration: none;"><sup>[6]</sup></a></span>.</p>
+<p>CNF 的核心思想是, 用一个向量场来指导概率分布的演化<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">基于得分的模型 (SBM) 和流匹配 (FM)
+都是在学习这个向量场.</hcontent><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref" style="text-decoration: none;"><sup>[7]</sup></a></span>,
+形成一族 “连续变化” 的概率密度 <span class="math inline">\(\{\rho_t\}_{t\in[0,1]}\)</span>.
+我们的研究思路是:</p>
+<ol type="1">
+<li>研究向量场如何推动概率密度 <span class="math inline">\(\{\rho_t\}_{t\in[0,1]}\)</span> 演化. (Sec.
+1)</li>
+<li>考虑所有概率密度组成的空间, 则 <span class="math inline">\(\{\rho_t\}_{t\in[0,1]}\)</span>
+组成空间中一条曲线, 研究曲线的切向量. (Sec. 2)</li>
+<li>考虑概率密度空间上的泛函, 其梯度场指导 <span class="math inline">\(\{\rho_t\}_{t\in[0,1]}\)</span> 演化. (Sec.
+3)</li>
+<li>取几种特殊的泛函, 分别可以得到 VE-SDE, Langevin 和 VP-SDE 过程.
+(Sec. 4)</li>
+</ol>
+<h3 id="vector-fields">18.1  Vector fields</h3>
+<p>设 <span class="math inline">\(\R^d\)</span> 上有含时向量场 <span class="math inline">\(v:[0,1]\times\R^d\to\R^d\)</span>, 写作 <span class="math inline">\(v_t(x)\)</span> (让时间变量作为下标). 向量场 <span class="math inline">\(v_t\)</span> 生成的流 <span class="math inline">\(\Phi:[0,1]\times\R^d\to\R^d\)</span>
+告诉了空间中每一点 <span class="math inline">\(x\)</span>
+处的粒子如何运动, 即 <span class="math display">\[
+\dv{t} \Phi_t(x) = v_t(\Phi_t(x)),
+\qquad \Phi_0(x) = x.
+\]</span> 设粒子初始分布为 <span class="math inline">\(\rho_0\)</span>,
+则粒子在空间中的分布 <span class="math inline">\(\rho_t:\R^d\to(0,+\infty)\)</span> 也随时间变化,
+并且满足<strong>连续性方程</strong> (质量守恒): <span class="math display">\[
+\partial_t\rho_t = -\nabla\cdot(\rho_t v_t).
+\]</span> 直观地说, <span class="math inline">\(\partial_t\rho_t(x)\)</span> 表示 <span class="math inline">\(x\)</span> 处粒子密度的变化率, 速度向量 <span class="math inline">\(v_t(x)\)</span> 告诉粒子如何移动, 乘积 <span class="math inline">\(\rho_t(x)v_t(x)\)</span> 表示 <span class="math inline">\(x\)</span> 处的粒子通量. 连续性方程告诉我们, <span class="math inline">\(x\)</span> 处粒子密度变化率就等于粒子通量的负散度.
+(比如, 散度为正代表粒子向四周分散, 恰好对应粒子密度变化率为负.)</p>
+<h3 id="the-space-of-distributions">18.2  The space of distributions</h3>
+<p>让理论变得更抽象、更一般的方法是定义新的空间. 考虑 <span class="math inline">\(\R^d\)</span> 上所有 (存在二阶矩的) 概率密度 <span class="math inline">\(\rho\)</span> 组成的集合 <span class="math inline">\(\mathcal{P}_2(\R^d)\)</span>. 空间 <span class="math inline">\(\mathcal{P}_2(\R^d)\)</span> 叫做 <strong><span class="math inline">\(2\)</span>-Wasserstein 空间</strong>, 其中的每个点
+<span class="math inline">\(\rho\)</span> 都是 <span class="math inline">\(\R^d\)</span> 上的函数, 而空间中的一条曲线 <span class="math inline">\(t\mapsto\rho_t\)</span>
+则给出了连续变化的一族概率密度, 如下图.</p>
+<p><img src="https://raw.githubusercontent.com/Disembo/blog-media/master/course/gen-models/8-wasserstein-manifold.png" style="zoom:40%;" cloud-img="" lazyload="true"></p>
+<p>Wasserstein 空间是无穷维的, 即每个点 <span class="math inline">\(\rho\)</span> 都有无穷多个坐标分量.
+坐标可以形式地理解为 <span class="math inline">\(\{\rho(x)\}_{x\in\R^d}\)</span>, 也就是 <span class="math inline">\(\rho\)</span> 在 <span class="math inline">\(\R^d\)</span> 中每个点处的取值, 一共 <span class="math inline">\(\abs{\R^d}\)</span> 这么多个数. 在这个 “坐标系”
+下, 曲线 <span class="math inline">\(t\mapsto\rho_t\)</span>
+切向量的分量就是坐标关于 <span class="math inline">\(t\)</span> 的导数
+<span class="math inline">\(\partial_t\rho_t\)</span>. 自然地,
+这个切向量是一个无穷维的向量.</p>
+<p>现在, 假设曲线 <span class="math inline">\(t\mapsto\rho_t\)</span> 是
+<span class="math inline">\(\R^d\)</span> 上的某个含时向量场 <span class="math inline">\(v_t\)</span> 的流生成的, 那么, 连续性方程告诉我们,
+这条曲线在 <span class="math inline">\(t\)</span> 时刻的切向量 <span class="math inline">\(\partial_t\rho_t\)</span> 恰好等于 <span class="math inline">\(-\nabla\cdot(\rho_tv_t)\)</span>. 因此,
+Wasserstein 空间的切向量与 <span class="math inline">\(\R^d\)</span>
+上的速度场几乎是同一个东西<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">严格地说, 给定 <span class="math inline">\(\partial_t\rho_t\)</span> 时,
+满足连续性方程的速度场 <span class="math inline">\(v_t\)</span>
+并不唯一. Wasserstein 几何中通常选取梯度场作为标准代表元.
+本文不展开这一点.</hcontent><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref" style="text-decoration: none;"><sup>[8]</sup></a></span>.</p>
+<div class="note note-warning">
+<p><u>Note</u> 为什么要考虑所有概率密度 <span class="math inline">\(\rho\)</span> 构成的空间, 并研究曲线 <span class="math inline">\(t\mapsto\rho_t\)</span> 的切向量? 可以用 ML
+中经典的梯度下降法做一个类比.</p>
+<p>设神经网络 <span class="math inline">\(f_\theta:\R^m\to\R^n\)</span>,
+参数 <span class="math inline">\(\theta\)</span>
+所有可能的值组成参数空间 <span class="math inline">\(\Theta\)</span>.
+在梯度下降法中, 我们定义了一个损失函数 <span class="math inline">\(\mathcal{L}:\Theta\to\R\)</span>, 并从一个初始值
+<span class="math inline">\(\theta_0\in\Theta\)</span> 开始, 不断地沿着
+<span class="math inline">\(\mathcal{L}\)</span> 的负梯度方向前进,
+最终走到 <span class="math inline">\(\mathcal{L}\)</span>
+的极小值点.</p>
+<p>在这个过程中, 参数 <span class="math inline">\(\theta\)</span>
+走过的路径组成了 <span class="math inline">\(\Theta\)</span>
+中的一条曲线<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">假设迭代步长足够小, 则近似看一条光滑曲线.</hcontent><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref" style="text-decoration: none;"><sup>[9]</sup></a></span> <span class="math inline">\(t\mapsto\theta_t\)</span>, 其切向量恰好是 <span class="math inline">\(\mathcal{L}\)</span> 的负梯度, 即 <span class="math display">\[
+\partial_t \theta_t = -\nabla\mathcal{L}(\theta_t).
+\]</span> 换言之, 我们用一个损失函数的 “梯度流” 指导了整个优化过程.
+比起在参数空间中漫无目的地搜索, 基于梯度的方法可以更高效地到达目标.</p>
+<p>回到概率密度的场景. Wasserstein 空间 <span class="math inline">\(\mathcal{P}_2(\R^d)\)</span> 就好比 <span class="math inline">\(\Theta\)</span>, 只不过前者是无限维的,
+后者是有限维的. 概率密度演化曲线 <span class="math inline">\(t\mapsto\rho_t\)</span> 就好比优化过程曲线 <span class="math inline">\(t\mapsto\theta_t\)</span>. 一个自然的想法是: 既然
+<span class="math inline">\(\Theta\)</span>
+上的函数可以指导参数的优化过程, 那么 <span class="math inline">\(\mathcal{P}_2(\R^d)\)</span>
+上是否有类似的构造?</p>
+</div>
+<h3 id="gradient-flows">18.3  Gradient flows</h3>
+<p>设 Wasserstein 空间上的函数 (泛函) <span class="math inline">\(\mathcal{F}:\mathcal{P}_2(\R^d)\to\R\)</span>,
+我们的目标是求它的梯度. 在流形上定义梯度需要先构造度量,
+并涉及一些计算过程. 这里略去中间过程, 直接给出 <span class="math inline">\(\mathcal{F}\)</span> 在 <span class="math inline">\(\rho\)</span> 处的 <strong>Wasserstein
+梯度</strong>为 <span class="math display">\[
+\nabla_W \mathcal{F}|_\rho = -\nabla\cdot\pqty{
+\rho \nabla \frac{\delta \mathcal{F}}{\delta \rho}
+},
+\]</span> 其中 <span class="math inline">\(\delta\mathcal{F}/\delta\rho\)</span> 为 <span class="math inline">\(\mathcal{F}\)</span> 的一阶变分, 其本身是 <span class="math inline">\(\R^d\to\R\)</span> 的光滑函数.</p>
+<p>现在我们可以定义 Wasserstein 空间上的梯度流了. 和前面梯度下降一样,
+这里我们考虑负梯度. 从一个初始点 <span class="math inline">\(\rho_0\in\mathcal{P}_2(\R^d)\)</span> 开始, 沿着
+<span class="math inline">\(\mathcal{F}\)</span> 的负梯度前进.
+根据梯度的几何意义, 每次前进的方向都是使得 <span class="math inline">\(\mathcal{F}\)</span> 下降最快的方向. 用曲线 <span class="math inline">\(t\mapsto\rho_t\)</span> 表示这一过程, 则曲线在
+<span class="math inline">\(t\)</span> 时刻的切向量 <span class="math inline">\(\partial_t\rho_t\)</span> 就等于 <span class="math inline">\(\rho_t\)</span> 处的负 Wasserstein 梯度, 即 <span class="math display">\[
+\partial_t \rho_t = \nabla\cdot \biggl(
+\rho_t \nabla \eval{\frac{\delta \mathcal{F}}{\delta \rho}}_{\rho_t}
+\biggr).
+\]</span> 注意到 <span class="math inline">\(-\nabla \eval{\frac{\delta
+\mathcal{F}}{\delta \rho}}_{\rho_t}\)</span> 恰好是 <span class="math inline">\(\rho_t\)</span> 所对应的速度场 <span class="math inline">\(v_t\)</span>.</p>
+<h3 id="diffusions-and-flows">18.4  Diffusions and flows</h3>
+<p>下面给出一些具体的例子.</p>
+<p><strong>势能泛函</strong>. 给空间 <span class="math inline">\(\R^d\)</span> 上的每一点赋予一个势能 <span class="math inline">\(U(x)\)</span>, 则密度 <span class="math inline">\(\rho(x)\)</span> 的势能由一个泛函给出: <span class="math display">\[
+\mathcal{F}(\rho) = \int_{\R^d} U(x) \rho(x) \dd{x}.
+\]</span> 于是 <span class="math inline">\(\delta\mathcal{F}/\delta\rho=U\)</span>, 速度场为
+<span class="math inline">\(v_t(x)=-\nabla U(x)\)</span>. 这正是粒子系统
+<span class="math display">\[
+\dd{x_t} = -\nabla U(x_t) \dd{t}
+\]</span> 的密度演化方程. 最终, 所有的粒子都会聚集在 <span class="math inline">\(U\)</span> 的极小值点, 系统势能泛函 <span class="math inline">\(\mathcal{F}(\rho)\)</span> 取到极小值.</p>
+<p><strong>负熵泛函</strong>. 考虑负熵泛函 <span class="math display">\[
+\mathcal{F}(\rho) = \int_{\R^d} \rho(x) \log\rho(x) \dd{x},
+\]</span> 其一阶变分 <span class="math inline">\(\delta\mathcal{F}/\delta\rho=\log\rho+1\)</span>,
+所以 Wasserstein 梯度流为 <span class="math display">\[
+\partial\rho_t
+= \nabla\cdot(\rho_t\nabla\log\rho_t)
+= \nabla\cdot(\nabla\rho_t)
+= \Delta\rho_t,
+\]</span> 恰好是 <span class="math inline">\(\R^d\)</span> 上的热方程.
+它对应的粒子 SDE 为纯布朗运动 <span class="math inline">\(\dd{x_t}=\sqrt{2}\dd{w_t}\)</span>,
+方差随着时间无限制增大, 质量会不断扩散到整个空间.
+所以负熵流就是无目的地自由扩散、熵不断增加的过程.
+在上一篇扩散模型中提到的 VE-SDE <span class="math inline">\(\dd{x_t}=\sigma(t)\dd{w_t}\)</span>
+可以看作负熵流的时间重参数化, 即不同时间的速度不同.</p>
+<p><strong>KL 泛函与 Langevin 动力学</strong>. KL
+泛函是势能泛函与熵泛函的组合版本. 给定分布 <span class="math inline">\(\pi(x)=\frac{1}{Z}\exp(-U(x))\)</span>, 其中 <span class="math inline">\(Z\)</span> 为归一化系数. 定义 KL 泛函 <span class="math display">\[
+\Align{
+\mathcal{F}(\rho)
+= D_{\textsf{KL}}(\rho\parallel\pi)
+&amp;= \int_{\R^d} \rho(x) \log\frac{\rho(x)}{\pi(x)} \dd{x} \\
+&amp;= \int_{\R^d} \rho(x) \log\rho(x)\dd{x}
+    + \int_{\R^d} \rho(x)U(x)\dd{x}
+    + \log{Z},
+}
+\]</span> 即势能泛函与熵泛函之和. 它的速度场为<span class="hint--html hint--top hint--hoverable hint--rounded hint--autosize"><hcontent class="hint__content">这个速度场与通常意义下的 CNF 略有区别, 因为它依赖密度
+<span class="math inline">\(\rho_t(x)\)</span>.</hcontent><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref" style="text-decoration: none;"><sup>[10]</sup></a></span>
+<span class="math display">\[
+v_t(x) = -\nabla\log\rho_t(x) - \nabla U(x),
+\]</span> 对应的 SDE 为 <span class="math display">\[
+\dd{x_t} = -\nabla U(x_t)\dd{t} {}+ \sqrt{2} \dd{w_t},
+\]</span> 正是 Langevin 动力学, 最终 <span class="math inline">\(\rho_t\)</span> 收敛到与 <span class="math inline">\(\pi\)</span> 同分布. 直观上看, KL 泛函等于扩散项 +
+势场吸引项, 它既让分布摊开, 又把分布拉向目标 <span class="math inline">\(\pi\)</span>. 因此, KL
+扩散的本质是朝着指定平衡分布 <span class="math inline">\(\pi\)</span>
+收敛的扩散.</p>
+<p><strong>Gaussian KL 泛函与 VP-SDE</strong>. 特别地, 在 KL
+泛函中取势能 <span class="math inline">\(U(x)=\frac12\|x\|^2\)</span>,
+也就是平衡分布为标准正态分布 <span class="math inline">\(\mathcal{N}(0,I)\)</span>. 对应的 SDE 为 <span class="math display">\[
+\dd{x_t} = -x_t \dd{t}{} + \sqrt{2}\dd{w_t}.
+\]</span> 同负熵流与 VE-SDE 的关系类似, VP-SDE <span class="math inline">\(\dd{x_t}=-\frac{1}{2}\beta(t)x_t\dd{t}{}+\sqrt{\beta(t)}\dd{w_t}\)</span>
+可以看作 Gaussian KL 流的时间重参数化.</p>
+<p><strong>关于流模型</strong>. VP-SDE 和 VE-SDE 这两种扩散模型都可以从
+Wasserstein 梯度流的角度解释, 从这个角度看很符合直觉.
+但一般的流模型则不对应 Wasserstein 梯度流. 如果说扩散模型是 <span class="math inline">\(\mathcal{P}_2(\R^d)\)</span> 上的梯度流诱导了
+<span class="math inline">\(\R^d\)</span> 上的粒子扩散, 那么 FM
+则是先设计 <span class="math inline">\(\R^d\)</span> 中粒子级随机桥,
+再观察分布 <span class="math inline">\(\{\rho_t\}\)</span> 在 <span class="math inline">\(\mathcal{P}_2(\R^d)\)</span> 中的轨迹. 此时, 曲线
+<span class="math inline">\(t\mapsto\rho_t\)</span> 未必由梯度流给出.
+一个有趣的例子是, OT-CFM (最优传输流匹配) 对应的是 Wasserstein 流形
+<span class="math inline">\(\mathcal{P}_2(\R^d)\)</span> 中的测地线,
+即给定起点与终点后, 长度最短的曲线.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>严格来说, 含时向量场的流应该写作 <span class="math inline">\(\Phi(t,t_0,x)\)</span>, 其中包括初始时间 <span class="math inline">\(t_0\)</span>. 这里由于我们假定 <span class="math inline">\(t_0=0\)</span> 故略去.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>集合 <span class="math inline">\(\Pi(\pi_0,\pi_1)\)</span> 中的元素是 <span class="math inline">\(\R^d\times\R^d\)</span> 上的分布, 并且以 <span class="math inline">\(\pi_0,\pi_1\)</span> 为边缘分布.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Lipman et al, <em>Flow Matching for Generative
+Modeling</em>, ICLR 2023.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Liu et al, <em>Flow Straight and Fast: Learning to
+Generate and Transfer Data with Rectified Flow</em>, ICLR 2023.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Alexander Tong et al, <em>Improving and generalizing
+flow-based generative models with minibatch optimal transport</em>, TMLR
+2024.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>更多细节可以参考 Otto calculus 的文献.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>基于得分的模型 (SBM) 和流匹配 (FM)
+都是在学习这个向量场.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>严格地说, 给定 <span class="math inline">\(\partial_t\rho_t\)</span> 时,
+满足连续性方程的速度场 <span class="math inline">\(v_t\)</span>
+并不唯一. Wasserstein 几何中通常选取梯度场作为标准代表元.
+本文不展开这一点.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>假设迭代步长足够小, 则近似看一条光滑曲线.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>这个速度场与通常意义下的 CNF 略有区别, 因为它依赖密度
+<span class="math inline">\(\rho_t(x)\)</span>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body></html>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Note/Course/" class="category-chain-item">Course</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="print-no-link">#机器学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>生成模型基础 | 8 流模型</div>
+      <div>https://disembo.github.io/Note/Course/gen-models/8/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>jin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Note/Course/gen-models/7/" title="生成模型基础 | 7 基于 SDE 的模型">
+                        <span class="hidden-mobile">生成模型基础 | 7 基于 SDE 的模型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'Disembo/blog-comments');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
